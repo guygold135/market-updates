@@ -1,0 +1,243 @@
+```html
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --accent-color: #38bdf8;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --highlight: #10b981;
+            --danger: #ef4444;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .slide-container {
+            background-color: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            color: var(--accent-color);
+            font-size: 2.5rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .highlight-card {
+            background: rgba(56, 189, 248, 0.1);
+            border-right: 4px solid var(--accent-color);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: right;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        th {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-primary);
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: opacity 0.2s;
+            margin-top: 20px;
+        }
+
+        .btn-source:hover {
+            opacity: 0.9;
+        }
+
+        .visual-placeholder {
+            border: 1px dashed var(--text-secondary);
+            padding: 40px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .metric {
+            font-weight: bold;
+            color: var(--highlight);
+        }
+
+        .risk {
+            color: var(--danger);
+        }
+    </style>
+</head>
+<body>
+
+<!-- שקופית 1: ניתוח מאקרו - Pivot של ה-Fed והשפעתו על סקטור הטכנולוגיה -->
+<div class="slide-container">
+    <h1>Strategic Macro: תמחור מחדש של נכסי סיכון (Risk Assets)</h1>
+    
+    <div class="highlight-card">
+        <strong>התזה המרכזית:</strong> המעבר של הפדרל ריזרב למדיניות מוניטרית מרחיבה (Dovish Pivot) אינו רק אירוע של הורדת ריבית, אלא שינוי במודל ה-DCF של חברות צמיחה. ירידה ב-WACC (שיעור ההיוון) מעלה משמעותית את הערך הנוכחי של תזרימי מזומנים עתידיים.
+    </div>
+
+    <p>
+        אנחנו מזהים "רוטציה איכותית". הכסף לא יוצא מהטכנולוגיה, אלא עובר מחברות מבוססות מומנטום בלבד לחברות עם <strong>Operating Leverage</strong> גבוה. ה-Logic הכלכלי ברור: ככל שעלות החוב יורדת, חברות עם מאזן חזק יכולות להאיץ רכישות עצמיות (Buybacks) והשקעות הוניות (CAPEX) בבינה מלאכותית מבלי לפגוע בדירוג האשראי.
+    </p>
+
+    <div class="visual-placeholder">
+        (גרף מוצע: השוואה בין תשואת האג"ח ל-10 שנים לבין מכפיל הרווח העתידי של מדד ה-Nasdaq 100. ניתן לראות קורלציה הפוכה מובהקת המצביעה על התרחבות מכפילים צפויה).
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>פרמטר</th>
+                <th>לפני השינוי</th>
+                <th>תחזית רבעון 4</th>
+                <th>משמעות אסטרטגית</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ריבית ה-Fed</td>
+                <td>5.25%-5.50%</td>
+                <td>4.50%-4.75%</td>
+                <td>ירידה ב"שיעור חסר סיכון"</td>
+            </tr>
+            <tr>
+                <td>מכפיל P/E ממוצע (Tech)</td>
+                <td>28x</td>
+                <td>31x</td>
+                <td>Expansion עקב נזילות גבוהה</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="https://www.reuters.com/markets/us/fed-expected-start-rate-cut-cycle-with-bang-2024-09-18/" class="btn-source">למקור: ניתוח החלטת הריבית והשלכות השוק</a>
+</div>
+
+<!-- שקופית 2: מנייה ברשימה המעקב - NVIDIA (NVDA) - מחזור ה-Blackwell -->
+<div class="slide-container">
+    <h1>Deep Dive: NVIDIA (NVDA) | תזמור שרשרת האספקה</h1>
+    
+    <div class="highlight-card">
+        <strong>ניתוח פונדמנטלי:</strong> השוק מגיב בחרדה לעיכובים קלים בייצור שבבי ה-Blackwell, אך הניתוח שלנו מראה שה-Economic Moat (החפיר הכלכלי) של החברה רק מתרחב. המעבר ממכירת "שבבים" למכירת "מערכות מחשוב מלאות" (GB200 NVL72) מעלה את ה-ASP (מחיר מכירה ממוצע) פי 3.
+    </div>
+
+    <p>
+        <strong>ה-Logic הטכנולוגי:</strong> ארכיטקטורת Blackwell פותרת את צוואר הבקבוק של רוחב הפס בין המעבדים (NVLink). עבור הלקוחות (CSPs כמו MSFT, GOOGL), העלות הכוללת של הבעלות (TCO) יורדת ב-25% למרות מחיר השבב הגבוה, בשל התייעלות אנרגטית. זהו "כוח תמחור" קלאסי.
+    </p>
+
+    <div class="data-grid">
+        <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px;">
+            <h3 style="color: var(--highlight);">יתרונות תחרותיים</h3>
+            <ul>
+                <li>שליטה מלאה ב-CUDA Stack</li>
+                <li>מעבר למודל הכנסות חוזרות מתוכנה</li>
+                <li>ביקוש קשיח מצד ריבוני (Sovereign AI)</li>
+            </ul>
+        </div>
+        <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px;">
+            <h3 style="color: var(--danger);">סיכוני ביצוע</h3>
+            <ul>
+                <li>תלות ב-CoWoS של TSMC</li>
+                <li>מתחים גיאופוליטיים (הגבלות ייצוא לסין)</li>
+                <li>קניבליזציה של מכירות H100</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="visual-placeholder">
+        (תרשים זרימה מוצע: השוואת שולי הרווח הגולמי (Gross Margin) בין דור ה-Hopper לדור ה-Blackwell. הדגשת ה-Margin Compression הזמני עקב עלויות R&D מול ה-Scale הצפוי ב-2025).
+    </div>
+
+    <a href="https://nvidianews.nvidia.com/news/nvidia-blackwell-platform-arrives-to-power-a-new-era-of-computing" class="btn-source">למקור: מפרט טכני Blackwell ועדכוני ייצור</a>
+</div>
+
+<!-- שקופית 3: מנייה ברשימה המעקב - Microsoft (MSFT) - מודל ה-o1 וה-ROI של ה-AI -->
+<div class="slide-container">
+    <h1>Strategic Intelligence: Microsoft (MSFT) | עידן ה-Reasoning</h1>
+    
+    <div class="highlight-card">
+        <strong>הערכת אנליסט:</strong> השקת מודל o1 של OpenAI מסמנת מעבר מ-"אימון מסיבי" ל-"הסקה חכמה" (Inference-time compute). עבור מיקרוסופט, זהו אירוע משנה מודל עסקי. ככל שהמודלים הופכים ל"חושבים" יותר, הצריכה על Azure עולה לא לינארית.
+    </div>
+
+    <p>
+        אנחנו בוחנים את ה-Incremental Margins של Azure. השימוש ב-AI Copilot בארגונים מתחיל להראות <strong>Stickiness</strong> (דביקות). לקוח שמתחיל להשתמש ב-Reasoning Models של OpenAI דרך ענן Azure נועל את עצמו לאקו-סיסטם של מיקרוסופט, מה שמקטין את ה-Churn Rate ומעלה את ה-LTV (ערך חיי לקוח).
+    </p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>מטריקה חזקויה</th>
+                <th>נתון נוכחי</th>
+                <th>יעד 2025</th>
+                <th>סטטוס</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Azure Growth (AI Contribution)</td>
+                <td>~7%</td>
+                <td>10-12%</td>
+                <td class="metric">Overweight</td>
+            </tr>
+            <tr>
+                <td>Free Cash Flow (TTM)</td>
+                <td>$74B</td>
+                <td>$85B+</td>
+                <td class="metric">Stable</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="visual-placeholder">
+        (גרף עמודות: צמיחת ההכנסות מ-Azure תוך הפרדה בין שירותי ענן מסורתיים לבין שירותי AI. ניתן לראות ששירותי ה-AI הופכים למנוע הצמיחה העיקרי (Primary Growth Driver)).
+    </div>
+
+    <a href="https://www.microsoft.com/en-us/investor/earnings/fy-2024-q4/press-release-webcast" class="btn-source">למקור: דוח רבעוני ושיחת ועידה MSFT</a>
+</div>
+
+</body>
+</html>
+```
