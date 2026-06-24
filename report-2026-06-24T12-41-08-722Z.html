@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי - 24 יוני 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0a0e17 0%, #1a1f35 100%);
+            color: #e8eaf0;
+            line-height: 1.7;
+            padding: 20px;
+        }
+
+        .slide-container {
+            max-width: 1100px;
+            margin: 0 auto 30px;
+            background: rgba(16, 20, 33, 0.85);
+            border-radius: 8px;
+            padding: 35px 45px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.4em;
+            color: #f4f5f7;
+            margin-bottom: 12px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.8em;
+            color: #d4af37;
+            margin: 30px 0 20px 0;
+            font-weight: 700;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 1.3em;
+            color: #a8b2d1;
+            margin: 25px 0 15px 0;
+            font-weight: 600;
+        }
+
+        .date {
+            color: #8892b0;
+            font-size: 0.95em;
+            margin-bottom: 25px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.15);
+            color: #d4af37;
+            padding: 5px 14px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .market-pulse {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .pulse-card {
+            background: rgba(30, 35, 50, 0.6);
+            padding: 18px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .pulse-card .symbol {
+            font-weight: 600;
+            color: #a8b2d1;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+        }
+
+        .pulse-card .value {
+            font-size: 1.8em;
+            font-weight: 300;
+            margin-bottom: 5px;
+        }
+
+        .pulse-card .change {
+            font-size: 1em;
+            font-weight: 600;
+        }
+
+        .positive {
+            color: #6b9080;
+        }
+
+        .negative {
+            color: #b86b6b;
+        }
+
+        .positive-bg {
+            background: rgba(107, 144, 128, 0.12);
+        }
+
+        .negative-bg {
+            background: rgba(184, 107, 107, 0.12);
+        }
+
+        .highlight-card {
+            background: rgba(212, 175, 55, 0.08);
+            border-right: 3px solid #d4af37;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .opinion-card {
+            background: rgba(100, 120, 180, 0.08);
+            border-right: 3px solid #6478b4;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .opinion-card::before {
+            content: '"';
+            font-size: 3em;
+            color: rgba(100, 120, 180, 0.3);
+            position: absolute;
+            top: 5px;
+            right: 15px;
+            font-family: Georgia, serif;
+        }
+
+        .btn-source {
+            display: inline-block;
+            color: #8892b0;
+            text-decoration: none;
+            font-size: 0.85em;
+            padding: 6px 12px;
+            border: 1px solid rgba(136, 146, 176, 0.3);
+            border-radius: 4px;
+            margin: 5px 5px 5px 0;
+            transition: all 0.2s ease;
+        }
+
+        .btn-source:hover {
+            background: rgba(136, 146, 176, 0.1);
+            border-color: #8892b0;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to left, transparent, rgba(136, 146, 176, 0.2), transparent);
+            margin: 40px 0;
+        }
+
+        ul {
+            margin: 15px 0;
+            padding-right: 25px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            color: #ccd6f6;
+        }
+
+        strong {
+            color: #e6f1ff;
+            font-weight: 600;
+        }
+
+        .source-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin: 15px 0;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .expert-quote {
+            font-style: italic;
+            color: #a8b2d1;
+            margin: 15px 0;
+            padding-right: 20px;
+        }
+
+        .expert-name {
+            color: #6478b4;
+            font-weight: 600;
+            font-style: normal;
+            display: block;
+            margin-top: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: right;
+            border-bottom: 1px solid rgba(136, 146, 176, 0.1);
+        }
+
+        th {
+            background: rgba(212, 175, 55, 0.1);
+            color: #d4af37;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        td {
+            color: #ccd6f6;
+        }
+    </style>
+</head>
+<body>
+
+<div class="slide-container">
+    <h1>דוח שוק יומי</h1>
+    <div class="date">24 יוני 2026 | סיכום המסחר מ-23.6.26</div>
+</div>
+
+<div class="slide-container">
+    <span class="badge">תמונת מצב מהירה</span>
+    <h2>Market Pulse</h2>
+    
+    <div class="market-pulse">
+        <div class="pulse-card negative-bg">
+            <div class="symbol">NVDA</div>
+            <div class="value">$200.04</div>
+            <div class="change negative">-4.13%</div>
+        </div>
+        
+        <div class="pulse-card negative-bg">
+            <div class="symbol">MU (Micron)</div>
+            <div class="value">$1,051.77</div>
+            <div class="change negative">-13.18%</div>
+        </div>
+        
+        <div class="pulse-card negative-bg">
+            <div class="symbol">COHR (Coherent)</div>
+            <div class="value">$381.22</div>
+            <div class="change negative">-10.40%</div>
+        </div>
+        
+        <div class="pulse-card negative-bg">
+            <div class="symbol">AMD</div>
+            <div class="value">$519.85</div>
+            <div class="change negative">-5.76%</div>
+        </div>
+        
+        <div class="pulse-card negative-bg">
+            <div class="symbol">TSLA</div>
+            <div class="value">$381.61</div>
+            <div class="change negative">-5.79%</div>
+        </div>
+        
+        <div class="pulse-card negative-bg">
+            <div class="symbol">BTC (Mini Trust)</div>
+            <div class="value">$27.56</div>
+            <div class="change negative">-3.23%</div>
+        </div>
+        
+        <div class="pulse-card negative-bg">
+            <div class="symbol">ETH (Mini Trust)</div>
+            <div class="value">$15.79</div>
+            <div class="change negative">-4.13%</div>
+        </div>
+        
+        <div class="pulse-card positive-bg">
+            <div class="symbol">NOW (ServiceNow)</div>
+            <div class="value">$95.94</div>
+            <div class="change positive">+3.15%</div>
+        </div>
+        
+        <div class="pulse-card positive-bg">
+            <div class="symbol">SPCX (SpaceX)</div>
+            <div class="value">$156.11</div>
+            <div class="change positive">+0.98%</div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container">
+    <span class="badge">שבבים וזיכרון</span>
+    <h2>קריסת מניות הזיכרון והשבבים – ה-23 ביוני בולט כיום קשה</h2>
+    
+    <h3>מה קרה היום</h3>
+    <div class="highlight-card">
+        <strong>Micron (MU)</strong> צנחה 13.18% ליום אחד – מ-$1,211.38 ל-$1,051.77. זו הירידה החדה ביותר במניה מאז רבעון הרווחים האחרון.<br><br>
+        <strong>Coherent (COHR)</strong> צנחה 10.40% – מ-$425.48 ל-$381.22. המניה מרוחקת כעת 13.4% משיא 52 שבועות של $440.<br><br>
+        <strong>AMD</strong> ירדה 5.76% ל-$519.85, <strong>NVDA</strong> ירדה 4.13% ל-$200.04, ו-<strong>AVGO</strong> (Broadcom) ירדה 3.06% ל-$380.15.
+    </div>
+    
+    <h3>למה זה חריג</h3>
+    <p>
+        <strong>Micron</strong> נסחרת כעת <strong>13.3% מתחת</strong> לשיא 52 שבועות של $1,213.56 שנקבע לפני ימים ספורים. ירידה של למעלה מ-13% ביום אחד במניית זיכרון שהייתה בעליות תלולות לאורך השנה היא אירוע חריג במיוחד.<br><br>
+        
+        <strong>Coherent</strong> צללה מתחת ל-$400 – רמה שהוחזקה כתמיכה בחודשים האחרונים. השבירה מהווה איתות טכני חדש.<br><br>
+        
+        <strong>AMD</strong> הייתה במגמת עלייה של 310% מתחילת השנה (52 שבועות low: $126.82), ויום אתמול היה הירידה היומית החדה ביותר בתקופה זו.
+    </p>
+    
+    <h3>ההקשר הרחב</h3>
+    <p>
+        אתמול התפרסם גם: <strong>דרום קוריאה צנחה 10%</strong> – מדד ה-KOSPI רשם את הירידה החדה ביותר מזה שנים, בהובלת Samsung ו-SK Hynix (שותפות Micron במעבדות זיכרון). Charlie Bilello כתב על כך שהיום נראה כמו "<strong>מחזור רגיל אחרי מגמה וורטיקלית</strong>" – אבל ציין שזה יכול להיות התחלה, לא רק רעש.<br><br>
+        
+        <strong>Wall St Engine</strong> דיווח: <strong>ETF ממונפים</strong> של Samsung ו-SK Hynix מכרו כ-$6B בשני המניות לכיוון סיום המסחר בקוריאה, כדי לאזן מחדש את המינוף ה-2x היומי. זה היווה 14% מהמחזור היומי במניות, גם אם ההון היוצא נטו היה רק $1.7M. זוהי לולאת pro-momentum מכנית – ירידה גוררת מכירה גוררת עוד ירידה.
+    </p>
+    
+    <a class="btn-source" href="https://x.com/charliebilello/status/2069515872826220599">Charlie Bilello</a>
+    <a class="btn-source" href="https://x.com/wallstengine/status/2069707999950852163">Wall St Engine</a>
+    
+    <h3>מה זה אומר לקראת השבוע</h3>
+    <p>
+        <strong>הערב (24.6, אחרי הסגירה):</strong> Micron מדווחת רווחים. אם ההדרכה מאכזבת – יש סיכון להמשך לחץ על כל הסקטור. אם ההדרכה טובה – עשוי להיות ריבאונד חד במניות הזיכרון.<br><br>
+        
+        <strong>השבוע:</strong> שימו לב למניות זיכרון/שבבים נוספות: AMD עדיין 7.7% מתחת לשיא השנה; NVDA 15.4% מתחת לשיא; COHR בתחתית של 6 חודשים. אם אלה לא מתאוששות עד סוף השבוע, יתכן שהמומנטום נשבר לטווח קצר.<br><br>
+        
+        <strong>תזמון:</strong> Charlie Bilello הזכיר ש-<strong>VIX Seasonality</strong> מראה שיוני היה שקט יחסית, אבל יולי היסטורית יותר תנודתי. יש להיערך לכך שזו אולי רק תחילת תיקון רחב יותר בקיץ.
+    </p>
+    
+    <a class="btn-source" href="https://x.com/Mr_Derivatives/status/2069575514504024435">Mr. Derivatives</a>
+    <a class="btn-source" href="https://x.com/Mr_Derivatives/status/2069447292579680363">Mr. Derivatives (VIX)</a>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="slide-container">
+    <span class="badge">שוק רחב</span>
+    <h2>S&P 500 ירד 1.4% – רגיל, אבל אחרי 9 שבועות רצופים של עליות</h2>
+    
+    <h3>מה קרה</h3>
+    <p>
+        S&P 500 סגר עם ירידה של 1.4% ב-23.6.26 – זו הירידה היומית ה-15 השנה עם יותר מ-1% הפסד. המדד כעת <strong>3% מתחת לשיא הכל-זמנים</strong>.<br><br>
+        
+        זה מגיע לאחר 9 שבועות רצופים של עליות מהשפל במרץ – ללא תיקון משמעותי כלל בתקופה זו.
+    </p>
+    
+    <a class="btn-source" href="https://x.com/charliebilello/status/2069515872826220599">Charlie Bilello</a>
+    
+    <h3>למה זה חריג (ולמה לא)</h3>
+    <p>
+        <strong>לא חריג:</strong> ירידה של 1.4% היא תנודתיות רגילה לחלוטין. Charlie Bilello ממסגר את זה נכון: "זה בדיוק נורמלי – מה שלא היה נורמלי זה 9 שבועות ללא שום פולבק".<br><br>
+        
+        <strong>חריג:</strong> המהירות והגובה של העלייה הקודמת היו יוצאי דופן. כשמגיעים כל כך רחוק בלי תיקון, התיקון הבא יכול להיות חד יותר מהרגיל.
+    </p>
+    
+    <h3>מה זה אומר לקראת השבוע</h3>
+    <p>
+        <strong>תרחיש A:</strong> זה רק "בריאת אוויר" לפני המשך עלייה. במקרה כזה, נצפה לראות התאוששות מהירה תוך 2-3 ימי מסחר, עם חזרה ל-1-2% מהשיאים.<br><br>
+        
+        <strong>תרחיש B:</strong> זו התחלת תיקון של 5-7% לקראת אוגוסט-אוקטובר (כפי ש-Mr. Derivatives רומז). במקרה זה, נראה עוד 2-4% ירידה לאורך החודש הבא, עם תחתית בטווח $6,200-6,400.<br><br>
+        
+        <strong>Mr. Derivatives:</strong> "אני עדיין מאמין שתיקון מיני של 7-10% יגיע ל-SPX. אבל אחרי יולי. יוני רק נותן לנו טעימה של מה שעתיד לבוא. זה לא פרמבייר – אחרי שהדיפ יגיע באוגוסט-אוקטובר, קונים לקראת Santa Rally."<br><br>
+        
+        <strong>לקראת השבוע:</strong> אין לפני השוק אירועי מאקרו גדולים מיוחדים מלבד רווחי Micron. אם MU מאכזבת – אפשר לראות עוד יום אדום. אם MU מפתיעה לטובה – סיכוי טוב לריבאונד טכני של יומיים-שלושה.
+    </p>
+    
+    <a class="btn-source" href="https://x.com/Mr_Derivatives/status/2069475493364248620">Mr. Derivatives</a>
+    <a class="btn-source" href="https://x.com/Mr_Derivatives/status/2069445755925090425">Mr. Derivatives</a>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="slide-container">
+    <span class="badge">קריפטו</span>
+    <h2>ביטקוין ואת'ריום בירידות חדות – אך המבנה הבסיסי "לא נשבר", לפי אנליסטים</h2>
+    
+    <h3>מה קרה</h3>
+    <div class="highlight-card">
+        <strong>BTC:</strong> ירד 3.23% (Grayscale Mini Trust ETF סגר ב-$27.56).<br>
+        <strong>ETH:</strong> ירד 4.13% (Grayscale Mini Trust ETF סגר ב-$15.79).<br><br>
+        
+        Cointelegraph דיווח: <strong>$170M בפוזיציות לונג של Ether חוסלו</strong> במהלך הירידה, כאשר הלחץ על ETH נבע הן מהלחץ הכללי בשוק והן מקשיים פנימיים ב-Ethereum (המחלוקת על מיסוי staking rewards).
+    </div>
+    
+    <a class="btn-source" href="https://cointelegraph.com/markets/170m-ether-positions-liquidated-as-crypto-market-tumbles-is-eth-doomed">Cointelegraph</a>
+    
+    <h3>למה זה חריג</h3>
+    <p>
+        <strong>ביטקוין:</strong> William Suberg (Cointelegraph) מצטט אנליזה שמראה שבמסגרת מחזורי 4 שנים, BTC כרגע נמצא <strong>20% מתחת לקו המגמה של "adoption structure"</strong> – אבל זה נורמלי בשוק דובי. התחזית: אם המבנה נשאר תקף, יש סיכוי לעלייה חזרה לכיוון $76K במהלך השנה הבאה.<br><br>
+        
+        <strong>Ethereum:</strong> ETH סובל מלחץ כפול: מצד אחד הירידה הכללית, מצד שני המשבר הפנימי – הקרן (Foundation) שוקלת לגייס כספים מבעלי ETH גדולים או להטיל "מס" על תגמולי staking. זה מייצר חוסר וודאות שמרתיעה משקיעים בטווח הקצר.
+    </p>
+    
+    <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-four-year-trend-calls-for-76k-as-analysis-says-btc-price-not-broken">Cointelegraph (BTC)</a>
+    <a class="btn-source" href="https://cointelegraph.com/features/ethereums-funding-scare-why-a-hated-staking-tax-may-already-be-obsolete">Cointelegraph (ETH Tax)</a>
+    
+    <h3>מה זה אומר לקראת השבוע</h3>
+    <p>
+        <strong>ביטקוין:</strong> המפתח הוא האם BTC ישמור על $60K כתמיכה. שבירה מתחת ל-$60K עלולה לגרור נפילה נוספת ל-$55K-$52K. החזקה מעל $60K – סימן שהמבנה עדיין תקף.<br><br>
+        
+        <strong>Ethereum:</strong> יש להמתין לבהירות לגבי תוכנית המימון. אם הקרן תודיע על פתרון שלא כולל "מיסוי" – סיכוי טוב להתאוששות. אם המיסוי יתקדם – לחץ נוסף צפוי.<br><br>
+        
+        <strong>כיוון כללי:</strong> שני המטבעות יושפעו בעיקר מהסנטימנט במניות הטק ובשוק הרחב. אם S&P מתאושש – גם הקריפטו יתאושש. אם S&P ממשיך לרדת – קשה לקריפטו לעלות נגד הזרם.
+    </p>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="slide-container">
+    <span class="badge">מאקרו</span>
+    <h2>נפט צנח מתחת ל-$75 לחבית, זהב -27% משיא – שינוי דרמטי בנכסי מקלט</h2>
+    
+    <h3>מה קרה</h3>
+    <div class="highlight-card">
+        <strong>Brent:</strong> צנח מתחת ל-$75 לחבית – לראשונה מאז תחילת מלחמת איראן.<br><br>
+        
+        <strong>זהב:</strong> נמצא כעת 27% מתחת לשיא השנה (Charlie Bilello). זו ירידה של כמעט 30% מהשיא שנקבע בינואר 2026.<br><br>
+        
+        <strong>כסף:</strong> ירד 50% משיא השנה – מ-$150/oz לכיוון $50/oz.
+    </div>
+    
+    <a class="btn-source" href="https://x.com/wallstengine/status/2069751074488308069">Wall St Engine</a>
+    <a class="btn-source" href="https://x.com/charliebilello/status/2069496317877826039">Charlie Bilello</a>
+    <a class="btn-source" href="https://x.com/Mr_Derivatives/status/2069739232583897127">Mr. Derivatives</a>
+    <a class="btn-source" href="https://x.com/Mr_Derivatives/status/2069506682326319298">Mr. Derivatives (Silver)</a>
+    
+    <h3>למה זה חריג</h3>
+    <p>
+        <strong>נפט:</strong> הירידה מגיעה למרות המתיחות עם איראן. הסיבה: <strong>טראמפ הודיע</strong> (24.6.26) שאיראן אישרה כי אין אגרות, עלויות ביטוח או עמלות אחרות בצמד הורמוז. אם איראן נשארת עם ההבטחה הזו – הלחץ על אספקת הנפט יורד משמעותית.<br><br>
+        
+        <strong>זהב וכסף:</strong> הירידה החדה (זהב קרוב ל-death cross, לדברי Mr. Derivatives) מגיעה לאחר עלייה חדה בתחילת השנה. הנרטיב שהניע את הזהב (פחד מאינפלציה + חוסר יציבות) נחלש בחודשים האחרונים. יתר על כן, החוזק של הדולר (UUP) והירידה בציפיות לריביות מפחיתים את האטרקטיביות של זהב.
+    </p>
+    
+    <a class="btn-source" href="https://x.com/wallstengine/status/2069748746532077621">Wall St Engine (Trump)</a>
+    <a class="btn-source" href="https://x.com/Mr_Derivatives/status/2069602835067732102">Mr. Derivatives (Gold Death Cross)</a>
+    
+    <h3>מה זה אומר לקראת השבוע</h3>
+    <p>
+        <strong>נפט:</strong> אם המו"מ עם איראן ממשיך להתקדם – נפט עלול לרדת עוד, אולי ל-$70-$72. זה טוב לאינפלציה, רע למניות אנרגיה.<br><br>
+        
+        <strong>זהב:</strong> המגמה לטווח קצר שלילית. אם ה-death cross יתקיים (50-day MA חוצה מתחת ל-200-day MA) – סיכוי לירידה נוספת ל-$3,800-$3,900. מנגד, אם יש הפתעת משבר גיאופוליטי או מאקרו – הזהב יכול לחזור במהירות.<br><br>
+        
+        <strong>השקעות:</strong> בשלב זה, זהב וכסף אינם נכסי מקלט אטרקטיביים. טראז'רי (IEF) או מזומן (כגון money market funds) נראים בטוחים יותר אם מחפשים הגנה.
+    </p>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="slide-container">
+    <span class="badge">עסקאות ומיזוגים</span>
+    <h2>Google נכנסת ל-Dow Jones, מחליפה את Verizon – אבל Alphabet עדיין מתחת לשיא</h2>
+    
+    <h3>מה קרה</h3>
+    <div class="highlight-card">
+        ב-23.6.26 הוכרז: <strong>Alphabet (GOOGL) תיכנס למדד Dow Jones</strong>, ותחליף את Verizon (VZ). זו תנועה משמעותיתלא מאוד כי Dow הוא מדד מתוך 30 מניות בלבד, וקבלת Alphabet מסמנת שהוועדה מכירה בחשיבותה כמניית טק דומיננטית.<br><br>
+        
+        מחיר: GOOG סגרה ב-$346.08, ירידה של 0.77% ביום ההכרזה. המניה נמצאת כעת <strong>14.4% מתחת לשיא השנה</strong> של $404.47.
+    </div>
+    
+    <a class="btn-source" href="https://x.com/Mr_Derivatives/status/2069553939104809385">Mr. Derivatives</a>
+    <a class="btn-source" href="https://www.cnbc.com/2026/06/23/alphabet-verizon-dow-djia.html">CNBC</a>
+    
+    <h3>למה זה חשוב</h3>
+    <p>
+        <strong>הוספה ל-Dow</strong> פירושה זרימת כסף פסיבית מקרנות אינדקס שעוקבות אחרי Dow. זה לא זרם ענק (Dow קטן יחסית ל-S&P), אבל זה מסמל <strong>לגיטימציה</strong> – Google נכנסת למועדון הבלעדי ביותר של וול סטריט.<br><br>
+        
+        <strong>Mr. Derivatives:</strong> "META, GOOGL, TSLA הן היחידות מה-Mag 7 שלא ב-Dow. טסלה – מובן. אבל לא אתפלא אם Meta וגוגל ייכנסו בשלב כלשהו... או אפילו הרחבה ל-40 מניות."<br><br>
+        
+        <strong>CNBC</strong> ציינה שהמהלך בא על רקע הדחיפה של וועדת Dow לכלול יותר מניות טק מודרניות, במיוחד לאחר שהמדד פיגר אחרי S&P בשנים האחרונות.
+    </p>
+    
+    <h3>מה זה אומר לקראת השבוע</h3>
+    <p>
+        <strong>הכניסה בפועל:</strong> צפויה להתרחש ב-1 ליולי (לפי המועד הסטנדרטי של rebalancing רבעוני). עד אז, יתכן ויהיה קניות טכניות במניה מצד קרנות שמתאימות את הפורטפוליו מראש.<br><br>
+        
+        <strong>השפעה:</strong> סיכוי טוב שגוגל תקבל דחיפה קלה (1-3%) סביב 1 ליולי, כשהקניות הטכניות יכנסו. אבל זה לא בהכרח מהלך ארוך-טווח – זה יותר אירוע חד-פעמי.<br><br>
+        
+        <strong>לטווח ארוך:</strong> גוגל עדיין נמצאת בלחץ בגלל הדיון על הדומיננטיות שלה ב-AI (CNBC דיווחה ש"הדומיננטיות של גוגל מראה סימני סדקים בעידן ה-AI"). אם החברה לא תוכיח תשואה ברורה מה-AI capex שלה, המניה עלולה להמשיך ללחץ.
+    </p>
+    
+    <a class="btn-source" href="https://www.cnbc.com/2026/06/23/googles-online-dominance-is-showing-signs-of-cracking-in-ai-era.html">CNBC (AI dominance)</a>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="slide-container">
+    <span class="badge">אסטרטגיה</span>
+    <h2>תזהורת אנליסטים: "העם מתנהג כאילו אין סיכון, רק תגמול" – זמן לזהירות</h2>
+    
+    <h3>דעות מומחים</h3>
+    
+    <div class="opinion-card">
+        <p class="expert-quote">
+            "המשקיעים רודפים אחרי מניות meme ומניות בעלות ביטא גבוה/מומנטום גבוה, בדיוק כפי שעשו ב-2021. כשהקהל מתנהג כאילו אין סיכון ורק תגמול – זה הזמן לזהירות."
+        </p>
+        <span class="expert-name">– Charlie Bilello, אנליסט שוק</span>
+    </div>
+    
+    <a class="btn-source" href="https://x.com/charliebilello/status/2069440537153683925">Charlie Bilello</a>
+    
+    <div class="opinion-card">
+        <p class="expert-quote">
+            "כל בועת מניות הופכת בסופו של דבר לבועת אשראי לפני שהיא מתפוצצת... ענקיות ה-AI (Google, Amazon, Meta, Microsoft, Oracle) הנפיקו 47% יותר חוב ב-5 החודשים הראשונים של השנה ($159B) מאשר בכל 2025 ($108B). זה עולה על ההנפקות המשולבות של 2020-2024."
+        </p>
+        <span class="expert-name">– Charlie Bilello</span>
+    </div>
+    
+    <a class="btn-source" href="https://x.com/charliebilello/status/2069528738673393993">Charlie Bilello (Video)</a>
+    
+    <div class="opinion-card">
+        <p class="expert-quote">
+            "Blackstone אומרים שמגבלות המשיכה הן 'תכונה ולא באג', מעוצבות 'להגן על משקיעים מעצמם'. Dan Oneglia (אסטרטג אשראי נזיל) קרא למנגנון הכיבוי הזה 'תכונה ולא באג' של המבנה."
+        </p>
+        <span class="expert-name">– Nora Redmond, MarketWatch</span>
+    </div>
+    
+    <a class="btn-source" href="https://www.marketwatch.com/story/blackstone-says-withdrawal-limits-are-a-feature-and-not-a-flaw-designed-to-protect-investors-from-themselves-ec6f0e39">MarketWatch</a>
+    
+    <h3>מה זה אומר לקראת השבוע</h3>
+    <p>
+        <strong>אזהרות רבות</strong> מומחים מצביעים על כך שהשוק נמצא במצב של אופוריה יתר. זה לא אומר שקריסה קרובה – אבל זה אומר שכדאי להיזהר מהשקעות אגרסיביות מדי בטווח הקצר.<br><br>
+        
+        <strong>אסטרטגיה מעשית:</strong>
+        <ul>
+            <li>אם יש לכם פוזיציות עם רווחים גדולים במניות מומנטום (PLTR, OKLO, NNE, וכו') – שקלו לקחת חלק מהרווחים מהשולחן.</li>
+            <li>אם אתם מחפשים הזדמנויות חדשות – המתינו לירידה נוספת של 3-5% במדדים לפני שנכנסים בכוח.</li>
+            <li>חשוב להחזיק חלק מהפורטפוליו במזומן או באג"ח קצרות (IEF, Treasuries) כדי להיות מוכנים לכל תרחיש.</li>
+        </ul>
+    </p>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="slide-container">
+    <span class="badge">סיכום</span>
+    <h2>מה לעקוב אחריו לקראת סוף השבוע</h2>
+    
+    <ul>
+        <li><strong>הערב (24.6, אחרי הסגירה):</strong> רווחי Micron – זה האירוע המרכזי. אם מאכזבים – צפו לעוד לחץ על שבבים וזיכרון. אם מפתיעים לטובה – ריבאונד חזק אפשרי.</li>
+        
+        <li><strong>יום חמישי-שישי:</strong> תגובת השוק למידע של Micron. אם יש התאוששות – סימן שהתיקון הסתיים. אם ממשיכים לרדת – סימן שהתיקון עמוק יותר.</li>
+        
+        <li><strong>מדדים:</strong> S&P 500 – האם שומר על 3% מתחת לשיא, או יורד ל-5%? זה ההבדל בין "בריאת אוויר" לבין "תיקון אמיתי".</li>
+        
+        <li><strong>נפט וזהב:</strong> המשך הירידה? אם כן – סימן שהמאקרו משתפר (פחות אינפלציה). אם לא – סימן שיש עדיין חששות.</li>
+        
+        <li><strong>קריפטו:</strong> האם BTC שומר על $60K? זו הרמה הקריטית. שבירה מתחת – בעיה. החזקה מעל – סימן לכוח.</li>
+    </ul>
+    
+    <div class="highlight-card">
+        <strong>המסר המרכזי:</strong> השוק לא קרס, אבל הוא נמצא בנקודת מפנה. הימים הקרובים יקבעו אם זו הפסקה קצרה או תחילת תיקון עמוק יותר. זמן להיות ערניים, לא פאניקה – אבל גם לא שאננות.
+    </div>
+</div>
+
+</body>
+</html>
