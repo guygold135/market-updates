@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי - 24 ביוני 2026</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0a0e17 0%, #1a1f2e 100%);
+            color: #e4e6eb;
+            line-height: 1.7;
+            font-size: 15px;
+        }
+        
+        .slide-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 30px;
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.8em;
+            color: #f0c674;
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        
+        h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.9em;
+            color: #d4af87;
+            margin: 50px 0 25px 0;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(212, 175, 135, 0.2);
+            font-weight: 700;
+        }
+        
+        h3 {
+            font-size: 1.3em;
+            color: #c5a572;
+            margin: 30px 0 15px 0;
+            font-weight: 600;
+        }
+        
+        .date-header {
+            color: #8a96a8;
+            font-size: 0.95em;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: rgba(212, 175, 135, 0.15);
+            color: #d4af87;
+            padding: 6px 14px;
+            border-radius: 5px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            border: 1px solid rgba(212, 175, 135, 0.25);
+            letter-spacing: 0.5px;
+        }
+        
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 135, 0.2), transparent);
+            margin: 60px 0;
+        }
+        
+        .market-pulse {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 18px;
+            margin: 35px 0 50px 0;
+        }
+        
+        .pulse-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 18px;
+            transition: all 0.3s ease;
+        }
+        
+        .pulse-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(212, 175, 135, 0.3);
+        }
+        
+        .pulse-card .symbol {
+            font-weight: 600;
+            font-size: 0.95em;
+            color: #a8b2c1;
+            margin-bottom: 8px;
+        }
+        
+        .pulse-card .change {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+        
+        .pulse-card.negative .change {
+            color: #d97979;
+        }
+        
+        .pulse-card.positive .change {
+            color: #7db87d;
+        }
+        
+        .highlight-card {
+            background: rgba(212, 175, 135, 0.08);
+            border-right: 4px solid #d4af87;
+            padding: 22px;
+            margin: 25px 0;
+            border-radius: 6px;
+        }
+        
+        .opinion-card {
+            background: rgba(100, 150, 200, 0.08);
+            border-right: 4px solid #6496c8;
+            padding: 22px;
+            margin: 25px 0;
+            border-radius: 6px;
+            position: relative;
+        }
+        
+        .opinion-card::before {
+            content: '"';
+            position: absolute;
+            top: 15px;
+            right: 18px;
+            font-size: 3em;
+            color: rgba(100, 150, 200, 0.25);
+            font-family: Georgia, serif;
+        }
+        
+        .opinion-author {
+            margin-top: 12px;
+            font-style: italic;
+            color: #8a96a8;
+            font-size: 0.9em;
+        }
+        
+        .metric {
+            display: inline-block;
+            background: rgba(212, 175, 135, 0.12);
+            color: #d4af87;
+            padding: 4px 11px;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin: 3px 5px 3px 0;
+            border: 1px solid rgba(212, 175, 135, 0.2);
+        }
+        
+        .metric.negative {
+            background: rgba(217, 121, 121, 0.12);
+            color: #d97979;
+            border-color: rgba(217, 121, 121, 0.2);
+        }
+        
+        .metric.positive {
+            background: rgba(125, 184, 125, 0.12);
+            color: #7db87d;
+            border-color: rgba(125, 184, 125, 0.2);
+        }
+        
+        .btn-source {
+            display: inline-block;
+            color: #8a96a8;
+            text-decoration: none;
+            font-size: 0.85em;
+            padding: 6px 12px;
+            border: 1px solid rgba(138, 150, 168, 0.3);
+            border-radius: 5px;
+            margin: 8px 8px 8px 0;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .btn-source:hover {
+            background: rgba(212, 175, 135, 0.1);
+            border-color: #d4af87;
+            color: #d4af87;
+        }
+        
+        .source-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        ul {
+            margin: 20px 0;
+            padding-right: 25px;
+        }
+        
+        li {
+            margin: 12px 0;
+            color: #c5cad5;
+        }
+        
+        strong {
+            color: #e4e6eb;
+            font-weight: 600;
+        }
+        
+        p {
+            margin: 15px 0;
+            color: #c5cad5;
+        }
+        
+        .context-box {
+            background: rgba(212, 175, 135, 0.06);
+            border: 1px solid rgba(212, 175, 135, 0.15);
+            padding: 18px;
+            border-radius: 6px;
+            margin: 20px 0;
+            font-size: 0.95em;
+        }
+        
+        .warning-box {
+            background: rgba(217, 121, 121, 0.08);
+            border-right: 3px solid #d97979;
+            padding: 18px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="slide-container">
+    <h1>דוח שוק יומי</h1>
+    <div class="date-header">יום שלישי, 23 ביוני 2026 | סיכום מסחר</div>
+
+    <h2>תמונת מצב מהירה (Market Pulse)</h2>
+    <div class="market-pulse">
+        <div class="pulse-card negative">
+            <div class="symbol">NVDA</div>
+            <div class="change">-4.13%</div>
+        </div>
+        <div class="pulse-card negative">
+            <div class="symbol">MU</div>
+            <div class="change">-13.18%</div>
+        </div>
+        <div class="pulse-card negative">
+            <div class="symbol">AMD</div>
+            <div class="change">-5.76%</div>
+        </div>
+        <div class="pulse-card negative">
+            <div class="symbol">COHR</div>
+            <div class="change">-10.40%</div>
+        </div>
+        <div class="pulse-card negative">
+            <div class="symbol">TSLA</div>
+            <div class="change">-5.79%</div>
+        </div>
+        <div class="pulse-card negative">
+            <div class="symbol">AVGO</div>
+            <div class="change">-3.06%</div>
+        </div>
+        <div class="pulse-card negative">
+            <div class="symbol">CRWV</div>
+            <div class="change">-5.00%</div>
+        </div>
+        <div class="pulse-card negative">
+            <div class="symbol">BTC (GBTC)</div>
+            <div class="change">-3.23%</div>
+        </div>
+        <div class="pulse-card negative">
+            <div class="symbol">ETH (ETHE)</div>
+            <div class="change">-4.13%</div>
+        </div>
+        <div class="pulse-card positive">
+            <div class="symbol">SPCX</div>
+            <div class="change">+0.98%</div>
+        </div>
+        <div class="pulse-card positive">
+            <div class="symbol">NOW</div>
+            <div class="change">+3.15%</div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <span class="badge">שבבים וזיכרון</span>
+    <h2>סחף מכירות קוריאני מכה בשוק השבבים העולמי</h2>
+
+    <h3>מה קרה היום</h3>
+    <div class="highlight-card">
+        <p><strong>הקוספי הקוריאני צלל 10%</strong> במהלך המסחר ביום שלישי, כשסמסונג ו-SK Hynix ספגו מכירות כבדות לאחר עליות חדות.</p>
+        <p><strong>במסחר האמריקאי</strong>, מניות השבבים בארה״ב חוו ירידות משמעותיות - <span class="metric negative">MU -13.18%</span>, <span class="metric negative">AMD -5.76%</span>, <span class="metric negative">NVDA -4.13%</span>.</p>
+        <p><strong>COHR</strong> צנחה <span class="metric negative">-10.40%</span> לרמה של $381.22, אחת הירידות החדות ביותר ברשימת המעקב.</p>
+    </div>
+
+    <h3>למה זה חריג</h3>
+    <p>הקוספי הקוריאני עלה למעלה מ-100% בשנה האחרונה ועבר את בריטניה וקנדה לשוק החמישי בגודלו בעולם. <strong>הירידה של 10% היא תיקון חריג לאחר ראלי אנכי</strong> שהוביל שוק חם מדי.</p>
+    
+    <div class="context-box">
+        <p><strong>אנליסטים של Bloomberg Intelligence מעריכים</strong> ש-ETFs ממונפים פי-2 שעוקבים אחר סמסונג ו-SK Hynix מכרו כ-$6 מיליארד מהשניים ביום שלישי כדי לאפס את המינוף היומי - <strong>14% ממחזור המסחר</strong> בשתי המניות הללו.</p>
+        <p>המנגנון: הקרנות נאלצות <strong>באופן מכני למכור בירידות ולקנות בעליות</strong> כדי לשמור על חשיפה פי-2, מה שיוצר לולאה פרו-מומנטום שמגבירה תנודתיות.</p>
+    </div>
+
+    <a class="btn-source" href="https://x.com/wallstengine/status/2069707999950852163" target="_blank">Wall St Engine</a>
+
+    <h3>ההשפעה על מניות אמריקאיות</h3>
+    <ul>
+        <li><strong>Micron (MU)</strong> ספגה את המכה הקשה ביותר: <span class="metric negative">-13.18%</span> ל-$1,051.77, לקראת פרסום דוחות הערב (אחרי הסגירה).</li>
+        <li><strong>AMD</strong> ירדה <span class="metric negative">-5.76%</span> ל-$519.85 לאחר עלייה חדה בחודשים האחרונים.</li>
+        <li><strong>NVDA</strong> נסוגה <span class="metric negative">-4.13%</span> ל-$200.04, מתחת לרמה הפסיכולוגית של $200.</li>
+        <li><strong>Coherent (COHR)</strong> צנחה <span class="metric negative">-10.40%</span> במכירות כבדות בנפח של כמעט 6 מיליון מניות.</li>
+    </ul>
+
+    <h3>מה זה אומר לקראת השבוע</h3>
+    <div class="warning-box">
+        <p><strong>דוחות Micron הערב יהיו קריטיים</strong> - השוק מחפש אישור שהביקוש לזיכרון AI נשאר חזק למרות התיקון במחירי המניות.</p>
+        <p>אם MU תאכזב בהנחיה או בתחזית, <strong>הלחץ על מניות שבבים עשוי להמשיך</strong>. אם תפתיע לטובה, ייתכן תיקון חד כלפי מעלה.</p>
+    </div>
+
+    <a class="btn-source" href="https://x.com/Mr_Derivatives/status/2069575514504024435" target="_blank">Mr. Derivatives</a>
+    <a class="btn-source" href="https://x.com/charliebilello/status/2069496317877826039" target="_blank">Charlie Bilello</a>
+
+    <div class="section-divider"></div>
+
+    <span class="badge">קריפטו</span>
+    <h2>קריפטו ממשיך לדמם - ETH בירידה של 67% משיא</h2>
+
+    <h3>מה קרה היום</h3>
+    <div class="highlight-card">
+        <p><strong>Grayscale Ethereum Mini Trust (ETHE)</strong> ירד <span class="metric negative">-4.13%</span> ל-$15.79 - זו <strong>לא מטבע ה-ETH עצמו</strong> אלא קרן נאמנות שעוקבת אחריו.</p>
+        <p><strong>Grayscale Bitcoin Mini Trust (GBTC)</strong> נסוג <span class="metric negative">-3.23%</span> ל-$27.56.</p>
+    </div>
+
+    <div class="opinion-card">
+        <p>״ETH: שבוע אחד אדום, חודש אחד אדום, 3 חודשים אדום, 6 חודשים אדום, YTD אדום, שנה אדומה, 5 שנים אדום. אוף.״</p>
+        <div class="opinion-author">— Mr. Derivatives (<a class="btn-source" href="https://x.com/Mr_Derivatives/status/2069405324642304264" target="_blank" style="display:inline; margin:0; padding:2px 8px;">מקור</a>)</div>
+    </div>
+
+    <h3>למה זה חריג</h3>
+    <p>ETH נמצא כעת <strong>67% מתחת לשיא כל הזמנים</strong> (לפי נתוני ETHE). הירידה המתמשכת מצביעה על <strong>אובדן אמון משמעותי</strong> במטבע שהיה אמור להוביל את מהפכת ה-DeFi וה-AI on-chain.</p>
+    <p>לשם השוואה: <strong>Bitcoin</strong> נמצא "רק" 51% מתחת לשיא (לפי GBTC), מה שמראה שהתיקון ב-ETH עמוק יותר.</p>
+
+    <h3>מה זה אומר לקראת השבוע</h3>
+    <p>קריפטו <strong>לא נותן סימני התאוששות</strong> בטווח הקצר. כל עוד לא נראה נפח קנייה חריג או חדשות מהותיות (רגולציה, אימוץ מוסדי), <strong>הלחץ כלפי מטה עשוי להמשיך</strong>.</p>
+
+    <a class="btn-source" href="https://x.com/Mr_Derivatives/status/2069405324642304264" target="_blank">Mr. Derivatives</a>
+
+    <div class="section-divider"></div>
+
+    <span class="badge">שוק רחב</span>
+    <h2>האם הגנרלים נופלים? Mag-7 נסוגים, מניות שבבים קטנות ממריאות</h2>
+
+    <h3>מה קרה היום</h3>
+    <div class="highlight-card">
+        <p><strong>מניות השבבים עלו יותר מפעמיים השנה</strong> (לפי מדד SOX), בעוד ש-Mag 7 ירדו <span class="metric negative">-3% YTD</span>.</p>
+        <p><strong>אזהרה ישנה בוול סטריט</strong>: "הם יורים בגנרלים" — כלומר, המנהיגים הקודמים של השוק מתחילים להישבר.</p>
+    </div>
+
+    <div class="opinion-card">
+        <p>״מניות השבבים עלו יותר מפעמיים השנה בזמן שקבוצת Mag 7 ירדה 3%. אזהרה ישנה בוול סטריט: 'הם יורים בגנרלים'. תרגום: מנהיגי השוק הקודמים מתחילים להישבר.״</p>
+        <div class="opinion-author">— Charlie Bilello (<a class="btn-source" href="https://x.com/charliebilello/status/2069387682933846283" target="_blank" style="display:inline; margin:0; padding:2px 8px;">מקור</a>)</div>
+    </div>
+
+    <h3>למה זה חריג</h3>
+    <p>זהו <strong>סימן אזהרה קלאסי</strong> - כשהמנהיגים שהובילו את השוק במשך שנתיים (Mag 7: MSFT, AAPL, GOOG, AMZN, NVDA, META, TSLA) מפסיקים לעלות, זה עלול לסמן על <strong>מעבר לרוטציה סקטוריאלית</strong> או אפילו תחילת תיקון רחב יותר.</p>
+    <p>מצד שני, <strong>מניות שבבים קטנות וזולות יותר</strong> עדיין ממריאות - מה שעשוי להצביע על מרדף אחר "הזדמנות הבאה" ולא בהכרח על בריחה מהשוק.</p>
+
+    <h3>מה זה אומר לקראת השבוע</h3>
+    <p>אם Mag 7 ימשיכו להיחלש, <strong>זה עלול לגרור את מדדים רחבים כמו S&P 500</strong> (שנסוג -3% משיא). אם מניות שבבים קטנות יתחילו ליפול גם הן, זה אות אדום נוסף.</p>
+    <p><strong>S&P 500 עדיין -3% משיא - זה נורמלי</strong>, אבל צריך לעקוב אם זה יהפוך לתיקון של 5-10%.</p>
+
+    <a class="btn-source" href="https://x.com/charliebilello/status/2069387682933846283" target="_blank">Charlie Bilello</a>
+    <a class="btn-source" href="https://x.com/Mr_Derivatives/status/2069475493364248620" target="_blank">Mr. Derivatives</a>
+
+    <div class="section-divider"></div>
+
+    <span class="badge">חדשות חברות</span>
+    <h2>שינויים קריטיים במדדים ובחברות</h2>
+
+    <h3>Alphabet מצטרפת ל-Dow Jones, Verizon יורדת</h3>
+    <div class="highlight-card">
+        <p><strong>Alphabet (GOOG)</strong> תצטרף למדד Dow Jones Industrial Average במקום Verizon (VZ), שתסולק מהמדד.</p>
+        <p>זהו <strong>אות נוסף להיסט לכיוון טכנולוגיה</strong> במדד המסורתי ביותר בשוק האמריקאי.</p>
+    </div>
+
+    <a class="btn-source" href="https://x.com/Mr_Derivatives/status/2069553939104809385" target="_blank">Mr. Derivatives</a>
+    <a class="btn-source" href="https://www.cnbc.com/2026/06/23/alphabet-verizon-dow-djia.html" target="_blank">CNBC</a>
+
+    <h3>SpaceX מגייסת $25 מיליארד באיגרות חוב</h3>
+    <div class="highlight-card">
+        <p><strong>SpaceX סגרה הנפקת אג"ח של $25 מיליארד</strong> ב-5 טרנצ'ים (2031-2056), פחות משבועיים לאחר ה-IPO.</p>
+        <p>ההנפקה ראתה <strong>כמעט $90 מיליארד בהזמנות</strong> - ביקוש עצום שמצביע על תיאבון גבוה למוצרי חוב AI/חלל.</p>
+    </div>
+
+    <p><strong>מניית SPCX</strong> עצמה עלתה <span class="metric positive">+0.98%</span> היום ל-$156.11, לאחר שירדה במהלך השבוע ב-$147-165.</p>
+
+    <h3>מה זה אומר</h3>
+    <div class="context-box">
+        <p>SpaceX משתמשת בשוק החוב <strong>כדי לשלם חובות קיימים ולממן הרחבה</strong> (תשתיות AI, מרכזי נתונים, שיגור לווינים).</p>
+        <p>זו <strong>הנפקת החוב הגדולה ביותר של חברת AI/טכנולוגיה השנה</strong> - סימן שהבועה הופכת לבועת אשראי.</p>
+    </div>
+
+    <a class="btn-source" href="https://x.com/AIStockSavvy/status/2069525601665331663" target="_blank">AI Stock Savvy</a>
+    <a class="btn-source" href="https://www.cnbc.com/2026/06/23/spacex-debt-bond-market-ipo.html" target="_blank">CNBC</a>
+
+    <h3>SK Hynix מכינה רישום ADR בנאסד"ק</h3>
+    <div class="highlight-card">
+        <p><strong>SK Hynix אישרה הנפקת ADR בנאסד"ק</strong> בשווי של עד ₩45.5 טריליון (~$58.6B) - רישום צפוי ב-10 ביולי.</p>
+        <p>התמורה תשמש להשקעות במתקנים: <strong>EUV scanners, מפעל אריזה מתקדמת, ומפעל Yongin Semiconductor Cluster Phase 1</strong>.</p>
+    </div>
+
+    <a class="btn-source" href="https://x.com/wallstengine/status/2069691094238162949" target="_blank">Wall St Engine</a>
+    <a class="btn-source" href="https://www.marketwatch.com/story/coming-to-america-sk-hynix-plans-depository-receipt-listing-on-the-nasdaq-c3c9695e" target="_blank">MarketWatch</a>
+
+    <div class="section-divider"></div>
+
+    <span class="badge">דעות אנליסטים</span>
+    <h2>ServiceNow - העלאות מחירים חזקות מהצפוי</h2>
+
+    <div class="opinion-card">
+        <p>״אנחנו מתחילים לראות נקודות מידע מוקדמות דרך בדיקות לקוחות/תעשייה לגבי ServiceNow שמגבירה את שרירי המחירים - זה עשוי (1) להאיץ צמיחה בטווח הקצר דרך פעילות חידוש מוקדמת, ו-(2) להניע צמיחה ארוכת טווח עמידה יותר ממה שמשקיעים מעריכים כרגע - אלו עליות מחירים משמעותיות.״</p>
+        <div class="opinion-author">— Adam Tindle, אנליסט Raymond James (<a class="btn-source" href="https://x.com/AIStockSavvy/status/2069515951305826586" target="_blank" style="display:inline; margin:0; padding:2px 8px;">מקור</a>)</div>
+    </div>
+
+    <h3>מה קרה</h3>
+    <p><strong>Raymond James מדווחת</strong> שהעלאות המחירים של ServiceNow (NOW) ללקוחות קיימים <strong>עולות על ההנחיה הרשמית</strong> של 20-30% שהחברה הציגה.</p>
+    <p><strong>30 ביוני עשוי להיות התאריך האחרון</strong> לרכישת רמות מנוי מדור קודם - לאחר מכן, לקוחות יאולצו לעבור לשכבות Foundation/Advanced/Prime החדשות עם יכולות AI משובצות.</p>
+
+    <h3>למה זה חריג</h3>
+    <p>אם לקוחות אכן משלמים <strong>יותר מ-30% במחיר</strong>, זו הפתעה חיובית שעשויה להאיץ צמיחה והכנסות בטווח הקצר - <strong>ללא עלויות רכישת לקוחות חדשות</strong>.</p>
+    <p>מצד שני, זה עלול ליצור <strong>"bear case" חדש</strong> לגבי נטישת לקוחות (churn), אם חלקם יחליטו שהמחיר גבוה מדי.</p>
+
+    <h3>מה זה אומר לקראת השבוע</h3>
+    <p><strong>ServiceNow (NOW)</strong> עלתה היום <span class="metric positive">+3.15%</span> ל-$95.94 - <strong>אחת המניות הבודדות שעלו</strong> בתיק המעקב.</p>
+    <p>אם ההנחיה הבאה של החברה תאשר העלאות מחירים גבוהות יותר מהצפוי, <strong>זו עשויה להיות הזדמנות חזקה</strong> למשקיעים ארוכי טווח.</p>
+
+    <a class="btn-source" href="https://x.com/AIStockSavvy/status/2069515951305826586" target="_blank">AI Stock Savvy</a>
+
+    <div class="section-divider"></div>
+
+    <span class="badge">ראיון אישי</span>
+    <h2>Masayoshi Son (SoftBank): "AI לא בועה - זו רק ההתחלה"</h2>
+
+    <div class="opinion-card">
+        <p>״מהפכת ה-AI רק התחילה. עבור תעשייה שעדיין בשלב כל כך מוקדם, לקרוא לזה בועה זה עלבון.״</p>
+        <div class="opinion-author">— Masayoshi Son, SoftBank (<a class="btn-source" href="https://x.com/wallstengine/status/2069699271931416782" target="_blank" style="display:inline; margin:0; padding:2px 8px;">מקור</a>)</div>
+    </div>
+
+    <h3>עיקרי הדברים</h3>
+    <ul>
+        <li><strong>Son מתכנן להישאר כמנכ"ל SoftBank עוד 10-15 שנים</strong>: "אין לי זמן לפרוש."</li>
+        <li><strong>הוא רודף אחר ASI (Artificial Super Intelligence)</strong>: "אנחנו הולכים לרדוף אחרי ASI עד הסוף, בלי לעצור כלום."</li>
+        <li><strong>Physical AI ורובוטים</strong> יהיו אחד מנושאי הליבה של החזון החדש של SoftBank.</li>
+        <li><strong>SoftBank מבקשת נתח ב-Tokyo Electric Power</strong> (Tepco) דרך זרוע הטלקום שלה, כדי לאבטח חשמל למרכזי נתונים AI ביפן.</li>
+        <li><strong>נכון להיום, SoftBank בוחנת אתרי מרכזי נתונים בטקסס</strong>, מצפה לרווחים משמעותיים מפרויקט 10GW באוהיו, ומתכננת השקעה של עד €75B במרכזי נתונים AI בצרפת.</li>
+    </ul>
+
+    <h3>מה זה אומר</h3>
+    <p>Son <strong>נחוש לשים את SoftBank במרכז מהפכת ה-AI הפיזית</strong> - לא רק תוכנה, אלא רובוטים ותשתיות אנרגיה למרכזי נתונים.</p>
+    <p>זו <strong>הימור ענק</strong> שעשוי להניב תשואות אדירות אם ASI באמת יתממש - או להוביל להפסדים כבדים אם הבועה תתפוצץ.</p>
+
+    <a class="btn-source" href="https://x.com/wallstengine/status/2069699271931416782" target="_blank">Wall St Engine (Son's ASI Vision)</a>
+    <a class="btn-source" href="https://x.com/wallstengine/status/2069698796863541526" target="_blank">Wall St Engine (Retirement Plans)</a>
+    <a class="btn-source" href="https://x.com/wallstengine/status/2069704578325733762" target="_blank">Wall St Engine (Tepco Stake)</a>
+
+    <div class="section-divider"></div>
+
+    <span class="badge">מאקרו</span>
+    <h2>אינפלציה, חוב, ובועת אשראי מתפתחת</h2>
+
+    <div class="opinion-card">
+        <p>״הפד הרחיב את היצע הכסף ביותר מ-$9 טריליון תחת ג'רום פאוול. האינפלציה נמצאת בממוצע >4% לשנה בשש השנים האחרונות. ההסבר של פאוול? הכל היה בגלל 'זעזועי היצע' מתגלגלים שהפד לא שולט עליהם. האמת: האינפלציה הזו נוצרה בוושינגטון - מהלוואות/הוצאה ממשלתית מופרזת ויצירת כסף ממשלתית מופרזת.״</p>
+        <div class="opinion-author">— Charlie Bilello (<a class="btn-source" href="https://x.com/charliebilello/status/2069559290323419290" target="_blank" style="display:inline; margin:0; padding:2px 8px;">מקור</a>)</div>
+    </div>
+
+    <h3>בועת האשראי מתפתחת</h3>
+    <div class="warning-box">
+        <p><strong>כל בועת מניות הופכת לבועת אשראי לפני שהיא מתפוצצת</strong> - זה מה שאנחנו רואים עכשיו.</p>
+        <p>Hyperscalers של AI (Google, Amazon, Meta, Microsoft, Oracle) הנפיקו <strong>47% יותר חוב ב-5 החודשים הראשונים של השנה</strong> ($159B) מכל שנת 2025 ($108B).</p>
+    </div>
+
+    <div class="opinion-card">
+        <p>״SpaceX הוציאה $25 מיליארד באיגרות חוב, אחרי שראתה כמעט $90 מיליארד בהזמנות. המנגנון: חברות AI מלוות כסף כדי לממן צמיחה אגרסיבית, ומהמירים את החוב למניות כשהן מתרחבות. אם הביקוש לשירותים יישאר חזק, זה עובד. אם לא - הבועה מתפוצצת.״</p>
+        <div class="opinion-author">— Charlie Bilello (<a class="btn-source" href="https://x.com/charliebilello/status/2069531184518901821" target="_blank" style="display:inline; margin:0; padding:2px 8px;">מקור</a>)</div>
+    </div>
+
+    <h3>מה זה אומר לקראת השבוע</h3>
+    <p>המעבר לבועת אשראי <strong>לא אומר שהשוק יקרוס מחר</strong> - בועות יכולות להימשך שנים. אבל זה כן אומר ש<strong>הסיכונים גדלים</strong>, ומשקיעים צריכים להיות ערים לכך שהשוק תלוי בחוב ובמינוף.</p>
+    <p>אם ריבית תעלה או ביקוש לאשראי יתייבש, <strong>השוק עלול לחוות תיקון חד</strong>.</p>
+
+    <a class="btn-source" href="https://x.com/charliebilello/status/2069531184518901821" target="_blank">Charlie Bilello</a>
+    <a class="btn-source" href="https://x.com/charliebilello/status/2069559290323419290" target="_blank">Charlie Bilello (Fed & Inflation)</a>
+
+</div>
+
+</body>
+</html>
