@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>דוח יומי - 24 ביוני 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #0a0e17;
+  color: #e4e6eb;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  direction: rtl;
+}
+
+.slide-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+  border-radius: 6px;
+  padding: 50px 60px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  color: #c9a961;
+  margin-bottom: 12px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  color: #c9a961;
+  margin: 36px 0 20px 0;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(201,169,97,0.2);
+  padding-bottom: 10px;
+}
+
+h3 {
+  font-size: 18px;
+  color: #9da5b4;
+  margin: 24px 0 12px 0;
+  font-weight: 600;
+}
+
+.date-header {
+  font-size: 14px;
+  color: #6e7681;
+  margin-bottom: 32px;
+  font-weight: 400;
+}
+
+.market-pulse {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin: 28px 0;
+}
+
+.pulse-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 4px;
+  padding: 18px;
+  transition: all 0.2s ease;
+}
+
+.pulse-card:hover {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(201,169,97,0.3);
+}
+
+.pulse-symbol {
+  font-size: 13px;
+  color: #c9a961;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.pulse-change {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 4px 0;
+}
+
+.pulse-change.negative {
+  color: rgba(220, 76, 70, 0.95);
+}
+
+.pulse-change.positive {
+  color: rgba(46, 160, 67, 0.95);
+}
+
+.pulse-detail {
+  font-size: 12px;
+  color: #848d97;
+  margin-top: 6px;
+}
+
+.highlight-card {
+  background: rgba(201,169,97,0.06);
+  border-right: 3px solid #c9a961;
+  padding: 20px 24px;
+  margin: 20px 0;
+  border-radius: 3px;
+}
+
+.opinion-card {
+  background: rgba(94, 129, 172, 0.08);
+  border-right: 3px solid #5e81ac;
+  padding: 20px 24px;
+  margin: 20px 0;
+  border-radius: 3px;
+  position: relative;
+}
+
+.opinion-card::before {
+  content: '"';
+  position: absolute;
+  top: 12px;
+  right: -8px;
+  font-size: 48px;
+  color: rgba(94, 129, 172, 0.3);
+  font-family: 'Playfair Display', serif;
+}
+
+.opinion-attribution {
+  font-size: 13px;
+  color: #848d97;
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-size: 13px;
+  font-weight: 500;
+  margin: 0 4px;
+}
+
+.badge-red {
+  background: rgba(220, 76, 70, 0.15);
+  color: rgba(220, 76, 70, 0.95);
+  border: 1px solid rgba(220, 76, 70, 0.3);
+}
+
+.badge-green {
+  background: rgba(46, 160, 67, 0.15);
+  color: rgba(46, 160, 67, 0.95);
+  border: 1px solid rgba(46, 160, 67, 0.3);
+}
+
+.badge-neutral {
+  background: rgba(148, 163, 184, 0.15);
+  color: rgba(148, 163, 184, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.btn-source {
+  display: inline-block;
+  padding: 6px 14px;
+  background: rgba(201,169,97,0.1);
+  color: #c9a961;
+  text-decoration: none;
+  border-radius: 3px;
+  font-size: 12px;
+  border: 1px solid rgba(201,169,97,0.25);
+  transition: all 0.2s ease;
+  margin: 4px 4px 4px 0;
+}
+
+.btn-source:hover {
+  background: rgba(201,169,97,0.2);
+  border-color: rgba(201,169,97,0.5);
+}
+
+ul {
+  margin: 16px 0;
+  padding-right: 24px;
+}
+
+li {
+  margin: 10px 0;
+  color: #c9d1d9;
+}
+
+strong {
+  color: #e4e6eb;
+  font-weight: 600;
+}
+
+.section-divider {
+  height: 1px;
+  background: linear-gradient(to left, rgba(201,169,97,0.1), rgba(201,169,97,0.4), rgba(201,169,97,0.1));
+  margin: 40px 0;
+}
+
+.risk-highlight {
+  background: rgba(220, 76, 70, 0.1);
+  border: 1px solid rgba(220, 76, 70, 0.3);
+  padding: 16px;
+  border-radius: 4px;
+  margin: 16px 0;
+}
+
+.insight-box {
+  background: rgba(94, 129, 172, 0.06);
+  border: 1px solid rgba(94, 129, 172, 0.2);
+  padding: 18px;
+  border-radius: 4px;
+  margin: 16px 0;
+}
+
+.metric-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 8px;
+}
+
+a {
+  color: #7cb7d4;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #c9a961;
+}
+
+</style>
+</head>
+<body>
+
+<div class="slide-container">
+<h1>תמונת השוק – 24 ביוני 2026</h1>
+<div class="date-header">דוח יומי | יום רביעי, 24.6.2026</div>
+
+<h2>Market Pulse – מה חרג היום</h2>
+<div class="market-pulse">
+  <div class="pulse-card">
+    <div class="pulse-symbol">MU – Micron Technology</div>
+    <div class="pulse-change negative">-13.2%</div>
+    <div class="pulse-detail">נסגר ב-$1,051.77 | נפח: 58M</div>
+  </div>
+  <div class="pulse-card">
+    <div class="pulse-symbol">COHR – Coherent</div>
+    <div class="pulse-change negative">-10.4%</div>
+    <div class="pulse-detail">נסגר ב-$381.22</div>
+  </div>
+  <div class="pulse-card">
+    <div class="pulse-symbol">NNE – Nano Nuclear</div>
+    <div class="pulse-change negative">-6.8%</div>
+    <div class="pulse-detail">נסגר ב-$23.90</div>
+  </div>
+  <div class="pulse-card">
+    <div class="pulse-symbol">TSLA – Tesla</div>
+    <div class="pulse-change negative">-5.8%</div>
+    <div class="pulse-detail">נסגר ב-$381.61</div>
+  </div>
+  <div class="pulse-card">
+    <div class="pulse-symbol">AMD – Advanced Micro Devices</div>
+    <div class="pulse-change negative">-5.8%</div>
+    <div class="pulse-detail">נסגר ב-$519.85</div>
+  </div>
+  <div class="pulse-card">
+    <div class="pulse-symbol">CRWV – CoreWeave</div>
+    <div class="pulse-change negative">-5.0%</div>
+    <div class="pulse-detail">נסגר ב-$105.72</div>
+  </div>
+  <div class="pulse-card">
+    <div class="pulse-symbol">ETH – Ethereum (Grayscale Mini)</div>
+    <div class="pulse-change negative">-4.1%</div>
+    <div class="pulse-detail">נסגר ב-$15.79 | תחתית 52 שבועות</div>
+  </div>
+  <div class="pulse-card">
+    <div class="pulse-symbol">NVDA – Nvidia</div>
+    <div class="pulse-change negative">-4.1%</div>
+    <div class="pulse-detail">נסגר ב-$200.04</div>
+  </div>
+  <div class="pulse-card">
+    <div class="pulse-symbol">BTC – Bitcoin (Grayscale Mini)</div>
+    <div class="pulse-change negative">-3.2%</div>
+    <div class="pulse-detail">נסגר ב-$27.56</div>
+  </div>
+  <div class="pulse-card">
+    <div class="pulse-symbol">AVGO – Broadcom</div>
+    <div class="pulse-change negative">-3.1%</div>
+    <div class="pulse-detail">נסגר ב-$380.15</div>
+  </div>
+  <div class="pulse-card">
+    <div class="pulse-symbol">PLTR – Palantir</div>
+    <div class="pulse-change negative">-2.3%</div>
+    <div class="pulse-detail">נסגר ב-$116.70 | תחתית 52 שבועות</div>
+  </div>
+  <div class="pulse-card">
+    <div class="pulse-symbol">SPCX – SpaceX</div>
+    <div class="pulse-change positive">+1.0%</div>
+    <div class="pulse-detail">נסגר ב-$156.11 | לאחר ירידה ל-$147.11</div>
+  </div>
+  <div class="pulse-card">
+    <div class="pulse-symbol">NOW – ServiceNow</div>
+    <div class="pulse-change positive">+3.2%</div>
+    <div class="pulse-detail">נסגר ב-$95.94</div>
+  </div>
+</div>
+</div>
+
+<div class="slide-container">
+<h1>מכת הזיכרון: Micron מעמיקה את גל המכירות בטכנולוגיה</h1>
+
+<div class="highlight-card">
+<strong>מה קרה:</strong> מניית Micron (MU) צנחה 13.2% לסגירה ב-$1,051.77 (23 ביוני 2026), הירידה החדה ביותר במניות הזיכרון והמוליכים למחצה מזה חודשים. המכירות התפשטו לכל מגזר הצ'יפים: AMD -5.8%, NVDA -4.1%, AVGO -3.1%, Coherent -10.4%.
+<a href="https://x.com/Mr_Derivatives/status/2069433462482960848" class="btn-source" target="_blank">למקור</a>
+<a href="https://www.marketwatch.com/story/micron-and-sandisk-lead-a-sharp-tech-selloff-in-a-gut-check-moment-for-ai-stocks-cd92fa5d?mod=mw_rss_topstories" class="btn-source" target="_blank">למקור</a>
+</div>
+
+<h3>למה זה חריג</h3>
+<p>
+Micron נמצאת במרחק של יותר מ-<span class="badge badge-red">159 נקודות</span> (13.2%) מסגירת אתמול ב-$1,211.38 – זו הירידה הגדולה ביותר במניה מאז פברואר 2025. המניה נמצאת כעת <strong>רק 13.3% מתחתית 52 השבועות</strong> שלה ב-$103.38, למרות שלפני שבועיים בלבד נסחרה קרוב לשיא היסטורי של $1,213.
+</p>
+<p>
+ההתרסקות הייתה חריפה גם במניות אחרות: <strong>Coherent (COHR) איבדה 10.4%</strong> ב-volume של 5.9M (גבוה ממוצא 6.5M שלה, אך עדיין חריג לעומת נפח מסחר רגיל). <strong>AMD</strong> איבדה 5.8%, <strong>TSLA</strong> 5.8%, <strong>NVDA</strong> 4.1% – כולן נפלו משמעותית יותר ממדדי הבסיס.
+</p>
+
+<h3>ההקשר: יום אחרי איך זה התחיל</h3>
+<ul>
+<li>יום לפני כן (22 ביוני), מניות זיכרון באסיה צנחו בצורה דרמטית: <strong>SK Hynix (קוריאה) וסמסונג צללו 10%+</strong>, והמדד KOSPI נפל כ-10% ביום אחד
+<a href="https://www.cnbc.com/2026/06/23/tech-stocks-sell-off-mag7-samsung-sk-hynix.html" class="btn-source" target="_blank">למקור</a>
+<a href="https://x.com/wallstengine/status/2069545983927804201" class="btn-source" target="_blank">למקור</a>
+</li>
+<li>הרקע לכך: <strong>באחרון השנה, שוק המניות בטאיוואן עלה יותר מ-100%</strong>, מעל UK, קנדה והודו, והפך לשוק החמישי בגודלו בעולם. חוב מרג'ין קפץ 160% ב-12 החודשים האחרונים, סמוך לשיא לפני התרסקות 2000, וכ-26,000 דולר ברירת מחדל במרג'ין כבר רשומים ביוני
+<a href="https://x.com/wallstengine/status/2069545983927804201" class="btn-source" target="_blank">למקור</a>
+</li>
+<li>תופעה דומה לבועת דוט-קום: משקיעים צעירים ללא תעסוקה רוכשים מניות טק על מרג'ין ומאמינים ש"הפעם זה אמיתי" – משפט שחזר בכל בועה היסטורית</li>
+</ul>
+
+<div class="opinion-card">
+<p>
+"Investors are taking a 'breather' from AI-driven momentum."
+</p>
+<div class="opinion-attribution">— אנליסט (MarketWatch, 23 ביוני 2026)</div>
+</div>
+
+<div class="opinion-card">
+<p>
+"This is a gut-check moment for AI stocks."
+</p>
+<div class="opinion-attribution">— MarketWatch, 23 ביוני 2026</div>
+</div>
+
+<h3>הלוגיקה – מנגנון סיבה-תוצאה</h3>
+<p>
+זהו מקרה קלאסי של <strong>contagion – התפשטות חשש</strong> ממקור אחד (שוק אסיה) לשווקים קשורים:
+</p>
+<ul>
+<li><strong>ספקולציה על תוצאות רבעוניות עתידיות של Micron</strong> (דוח ממתין היום, 23 ביוני AH): ההנחה היא שהשוק הגיב מוקדם לחשש מהידרדרות בביקוש או בשולי רווח – אך <strong>המקור לא אישר עדיין</strong></li>
+<li><strong>השפעת מרג'ין קול באסיא</strong>: כאשר מניות טכנולוגיה צונחות ב-10% ביום, ברוקרים מגבילים הלוואות, מעלים ריבית ודורשים ביטחונות נוספים – מה שגורם לספירלת מכירות כפויה. זה מפעיל לחץ ישיר על מניות אמריקאיות קשורות</li>
+<li><strong>רצף אופי ההתרסקות: semiconductor memory → GPU → broader tech</strong> – Micron, AMD, NVDA הן כולן מרכיבי ליבה בתשתיות AI. כאשר חלק אחד נסדק, האמון בכל השרשרת נחלש</li>
+<li><strong>מדדי מחיר-לרווח (P/E) מתוחים</strong>: Micron P/E forward נמצא בדרך כלל נמוך מבנקים (כמו JPM) – אך במצב של ספקולציה מוגזמת, גם P/E נמוך לא מציע "בטחון" אם הסיפור של צמיחה מתפרק</li>
+</ul>
+
+<div class="insight-box">
+<strong>אינדיקטור טכני:</strong> Micron נמצא כעת <span class="badge badge-red">-80% מההי ההיסטורי שלו</span> שהושג בינואר 2026 (אם נלך לפי הנתונים הכלליים מהשוק). זו נפילה חדה יותר מהתיקון הרגיל של 7-10%.
+</div>
+
+<h3>מה זה אומר לקראת השבוע</h3>
+<div class="risk-highlight">
+<strong>תזמון קריטי:</strong> דוח הרווח של Micron צפוי היום (23 ביוני) אחרי הסגירה. אם הנתונים יהיו טובים והחברה תספק הדרכה חזקה, יכול להיות <strong>rebound חד ומהיר</strong> – אך אם יהיו אכזבות בהנחיות או בשולי רווח, ייתכן המשך צניחה ל-$900-$950 בשבוע הבא.
+</div>
+<ul>
+<li><strong>צפו להמשך תנודתיות במגזר הצ'יפים</strong> עד לפרסום תוצאות Micron. אם הדוח יאכזב, גל המכירות יכול להתעמק ולהוביל את AMD, NVDA, AVGO עוד 5-10% מטה בתוך שבוע</li>
+<li><strong>המוקד השבוע: המשקיעים מחפשים אישור לביקוש AI אמיתי</strong> – לא רק הייפ. Micron תצטרך להראות צמיחה ממשית ב-HBM (High Bandwidth Memory) ובביקושים מענן/AI, לא רק תחזיות</li>
+<li><strong>מדדי ה-VIX עלו השבוע</strong> (עונתיות של יוני התקיימה), אך יולי יכול להיות עוד יותר תנודתי לפי הסטטיסטיקה ההיסטורית. <a href="https://x.com/Mr_Derivatives/status/2069447292579680363" class="btn-source" target="_blank">למקור</a></li>
+<li><strong>הימור סיכון/תגמול:</strong> אם מאמינים ש"זו רק תיקון זמני", הזדמנות לרכישה עם פוט מגן (למשל, Put ב-$900 על MU); אם חוששים מהמשך צניחה, להימנע מהוספת אקספוזר עד שהתמונה תתבהר</li>
+</ul>
+
+<div class="opinion-card">
+<p>
+"I still believe a mini 7-10% correction will hit the $SPX. But after July. June is just giving us a taste of what is to come."
+</p>
+<div class="opinion-attribution">— @Mr_Derivatives, 23 ביוני 2026</div>
+<a href="https://x.com/Mr_Derivatives/status/2069475493364248620" class="btn-source" target="_blank">למקור</a>
+</div>
+
+</div>
+
+<div class="slide-container">
+<h1>SpaceX: התאוששות אחרי צניחה – חוב של $25 מיליארד והמשך התנודתיות</h1>
+
+<div class="highlight-card">
+<strong>מה קרה:</strong> מניית SpaceX (SPCX) סגרה עם עליה של <span class="badge badge-green">+1.0%</span> ב-$156.11 (23 ביוני 2026), לאחר שירדה תוך היום עד ל-<span class="badge badge-red">$147.11</span> – נסיגה של כמעט 5% תוך-יומי. זה הפסקת רצף של שלושה ימי ירידות רצופים.
+<a href="https://www.cnbc.com/2026/06/23/spacex-stock-tech-sell-off.html" class="btn-source" target="_blank">למקור</a>
+<a href="https://x.com/wallstengine/status/2069471544653574503" class="btn-source" target="_blank">למקור</a>
+</div>
+
+<h3>למה זה חריג</h3>
+<p>
+SpaceX רשמה IPO רק ב-<strong>10 ביוני 2026</strong>, לפני פחות משבועיים. מחיר הפתיחה ביום הראשון היה <strong>$135</strong>, והמניה זינקה עד <strong>$225.64</strong> (שיא), אך מאז צנחה ב-<strong>30.8%</strong> מהשיא.
+</p>
+<p>
+הירידה לתוך-יום ל-$147 היום מסמנת את <strong>השפל של יום הפתיחה</strong> – רמה פסיכולוגית קריטית. אם המניה הייתה שוברת מתחת ל-$147, זה היה פותח את הדלת לירידה נוספת לכיוון $135. העובדה שהיא התאוששה ל-$156 מראה על קנייה חזקה בזמן אמת.
+</p>
+
+<h3>ההקשר: גיוס החוב ההיסטורי</h3>
+<div class="highlight-card">
+<strong>עובדה:</strong> SpaceX גייסה <span class="badge badge-neutral">$25 מיליארד</span> במכירת אג"ח דרגת השקעה (high-grade bond), פחות משבועיים אחרי ה-IPO (23 ביוני 2026). זהו אחד הגיוסי החוב הגדולים ביותר בשוק ה-AI/טכנולוגיה השנה.
+<a href="https://www.cnbc.com/2026/06/23/spacex-debt-bond-market-ipo.html" class="btn-source" target="_blank">למקור</a>
+<a href="https://x.com/wallstengine/status/2069471544653574503" class="btn-source" target="_blank">למקור</a>
+</div>
+
+<ul>
+<li><strong>ביקוש שיא:</strong> המכרז משך ביקוש של <span class="badge badge-green">$89 מיליארד</span> – פי 3.6 מהגיוס בפועל. זה מעיד על תיאבון עצום של המשקיעים המוסדיים לחוב של SpaceX
+<a href="https://x.com/wallstengine/status/2069454513891869122" class="btn-source" target="_blank">למקור</a>
+</li>
+<li><strong>מטרה:</strong> החברה מתכננת להשתמש בכספים <strong>לפרוע חובות קיימים ולהרחיב בניית מתקני AI ושיגור</strong>. הסגירה צפויה ליום שישי, 27 ביוני</li>
+<li><strong>מה זה אומר על הסיכון:</strong> גיוס חוב כה גדול מיד לאחר IPO (שבדרך כלל מגייס הון עצמי) מלמד ש-SpaceX רוצה לנצל את מחירי הריבית הנמוכים יחסית ולמנף את הפעילות, אך זה גם מגדיל את נטל החוב – <strong>לחץ על תזרים המזומנים בטווח הבינוני</strong></li>
+</ul>
+
+<h3>הלוגיקה – מנגנון הניתוח</h3>
+<p>
+SpaceX נמצאת בצומת אסטרטגית:
+</p>
+<ul>
+<li><strong>הצד החיובי:</strong> החברה מובילה את שוק השיגור המסחרי (Starlink, חוזים עם NASA, DoD), והביקוש לחוב שלה מוכיח שהמשקיעים המוסדיים רואים בה השקעה בטוחה ארוכת טווח. הגיוס של $25B מאפשר לה להאיץ פרויקטים (כמו Starship ותשתיות AI)</li>
+<li><strong>הצד השלילי:</strong> המניה התנדנדה <strong>30% מטה מהשיא תוך שבועיים</strong>, וההתאוששות היומית (+1%) לא מבטלת את המגמה השלילית הכוללת. אם מתמשכת המכירה במניות טכנולוגיה (ראו Micron), גם SpaceX תוכל להמשיך לרדת</li>
+<li><strong>דעה אנליטית:</strong> "The bigger risk may be a shortage of compute rather than a bubble" – המשקיעים טוענים שהביקוש לתשתיות AI אמיתי, לא בועה. אם הם צודקים, SpaceX (שמרחיבה תשתיות לווין ו-compute) יכולה להפוך לזוכה ארוך-טווח
+<a href="https://x.com/wallstengine/status/2069446516847349875" class="btn-source" target="_blank">למקור (Blackstone)</a>
+</li>
+</ul>
+
+<h3>מה זה אומר לקראת השבוע</h3>
+<div class="insight-box">
+<strong>טווח מפתח:</strong> $147-$165. אם המניה שוברת מעל $165 (השיא היומי של היום), זה אות חזק להמשך התאוששות. אם יורדת מתחת ל-$147, סביר שנראה מילוי של הגאפ ל-$135 (מחיר הפתיחה ב-IPO).
+</div>
+<ul>
+<li><strong>הסגירה של גיוס החוב ביום שישי (27 ביוני)</strong> תהיה אירוע מפתח – אם תעבור בהצלחה וללא הפתעות, זה עשוי לתת תמיכה נוספת למניה</li>
+<li><strong>השבוע הקרוב:</strong> המניה תגיב חזק לכיוון השוק הרחב (טכנולוגיה/AI). אם Micron מאכזבת היום, SpaceX תסבול ביחד עם המגזר. אם Micron מפתיעה לטובה, SpaceX יכולה לחזור ל-$170+ במהירות</li>
+<li><strong>אופציות:</strong> שקול למכור Puts ב-$135 לפרמיה (אם מאמין בתמיכה), או לקנות Calls ב-$165 לשבוע הבא (אם מאמין בפריצה)</li>
+</ul>
+
+<div class="opinion-card">
+<p>
+"Does it fill the $135 gap? Or do we floor it around this $150 level which was the opening day lows. Sell puts at $135 to play it safe?"
+</p>
+<div class="opinion-attribution">— @Mr_Derivatives, 23 ביוני 2026</div>
+<a href="https://x.com/Mr_Derivatives/status/2069417090390671820" class="btn-source" target="_blank">למקור</a>
+</div>
+
+</div>
+
+<div class="slide-container">
+<h1>קריפטו במשבר: Ethereum שובר תחתית 52 שבועות, Bitcoin מאבד $62K</h1>
+
+<div class="highlight-card">
+<strong>מה קרה:</strong>
+<ul style="margin-top: 12px;">
+<li><strong>ETH (Grayscale Mini):</strong> צנח <span class="badge badge-red">-4.1%</span> לסגירה ב-<strong>$15.79</strong> – <strong>תחתית 52 שבועות חדשה</strong> (הנמוך: $14.64)
+<a href="https://x.com/Mr_Derivatives/status/2069405324642304264" class="btn-source" target="_blank">למקור</a>
+</li>
+<li><strong>BTC (Grayscale Mini):</strong> ירד <span class="badge badge-red">-3.2%</span> ל-<strong>$27.56</strong>, לאחר שירד תוך-יום מתחת ל-$62,000 בביטקוין עצמו (הראשון מזה 11 ימים)
+<a href="https://cointelegraph.com/markets/bitcoin-slump-worsens-amid-spacex-rout-can-btc-price-hold-60k-any-longer" class="btn-source" target="_blank">למקור</a>
+</li>
+<li><strong>חיסול פוזיציות ממונפות:</strong> יותר מ-<span class="badge badge-red">$170 מיליון</span> ב-longs של Ethereum חוסלו במהלך היום
+<a href="https://cointelegraph.com/markets/170m-ether-positions-liquidated-as-crypto-market-tumbles-is-eth-doomed" class="btn-source" target="_blank">למקור</a>
+</li>
+</ul>
+</div>
+
+<h3>למה זה חריג</h3>
+<p>
+<strong>Ethereum</strong> נמצא כעת ב-<strong>ירידה ברצף של 5 מסגרות זמן</strong>: שבוע, חודש, 3 חודשים, 6 חודשים, שנה ו-5 שנים – כולן אדומות. זהו אות חמור על משבר אמון ארוך טווח.
+</p>
+<p>
+<strong>Bitcoin</strong> איבד את רמת התמיכה ב-$62,000 – לראשונה מזה 11 ימים. זה לא בהכרח "סוף העולם", אך זה מסמן חולשה משמעותית לקראת סוף החודש (מחזור חודשי חשוב).
+</p>
+
+<div class="risk-highlight">
+<strong>סימן אזהרה:</strong> חיסול של $170M ב-longs של ETH מראה שהשוק "עשה ניקיון" במינוף יתר. זה טוב לאורך זמן (מנקה ספקולציה חולנית), אך לטווח קצר זה מוסיף לחץ מכירה נוסף.
+</div>
+
+<h3>ההקשר – מה גרם לכך</h3>
+<ul>
+<li><strong>השפעת מכירת מניות ה-AI/טכנולוגיה:</strong> ההתרסקות ב-SpaceX, Micron, NVDA גררה גם את הקריפטו – כי חלק גדול מהמשקיעים רואים ב-BTC ו-ETH "טכנולוגיה סיכונית" ומוכרים אותם בזמן חוסר ודאות
+<a href="https://cointelegraph.com/markets/bitcoin-slump-worsens-amid-spacex-rout-can-btc-price-hold-60k-any-longer" class="btn-source" target="_blank">למקור</a>
+</li>
+<li><strong>"מצב הרגשות":</strong> "BTC price hangs in the balance as a fresh wave of liquidations pressure the altcoin and spillover from Bitcoin's struggles to hold $62,000 impact investor sentiment." – המשקיעים חוששים שאם BTC יפול מתחת ל-$60K, זה יפתח את הדלת לירידה עד $54K
+<a href="https://cointelegraph.com/markets/bitcoin-gets-new-54k-warning-as-btc-price-hits-11-day-low-on-asia-tech-sell-off" class="btn-source" target="_blank">למקור</a>
+</li>
+<li><strong>מחזור שוק:</strong> מודל על בסיס halving (הפחתת תגמולי כורים) מצביע על <strong>ספטמבר 2026 כתאריך אפשרי לתחתית</strong> – כלומר, עוד 3 חודשים של לחץ פוטנציאלי
+<a href="https://cointelegraph.com/markets/og-bitcoin-selling-hits-19-month-low-as-halving-model-flags-new-bottom-date-analyst" class="btn-source" target="_blank">למקור</a>
+</li>
+<li><strong>מכירות של OG holders (מחזיקים ותיקים) ירדו ל-<span class="badge badge-green">שפל של 19 חודשים</span></strong> – זה סימן <strong>חיובי</strong>, כי זה מראה שהמשקיעים ארוכי הטווח לא מוכרים. המכירות מגיעות בעיקר מספקולנטים קצרי טווח</li>
+</ul>
+
+<div class="opinion-card">
+<p>
+"OG Bitcoin holders' spending dropped to a 19-month low, as market cycle indicators point to September as a potential market bottom."
+</p>
+<div class="opinion-attribution">— Cointelegraph, 23 ביוני 2026</div>
+<a href="https://cointelegraph.com/markets/og-bitcoin-selling-hits-19-month-low-as-halving-model-flags-new-bottom-date-analyst" class="btn-source" target="_blank">למקור</a>
+</div>
+
+<h3>מה זה אומר לקראת השבוע</h3>
+<div class="insight-box">
+<strong>רמות מפתח לשבוע הבא:</strong>
+<ul style="margin-top: 8px;">
+<li><strong>BTC:</strong> תמיכה ב-$60K. אם נשבר מטה – צפו ל-$54K כיעד הבא. אם מתאושש מעל $62K – אפשרות לחזרה ל-$65K</li>
+<li><strong>ETH:</strong> נמצא ב-free fall – התחתית ב-$14.64 היא הרמה האחרונה לפני קריסה טכנית. אם נשבר – אין תמיכה ברורה עד $12-$13</li>
+</ul>
+</div>
+
+<ul>
+<li><strong>אסטרטגיה לשבוע:</strong> אם מאמינים שספטמבר הוא התחתית (לפי מודל halving), זה עדיין 3 חודשים – אין מהירות לקנות כרגע. עדיף להמתין לאות התאוששות ברור (סגירה יומית מעל $62K ב-BTC) לפני הוספת אקספוזר</li>
+<li><strong>הזדמנות:</strong> אם BTC יורד ל-$54K, זו נקודת כניסה אטרקטיבית לטווח בינוני – אך רק עם stop-loss ברור ב-$52K</li>
+<li><strong>סיכון:</strong> המשך מכירות במניות טכנולוגיה (במיוחד אם Micron מאכזבת) יכול לגרור את הקריפטו עוד מטה. אל תיכנס לפוזיציה מלאה עכשיו</li>
+</ul>
+
+</div>
+
+<div class="slide-container">
+<h1>אירועים נוספים – שינויים מבניים, הזדמנויות ספציפיות</h1>
+
+<h2>Alphabet מצטרפת למדד Dow Jones – החלפה היסטורית</h2>
+<div class="highlight-card">
+<strong>מה קרה:</strong> S&P Dow Jones Indices הודיעה (23 ביוני 2026) ש-<strong>Alphabet (GOOG)</strong> תחליף את <strong>Verizon (VZ)</strong> במדד Dow Jones Industrial Average. זה צעד משמעותי – הדאו מתעדכן לכלול עוד חברת טכנולוגיה/AI ענקית.
+<a href="https://www.cnbc.com/2026/06/23/alphabet-verizon-dow-djia.html" class="btn-source" target="_blank">למקור</a>
+<a href="https://x.com/wallstengine/status/2069530630984290630" class="btn-source" target="_blank">למקור</a>
+</div>
+
+<h3>למה זה חריג ומה זה אומר</h3>
+<ul>
+<li><strong>הדאו הוא מדד "תעשייתי" מסורתי</strong> עם 30 חברות בלבד – הוא נוטה לכלול חברות "בוגרות" ויציבות (כמו Boeing, Caterpillar, UnitedHealth). הוספת Alphabet היא סימן שהמדד מתאים את עצמו לעידן AI</li>
+<li><strong>השפעה על מחירי המניות:</strong> כניסה למדד הדאו גוררת קניות פסיביות (קרנות מדד מוכרחות לקנות), אך זה פחות דרמטי מכניסה ל-S&P 500 (שכבר התרחשה). <strong>צפו לעלייה זמנית של 1-2% ב-GOOG</strong> במהלך השבוע הבא</li>
+<li><strong>Verizon</strong> צפויה לרדת בקצב מתון (1-2%) כתוצאה מהיציאה – זו לא התרסקות, אלא פשוט ירידה מבנית</li>
+</ul>
+
+<div class="opinion-card">
+<p>
+"Fun fact: META, GOOGL, TSLA are the only Maggy 7's not in the Dow Jones Industrial Average. Tesla, I understand. But wouldn't be surprised they included Meta and Google at some point… Or even better, the committee expands the 30 component threshold to say 40. Cmon. Do it."
+</p>
+<div class="opinion-attribution">— @Mr_Derivatives (פברואר 2025, ציפייה שהתגשמה עכשיו)</div>
+<a href="https://x.com/Mr_Derivatives/status/2069553939104809385" class="btn-source" target="_blank">למקור</a>
+</div>
+
+<h2>Palantir (PLTR): שובר תחתית 52 שבועות – אך יש סימן אור</h2>
+<div class="highlight-card">
+<strong>מה קרה:</strong> PLTR ירדה <span class="badge badge-red">-2.3%</span> ל-$116.70 – <strong>תחתית 52 שבועות חדשה</strong> (נמוך: $116.18). אך בו ביום, הוכרזה <strong>שותפות אסטרטגית עם Zeta Global ($ZETA)</strong> לבניית Data Cloud על בסיס Palantir Foundry.
+<a href="https://x.com/Mr_Derivatives/status/2069410317386572125" class="btn-source" target="_blank">למקור</a>
+</div>
+
+<h3>מה זה אומר לקראת השבוע</h3>
+<ul>
+<li><strong>שבירת תחתית 52 שבועות</strong> היא בדרך כלל אות שלילי טכנית – זה פותח את הדלת לירידה נוספת ל-$105-$110 בשבוע הבא</li>
+<li><strong>אך: שותפות חדשה עם Zeta</strong> מראה ש-Palantir ממשיכה לחתום חוזים ולהרחיב. אם השוק מתאושש, זה יכול להיות <strong>קומבק מהיר</strong></li>
+<li><strong>אסטרטגיה:</strong> אם מחזיק PLTR – המתן לסגירה מעל $120 כאישור לתחילת התאוששות. אם לא – עדיף להימנע מכניסה חדשה כרגע</li>
+</ul>
+
+<h2>Robinhood (HOOD): ניתוק מ-Bitcoin – מעניין</h2>
+<div class="highlight-card">
+<strong>תצפית אנליטית:</strong> מאז אוקטובר 2025, מניית HOOD והביטקוין נעו יחד בקורלציה הדוקה. אך בחודש האחרון, <strong>HOOD התנתקה והתחילה לעלות עצמאית</strong> – מה שמעיד על חוזק פנימי.
+<a href="https://x.com/Mr_Derivatives/status/2069606464831066157" class="btn-source" target="_blank">למקור</a>
+</div>
+
+<h3>מה זה אומר</h3>
+<ul>
+<li><strong>אות חיובי:</strong> אם HOOD לא קורסת עם הקריפטו, זה אומר שהחברה מייצרת הכנסות מגוונות (מניות, אופציות, לא רק קריפטו) – זה מחזק את הסיפור שלה כברוקר רחב יותר</li>
+<li><strong>צפו להמשך עלייה:</strong> אם BTC מתאושש, HOOD יכולה לזנק עוד יותר (תועלת כפולה); אם BTC ממשיך לרדת, HOOD עדיין יכולה לעמוד בזכות עצמה</li>
+</ul>
+
+<h2>זהב (GOLD): צונח לקראת Death Cross ראשון מזה 3 שנים</h2>
+<div class="highlight-card">
+<strong>מה קרה:</strong> למרות שזהב הגיע ל-ATH מוקדם יותר השנה, הוא נמצא כעת ב-<strong>צניחה של 30% מהשיא</strong> ומתקרב ל-Death Cross (כאשר ממוצע נע 50 יום חוצה מתחת לממוצע 200 יום) – <strong>הראשון מזה כמעט 3 שנים</strong>.
+<a href="https://x.com/Mr_Derivatives/status/2069602835067732102" class="btn-source" target="_blank">למקור</a>
+</div>
+
+<h3>מה זה אומר</h3>
+<ul>
+<li><strong>Death Cross</strong> הוא אות מכירה טכני קלאסי – יכול לגרור לחץ נוסף על זהב בשבועות הקרובים</li>
+<li><strong>אך זהב הוא נכס הגנתי:</strong> אם חוסר הוודאות בשווקים ממשיך, זה יכול לעצור את הירידה ולייצר rebound</li>
+<li><strong>מבט לקראת השבוע:</strong> אם זהב שובר מתחת ל-$2,300/oz – צפו ל-$2,100; אם מתאושש מעל $2,400 – זו כניסה טובה</li>
+</ul>
+
+<div class="section-divider"></div>
+
+<h2>סיכום – מה חשוב להיום ולשבוע הבא</h2>
+<ul>
+<li><strong>הסיפור המרכזי:</strong> Micron היא מפתח – אם הדוח שלה היום (23 ביוני AH) חיובי, כל השוק יכול להתאושש. אם לא – עוד שבוע קשה</li>
+<li><strong>SpaceX התאוששה היום (+1%) אך עדיין לא בטוחה – היא תגיב חזק לכיוון השוק הרחב</strong></li>
+<li><strong>קריפטו במשבר</strong> – Ethereum ב-תחתית 52 שבועות, Bitcoin מתקשה להחזיק $62K. המתן לסגירה מעל $62K לפני כניסה</li>
+<li><strong>Alphabet מצטרפת לדאו</strong> – צפו לעלייה קלה ב-GOOG השבוע הבא</li>
+<li><strong>VIX עלה, ויולי צפוי להיות תנודתי יותר</strong> – אל תיבהל מתיקון של 3-5%, זה חלק מהמחזור הרגיל</li>
+</ul>
+
+</div>
+
+</body>
+</html>
