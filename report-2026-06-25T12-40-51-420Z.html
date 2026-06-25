@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק הון יומי - 25 יוני 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: linear-gradient(135deg, #0a0e17 0%, #1a1d2e 100%);
+            color: #e4e6eb;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .slide-container {
+            max-width: 1200px;
+            margin: 0 auto 30px;
+            background: rgba(18, 22, 33, 0.95);
+            border-radius: 12px;
+            padding: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2em;
+            color: #d4af37;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            color: #d4af37;
+            margin: 25px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        h3 {
+            font-size: 1.3em;
+            color: #b8964f;
+            margin: 20px 0 12px 0;
+            font-weight: 600;
+        }
+
+        .date-header {
+            color: #8b92a8;
+            font-size: 0.95em;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 6px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .badge.macro { background: rgba(100, 120, 200, 0.15); color: #6c8bf0; }
+        .badge.chips { background: rgba(150, 100, 200, 0.15); color: #a68bff; }
+        .badge.crypto { background: rgba(255, 140, 0, 0.15); color: #ffa947; }
+        .badge.interview { background: rgba(50, 180, 140, 0.15); color: #4fc3a0; }
+
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px;
+            margin: 25px 0;
+        }
+
+        .market-card {
+            background: rgba(30, 35, 50, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.2s;
+        }
+
+        .market-card:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .market-card .symbol {
+            font-weight: 600;
+            font-size: 1.1em;
+            color: #d4af37;
+            margin-bottom: 8px;
+        }
+
+        .market-card .name {
+            font-size: 0.85em;
+            color: #8b92a8;
+            margin-bottom: 12px;
+        }
+
+        .market-card .change {
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        .positive { color: rgba(52, 211, 153, 0.9); }
+        .negative { color: rgba(248, 113, 113, 0.9); }
+
+        .highlight-card {
+            background: rgba(212, 175, 55, 0.08);
+            border-right: 4px solid #d4af37;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+        .opinion-card {
+            background: rgba(100, 120, 200, 0.08);
+            border-right: 4px solid #6c8bf0;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            font-style: italic;
+        }
+
+        .opinion-card::before {
+            content: '"';
+            font-size: 2.5em;
+            color: #6c8bf0;
+            opacity: 0.3;
+            line-height: 0;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .btn-source {
+            display: inline-block;
+            margin: 8px 8px 0 0;
+            padding: 8px 16px;
+            background: rgba(212, 175, 55, 0.1);
+            color: #d4af37;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.85em;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .btn-source:hover {
+            background: rgba(212, 175, 55, 0.2);
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to left, transparent, rgba(212, 175, 55, 0.3), transparent);
+            margin: 40px 0;
+        }
+
+        .data-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            background: rgba(212, 175, 55, 0.12);
+            color: #d4af37;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin: 0 4px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        ul {
+            margin: 15px 0;
+            padding-right: 20px;
+        }
+
+        li {
+            margin: 10px 0;
+            color: #c5c9d4;
+        }
+
+        strong {
+            color: #e4e6eb;
+            font-weight: 600;
+        }
+
+        .analyst-note {
+            font-size: 0.9em;
+            color: #8b92a8;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body>
+
+<div class="slide-container">
+    <h1>דוח שוק הון יומי</h1>
+    <div class="date-header">25 ביוני 2026 | Market Pulse</div>
+
+    <h2>תמונת מצב מהירה</h2>
+    
+    <div class="market-grid">
+        <div class="market-card">
+            <div class="symbol">MU</div>
+            <div class="name">Micron Technology</div>
+            <div class="change negative">-0.31%</div>
+            <div style="font-size: 0.9em; color: #8b92a8; margin-top: 8px;">$1,048.51</div>
+        </div>
+
+        <div class="market-card">
+            <div class="symbol">BTC</div>
+            <div class="name">Bitcoin (via Mini Trust)</div>
+            <div class="change negative">-3.96%</div>
+            <div style="font-size: 0.9em; color: #8b92a8; margin-top: 8px;">$26.47</div>
+        </div>
+
+        <div class="market-card">
+            <div class="symbol">ETH</div>
+            <div class="name">Ethereum (via Mini Trust)</div>
+            <div class="change negative">-4.75%</div>
+            <div style="font-size: 0.9em; color: #8b92a8; margin-top: 8px;">$15.04</div>
+        </div>
+
+        <div class="market-card">
+            <div class="symbol">HOOD</div>
+            <div class="name">Robinhood Markets</div>
+            <div class="change negative">-5.87%</div>
+            <div style="font-size: 0.9em; color: #8b92a8; margin-top: 8px;">$97.19</div>
+        </div>
+
+        <div class="market-card">
+            <div class="symbol">IREN</div>
+            <div class="name">IREN Limited</div>
+            <div class="change negative">-8.08%</div>
+            <div style="font-size: 0.9em; color: #8b92a8; margin-top: 8px;">$50.30</div>
+        </div>
+
+        <div class="market-card">
+            <div class="symbol">OKLO</div>
+            <div class="name">Oklo Inc.</div>
+            <div class="change negative">-5.47%</div>
+            <div style="font-size: 0.9em; color: #8b92a8; margin-top: 8px;">$54.06</div>
+        </div>
+    </div>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="slide-container">
+    <span class="badge chips">AI ושבבים</span>
+    <h2>Micron מציתה את שוק הזיכרון: הכנסות פי 4 וגרוס מרג'ין 85%</h2>
+
+    <h3>מה קרה ביום רביעי 24 ביוני</h3>
+    
+    <div class="highlight-card">
+        <strong>Micron דיווחה על תוצאות Q3 FY2026 שהרסו את כל הציפיות:</strong>
+        <ul>
+            <li>הכנסות: <span class="data-badge">$41.46B</span> (צפי: $36.3B) – <strong>גידול של 346% משנה קודמת</strong></li>
+            <li>גרוס מרג'ין: <span class="data-badge">84.9%</span> (לעומת 39% לפני שנה) – Micron היא כעת <strong>"מלכת המרג'ינים"</strong> בטק, עוקפת את Nvidia ו-Meta</li>
+            <li>16 הסכמי לקוחות אסטרטגיים נחתמו בממוצע ל-5 שנים, המכסים 20% מ-DRAM ו-33% מ-NAND</li>
+            <li>המניה זינקה <span class="data-badge positive">+16%</span> בפרה-מרקט ל-$1,100+, כמעט חזרה לשיאים היסטוריים</li>
+        </ul>
+    </div>
+
+    <h3>למה זה חריג</h3>
+    <p>
+        הכנסות שמכפילות פי 4 תוך שנה אחת בחברת שבבים במשקל כבד כמו Micron זו תופעה נדירה ביותר. 
+        הגרוס מרג'ין של 85% הוא שיא חדש לא רק עבור Micron אלא עבור כל ענף הזיכרון – רמה שלא נראתה מעולם במחזור קודם. 
+        ההסכמים האסטרטגיים ארוכי-הטווח משנים את המודל העסקי של Micron מיצרן מחזורי לספק מוכווץ, עם הגנה מובנית מפני ירידות.
+    </p>
+
+    <h3>ההשלכה לקראת השבוע</h3>
+    <p>
+        אנליסטים מרימים יעדי מחיר בצורה דרמטית – <strong>Melius העלתה ל-$2,200</strong> (מ-$1,100), 
+        <strong>DA Davidson ל-$2,000</strong>, <strong>Susquehanna ל-$2,000</strong>. התזה: המחסור בזיכרון 
+        הופך את Micron לחברה עם הכנסות חוזריות יציבות (SaaS-like), עם אופק של <strong>tight supply עד לפחות 2027</strong>. 
+        המשמעות: רכישות עצמיות (buybacks) אדירות, פוטנציאל של <strong>$110B+ בתזרים חופשי ב-FY27</strong>.
+    </p>
+
+    <div class="opinion-card">
+        "Memory will go down as the bottleneck of all bottlenecks for this AI era. Micron said current conditions last after calendar 2027, basically guaranteeing buybacks of epic proportions."
+        <div class="analyst-note">— Ben Reitzes, Melius Research</div>
+    </div>
+
+    <p>
+        <strong>גלי זעזוע בענף:</strong> Western Digital (<span class="data-badge positive">+10%+</span> לאחר שעות), 
+        Seagate (<span class="data-badge positive">+10%+</span>), SanDisk (<span class="data-badge positive">+11%</span>), 
+        אפילו AMD ו-Intel עלו 4% בסימפתיה. SK Hynix בקוריאה זינקה <span class="data-badge positive">+13%</span> והודיעה על 
+        הנפקת ADR בארה״ב בשווי $29B.
+    </p>
+
+    <a href="https://www.cnbc.com/2026/06/24/micron-mu-earnings-report-q3-2026.html" class="btn-source">CNBC</a>
+    <a href="https://x.com/wallstengine/status/2070100139071705381" class="btn-source">Wall St Engine</a>
+    <a href="https://x.com/Mr_Derivatives/status/2070078973036687815" class="btn-source">Mr. Derivatives</a>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="slide-container">
+    <span class="badge chips">AI ושבבים</span>
+    <h2>Qualcomm: כניסה רצינית לדאטה סנטר עם יעד $15B ב-FY29</h2>
+
+    <h3>מה קרה ביום רביעי 24 ביוני</h3>
+    
+    <div class="highlight-card">
+        <strong>Qualcomm חשפה במפגש משקיעים יעד דרמטי חדש:</strong>
+        <ul>
+            <li>הכנסות צפויות מדאטה סנטר: <span class="data-badge">$5B ב-FY27</span>, <span class="data-badge">$15B+ ב-FY29</span></li>
+            <li>סך כל הכנסות non-handset (לא סמארטפונים): צפי של <span class="data-badge">~$40B ב-FY29</span> (מ-~$22B קודם)</li>
+            <li>TAM מוערך: <span class="data-badge">~$1.7T ב-2030</span>, כולל +$1T מדאטה סנטר</li>
+            <li>המניה זינקה כ-<span class="data-badge positive">15%</span> במהלך היום</li>
+        </ul>
+    </div>
+
+    <h3>למה זה חריג</h3>
+    <p>
+        Qualcomm היתה עד כה מזוהה בעיקר עם שוק הסמארטפונים (שני שליש מההכנסות). 
+        המעבר הזה – לדאטה סנטר כמקור הכנסות עיקרי בהיקף של $15B בשלוש שנים – הוא שינוי מהותי בפרופיל החברה. 
+        הודעה על שני לקוחות היפרסקייל מאושרים (Microsoft אחד מהם) מעבירה את Qualcomm ל״קטגוריית המנצחים״ ב-AI.
+    </p>
+
+    <h3>ההשלכה לקראת השבוע</h3>
+    <p>
+        אנליסטים מעדכנים ציפיות – <strong>Morgan Stanley העלתה דירוג ל-Equalweight ויעד מחיר ל-$231</strong> (מ-$146 קודם), 
+        <strong>Susquehanna העלתה ליעד $190</strong>. יש עדיין ספקנות לגבי מסלול המוצר – Qualcomm נחשבת מאחורי 
+        Cerebras ו-Nvidia בפתרונות inference מהירים, אך קו הראיה ל-FY27 נראה אמין.
+    </p>
+
+    <div class="opinion-card">
+        "$5 billion in FY27 guidance for data center moves the company into the data center winner category. The line of sight on FY27 appears solid enough that it is in the ballpark, making it difficult to fight the more optimistic narrative."
+        <div class="analyst-note">— Joseph Moore, Morgan Stanley</div>
+    </div>
+
+    <p>
+        <strong>חדשות נוספות:</strong> Qualcomm גם חתמה על רכישת Modular (סטארט-אפ AI software) כדי לחזק את ערימת התוכנה שלה לדאטה סנטר, 
+        והכריזה שתעצב שבב ייעודי לסין בהתאם למגבלות יצוא ארה״ב – מתחרה ישירה ל-Nvidia בשוק הזה.
+    </p>
+
+    <a href="https://www.cnbc.com/2026/06/24/qualcomm-data-center-cpu-meta.html" class="btn-source">CNBC</a>
+    <a href="https://x.com/wallstengine/status/2070044309567791607" class="btn-source">Wall St Engine</a>
+    <a href="https://x.com/AIStockSavvy/status/2070103920391623151" class="btn-source">AI Stock Savvy</a>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="slide-container">
+    <span class="badge chips">AI ושבבים</span>
+    <h2>IBM: פריצת דרך בטכנולוגיית שבבים – ה-0.7nm הראשון בעולם</h2>
+
+    <h3>מה קרה ביום רביעי 24 ביוני</h3>
+    
+    <div class="highlight-card">
+        <strong>IBM חשפה את טכנולוגיית השבבים Sub-1nm הראשונה בעולם:</strong>
+        <ul>
+            <li>צומת: <span class="data-badge">0.7nm (7-angstrom)</span> – הראשון מתחת ל-1nm בהיסטוריה</li>
+            <li>צפיפות טרנזיסטורים: כמעט <span class="data-badge">100 מיליארד</span> טרנזיסטורים על שבב בגודל ציפורן</li>
+            <li>ביצועים: עד <span class="data-badge">50% יותר מהירות</span> או <span class="data-badge">70% יעילות אנרגטית</span> לעומת 2nm של IBM</li>
+            <li>ארכיטקטורה חדשה: <strong>Nanostack 3D</strong> – מבנה טרנזיסטור תלת-ממדי מבוסס nanosheet</li>
+            <li>אופק: IBM צופה שהטכנולוגיה יכולה להיכנס לייצור תוך <span class="data-badge">~5 שנים</span></li>
+        </ul>
+    </div>
+
+    <h3>למה זה חריג</h3>
+    <p>
+        זו פריצת דרך מחקרית שדוחפת את חזית הייצור מעבר למה שנחשב אפשרי. 
+        ה-0.7nm הוא צעד קוונטי – ברמה כמעט אטומית, ורחוק מעבר למה שכל יצרן אחר (TSMC, Samsung, Intel) מייצר היום בהיקף מסחרי. 
+        הארכיטקטורה התלת-ממדית הזו מאפשרת ״ערימה״ של טרנזיסטורים אנכית, פורצת את מגבלת השטח הפיזי.
+    </p>
+
+    <h3>ההשלכה לקראת השבוע</h3>
+    <p>
+        IBM היא כרגע בשלב מחקר – זה לא מוצר מסחרי מיידי. אבל הזינוק הזה מסמן שחוק מור עדיין לא מת, 
+        וה-scaling יכול להימשך לפחות עשור נוסף. עבור ענף ה-AI וה-HPC, משמעות הדבר: יותר חישוב, יותר צפוף, פחות חום, פחות חשמל – 
+        בדיוק מה שדרוש לדור הבא של מודלים גדולים.
+    </p>
+
+    <div class="opinion-card">
+        "IBM's latest chip breakthrough marks a landmark moment in computing, pushing technology beyond the nanometer era to the scale of atoms. With our new nanostack architecture, we're not just making smaller transistors, we're reinventing how chips are built."
+        <div class="analyst-note">— Jay Gambetta, Director of IBM Research and IBM Fellow</div>
+    </div>
+
+    <a href="https://x.com/wallstengine/status/2070085455543243083" class="btn-source">Wall St Engine</a>
+    <a href="https://x.com/AIStockSavvy/status/2070091478521590124" class="btn-source">AI Stock Savvy</a>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="slide-container">
+    <span class="badge crypto">קריפטו</span>
+    <h2>ביטקוין מתחת ל-$60K: RSI חודשי הנמוך ביותר מאז 2022</h2>
+
+    <h3>מה קרה ביום רביעי–חמישי</h3>
+    
+    <div class="highlight-card">
+        <strong>ביטקוין ואת'ריום ממשיכות בשוק דובי ארוך:</strong>
+        <ul>
+            <li>BTC: שבר שוב מתחת ל-<span class="data-badge negative">$60,000</span> – רמה שנבדקה 4 פעמים מאז פברואר</li>
+            <li>BTC כרגע ב-<span class="data-badge negative">-53% משיא אוקטובר 2025</span>, RSI חודשי הנמוך ביותר מאז דצמבר 2022</li>
+            <li>ETH: RSI חודשי הנמוך ביותר <strong>אי-פעם</strong></li>
+            <li>Grayscale Bitcoin Mini Trust ETF: <span class="data-badge negative">-3.96%</span> ליום אחד, ב-$26.47</li>
+            <li>Grayscale Ethereum Mini Trust ETF: <span class="data-badge negative">-4.75%</span>, ב-$15.04</li>
+        </ul>
+    </div>
+
+    <h3>למה זה חריג</h3>
+    <p>
+        $60,000 הפכה לרמה פסיכולוגית קריטית – כל פעם שהיא נבדקה, קונים נכנסו. הפעם הרביעית מעלה שאלה: 
+        האם הדובים יצליחו לשבור סופית, או שהם ייכנעו לאחר מספר ניסיונות כושלים? 
+        ה-RSI החודשי הנמוך של ETH הוא אות שלא נראה מעולם – סימן של לחץ מכירה קיצוני או פוטנציאל לקרקעית.
+    </p>
+
+    <h3>ההשלכה לקראת השבוע</h3>
+    <p>
+        אנליסטים מחפשים אזורי ביקוש נוספים מטה – טווח של <span class="data-badge">$48K-$50K ל-BTC</span> 
+        ו-<span class="data-badge">~$1,000 ל-ETH</span> נזכרים כאזורי ״ציד מציאות״. 
+        במקביל, <strong>ביטוח קריפטו (IREN, HOOD) סובלים כתוצאה</strong> – IREN ירדה -8%, HOOD -5.87%.
+    </p>
+
+    <div class="opinion-card">
+        "$BTC just hit its lowest monthly RSI since Dec 2022. $ETH just hit its lowest monthly RSI ever. I do think we are getting closer and closer to a bottom. Give me BTC $48k-$50k and ETH $1k ish and we go bargain hunting."
+        <div class="analyst-note">— Heisenberg (Mr_Derivatives)</div>
+    </div>
+
+    <p>
+        <strong>ניגוד עם השווקים המסורתיים:</strong> בזמן ש-BTC ירד 53%, זהב ירד 30%, נפט ירד 41%, ואילו S&P 500 רק 3% מהשיאים – 
+        המסר: מניות מנצחות.
+    </p>
+
+    <a href="https://www.cnbc.com/2026/06/24/bitcoin-falls-back-under-60000-hitting-its-lowest-level-since-october-2024.html" class="btn-source">CNBC</a>
+    <a href="https://x.com/Mr_Derivatives/status/2069982376151986453" class="btn-source">Mr. Derivatives</a>
+    <a href="https://x.com/charliebilello/status/2069887191539397116" class="btn-source">Charlie Bilello</a>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="slide-container">
+    <span class="badge macro">מאקרו</span>
+    <h2>אמזון משקיעה $48B בהודו עד 2030 – התמקדות ב-AI וענן</h2>
+
+    <h3>מה קרה ביום חמישי 25 ביוני</h3>
+    
+    <div class="highlight-card">
+        <strong>אמזון הכריזה על השקעה עצומה בהודו:</strong>
+        <ul>
+            <li>השקעה כוללת: <span class="data-badge">מעל $48B בין 2026–2030</span></li>
+            <li>מזה: <span class="data-badge">$13B ייעודי ל-AI ותשתיות ענן</span> (AWS – הרחבת מרכזי נתונים במומבאי וחיידראבאד)</li>
+            <li>תוספת להשקעה קודמת של $35B שהוכרזה ב-2025 → סה״כ מעל <span class="data-badge">$88B עד 2030</span></li>
+            <li>תוכניות: פתיחת 20+ מרכזי לוגיסטיקה ו-100+ תחנות משלוחים השנה</li>
+            <li>מאז כניסה להודו: דיגיטציה של 12M עסקים קטנים, 2.8M משרות, $20B ייצוא e-commerce, ואימון 10M+ אנשים בענן</li>
+        </ul>
+    </div>
+
+    <h3>למה זה חריג</h3>
+    <p>
+        הודו היא אחד השווקים הצומחים הכי מהר עבור אמזון, ו-$48B תוך 5 שנים זה סכום שמשקף התחייבות ארוכת-טווח לא רק ל-e-commerce 
+        אלא במיוחד ל-AI וענן – תחומים שבהם הביקוש בהודו מתפוצץ. זה גם מסמן תחרות עם Google Cloud ו-Microsoft Azure על השוק ההודי.
+    </p>
+
+    <h3>ההשלכה לקראת השבוע</h3>
+    <p>
+        ההשקעה הזו מחזקת את מעמד אמזון כשחקן גלובלי באינפרא AI – ההודעה נעשתה ישירות על ידי Andy Jassy (CEO), 
+        ומדגישה התאמה למטרות ממשלת הודו (״Viksit and Atmanirbhar Bharat״). 
+        עבור משקיעים, זה עוד אות ש-AWS ממשיכה להיות מנוע צמיחה מרכזי לאמזון.
+    </p>
+
+    <div class="opinion-card">
+        "As we grow Amazon in India, our business priorities align with India's priorities of democratizing access to AI, digitizing small businesses, creating jobs, and enabling exports. We are inspired by Prime Minister Modi's vision and committed to being a long-term partner in India's growth story."
+        <div class="analyst-note">— Andy Jassy, CEO of Amazon</div>
+    </div>
+
+    <a href="https://x.com/wallstengine/status/2070057642433941632" class="btn-source">Wall St Engine</a>
+    <a href="https://x.com/AIStockSavvy/status/2070107333951197509" class="btn-source">AI Stock Savvy</a>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="slide-container">
+    <span class="badge macro">מאקרו</span>
+    <h2>SK Hynix זינקה 13% והכריזה על הנפקת ADR בארה״ב בשווי $29B</h2>
+
+    <h3>מה קרה ביום חמישי 25 ביוני (בקוריאה)</h3>
+    
+    <div class="highlight-card">
+        <strong>ענקית הזיכרון הדרום-קוריאנית מתכננת כניסה לנאסד״ק:</strong>
+        <ul>
+            <li>SK Hynix תנפיק <span class="data-badge">17.79M מניות חדשות</span> בשווי <span class="data-badge">₩45.45 טריליון (~$29.65B)</span></li>
+            <li>מועד צפוי: <span class="data-badge">10 ביולי 2026 או אחריו</span></li>
+            <li>המניה בסיאול זינקה <span class="data-badge positive">+13%</span> לשיאים חדשים לאחר דיווח Micron החזק</li>
+            <li>מדד KOSPI הקוריאני קפץ <span class="data-badge positive">+6%</span> תוך יום אחד</li>
+        </ul>
+    </div>
+
+    <h3>למה זה חריג</h3>
+    <p>
+        SK Hynix היא יצרנית זיכרון מובילה עולמית (מתחרה ישירה ל-Micron), וכניסתה לנאסד״ק דרך ADR תיתן למשקיעים אמריקאים 
+        חשיפה נוספת מעבר ל-Micron. ההנפקה בהיקף $29B היא אחת הגדולות בענף. 
+        הזינוק הענק בקוריאה מגיע כתגובה ישירה לתוצאות Micron – המסר: המחסור בזיכרון הוא גלובלי והזדמנות לכולם.
+    </p>
+
+    <h3>ההשלכה לקראת השבוע</h3>
+    <p>
+        משקיעים יצטרכו לעקוב אחרי פרטי התמחור וההנפקה. אנליסטים רואים בזה סימן נוסף ל״memory supercycle״ – 
+        גם Morgan Stanley (בדוח נפרד על Kioxia, יצרנית יפנית) ציינה שהלקוחות מצטיירים מראש, 
+        והמלאי הגולמי של ספקים גדל בציפייה לעליית מחירים. 
+        SK Hynix, יחד עם Micron, נותנות תמונה של שוק זיכרון שנמצא בעודף ביקוש לפחות עד 2027.
+    </p>
+
+    <a href="https://www.cnbc.com/2026/06/24/sk-hynix-nasdaq-adr-listing-south-korea.html" class="btn-source">CNBC</a>
+    <a href="https://x.com/wallstengine/status/2070043228813054131" class="btn-source">Wall St Engine</a>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="slide-container">
+    <span class="badge interview">ריאיון</span>
+    <h2>Animal Spirits: ״Diversification is working again״</h2>
+
+    <h3>מה עלה בפרק 470 של Animal Spirits (24 ביוני)</h3>
+    
+    <div class="highlight-card">
+        <strong>Michael Batnick ו-Ben Carlson דנו בשאלה מרכזית: מדוע פיזור עובד שוב השנה?</strong>
+        <ul>
+            <li>כמעט כל מעמד נכסים <strong>מכה את ה-S&P 500</strong> בתשואה השנה</li>
+            <li>ה-Mag 7 underperforming – קבוצת הענק של הטק מפגרת אחרי השוק הרחב</li>
+            <li>משקיעים מחזיקים יותר <strong>מזומן מאי-פעם</strong> – למרות ששוק המניות עדיין קרוב לשיאים</li>
+            <li>AI יוצר ״winners and losers״ – לא רק מנצחים</li>
+        </ul>
+    </div>
+
+    <h3>למה זה חריג</h3>
+    <p>
+        לאחר שנים שבהן ריכוז במניות הטק הגדולות היה האסטרטגיה הרווחית, 2026 מציגה סיפור שונה לחלוטין. 
+        הפיזור חוזר – מניות קטנות, value, ואפילו מחוץ לטק מביאים תשואות טובות יותר מה-S&P 500 בממוצע. 
+        זה גם מתיישב עם התופעה שראינו היום: Mag 7 (לדוגמה, Nvidia) לא קפצו בעקבות Micron, 
+        אבל מניות ״triple-digit club״ (כמו Micron עצמה) כן.
+    </p>
+
+    <h3>ההשלכה לקראת השבוע</h3>
+    <p>
+        המשמעות למשקיעים: אל תיתקעו רק ב-Mag 7. הזדמנויות באות גם מחוץ למעגל הצר, 
+        וחשוב לשמור על איזון תיק. האזהרה לגבי מזומן גבוה: זה יכול להיות סימן ל-FOMO הפוך – 
+        משקיעים חוששים להיכנס למרות שהשוק עדיין חזק.
+    </p>
+
+    <div class="opinion-card">
+        "Diversification is working again. Everything is outperforming the S&P 500 this year."
+        <div class="analyst-note">— Michael Batnick & Ben Carlson, The Compound (Animal Spirits 470)</div>
+    </div>
+
+    <a href="https://www.youtube.com/watch?v=ZF_HWTX1EsE" class="btn-source">The Compound</a>
+</div>
+
+</body>
+</html>
