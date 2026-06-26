@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי – 26 ביוני 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0e17; /* Deep charcoal */
+            --text-light: #e0e0e0; /* Off-white */
+            --accent-color: #f7d08a; /* Soft gold */
+            --divider-color: #333;
+            --positive-green: rgba(34, 197, 94, 0.2); /* Muted green with opacity */
+            --negative-red: rgba(239, 68, 68, 0.2); /* Muted red with opacity */
+            --neutral-grey: rgba(107, 114, 128, 0.1); /* Muted grey with opacity */
+            --opinion-bg: #1c222e; /* Slightly lighter dark for opinions */
+            --opinion-border: #4a5568;
+            --fact-highlight-bg: #11151f; /* Even darker for fact highlights */
+            --badge-bg: #3b4252; /* Darker grey for badges */
+            --badge-text: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            direction: rtl; /* Right-to-left for Hebrew */
+            text-align: right;
+        }
+
+        .slide-container {
+            max-width: 900px;
+            margin: 30px auto;
+            background-color: #0d1117; /* Slightly lighter than --bg-dark for content */
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid #1a202c;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            color: var(--accent-color);
+            margin-top: 30px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        h3 {
+            font-size: 1.3em;
+            color: var(--text-light);
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(247, 208, 138, 0.2);
+            padding-bottom: 5px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-right: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-right: 15px;
+        }
+
+        li::before {
+            content: '•';
+            color: var(--accent-color);
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .pulse-card {
+            background-color: var(--fact-highlight-bg);
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-end; /* Align text to the right for RTL */
+            border: 1px solid #2d3748;
+        }
+
+        .pulse-card__symbol {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+
+        .pulse-card__change {
+            font-size: 1.1em;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .pulse-card__change .percent {
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            margin-right: 8px; /* Margin for RTL */
+        }
+
+        .pulse-card__change.positive .percent {
+            background-color: var(--positive-green);
+            color: #22c55e; /* Bright green text */
+        }
+
+        .pulse-card__change.negative .percent {
+            background-color: var(--negative-red);
+            color: #ef4444; /* Bright red text */
+        }
+
+        .section-divider {
+            border-top: 1px solid var(--divider-color);
+            margin: 40px 0;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--badge-bg);
+            color: var(--badge-text);
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            border: 1px solid #4a5568;
+        }
+
+        .highlight-card {
+            background-color: var(--fact-highlight-bg);
+            border: 1px solid #2d3748;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-bg);
+            border: 1px solid var(--opinion-border);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+            font-style: italic;
+            text-align: right; /* Align text to the right for RTL */
+        }
+        .opinion-card::before {
+            content: '❝'; /* Quote icon */
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 2.5em;
+            color: rgba(247, 208, 138, 0.4);
+            line-height: 1;
+        }
+        .opinion-card .speaker-info {
+            display: block;
+            text-align: left; /* Align speaker name to the left */
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-top: 10px;
+            font-style: normal;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: #4a5568;
+            color: #ffffff;
+            padding: 7px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.85em;
+            margin-top: 10px;
+            margin-right: 10px; /* Margin for RTL */
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .btn-source:hover {
+            background-color: #5d687a;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid #2d3748;
+        }
+    </style>
+</head>
+<body>
+
+<div class="slide-container">
+    <h1>דוח שוק יומי</h1>
+    <span class="badge">סקירה מהירה</span>
+    <h2>תמונת מצב מהירה (Market Pulse)</h2>
+    <div class="market-pulse-grid">
+        <!-- BTC/USD -->
+        <div class="pulse-card">
+            <div class="pulse-card__symbol">BTC/USD</div>
+            <div class="pulse-card__change positive">
+                <span class="percent">0.59%</span>
+                <span>60,058.62</span>
+            </div>
+        </div>
+        <!-- ETH/USD -->
+        <div class="pulse-card">
+            <div class="pulse-card__symbol">ETH/USD</div>
+            <div class="pulse-card__change negative">
+                <span class="percent">-0.20%</span>
+                <span>1,565.20</span>
+            </div>
+        </div>
+        <!-- COHR -->
+        <div class="pulse-card">
+            <div class="pulse-card__symbol">COHR</div>
+            <div class="pulse-card__change positive">
+                <span class="percent">3.76%</span>
+                <span>407.25</span>
+            </div>
+        </div>
+        <!-- HOOD -->
+        <div class="pulse-card">
+            <div class="pulse-card__symbol">HOOD</div>
+            <div class="pulse-card__change negative">
+                <span class="percent">-3.83%</span>
+                <span>93.47</span>
+            </div>
+        </div>
+        <!-- NNE -->
+        <div class="pulse-card">
+            <div class="pulse-card__symbol">NNE</div>
+            <div class="pulse-card__change negative">
+                <span class="percent">-10.80%</span>
+                <span>20.65</span>
+            </div>
+        </div>
+        <!-- AAPL -->
+        <div class="pulse-card">
+            <div class="pulse-card__symbol">AAPL</div>
+            <div class="pulse-card__change negative">
+                <span class="percent">-6.12%</span>
+                <span>275.15</span>
+            </div>
+        </div>
+        <!-- PLTR -->
+        <div class="pulse-card">
+            <div class="pulse-card__symbol">PLTR</div>
+            <div class="pulse-card__change negative">
+                <span class="percent">-5.49%</span>
+                <span>107.27</span>
+            </div>
+        </div>
+        <!-- AMZN -->
+        <div class="pulse-card">
+            <div class="pulse-card__symbol">AMZN</div>
+            <div class="pulse-card__change negative">
+                <span class="percent">-3.10%</span>
+                <span>227.01</span>
+            </div>
+        </div>
+        <!-- OKLO -->
+        <div class="pulse-card">
+            <div class="pulse-card__symbol">OKLO</div>
+            <div class="pulse-card__change negative">
+                <span class="percent">-5.64%</span>
+                <span>51.01</span>
+            </div>
+        </div>
+        <!-- IREN -->
+        <div class="pulse-card">
+            <div class="pulse-card__symbol">IREN</div>
+            <div class="pulse-card__change negative">
+                <span class="percent">-5.09%</span>
+                <span>47.74</span>
+            </div>
+        </div>
+        <!-- UNH -->
+        <div class="pulse-card">
+            <div class="pulse-card__symbol">UNH</div>
+            <div class="pulse-card__change positive">
+                <span class="percent">2.40%</span>
+                <span>415.53</span>
+            </div>
+        </div>
+        <!-- SPOT -->
+        <div class="pulse-card">
+            <div class="pulse-card__symbol">SPOT</div>
+            <div class="pulse-card__change negative">
+                <span class="percent">-3.03%</span>
+                <span>441.21</span>
+            </div>
+        </div>
+        <!-- NOW -->
+        <div class="pulse-card">
+            <div class="pulse-card__symbol">NOW</div>
+            <div class="pulse-card__change negative">
+                <span class="percent">-4.56%</span>
+                <span>89.52</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="slide-container">
+    <span class="badge">מאקרו ואינפלציה</span>
+    <h2>נתוני אינפלציה וחששות כלכליים</h2>
+
+    <h3>מה קרה היום</h3>
+    <div class="highlight-card">
+        <p>מדד מחירי צריכה אישית ליבה (Core PCE), המדד המועדף על הפדרל ריזרב לאינפלציה, עלה ל-<strong>3.4%</strong> בחודש מאי, הרמה הגבוהה ביותר מאז אוקטובר 2023. זוהי הקריאה ה-63 ברציפות שמעל ליעד של 2% שקבע הפדרל ריזרב.</p>
+        <a class="btn-source" href="https://www.cnbc.com/2026/06/25/pce-inflation-report-may-2026-.html">CNBC</a>
+        <a class="btn-source" href="https://x.com/charliebilello/status/2070127591118213188">Charlie Bilello</a>
+    </div>
+    <div class="highlight-card">
+        <p>למרות נתוני ה-PCE, נגיד הפד, גולסבי (Goolsbee), ציין כי הדו"ח לא היה שלילי לחלוטין. במקביל, קרן המטבע הבינלאומית (IMF) דיווחה כי הכלכלה האמריקאית מפגינה צמיחה איתנה וכי האינפלציה צפויה להגיע ל-2% עד 2027.</p>
+        <a class="btn-source" href="https://x.com/AIStockSavvy/status/2070207043223318652">AIStockSavvy</a>
+        <a class="btn-source" href="https://x.com/AIStockSavvy/status/2070173204123955688">AIStockSavvy</a>
+    </div>
+    <div class="highlight-card">
+        <p>היצע הבתים החדשים בארה"ב עבר את רמת <strong>10 חודשים</strong> בחודש מאי. רמה זו נצפתה בעבר רק במהלך מיתונים או במהלך עליית האינפלציה של 2022.</p>
+        <a class="btn-source" href="https://x.com/charliebilello/status/2070271402205163821">Charlie Bilello</a>
+    </div>
+    <div class="highlight-card">
+        <p>פרמיית ביטוח הבריאות הממוצעת למשפחה בארה"ב זינקה ב-<strong>365%</strong> מאז 1999 (קצב שנתי של 6.1%), לעומת עלייה ממוצעת של 2.6% בשנה במדד המחירים לצרכן (CPI).</p>
+        <a class="btn-source" href="https://x.com/charliebilello/status/2070322402777604466">Charlie Bilello</a>
+    </div>
+
+    <h3>הלוגיקה</h3>
+    <p>נתוני האינפלציה הגבוהים ממשיכים להטריד את השוק, כאשר ה-Core PCE מראה עקביות מעל יעד הפד. למרות הערכות אופטימיות יותר מצד ה-IMF, השוק נותר מתוח לגבי עתיד הריביות.</p>
+    <div class="opinion-card">
+        "Home prices are too high relative to demand. One way or another, that gap has to close."
+        <span class="speaker-info">Charlie Bilello</span>
+        <a class="btn-source" href="https://x.com/charliebilello/status/2070271402205163821">Charlie Bilello</a>
+    </div>
+    <p>העודף בהיצע הבתים החדשים מצביע על חוסר איזון חמור בין היצע לביקוש בשוק הדיור, מצב שבאופן היסטורי קדם לתיקונים בשוק או נראה בתקופות מיתון. עלויות ביטוח הבריאות הגואות מוסיפות ללחץ על הצרכנים ולחששות האינפלציוניים בטווח הארוך.</p>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="slide-container">
+    <span class="badge">שוקי קריפטו</span>
+    <h2>שוק הקריפטו תחת לחץ: ירידות מחירים ואירועי אבטחה</h2>
+
+    <h3>מה קרה היום</h3>
+    <div class="highlight-card">
+        <p>מטבע ה-Ethereum (ETH) נסחר בסביבות <strong>1,565.20 דולר</strong>, ירידה של <strong>0.20%</strong> מהמחיר הקודם ו-<strong>5.37%</strong> ב-24 השעות האחרונות. הוא הגיע לשפל יומי של <strong>1,512.87 דולר</strong>, מהווה תחתית 52 שבועות חדשה. מחירי ה-Ether נמצאים כעת ברמות תמיכה קריטיות לטווח ארוך שנראו לאחרונה באוקטובר 2023 ואפריל 2025.</p>
+        <a class="btn-source" href="https://cointelegraph.com/news/tether-stablecoin-flips-ether-by-market-cap-as-eth-routs-to-15k?utm_source=rss&utm_medium=rss&utm_campaign=rss">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/sharplink-buys-eth-after-8-month-pause-as-token-hits-2026-low?utm_source=rss&utm_medium=rss&utm_campaign=rss">Cointelegraph</a>
+        <a class="btn-source" href="https://twelvedata.com/pricing">MarketData (ETH/USD)</a>
+    </div>
+    <div class="image-container">
+        <img src="https://s3-images.ctmedia.io/media/article-covers/hi-crypto-prices-arent-surging-anytime-soon-ethereum-2.jpg" alt="Ethereum Price Chart">
+        <a class="btn-source" href="https://cointelegraph.com/news/tether-stablecoin-flips-ether-by-market-cap-as-eth-routs-to-15k?utm_source=rss&utm_medium=rss&utm_campaign=rss">Cointelegraph</a>
+    </div>
+    <div class="highlight-card">
+        <p>מטבע ה-Tether (USDT) עקף את Ethereum בשווי השוק. היצע ה-USDe (stablecoin) הצטמק ב-70% מאז שיאו בשוק השוורים באוקטובר, אז הגיע ל-14 מיליארד דולר.</p>
+        <a class="btn-source" href="https://cointelegraph.com/news/tether-stablecoin-flips-ether-by-market-cap-as-eth-routs-to-15k?utm_source=rss&utm_medium=rss&utm_campaign=rss">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/stablecoinx-merges-with-tlgy-and-begins-trading-on-nasdaq-friday?utm_source=rss&utm_medium=rss&utm_campaign=rss">Cointelegraph</a>
+    </div>
+    <div class="highlight-card">
+        <p>הביטקוין (BTC) נסחר בסביבות <strong>60,058.62 דולר</strong>, עלייה קלה של <strong>0.59%</strong> מול סגירת אתמול, אך עם שינוי של <strong>-2.66%</strong> ב-24 השעות האחרונות. המטבע נגע היום בשפל של <strong>58,243.36 דולר</strong>, קרוב מאוד לתחתית ה-52 שבועות שלו ב-<strong>58,000 דולר</strong>, על רקע זרימות יציאה מתעודות סל של BTC, פקיעת אופציות דובית, והפסדים לא ממומשים של MicroStrategy.</p>
+        <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-bounces-off-new-2026-price-lows-will-us-stock-weakness-push-btc-lower?utm_source=rss&utm_medium=rss&utm_campaign=rss">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-drops-to-58-on-pce-highs?utm_source=rss&utm_medium=rss&utm_campaign=rss">Cointelegraph</a>
+        <a class="btn-source" href="https://x.com/Mr_Derivatives/status/2070338543160054187">Mr. Derivatives</a>
+        <a class="btn-source" href="https://twelvedata.com/pricing">MarketData (BTC/USD)</a>
+    </div>
+    <div class="highlight-card">
+        <p>בורסת הנגזרות Polymarket נפגעה מפריצה בסך <strong>2.9 מיליון דולר</strong>, כתוצאה מהזרקת סקריפט זדוני ל-frontend שלה. החברה הצהירה שהיא הכילה את הפשרה ותפצה את המשתמשים. במקביל, הבלוקצ'יין Base של Coinbase חזר לפעילות לאחר השבתה של שעתיים.</p>
+        <a class="btn-source" href="https://cointelegraph.com/news/polymarket-vendor-compromise-drains-29m-users?utm_source=rss&utm_medium=rss&utm_campaign=rss">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/coinbases-blockchain-base-back-online-after-2-hour-outage?utm_source=rss&utm_medium=rss&utm_campaign=rss">Cointelegraph</a>
+    </div>
+    <div class="image-container">
+        <img src="https://s3-images.ctmedia.io/media/article-covers/hi-how-scammers-target-crypto-users-during-the-holidays-and-ways-to-stay-protected.jpg" alt="Cybersecurity Image">
+        <a class="btn-source" href="https://cointelegraph.com/news/polymarket-vendor-compromise-drains-29m-users?utm_source=rss&utm_medium=rss&utm_campaign=rss">Cointelegraph</a>
+    </div>
+    <div class="highlight-card">
+        <p>BitGo, חברת תשתית קריפטו, פיטרה <strong>15%</strong> מכוח האדם שלה על מנת להתמקד ב-AI וב-stablecoins. מנכ"ל החברה, מייק בלשה, ציין שהפיטורים הם "פעולה חד-פעמית" ונועדו להפוך את החברה לממוקדת יותר בתחומי אבטחה, מסחר, stablecoins, סליקה ותשתית מבוססת AI.</p>
+        <a class="btn-source" href="https://cointelegraph.com/news/crypto-infrastructure-firm-bitgo-lays-off-15-of-staff?utm_source=rss&utm_medium=rss&utm_campaign=rss">Cointelegraph</a>
+        <a class="btn-source" href="https://x.com/wallstengine/status/2070271810260906072">Wall St Engine</a>
+    </div>
+
+    <h3>למה זה חריג</h3>
+    <p>הירידה המשמעותית ב-ETH, שהגיע לשפל של 52 שבועות, מצביעה על חולשה עמוקה במטבע שנמשכת זה זמן מה, ומהווה אירוע חריג המחייב תשומת לב. פריצת האבטחה ב-Polymarket והשבתת Base מדגישות את הסיכונים המתמשכים בתחום ה-DeFi והתשתיות הקריפטוגרפיות.</p>
+    <div class="opinion-card">
+        "Strategy now -85% haircut from ATH’s. Getting scary for Saylor ngl.."
+        <span class="speaker-info">Heisenberg (@Mr_Derivatives)</span>
+        <a class="btn-source" href="https://x.com/Mr_Derivatives/status/2070338543160054187">Mr. Derivatives</a>
+    </div>
+    <p>הירידות בביטקוין, יחד עם הביצועים ההיסטוריים השליליים של MicroStrategy והאזהרות מפני ירידה נוספת, מעידות על סנטימנט דובי גובר בשוק. הפיטורים ב-BitGo משקפים מגמה רחבה יותר של התאמה ומיקוד מחדש בחברות קריפטו, לאור האבולוציה של המערכת האקולוגית והדגש על AI ו-stablecoins.</p>
+
+    <h3>הלוגיקה</h3>
+    <p>שוק הקריפטו ממשיך להיות מושפע מגורמים מאקרו-כלכליים, לצד דינמיקות פנימיות. היחלשות של Ethereum מול Tether, למרות פוטנציאל הרכישה מצד שארפלניק, משקפת העדפה ליציבות מול נכסים תנודתיים בתקופות של אי ודאות. אירועי אבטחה בולטים כמו ב-Polymarket והשבתות רשת משפיעים על אמון המשקיעים ומדגישים את הצורך בפתרונות אבטחה וביזור יציבים יותר.</p>
+    <div class="opinion-card">
+        "$BTC and $KWEB should not be this correlated if at all. But they are HIGHLY correlated. Interesting!!"
+        <span class="speaker-info">Heisenberg (@Mr_Derivatives)</span>
+        <a class="btn-source" href="https://x.com/Mr_Derivatives/status/2070212172517650857">Mr. Derivatives</a>
+    </div>
+    <p>הקורלציה הגבוהה בין ביטקוין למניות טכנולוגיה סיניות (KWEB) מעלה שאלות לגבי מעמדו של הביטקוין כ"נכס מקלט" ומדגישה את השפעתו של סנטימנט הסיכון העולמי. ככלל, ניקוי רעש בתוך המגזר והתמקדות במגמות ארוכות טווח כמו AI ו-stablecoins עשויים להיות מועילים, אך בטווח הקצר השוק נותר תנודתי ופגיע.</p>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="slide-container">
+    <span class="badge">AI ושבבים</span>
+    <h2>עליות במחירי הזיכרון והשלכותיהן על ענקיות הטכנולוגיה</h2>
+
+    <h3>מה קרה היום</h3>
+    <div class="highlight-card">
+        <p>מניית Micron Technology (MU) זינקה ב-<strong>15.74%</strong> ונסגרה ב-<strong>1213.56 דולר</strong>, על רקע דוח רווחים רבעוני חזק במיוחד שפורסם ביום רביעי, בו הכנסות החברה יותר מהוכפלו פי ארבעה, מ-9.3 מיליארד דולר בשנה קודמת ל-41.46 מיליארד דולר.</p>
+        <a class="btn-source" href="https://www.cnbc.com/2026/06/25/micron-stock-3q-earnings-memory.html">CNBC</a>
+        <a class="btn-source" href="https://x.com/Mr_Derivatives/status/2070196122526863694">Mr. Derivatives</a>
+        <a class="btn-source" href="https://twelvedata.com/pricing">MarketData (MU)</a>
+    </div>
+    <div class="opinion-card">
+        "כולם חוגגים את מייקרון — אני רואה אזהרה ענקית לשוק 🚨"
+        <span class="speaker-info">Micha.Stocks</span>
+        <a class="btn-source" href="https://www.youtube.com/watch?v=LrgHdW0uY7o">Micha.Stocks</a>
+    </div>
+    <div class="highlight-card">
+        <p>מניית Apple (AAPL) צנחה ב-<strong>6.12%</strong> ונסגרה ב-<strong>275.15 דולר</strong>, במה שהיה יום המסחר הגרוע ביותר שלה מזה למעלה משנה. הירידה הגיעה לאחר שהחברה הודיעה רשמית על העלאת מחירים למחשבי מקבוק ואייפד נבחרים, וזאת כדי לקזז את העלויות הגואות של שבבי זיכרון ואחסון.</p>
+        <a class="btn-source" href="https://www.cnbc.com/2026/06/25/apple-stock-gets-slammed-on-bigger-mac-ipad-price-hikes-why-it-can-weather-the-storm.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/06/25/apple-macbook-ipad-price-hike-memory.html">CNBC</a>
+        <a class="btn-source" href="https://twelvedata.com/pricing">MarketData (AAPL)</a>
+    </div>
+    <div class="highlight-card">
+        <p>גם Microsoft הודיעה על עליית מחירי קונסולות Xbox, וציינה כי מחירי אחסון וזיכרון לקונסולות עלו ביותר מפי 2.5, וצפויים להכפיל את עצמם שוב עד סתיו 2027.</p>
+        <a class="btn-source" href="https://www.cnbc.com/2026/06/25/microsoft-lifts-price-of-xbox-consoles-due-to-soaring-component-costs.html">CNBC</a>
+        <a class="btn-source" href="https://x.com/wallstengine/status/2070189326080848230">Wall St Engine</a>
+        <a class="btn-source" href="https://x.com/AIStockSavvy/status/2070192087149035553">AIStockSavvy</a>
+    </div>
+    <div class="image-container">
+        <img src="https://s3-images.ctmedia.io/media/article-covers/hi-b-ethena.jpg" alt="AI Chips and hardware">
+        <a class="btn-source" href="https://cointelegraph.com/news/stablecoinx-merges-with-tlgy-and-begins-trading-on-nasdaq-friday?utm_source=rss&utm_medium=rss&utm_campaign=rss">Cointelegraph</a>
+    </div>
+    <div class="highlight-card">
+        <p>חברת ON Semiconductor (ON) הודיעה על רכישת Synaptics (SYNA) בעסקת מניות בשווי של כ-<strong>7 מיליארד דולר</strong>. העסקה צפויה להרחיב את שוק היעד הכולל של ON ב-30 מיליארד דולר, לכ-243 מיליארד דולר עד שנת 2030, ולהיות מוספית לרווח למניה (Non-GAAP EPS) תוך 18 חודשים מהסגירה המתוכננת באמצע 2027. עם זאת, TD Cowen הוריד את דירוג המניה ל"החזק" מ"קניה" והוריד את יעד המחיר מ-115 ל-110 דולר, מתוך חשש שהעסקה תוסיף מורכבות למודל העסקי ותכלול חשיפה לשוקי צרכנות ותקשורת אלחוטית.</p>
+        <a class="btn-source" href="https://www.cnbc.com/2026/06/25/on-semi-synaptics-deal-physical-ai.html">CNBC</a>
+        <a class="btn-source" href="https://x.com/wallstengine/status/2070241066780115019">Wall St Engine</a>
+        <a class="btn-source" href="https://x.com/wallstengine/status/2070417633166651674">Wall St Engine</a>
+    </div>
+    <div class="highlight-card">
+        <p>חברות ענק בתעשיית השבבים, סמסונג ו-SK Hynix, צפויות להכריז בשבוע הבא על השקעות ענק ב-AI. סמסונג צפויה לחשוף תוכנית השקעות של כ-<strong>646 מיליארד דולר</strong> למשך 10 שנים בדרום קוריאה, שתכלול מפעלי שבבים, מרכזי נתונים ל-AI, סוללות משניות וצגים.</p>
+        <a class="btn-source" href="https://x.com/wallstengine/status/2070392752114942117">Wall St Engine</a>
+        <a class="btn-source" href="https://x.com/AIStockSavvy/status/2070288890439880785">AIStockSavvy</a>
+    </div>
+    <div class="highlight-card">
+        <p>מניית SoftBank Group צנחה ב-<strong>13%</strong>, הירידה הגדולה ביותר מאז אוגוסט 2024, לאחר דיווחים ש-OpenAI עשויה לדחות את ההנפקה הציבורית (IPO) שלה לשנה הבאה. בנוסף, ממשל טראמפ ביקש מ-OpenAI לפרוס בהדרגה את שחרור מודל GPT-5.6 מטעמי אבטחה.</p>
+        <a class="btn-source" href="https://www.cnbc.com/2026/06/26/global-tech-stocks-ai-infrastructure-costs-selloff-softbank-apple.html">CNBC</a>
+        <a class="btn-source" href="https://x.com/wallstengine/status/2070411902266855445">Wall St Engine</a>
+        <a class="btn-source" href="https://x.com/AIStockSavvy/status/2070244901086757161">AIStockSavvy</a>
+        <a class="btn-source" href="https://x.com/wallstengine/status/2070242166639906844">Wall St Engine</a>
+    </div>
+    <div class="highlight-card">
+        <p>Apple צפויה לדלג על שבבי M6 מתקדמים במחשבי Mac לטובת התמקדות בשבבי M7 מונעי AI. Google פועלת מול מפרסמים כדי שיאפשרו שימוש בתוכן שלהם לאימון מודלי AI.</p>
+        <a class="btn-source" href="https://x.com/AIStockSavvy/status/2070190707399119037">AIStockSavvy</a>
+        <a class="btn-source" href="https://x.com/AIStockSavvy/status/2070237001895288900">AIStockSavvy</a>
+    </div>
+
+    <h3>למה זה חריג</h3>
+    <p>הזינוק של Micron, שהגיעה לשיא 52 שבועות, מייצג את צדו האחד של תעשיית השבבים - צמיחה מטורפת של ביקוש. מנגד, התגובה החריפה בשוק למניות כמו Apple ו-Microsoft, שנגרמה מעלויות הזיכרון הגואות, מדגימה את הלחצים האינפלציוניים של אותה צמיחה. יום המסחר הגרוע ביותר של Apple מזה שנה הוא אירוע יוצא דופן לחברה בסדר גודל כזה.</p>
+    <div class="opinion-card">
+        "This is a hundred-year flood. I’ve never seen anything like it in any area in over 40 years."
+        <span class="speaker-info">Tim Cook</span>
+        <a class="btn-source" href="https://x.com/charliebilello/status/2070158846085988658">Charlie Bilello</a>
+    </div>
+    <p>ההחלטה של OpenAI לדחות את הנפקתה משקפת חשש מסנטימנט השוק הפכפך, במיוחד לאחר התנודתיות סביב הנפקת SpaceX. דחיית ההנפקה של חברה בעלת פרופיל גבוה כמו OpenAI היא אירוע בעל השלכות רחבות על סנטימנט ההשקעה ב-AI. רכישת Synaptics על ידי ON Semiconductor מעידה על ניסיון להתרחב לתחום ה-AI הפיזי, אך תגובת האנליסטים מדגישה את הסיכונים הכרוכים בשינוי אסטרטגיה זה.</p>
+
+    <h3>הלוגיקה</h3>
+    <p>תעשיית ה-AI והשבבים נקרעת בין אופטימיות אדירה מצד אחד, לבין חששות אינפלציוניים, עלויות גבוהות ורגולציה מצד שני. העלייה הדרמטית במחירי הזיכרון, כפי שציין טים קוק, היא תוצאה ישירה של הביקוש חסר התקדים לתשתיות AI, ומובילה חברות טכנולוגיה להעלות מחירים לצרכנים. זהו מעגל שבו הביקוש ל-AI מזין עלייה במחירי הרכיבים, ובהמשך מביא ללחץ על הרווחיות של חברות המשתמשות בהם. ההשקעות הענקיות של סמסונג ו-SK Hynix מבטאות את האמונה ארוכת הטווח בביקוש ל-AI, אך גם מדגישות את גודל ההון הנדרש כדי לתמוך בצמיחה זו. דחיית ה-IPO של OpenAI והתערבות ממשלתית משקפים את המורכבות סביב חברות AI חדשניות, הן מבחינת תמחור ציפיות והן מבחינת שיקולי אבטחה לאומיים.</p>
+    <div class="opinion-card">
+        "So let me get this straight... 1) Semiconductor stocks are up 107% this year. 2) The Mag 7 names are down 8% because they're spending hundreds of billions on semiconductors. 3) The market expects this capex cycle to continue indefinitely. Have I got that right?"
+        <span class="speaker-info">Charlie Bilello</span>
+        <a class="btn-source" href="https://x.com/charliebilello/status/2070194913539432576">Charlie Bilello</a>
+    </div>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="slide-container">
+    <span class="badge">חדשות חברות בולטות</span>
+    <h2>התפתחויות בחברות מפתח: Palantir, Robinhood ו-Rocket Lab</h2>
+
+    <h3>מה קרה היום</h3>
+    <div class="highlight-card">
+        <p>מניית Palantir Technologies (PLTR) צנחה ב-<strong>5.49%</strong> ונסגרה ב-<strong>107.27 דולר</strong>, תוך כדי נגיעה בשפל 52 שבועות חדש של <strong>106.375 דולר</strong>. הירידה החדה הגיעה בעקבות דיווח של המשקיע המפורסם מייקל בורי ("הביג שורט") כי קיצר בחצי את פוזיציית השורט שלו במניה.</p>
+        <a class="btn-source" href="https://x.com/wallstengine/status/2070236359038755181">Wall St Engine</a>
+        <a class="btn-source" href="https://x.com/AIStockSavvy/status/2070235641116336517">AIStockSavvy</a>
+        <a class="btn-source" href="https://twelvedata.com/pricing">MarketData (PLTR)</a>
+    </div>
+    <div class="opinion-card">
+        "Update: Palantir is now down 48% since this post last November. When the crowd is saying 'valuations don't matter anymore' is precisely when they matter the most. $PLTR"
+        <span class="speaker-info">Charlie Bilello</span>
+        <a class="btn-source" href="https://x.com/charliebilello/status/2070235781419896886">Charlie Bilello</a>
+    </div>
+    <div class="highlight-card">
+        <p>מניית Robinhood Markets (HOOD) ירדה ב-<strong>3.83%</strong> ונסגרה ב-<strong>93.47 דולר</strong>, על אף שהחברה השלימה גיוס של <strong>2.2 מיליארד דולר</strong> באמצעות הנפקת אגרות חוב להמרה בריבית של 0%.</p>
+        <a class="btn-source" href="https://x.com/AIStockSavvy/status/2070258661679673846">AIStockSavvy</a>
+        <a class="btn-source" href="https://twelvedata.com/pricing">MarketData (HOOD)</a>
+    </div>
+    <div class="highlight-card">
+        <p>מניית Rocket Lab (RKLB) עלתה ב-<strong>5%</strong> במסחר לאחר שעות הסגירה, לאחר שנאס"א בחרה בה לשלוש משימות שיגור של לוויינים באמצעות משגרי Electron בשנת 2027.</p>
+        <a class="btn-source" href="https://x.com/wallstengine/status/2070243847574257842">Wall St Engine</a>
+        <a class="btn-source" href="https://x.com/AIStockSavvy/status/2070238377610547652">AIStockSavvy</a>
+        <a class="btn-source" href="https://x.com/Mr_Derivatives/status/2070242545641361702">Mr. Derivatives</a>
+    </div>
+    <div class="highlight-card">
+        <p>מניית Nike (NKE) נמצאת בירידה של <strong>75%</strong> משיאה בנובמבר 2021, וזהו יום חמישי ברציפות של ירידות, מה שמהווה את המשיכה הגדולה ביותר בהיסטוריה של החברה. KeyBanc הוריד את דירוג המניה ל"משקל סקטור" (Sector Weight) מ"עודף משקל" (Overweight) והפחית את הערכותיה לשנת הכספים 2027, תוך ציון רוחות נגדיות חזקות מהצפוי בסין ובאזור EMEA (אירופה, המזרח התיכון ואפריקה), אתגרי שוק מתמשכים ושינויי הנהלה.</p>
+        <a class="btn-source" href="https://x.com/charliebilello/status/2070214475496452283">Charlie Bilello</a>
+        <a class="btn-source" href="https://x.com/wallstengine/status/2070417783540924758">Wall St Engine</a>
+    </div>
+
+    <h3>למה זה חריג</h3>
+    <p>הירידה של Palantir לשפל 52 שבועות, במקביל לדיווח של מייקל בורי על קיצוץ השורט שלו, מהווה אירוע חריג שמעיד על סנטימנט שלילי משמעותי כלפי המניה, גם אם אחד המשקיעים המפורסמים ביותר מאמין שהמגמה משתנה. הירידה של Robinhood למרות גיוס הון מוצלח מצביעה על חששות עמוקים יותר לגבי המודל העסקי או סנטימנט השוק כלפי חברות פינטק. הבחירה של נאס"א ב-Rocket Lab מהווה אישור חזק ליכולותיה הטכנולוגיות ומספקת דחיפה חיובית לחברה ולסקטור החלל.</p>
+    <p>הירידה ההיסטורית של Nike והורדת הדירוג על ידי אנליסטים משקפות אתגרים מבניים ואסטרטגיים עמוקים בחברה, ולא רק תנודות שוק רגילות. ירידה של 75% מהשיא היא מצב קריטי.</p>
+
+    <h3>הלוגיקה</h3>
+    <p>תנודות חדות במניות בולטות כמו Palantir ו-Robinhood מדגישות את הרגישות של השוק לחדשות ספציפיות לחברה, גם כאשר הנתונים הבסיסיים (כמו גיוס הון) נראים חיוביים. במקרה של Palantir, נראה כי חששות לגבי הערכת השווי ממשיכים להעיק על המניה, כפי שהודגש בעבר על ידי אנליסטים. עבור Robinhood, גיוס ההון בריבית 0% מצוין, אך ייתכן שהשוק מודאג מלחצי תחרות או רגולציה. הצלחת Rocket Lab עם נאס"א מראה את החשיבות של חוזים ממשלתיים לחברות חלל, ומספקת יציבות הכנסות ואישוש טכנולוגי. מצבה של Nike מסמל את הקשיים שמותגים ותיקים עשויים לחוות מול שינויים בהעדפות צרכנים, תחרות גוברת ואי ודאות גלובלית, במיוחד בשווקים מתפתחים.</p>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="slide-container">
+    <span class="badge">גיאופוליטיקה ואנרגיה</span>
+    <h2>התפתחויות במזרח התיכון ובשוק הנפט</h2>
+
+    <h3>מה קרה היום</h3>
+    <div class="highlight-card">
+        <p>סוכנות של האו"ם השהתה את תוכנית פינוי כלי השיט ממצר הורמוז לאחר שכלי שיט הותקף ליד חופי עומאן. גורם רשמי בארה"ב ייחס את האחריות לאירוע לאיראן. ביום חמישי, איראן הזהירה ספינות כי "בלתי מתקבל על הדעת ומסוכן" לעבור במצר הורמוז ללא אישורה.</p>
+        <a class="btn-source" href="https://www.cnbc.com/2026/06/26/strait-of-hormuz-vessel-attack-evacuation-pauses-iran-united-states-peace-deal-negotiation-.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/06/25/iran-navy-shipping-recovery-strait-of-hormuz-unauthorized-routes-us-fragile-mou-.html">CNBC</a>
+        <a class="btn-source" href="https://x.com/AIStockSavvy/status/2070206089979683211">AIStockSavvy</a>
+    </div>
+    <div class="highlight-card">
+        <p>עיראק רמזה כי היא עשויה לפרוש מאופ"ק (OPEC), מה שעלול להוביל את מחירי הנפט לרמה של <strong>פחות מ-50 דולר</strong> לחבית.</p>
+        <a class="btn-source" href="https://www.marketwatch.com/story/a-world-rejecting-opec-controls-could-usher-in-oil-below-50-a-barrel-3d7eda1b?mod=mw_rss_topstories">MarketWatch</a>
+    </div>
+    <div class="highlight-card">
+        <p>צבא ארה"ב יחכיר קרקעות בבסיסים צבאיים לחברות כמו Titan Mining, EnergyX, Ioneer ו-REalloys עבור עיבוד מינרלים קריטיים. החברות צפויות להשקיע כ-<strong>2 מיליארד דולר</strong>, והצבא יקבל חלק מתפוקת המינרלים במקום תשלומים במזומן.</p>
+        <a class="btn-source" href="https://x.com/wallstengine/status/2070232565253066785">Wall St Engine</a>
+    </div>
+    <div class="image-container">
+        <img src="https://s3-images.ctmedia.io/media/article-covers/hi-top-hacks-so-far-iran.jpg" alt="Strait of Hormuz">
+        <a class="btn-source" href="https://cointelegraph.com/news/iran-entities-moved-38-billion-coinex?utm_source=rss&utm_medium=rss&utm_campaign=rss">Cointelegraph</a>
+    </div>
+
+    <h3>למה זה חריג</h3>
+    <p>התקיפה של כלי שיט במצר הורמוז והאשמת איראן, במיוחד על רקע אזהרות קודמות מצד איראן, מייצגות הסלמה משמעותית במתיחות באזור אסטרטגי קריטי למעבר נפט. אירועים מסוג זה מגבירים את פרמיית הסיכון של נתיבי הסחר הגלובליים ועלולים להשפיע על מחירי האנרגיה.</p>
+    <p>רמיזותיה של עיראק על פרישה מאופ"ק הינן חריגות מכיוון שהן מאיימות לערער את מנגנוני השליטה של הארגון על היצע הנפט העולמי, דבר שעלול לשנות באופן דרמטי את תמחור הנפט ולייצר תנודתיות משמעותית בשוק.</p>
+    <p>שיתוף הפעולה בין צבא ארה"ב לחברות פרטיות בתחום המינרלים הקריטיים, עם מודל תשלום של "חלק מהתפוקה", הוא צעד אסטרטגי חריג שמטרתו להבטיח ביטחון אספקה של חומרים חיוניים לתעשיות טכנולוגיה וביטחון, תוך הפחתת התלות בשרשראות אספקה זרות.</p>
+
+    <h3>הלוגיקה</h3>
+    <p>המתח במצר הורמוז, נקודת חנק ימית דרכה עוברת כחמישית מאספקת הנפט העולמית, עלול להוביל לשיבושים באספקה ולעליית מחירי הנפט. זהו סיכון גיאופוליטי ישיר שעלול להשפיע על האינפלציה והצמיחה העולמית.</p>
+    <p>פרישה אפשרית של עיראק מאופ"ק תחליש את כוח המיקוח של הקרטל, ותגביר את התחרות בשוק הנפט, מה שתיאורטית יכול להוביל לירידת מחירים, אך גם לאי ודאות מוגברת. הדבר מדגיש את המורכבות בשוקי הסחורות, המושפעים לא רק מביקוש והיצע אלא גם משיקולים פוליטיים ואסטרטגיים.</p>
+    <p>השקעת צבא ארה"ב במינרלים קריטיים באמצעות שיתופי פעולה בבסיסים צבאיים היא חלק ממגמה רחבה יותר של אבטחת שרשראות אספקה לאומיות, במיוחד בתחומים החיוניים למעבר לכלכלה ירוקה ולטכנולוגיות מתקדמות. זה מצביע על דגש גובר על עצמאות אסטרטגית ועל סיכון גיאופוליטי סביב משאבי טבע.</p>
+</div>
+
+</body>
+</html>
