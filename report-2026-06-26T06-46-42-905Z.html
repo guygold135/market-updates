@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי - 26 ביוני 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0d1117;
+            --text-light: #e0e6f0;
+            --accent-gold: #cfa85b;
+            --accent-steel-blue: #6a93cb;
+            --green-muted: rgba(46, 204, 113, 0.2);
+            --red-muted: rgba(231, 76, 60, 0.2);
+            --green-text: #2ecc71;
+            --red-text: #e74c3c;
+            --border-color: #2e353f;
+            --card-bg: #1a1e26;
+            --quote-bg: #222a36;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .slide-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            padding: 30px 40px;
+            box-sizing: border-box;
+            direction: rtl;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+            text-align: right;
+        }
+
+        h1 {
+            font-size: 2.8em;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: var(--accent-steel-blue);
+            margin-top: 30px;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            color: var(--text-light);
+            margin-top: 25px;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        p {
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .market-card {
+            background-color: var(--bg-dark);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        .market-card strong {
+            display: block;
+            font-size: 1.2em;
+            margin-bottom: 8px;
+            color: var(--accent-gold);
+        }
+
+        .change-positive {
+            color: var(--green-text);
+            background-color: var(--green-muted);
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        .change-negative {
+            color: var(--red-text);
+            background-color: var(--red-muted);
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        .change-neutral {
+            color: var(--text-light);
+            background-color: rgba(128, 128, 128, 0.2);
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        .section-divider {
+            border-top: 1px solid var(--border-color);
+            margin: 40px 0;
+            padding-top: 20px;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--accent-steel-blue);
+            color: var(--bg-dark);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .highlight-card {
+            background-color: var(--bg-dark);
+            border-left: 4px solid var(--accent-gold);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            text-align: right;
+        }
+
+        .opinion-card {
+            background-color: var(--quote-bg);
+            border-right: 4px solid var(--accent-steel-blue);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-style: italic;
+            position: relative;
+            text-align: right;
+            direction: ltr; /* English quotes remain LTR */
+        }
+
+        .opinion-card::before {
+            content: "“";
+            font-size: 3em;
+            color: var(--accent-steel-blue);
+            position: absolute;
+            top: 5px;
+            right: 15px;
+            opacity: 0.6;
+        }
+        .opinion-card .speaker {
+            display: block;
+            text-align: left;
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: var(--accent-gold);
+            direction: rtl; /* Speaker name in Hebrew */
+        }
+        .opinion-card p {
+            direction: ltr; /* Quote text remains LTR */
+            text-align: left;
+            margin: 0;
+        }
+
+
+        .image-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--accent-steel-blue);
+            color: var(--bg-dark);
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9em;
+            margin-top: 10px;
+            margin-left: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-source:hover {
+            background-color: var(--accent-gold);
+        }
+
+        ul {
+            list-style: disc;
+            padding-right: 20px;
+            text-align: right;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        strong {
+            color: var(--accent-gold);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slide-container">
+        <h1>דוח שוק יומי – 26 ביוני 2026</h1>
+
+        <div class="badge">תמונת מצב מהירה</div>
+        <h2>תמונת מצב מהירה: מניות בולטות</h2>
+        <p>סקירה מהירה של הנכסים שרשמו תנודות חריגות או אירועים משמעותיים ביממה האחרונה:</p>
+        <div class="market-pulse-grid">
+            <div class="market-card">
+                <strong>Micron Technology (MU)</strong>
+                <span class="change-positive">+15.74%</span>
+                <p>זינוק חד לאחר דוחות רווחים חזקים.</p>
+                <a class="btn-source" href="https://www.cnbc.com/2026/06/25/micron-stock-3q-earnings-memory.html">CNBC</a>
+                <a class="btn-source" href="https://x.com/Mr_Derivatives/status/2070196122526863694">Mr. Derivatives</a>
+            </div>
+            <div class="market-card">
+                <strong>Apple Inc. (AAPL)</strong>
+                <span class="change-negative">-6.11%</span>
+                <p>הירידה הגדולה ביותר מזה למעלה משנה עקב העלאות מחירים.</p>
+                <a class="btn-source" href="https://www.marketwatch.com/story/apples-macbooks-and-ipads-are-getting-more-expensive-as-the-memory-crunch-deepens-ec6ae81d?mod=mw_rss_topstories">MarketWatch</a>
+                <a class="btn-source" href="https://www.cnbc.com/2026/06/25/apple-stock-gets-slammed-on-bigger-mac-ipad-price-hikes-why-it-can-weather-the-storm.html">CNBC</a>
+            </div>
+            <div class="market-card">
+                <strong>Nano Nuclear Energy (NNE)</strong>
+                <span class="change-negative">-10.79%</span>
+                <p>תנודה שלילית חדה ללא ידיעה חדשותית ספציפית.</p>
+            </div>
+            <div class="market-card">
+                <strong>Palantir Technologies (PLTR)</strong>
+                <span class="change-negative">-5.49%</span>
+                <p>ירידה משמעותית, מייקל בורי צמצם חצי מפוזיציית השורט שלו.</p>
+                <a class="btn-source" href="https://x.com/wallstengine/status/2070236359038755181">Wall St Engine</a>
+            </div>
+            <div class="market-card">
+                <strong>Robinhood Markets (HOOD)</strong>
+                <span class="change-negative">-3.83%</span>
+                <p>השלימה הנפקת אג"ח המרה של 2.2 מיליארד דולר.</p>
+                <a class="btn-source" href="https://x.com/AIStockSavvy/status/2070258661679673846">AIStockSavvy</a>
+            </div>
+            <div class="market-card">
+                <strong>UnitedHealth Group (UNH)</strong>
+                <span class="change-positive">+2.39%</span>
+                <p>נסחרה קרוב לשיא 52 שבועות.</p>
+            </div>
+            <div class="market-card">
+                <strong>Coherent Corp. (COHR)</strong>
+                <span class="change-positive">+3.76%</span>
+                <p>תנודה חיובית בולטת.</p>
+            </div>
+            <div class="market-card">
+                <strong>Grayscale Bitcoin Mini Trust (BTC)</strong>
+                <span class="change-negative">-1.09%</span>
+                <p>נכס הקריפטו עצמו הגיע לשפל חדש של 2026.</p>
+                <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-bounces-off-new-2026-price-lows-will-us-stock-weakness-push-btc-lower">Cointelegraph</a>
+            </div>
+            <div class="market-card">
+                <strong>Grayscale Ethereum Mini Trust (ETH)</strong>
+                <span class="change-negative">-1.59%</span>
+                <p>הנכס נסחר קרוב לשפל 52 שבועות. נכס הקריפטו עצמו הגיע לשפל 2026.</p>
+                <a class="btn-source" href="https://cointelegraph.com/news/tether-stablecoin-flips-ether-by-market-cap-as-eth-routs-to-15k">Cointelegraph</a>
+                <a class="btn-source" href="https://cointelegraph.com/news/sharplink-buys-eth-after-8-month-pause-as-token-hits-2026-low">Cointelegraph</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">טכנולוגיה / AI</div>
+        <h2>מניות הטכנולוגיה וה-AI: לחצי עלויות ושינויים אסטרטגיים</h2>
+
+        <div class="image-container">
+            <img src="https://s3-images.ctmedia.io/media/article-covers/hi-the-abcd-of-ai-automation-big-data-computer-vision-deep-learning1.jpg" alt="AI infrastructure costs">
+        </div>
+
+        <h3>מה קרה היום</h3>
+        <p>חברות טכנולוגיה רשמו היום תנודות חדות והכרזות משמעותיות, במיוחד סביב נושאי עלויות רכיבים ואסטרטגיות AI:</p>
+        <ul>
+            <li><strong>מיקרון טכנולוגיה (MU)</strong> זינקה ב-<strong>15.74%</strong> ביום המסחר האחרון, לאחר שדיווחה על דוחות רווחים "שוברים קופות". הכנסות החברה יותר מאשר הכפילו את עצמן מ-9.3 מיליארד דולר ל-41.46 מיליארד דולר בשנה האחרונה.
+                <a class="btn-source" href="https://www.cnbc.com/2026/06/25/micron-stock-3q-earnings-memory.html">CNBC</a>
+                <a class="btn-source" href="https://x.com/Mr_Derivatives/status/2070196122526863694">Mr. Derivatives</a>
+            </li>
+            <li><strong>אפל (AAPL)</strong> רשמה את יום המסחר הגרוע ביותר שלה מזה למעלה משנה, עם ירידה של <strong>6.11%</strong>. זאת לאחר שהעלתה את מחירי מוצרי MacBook ו-iPad כתוצאה מעלויות זיכרון ואחסון גבוהות.
+                <a class="btn-source" href="https://www.marketwatch.com/story/apples-macbooks-and-ipads-are-getting-more-expensive-as-the-memory-crunch-deepens-ec6ae81d?mod=mw_rss_topstories">MarketWatch</a>
+                <a class="btn-source" href="https://www.cnbc.com/2026/06/25/apple-macbook-ipad-price-hike-memory.html">CNBC</a>
+            </li>
+            <li><strong>מיקרוסופט (MSFT)</strong> הודיעה כי תעלה את מחירי קונסולות Xbox שלה ברחבי העולם החל מה-1 באוגוסט, בטענה לעליית מחירי האחסון והזיכרון ביותר מפי 2.5, עם ציפייה להכפלה נוספת עד סתיו 2027.
+                <a class="btn-source" href="https://www.cnbc.com/2026/06/25/microsoft-lifts-price-of-xbox-consoles-due-to-soaring-component-costs.html">CNBC</a>
+                <a class="btn-source" href="https://x.com/wallstengine/status/2070189326080848230">Wall St Engine</a>
+            </li>
+            <li>חברות טכנולוגיה אסיאתיות, כולל <strong>SoftBank</strong> שצללה ב-<strong>13%</strong> ו-<strong>SK Hynix</strong> שירדה ב-<strong>10%</strong>, רשמו מכירות חדות על רקע חששות גוברים מעלויות התשתית הגואות של AI. במקביל, דווח כי <strong>סמסונג</strong> ו-<strong>SK Hynix</strong> מתכננות להכריז בשבוע הבא על השקעות ענק ב-AI.
+                <a class="btn-source" href="https://www.cnbc.com/2026/06/26/global-tech-stocks-ai-infrastructure-costs-selloff-softbank-apple.html">CNBC</a>
+                <a class="btn-source" href="https://x.com/wallstengine/status/2070392752114942117">Wall St Engine</a>
+            </li>
+            <li><strong>ON Semiconductor (ON)</strong> תרכוש את <strong>Synaptics (SYNA)</strong> בעסקת מניות בשווי 7 מיליארד דולר, כחלק מאסטרטגיה להרחבת פעילותה בתחום ה-AI הפיזי.
+                <a class="btn-source" href="https://www.cnbc.com/2026/06/25/on-semi-synaptics-deal-physical-ai.html">CNBC</a>
+                <a class="btn-source" href="https://x.com/AIStockSavvy/status/2070239839899849002">AIStockSavvy</a>
+            </li>
+            <li><strong>OpenAI</strong> נוטה לדחות את ההנפקה (IPO) המתוכננת לשנת 2027, לאחר תנודתיות בשוקי הטכנולוגיה ואחרי IPO של SpaceX. בנוסף, ממשל טראמפ ביקש מ-OpenAI לפרוס את שחרור מודל GPT-5.6 בשל חששות ביטחוניים.
+                <a class="btn-source" href="https://x.com/wallstengine/status/2070245717273350345">Wall St Engine</a>
+                <a class="btn-source" href="https://x.com/wallstengine/status/2070242166639906844">Wall St Engine</a>
+            </li>
+            <li><strong>אפל</strong> מתכננת שינוי משמעותי בשבבי ה-Mac שלה, עם השקת שבבי M6 בסיסיים כבר השנה, אך דילוג על M6 Pro/Max לטובת שבבי M7 Pro/Max ממוקדי AI בשנת 2027 ו-M7 Ultra בשנת 2028.
+                <a class="btn-source" href="https://x.com/wallstengine/status/2070186122945458528">Wall St Engine</a>
+            </li>
+        </ul>
+
+        <h3>למה זה חריג</h3>
+        <p>האירועים הללו חריגים במספר מובנים:</p>
+        <ul>
+            <li>הזינוק של מיקרון מראה על ביקוש בלתי רגיל לרכיבי זיכרון, המניע רווחיות פנומנלית ליצרניות שבבים.</li>
+            <li>העלאות המחירים של אפל ומיקרוסופט מסמנות את ההשפעה הישירה של "בצורת הזיכרון" על חברות קצה ועל הצרכנים. ירידה של 6% באפל היא אירוע נדיר.</li>
+            <li>הנפילה בשוקי אסיה, במיוחד בסקטור השבבים, מציגה תמונה מורכבת שבה חששות מעלות תשתית AI גוברות על אופטימיות לגבי השקעות עתידיות ב-AI.</li>
+            <li>דחיית ה-IPO של OpenAI ובקשת הממשל לפרוס את השחרור של GPT-5.6 מדגישות את הרגישות והמגבלות הרגולטוריות סביב טכנולוגיות AI מתקדמות.</li>
+            <li>המעבר האסטרטגי של אפל ל-M7 ממוקד AI מראה על מחויבותה העמוקה לתחום ועלול להגביר את התחרות.</li>
+        </ul>
+
+        <h3>הלוגיקה</h3>
+        <p>השוק נמצא כיום בצומת דרכים בין ביקוש אדיר ליכולות AI ורכיבים תומכים (כמו זיכרון) לבין הלחצים האינפלציוניים והעלויות הגבוהות הכרוכות בהשגתם. יצרניות השבבים כמו מיקרון נהנות משיאי ביקוש, מה שמתבטא בזינוק במחירים וברווחיות. עם זאת, חברות הטכנולוגיה הגדולות, המשתמשות ברכיבים אלו, נאלצות לספוג עלויות גבוהות יותר או לגלגל אותן לצרכנים, מה שעלול להשפיע על מכירותיהן. ההשקעות הענקיות המתוכננות על ידי ענקיות כמו סמסונג ו-SK Hynix מצביעות על אמונה ארוכת טווח בפוטנציאל ה-AI, אך בטווח הקצר, חששות לגבי המודל העסקי והעלויות שקולות יותר.</p>
+
+        <h3>מה זה אומר לקראת השבוע</h3>
+        <p>השבוע צפוי להיות תנודתי בסקטור הטכנולוגיה, במיוחד סביב מניות השבבים וחברות הצורכות זיכרון. יש לעקוב אחר ההכרזות של סמסונג ו-SK Hynix לגבי השקעות AI מתוכננות, שעלולות לייצר עניין נוסף (או תנודתיות) בתעשייה. חברות טכנולוגיה גדולות עשויות להמשיך לבחון מודלים של העלאת מחירים או חיפוש יעילות. סוגיות הרגולציה סביב AI, כפי שהודגמו בדחיית ה-IPO של OpenAI, יישארו נושא מרכזי.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">קריפטו</div>
+        <h2>שוק הקריפטו: תחתית חדשה וגלי רגולציה</h2>
+
+        <div class="image-container">
+            <img src="https://s3-images.ctmedia.io/media/article-covers/red-down-falling-car1.png" alt="Crypto market downturn">
+        </div>
+
+        <h3>מה קרה היום</h3>
+        <p>שוק הקריפטו חווה יום תנודתי במיוחד, עם שפלים חדשים ואתגרי רגולציה:</p>
+        <ul>
+            <li><strong>ביטקוין (BTC)</strong> ירד לשפל חדש של <strong>2026</strong>, כאשר מחירה הגיע ל-<strong>58,000 דולר</strong>. הירידה מיוחסת בין היתר ליציאת כספים מקרנות סל (ETFs) ולסיום פקיעת אופציות דובי.
+                <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-bounces-off-new-2026-price-lows-will-us-stock-weakness-push-btc-lower">Cointelegraph</a>
+                <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-drop-to-58k-brings-out-bears-is-btcs-next-stop-below-50k">Cointelegraph</a>
+                <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-drops-to-58-on-pce-highs">Cointelegraph</a>
+            </li>
+            <li><strong>את'ריום (ETH)</strong> נחלש אף הוא, כאשר מחירו ירד ל-<strong>1,500 דולר</strong>, מה שמחזיר אותו לרמות תמיכה קריטיות שנראו לאחרונה באוקטובר 2023 ואפריל 2025. כתוצאה מכך, שווי השוק של מטבע הסטייבלקוין <strong>Tether (USDT)</strong> עקף את זה של את'ריום. חברת Sharplink ניצלה את השפל כדי לרכוש ETH לראשונה מזה 8 חודשים.
+                <a class="btn-source" href="https://cointelegraph.com/news/tether-stablecoin-flips-ether-by-market-cap-as-eth-routs-to-15k">Cointelegraph</a>
+                <a class="btn-source" href="https://cointelegraph.com/news/sharplink-buys-eth-after-8-month-pause-as-token-hits-2026-low">Cointelegraph</a>
+            </li>
+            <li>בלוקצ'יין <strong>Base</strong> של קוינבייס חזר לייצר בלוקים לאחר השבתה של שעתיים שנגרמה כתוצאה מבעיית קונצנזוס.
+                <a class="btn-source" href="https://cointelegraph.com/news/coinbases-blockchain-base-back-online-after-2-hour-outage">Cointelegraph</a>
+            </li>
+            <li>חברת תשתית הקריפטו <strong>BitGo</strong> קיצצה 15% מכוח האדם שלה כדי למקד את מאמציה ב-AI ובסטייבלקוינס.
+                <a class="btn-source" href="https://cointelegraph.com/news/crypto-infrastructure-firm-bitgo-lays-off-15-of-staff">Cointelegraph</a>
+                <a class="btn-source" href="https://x.com/wallstengine/status/2070271810260906072">Wall St Engine</a>
+            </li>
+            <li>רשויות בדרום קוריאה קנסו את בורסת הקריפטו <strong>Bithumb</strong> ב-136 אלף דולר בגין שיתוף מידע על משתמשים בחו"ל.
+                <a class="btn-source" href="https://cointelegraph.com/news/south-korea-investigation-bithumb-user-information">Cointelegraph</a>
+            </li>
+            <li>בורסת <strong>Binance</strong> תתמודד עם מגבלות שירות באיחוד האירופי החל מה-1 ביולי עקב כניסת תקנות MiCA לתוקף, לאחר שלא הצליחה לקבל אישור ממדינה חברה.
+                <a class="btn-source" href="https://cointelegraph.com/news/binance-eu-service-limits-july-1-mica-effect">Cointelegraph</a>
+            </li>
+            <li><strong>SBI</strong> היפנית תרכוש את <strong>Bitbank</strong> בעסקה של 289 מיליון דולר, מה שיהפוך אותה לבורסת הקריפטו הגדולה ביפן.
+                <a class="btn-source" href="https://cointelegraph.com/news/sbi-acquire-bitbank-289-million-deal">Cointelegraph</a>
+            </li>
+        </ul>
+
+        <h3>למה זה חריג</h3>
+        <p>הגעתם של ביטקוין ואת'ריום לשפלים חדשים לשנת 2026, יחד עם העובדה ש-Tether עקפה את את'ריום בשווי שוק, מצביעה על סנטימנט דובי עמוק בשוק הקריפטו. מספר רב של אירועים רגולטוריים ברחבי העולם (אירופה, קוריאה, אינדונזיה) וגם תקלות טכניות (Base) וקיצוצי עובדים (BitGo) מדגישים את האתגרים המבניים והתפעוליים שהתעשייה מתמודדת איתם, במקביל לתהליכי קונסולידציה כמו רכישת Bitbank על ידי SBI.</p>
+
+        <div class="image-container">
+            <img src="https://s3-images.ctmedia.io/media/article-covers/hi-crypto-prices-arent-surging-anytime-soon-ethereum-2.jpg" alt="Ether Price Chart">
+        </div>
+
+        <h3>הלוגיקה</h3>
+        <p>הירידה במחירי הקריפטו משקפת שילוב של גורמים: לחץ מכירות עקב יציאת כספים מ-ETFs, סנטימנט דובי טכני שמסומן על ידי אנליסטים שמצביעים על יעדים נמוכים יותר, והשפעת נתוני מאקרו כלליים. במקביל, הלחץ הרגולטורי הגלובלי, עם כניסת תקנות כמו MiCA, מגביל את פעילותן של בורסות קריפטו גדולות ומכתיב כללי משחק מחמירים יותר, מה שעלול להאט את קצב האימוץ הקצר-טווח של נכסים דיגיטליים מסוימים, אך גם לספק יציבות ארוכת טווח לתעשייה המפוקחת יותר.</p>
+
+        <h3>מה זה אומר לקראת השבוע</h3>
+        <p>השבוע הקרוב צפוי להמשיך ולהיות מאתגר עבור שוק הקריפטו. המשקיעים צריכים להיות ערוכים לתנודתיות נוספת ולבחון היטב את נקודות התמיכה וההתנגדות, במיוחד סביב רמות השפל האחרונות. ההשפעה של תקנות MiCA תחל להיות מורגשת באופן מעשי על Binance ובורסות נוספות, ועלולה להוביל לשינויים בהיצע השירותים באירופה. יש לעקוב אחר חדשות רגולטוריות נוספות והתפתחויות בינלאומיות, שיכולות להשפיע על הלגיטימציה והאימוץ של קריפטו.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">כללי / מאקרו</div>
+        <h2>דיווחים מרכזיים נוספים: מאקרו, חלל ומיזוגים</h2>
+
+        <h3>תמונת מאקרו ואנליסטים</h3>
+        <ul>
+            <li>מדד ה-PCE הליבתי, המועדף על הפד, עלה ל-<strong>3.4%</strong> בחודש מאי, הרמה הגבוהה ביותר מאז אוקטובר 2023. זו הקריאה ה-63 ברציפות מעל יעד הפד של 2%.
+                <a class="btn-source" href="https://www.cnbc.com/2026/06/25/pce-inflation-report-may-2026-.html">CNBC</a>
+                <a class="btn-source" href="https://x.com/charliebilello/status/2070127591118213188">Charlie Bilello</a>
+            </li>
+            <li>מדד ה-<strong>S&P 500</strong> סיים את יום המסחר האחרון ממש על קו תמיכה קריטי. אנליסטים מזהירים כי שבירה של קו זה עלולה לאותת על הפסדים נוספים בימים ובשבועות הקרובים. במידה והמדד יסגור באדום מחר, תהיה זו הפעם הראשונה מזה 11 חודשים בה ה-S&P 500 ירשום רצף של 5 ימי הפסד.
+                <a class="btn-source" href="https://www.marketwatch.com/story/the-s-p-500-is-at-a-critical-crossroads-a-break-lower-could-signal-more-losses-ahead-f425063c?mod=mw_rss_topstories">MarketWatch</a>
+                <a class="btn-source" href="https://x.com/Mr_Derivatives/status/2070334266102477043">Mr. Derivatives</a>
+            </li>
+            <li>קרוב ל-<strong>60%</strong> ממניות ה-S&P 500 נושאות כעת דירוג "קנייה" מאנליסטים בוול סטריט, הרמה הגבוהה ביותר שנרשמה אי פעם. אנליסטים מציינים כי כאשר כולם מצפים לחדשות טובות, יש פחות מקום להפתעות חיוביות.
+                <a class="btn-source" href="https://x.com/charliebilello/status/2070254869382897954">Charlie Bilello</a>
+            </li>
+            <li>קרן המטבע הבינלאומית (IMF) מציינת כי כלכלת ארה"ב מציגה צמיחה מוצקה וכי האינפלציה צפויה להגיע ל-2% עד שנת 2027.
+                <a class="btn-source" href="https://x.com/AIStockSavvy/status/2070173204123955688">AIStockSavvy</a>
+            </li>
+            <li>היצע הבתים החדשים בארה"ב חצה את רף 10 החודשים בחודש מאי, רמה שנראתה בעבר רק במהלך מיתונים או ספייק האינפלציה של 2022. הדבר מצביע על כך שמחירי הבתים גבוהים מדי ביחס לביקוש.
+                <a class="btn-source" href="https://x.com/charliebilello/status/2070271402205163821">Charlie Bilello</a>
+            </li>
+        </ul>
+
+        <h3>סקטור החלל: ציפיות מול מציאות</h3>
+        <ul>
+            <li>"קדחת ה-FOMO" סביב <strong>SpaceX</strong> הסתיימה רשמית, ומניות סקטור החלל נענשות כעת. אנליסטים מצהירים כי המשקיעים חווים מחשבות שנייה לגבי הערכות השווי הגבוהות בסקטור.
+                <a class="btn-source" href="https://www.marketwatch.com/story/spacex-fomo-is-officially-over-space-stocks-across-the-board-are-getting-punished-77234fe8?mod=mw_rss_topstories">MarketWatch</a>
+            </li>
+            <li>SpaceX מתכננת להתחיל בבניית צינור גז טבעי כדי לתדלק את מתקני השיגור שלה בטקסס בחודש הבא.
+                <a class="btn-source" href="https://x.com/wallstengine/status/2070224899340440028">Wall St Engine</a>
+            </li>
+            <li><strong>Rocket Lab (RKLB)</strong> נבחרה על ידי נאס"א לשלוש משימות שיגור של Electron בשנת 2027. הודעה זו הובילה לעלייה של <strong>5%</strong> במניית RKLB במסחר שאחרי השעות.
+                <a class="btn-source" href="https://x.com/wallstengine/status/2070243847574257842">Wall St Engine</a>
+                <a class="btn-source" href="https://x.com/Mr_Derivatives/status/2070242545641361702">Mr. Derivatives</a>
+            </li>
+        </ul>
+
+        <div class="image-container">
+            <img src="https://s3-images.ctmedia.io/media/article-covers/hi-quantum-computers-could-bring-lost-bitcoin-back-to-life-heres-how-1.jpg" alt="SpaceX launch">
+        </div>
+
+        <h3>עדכונים ספציפיים למניות</h3>
+        <ul>
+            <li>המשקיע מייקל בורי ("השורט הגדול") הודיע בניוזלטר שלו כי כיסה מחצית מפוזיציית השורט שלו במניית <strong>Palantir (PLTR)</strong>.
+                <a class="btn-source" href="https://x.com/wallstengine/status/2070236359038755181">Wall St Engine</a>
+            </li>
+            <li><strong>Robinhood (HOOD)</strong> השלימה הנפקת אג"ח המרה פרטית בסך 2.2 מיליארד דולר בריבית 0%.
+                <a class="btn-source" href="https://x.com/AIStockSavvy/status/2070258661679673846">AIStockSavvy</a>
+            </li>
+            <li><strong>יונייטדהלת' גרופ (UNH)</strong> נסחרה ביום המסחר האחרון קרוב לשיא ה-52 שבועות שלה, מה שמעיד על חוזקה יחסית בשוק תנודתי.</li>
+            <li><strong>MCD (מקדונלד'ס)</strong> ירדה ב-24% משיא כל הזמנים שנקבע לפני מספר חודשים, ונסחרת כעת קרוב לשפל של שנתיים. אנליסט מציין כי הירידות הללו עשויות להוות הזדמנות קנייה לטווח ארוך.
+                <a class="btn-source" href="https://x.com/Mr_Derivatives/status/2070254565749133611">Mr. Derivatives</a>
+            </li>
+            <li><strong>Nike (NKE)</strong> ירדה ב-75% משיאה בנובמבר 2021, הירידה הגדולה ביותר בתולדות החברה.
+                <a class="btn-source" href="https://x.com/charliebilello/status/2070214475496452283">Charlie Bilello</a>
+            </li>
+            <li>מנכ"ל <strong>JPMorgan (JPM)</strong> ג'יימי דיימון צפוי להישאר מנכ"ל שלוש שנים נוספות לפני שיעבור לתפקיד יו"ר בכיר.
+                <a class="btn-source" href="https://x.com/AIStockSavvy/status/2070245995254878618">AIStockSavvy</a>
+            </li>
+        </ul>
+
+        <h3>הלוגיקה</h3>
+        <p>נתוני המאקרו ממשיכים להציג תמונה מורכבת: אינפלציה עיקשת מול צמיחה כלכלית יציבה בארה"ב. הפד יישאר זהיר, אך הציפייה לאינפלציה של 2% עד 2027 יכולה להרגיע מעט. המצב בשוק הדיור מדאיג ומצביע על תיקון אפשרי במחירים. סנטימנט האנליסטים האופטימי (60% דירוג "קנייה") עלול ליצור סיכון לירידות אם הציפיות לא יתממשו. בסקטור החלל, היעלמות ה"FOMO" מ-SpaceX משקפת התבגרות של השוק, תוך התמקדות בחוזים ממשיים ובצמיחה מבוססת, כפי שרואים עם Rocket Lab. לגבי מניות בודדות, כיסוי השורט ב-Palantir על ידי מייקל בורי מהווה אינדיקטור פוטנציאלי לשינוי סנטימנט, אך ירידת המניה היום מראה שעדיין קיימים לחצים. הנפקת האג"ח של Robinhood מחזקת את המאזן, אך ריבית 0% מצביעה על תנאים נוחים יחסית לחברה.</p>
+
+        <h3>מה זה אומר לקראת השבוע</h3>
+        <p>השבוע הקרוב יישאר בסימן זהירות בשל נתוני האינפלציה והמיקום הטכני הקריטי של ה-S&P 500. משקיעים צריכים לעקוב אחר חדשות גאופוליטיות (מצר הורמוז) שעלולות להשפיע על מחירי הנפט. ביום שישי צפויה תנודתיות גבוהה עקב האיזון מחדש של FTSE Russell. יש להמשיך לעקוב אחר סקטור החלל וה-AI לחיפוש אחר הזדמנויות נקודתיות במניות חזקות כמו Rocket Lab, תוך מודעות לסיכונים כלליים בשוק. האמירות של אנליסטים לגבי McDonald's ו-Nike עשויות להצביע על נקודות כניסה פוטנציאליות לטווח ארוך במניות "ערך" שנפגעו.</p>
+    </div>
+
+</body>
+</html>
