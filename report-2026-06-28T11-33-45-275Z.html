@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי אסטרטגי</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0a0e17;
+            --text-color: #e0e0e0;
+            --secondary-text-color: #b0b0b0;
+            --accent-color: #c0a060; /* Steel-gold for a professional look */
+            --divider-color: #2a2e37;
+            --card-bg: #1a1e27;
+            --opinion-card-bg: #2a2e37;
+            --positive-color: rgba(60, 180, 100, 0.2); /* Muted green with transparency */
+            --negative-color: rgba(200, 70, 70, 0.2);  /* Muted red with transparency */
+            --positive-text: #66bb6a;
+            --negative-text: #ef5350;
+            --badge-bg: #3a3e47;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1 {
+            font-weight: 700;
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.8em;
+            letter-spacing: 0.05em;
+        }
+
+        h2 {
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 2.2em;
+            border-bottom: 1px solid var(--divider-color);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-weight: 600;
+            color: var(--text-color);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.6em;
+            border-bottom: 0.5px solid var(--divider-color);
+            padding-bottom: 8px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        .slide-container {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid var(--divider-color);
+        }
+
+        .market-pulse-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .market-pulse-table th, .market-pulse-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--divider-color);
+        }
+
+        .market-pulse-table th {
+            background-color: var(--divider-color);
+            color: var(--accent-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+
+        .market-pulse-table tr:hover {
+            background-color: #20242e;
+        }
+
+        .change-positive {
+            color: var(--positive-text);
+            background-color: var(--positive-color);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .change-negative {
+            color: var(--negative-text);
+            background-color: var(--negative-color);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--badge-bg);
+            color: var(--secondary-text-color);
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .section-divider {
+            border-top: 1px solid var(--divider-color);
+            margin: 40px 0;
+        }
+
+        .highlight-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--accent-color);
+            border-radius: 6px;
+            padding: 20px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: var(--text-color);
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .highlight-card::before {
+            content: "💡";
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5em;
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-card-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px 20px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-style: italic;
+            color: var(--secondary-text-color);
+            position: relative;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .opinion-card::before {
+            content: "💬";
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5em;
+        }
+
+        .opinion-card strong {
+            color: var(--text-color);
+            font-style: normal;
+        }
+        
+        .opinion-card .author {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: var(--accent-color);
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-left: 10px;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-source:hover {
+            background-color: #d0b070;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>דוח שוק יומי אסטרטגי</h1>
+
+    <div class="slide-container">
+        <span class="badge">תמונת מצב מהירה</span>
+        <h2>Market Pulse: מדדים ומניות בולטות</h2>
+        <p>סקירה מהירה של שינויים יומיים במדדים המובילים ובמניות שחוו תנודה משמעותית או אירוע חריג, בהתבסס על נתוני המסחר של ה-26 ביוני 2026 עבור מניות ו-28 ביוני 2026 עבור קריפטו.</p>
+
+        <table class="market-pulse-table">
+            <thead>
+                <tr>
+                    <th>נכס</th>
+                    <th>מחיר (USD)</th>
+                    <th>שינוי יומי (%)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="https://finance.yahoo.com/quote/SPY" class="btn-source" target="_blank">SPY</a> (S&P 500 ETF)</td>
+                    <td>728.99</td>
+                    <td><span class="change-negative">-0.72%</span></td>
+                </tr>
+                <tr>
+                    <td><a href="https://finance.yahoo.com/quote/QQQ" class="btn-source" target="_blank">QQQ</a> (Nasdaq 100 ETF)</td>
+                    <td>706.52</td>
+                    <td><span class="change-negative">-1.38%</span></td>
+                </tr>
+                <tr>
+                    <td><a href="https://finance.yahoo.com/quote/NOW" class="btn-source" target="_blank">ServiceNow ($NOW)</a></td>
+                    <td>98.34</td>
+                    <td><span class="change-positive">+9.85%</span></td>
+                </tr>
+                <tr>
+                    <td><a href="https://finance.yahoo.com/quote/HOOD" class="btn-source" target="_blank">Robinhood ($HOOD)</a></td>
+                    <td>98.69</td>
+                    <td><span class="change-positive">+5.58%</span></td>
+                </tr>
+                <tr>
+                    <td><a href="https://finance.yahoo.com/quote/PLTR" class="btn-source" target="_blank">Palantir ($PLTR)</a></td>
+                    <td>112.93</td>
+                    <td><span class="change-positive">+5.28%</span></td>
+                </tr>
+                <tr>
+                    <td><a href="https://finance.yahoo.com/quote/SPOT" class="btn-source" target="_blank">Spotify ($SPOT)</a></td>
+                    <td>460.02</td>
+                    <td><span class="change-positive">+4.26%</span></td>
+                </tr>
+                <tr>
+                    <td><a href="https://finance.yahoo.com/quote/AAPL" class="btn-source" target="_blank">Apple ($AAPL)</a></td>
+                    <td>283.78</td>
+                    <td><span class="change-positive">+3.14%</span></td>
+                </tr>
+                <tr>
+                    <td><a href="https://finance.yahoo.com/quote/UNH" class="btn-source" target="_blank">UnitedHealth Group ($UNH)</a></td>
+                    <td>427.89</td>
+                    <td><span class="change-positive">+2.97%</span></td>
+                </tr>
+                <tr>
+                    <td><a href="https://finance.yahoo.com/quote/MU" class="btn-source" target="_blank">Micron ($MU)</a></td>
+                    <td>1132.33</td>
+                    <td><span class="change-negative">-6.69%</span></td>
+                </tr>
+                <tr>
+                    <td><a href="https://finance.yahoo.com/quote/COHR" class="btn-source" target="_blank">Coherent ($COHR)</a></td>
+                    <td>380.56</td>
+                    <td><span class="change-negative">-6.55%</span></td>
+                </tr>
+                <tr>
+                    <td><a href="https://finance.yahoo.com/quote/AVGO" class="btn-source" target="_blank">Broadcom ($AVGO)</a></td>
+                    <td>365.02</td>
+                    <td><span class="change-negative">-3.67%</span></td>
+                </tr>
+                <tr>
+                    <td><a href="https://finance.yahoo.com/quote/GOOG" class="btn-source" target="_blank">Alphabet ($GOOG)</a></td>
+                    <td>334.69</td>
+                    <td><span class="change-negative">-2.19%</span></td>
+                </tr>
+                <tr>
+                    <td><a href="https://finance.yahoo.com/quote/AMD" class="btn-source" target="_blank">AMD ($AMD)</a></td>
+                    <td>521.58</td>
+                    <td><span class="change-negative">-2.06%</span></td>
+                </tr>
+                <tr>
+                    <td><a href="https://finance.yahoo.com/quote/NVDA" class="btn-source" target="_blank">NVIDIA ($NVDA)</a></td>
+                    <td>192.53</td>
+                    <td><span class="change-negative">-1.64%</span></td>
+                </tr>
+                <tr>
+                    <td><a href="https://finance.yahoo.com/quote/BTC-USD" class="btn-source" target="_blank">Bitcoin ($BTC)</a></td>
+                    <td>60220.81</td>
+                    <td><span class="change-positive">+0.48%</span></td>
+                </tr>
+                <tr>
+                    <td><a href="https://finance.yahoo.com/quote/ETH-USD" class="btn-source" target="_blank">Ethereum ($ETH)</a></td>
+                    <td>1582.34</td>
+                    <td><span class="change-positive">+0.54%</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">AI ושבבים</span>
+        <h2>התקררות סחר ה-AI והדרישה לשבבי זיכרון</h2>
+        <h3>מה קרה היום</h3>
+        <p>שוק ה-AI חווה התקררות, כאשר מניות שבבים מובילות רשמו ירידות משמעותיות. NVIDIA סיימה חמישה ימים רצופים באדום, ומניית Micron צנחה ב-<span class="change-negative">-6.69%</span> למרות דוחות רווח חזקים. במקביל, Alphabet הגבילה את השימוש של Meta במודל Gemini שלה עקב עומס על הקיבולת.</p>
+        <p>עוד דווח כי Apple ($AAPL) מפעילה לובי בממשל טראמפ לקבלת אישור לרכישת שבבי זיכרון מ-CXMT הסינית, הנמצאת ברשימה שחורה של הפנטגון, על רקע מחסור בשבבי זיכרון המשפיע גם על Microsoft. חברת GE Vernova מספקת טורבינות גז לתמיכה בצריכת האנרגיה העצומה של מרכזי נתונים של AI, כולל עבור xAI של אילון מאסק ומיקרוסופט.</p>
+        <div class="highlight-card">
+            <p><strong>הערה:</strong> מניות כמו Micron ($MU) ו-Broadcom ($AVGO) ירדו ב-<span class="change-negative">-10%</span> וב-<span class="change-negative">-27%</span> בהתאמה משיאיהן האחרונים.</p>
+        </div>
+        
+        <h3>למה זה חריג</h3>
+        <p>התקררות סחר ה-AI, בפרט במניות כמו NVIDIA, בולטת לאחר תקופה ארוכה של צמיחה מטאורית. הירידה של NVIDIA במשך חמישה ימים רצופים היא אירוע נדיר, כפי שלא נראה מאז אוגוסט-ספטמבר 2022. קשיי הקיבולת של Google והמחסור בשבבי זיכרון עבור חברות ענק כמו Apple ו-Microsoft, המאלץ אותן לחפש פתרונות לא שגרתיים (כמו לובי מול ספקים ברשימה שחורה), מדגישים את הלחץ האדיר על שרשרת האספקה בתחום ה-AI.</p>
+        <p>נפח המסחר במניית Microsoft ($MSFT) היה הגבוה ביותר מזה שנים, מה שיכול לאותת על תחתית טכנית, שכן נפחי מסחר גבוהים כאלו ציינו היסטורית נקודות שפל במניה.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>הדרישה הבלתי פוסקת למשאבי חישוב וזיכרון עבור AI יוצרת צווארי בקבוק בשרשרת האספקה. חברות כמו Google ו-Meta, המסתמכות על תשתית AI, מתחילות לחוות מגבלות קיבולת, מה שמאט את קצב הפיתוח והפריסה. המחסור בשבבי זיכרון משפיע על כלל התעשייה, כאשר חברות קטנות יותר עומדות בפני "משבר קיומי" ואילו ענקיות הטכנולוגיה נאלצות לנקוט בצעדים דרסטיים, כולל העלאת מחירים והשפעה פוליטית.</p>
+
+        <h3>מה זה אומר לקראת השבוע</h3>
+        <ul>
+            <li><strong>סקטור השבבים:</strong> המשקיעים ימשיכו לעקוב מקרוב אחר מניות שבבים כגון NVIDIA ($NVDA) ו-Micron ($MU). אנליסטים יחפשו סימנים להתייצבות או היפוך במגמת הירידה, במיוחד לאור רמות תמיכה טכניות כמו ה-200dma וה-50wma עבור NVIDIA סביב $190-$187. ההערכה היא כי שוק ה-AI עובר תיקון ולא קריסה.</li>
+            <li><strong>שרשרת האספקה:</strong> חברות עם יכולת גישה למשאבי שבבים קריטיים יהנו מיתרון. דרישתה של Apple ל-CXMT מדגישה את חשיבות גיוון ספקי השבבים ואת האתגרים הגיאופוליטיים הכרוכים בכך.</li>
+            <li><strong>תשתיות אנרגיה:</strong> הצורך העצום באנרגיה למרכזי נתונים ימשיך להניע השקעות בחברות כמו GE Vernova, המפתחות פתרונות כוח תעשייתיים.</li>
+            <li><strong>Cerebras ($CBRS):</strong> השקת GPT-5.6 Sol של OpenAI על גבי פלטפורמת Cerebras ביולי עשויה להוות קטליזטור משמעותי עבור מניית החברה.</li>
+        </ul>
+        <div class="opinion-card">
+            <p><strong>Heisenberg (@Mr_Derivatives)</strong> על NVIDIA:</p>
+            <p>"Keep an eye out for $NVDA next week. Down 5 days in a row and hasn’t gone 6 red days in a row since Aug-Sept 2022. The 200dma around $190 should be a big support. The 50wma around $187 should be a major support. Also touching the lower Bollinger Bands for 3 consecutive days now, not common and should result in at least a near term bounce perhaps. 2027 P/E estimates at 16x now. Getting close imho."</p>
+            <span class="author">Heisenberg (<a class="btn-source" href="https://x.com/Mr_Derivatives/status/2070855678072438791">Mr_Derivatives</a>)</span>
+        </div>
+        <div class="opinion-card">
+            <p><strong>Hardik Shah (@AIStockSavvy)</strong> על Google ו-Meta:</p>
+            <p>"📢 𝐉𝐔𝐒𝐓 𝐈𝐍: Google Caps Meta’s Gemini Use as AI Demand Strains Capacity - FT - $GOOGL $META"</p>
+            <span class="author">Hardik Shah (<a class="btn-source" href="https://x.com/AIStockSavvy/status/2071086598167351494">AIStockSavvy</a>)</span>
+        </div>
+        <div class="opinion-card">
+            <p><strong>Micha.Stocks:</strong></p>
+            <p>"כולם רואים קריסה — אני רואה רוטציה. מי צודק? 🔄"</p>
+            <span class="author">Micha.Stocks (<a class="btn-source" href="https://www.youtube.com/watch?v=7QC-reXvwbM">Youtube</a>)</span>
+        </div>
+        <p>מקורות נוספים: <a class="btn-source" href="https://www.cnbc.com/2026/06/27/the-ai-trade-cooled-and-oil-sank-a-closer-look-at-wall-streets-volatile-week.html">CNBC</a>, <a class="btn-source" href="https://www.cnbc.com/2026/06/27/memory-crunch-shaking-apple-and-microsoft-existential-for-small-guys.html">CNBC</a>, <a class="btn-source" href="https://www.cnbc.com/2026/06/27/alphabet-burnishes-one-of-its-best-weapons-in-the-battle-for-ai-supremacy.html">CNBC</a>, <a class="btn-source" href="https://www.cnbc.com/2026/06/27/ge-vernova-gas-turbines-ai-data-centers.html">CNBC</a>, <a class="btn-source" href="https://x.com/wallstengine/status/2070833953532186754">Wall St Engine</a>, <a class="btn-source" href="https://x.com/Mr_Derivatives/status/2071078449763266702">Mr_Derivatives</a>, <a class="btn-source" href="https://x.com/AIStockSavvy/status/2071046636764013049">AIStockSavvy</a>, <a class="btn-source" href="https://x.com/Mr_Derivatives/status/2070841325331915136">Mr_Derivatives</a>.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">קריפטו</span>
+        <h2>סיכוני קפיטולציה בביטקוין וחדשות רגולטוריות</h2>
+        <h3>מה קרה היום</h3>
+        <p>שוק הקריפטו מראה סימני לחץ עם דיווחים על סיכוני קפיטולציה בביטקוין ($BTC). כמעט 50,000 מטבעות BTC הועברו לבורסות בהפסד, ורמת הלחץ של מחזיקי ביטקוין לטווח קצר הגיעה לשיא של שנתיים. אנליסט מ-CryptoQuant העריך כי אלו תקופות שתמיד היו רווחיות למשקיעים לטווח ארוך.</p>
+        <p>באופן רחב יותר, ביטקוין ירד ב-<span class="change-negative">-31%</span> מתחילת 2026, ואת'ריום ($ETH) ירד ב-<span class="change-negative">-8.30%</span> בשבעת הימים האחרונים. ראש מחקר ב-Grayscale, זאק פנדל, הציע ש-Strategy תמכור 3 מיליארד דולר בביטקוין כדי לכסות התחייבויות מזומן, אך CryptoQuant טוענת שלחברה דרכים אחרות לתמוך ב-STRC (הקרן).</p>
+        <p>מנגד, Fidelity דחתה טענות לפיהן ביטקוין הופך פחות מאובטח לאחר אירועי חצייה (Halvings), וטענה כי אספקתו הקבועה אינה פוגעת באבטחת הרשת. בחדשות אחרות, Yuma, בגיבוי DCG, השיקה קרן המציעה חשיפה מוסדית למטבע Bittensor (TAO).</p>
+        <div class="market-pulse-table">
+            <thead>
+                <tr>
+                    <th>נכס</th>
+                    <th>מחיר (USD)</th>
+                    <th>שינוי יומי (%)</th>
+                    <th>שינוי 7 ימים (%)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Bitcoin ($BTC/USD)</td>
+                    <td>60220.81</td>
+                    <td><span class="change-positive">+0.48%</span></td>
+                    <td><span class="change-negative">-6.27%</span></td>
+                </tr>
+                <tr>
+                    <td>Ethereum ($ETH/USD)</td>
+                    <td>1582.34</td>
+                    <td><span class="change-positive">+0.54%</span></td>
+                    <td><span class="change-negative">-8.30%</span></td>
+                </tr>
+            </tbody>
+        </table>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/hi-why-saylors-strategy-keeps-buying-bitcoin-the-long-term-bet-explained-3.jpg" alt="Grayscale's Pandl hopes Strategy sells $3B in Bitcoin to restore confidence">
+        <h3>למה זה חריג</h3>
+        <p>ההעברה ההמונית של ביטקוין בהפסד מעידה על מכירת בהלה פוטנציאלית מצד משקיעים לטווח קצר, תופעה הנפוצה בתקופות של "קפיטולציה" בשוק. מצב זה, יחד עם הצעתו של בכיר ב-Grayscale למכור כמויות גדולות של ביטקוין, עלול להגביר את לחצי המכירה. העובדה שביטקוין וזהב הם הנכסים הגרועים ביותר בביצועים מתחילת השנה היא תקדימית.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>קפיטולציה מתרחשת כאשר מחזיקים ממונפים או מתוסכלים מוותרים ומוכרים את נכסיהם בהפסד, מה שמוביל לירידות מחירים חדות. לעיתים קרובות, אירועים אלו מסמלים תחתית מחזורית בשוק, כפי שהצביע אנליסט מ-CryptoQuant. הדיון סביב מכירת ביטקוין מ-Grayscale משקף את המאבקים הפיננסיים של גופי קריפטו גדולים והשפעתם על סנטימנט השוק.</p>
+        <p>ההשקה של קרן Bittensor מסמלת המשך עניין מוסדי בתחום ה-DeFi וה-AI, גם בתקופות של תנודתיות.</p>
+
+        <h3>מה זה אומר לקראת השבוע</h3>
+        <ul>
+            <li><strong>תנודתיות ביטקוין:</strong> הימים הקרובים יקבעו אם סימני הקפיטולציה יובילו להתאוששות או להמשך ירידות. משקיעים יחפשו אינדיקטורים טכניים ושינויים בסנטימנט.</li>
+            <li><strong>שוק האלטקוינים:</strong> המשך פיתוח מוצרים מוסדיים סביב מטבעות אלטרנטיביים כמו Bittensor מצביע על התרחבות שוק הקריפטו מעבר לביטקוין ואת'ריום, ומציע אפשרויות גידור או גיוון בתיקים.</li>
+            <li><strong>אמון מוסדי:</strong> הדיון על פעולותיה של Grayscale וההצהרות של Fidelity מדגישים את החשיבות ההולכת וגוברת של אמון מוסדי ורגולציה בשוק הקריפטו.</li>
+        </ul>
+        <div class="opinion-card">
+            <p><strong>Darkfost (CryptoQuant analyst)</strong> על קפיטולציה בביטקוין:</p>
+            <p>"These periods have always been profitable for long-term investors."</p>
+            <span class="author">Cointelegraph (<a class="btn-source" href="https://cointelegraph.com/news/bitcoin-unspent-transaction-outputs-signal-capitulation-underway-analyst">Cointelegraph</a>)</span>
+        </div>
+        <div class="opinion-card">
+            <p><strong>Charlie Bilello</strong> על ביצועי ביטקוין וזהב:</p>
+            <p>"Bitcoin (-31%) and Gold (-6%) are the two worst performing major assets so far in 2026. This is something we haven't seen before in any calendar year."</p>
+            <span class="author">Charlie Bilello (<a class="btn-source" href="https://x.com/charliebilello/status/2070946451660616138">X</a>)</span>
+        </div>
+        <div class="opinion-card">
+            <p><strong>Michael Saylor</strong> על מחזור הביטקוין:</p>
+            <p>"The four-year cycle is dead. Price is now driven by capital flows. Bank and digital credit will determine Bitcoin’s growth trajectory."</p>
+            <span class="author">Michael Saylor (via <a class="btn-source" href="https://x.com/charliebilello/status/2070894601561366673">Charlie Bilello</a>)</span>
+        </div>
+        <div class="opinion-card">
+            <p><strong>Heisenberg (@Mr_Derivatives)</strong> על ביטקוין:</p>
+            <p>"$BTC For bull's 👀 only: Small sample size but still noteworthy. Notice the last two oversold RSI divergences (in orange) formed bottoms. The last two recent drops (in blue) had no RSI divergences... UNTIL NOW... Is this the one? Just something to ponder."</p>
+            <span class="author">Heisenberg (<a class="btn-source" href="https://x.com/Mr_Derivatives/status/2070915953538576892">Mr_Derivatives</a>)</span>
+        </div>
+        <p>מקורות נוספים: <a class="btn-source" href="https://cointelegraph.com/news/grayscales-pandl-strategy-sells-3b-bitcoin-confidence">Cointelegraph</a>, <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-faces-fresh-capitulation-risk-as-50k-btc-moves-at-a-loss">Cointelegraph</a>, <a class="btn-source" href="https://cointelegraph.com/news/fidelity-bitcoin-long-term-security-halvings-report">Cointelegraph</a>, <a class="btn-source" href="https://cointelegraph.com/news/yuma-bittensor-fund-institutional-tao-decentralized-ai">Cointelegraph</a>, <a class="btn-source" href="https://cointelegraph.com/news/base-post-mortem-reveals-sequencer-bug-behind-back-to-back-outages">Cointelegraph</a>.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">מאקרו כלכלה</span>
+        <h2>סיכוני אקלים, מיסוי טכנולוגי ושיא בערך עסקאות מיזוגים ורכישות</h2>
+        <h3>מה קרה היום</h3>
+        <p>כלכלני Citigroup הזהירו כי התחזקות תופעת האל ניניו עלולה לגרום להפסדים כלכליים גלובליים הנאמדים בטווח של 3 עד 7 טריליון דולר בחמש השנים הבאות, עם סיכונים לחקלאות, תשתיות ופרודוקטיביות. מנהיגי קליפורניה הגיעו להסכמה על תקציב מדינה בסך 351.7 מיליארד דולר, הכולל מס מכירה חדש על תוכנות מוכנות להורדה. מס זה צפוי להניב כ-900 מיליון דולר למדינה וכ-1.1 מיליארד דולר לממשלות המקומיות מדי שנה, החל משנת הכספים 2028.</p>
+        <p>ההוצאה המקוונת בארה"ב במהלך יום פריים של אמזון ($AMZN) הגיעה ל-26.4 מיליארד דולר, ועקפה את הערכת אדובי שעמדה על 26.3 מיליארד דולר. זהו גידול של 9.3% לעומת השנה הקודמת, כאשר עסקאות "קנה עכשיו, שלם אחר כך" (BNPL) היוו 6.6% מההזמנות.</p>
+        <p>בסקירה רחבה יותר, ערך עסקאות המיזוגים והרכישות בארה"ב בארבעת הרבעונים האחרונים הגיע לשיא של 1.89 טריליון דולר, הרמה הגבוהה ביותר שנרשמה אי פעם. עליות דומות בעבר התרחשו בקרבת שיאי שוק (ספטמבר 2021 ומרץ 2000).</p>
+
+        <h3>למה זה חריג</h3>
+        <p>היקף ההפסדים הכלכליים הפוטנציאליים מאל ניניו הוא חריג ומצביע על סיכון מאקרו משמעותי שאינו קשור ישירות למדיניות מוניטרית או פיסקלית רגילה. מס התוכנה החדש בקליפורניה מייצג מגמה של ממשלות המנסות למסות את מגזר הטכנולוגיה הצומח. שיא בערך עסקאות המיזוגים והרכישות מדליק נורות אזהרה, מכיוון שבאופן היסטורי הוא התרחש בסמוך לשיאי שוק, כתוצאה מאופטימיות יתר וחוסר משמעת.</p>
+        <div class="opinion-card">
+            <p><strong>Tom Lee</strong> על מדד ה-S&P 500:</p>
+            <p>"Tom Lee upgraded his $SPX eoy pt to 8,000. But still stands by his beginning of the year pathway that we will endure a Q3 10-15% drawdown first. So sometime between Jul 1st - Sept 30th."</p>
+            <span class="author">Heisenberg (<a class="btn-source" href="https://x.com/Mr_Derivatives/status/2071030601872990619">Mr_Derivatives</a>)</span>
+        </div>
+        <div class="opinion-card">
+            <p><strong>Charlie Bilello</strong> על ערך עסקאות בארה"ב:</p>
+            <p>"US deal value over the last 4 quarters: $1.89 trillion, the highest level on record. The last 2 major spikes: September 2021 and March 2000. Both occurred near market peaks. Reminder: dealmaking tends to surge when confidence/optimism is high and discipline starts to fade."</p>
+            <span class="author">Charlie Bilello (<a class="btn-source" href="https://x.com/charliebilello/status/2070950716882006295">X</a>)</span>
+        </div>
+        
+        <h3>הלוגיקה</h3>
+        <p>התופעות הכלכליות שהוצגו משקפות מתח בשלושה מישורים: <strong>אקלים</strong> (סיכונים ארוכי טווח לא יציבים המשפיעים על תמ"ג גלובלי), <strong>רגולציה</strong> (מדינות מחפשות דרכים חדשות למסות את הכלכלה הדיגיטלית), ו<strong>מחזורים כלכליים</strong> (שיאי מיזוגים ורכישות המעידים על שלב מאוחר במחזור השוק). ההצלחה של אמזון בפריים דיי, למרות ירידה בהוצאה הממוצעת למשק בית, מראה על חוסן הצרכנים אך גם על אסטרטגיות קנייה משתנות, כמו עלייה בשימוש ב-BNPL.</p>
+
+        <h3>מה זה אומר לקראת השבוע</h3>
+        <ul>
+            <li><strong>סיכוני אקלים:</strong> ההתראה על האל ניניו מחייבת תשומת לב גלובלית לסיכונים בתחום החקלאות והתשתיות. השפעות אלו עלולות להתבטא בתנודתיות במחירי סחורות ובאפיקי השקעה הקשורים לאקלים.</li>
+            <li><strong>השפעת מיסוי טכנולוגי:</strong> חברות תוכנה הפועלות בקליפורניה יצטרכו להתכונן למס החדש החל מ-2028. זה יכול להשפיע על מודלי רווחיות ועל האטרקטיביות של המדינה כמרכז טכנולוגי.</li>
+            <li><strong>סנטימנט השוק:</strong> שיא עסקאות המיזוגים והרכישות, בשילוב עם תחזיות כמו זו של טום לי (לתיקון ב-Q3), מצריך זהירות. ייתכן והשוק קרוב לנקודת שיא, ומומלץ לבחון את רמות המינוף וההערכות השווי בתיקים.</li>
+        </ul>
+        <p>מקורות נוספים: <a class="btn-source" href="https://x.com/wallstengine/status/2070938524300505496">Wall St Engine</a>, <a class="btn-source" href="https://x.com/wallstengine/status/2070933665715192285">Wall St Engine</a>, <a class="btn-source" href="https://x.com/AIStockSavvy/status/2070927829940809927">AIStockSavvy</a>, <a class="btn-source" href="https://x.com/wallstengine/status/2070929760038072375">Wall St Engine</a>.</p>
+    </div>
+
+</body>
+</html>
