@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי: תמונת מצב אסטרטגית</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0e17; /* Deep charcoal/navy */
+            color: #e0e0e0; /* Off-white for main text */
+            direction: rtl;
+            text-align: right;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            color: #fdd835; /* Gold accent */
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+        }
+
+        h2 {
+            color: #fdd835; /* Gold accent */
+            font-weight: 700;
+            font-size: 1.8em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            color: #a0a0a0; /* Lighter grey for sub-headings */
+            font-weight: 600;
+            font-size: 1.3em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 10px;
+            font-weight: 400;
+            font-size: 1.0em;
+        }
+
+        ul {
+            list-style: none; /* Remove default bullet points */
+            padding-right: 20px; /* Indent list items */
+        }
+        
+        li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        li::before {
+            content: '•'; /* Custom bullet point */
+            color: #fdd835; /* Gold accent for bullet */
+            position: absolute;
+            right: 0; /* Align bullet to the right for RTL */
+            margin-right: -20px; /* Position bullet outside the text */
+        }
+
+        .slide-container {
+            background-color: #1a1e27; /* Darker background for slides */
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: #3f51b5; /* Steel-blue accent */
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .market-pulse-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 20px;
+            border-radius: 8px;
+            overflow: hidden; /* Ensures rounded corners for table */
+        }
+
+        .market-pulse-table th, .market-pulse-table td {
+            padding: 12px 15px;
+            text-align: right;
+        }
+
+        .market-pulse-table th {
+            background-color: #2a2e37; /* Slightly lighter dark for headers */
+            font-weight: 600;
+            color: #fdd835; /* Gold accent for headers */
+        }
+
+        .market-pulse-table td {
+            background-color: #1f232d; /* Even lighter dark for cells */
+            border-top: 1px solid #333; /* Subtle line between rows */
+            font-weight: 400;
+        }
+
+        .market-pulse-table tr:nth-child(even) td {
+            background-color: #1c202a; /* Alternate row background */
+        }
+
+        .change-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-left: 8px;
+            font-weight: 600;
+            min-width: 60px; /* Ensures consistent width */
+            text-align: center;
+        }
+
+        .change-badge.positive {
+            background-color: rgba(76, 175, 80, 0.2); /* Subtle green background */
+            color: #4CAF50; /* Green text */
+        }
+
+        .change-badge.negative {
+            background-color: rgba(244, 67, 54, 0.2); /* Subtle red background */
+            color: #F44336; /* Red text */
+        }
+
+        .change-badge.neutral {
+            background-color: rgba(128, 128, 128, 0.1); /* Subtle grey background */
+            color: #a0a0a0; /* Grey text */
+        }
+
+        .highlight-card {
+            background-color: #2a2e37;
+            border-right: 4px solid #fdd835; /* Gold accent border on the right for RTL */
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            display: inline-block; /* Allow text to flow around it */
+        }
+
+        .opinion-card {
+            background-color: #22262e;
+            border: 1px solid #3f51b5; /* Steel-blue border */
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 15px 0;
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            text-align: right; /* Ensure text inside is right-aligned */
+            direction: rtl; /* Ensure text direction inside is RTL */
+        }
+
+        .quote-icon {
+            font-size: 1.5em;
+            color: #3f51b5;
+            margin-right: 10px; /* Icon on the right for RTL */
+            flex-shrink: 0;
+            line-height: 1; /* Align icon vertically */
+        }
+
+        .opinion-content {
+            flex-grow: 1;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: #3f51b5; /* Steel-blue button */
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9em;
+            margin-top: 10px;
+            margin-right: 10px; /* Right margin for RTL buttons */
+            transition: background-color 0.2s ease-in-out;
+            white-space: nowrap; /* Prevent breaking source name */
+        }
+
+        .btn-source:hover {
+            background-color: #5c6bc0;
+        }
+
+        .source-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+            justify-content: flex-end; /* Align sources to the right */
+        }
+
+        .section-divider {
+            border-top: 1px solid #333;
+            margin: 40px 0;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .flex-row-rtl {
+            display: flex;
+            flex-direction: row-reverse; /* For RTL */
+            justify-content: flex-start;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>דוח שוק יומי: מה חשוב לדעת היום ולקראת השבוע</h1>
+
+    <div class="slide-container">
+        <div class="badge">סקירה מהירה</div>
+        <h2>תמונת מצב מהירה: מדדים ומניות בולטות</h2>
+        <p>להלן סקירה מהירה של המדדים המובילים ומניות שרשמו תנועות חריגות ביום המסחר האחרון (26 ביוני 2026 עבור מניות, 28 ביוני 2026 עבור קריפטו):</p>
+        <table class="market-pulse-table">
+            <thead>
+                <tr>
+                    <th>נכס</th>
+                    <th>מחיר אחרון</th>
+                    <th>שינוי יומי (%)</th>
+                    <th>הערה</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SPY (S&P 500 ETF)</td>
+                    <td>728.99</td>
+                    <td><span class="change-badge negative">-0.72%</span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>QQQ (Nasdaq 100 ETF)</td>
+                    <td>706.52</td>
+                    <td><span class="change-badge negative">-1.38%</span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>BTC/USD</td>
+                    <td>60,086.01</td>
+                    <td><span class="change-badge neutral">+0.25% (יומי)</span><span class="change-badge negative">-6.38% (7 ימים)</span></td>
+                    <td>קרוב לתחתית 52 שבועות</td>
+                </tr>
+                <tr>
+                    <td>ETH/USD</td>
+                    <td>1,577.12</td>
+                    <td><span class="change-badge neutral">+0.21% (יומי)</span><span class="change-badge negative">-8.49% (7 ימים)</span></td>
+                    <td>קרוב לתחתית 52 שבועות</td>
+                </tr>
+                <tr>
+                    <td>ServiceNow (NOW)</td>
+                    <td>98.34</td>
+                    <td><span class="change-badge positive">+9.85%</span></td>
+                    <td>התאוששות חדה</td>
+                </tr>
+                <tr>
+                    <td>Coherent Corp. (COHR)</td>
+                    <td>380.56</td>
+                    <td><span class="change-badge negative">-6.55%</span></td>
+                    <td>ירידה חדה בנפח גבוה</td>
+                </tr>
+                <tr>
+                    <td>Micron Tech (MU)</td>
+                    <td>1,132.33</td>
+                    <td><span class="change-badge negative">-6.69%</span></td>
+                    <td>ירידה חדה למרות דיווחים חיוביים</td>
+                </tr>
+                <tr>
+                    <td>UnitedHealth Group (UNH)</td>
+                    <td>427.89</td>
+                    <td><span class="change-badge positive">+2.97%</span></td>
+                    <td>סגירה קרוב לשיא של 52 שבועות</td>
+                </tr>
+                <tr>
+                    <td>iShares Russell 2000 ETF (IWM)</td>
+                    <td>299.83</td>
+                    <td><span class="change-badge neutral">+0.31%</span></td>
+                    <td>קרוב לשיא של 52 שבועות</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">קריפטו</div>
+        <h2>עדכון קריפטו: חשש מקפיטולציה ותנודתיות מתמשכת</h2>
+        <h3>מה קרה היום (28 ביוני 2026)</h3>
+        <p>שוק הקריפטו ממשיך לרשום תנודתיות, כאשר ביטקוי ואת'ריום נסחרים קרוב לתחתית 52 השבועות. הביטקוי <span class="change-badge neutral">+0.25%</span> נסחר ב-<span class="highlight-card">60,086.01 דולר</span>, ואילו את'ריום <span class="change-badge neutral">+0.21%</span> נסחר ב-<span class="highlight-card">1,577.12 דולר</span>. שניהם רשמו ירידות משמעותיות בשבעת הימים האחרונים, של <span class="change-badge negative">-6.38%</span> ו-<span class="change-badge negative">-8.49%</span> בהתאמה. סנטימנט השוק מושפע מהתפתחויות כמו הצעתה של גרייסקייל (Grayscale) למכור ביטקוי וחששות מקפיטולציה.</p>
+        
+        <div class="opinion-card">
+            <span class="quote-icon">&#8220;</span>
+            <div class="opinion-content">
+                <p>ראש מחקר בגרייסקייל, זאק פנדל (Zach Pandl), צוטט באומרו כי Strategy (הכוונה ככל הנראה למוצר STRC של גרייסקייל) צריכה למכור <span class="highlight-card">3 מיליארד דולר בביטקוי</span> כדי לכסות את התחייבויות המזומן שלה. עם זאת, חברת CryptoQuant טוענת שלגרייסקייל יש דרכים אחרות לתמוך ב-STRC.</p>
+                <div class="source-group">
+                    <a class="btn-source" href="https://cointelegraph.com/news/grayscales-pandl-strategy-sells-3b-bitcoin-confidence">Cointelegraph</a>
+                </div>
+            </div>
+        </div>
+
+        <p>באופן מדאיג, כמעט <span class="highlight-card">50,000 מטבעות BTC</span> הועברו לבורסות בהפסד, ורמת הלחץ בקרב מחזיקי ביטקוי לטווח קצר הגיעה לשיא של שנתיים. אנליסטים מזהירים מפני סיכון לקפיטולציה נוספת בשוק.</p>
+        <div class="image-container">
+            <img src="https://s3-images.ctmedia.io/media/article-covers/article-covers-247810-bitcoin-bulls-blitz-dollar69k-as-retail-traders-pressure-short-positioning.jpg" alt="Bitcoin Price Chart indicating capitulation">
+        </div>
+        
+        <div class="opinion-card">
+            <span class="quote-icon">&#8220;</span>
+            <div class="opinion-content">
+                <p>אנליסט CryptoQuant, Darkfost, מציין כי "Bitcoin unspent transaction outputs signal capitulation underway". לדבריו, "These periods have always been profitable for long-term investors."</p>
+                <div class="source-group">
+                    <a class="btn-source" href="https://cointelegraph.com/news/bitcoin-unspent-transaction-outputs-signal-capitulation-underway-analyst">Cointelegraph</a>
+                </div>
+            </div>
+        </div>
+        <p>במבט רחב יותר לשנת 2026, ביטקוי הוא אחד משני הנכסים עם הביצועים הגרועים ביותר, עם ירידה של <span class="change-badge negative">-31%</span>, יחד עם הזהב שירד ב-<span class="change-badge negative">-6%</span>. זוהי תופעה שלא נראתה בעבר באף שנה קלנדרית.</p>
+        <div class="source-group">
+            <a class="btn-source" href="https://x.com/charliebilello/status/2070946451660616138">Charlie Bilello</a>
+        </div>
+
+        <h3>למה זה חריג</h3>
+        <p>הדיווחים על הצעת גרייסקייל למכור כמות כה גדולה של ביטקוי מייצרים לחץ משמעותי על השוק, במיוחד כאשר הוא כבר נמצא במצב שברירי. התנועה של 50,000 מטבעות BTC בהפסד, יחד עם עליית רמות הלחץ בקרב סוחרים לטווח קצר, מצביעה על "קפיטולציה" פוטנציאלית – שלב שבו משקיעים מוכרים בבהלה בהפסד, מה שעלול להעיד על תחתית מתקרבת.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>היצע משמעותי של ביטקוי ממוסד גדול כמו גרייסקייל, במידה ויתממש, עלול להציף את השוק ולגרום לירידת מחירים נוספת בטווח הקצר. מאידך, סנטימנט הקפיטולציה, המאופיין במכירה מתוך ייאוש, נחשב לעיתים קרובות לאינדיקטור קונטרה-אינטואיטיבי לתחתית מחזורית עבור משקיעים לטווח ארוך, כפי שצוין על ידי Darkfost.</p>
+
+        <div class="opinion-card">
+            <span class="quote-icon">&#8220;</span>
+            <div class="opinion-content">
+                <p>Mr. Derivatives מציין כי תבנית "oversold RSI divergences" (הטיית RSI במצב מכירת יתר), אשר בעבר סימנה תחתית למחיר ה-BTC, מתרחשת שוב כעת. לדבריו: "Small sample size but still noteworthy. Notice the last two oversold RSI divergences (in orange) formed bottoms. The last two recent drops (in blue) had no RSI divergences... UNTIL NOW... Is this the one? Just something to ponder."</p>
+                <div class="source-group">
+                    <a class="btn-source" href="https://x.com/Mr_Derivatives/status/2070915953538576892">Mr. Derivatives</a>
+                </div>
+            </div>
+        </div>
+
+        <h3>מה זה אומר לקראת השבוע</h3>
+        <p>שוק הקריפטו צפוי להישאר תנודתי. המשקיעים צריכים לעקוב מקרוב אחר כל התפתחות בנוגע לגרייסקייל וללחצי המכירה. למרות הלחץ הנוכחי, ההיסטוריה מראה כי תקופות קפיטולציה יכולות לייצר הזדמנויות כניסה אטרקטיביות למשקיעים לטווח ארוך. מודלים טכניים כמו ה-RSI Divergence, כפי שצוין, עשויים לרמז על התקרבות לתחתית מקומית, מה שמצריך מעקב קפדני אחר רמות התמיכה וההתנגדות.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">AI ושבבים</div>
+        <h2>מניות הטכנולוגיה וה-AI: רוטציה בתוך הסקטור וחששות מיסוי</h2>
+        <h3>מה קרה היום (26 ביוני 2026)</h3>
+        <p>שוק הטכנולוגיה חווה תנועה מעורבת עם מספר מניות שרשמו שינויים משמעותיים, חלקן על רקע דיווחים ספציפיים וחששות מאקרו. מניות השבבים Micron Technology (MU) ו-Coherent Corp. (COHR) רשמו ירידות חדות של <span class="change-badge negative">-6.69%</span> ו-<span class="change-badge negative">-6.55%</span> בהתאמה, עם נפחי מסחר גבוהים מהרגיל. זאת, למרות שמיקרון סיימה את השבוע באדום למרות דיווח רווחים חזק.</p>
+        <div class="source-group">
+            <a class="btn-source" href="https://www.cnbc.com/2026/06/27/the-ai-trade-cooled-and-oil-sank-a-closer-look-at-wall-streets-volatile-week.html">CNBC</a>
+        </div>
+        
+        <p>חברות טכנולוגיה גדולות כמו Alphabet (GOOG) ו-Apple (AAPL) רשמו נפחי מסחר גבוהים במיוחד: GOOG ירדה ב-<span class="change-badge negative">-2.19%</span> עם נפח של 82.4 מיליון מניות (מול ממוצע של 28.4 מיליון), ואילו AAPL עלתה ב-<span class="change-badge positive">+3.13%</span> עם נפח אדיר של 261.6 מיליון מניות (מול ממוצע של 77.1 מיליון).</p>
+        <p>דיווחים נוספים מצביעים על כך שגוגל הגבילה את השימוש של מטא (Meta) בשירותי Gemini שלה עקב עומס על הקיבולת שלה בתחום ה-AI. במקביל, אפל לוביסטית את ממשל טראמפ כדי לקבל אישור לרכוש שבבי זיכרון מ-CXMT הסינית, הנמצאת ברשימה השחורה של הפנטגון, כדי לטפל במחסור זיכרון עולמי.</p>
+        <div class="source-group">
+            <a class="btn-source" href="https://x.com/AIStockSavvy/status/2071086598167351494">AIStockSavvy</a>
+            <a class="btn-source" href="https://x.com/wallstengine/status/2070833953532186754">Wall St Engine</a>
+        </div>
+        
+        <p>העניין ב-AI ממשיך להיות חזק, כש-OpenAI הודיעה ש-GPT-5.6 Sol, המודל החזק ביותר שלה, יושק על שבבי Cerebras בחודש יולי. מניות הקשורות למרכזי נתונים ו-AI גם כן במוקד, כש-GE Vernova מספקת טורבינות גז למרכזי נתונים של xAI ומיקרוסופט.</p>
+        <div class="source-group">
+            <a class="btn-source" href="https://x.com/AIStockSavvy/status/2071046636764013049">AIStockSavvy</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/06/27/ge-vernova-gas-turbines-ai-data-centers.html">CNBC</a>
+        </div>
+
+        <div class="opinion-card">
+            <span class="quote-icon">&#8220;</span>
+            <div class="opinion-content">
+                <p>Mr. Derivatives התייחס למניות השבבים המובילות: "<a href='https://x.com/search?f=tweets&q=%23SNDK'>$SNDK</a> -10% from ATH's <a href='https://x.com/search?f=tweets&q=%23MU'>$MU</a> -10% from ATH's <a href='https://x.com/search?f=tweets&q=%23STX'>$STX</a> -22% from ATH's <a href='https://x.com/search?f=tweets&q=%23WDC'>$WDC</a> -27% from ATH's <a href='https://x.com/search?f=tweets&q=%23QCOM'>$QCOM</a> -27% from ATH's <a href='https://x.com/search?f=tweets&q=%23AVGO'>$AVGO</a> -27% from ATH's. More downside on SNDK and MU? Or more upside on STX, WDC, QCOM, and AVGO?"</p>
+                <div class="source-group">
+                    <a class="btn-source" href="https://x.com/Mr_Derivatives/status/2071078449763266702">Mr. Derivatives</a>
+                </div>
+            </div>
+        </div>
+        <div class="opinion-card">
+            <span class="quote-icon">&#8220;</span>
+            <div class="opinion-content">
+                <p>בהתייחסות ל-NVIDIA (NVDA), שירדה ב-<span class="change-badge negative">-1.64%</span> ביום המסחר האחרון, Mr. Derivatives מציג תחזית טכנית: "Keep an eye out for <a href='https://x.com/search?f=tweets&q=%23NVDA'>$NVDA</a> next week. Down 5 days in a row and hasn’t gone 6 red days in a row since Aug-Sept 2022. The 200dma around $190 should be a big support. The 50wma around $187 should be a major support. Also touching the lower Bollinger Bands for 3 consecutive days now, not common and should result in at least a near term bounce perhaps. 2027 P/E estimates at 16x now. Getting close imho."</p>
+                <div class="source-group">
+                    <a class="btn-source" href="https://x.com/Mr_Derivatives/status/2070855678072438791">Mr. Derivatives</a>
+                </div>
+            </div>
+        </div>
+
+        <h3>למה זה חריג</h3>
+        <p>התנודות החדות במניות השבבים (MU, COHR, AVGO, AMD) מגיעות על רקע ירידה רחבה יותר בסקטור. הירידה של MU למרות "דו"ח רווחים חזק" מצביעה על סנטימנט שלילי חזק יותר בשוק, אולי בשל חששות לגבי מחירי תשתיות AI. נפחי המסחר הגבוהים במניות כמו GOOG ו-AAPL מסמנים עניין רב ושינויים מהותיים בעמדות המשקיעים, בין אם מדובר ברכישה או מכירה מאסיבית. ההגבלות של גוגל על מטא והלובינג של אפל מדגישים את המחסור בקיבולת AI ובשבבי זיכרון כאתגרים גלובליים ולא רק נקודתיים.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>המחסור בקיבולת AI ובשבבי זיכרון דוחף חברות גדולות לחפש פתרונות יצירתיים (כמו לוביינג על ספקים ברשימה שחורה) או להגביל שימוש (כפי שגוגל עשתה למטא). עליות בעלויות תשתית ה-AI משפיעות על כל השחקנים בתעשייה. מניות שהראו חולשה טכנית, כמו NVDA, עלולות למצוא תמיכה ברמות מחיר מסוימות (200dma, 50wma, Bollinger Bands), מה שיכול להצביע על הזדמנות קנייה לטווח קצר לאחר ירידות רצופות.</p>
+        <p>קליפורניה, מוקד לתעשיית הטק, אישרה תקציב מדינה של 351.7 מיליארד דולר הכולל מס מכירה חדש על תוכנות מוכנות להורדה. מס זה צפוי לגייס כ-<span class="highlight-card">900 מיליון דולר למדינה</span> וכ-<span class="highlight-card">1.1 מיליארד דולר לממשלות מקומיות</span> מדי שנה החל משנת הכספים 2028. זהו גורם חשוב שישפיע על חברות תוכנה הפועלות בקליפורניה, כמו גם חברות הענן שמוכרות רישיונות תוכנה ללקוחות במדינה.</p>
+        <div class="source-group">
+            <a class="btn-source" href="https://x.com/wallstengine/status/2070933665715192285">Wall St Engine</a>
+        </div>
+
+        <h3>מה זה אומר לקראת השבוע</h3>
+        <p>סקטור השבבים וה-AI צפוי להמשיך להוביל את תנודתיות השוק. יש לעקוב אחר התפתחויות בנושא המחסור בזיכרון והשפעותיו על תמחור המכשירים האלקטרוניים, כמו גם על היכולת של חברות AI להרחיב את שירותיהן. ההתפתחויות הטכניות ב-NVDA עשויות לספק הזדמנויות מסחר לטווח קצר. השבוע הקרוב ייתן אינדיקציה האם החולשה הנוכחית היא תיקון בריא או סימן לשינוי סנטימנט עמוק יותר. חברות תוכנה שפועלות בקליפורניה צריכות לבחון את ההשלכות של מס התוכנה החדש על מודלי הרווחיות והתמחור שלהן החל מ-2028.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">טכנולוגיה ושירותים</div>
+        <h2>חברות תוכנה ושירותים: ביצועים חזקים ותחזית מיסוי</h2>
+        <h3>מה קרה היום (26 ביוני 2026)</h3>
+        <p>מניות התוכנה והשירותים הציגו ביצועים חזקים ביום המסחר האחרון. ServiceNow (NOW) הובילה עם עלייה מרשימה של <span class="change-badge positive">+9.85%</span>. גם Palantir Technologies (PLTR) ו-Robinhood Markets (HOOD) רשמו עליות משמעותיות של <span class="change-badge positive">+5.27%</span> ו-<span class="change-badge positive">+5.58%</span> בהתאמה, תוך נפחי מסחר גבוהים מהממוצע.</p>
+        <p>Amazon (AMZN) עלתה ב-<span class="change-badge positive">+2.50%</span> עם נפח מסחר אדיר של 248.2 מיליון מניות (מול ממוצע של 77.3 מיליון), על רקע הצלחת ימי ה'פריים דיי' שלה, בהם ההוצאות המקוונות בארה"ב בכל הקמעונאים הגיעו ל-<span class="highlight-card">26.4 מיליארד דולר</span>, מעל הערכת אדובי שעמדה על 26.3 מיליארד דולר. ההוצאות עלו ב-9.3% משנה לשנה.</p>
+        <div class="source-group">
+            <a class="btn-source" href="https://x.com/AIStockSavvy/status/2070927829940809927">AIStockSavvy</a>
+            <a class="btn-source" href="https://x.com/wallstengine/status/2070929760038072375">Wall St Engine</a>
+        </div>
+
+        <h3>למה זה חריג</h3>
+        <p>העלייה החדה במניות כמו NOW, PLTR, ו-HOOD מצביעה על סנטימנט חיובי חזק כלפי חברות צמיחה ופלטפורמות טכנולוגיות, במיוחד לאור תנודתיות בסקטורים אחרים בטכנולוגיה. הביצועים המצוינים של אמזון ב'פריים דיי', עם הכנסות שעלו על הציפיות, מעידים על חוזקה צרכנית והמשך דומיננטיות בתחום המסחר האלקטרוני, למרות ירידה קלה בהוצאה הממוצעת למשק בית באמזון עצמה.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>הביקוש לשירותי ענן ופתרונות תוכנה ארגוניים (כמו של ServiceNow) ממשיך להיות חזק, מה שתומך בצמיחתן. פלטפורמות פינטק (כמו רובין הוד) נהנות מעניין מתמשך בקרב סוחרים. הצלחת הפריים דיי של אמזון ממחישה את כוח המשיכה של אירועי מכירות גדולים ואת חוסן הצרכן, למרות חששות אינפלציוניים. יחד עם זאת, החלטת קליפורניה להטיל מס מכירה על תוכנה צפויה להשפיע על חברות תוכנה אלו בטווח הארוך, ודורשת מהן היערכות אסטרטגית.</p>
+        <div class="source-group">
+            <a class="btn-source" href="https://x.com/wallstengine/status/2070933665715192285">Wall St Engine</a>
+        </div>
+
+        <h3>מה זה אומר לקראת השבוע</h3>
+        <p>השבוע צפוי להמשיך המיקוד בביצועי חברות הטכנולוגיה. חברות תוכנה עם צמיחה חזקה עשויות להמשיך ליהנות מסנטימנט חיובי. יש לעקוב אחר ההשפעות ארוכות הטווח של מס התוכנה בקליפורניה, שיכול להשפיע על תמחור ורווחיות בעתיד. הביצועים החזקים של אמזון בפעילות הקמעונאית שלה מצביעים על חוסן כלכלי מסוים שעשוי להשפיע לחיוב על סנטימנט השוק הכללי.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">מאקרו</div>
+        <h2>סנטימנט מאקרו ואירועים גלובליים: סיכונים והזדמנויות</h2>
+        <h3>מה קרה היום (27-28 ביוני 2026)</h3>
+        <p>כלכלני סיטיגרופ מזהירים כי התחזקות תופעת ה'אל ניניו' (El Niño) עלולה לגרום להפסדים כלכליים גלובליים בהיקף של <span class="highlight-card">3 עד 7 טריליון דולר</span> בחמש השנים הבאות. תרחיש "סופר אל ניניו" עלול להגיע ל-<span class="highlight-card">6.4% מהתמ"ג העולמי</span>, עם סיכונים לחקלאות, תשתיות ופריון. מינהל האוקיינוסים והאטמוספירה הלאומי (NOAA) צופה שהתנאים יתעצמו עד חורף 2026-27.</p>
+        <div class="source-group">
+            <a class="btn-source" href="https://x.com/wallstengine/status/2070938524300505496">Wall St Engine</a>
+        </div>
+
+        <p>שווי העסקאות בארה"ב במהלך ארבעת הרבעונים האחרונים הגיע ל-<span class="highlight-card">1.89 טריליון דולר</span>, הרמה הגבוהה ביותר שנרשמה אי פעם. שיאים קודמים נרשמו בספטמבר 2021 ובמרץ 2000, שניהם קרובים לשיאי שוק.</p>
+
+        <div class="opinion-card">
+            <span class="quote-icon">&#8220;</span>
+            <div class="opinion-content">
+                <p>צ'ארלי ביללו (Charlie Bilello) ציין כי "dealmaking tends to surge when confidence/optimism is high and discipline starts to fade."</p>
+                <div class="source-group">
+                    <a class="btn-source" href="https://x.com/charliebilello/status/2070950716882006295">Charlie Bilello</a>
+                </div>
+            </div>
+        </div>
+
+        <p>בסקירה על סנטימנט השוק הכללי, התנהל ויכוח חריף ב-CNBC בין ג'רמי גרנת'ם (Jeremy Grantham), הידוע בעמדתו הדובית, לבין ג'ו קרנן (Joe Kernen). גרנת'ם נתפס כמי שתחזיותיו קודרות לגבי השוק מאז קוביד.</p>
+        <div class="source-group">
+            <a class="btn-source" href="https://x.com/Mr_Derivatives/status/2070832075977130387">Mr. Derivatives</a>
+            <a class="btn-source" href="https://x.com/Mr_Derivatives/status/2070835812942667978">Mr. Derivatives</a>
+        </div>
+        <div class="opinion-card">
+            <span class="quote-icon">&#8220;</span>
+            <div class="opinion-content">
+                <p>Mr. Derivatives סיכם את הדיון באופן הבא: "I watched that Jeremy Grantham CNBC interview yesterday at least 10 times. Joe Kernen was a bit over the top yes, but CNBC needed this debate... And yes it’s true, the stock market will one day crash 50%. 'One day'… But that day can be tomorrow, 5 years from now, 10 years from now, 15 years from now. The $SPX can be well above 10,000 or 12,000, or 15,000 before then. No one knows. NO ONE KNOWS WHEN… Anyways the point is it’s a fool’s errand to time a stock market crash for 99% of us. Think opportunity costs for sitting in cash these 6 years if we took that advice. Or god forbid, shorted based on his advice. It brings me to that famous quote popularized by Kenneth Fisher: 'Time in the market beats timing the market.'"</p>
+                <div class="source-group">
+                    <a class="btn-source" href="https://x.com/Mr_Derivatives/status/2070832075977130387">Mr. Derivatives</a>
+                </div>
+            </div>
+        </div>
+        <div class="opinion-card">
+            <span class="quote-icon">&#8220;</span>
+            <div class="opinion-content">
+                <p>Mr. Derivatives גם שיתף תובנה נוספת מהקהילה הפיננסית: "I read through all the comments and replies and quote tweets, and I can safely say that the Fintwitsphere is exactly equally divided 50/50 between choosing sides in the Jeremy Grantham and Joe Kernen debate. Literally 50/50."</p>
+                <div class="source-group">
+                    <a class="btn-source" href="https://x.com/Mr_Derivatives/status/2070957777577726245">Mr. Derivatives</a>
+                </div>
+            </div>
+        </div>
+        
+        <h3>למה זה חריג</h3>
+        <p>אזהרת הסיטיגרופ מפני האל ניניו היא יוצאת דופן בהיקפה ובטווח הזמן שלה, ומצביעה על סיכון מאקרו-כלכלי משמעותי שיכול להשפיע על שווקים גלובליים. נתון שיא של עסקאות מיזוגים ורכישות (M&A) בארה"ב, כפי שציין ביללו, נחשב לעיתים קרובות לאינדיקטור של שיא בשוק, מה שמהווה נקודה חשובה למעקב למרות הסנטימנט השורי הכללי. הוויכוח הפומבי בין משקיעי ערך "דוביים" לבין פרשנים שוריים בולט על רקע התנודתיות בשווקים, ומעיד על חוסר אחידות בראיית התמונה הגדולה.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>השפעות האל ניניו עלולות להוביל להפרעות בשרשרת האספקה, עליית מחירי סחורות חקלאיות (ובעיקר מזון), ולהאט צמיחה עולמית – גורמים אינפלציוניים ודיסאינפלציוניים כאחד, בהתאם למגזר. פעילות M&A גבוהה משקפת אמון חברות בצמיחה עתידית ובערך הנכסים, אך במקביל יכולה לאותת על תמחור שיא והורדת רף הסיכון. הדיון בין גרנת'ם לקרנן מדגיש את המתח התמידי בין ראייה ארוכת טווח וזהירה לבין סנטימנט שורי ממוקד לטווח קצר, ומשקף את הקושי לתזמן את השוק.</p>
+
+        <h3>מה זה אומר לקראת השבוע</h3>
+        <p>יש לעקוב מקרוב אחר דיווחים הקשורים לאירועי מזג אוויר קיצוניים והשפעתם על מחירי סחורות ועלויות תפעול לחברות. היקף עסקאות M&A, למרות שהוא נתון היסטורי, ימשיך להוות תזכורת לסנטימנט השוק הנוכחי וסיכונים פוטנציאליים לטווח ארוך. המשקיעים צריכים להישאר ממוקדים באסטרטגיית ההשקעה שלהם ולא להיסחף אחר תחזיות קצרות טווח או סנטימנט קיצוני, תוך התחשבות באימרה "Time in the market beats timing the market".</p>
+    </div>
+    
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">עדכוני מניות</div>
+        <h2>מניות בולטות נוספות מרשימת המעקב</h2>
+        <h3>מה קרה היום (26 ביוני 2026)</h3>
+        <ul>
+            <li>
+                <strong>UnitedHealth Group (UNH):</strong> המניה עלתה ב-<span class="change-badge positive">+2.97%</span> ונסגרה ב-<span class="highlight-card">427.89 דולר</span>, קרוב מאוד לשיא של 52 השבועות שלה שעומד על <span class="highlight-card">427.93 דולר</span>. נפח המסחר עמד על 10.5 מיליון מניות, מעל הממוצע של 7.2 מיליון. העלייה החדה במניה זו, לצד דיווחים על התרחבות גישת Medicare לתרופות לירידה במשקל (GLP-1s) החל מה-1 ביולי, יכולה להצביע על סנטימנט חיובי בתחום הבריאות.
+                <div class="source-group">
+                    <a class="btn-source" href="https://www.marketwatch.com/story/millions-of-older-americans-will-soon-have-medicare-access-to-glp-1s-for-weight-loss-heres-what-they-need-to-know-758efe4c">MarketWatch</a>
+                    <a class="btn-source" href="https://x.com/Mr_Derivatives/status/2070912488061935746">Mr. Derivatives (לסנטימנט XLV)</a>
+                </div>
+            </li>
+            <li>
+                <strong>iShares Russell 2000 ETF (IWM):</strong> הקרן עלתה ב-<span class="change-badge neutral">+0.31%</span> ונסגרה ב-<span class="highlight-card">299.83 דולר</span>, קרוב מאוד לשיא של 52 השבועות שלה שעומד על <span class="highlight-card">301.50 דולר</span>. נפח המסחר היה 39.7 מיליון מניות, מעל הממוצע של 30 מיליון. קרן זו עוקבת אחרי מניות חברות קטנות, והתקרבותה לשיא עשויה להעיד על התרחבות סנטימנט חיובי גם מחוץ למניות הטכנולוגיה הגדולות.
+            </li>
+            <li>
+                <strong>Spotify Technology S.A. (SPOT):</strong> המניה עלתה ב-<span class="change-badge positive">+4.26%</span> ונסגרה ב-<span class="highlight-card">460.02 דולר</span>, עם נפח מסחר של 2.3 מיליון מניות, מעט מעל הממוצע של 1.9 מיליון. העלייה מצביעה על עניין מחודש בחברות צמיחה שאינן קשורות ישירות לטרנד ה-AI החם.
+            </li>
+            <li>
+                <strong>Nano Nuclear Energy Inc. (NNE):</strong> המניה ירדה ב-<span class="change-badge negative">-3.77%</span> ונסגרה ב-<span class="highlight-card">19.87 דולר</span>, עם נפח מסחר של 4.3 מיליון מניות, מעל הממוצע של 3.3 מיליון. המניה נסחרת קרוב לתחתית ה-52 שבועות שלה, שעומדת על <span class="highlight-card">18.93 דולר</span>.
+            </li>
+        </ul>
+
+        <h3>מה זה אומר לקראת השבוע</h3>
+        <p>התנועה ב-UNH מצביעה על חוזק מתמשך בסקטור הבריאות, מה שמרמז על עניין של משקיעים במגננות או בחברות עם זרמי הכנסה יציבים. ההתקרבות של IWM לשיא 52 שבועות תומכת בתזה של "רוטציה" לשוק הרחב יותר. Spotify מראה כי יש עדיין הזדמנויות בחברות צמיחה מחוץ ל-AI, אך NNE מדגישה את הסיכון במניות קטנות עם תנודתיות גבוהה, במיוחד כשהן מתקרבות לתחתית טווח המסחר שלהן.</p>
+    </div>
+
+</body>
+</html>
