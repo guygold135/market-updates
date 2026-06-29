@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי אסטרטגי - 29 ביוני 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117; /* Dark charcoal */
+            color: #e0e0e0; /* Off-white text */
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .report-title {
+            color: #e6b800; /* Gold accent */
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 700;
+            font-size: 2.5em;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(230, 184, 0, 0.3);
+        }
+
+        .slide-container {
+            background-color: #161b22; /* Slightly lighter dark background for cards */
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            color: #e6b800; /* Gold accent */
+            font-size: 2em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(230, 184, 0, 0.2);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #a0a0a0; /* Lighter gray for subheadings */
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: rgba(230, 184, 0, 0.15); /* Muted gold background */
+            color: #e6b800;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            margin-left: 10px; /* Adjust margin for RTL */
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            background-color: #0d1117; /* Darker background for tables */
+            border-radius: 5px;
+        }
+
+        th, td {
+            border: 1px solid #333;
+            padding: 12px 15px;
+            text-align: right; /* Align right for RTL */
+            font-size: 0.9em;
+        }
+
+        th {
+            background-color: #2a2f3a;
+            color: #e6b800;
+            font-weight: 700;
+        }
+
+        td {
+            color: #e0e0e0;
+        }
+
+        .change-positive {
+            color: #4CAF50; /* Muted green */
+            font-weight: 600;
+        }
+
+        .change-negative {
+            color: #F44336; /* Muted red */
+            font-weight: 600;
+        }
+
+        .change-neutral {
+            color: #a0a0a0; /* Grey */
+            font-weight: 400;
+        }
+
+        .highlight-card {
+            background-color: #2a2f3a; /* Darker background for highlights */
+            border-right: 4px solid #007bff; /* Steel blue accent, adjust for RTL */
+            padding: 15px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+        .opinion-card {
+            background-color: #2a2f3a;
+            border-right: 4px solid #6c757d; /* Grey accent for opinions, adjust for RTL */
+            padding: 15px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            font-style: italic;
+            color: #cccccc;
+        }
+
+        .opinion-card .quote-icon {
+            float: right; /* Adjust float for RTL */
+            margin-left: 10px; /* Adjust margin for RTL */
+            color: #6c757d;
+            font-size: 1.5em;
+            line-height: 1;
+        }
+
+        .opinion-card .speaker {
+            display: block;
+            margin-top: 10px;
+            font-weight: 600;
+            color: #a0a0a0;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: rgba(0, 123, 255, 0.2); /* Muted steel blue background */
+            color: #007bff;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-top: 10px;
+            margin-left: 10px; /* Adjust margin for RTL */
+            transition: background-color 0.3s ease;
+            border: 1px solid rgba(0, 123, 255, 0.4);
+        }
+
+        .btn-source:hover {
+            background-color: rgba(0, 123, 255, 0.3);
+        }
+
+        .source-group {
+            margin-top: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end; /* Align to right for RTL */
+        }
+
+        .section-divider {
+            border-top: 1px dashed rgba(230, 184, 0, 0.1);
+            margin: 40px 0;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .data-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-right: 8px; /* Adjust margin for RTL */
+        }
+
+        .data-badge.positive {
+            background-color: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+        }
+
+        .data-badge.negative {
+            background-color: rgba(244, 67, 54, 0.2);
+            color: #F44336;
+        }
+
+        .data-badge.neutral {
+            background-color: rgba(160, 160, 160, 0.2);
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="report-title">דוח שוק יומי אסטרטגי: 29 ביוני 2026</h1>
+
+    <div class="slide-container">
+        <span class="badge">תמונת מצב</span>
+        <h2>תמונת מצב מהירה: מה הניע את השוק</h2>
+        <p>סקירה מהירה של מדדים מובילים ומניות שבלטו בתנודתן או בנפח המסחר החריג, נכון לנעילת המסחר ב-26 ביוני 2026 עבור מניות ותעודות סל, ו-29 ביוני 2026 עבור קריפטו.</p>
+
+        <h3>מדדים ראשיים</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>סמל</th>
+                        <th>שם נכס</th>
+                        <th>מחיר סגירה</th>
+                        <th>שינוי יומי ($)</th>
+                        <th>שינוי יומי (%)</th>
+                        <th>הערות</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>SPY</td>
+                        <td>SPDR S&P 500 ETF Trust</td>
+                        <td>728.99</td>
+                        <td class="change-negative">-5.31</td>
+                        <td class="change-negative">-0.72%</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>QQQ</td>
+                        <td>Invesco QQQ Trust, Series 1</td>
+                        <td>706.52</td>
+                        <td class="change-negative">-9.86</td>
+                        <td class="change-negative">-1.38%</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>IWM</td>
+                        <td>iShares Russell 2000 ETF</td>
+                        <td>299.83</td>
+                        <td class="change-positive">+0.92</td>
+                        <td class="change-positive">+0.31%</td>
+                        <td>קרוב לשיא 52 שבועות</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>מניות וקריפטו בולטים (מעל/מתחת ל-2% תנודה משמעותית או נפח חריג)</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>סמל</th>
+                        <th>שם נכס</th>
+                        <th>מחיר סגירה</th>
+                        <th>שינוי יומי ($)</th>
+                        <th>שינוי יומי (%)</th>
+                        <th>הערות</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>NOW</td>
+                        <td>ServiceNow, Inc.</td>
+                        <td>98.34</td>
+                        <td class="change-positive">+8.82</td>
+                        <td class="change-positive">+9.85%</td>
+                        <td>נפח מסחר גבוה מהממוצע</td>
+                    </tr>
+                    <tr>
+                        <td>HOOD</td>
+                        <td>Robinhood Markets, Inc.</td>
+                        <td>98.69</td>
+                        <td class="change-positive">+5.22</td>
+                        <td class="change-positive">+5.58%</td>
+                        <td>נפח מסחר גבוה מהממוצע</td>
+                    </tr>
+                    <tr>
+                        <td>PLTR</td>
+                        <td>Palantir Technologies Inc.</td>
+                        <td>112.93</td>
+                        <td class="change-positive">+5.66</td>
+                        <td class="change-positive">+5.28%</td>
+                        <td>נפח מסחר גבוה מהממוצע</td>
+                    </tr>
+                    <tr>
+                        <td>SPOT</td>
+                        <td>Spotify Technology S.A.</td>
+                        <td>460.02</td>
+                        <td class="change-positive">+18.81</td>
+                        <td class="change-positive">+4.26%</td>
+                        <td>נפח מסחר גבוה מהממוצע</td>
+                    </tr>
+                    <tr>
+                        <td>AAPL</td>
+                        <td>Apple Inc.</td>
+                        <td>283.78</td>
+                        <td class="change-positive">+8.63</td>
+                        <td class="change-positive">+3.14%</td>
+                        <td>נפח מסחר גבוה משמעותית מהממוצע</td>
+                    </tr>
+                    <tr>
+                        <td>UNH</td>
+                        <td>UnitedHealth Group Inc.</td>
+                        <td>427.89</td>
+                        <td class="change-positive">+12.36</td>
+                        <td class="change-positive">+2.97%</td>
+                        <td>נסגרה קרוב לשיא 52 שבועות, נפח מסחר גבוה מהממוצע</td>
+                    </tr>
+                    <tr>
+                        <td>AMZN</td>
+                        <td>Amazon.com, Inc.</td>
+                        <td>232.69</td>
+                        <td class="change-positive">+5.68</td>
+                        <td class="change-positive">+2.50%</td>
+                        <td>נפח מסחר גבוה משמעותית מהממוצע</td>
+                    </tr>
+                    <tr>
+                        <td>BTC/USD</td>
+                        <td>Bitcoin US Dollar</td>
+                        <td>60292.35</td>
+                        <td class="change-positive">+818.34</td>
+                        <td class="change-positive">+1.38%</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>ETH/USD</td>
+                        <td>Ethereum US Dollar</td>
+                        <td>1588.24</td>
+                        <td class="change-positive">+16.14</td>
+                        <td class="change-positive">+1.03%</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>MU</td>
+                        <td>Micron Technology, Inc.</td>
+                        <td>1132.33</td>
+                        <td class="change-negative">-81.23</td>
+                        <td class="change-negative">-6.69%</td>
+                        <td>נפח מסחר גבוה מהממוצע</td>
+                    </tr>
+                    <tr>
+                        <td>COHR</td>
+                        <td>Coherent Corp.</td>
+                        <td>380.56</td>
+                        <td class="change-negative">-26.69</td>
+                        <td class="change-negative">-6.55%</td>
+                        <td>נפח מסחר גבוה מהממוצע</td>
+                    </tr>
+                    <tr>
+                        <td>NNE</td>
+                        <td>Nano Nuclear Energy Inc.</td>
+                        <td>19.87</td>
+                        <td class="change-negative">-0.78</td>
+                        <td class="change-negative">-3.78%</td>
+                        <td>נפח מסחר גבוה מהממוצע</td>
+                    </tr>
+                    <tr>
+                        <td>GOOG</td>
+                        <td>Alphabet Inc.</td>
+                        <td>334.69</td>
+                        <td class="change-negative">-7.50</td>
+                        <td class="change-negative">-2.19%</td>
+                        <td>נפח מסחר גבוה משמעותית מהממוצע</td>
+                    </tr>
+                    <tr>
+                        <td>CRWV</td>
+                        <td>CoreWeave, Inc.</td>
+                        <td>96.58</td>
+                        <td class="change-negative">-2.18</td>
+                        <td class="change-negative">-2.21%</td>
+                        <td>נפח מסחר גבוה מהממוצע</td>
+                    </tr>
+                    <tr>
+                        <td>OKLO</td>
+                        <td>Oklo Inc.</td>
+                        <td>50.00</td>
+                        <td class="change-negative">-1.01</td>
+                        <td class="change-negative">-1.98%</td>
+                        <td>נפח מסחר גבוה מהממוצע</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">AI & שבבים</span>
+        <h2>התלהבות הבינה המלאכותית: אזהרות ופוטנציאל</h2>
+
+        <h3>מה קרה היום: אזהרות מאקרו מפני בועת AI</h3>
+        <p>הבנק להסדרים בינלאומיים (BIS), המכונה "הבנק המרכזי של הבנקים המרכזיים", פרסם אזהרה חריפה מפני ההשקעה המופרזת בבינה מלאכותית, וטען כי התלהבות ה-AI עלולה להוביל לשפל בשוק המניות ולסכן את הכלכלה הגלובלית. האזהרה הדגישה הערכות שווי גבוהות של שוק המניות, שאננות משקיעים, מימון מעגלי והשלכות אפשריות בשוקי האשראי.</p>
+        <p>במקביל, אסטרטג וול סטריט הוותיק מייק וילסון ממורגן סטנלי הזהיר כי "מסחר השבבים" החל להידמות לכסף, ויש להתרחק ממסחר מומנטום פופולרי. אזהרות אלו מגיעות לאחר שבוע בו מניות המומנטום, כולל "שבע המופלאות", רשמו את הביצועים הרביעיים הגרועים ביותר מזה 22 שנה, כאשר ה-S&P 500 פיגר אחר עמיתו המשוקלל באופן שווה ב-350 נקודות בסיס.</p>
+        <div class="source-group">
+            <a class="btn-source" href="https://www.marketwatch.com/story/the-central-bank-of-central-banks-warns-ai-frenzy-could-trigger-stock-market-slump-and-jeopardize-economy-4d24b0a1?mod=mw_rss_topstories">MarketWatch (Jules Rimmer)</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/bis-sounds-alarm-on-ai-exuberance-as-debt-fueled-boom-risks-bust?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Martin Young)</a>
+            <a class="btn-source" href="https://www.marketwatch.com/story/silver-and-the-semiconductor-climax-a-warning-from-morgan-stanleys-wilson-833e06e1?mod=mw_rss_topstories">MarketWatch (Jamie Chisholm)</a>
+            <a class="btn-source" href="https://www.marketwatch.com/story/magnificent-seven-slump-sent-momentum-stocks-to-their-fourth-worst-performance-in-22-years-heres-what-happens-70-of-the-time-720fd2e9?mod=mw_rss_topstories">MarketWatch (Nora Redmond)</a>
+        </div>
+
+        <h3>למה זה חריג: אזהרות ממקורות בעלי השפעה</h3>
+        <p>אזהרה מה-BIS היא אירוע נדיר ובעל משקל רב בשוקי המאקרו, המצביע על דאגה מערכתית ולא רק נקודתית. כאשר אסטרטג כמו מייק וילסון, המזוהה עם אזהרותיו בעבר, מזהיר מפני בועה בתחום השבבים, זה מהווה אינדיקציה לשינוי סנטימנט אפשרי או לסיכון מתגבר. פיגור של מדד ה-S&P 500 ביחס לעמיתו המשוקלל באופן שווה, יחד עם ביצועי חסר חריגים במניות המומנטום, מדגישים חוסר אחידות בשוק וחשש מהתייקרות יתר במניות הטכנולוגיה הגדולות.</p>
+        <p>בניגוד לכך, פרמבאר ידוע, ג'רמי גראנת'ם, דווקא מפנה את כספו לחברות טכנולוגיה מתפתחות. זה יכול להתפרש כסימן קונטרה, או כהתאמה של אסטרטג משקיע ותיק למציאות חדשה.</p>
+        <div class="source-group">
+            <a class="btn-source" href="https://www.marketwatch.com/story/why-permabear-jeremy-grantham-is-steering-his-own-cash-into-high-flying-tech-stocks-911cb30f?mod=mw_rss_topstories">MarketWatch (Steve Goldstein)</a>
+        </div>
+
+        <h3>הלוגיקה: סיכוני התייקרות מול חדשנות מתמשכת</h3>
+        <p>שוק ה-AI מונע על ידי חדשנות מהירה וציפיות גבוהות, המובילות להערכות שווי אגרסיביות. כאשר מימון רב נשען על חוב ומבנים ממונפים, קיים סיכון גבוה לנסיגה מהירה במקרה של שינוי בסנטימנט או במצב המאקרו-כלכלי. עם זאת, התחום עצמו ממשיך להציג חדשנות וביקוש מהותיים, מה שיוצר מתח בין אזהרות המאקרו לבין הזדמנויות ספציפיות בחברות הפועלות בחזית הטכנולוגיה.</p>
+        <p>דוגמה לכך היא העובדה כי מרכזי נתונים של AI חשופים כעת לאיום חדש: מזג אוויר קיצוני, העלול לגרום לעומס על רשתות החשמל, לעלויות ביטוח ותיקון גבוהות יותר. סיכון זה מדגיש את פגיעות התשתית הפיזית של המגזר הטכנולוגי הגדל במהירות.</p>
+        <div class="source-group">
+            <a class="btn-source" href="https://www.cnbc.com/2026/06/29/ai-data-centers-heatwave-climate-risk-weather.html">CNBC</a>
+        </div>
+
+        <h3>מה זה אומר לקראת השבוע: נתיבי השקעה ממוקדים בתוך סנטימנט מעורב</h3>
+        <p>אף על פי אזהרות המאקרו, חדשות חיוביות ספציפיות ממשיכות להגיע מחברות ה-AI והשבבים:</p>
+        <ul>
+            <li><strong>שיתוף פעולה אסטרטגי:</strong> חברות <span class="data-badge positive">Palantir ($PLTR)</span> ו-<span class="data-badge positive">NVIDIA ($NVDA)</span> הכריזו על שותפות אסטרטגית לאספקת AI ריבוני לממשלת ארה"ב, מה שמחזק את נוכחותן בשוק הממשלתי ובתשתיות קריטיות. שותפות זו תאפשר פריסת מודלי Nemotron פתוחים של NVIDIA בסביבות ריבוניות מאובטחות.
+                <div class="source-group">
+                    <a class="btn-source" href="https://x.com/AIStockSavvy/status/2071549202350403610">AIStockSavvy</a>
+                </div>
+                <div class="opinion-card">
+                    <span class="quote-icon">&#8220;</span>
+                    <p>“Combining Palantir infrastructure with NVIDIA's AI and Nemotron models will allow the U.S. government to unleash the full power of LLMs while removing the underlying security risks and rational concerns around proprietary insights migrating into the weights of closed models. Moreover, many of our U.S. clients are already using these models, including multiple supporting critical U.S. infrastructure — both private and public — and this will facilitate their radical expansion.”</p>
+                    <span class="speaker">— Alex Karp, Co-founder and CEO of Palantir Technologies.</span>
+                </div>
+                <div class="opinion-card">
+                    <span class="quote-icon">&#8220;</span>
+                    <p>“Open source AI is foundational to national security, public safety and U.S. technology leadership. Palantir's Nemotron-powered intelligent engine shows how open models can strengthen America's leadership in AI — giving U.S. government agencies a secure, customizable and fully controlled foundation to build mission-critical AI systems in support of national security.”</p>
+                    <span class="speaker">— Jensen Huang, Founder and CEO of NVIDIA.</span>
+                </div>
+            </li>
+            <li><strong>שינויים במחירי יעד:</strong>
+                <ul>
+                    <li><span class="data-badge positive">AMD ($AMD)</span>: קנטור פיצג'רלד העלתה את מחיר היעד שלה ל-$700 (מ-$500), ושימרה דירוג "Overweight", תוך ציון המומנטום הגדול ביותר בחישובים (Compute).
+                        <div class="source-group">
+                            <a class="btn-source" href="https://x.com/AIStockSavvy/status/2071551746095063146">AIStockSavvy</a>
+                        </div>
+                    </li>
+                    <li><span class="data-badge neutral">Intel ($INTC)</span>: קנטור פיצג'רלד העלתה את מחיר היעד שלה ל-$150 (מ-$90), ושימרה דירוג "Neutral", תוך ציון ש-INTC מציגה ביצועי יתר ביחס למובילות כמו NVDA ו-AVGO בסקטור מאיצי החישוב הקטנים יותר.
+                        <div class="source-group">
+                            <a class="btn-source" href="https://x.com/AIStockSavvy/status/2071551475172471131">AIStockSavvy</a>
+                        </div>
+                    </li>
+                    <li><span class="data-badge positive">Taiwan Semi ($TSM)</span>: ברקליס העלתה את מחיר היעד ל-$625 (מ-$470), וציינה אותה כדרך מצוינת לקבל חשיפה ל-AI.
+                        <div class="source-group">
+                            <a class="btn-source" href="https://x.com/AIStockSavvy/status/2071547004618981445">AIStockSavvy</a>
+                        </div>
+                    </li>
+                    <li><strong>חברות שבבים וטכנולוגיה נוספות עם עליית מחירי יעד משמעותית:</strong>
+                        <ul>
+                            <li><span class="data-badge neutral">Applied Materials ($AMAT)</span>: קנטור פיצג'רלד העלתה את מחיר היעד ל-$850 (מ-$650).
+                                <div class="source-group">
+                                    <a class="btn-source" href="https://x.com/AIStockSavvy/status/2071553667228975596">AIStockSavvy</a>
+                                </div>
+                            </li>
+                            <li><span class="data-badge positive">Marvell ($MRVL)</span>: UBS העלתה את מחיר היעד ל-$340 (מ-$230).
+                                <div class="source-group">
+                                    <a class="btn-source" href="https://x.com/AIStockSavvy/status/2071553343046996182">AIStockSavvy</a>
+                                </div>
+                            </li>
+                            <li><span class="data-badge neutral">Astera Labs ($ALAB)</span>: UBS העלתה את מחיר היעד ל-$400 (מ-$205).
+                                <div class="source-group">
+                                    <a class="btn-source" href="https://x.com/AIStockSavvy/status/2071552642505933090">AIStockSavvy</a>
+                                </div>
+                            </li>
+                            <li><span class="data-badge positive">Seagate Technology ($STX)</span>: קנטור פיצג'רלד העלתה את מחיר היעד ל-$1,300 (מ-$1,000).
+                                <div class="source-group">
+                                    <a class="btn-source" href="https://x.com/AIStockSavvy/status/2071552128397558090">AIStockSavvy</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><strong>הרחבת תשתית AI:</strong> <span class="data-badge neutral">Bitdeer ($BTDR)</span> חתמה על הסכם חכירה למרכז נתונים של AI בנורווגיה. <span class="data-badge neutral">FuelCell Energy ($FCEL)</span> הבטיחה מימון של 49 מיליון דולר לפרויקט בדרום קוריאה, תוך ציון הזדמנויות בשוקי הכוח למרכזי נתונים של AI.
+                <div class="source-group">
+                    <a class="btn-source" href="https://x.com/AIStockSavvy/status/2071551190337196180">AIStockSavvy (Bitdeer)</a>
+                    <a class="btn-source" href="https://x.com/AIStockSavvy/status/2071557239400185999">AIStockSavvy (FuelCell Energy)</a>
+                </div>
+            </li>
+            <li><span class="data-badge neutral">Okta ($OKTA)</span>: סקוטיהבנק העלה את מחיר היעד ל-$135 (מ-$105), וציין כי Okta ממוקמת היטב לשוק המתפתח של זהות סוכני AI.
+                <div class="source-group">
+                    <a class="btn-source" href="https://x.com/AIStockSavvy/status/2071554807567917086">AIStockSavvy</a>
+                </div>
+            </li>
+            <li><span class="data-badge positive">Penguin Solutions ($PENG)</span>: סטיפל חזרה על דירוג "קנייה" ושמרה על מחיר יעד של $66, תוך ציון שיפור מתמשך במחירי הזיכרון וזכיות בלקוחות, עם מומנטום חזק לקראת שנת הכספים 2027.
+                <div class="source-group">
+                    <a class="btn-source" href="https://x.com/AIStockSavvy/status/2071556078718890423">AIStockSavvy</a>
+                </div>
+            </li>
+        </ul>
+        <p>לקראת השבוע, מומלץ להישאר ערניים לסיכוני המאקרו אך גם לחפש הזדמנויות ספציפיות בתחומי ה-AI והשבבים שבהם יש עדויות לחוזק תפעולי, שותפויות אסטרטגיות או שדרוגים משמעותיים של אנליסטים. השקעות בתשתיות AI (כמו דאטה סנטרים ואנרגיה) יקבלו כנראה יותר תשומת לב לאור ההתפתחויות האחרונות.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">קריפטו</span>
+        <h2>שוק הקריפטו: רגולציה גלובלית ותחזיות לביטקוין ואת'ריום</h2>
+
+        <h3>מה קרה היום: התפתחויות רגולטוריות וחדשות ליבה</h3>
+        <p>אירופה מתקרבת למועד האחרון (1 ביולי) ליישום תקנות MiCA (Markets in Crypto-Assets), כאשר גרמניה מובילה את מרוץ הרישוי עם 244 חברות מאושרות ברחבי האיחוד האירופי ואזור ה-EEA. הרשות הבנקאית האירופית (EBA) פירטה מסגרת קנסות מוצעת שתאפשר לקנוס מנפיקי טוקנים משמעותיים שאינם תואמים את התקנות עד 12.5% מההכנסה השנתית שלהם. בינאנס, לדוגמה, סגרה את שירותיה באירופה לאחר שלא הצליחה להשיג רישיון.</p>
+        <p>בארה"ב, הסיכויים לחקיקת חוק CLARITY ב-2026 צומצמו ל-50% בלבד, כשזמן הדיונים בסנאט אוזל לפני פגרת אוגוסט. במקביל, ה-BIS הזהיר שוב כי מטבעות יציבים (Stablecoins) מסתכנים בפיצול המערכת הפיננסית הגלובלית, וקרא למעצבי מדיניות להאיץ עבודה על צורות מסומלות של כסף בנקים מרכזיים ומסחריים.</p>
+        <div class="source-group">
+            <a class="btn-source" href="https://cointelegraph.com/news/mica-licenses-cluster-germany-total-reach-244?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Helen Partz)</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/eu-watchdog-eba-details-big-crypto-fines-as-landmark-laws-bite?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Robert Lakin)</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/galaxy-cuts-2026-clarity-act-odds-50?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Zoltan Vardai)</a>
+            <a class="btn-source" href="https://cointelegraph.com/features/hodlers-digest-binance?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Andrew Fenton)</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/bis-warns-stablecoins-risk-fragmenting-global-financial-system?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Robert Lakin)</a>
+        </div>
+
+        <h3>למה זה חריג: איום רגולטורי מתקרב וחוסר ודאות</h3>
+        <p>המועד האחרון של MiCA באירופה מהווה אירוע רגולטורי משמעותי שישפיע ישירות על פעילותן של חברות קריפטו רבות. האפשרות לקנסות ענק משנה את כלכלת הסיכונים עבור מנפיקי טוקנים ופלטפורמות מסחר. בארה"ב, חוסר ההתקדמות בחוק CLARITY משאיר את השוק בערפל רגולטורי מתמשך, מה שעלול להאט אימוץ מוסדי. אזהרות ה-BIS לגבי מטבעות יציבים משקפות דאגה עמוקה מהיציבות הפיננסית הרחבה יותר.</p>
+
+        <h3>הלוגיקה: התבגרות רגולטורית מול אתגרי אימוץ</h3>
+        <p>הרגולציה נועדה להביא יציבות והגנת צרכנים לשוק הקריפטו, אך היא גם מייצרת חסמי כניסה גבוהים יותר ודוחפת להתמזגויות ורכישות, כפי שברנשטיין צופה גל מיזוגים ורכישות בשוקי החיזוי. כמו כן, חברות ברוקראז' קוריאניות כמו Kiwoom מחפשות להשקיע בבורסות קריפטו כמו Bithumb לקראת רפורמות רגולטוריות חדשות ביולי, מה שמדגים התמזגות בין הפיננסים המסורתיים לקריפטו בתגובה לרגולציה. עם זאת, אתגרים עדיין קיימים, וניתן לראות זאת בדוגמת סגירת בורסת ה-DEX של Loopring, שציינה חוסר אימוץ.</p>
+        <div class="source-group">
+            <a class="btn-source" href="https://cointelegraph.com/news/prediction-market-consolidation-ma-wave-bernstein?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Ezra Reguerra)</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/kiwoom-stake-bithumb-exchange?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Zoltan Vardai)</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/pioneering-zk-rollup-loopring-announces-dex-closure-citing-no-adoption?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Martin Young)</a>
+        </div>
+        <div class="opinion-card">
+            <span class="quote-icon">&#8220;</span>
+            <p>“We lacked a virtual machine, no composability, no real‑world payment use cases. That limitation kept our ecosystem from growing.”</p>
+            <span class="speaker">— צוות Loopring על סגירת בורסת ה-DEX שלהם.</span>
+        </div>
+
+        <h3>מה זה אומר לקראת השבוע: נתיב ברור לקריפטו וצפי לביטקוין ואת'ריום</h3>
+        <ul>
+            <li><strong>רגולציה:</strong> שבוע זה יהיה קריטי עבור חברות קריפטו הפועלות באירופה. יש לצפות לבהירות רבה יותר לגבי יישום MiCA והשלכותיה על השוק. חברות ללא רישיונות מתאימים יצטרכו להתאים את פעילותן או לסגור שירותים, מה שיכול להוביל לשינויים בהיצע השירותים למשקיעים אירופאים.</li>
+            <li><strong>ביטקוין ואת'ריום:</strong>
+                <ul>
+                    <li><span class="data-badge positive">Bitcoin ($BTC)</span>: ניתוח טכני של ה-RSI (Relative Strength Index) מצביע על "סימן מפתח לשנת 2026" ודיברגנציה שוורית שמובילה חלק מהאנליסטים לקרוא לתחתית שוק דובי בדומה ל-2022. קיימת ציפייה לעלייה ל-$75,000 ביולי, אך אזהרות קיימות לגבי ירידה אפשרית ל-$55,000 אם רמות תמיכה יפרצו.
+                        <div class="source-group">
+                            <a class="btn-source" href="https://cointelegraph.com/markets/btc-price-rsi-prints-key-2026-signal-five-things-to-know-in-bitcoin-this-week?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (William Suberg)</a>
+                            <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-rsi-bullish-divergence-sees-analysis-call-2022-bottom-repeat?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (William Suberg)</a>
+                            <a class="btn-source" href="https://cointelegraph.com/markets/will-bitcoin-price-recover-in-july?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Yashu Gola)</a>
+                        </div>
+                    </li>
+                    <li><span class="data-badge positive">Ethereum ($ETH)</span>: קרן Sharplink רכשה 62.4 מיליון דולר ב-ETH בשבוע שעבר לאחר הפסקה של שמונה חודשים, מה שמעיד על חידוש אסטרטגיית צבירה. ויטליק בוטרין, ממייסדי את'ריום, התייחס לאפשרות של הצפנת "אי-הבחנה" כאמצעי להצבעה פרטית על הבלוקצ'יין בעתיד.
+                        <div class="source-group">
+                            <a class="btn-source" href="https://cointelegraph.com/news/ether-treasury-sharplink-buys-624m-of-eth-in-3-days?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Cointelegraph)</a>
+                            <a class="btn-source" href="https://cointelegraph.com/news/vitalik-buterin-private-onchain-voting-obfuscation?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Ezra Reguerra)</a>
+                        </div>
+                        <div class="image-container">
+                            <img src="https://s3-images.ctmedia.io/media/article-covers/vitalik-portrait-privacy.jpg" alt="Vitalik Buterin">
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <p>משקיעים צריכים לעקוב מקרוב אחר רמות התמיכה וההתנגדות של ביטקוין, ולהיות ערניים לכל התפתחות רגולטורית נוספת באירופה ובארה"ב. רכישות משמעותיות של ETH מעידות על סנטימנט חיובי כלפי הנכס, בעוד שהשיח של ויטליק בוטרין מצביע על פוטנציאל לטווח הארוך בטכנולוגיית הבלוקצ'יין.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">תאגידי / סקטוריאלי</span>
+        <h2>חדשות תאגידיות וסקטוריאליות בולטות</h2>
+
+        <h3>מה קרה היום: פעולות תאגידיות משמעותיות</h3>
+        <ul>
+            <li><strong>Comcast:</strong> חברת קומקאסט הודיעה היום על כוונתה לפצל את NBCUniversal לחברה נפרדת, מה שגרם למנייתה לרשום את היום הטוב ביותר שלה מזה 18 שנה.
+                <div class="source-group">
+                    <a class="btn-source" href="https://www.marketwatch.com/story/comcast-to-spin-off-nbcuniversal-after-15-years-of-ownership-dad0597a?mod=mw_rss_topstories">MarketWatch (Steve Goldstein)</a>
+                    <a class="btn-source" href="https://www.cnbc.com/2026/06/29/5-things-to-know-before-the-stock-market-opens.html">CNBC</a>
+                </div>
+            </li>
+            <li><strong><span class="data-badge positive">Robinhood ($HOOD)</span>:</strong> גולדמן זאקס העלתה את מחיר היעד למניית רובינהוד ל-$121 (מ-$108), ושימרה דירוג "קנייה".
+                <div class="source-group">
+                    <a class="btn-source" href="https://x.com/AIStockSavvy/status/2071547343350952418">AIStockSavvy</a>
+                </div>
+            </li>
+            <li><strong><span class="data-badge positive">ServiceNow ($NOW)</span>:</strong> המניה סיימה את יום המסחר בעלייה חדה של 9.85%, כאשר ברנשטיין שימרה דירוג "קנייה" עם מחיר יעד של $236.
+                <div class="source-group">
+                    <a class="btn-source" href="https://x.com/AIStockSavvy/status/2071557820609118315">AIStockSavvy</a>
+                </div>
+            </li>
+            <li><strong><span class="data-badge positive">UnitedHealth Group ($UNH)</span>:</strong> המניה נסגרה במחיר של $427.89, קרוב מאוד לשיא 52 השבועות שלה שעמד על $427.93.
+                <div class="source-group">
+                    <a class="btn-source" href="https://www.marketdata.com">MarketData</a>
+                </div>
+            </li>
+            <li><strong><span class="data-badge neutral">IREN Limited ($IREN)</span>:</strong> חברת IREN Limited נוספה למדד ראסל 1000, החל מנעילת המסחר ב-26 ביוני.
+                <div class="source-group">
+                    <a class="btn-source" href="https://x.com/AIStockSavvy/status/2071550030079484385">AIStockSavvy</a>
+                </div>
+            </li>
+            <li><strong><span class="data-badge neutral">Kratos Defense & Security ($KTOS)</span>:</strong> UBS קיצצה את מחיר היעד למניה ל-$60 (מ-$82), ושימרה דירוג "החזק".
+                <div class="source-group">
+                    <a class="btn-source" href="https://x.com/AIStockSavvy/status/2071559168197005800">AIStockSavvy</a>
+                </div>
+            </li>
+            <li><strong>SpaceX:</strong> מכירת אג"ח של 25 מיליארד דולר על ידי SpaceX משכה ביקוש עצום, אך אנליסטים מזהירים מפני סיכוני הוצאות הון, מיחזור חוב וריכוזיות משקיעים.
+                <div class="source-group">
+                    <a class="btn-source" href="https://www.cnbc.com/2026/06/29/spacex-debt-diversification-equity-bond-investors-analysts.html">CNBC</a>
+                </div>
+            </li>
+        </ul>
+
+        <h3>למה זה חריג: אירועים בעלי פוטנציאל לשינוי ערך</h3>
+        <p>פיצול NBCUniversal מקומקאסט הוא צעד אסטרטגי משמעותי שיכול לפתוח ערך עבור בעלי המניות. העלאות מחירי היעד של אנליסטים משפיעות על הסנטימנט ועל ציפיות השוק, במיוחד עבור חברות כמו Robinhood ו-ServiceNow שרשמו תנודות חזקות. הכללת IREN במדד ראסל 1000 מייצרת ביקוש אוטומטי מצד קרנות מחקות, ומובילה לחשיפה מוגברת. לעומת זאת, קיצוץ משמעותי במחיר יעד כמו במקרה של Kratos מהווה איתות אזהרה, ומכירת אג"ח גדולה של SpaceX מראה אמון מצד משקיעים בחוב אך גם מעלה שאלות לגבי סיכונים ארוכי טווח.</p>
+
+        <h3>הלוגיקה: מהלכים תאגידיים וגורמים חיצוניים מעצבים את השוק</h3>
+        <p>פעולות תאגידיות כמו ספין-אופים מכוונות לעתים קרובות לייעול עסקים ולשחרור ערך חבוי. דירוגי אנליסטים ומחירי יעד מספקים אינדיקציה לסנטימנט המוסדי, ויכולים להשפיע על תנועות מחירים בטווח הקצר והבינוני. אירועים גיאופוליטיים, כמו הרחבת הגבלות הייצוא של סין על יפן, משפיעים על שרשרות האספקה העולמיות, במיוחד בתחומי הביטחון והטכנולוגיה. ספציפית, נשק לייזר והשוק המתפתח של נגד-מל"טים משנים את הערכת מניות הביטחון, כאשר חברות כמו <span class="data-badge neutral">Palantir ($PLTR)</span> ו-Elbit נחשבות לשחקניות מובילות בתחום זה.</p>
+        <div class="source-group">
+            <a class="btn-source" href="https://www.cnbc.com/2026/06/29/china-japan-export-controls-watch-list-defense-entities.html">CNBC</a>
+            <a class="btn-source" href="https://www.marketwatch.com/story/laser-weapons-arent-science-fiction-anymore-and-theyre-changing-how-defense-stocks-are-valued-ff4c3910?mod=mw_rss_topstories">MarketWatch (Jurica Dujmovic)</a>
+        </div>
+
+        <h3>מה זה אומר לקראת השבוע: הזדמנויות וסיכונים ממוקדים</h3>
+        <p>לקראת השבוע, יש לעקוב אחר ההתפתחויות סביב פיצול NBCUniversal והשפעותיו על סקטור המדיה. מניות כמו <span class="data-badge positive">HOOD</span> ו-<span class="data-badge positive">NOW</span> עשויות להמשיך להציג מומנטום חיובי לאור גיבוי האנליסטים. הכללת <span class="data-badge neutral">IREN</span> בראסל 1000 צפויה להביא לביקוש מתמשך. יש לשים לב לשינויים בהערכות שווי של חברות ביטחון והגנה כמו <span class="data-badge neutral">PLTR</span>, לאור החדשנות בתחום נשק הלייזר ונגד-מל"טים וההשלכות הגיאופוליטיות. סקטורי הביטחון והטכנולוגיה עשויים להגיב להחלטות מדיניות נוספות מצד סין ויפן, כמו גם להשפעות רחבות יותר על שרשרת האספקה הגלובלית. בנוסף, חברות כמו Axon Enterprise עשויות לראות עניין מוגבר בעקבות עסקאות פוטנציאליות עם גופים ממשלתיים.</p>
+        <div class="source-group">
+            <a class="btn-source" href="https://www.cnbc.com/2026/06/29/trump-axon-stock-ice-taser-immigration-enforcement.html">CNBC</a>
+        </div>
+    </div>
+
+</body>
+</html>
