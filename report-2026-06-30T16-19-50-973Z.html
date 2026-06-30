@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי: 30 ביוני 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0e17;
+            --text-light: #e0e0e0;
+            --accent-gold: #ffcc00;
+            --accent-blue: #007bff;
+            --divider-color: rgba(255, 255, 255, 0.1);
+            --positive-color-text: #28a745;
+            --negative-color-text: #dc3545;
+            --positive-color-bg: rgba(40, 167, 69, 0.1);
+            --negative-color-bg: rgba(220, 53, 69, 0.1);
+            --card-bg: #1a1f28;
+            --highlight-bg: #2a303c;
+            --opinion-bg: #2d2d3e;
+            --badge-bg: #3d3d4a;
+            --badge-text: #e0e0e0;
+            --border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            margin: 0;
+            padding: 20px;
+            direction: rtl;
+            line-height: 1.6;
+        }
+
+        .report-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            border-bottom: 1px solid var(--divider-color);
+        }
+
+        .report-header h1 {
+            color: var(--accent-gold);
+            font-weight: 700;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .report-header p {
+            font-size: 1.1em;
+            color: #b0b0b0;
+        }
+
+        .slide-container {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--badge-bg);
+            color: var(--badge-text);
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            border: 1px solid var(--divider-color);
+        }
+
+        h2 {
+            color: var(--accent-blue);
+            font-weight: 700;
+            font-size: 1.8em;
+            margin-top: 0;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--divider-color);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: var(--text-light);
+            font-weight: 600;
+            font-size: 1.3em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        p, ul, ol {
+            font-size: 1em;
+            margin-bottom: 15px;
+            color: #c0c0c0;
+        }
+
+        ul {
+            list-style: none;
+            padding-right: 0;
+        }
+
+        ul li:before {
+            content: '•';
+            color: var(--accent-gold);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-right: 10px;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .pulse-item {
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 100px;
+        }
+
+        .pulse-item .symbol {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+
+        .pulse-item .name {
+            font-size: 0.9em;
+            color: #a0a0a0;
+            margin-bottom: 10px;
+        }
+
+        .pulse-item .price {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+
+        .pulse-item .change-positive {
+            color: var(--positive-color-text);
+            background-color: var(--positive-color-bg);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .pulse-item .change-negative {
+            color: var(--negative-color-text);
+            background-color: var(--negative-color-bg);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .highlight-card {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-blue);
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+        }
+
+        .highlight-card p {
+            margin: 0;
+            color: #e0e0e0;
+            font-size: 0.95em;
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-bg);
+            border-right: 4px solid var(--accent-gold);
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            position: relative;
+            font-style: italic;
+        }
+
+        .opinion-card:before {
+            content: '❝';
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            font-size: 2.5em;
+            color: rgba(255, 204, 0, 0.2);
+            line-height: 1;
+        }
+
+        .opinion-card p {
+            margin: 0;
+            color: #f0f0f0;
+            font-size: 0.95em;
+            padding-right: 40px; /* Make space for the quote icon */
+        }
+
+        .opinion-card .author {
+            display: block;
+            margin-top: 10px;
+            font-weight: 600;
+            color: var(--accent-gold);
+            font-style: normal;
+            font-size: 0.85em;
+        }
+
+        .section-divider {
+            border-bottom: 1px solid var(--divider-color);
+            margin: 40px 0;
+        }
+
+        .source-link {
+            display: block;
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        .btn-source {
+            background-color: var(--accent-blue);
+            color: var(--text-light);
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            border: none;
+        }
+
+        .btn-source:hover {
+            background-color: #0056b3;
+            transform: translateY(-1px);
+        }
+
+        .news-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .data-badge {
+            display: inline-block;
+            background-color: var(--accent-blue);
+            color: var(--text-light);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-left: 10px;
+        }
+        .data-badge.positive {
+            background-color: var(--positive-color-text);
+        }
+        .data-badge.negative {
+            background-color: var(--negative-color-text);
+        }
+    </style>
+</head>
+<body>
+    <div class="report-header">
+        <h1>דוח שוק יומי</h1>
+        <p>סקירה אסטרטגית לשוק ההון - 30 ביוני 2026</p>
+    </div>
+
+    <div class="slide-container">
+        <span class="badge">תמונת מצב מהירה</span>
+        <h2>דופק השוק: תנועות בולטות היום</h2>
+        <p>להלן נכסים מרכזיים ומניות מרשימת המעקב שרשמו תנועות חריגות או הגיעו לנקודות ציון משמעותיות היום, 30 ביוני 2026:</p>
+        <div class="market-pulse-grid">
+            <div class="pulse-item">
+                <div class="symbol">BTC/USD</div>
+                <div class="name">ביטקוין</div>
+                <div class="price">58,263.05 $</div>
+                <div class="change-negative">-1,899.68 (-3.16%)</div>
+                <p>קרוב לתחתית 52 השבועות (58,000 $)</p>
+            </div>
+            <div class="pulse-item">
+                <div class="symbol">ETH/USD</div>
+                <div class="name">את'ריום</div>
+                <div class="price">1,565.49 $</div>
+                <div class="change-negative">-46.99 (-2.91%)</div>
+                <p>קרוב לתחתית 52 השבועות (1,512.87 $)</p>
+            </div>
+            <div class="pulse-item">
+                <div class="symbol">AMD</div>
+                <div class="name">Advanced Micro Devices</div>
+                <div class="price">578.28 $</div>
+                <div class="change-positive">+38.79 (+7.19%)</div>
+                <p>הגיעה לשיא 52 שבועות (579.68 $) היום</p>
+            </div>
+            <div class="pulse-item">
+                <div class="symbol">SPCX</div>
+                <div class="name">SpaceX</div>
+                <div class="price">169.725 $</div>
+                <div class="change-positive">+5.535 (+3.37%)</div>
+                <p>תנועה חיובית חדה</p>
+            </div>
+            <div class="pulse-item">
+                <div class="symbol">AAPL</div>
+                <div class="name">Apple Inc.</div>
+                <div class="price">288.18 $</div>
+                <div class="change-positive">+6.44 (+2.29%)</div>
+                <p>עלייה משמעותית</p>
+            </div>
+            <div class="pulse-item">
+                <div class="symbol">CRWV</div>
+                <div class="name">CoreWeave, Inc.</div>
+                <div class="price">97.73 $</div>
+                <div class="change-positive">+2.22 (+2.32%)</div>
+                <p>עלייה בולטת</p>
+            </div>
+            <div class="pulse-item">
+                <div class="symbol">OKLO</div>
+                <div class="name">Oklo Inc.</div>
+                <div class="price">51.26 $</div>
+                <div class="change-negative">-1.50 (-2.84%)</div>
+                <p>ירידה משמעותית</p>
+            </div>
+            <div class="pulse-item">
+                <div class="symbol">NOW</div>
+                <div class="name">ServiceNow, Inc.</div>
+                <div class="price">97.71 $</div>
+                <div class="change-negative">-2.26 (-2.26%)</div>
+                <p>ירידה בולטת</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">טכנולוגיה ו-AI</span>
+        <h2>השקעות ב-AI וסנטימנט השוק</h2>
+
+        <h3>מה קרה היום</h3>
+        <div class="highlight-card">
+            <p><strong>AWS משקיעה מיליארד דולר ביחידת AI חדשה:</strong> Amazon Web Services (AWS) תבצע השקעה של 1 מיליארד דולר ביחידת AI חדשה, במטרה לשלב מהנדסי AI בצוותי לקוחות. יחידה זו, הנקראת AWS FDEs (Forward Deployed Engineers), תפעל להטמיע פתרונות ויכולות AI חדשות בצוותי לקוחות תוך שבועות.
+            <span class="source-link"><a class="btn-source" href="https://www.cnbc.com/2026/06/30/aws-amazon-ai-forward-deployed-engineers.html">CNBC</a>, <a class="btn-source" href="https://x.com/AIStockSavvy/status/2071972339273597238">@AIStockSavvy</a></span></p>
+            <p><strong>שותפות בין FactSet ל-Google Cloud:</strong> חברת FactSet חתמה על שותפות אסטרטגית עם Google Cloud לפיתוח פתרונות AI לתחום הפיננסי. במסגרת השותפות, FactSet תשלב יכולות Gemini בפלטפורמת Workstation שלה כדי לאפשר מחקר מעמיק וחוויות AI מולטי-מודאליות.
+            <span class="source-link"><a class="btn-source" href="https://x.com/AIStockSavvy/status/2071919703178498220">@AIStockSavvy</a></span></p>
+        </div>
+        <div class="highlight-card">
+            <p><strong>ירידה בשווי שוק של ה-Mag 7 על רקע חששות מהוצאות AI:</strong> שווי השוק של מניות ה-"Magnificent 7" הצטמק ב-2.3 טריליון דולר. המשקיעים מביעים חשש מהיקף ההשקעות העצומות ב-AI ומהמועד בו חברות אלו יניבו תשואה על השקעות אלו.
+            <span class="source-link"><a class="btn-source" href="https://www.cnbc.com/2026/06/30/magnificent-7-stocks-sell-off-investors-grow-jittery-on-ai-spending.html">CNBC</a></span></p>
+            <p><strong>הצעת מחיר גבוהה יותר לאלפבית (GOOG):</strong> מורגן סטנלי העלה את מחיר היעד למניית אלפבית (GOOG) ל-415 דולר מ-375 דולר, ושומר על דירוג "Overweight". האנליסטים סבורים שהמשקיעים מתעלמים מהפוטנציאל של עסקי השבבים המותאמים אישית של אלפבית, על רקע תוכניות החברה להרחיב את קיבולת מרכזי הנתונים שלה עד 2028. המניה עלתה ב-4% בכניסתה למדד הדאו ג'ונס.
+            <span class="source-link"><a class="btn-source" href="https://www.marketwatch.com/story/alphabets-stock-slump-is-a-tactical-buying-opportunity-according-to-one-analyst-bdbe97fa?mod=mw_rss_topstories">MarketWatch</a>, <a class="btn-source" href="https://x.com/AIStockSavvy/status/2071929509671051436">@AIStockSavvy</a>, <a class="btn-source" href="https://www.cnbc.com/2026/06/29/alphabet-googl-stock-dow-average.html">CNBC</a></span></p>
+        </div>
+        <div class="highlight-card">
+            <p><strong>OKX משיקה שוק AI לסוכנים אוטונומיים:</strong> בורסת הקריפטו OKX השיקה שוק בטא לכלכלת סוכנים אוטונומיים, המאפשר לסוכני AI למצוא עבודה באופן עצמאי ולשתף פעולה עם סוכנים אחרים.
+            <span class="source-link"><a class="btn-source" href="https://cointelegraph.com/news/okx-ai-marketplace-autonomous-agent-economy?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a></span></p>
+        </div>
+
+        <h3>למה זה חריג</h3>
+        <ul>
+            <li>השקעה בסדר גודל של מיליארד דולר על ידי AWS מעידה על מחויבות עמוקה להרחיב את יכולות ה-AI ואת התחרות בשוק הענן, גם כאשר חברות אחרות מביעות חשש מהוצאות בתחום.</li>
+            <li>השותפות בין FactSet ל-Google Cloud מדגישה את חדירת ה-AI לתעשיית הפיננסים המקצועית, ומראה כיצד ענקיות הטכנולוגיה והדאטה מחפשות לייצר ערך באמצעות יישומי AI ספציפיים.</li>
+            <li>הניגוד בין ההשקעות העצומות והאופטימיות של חברות ספציפיות לבין החששות הרחבים יותר לגבי ה-Mag 7 מעיד על סנטימנט שוק מורכב, שבו ההתלהבות מ-AI מתנגשת עם חששות מפני התמחור והרווחיות העתידית.</li>
+            <li>העלאת מחיר היעד לאלפבית על ידי Morgan Stanley, יחד עם כניסתה למדד הדאו ג'ונס, מצביעה על פוטנציאל צמיחה שלא ממומש במלואו בעיני חלק מהאנליסטים, במיוחד סביב עסקי השבבים שלה.</li>
+        </ul>
+
+        <h3>הלוגיקה</h3>
+        <p>השקעות אגרסיביות בתחום ה-AI כמו זו של AWS, יחד עם שותפויות אסטרטגיות כמו זו של FactSet וגוגל, משקפות את ההבנה שחדשנות ב-AI היא מפתח לתחרותיות ארוכת טווח. עם זאת, קיים מתח בשוק בין ההתלהבות מחדשנות זו לבין השאלה מתי ובאיזו מידה יתורגמו ההשקעות העצומות לרווחיות. הדאגה בנוגע לשווי ה-Mag 7 נובעת מהחשש שקצב הצמיחה העתידי עלול שלא להצדיק את התמחור הנוכחי, למרות החדשנות. עם זאת, אנליסטים מסוימים רואים בירידות נקודת כניסה אטרקטיבית לחברות כמו אלפבית, כשהם מדגישים את הפוטנציאל החבוי בתחומים ספציפיים כמו שבבים בהתאמה אישית.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">קריפטו</span>
+        <h2>ביטקוין בסביבת שפל 52 שבועות, התפתחויות רגולטוריות ומוסדיות</h2>
+
+        <h3>מה קרה היום</h3>
+        <div class="highlight-card">
+            <p><strong>ביטקוין קרוב לתחתית 52 השבועות ואת'ריום ממשיך לרדת:</strong> הביטקוין (BTC/USD) נסחר היום במחיר של 58,263.05 דולר, בירידה של 3.16%, ומתקרב באופן משמעותי לתחתית 52 השבועות שלו שעומדת על 58,000 דולר. האת'ריום (ETH/USD) נסחר ב-1,565.49 דולר, בירידה של 2.91%, וגם הוא מתקרב לתחתית 52 השבועות שלו שעומדת על 1,512.87 דולר. סך הכל, מחירי הביטקוין והאת'ריום מראים ירידה של כ-40% משנה שעברה, והביטקוין נמצא בדרך לחודש הגרוע ביותר מאז יוני 2022.
+            <span class="source-link"><a class="btn-source" href="https://finance.yahoo.com/personal-finance/investing/article/bitcoin-and-ethereum-prices-today-tuesday-june-30-prices-sliding-down-about-40-from-last-year-124424056.html">Yahoo Finance</a></span></p>
+            <p><strong>יחס Put-Call של ביטקוין בשיא של שנה:</strong> יחס ה-Put-Call באופציות הביטקוין הגיע לשיא של שנה, מה שמעיד על כך שמשקיעים רבים רואים פוטנציאל לירידה נוספת, ייתכן שעד ל-55,000 דולר. הדבר מודגש על ידי זרימות יומיות שליליות מתמשכות מקרנות סל (ETFs) לביטקוין.
+            <span class="source-link"><a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-put-call-ratio-hits-1-year-high-are-bears-preparing-for-drop-to-55k?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a></span></p>
+        </div>
+        <div class="highlight-card">
+            <p><strong>מניית Strategy (MSTR) צונחת ב-44% בחודש יוני:</strong> חברת Strategy, המחזיקה בביטקוין רב, חוותה ירידה של 44% במנייתה בחודש יוני, על רקע קריסת הביטקוין. TD Cowen הורידה את מחיר היעד שלה למניית MSTR ל-260 דולר מ-400 דולר, אך עדיין שומרת על דירוג "קנייה".
+            <span class="source-link"><a class="btn-source" href="https://cointelegraph.com/news/strategy-new-plan-split-community-mstr-strc-climb?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>, <a class="btn-source" href="https://finance.yahoo.com/markets/crypto/articles/strategy-stock-falls-44-june-141400027.html">Yahoo Finance</a>, <a class="btn-source" href="https://x.com/AIStockSavvy/status/2071910922944123212">@AIStockSavvy</a></span></p>
+            <p><strong>ARK Invest של קאת'י ווד רוכשת מניות קריפטו:</strong> ARK Invest הוסיפה 43.5 מיליון דולר למניות קריפטו, כולל Coinbase ו-Circle, על רקע ירידות בשוק.
+            <span class="source-link"><a class="btn-source" href="https://cointelegraph.com/news/cathie-woods-ark-scoops-up-43m-worth-of-crypto-stocks-amid-market-dip?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a></span></p>
+            <p><strong>Bitmine מגדילה החזקות את'ריום:</strong> Bitmine רכשה בשבוע שעבר כ-43 מיליון דולר באת'ריום והיא הצטרפה למדד Russell 1000, מה שמקרב אותה ליעד שלה להחזיק ב-5% מסך היצע האת'ריום.
+            <span class="source-link"><a class="btn-source" href="https://cointelegraph.com/news/bitmine-lifts-ethereum-holdings-to-57m-as-it-joins-russell-1000?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a></span></p>
+        </div>
+
+        <h3>למה זה חריג</h3>
+        <ul>
+            <li>התקרבות הביטקוין לתחתית 52 השבועות, לצד יחס Put-Call גבוה, מצביעה על לחץ מכירה משמעותי וחשש מפני המשך ירידות, למרות התנועות החיוביות בשוק המניות הכללי.</li>
+            <li>הירידה החדה במניית Strategy מדגישה את הסיכון הגבוה בהחזקה במניות הקשורות ישירות לביטקוין בעת ירידות בשוק הקריפטו, ומהווה אינדיקטור למינוף בשוק זה.</li>
+            <li>מנגד, רכישות של ARK Invest והגדלת החזקות את'ריום על ידי Bitmine, כמו גם כניסתה למדד Russell 1000, מראות כי ישנם גופים מוסדיים שמנצלים את הירידות כהזדמנות כניסה, מה שמעיד על אמונה לטווח ארוך בנכסים דיגיטליים.</li>
+        </ul>
+
+        <h3>הלוגיקה</h3>
+        <p>שוק הקריפטו חווה תקופה של תנודתיות גבוהה וסנטימנט שלילי, כאשר הביטקוין נאבק לשמור על רמת תמיכה קריטית של 60,000 דולר. יחס ה-Put-Call הגבוה מעיד על ציפיות לירידות נוספות, כאשר משקיעים מגדרים את עצמם מפני סיכונים. עם זאת, פעולות של גופים מוסדיים כמו ARK Invest ו-Bitmine המנצלות ירידות לרכישה, מצביעות על תפיסה שהשוק מציע כעת "הנחה" וכי הפוטנציאל ארוך הטווח נשמר. זהו מאבק בין סנטימנט קצר-טווח המושפע ממומנטום שלילי לבין הערכות ארוכות-טווח לגבי אימוץ והבשלה של שוק הקריפטו.</p>
+
+        <div class="opinion-card">
+            <p>The record Bitcoin supply held by long-term holders may suggest that the crypto market bottom will come early.</p>
+            <span class="author">— Cory Klippsten, CEO of Swan <span class="source-link"><a class="btn-source" href="https://cointelegraph.com/news/record-bitcoin-holder-supply-early-bottom-swan-ceo?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a></span></span>
+        </div>
+        <div class="opinion-card">
+            <p>It sends &ldquo;a very clear signal&rdquo; to other institutions that may be sitting on the sidelines and looking at these larger funds as leaders.</p>
+            <span class="author">— Basil Al Askari, CEO of MidChains <span class="source-link"><a class="btn-source" href="https://cointelegraph.com/news/sovereign-funds-see-bitcoin-discount-as-entry-point-midchains-ceo-says?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a></span></span>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">רגולציה ופיננסים דיגיטליים</span>
+        <h2>התקדמות רגולטורית, שיתופי פעולה ותחרות בשוק הקריפטו</h2>
+
+        <h3>מה קרה היום</h3>
+        <div class="highlight-card">
+            <p><strong>השקת Stablecoin גלובלי משותף:</strong> קונסורציום הכולל את Visa, Stripe וחברות נוספות, משיק במשותף stablecoin גלובלי חדש. מהלך זה נועד לקדם שימוש נרחב יותר במטבעות יציבים.
+            <span class="source-link"><a class="btn-source" href="https://x.com/AIStockSavvy/status/2071949049054245273">@AIStockSavvy</a>, <a class="btn-source" href="https://finance.yahoo.com/markets/crypto/articles/consortium-including-visa-mastercard-jointly-152345284.html">Yahoo Finance</a></span></p>
+            <p><strong>MetaMask משיקה חשבון תשואה ל-Stablecoin:</strong> ארנק הקריפטו MetaMask השיק "Money Account" המציע עד 4% תשואה שנתית משתנה (APY) על יתרות stablecoin מסוג mUSD, יחד עם יכולת הוצאה באמצעות כרטיס, על בסיס תשואות מבוססות DeFi. שירות זה אינו זמין בבריטניה ובאיחוד האירופי.
+            <span class="source-link"><a class="btn-source" href="https://cointelegraph.com/news/metamask-money-account-musd-stablecoin-yield?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a></span></p>
+            <p><strong>Spiko משלבת קרנות אג"ח של האיחוד האירופי עם Coinbase Stablecoin:</strong> חברת Spiko שילבה את Coinbase Payments בשתי קרנות UCITS מוסדרות של האיחוד האירופי, המאפשרת מנויים ותשלומי פדיון ב-USDC ו-EURC דרך Base.
+            <span class="source-link"><a class="btn-source" href="https://cointelegraph.com/news/spiko-coinbase-stablecoin-payments-treasury-funds?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a></span></p>
+            <p><strong>Webull משיקה מסחר בקריפטו בקנדה:</strong> פלטפורמת המסחר Webull השיקה שירותי מסחר בקריפטו בקנדה.
+            <span class="source-link"><a class="btn-source" href="https://finance.yahoo.com/markets/crypto/articles/webull-launches-crypto-trading-canada-150700044.html">Yahoo Finance</a></span></p>
+        </div>
+        <div class="highlight-card">
+            <p><strong>אזהרת ESMA ל-Binance באיחוד האירופי:</strong> הרשות האירופית לניירות ערך ושווקים (ESMA) פרסמה אזהרה לפיה לקוחות קריפטו באיחוד האירופי חייבים לקבל שירותים באמצעות גורם מורשה MiCA, בעוד Binance עומדת בפני שאלות לגבי מודל השירות שלה באזור לאחר מועד יישום MiCA.
+            <span class="source-link"><a class="btn-source" href="https://cointelegraph.com/news/esma-challenge-binance-serving-certain-eu-users-post-mica?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a></span></p>
+            <p><strong>בורסות קריפטו מתחרות על משתמשי האיחוד האירופי:</strong> Coinbase, Kraken ו-OKX פועלות למשוך משתמשים אירופאים שנפגעו מהגבלות MiCA, ומציעות בונוסים והטבות מעבר.
+            <span class="source-link"><a class="btn-source" href="https://cointelegraph.com/news/coinbase-okx-kraken-eu-users-mica?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a></span></p>
+            <p><strong>בריטניה קובעת כללי קריפטו סופיים:</strong> הרגולטור הפיננסי של בריטניה פרסם את מסגרת הרגולציה לקריפטו, וקבע את פברואר 2027 כמועד האחרון לקבלת אישור FCA עבור חברות קריפטו.
+            <span class="source-link"><a class="btn-source" href="https://cointelegraph.com/news/uk-crypto-rules-2027-fca-authorization-deadline?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a></span></p>
+            <p><strong>חוק ה-"Travel Rule" של אוסטרליה נכנס לתוקף:</strong> החל מיולי, בורסות קריפטו הפועלות באוסטרליה ידרשו מידע נוסף על כל ההעברות היוצאות והנכנסות.
+            <span class="source-link"><a class="btn-source" href="https://cointelegraph.com/news/australias-crypto-travel-rule-takes-effect-on-july-1-whats-changing?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a></span></p>
+        </div>
+        <div class="highlight-card">
+            <p><strong>פסיקת בית משפט במישיגן נגד Kalshi:</strong> שופט במישיגן חסם זמנית את Kalshi מלהציע חוזי הימורים על ספורט לתושבים, מה שמסלים את המאבק בין הרשויות המדינתיות והפדרליות בנוגע לשווקי חיזוי וחוקי הימורים.
+            <span class="source-link"><a class="btn-source" href="https://cointelegraph.com/news/michigan-judge-blocks-kalshi-sports-bets?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a></span></p>
+            <p><strong>טראמפ יכריע בנוגע לחוק דיור עם איסור על CBDC:</strong> לטראמפ עשרה ימים להחליט על חוק דיור הכולל סעיף האוסר על הפדרל רזרב להנפיק או ליצור מטבע דיגיטלי של בנק מרכזי (CBDC) עד 2030.
+            <span class="source-link"><a class="btn-source" href="https://cointelegraph.com/news/cbdc-ban-housing-bill-donald-trump?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a></span></p>
+            <p><strong>מנהיגי הסנאט דוחפים לאישור חוק CLARITY:</strong> חוק CLARITY, העוסק במבנה שוק הקריפטו בארה"ב, עשוי לעבור בסנאט ביולי, לפני הפסקה נוספת ועיכובים אפשריים בשל קמפיינים לבחירות.
+            <span class="source-link"><a class="btn-source" href="https://cointelegraph.com/news/senate-leaders-july-passage-clarity-act?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a></span></p>
+            <p><strong>ה-SEC זוכה בפסיקה של 5.4 מיליון דולר בתיק הונאת קריפטו:</strong> רשות ניירות הערך האמריקאית (SEC) זכתה בפסיקה של 5.4 מיליון דולר בתיק הונאת קריפטו נגד NanoBit. ה-SEC טענה כי פלטפורמת המסחר בקריפטו של NanoBit הייתה מזויפת וכי מאות אלפי דולרים מכספי המשקיעים נוצלו לרעה.
+            <span class="source-link"><a class="btn-source" href="https://cointelegraph.com/news/sec-wins-54m-judgment-in-nanobit-crypto-fraud-case?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a></span></p>
+        </div>
+
+        <h3>למה זה חריג</h3>
+        <ul>
+            <li>השקת stablecoin גלובלי על ידי גופים פיננסיים מסורתיים כמו Visa ו-Stripe מצביעה על הכרה הולכת וגוברת בחשיבות המטבעות היציבים ועל אימוץ פוטנציאלי רחב יותר של טכנולוגיות בלוקצ'יין בפיננסים המיינסטרימים.</li>
+            <li>התגובה של בורסות קריפטו כמו Coinbase ו-OKX לרגולציית MiCA באירופה, על ידי משיכת משתמשים מ-Binance, מדגישה את התחרות הגוברת בשוק הקריפטו ואת חשיבות הציות לרגולציה עבור חברות הפועלות במדינות שונות.</li>
+            <li>התפתחויות רגולטוריות בבריטניה, אוסטרליה וארה"ב, כולל חוק ה-Travel Rule ואיסורים פוטנציאליים על CBDC, מדגימות את המאמץ הגלובלי לייצר מסגרות ברורות יותר לשוק הקריפטו, תוך כדי התמודדות עם אתגרי אבטחה, הונאות והשפעות פוליטיות.</li>
+        </ul>
+
+        <h3>הלוגיקה</h3>
+        <p>שוק הקריפטו ממשיך להתפתח במהירות, עם מגמה ברורה של אימוץ מוסדי ורגולציה גוברת. שיתופי פעולה בין ענקיות פיננסיות מסורתיות לגורמי קריפטו מדגישים את הפוטנציאל לחיבור בין שני העולמות, תוך ניסיון להביא יציבות ויעילות. במקביל, רגולטורים ברחבי העולם פועלים להדק את הפיקוח על מנת להגן על משקיעים ולמנוע הונאות, מה שיוצר סביבה מורכבת עבור חברות הפועלות בתחום, אך גם עשוי לתרום להבשלה וללגיטימציה של השוק לטווח הארוך. המאמצים להגביר את הפיקוח מובילים גם לתחרות בין פלטפורמות על עמידה בתקנים רגולטוריים ומשיכת משתמשים.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">סקטורים ספציפיים</span>
+        <h2>חדשות חברות: תעופה, ביטחון, סולר ושירותי ענן</h2>
+
+        <h3>מה קרה היום</h3>
+        <div class="highlight-card">
+            <p><strong>AeroVironment מזנקת ב-15% על רקע תוצאות חזקות:</strong> יצרנית המל"טים AeroVironment זינקה בכ-15% לאחר שדיווחה על רווחים חזקים ותזרים הזמנות שהגיע ל-1.2 מיליארד דולר. החברה נהנית מתוכניות ארה"ב למודרניזציה של הצבא ולאבטחת החלל.
+            <img class="news-image" src="https://image.cnbcfm.com/api/v1/image/10708328631-1655079600570-52906801902_47_9B_AF_17036_30062026_AVAV_DEFENSE.jpg?v=1655079601" alt="AeroVironment Drone"/>
+            <span class="source-link"><a class="btn-source" href="https://www.cnbc.com/2026/06/30/aerovironment-avav-stock-earnings-defense.html">CNBC</a>, <a class="btn-source" href="https://www.investors.com/market-trend/stock-market-today/stock-market-today-economic-data-aerovironment-avav/?src=A00220&yptr=yahoo">Investors.com</a></span></p>
+            <p><strong>Joby Aviation וטויוטה משיקות מיזם משותף:</strong> Joby Aviation וטויוטה השיקו מיזם ייצור אסטרטגי משותף. המיזם נועד לבנות יכולת ייצור מסחרית למטוסי ה-eVTOL (המראה ונחיתה אנכית חשמלית) של Joby, ולשפר את הפרודוקטיביות, האיכות והעלות-תועלת. טויוטה תתרום את מומחיותה במערכות ייצור.
+            <span class="source-link"><a class="btn-source" href="https://x.com/AIStockSavvy/status/2071927545667191081">@AIStockSavvy</a></span></p>
+            <p><strong>Redwire זוכה בחוזה מל"טים במשמר החופים של טייוואן:</strong> Redwire זכתה בחוזה לאספקת מל"טים מסוג Penguin Mk2.5 VTOL למשמר החופים של טייוואן. המל"טים מיועדים למעקב ימי, אכיפת חוק ומשימות מודיעין, מעקב וסיור (ISR).
+            <span class="source-link"><a class="btn-source" href="https://x.com/AIStockSavvy/status/2071912023235994112">@AIStockSavvy</a></span></p>
+        </div>
+        <div class="highlight-card">
+            <p><strong>ממשל טראמפ מנסח איסור על ממירי כוח זרים:</strong> ממשל טראמפ מנסח הצעת חוק לאיסור על ממירי כוח זרים חדשים (Power Inverters). כלל ה-FCC המוצע יכול להתפרסם כבר ב-2026 ומכוון לממירים מיובאים המחברים פרויקטים סולאריים וסוללות לרשת. הצעד מונע מחששות ביטחון לאומי ועלול לעצב מחדש את שרשרת האספקה הסולארית בארה"ב.
+            <span class="source-link"><a class="btn-source" href="https://x.com/AIStockSavvy/status/2071920147724472386">@AIStockSavvy</a></span></p>
+        </div>
+        <div class="highlight-card">
+            <p><strong>Digital Realty יורדת ב-5% לאחר רכישת נתח במרכזי נתונים:</strong> מניית Digital Realty ירדה ב-5% במסחר המוקדם לאחר שהודיעה על רכישת נתח של 3.5 מיליארד דולר בשלושה מרכזי נתונים מחברת ניהול הנכסים Blackstone.
+            <span class="source-link"><a class="btn-source" href="https://www.cnbc.com/2026/06/30/digital-realty-blackstone-virginia-data-center-35-billion-stake.html">CNBC</a></span></p>
+            <p><strong>אמזון (AMZN) נגררת לבית המשפט באוסטרליה:</strong> הרגולטור לתחרות באוסטרליה תובע את אמזון, בטענה כי חוזי שירות פריים שלה דרשו ממנויים לשלם 2.99 דולר אוסטרלי כדי להימנע מפרסומות, ללא אפשרות להחזר.
+            <span class="source-link"><a class="btn-source" href="https://www.cnbc.com/2026/06/30/australias-competition-regulator-takes-amazon-to-court-over-alleged-unfair-prime-subscription-contract-terms.html">CNBC</a></span></p>
+        </div>
+
+        <h3>למה זה חריג</h3>
+        <ul>
+            <li>הזינוק של AeroVironment מדגיש את החשיבות הגוברת של סקטור הביטחון והמל"טים, בפרט על רקע מודרניזציה צבאית והצורך בטכנולוגיות חדשניות.</li>
+            <li>המיזם המשותף של Joby Aviation וטויוטה מהווה צעד משמעותי לקראת מיסוד תעשיית מוניות האוויר, ומעיד על ההתקדמות הטכנולוגית והמסחרית בתחום.</li>
+            <li>האיסור הפוטנציאלי על ממירי כוח זרים על ידי ממשל טראמפ מדגיש את המתח הגלובלי סביב שרשראות אספקה טכנולוגיות וביטחון לאומי, עם השלכות משמעותיות על חברות הסולר האמריקאיות כמו SEDG ו-ENPH.</li>
+            <li>ירידת Digital Realty, חברת REIT בתחום מרכזי הנתונים, למרות השקעות ענק ב-AI, מצביעה על מורכבות ההשפעה של ההשקעות הללו על הסקטור, וכי גם עסקאות גדולות יכולות להיתפס כשליליות על ידי השוק בטווח הקצר.</li>
+            <li>התביעה נגד אמזון באוסטרליה מעלה שאלות לגבי תנאי השימוש בשירותי מנוי גלובליים והרגולציה המקומית, ועלולה להשפיע על מודלים עסקיים של חברות טכנולוגיה גדולות.</li>
+        </ul>
+
+        <h3>הלוגיקה</h3>
+        <p>השוק מגיב בחיוב לחדשות על רווחיות וצמיחה בסקטור הביטחון, כאשר חברות כמו AeroVironment נהנות מההשקעות הממשלתיות. במקביל, שיתופי פעולה אסטרטגיים בתחום התחבורה האווירית המתקדמת, כמו זה של Joby Aviation וטויוטה, מסמנים את ההתקדמות לקראת מימוש טכנולוגיות חדשניות. עם זאת, המתחים הגיאופוליטיים והדגש על ביטחון לאומי ממשיכים להשפיע על שרשראות האספקה בתחומי אנרגיה וטכנולוגיה, כפי שמעידה ההצעה לאסור על ממירי כוח זרים, דבר שיוצר הזדמנויות עבור חברות מקומיות אך גם אי-ודאות. מניות כמו Digital Realty מושפעות מסנטימנט השוק המשתנה גם על רקע עסקאות מהותיות, ואילו ענקיות טכנולוגיה כגון אמזון ממשיכות להתמודד עם אתגרי רגולציה במדינות שונות.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">מאקרו-כלכלה ושוק העבודה</span>
+        <h2>נתוני שוק העבודה וסנטימנט המשקיעים</h2>
+
+        <h3>מה קרה היום</h3>
+        <div class="highlight-card">
+            <p><strong>משרות פנויות עולות לשיא של שנתיים:</strong> מספר המשרות הפנויות (JOLTS Job Openings) עלה בחודש מאי ל-7.59 מיליון, לעומת ציפיות של 7.3 מיליון. עלייה זו מצביעה על סיום ירידה ממושכת במספר המשרות הפנויות בארה"ב.
+            <span class="source-link"><a class="btn-source" href="https://www.marketwatch.com/story/job-openings-rise-to-2-year-high-but-good-luck-actually-getting-one-5dddb3f6?mod=mw_rss_topstories">MarketWatch</a>, <a class="btn-source" href="https://x.com/AIStockSavvy/status/2071958795262017660">@AIStockSavvy</a></span></p>
+        </div>
+        <div class="highlight-card">
+            <p><strong>חששות בוול סטריט מפני תיקון בשוק:</strong> גם הבולס בוול סטריט מביעים דאגה מפני תיקון אפשרי בשוק המניות לאחר רבעון שני מרשים. סיום המחצית הראשונה של 2026 מגיע לאחר תקופה סוערת בשוק המניות האמריקאי.
+            <span class="source-link"><a class="btn-source" href="https://www.marketwatch.com/story/even-wall-street-bulls-are-worried-about-a-stock-market-pullback-after-dazzling-second-quarter-d4799f26?mod=mw_rss_topstories">MarketWatch</a></span></p>
+            <p><strong>מחירי הנפט:</strong> מחירי הנפט נותרו ללא שינוי מהותי, אך צפויים לרשום את הירידה החודשית והרבעונית החדה ביותר מאז 2020.
+            <span class="source-link"><a class="btn-source" href="https://finance.yahoo.com/news/oil-falls-investors-focus-potential-040903565.html">Yahoo Finance</a></span></p>
+            <p><strong>הדולר מתחזק, היין שוקע לשפל של 40 שנה:</strong> הדולר האמריקאי מתחזק מול מטבעות עיקריים, בעוד היין היפני צונח לשפל של 40 שנה.
+            <span class="source-link"><a class="btn-source" href="https://finance.yahoo.com/news/yen-hits-40-low-clock-010137784.html">Yahoo Finance</a></span></p>
+        </div>
+        <div class="highlight-card">
+            <p><strong>יו"ר הפדרל רזרב החדש נחוש להילחם באינפלציה:</strong> יו"ר הפדרל רזרב החדש, קווין וורש, מצהיר על נחישותו להילחם באינפלציה בארה"ב, והמשקיעים מנסים להבין האם הוא באמת מתכוון לכך.
+            <span class="source-link"><a class="btn-source" href="https://www.marketwatch.com/story/warsh-says-hes-determined-to-slay-inflation-investors-want-to-know-if-he-really-means-it-2ada8360?mod=mw_rss_topstories">MarketWatch</a></span></p>
+            <p><strong>שינויים בשיעורי ריבית:</strong> שיעורי הריבית על משכנתאות וריפאיינס מציגים מגמה מעורבת, כאשר הריבית על משכנתא ל-30 שנה הגיעה לשפל מאז מאי. במקביל, שיעורי הריבית על חשבונות חיסכון עתירי תשואה מציעים עד 4.10% APY.
+            <span class="source-link"><a class="btn-source" href="https://finance.yahoo.com/personal-finance/mortgages/article/mortgage-and-refinance-interest-rates-today-tuesday-june-30-2026-rates-mixed-but-lowest-30-year-rate-since-may-100000711.html">Yahoo Finance</a>, <a class="btn-source" href="https://finance.yahoo.com/personal-finance/banking/article/best-high-yield-savings-interest-rates-today-tuesday-june-30-2026-earn-up-to-410-apy-with-bask-bank-100000373.html">Yahoo Finance</a></span></p>
+        </div>
+
+        <h3>למה זה חריג</h3>
+        <ul>
+            <li>עליית המשרות הפנויות לשיא של שנתיים מהווה אינדיקטור לחוזקו של שוק העבודה, מה שיכול להשפיע על מדיניות הפדרל רזרב בנוגע לריבית.</li>
+            <li>החששות מתיקון בשוק, גם בקרב משקיעים אופטימיים, מעידים על תחושה שהשוק התחמם יתר על המידה וכי עלולה להגיע תקופה של מימוש רווחים.</li>
+            <li>התחזקות הדולר והיחלשות היין, יחד עם הצהרותיו של יו"ר הפדרל רזרב החדש, מצביעות על ציפיות להמשך מדיניות מוניטרית הדוקה בארה"ב, בניגוד למגמות אפשריות במקומות אחרים.</li>
+            <li>הירידה במחירי הנפט מצביעה על הקלה אפשרית בלחצים האינפלציוניים מצד הסחורות, אך חששות האינפלציה נותרים בעינם.</li>
+        </ul>
+
+        <h3>הלוגיקה</h3>
+        <p>נתוני שוק העבודה החזקים בארה"ב עשויים לתת לפדרל רזרב יותר "מרחב נשימה" להמשיך במדיניותו הנוכחית של מלחמה באינפלציה, גם אם המשמעות היא ריבית גבוהה יותר לאורך זמן. התחזקות הדולר כנגד היין, שצונח לשפל היסטורי, משקפת את ההבדלים במדיניות המוניטרית בין ארה"ב ליפן, ויוצרת אתגרים עבור יצואנים יפנים. בוול סטריט, למרות הרבעון השני החיובי, סנטימנט הזהירות גובר. משקיעים מנתחים את הנתונים המאקרו-כלכליים כדי להבין את הכיוון הבא של השווקים, כאשר מחירי הנפט משחקים תפקיד בפוטנציאל לאינפלציה, ושיעורי הריבית על משכנתאות וחיסכון משפיעים ישירות על הצרכן.</p>
+
+        <div class="opinion-card">
+            <p>We require years of math, science, and history.<br>Why not require a basic understanding of money?<br>Financial literacy is a life skill.</p>
+            <span class="author">— Peter Mallouk <span class="source-link"><a class="btn-source" href="https://x.com/PeterMallouk/status/2071732947430887651">@PeterMallouk</a></span></span>
+        </div>
+    </div>
+</body>
+</html>
