@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי – גרסה תמציתית</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0a0e17;
+            --text-color: #e0e0e0;
+            --accent-color: #ffc107; /* Gold/Amber */
+            --header-color: #f8f8f8;
+            --green-light: rgba(76, 175, 80, 0.2);
+            --green-text: #4CAF50;
+            --red-light: rgba(244, 67, 54, 0.2);
+            --red-text: #F44336;
+            --divider-color: #2e3a51;
+            --card-bg: #1a202c;
+            --highlight-bg: #2e3a51;
+            --opinion-bg: #3b3f4f;
+            --border-radius: 8px;
+            --padding-sm: 10px;
+            --padding-md: 15px;
+            --padding-lg: 20px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: var(--padding-lg);
+            line-height: 1.6;
+            direction: rtl; /* Right-to-left for Hebrew */
+            text-align: right; /* Right align text for Hebrew */
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            background-color: #111827; /* Slightly lighter than body for contrast */
+            padding: var(--padding-lg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        h1, h2, h3 {
+            color: var(--header-color);
+            font-weight: 700;
+            margin-bottom: var(--padding-md);
+            line-height: 1.3;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            text-align: center;
+            color: var(--accent-color);
+            padding-bottom: var(--padding-md);
+            border-bottom: 2px solid var(--divider-color);
+            margin-bottom: var(--padding-lg);
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: var(--padding-lg);
+            margin-bottom: var(--padding-md);
+            color: var(--accent-color);
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin-top: var(--padding-md);
+            margin-bottom: var(--padding-sm);
+        }
+
+        p {
+            margin-bottom: var(--padding-md);
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #ffd700; /* Brighter accent on hover */
+        }
+
+        .slide-container {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: var(--padding-lg);
+            margin-bottom: var(--padding-lg);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-bottom: var(--padding-sm);
+            text-transform: uppercase;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: var(--padding-md);
+            margin-top: var(--padding-md);
+        }
+
+        .market-card {
+            background-color: var(--highlight-bg);
+            padding: var(--padding-md);
+            border-radius: var(--border-radius);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .market-card .symbol {
+            font-weight: 700;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+            color: var(--header-color);
+        }
+
+        .market-card .value {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .market-card .change {
+            font-size: 0.9em;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        .change.positive {
+            background-color: var(--green-light);
+            color: var(--green-text);
+        }
+
+        .change.negative {
+            background-color: var(--red-light);
+            color: var(--red-text);
+        }
+
+        .highlight-card {
+            background-color: var(--highlight-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: var(--padding-md);
+            border-radius: var(--border-radius);
+            margin-top: var(--padding-md);
+            margin-bottom: var(--padding-md);
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-bg);
+            border-right: 4px solid var(--accent-color); /* Right border for RTL */
+            padding: var(--padding-md);
+            border-radius: var(--border-radius);
+            margin-top: var(--padding-md);
+            margin-bottom: var(--padding-md);
+            font-style: italic;
+            position: relative;
+            text-align: right;
+            padding-right: 40px; /* Space for quote icon */
+        }
+
+        .opinion-card::before {
+            content: "\201C"; /* Left double quotation mark */
+            font-size: 3em;
+            color: var(--accent-color);
+            position: absolute;
+            right: 10px; /* Position to the right for RTL */
+            top: 0px;
+            line-height: 1;
+        }
+
+        .opinion-card .author {
+            display: block;
+            margin-top: 10px;
+            font-weight: 600;
+            color: var(--accent-color);
+            font-style: normal;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--divider-color);
+            color: var(--text-color);
+            padding: 8px 15px;
+            border-radius: var(--border-radius);
+            margin-top: var(--padding-sm);
+            font-size: 0.9em;
+            font-weight: 400;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-source:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .section-divider {
+            border-top: 1px solid var(--divider-color);
+            margin: var(--padding-lg) 0;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: var(--padding-md) 0;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>דוח שוק יומי אסטרטגי – 30 ביוני 2026 (תמציתי)</h1>
+
+        <div class="slide-container">
+            <span class="badge">תמונת מצב מהירה</span>
+            <h2>דופק השוק</h2>
+            <p>סקירה מהירה על ביצועי המדדים והמניות הבולטות ביותר היום:</p>
+            <div class="market-pulse-grid">
+                <div class="market-card">
+                    <span class="symbol">SPY (S&P 500)</span>
+                    <span class="value">746.54</span>
+                    <span class="change positive">+0.75%</span>
+                </div>
+                <div class="market-card">
+                    <span class="symbol">QQQ (Nasdaq 100)</span>
+                    <span class="value">734.90</span>
+                    <span class="change positive">+1.49%</span>
+                </div>
+                <div class="market-card">
+                    <span class="symbol">BTC/USD</span>
+                    <span class="value">58,263.05$</span>
+                    <span class="change negative">-3.16%</span>
+                </div>
+                <div class="market-card">
+                    <span class="symbol">ETH/USD</span>
+                    <span class="value">1,565.49$</span>
+                    <span class="change negative">-2.91%</span>
+                </div>
+                <div class="market-card">
+                    <span class="symbol">AMD</span>
+                    <span class="value">578.28$</span>
+                    <span class="change positive">+7.19%</span>
+                </div>
+                <div class="market-card">
+                    <span class="symbol">AVAV (AeroVironment)</span>
+                    <span class="value">זינק</span>
+                    <span class="change positive">+28%</span>
+                </div>
+                <div class="market-card">
+                    <span class="symbol">OKLO</span>
+                    <span class="value">51.26$</span>
+                    <span class="change negative">-2.84%</span>
+                </div>
+                <div class="market-card">
+                    <span class="symbol">NOW (ServiceNow)</span>
+                    <span class="value">97.71$</span>
+                    <span class="change negative">-2.26%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">מאקרו כלכלה</span>
+            <h2>נתוני שוק העבודה בארה"ב: זינוק מפתיע במספר המשרות הפתוחות</h2>
+            <div class="highlight-card">
+                <p><strong>מה קרה היום:</strong> מספר המשרות הפתוחות בארה"ב (JOLTS) עלה במאי ל-7.59 מיליון, גבוה מהצפי שעמד על 7.3 מיליון, ומהווה שיא של שנתיים. <a class="btn-source" href="https://x.com/AIStockSavvy/status/2071958795262017660">AIStockSavvy</a>, <a class="btn-source" href="https://www.marketwatch.com/story/job-openings-rise-to-2-year-high-but-good-luck-actually-getting-one-5dddb3f6?mod=mw_rss_topstories">MarketWatch</a>.</p>
+                <p><strong>למה זה חריג:</strong> עלייה זו מפתיעה לאחר תקופה ממושכת של ירידה, ומצביעה על שוק עבודה חזק יותר מהצפוי. הדבר עלול להגביר חששות מפני אינפלציה ולהשפיע על החלטות הריבית של הפדרל ריזרב.</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">AI וטכנולוגיה</span>
+            <h2>השקעות AI ענקיות מול חששות בשוק: מגמת שבבים חיובית</h2>
+            <div class="highlight-card">
+                <p><strong>מה קרה היום:</strong> Amazon Web Services (AWS) הודיעה כי תשקיע מיליארד דולר ביחידת AI חדשה שתשלב מהנדסים עם לקוחות. במקביל, שווי השוק של מניות "שבע המופלאות" הצטמק ב-2.3 טריליון דולר על רקע חששות לגבי ההחזר על השקעות עתק ב-AI. <a class="btn-source" href="https://www.cnbc.com/2026/06/30/aws-amazon-ai-forward-deployed-engineers.html">CNBC</a>, <a class="btn-source" href="https://x.com/AIStockSavvy/status/2071972339273597238">AIStockSavvy</a>, <a class="btn-source" href="https://www.cnbc.com/2026/06/30/magnificent-7-stocks-sell-off-investors-grow-jittery-on-ai-spending.html">CNBC</a>.</p>
+                <p><strong>למה זה חריג:</strong> השוק מציג תמונה מורכבת: מצד אחד, חברות טכנולוגיה ממשיכות להשקיע אגרסיבית בתחום ה-AI, ומצד שני, קיימת דאגה גוברת בקרב משקיעים לגבי התשואות העתידיות מהשקעות אלו. מניית AMD זינקה היום ב-7.19%, והתקרבה לשיא של 52 שבועות, מה שמדגיש את הביקוש החזק למניות שבבים ספציפיות המרוויחות מהמגמה. <a class="btn-source" href="https://x.com/AIStockSavvy/status/2071915647194271940">AIStockSavvy</a>.</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">קריפטו</span>
+            <h2>ביטקוין נאבק סביב 60K$ לצד התקדמות מוסדית</h2>
+            <div class="highlight-card">
+                <p><strong>מה קרה היום:</strong> הביטקוין התקשה לשמור על רמת 60,000 דולר, ונסגר סביב 58,263.05 דולר, ירידה יומית של 3.16% ושבועית של 6.90%. במקביל, קונסורציום הכולל את ויזה ומאסטרקארד השיק מטבע יציב גלובלי חדש, ו-ARK Invest של קת'י ווד רכשה מניות קריפטו בשווי 43.5 מיליון דולר לאחר ירידות בשוק. <a class="btn-source" href="https://finance.yahoo.com/markets/crypto/article/bitcoin-on-pace-for-worst-month-since-june-2022-as-one-strategist-says-token-could-drop-to-40000-141926609.html">Yahoo Finance</a>, <a class="btn-source" href="https://finance.yahoo.com/markets/crypto/articles/consortium-including-visa-mastercard-jointly-152345284.html">Yahoo Finance</a>, <a class="btn-source" href="https://cointelegraph.com/news/cathie-woods-ark-scoops-up-43m-worth-of-crypto-stocks-amid-market-dip">Cointelegraph</a>, <a class="btn-source" href="https://x.com/AIStockSavvy/status/2071949049054245273">AIStockSavvy</a>.</p>
+                <p><strong>למה זה חריג:</strong> המצב משקף שוק קריפטו דו-קוטבי: בעוד שהמטבעות עצמם נמצאים תחת לחץ ירידה, בעיקר הביטקוין, המוסדות הפיננסיים המסורתיים ממשיכים לבנות תשתיות ולהראות עניין אסטרטגי במרחב הקריפטו, ו"כסף חכם" רואה הזדמנויות רכישה במניות קשורות.</p>
+                <div class="image-container">
+                    <img src="https://s3-images.ctmedia.io/media/article-covers/hi-why-low-latency-is-important-for-cryptocurrency-exchanges-etf.jpg" alt="Cathie Wood ARK Invest Crypto">
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">ביטחון וחלל</span>
+            <h2>AeroVironment מזנקת בעקבות רווחים חזקים וגידול בהזמנות</h2>
+            <div class="highlight-card">
+                <p><strong>מה קרה היום:</strong> מניית יצרנית המל"טים AeroVironment (AVAV) זינקה בכ-28% לאחר שפרסמה דוחות כספיים חזקים שחצו את תחזיות האנליסטים, ודיווחה על גידול צבר הזמנות ל-1.2 מיליארד דולר. <a class="btn-source" href="https://www.cnbc.com/2026/06/29/aerovironment-stock-soars-on-earnings-beat-backlog-grows-to-1point2b.html">CNBC</a>, <a class="btn-source" href="https://www.cnbc.com/2026/06/30/aerovironment-skyrockets-15-as-dronemaker-capitalizes-on-defense-spending-surge.html">CNBC</a>.</p>
+                <p><strong>למה זה חריג:</strong> הזינוק החד במניה מדגיש את הביקוש הגובר למערכות אוטונומיות ולהוצאות ביטחוניות, מגמה המיטיבה עם חברות בתחום. ביצועים אלו מהווים אינדיקציה חיובית חריגה במגזר, ומציגים צמיחה חזקה הנשענת על חוזים משמעותיים.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
