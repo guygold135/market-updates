@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי: תמצית אסטרטגית</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0a0e17;
+            --text-color: #e0e6ed;
+            --accent-color: #00e0b7; /* Steel blue / light teal */
+            --highlight-bg: #1a2233;
+            --opinion-bg: #2a2233; /* Slightly different for opinion */
+            --divider-color: #2e3a4e;
+            --positive-color: rgba(0, 224, 183, 0.2); /* Muted green for background */
+            --positive-text: #00e0b7;
+            --negative-color: rgba(255, 76, 92, 0.2); /* Muted red for background */
+            --negative-text: #ff4c5c;
+            --neutral-color: rgba(128, 128, 128, 0.1); /* Muted grey for background */
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            direction: rtl; /* Right-to-left for Hebrew */
+        }
+
+        .report-header {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: var(--highlight-bg);
+            border-bottom: 1px solid var(--divider-color);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-weight: 700;
+            color: var(--accent-color);
+            font-size: 2.2rem;
+            margin: 0;
+        }
+
+        h2 {
+            font-weight: 600;
+            color: var(--text-color);
+            font-size: 1.8rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-right: 15px;
+            border-right: 4px solid var(--accent-color);
+            line-height: 1.3;
+        }
+
+        h3 {
+            font-weight: 600;
+            color: var(--text-color);
+            font-size: 1.3rem;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            padding-right: 10px;
+            border-right: 2px solid var(--accent-color);
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #00a886; /* Slightly darker accent on hover */
+        }
+
+        .slide-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--bg-color);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+            box-sizing: border-box; /* Ensure padding doesn't increase total width */
+            overflow-x: hidden; /* Prevent horizontal scroll for images/tables inside */
+        }
+
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background-color: var(--divider-color);
+            margin: 40px auto;
+            max-width: 1100px;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+            padding: 0 10px;
+            overflow-x: auto;
+        }
+
+        .market-card {
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            border: 1px solid var(--divider-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-width: 180px;
+        }
+
+        .market-card strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--text-color);
+        }
+
+        .market-card .value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .market-card .change {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .status-positive {
+            color: var(--positive-text);
+            background-color: var(--positive-color);
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .status-negative {
+            color: var(--negative-text);
+            background-color: var(--negative-color);
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .status-neutral {
+            color: var(--text-color);
+            background-color: var(--neutral-color);
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .highlight-card {
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+            border-right: 3px solid var(--accent-color);
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-bg);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+            font-style: italic;
+            border-right: 3px solid #ffbb00; /* Gold accent for opinion */
+            position: relative;
+        }
+
+        .opinion-card .quote-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.1);
+        }
+
+        .opinion-card .author {
+            display: block;
+            text-align: left;
+            margin-top: 10px;
+            font-weight: 600;
+            color: #ffbb00;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: var(--border-radius);
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            padding: 8px 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-source:hover {
+            background-color: #00a886;
+            color: var(--text-color);
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        /* Ensure tables are responsive */
+        table {
+            width: 100%;
+            table-layout: fixed;
+            word-wrap: break-word;
+            border-collapse: collapse;
+            margin-top: 20px;
+            overflow-x: auto; /* For wider tables */
+            display: block; /* To apply overflow-x */
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid var(--divider-color);
+            text-align: right;
+        }
+
+        th {
+            background-color: var(--highlight-bg);
+            font-weight: 600;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .market-pulse-grid {
+                grid-template-columns: 1fr 1fr; /* Two columns for smaller screens */
+            }
+            .slide-container {
+                padding: 16px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.4rem;
+                padding-right: 10px;
+            }
+            h3 {
+                font-size: 1.1rem;
+                padding-right: 8px;
+            }
+            .market-card {
+                padding: 10px;
+                min-width: unset; /* Remove min-width for flexibility */
+            }
+            .market-card .value {
+                font-size: 1.1rem;
+            }
+            .market-card .change {
+                font-size: 0.9rem;
+            }
+            .badge {
+                font-size: 0.75rem;
+                padding: 4px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="report-header">
+        <h1>דוח שוק יומי: תמצית אסטרטגית</h1>
+    </div>
+
+    <div class="slide-container">
+        <div class="badge">תמונת מצב מהירה</div>
+        <h2>תמונת מצב מהירה: מה הניע את השווקים היום</h2>
+        <div class="market-pulse-grid">
+            <div class="market-card">
+                <strong>S&P 500 (SPY)</strong>
+                <span class="value">746.77</span>
+                <span class="change status-positive">+0.78%</span>
+            </div>
+            <div class="market-card">
+                <strong>נאסד"ק 100 (QQQ)</strong>
+                <span class="value">736.40</span>
+                <span class="change status-positive">+1.70%</span>
+            </div>
+            <div class="market-card">
+                <strong>ביטקוין (BTC/USD)</strong>
+                <span class="value">58,783.06$</span>
+                <span class="change status-positive">+0.44%</span>
+            </div>
+            <div class="market-card">
+                <strong>את'ריום (ETH/USD)</strong>
+                <span class="value">1,579.76$</span>
+                <span class="change status-positive">+0.47%</span>
+            </div>
+            <div class="market-card">
+                <strong>AMD</strong>
+                <span class="value">580.91$</span>
+                <span class="change status-positive">+7.68%</span>
+            </div>
+            <div class="market-card">
+                <strong>Micron (MU)</strong>
+                <span class="value">1,154.29$</span>
+                <span class="change status-positive">+0.79%</span>
+            </div>
+            <div class="market-card">
+                <strong>CoreWeave (CRWV)</strong>
+                <span class="value">99.54$</span>
+                <span class="change status-positive">+4.22%</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">AI וטכנולוגיה</div>
+        <h2>האצת חדשנות ב-AI: הסרת מגבלות וגיוסים ענקיים</h2>
+        
+        <h3>התפתחויות מפתח</h3>
+        <p>
+            ממשל ארה"ב הסיר את מגבלות הייצוא על מודלי ה-AI המתקדמים של Anthropic, Fable 5 ו-Mythos 5, צעד שצפוי לסייע לחברה לקראת הנפקה קריטית
+            <a class="btn-source" href="https://www.marketwatch.com/story/anthropic-gets-all-clear-to-let-foreigners-use-latest-model-ahead-of-crucial-ipo-a1ddc94a?mod=mw_rss_topstories">MarketWatch</a>,
+            <a class="btn-source" href="https://www.cnbc.com/2026/07/01/anthropic-says-trump-admin-has-lifted-export-controls-on-claude-fable-5-and-mythos-5.html">CNBC</a>. במקביל, קרן MGX מאיחוד האמירויות השלימה גיוס ענק של 49 מיליארד דולר לטובת השקעות ב-AI, כולל תמיכה בחברות מובילות כמו OpenAI ו-Anthropic עצמה
+            <a class="btn-source" href="https://www.cnbc.com/2026/07/01/mgx-ai-fund-uae-49-billion.html">CNBC</a>.
+        </p>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/hi-business-to-give-the-access-to-ai-models.jpg" alt="Anthropic AI models">
+        
+        <h3>ההשפעה על השוק</h3>
+        <p>
+            התפתחויות אלו מאותתות על המשך ההשקעה העצומה והפוטנציאל הרחב של מגזר ה-AI, גם כשלמיקרוסופט מדווחים על פיטורי אלפים, בעוד היא ממשיכה להשקיע באותה העת בתחום הבינה המלאכותית
+            <a class="btn-source" href="https://www.marketwatch.com/story/microsoft-is-reportedly-planning-thousands-of-layoffs-as-it-spends-on-ai-93ebabc8?mod=mw_rss_topstories">MarketWatch</a>.
+            זה מדגיש את הרוטציה וההתאמה של חברות טכנולוגיה ענקיות למיקוד מחודש במנועי הצמיחה העתידיים.
+        </p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">קריפטו</div>
+        <h2>שוק הקריפטו: זרימת כספים שלילית ורגולציה גוברת</h2>
+        
+        <h3>נתוני יציאה מהותיים</h3>
+        <p>
+            קרנות הסל של ביטקוין בארה"ב רשמו יציאות שיא של 4.5 מיליארד דולר בחודש יוני לבדו, מה שהפך אותו לחודש הגרוע ביותר אי פעם עבורן, עם יציאות מצטברות של 5.5 מיליארד דולר מתחילת השנה
+            <a class="btn-source" href="https://cointelegraph.com/news/bitcoin-etf-4-5-billion-outflow-june-worst-on-record?utm_source=rss_feed&utm_medium=rss_campaign=rss_partner_inbound">Cointelegraph</a>. גם את'ריום חווה לחץ, עם יציאות של 345 מיליון דולר מקרנות הסל שלו, מה שמעלה חששות לגבי ירידה מתחת ל-1,500 דולר
+            <a class="btn-source" href="https://cointelegraph.com/markets/bitmine-ether-buys-eclipsed-by-345m-eth-etf-345m-outflows-is-sub-15k-next?utm_source=rss_feed&utm_medium=rss_campaign=rss_partner_inbound">Cointelegraph</a>.
+        </p>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/hi-vanilla-drainer-how-one-scam-tool.jpg" alt="Bitcoin ETF outflows">
+
+        <h3>סביבה רגולטורית משתנה</h3>
+        <p>
+            הלחץ על שוק הקריפטו מגיע לצד התפתחויות רגולטוריות משמעותיות, כאשר טייוואן אישרה לראשונה חוקים לתחום הקריפטו וה-Stablecoins, במטרה לשלב את המדינה בשוק הגלובלי
+            <a class="btn-source" href="https://cointelegraph.com/news/taiwan-s-legislature-passes-crypto-regulation-licensing-laws?utm_source=rss_feed&utm_medium=rss_campaign=rss_partner_inbound">Cointelegraph</a>. במקביל, מנכ"ל Goliath Ventures לשעבר הודה באשמה בפרשת הונאת פונזי של 400 מיליון דולר, מה שמדגיש את הצורך ברגולציה ואכיפה חזקה יותר בשוק זה
+            <a class="btn-source" href="https://cointelegraph.com/news/goliath-ceo-guilty-400m-crypto-ponzi-case?utm_source=rss_feed&utm_medium=rss_campaign=rss_partner_inbound">Cointelegraph</a>.
+        </p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">שבבים ומאקרו</div>
+        <h2>התפשטות ראלי השבבים ואזהרות מתח</h2>
+        
+        <h3>הישגים במגזר השבבים</h3>
+        <p>
+            מניות השבבים שאינן Nvidia רשמו זינוק משמעותי ברבעון השני, כשהן מוסיפות 2 טריליון דולר לערכן המשותף, עם חברות כמו Micron (MU) ו-AMD מובילות את העלייה
+            <a class="btn-source" href="https://www.cnbc.com/2026/06/30/ai-chip-rally-in-q2-adds-2-trillion-in-value-to-micron-intel-amd-.html">CNBC</a>. מניית AMD זינקה היום ב-7.68% ל-580.91 דולר, ונסחרה קרוב לשיא ה-52 שבועות שלה, העומד על 584.73 דולר, וזאת על רקע הצהרות מנכ"ל Micron כי תמחור אגרסיבי בעבר הוביל למחסור בזכרונות
+            <a class="btn-source" href="https://www.cnbc.com/2026/06/30/micron-ceo-customers-driving-hard-bargain-on-price-contributed-to-memory-shortage.html">CNBC</a>.
+        </p>
+        
+        <h3>סיכונים פוטנציאליים</h3>
+        <p>
+            למרות העליות, אנליסטים מזהירים מפני סיכון גובר של תנודתיות במגזר השבבים, מה שעלול לאיים על הראלי הנוכחי, במיוחד עבור מובילות כמו AMD ו-Micron.
+        </p>
+        <div class="opinion-card">
+            <span class="quote-icon">“</span>
+            "Volatility threatens top gainers including AMD and Micron."
+            <span class="author">Michael Kramer, MarketWatch</span>
+            <a class="btn-source" href="https://www.marketwatch.com/story/the-chip-rally-has-a-dark-side-and-a-rare-market-risk-is-at-its-highest-level-since-2015-5114fba0?mod=mw_rss_topstories">MarketWatch</a>
+        </div>
+    </div>
+
+</body>
+</html>
