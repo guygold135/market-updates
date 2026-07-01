@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק הון יומי - 1 ביולי 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0a0e17; /* Dark charcoal/navy */
+            --text-color: #e0e6f1; /* Light greyish-blue */
+            --accent-color: #f7a04b; /* Subtle gold/orange for highlight */
+            --accent-blue: #4a90e2; /* Steel blue for some accents */
+            --divider-color: #2e3a52; /* Darker blue-grey for dividers */
+            --positive-color: rgba(69, 187, 126, 0.2); /* Muted green with opacity */
+            --negative-color: rgba(220, 85, 95, 0.2); /* Muted red with opacity */
+            --positive-text: #45bb7e;
+            --negative-text: #dc555f;
+            --card-bg: #1a202c; /* Slightly lighter than main bg */
+            --opinion-bg: #2e3a52; /* Even lighter for opinions */
+            --border-color: #3f4a5f;
+            --padding-base: 16px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            direction: rtl; /* Right-to-left for Hebrew */
+            text-align: right; /* Align text to the right for Hebrew */
+        }
+
+        a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-top: 24px;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            text-align: center;
+            padding: var(--padding-base);
+            border-bottom: 1px solid var(--divider-color);
+            margin-top: 0;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            padding: var(--padding-base);
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--divider-color);
+            border-top: 1px solid var(--divider-color);
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--text-color);
+            margin-right: var(--padding-base);
+            border-right: 3px solid var(--accent-blue);
+            padding-right: 8px;
+        }
+
+        .slide-container {
+            max-width: 1000px;
+            margin: 24px auto;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            overflow: hidden; /* Important for responsive images/tables */
+            padding-bottom: 20px;
+        }
+
+        .section-divider {
+            border-bottom: 1px solid var(--divider-color);
+            margin: 24px var(--padding-base);
+        }
+
+        .category-badge {
+            display: inline-block;
+            background-color: var(--accent-blue);
+            color: var(--text-color);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            margin-right: var(--padding-base);
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: var(--padding-base);
+            padding: var(--padding-base);
+        }
+
+        .market-card {
+            background-color: var(--opinion-bg);
+            border-radius: 6px;
+            padding: 12px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .market-card .symbol {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+            color: var(--accent-color);
+        }
+
+        .market-card .name {
+            font-size: 0.85rem;
+            color: var(--text-color);
+            margin-bottom: 8px;
+        }
+
+        .market-card .change {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .market-card .change.positive {
+            color: var(--positive-text);
+            background-color: var(--positive-color);
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        .market-card .change.negative {
+            color: var(--negative-text);
+            background-color: var(--negative-color);
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        .data-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 8px;
+            white-space: nowrap;
+        }
+
+        .data-badge.positive {
+            background-color: var(--positive-color);
+            color: var(--positive-text);
+        }
+
+        .data-badge.negative {
+            background-color: var(--negative-color);
+            color: var(--negative-text);
+        }
+
+        .content-paragraph {
+            padding: 0 var(--padding-base);
+            margin-bottom: 12px;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--accent-blue);
+            color: var(--text-color);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 8px;
+            margin-right: var(--padding-base);
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-source:hover {
+            background-color: #3a7bcc; /* Darker blue on hover */
+            text-decoration: none;
+        }
+
+        .news-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+            margin: 16px auto;
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-bg);
+            border-right: 4px solid var(--accent-color);
+            padding: 12px var(--padding-base);
+            margin: 16px var(--padding-base);
+            border-radius: 6px;
+            font-style: italic;
+        }
+
+        .opinion-card::before {
+            content: "“";
+            font-size: 2rem;
+            color: var(--accent-color);
+            position: relative;
+            top: 10px;
+            left: -5px; /* Adjust for RTL */
+        }
+        
+        .opinion-card .author {
+            font-weight: 600;
+            color: var(--accent-color);
+            display: block;
+            margin-top: 8px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.4rem; }
+            h2 { font-size: 1.2rem; padding: 12px; }
+            h3 { font-size: 1.1rem; padding-right: 6px; }
+            .slide-container { margin: 16px auto; padding: 16px 0; }
+            .market-pulse-grid { grid-template-columns: 1fr 1fr; gap: 12px; padding: 16px; }
+            .market-card { padding: 8px; }
+            .market-card .symbol { font-size: 1rem; }
+            .market-card .name { font-size: 0.8rem; }
+            .market-card .change { font-size: 0.9rem; }
+            .content-paragraph { padding: 0 16px; }
+            .btn-source { margin-right: 16px; }
+            .opinion-card { margin: 12px 16px; padding: 10px 16px; }
+        }
+        
+        /* Ensure tables are responsive */
+        .responsive-table-container {
+            overflow-x: auto;
+            padding: 0 var(--padding-base);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: var(--padding-base);
+            table-layout: fixed; /* Fix table layout for consistent column widths */
+            word-wrap: break-word; /* Break long words */
+        }
+        th, td {
+            border: 1px solid var(--divider-color);
+            padding: 10px;
+            text-align: right; /* RTL */
+        }
+        th {
+            background-color: var(--opinion-bg);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <h1>דוח שוק הון יומי - 1 ביולי 2026</h1>
+
+        <h2>תמונת מצב מהירה (Market Pulse)</h2>
+        <div class="market-pulse-grid">
+            <div class="market-card">
+                <div class="symbol">SPY</div>
+                <div class="name">SPDR S&P 500 ETF</div>
+                <div class="change positive">+0.77%</div>
+            </div>
+            <div class="market-card">
+                <div class="symbol">QQQ</div>
+                <div class="name">Invesco QQQ Trust</div>
+                <div class="change positive">+1.70%</div>
+            </div>
+            <div class="market-card">
+                <div class="symbol">AMD</div>
+                <div class="name">Advanced Micro Devices</div>
+                <div class="change positive">+7.67%</div>
+            </div>
+            <div class="market-card">
+                <div class="symbol">CRWV</div>
+                <div class="name">CoreWeave, Inc.</div>
+                <div class="change positive">+4.21%</div>
+            </div>
+            <div class="market-card">
+                <div class="symbol">SPCX</div>
+                <div class="name">SpaceX Class A</div>
+                <div class="change positive">+4.06%</div>
+            </div>
+            <div class="market-card">
+                <div class="symbol">AAPL</div>
+                <div class="name">Apple Inc.</div>
+                <div class="change positive">+2.70%</div>
+            </div>
+            <div class="market-card">
+                <div class="symbol">NVDA</div>
+                <div class="name">NVIDIA Corporation</div>
+                <div class="change positive">+2.62%</div>
+            </div>
+            <div class="market-card">
+                <div class="symbol">TSLA</div>
+                <div class="name">Tesla, Inc.</div>
+                <div class="change positive">+2.12%</div>
+            </div>
+            <div class="market-card">
+                <div class="symbol">BTC/USD</div>
+                <div class="name">Bitcoin</div>
+                <div class="change positive">+0.27%</div>
+            </div>
+             <div class="market-card">
+                <div class="symbol">ETH/USD</div>
+                <div class="name">Ethereum</div>
+                <div class="change positive">+0.21%</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-container">
+        <span class="category-badge">קריפטו</span>
+        <h2>יציאות שיא מקרנות סל ביטקוין ואת'ריום</h2>
+        <div class="content-paragraph">
+            <p>קרנות סל הביטקוין (Spot Bitcoin ETFs) רשמו יציאות של <strong>4.5 מיליארד דולר</strong> בחודש יוני לבדו, והגיעו לסך יציאות של <strong>5.5 מיליארד דולר</strong> מתחילת השנה, מה שמסמן קצב משיכות חסר תקדים. באופן דומה, קרנות סל האת'ריום רשמו יציאות של <strong>345 מיליון דולר</strong>, מה שממשיך להפעיל לחץ על מחיר ETH.</p>
+        </div>
+        <h3>למה זה חריג</h3>
+        <div class="content-paragraph">
+            <p>הנתונים מצביעים על חודש היציאות הגרוע ביותר אי פעם עבור קרנות סל הביטקוין, דבר המטיל ספק בתפיסה שאימוץ מוסדי יפחית את התנודתיות בשוק הקריפטו. היקף המשיכות מהווה אינדיקציה ברורה לסנטימנט שלילי משמעותי בשוק.</p>
+        </div>
+        <h3>הלוגיקה</h3>
+        <div class="content-paragraph">
+            <p>היציאות הללו, המכונות "חורף קריפטו" על ידי חלק מהאנליסטים, מדגישות את הפגיעות המתמשכת של שוק הקריפטו למשיכות הון גדולות, למרות הכניסה של מוצרים מוסדיים כמו קרנות סל. במקביל, טייוואן העבירה חוקים ראשונים לתחום הקריפטו וה-Stablecoin, במטרה לשלב את המדינה בשוק הקריפטו העולמי, מה שמציג ניגוד בין זרימת הכסף לבין התפתחות רגולטורית חיובית באזורים מסוימים.</p>
+            <a class="btn-source" href="https://cointelegraph.com/news/bitcoin-etf-4-5-billion-outflow-june-worst-on-record" target="_blank">Cointelegraph</a>
+            <a class="btn-source" href="https://cointelegraph.com/markets/bitmine-ether-buys-eclipsed-by-345m-eth-etf-345m-outflows-is-sub-15k-next" target="_blank">Cointelegraph</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/taiwans-legislature-passes-crypto-regulation-licensing-laws" target="_blank">Cointelegraph</a>
+            <a class="btn-source" href="https://www.marketwatch.com/story/bitcoin-etfs-were-supposed-to-make-selloffs-less-painful-that-theory-is-being-put-to-the-test-f70ba3c6?mod=mw_rss_topstories" target="_blank">MarketWatch</a>
+        </div>
+        <div class="section-divider"></div>
+
+        <span class="category-badge">בינה מלאכותית (AI)</span>
+        <h2>הסרת מגבלות יצוא על Anthropic וגיוסי ענק בתחום ה-AI</h2>
+        <div class="content-paragraph">
+            <p>ממשלת ארה"ב הסירה את מגבלות היצוא על מודלי ה-AI המובילים של Anthropic, "Fable 5" ו-"Mythos 5", מה שמחזיר את החברה למסלול הנפקה ציבורית קריטית. מודלים אלו יושקו מחדש עם מסווגים חדשים לאיתור וסינון משימות סייבר.</p>
+            <p>בנוסף, MGX, חברת השקעות מאיחוד האמירויות, השלימה גיוס ענק של <strong>49 מיליארד דולר</strong> לקרן AI חדשה, כשהיא מהווה משקיעה מרכזית בחברות AI מובילות כמו OpenAI, Anthropic ו-xAI של אילון מאסק.</p>
+        </div>
+        <h3>למה זה חריג</h3>
+        <div class="content-paragraph">
+            <p>הסרת מגבלות היצוא מהווה אירוע מכונן עבור Anthropic, פותחת לה שווקים גלובליים ומאפשרת לה להתקדם עם תוכניות ה-IPO שלה. גיוס ה-49 מיליארד דולר מ-MGX מדגיש את האמון העצום והמתמשך מצד משקיעים גדולים בפוטנציאל הצמיחה של תעשיית ה-AI, גם כשהממשל האמריקאי מפעיל לחצים ורגולציה.</p>
+        </div>
+        <h3>הלוגיקה</h3>
+        <div class="content-paragraph">
+            <p>בעוד שממשל טראמפ הגביל בעבר את גישת זרים למודלים אלו מחשש להדלפת טכנולוגיה, ההחלטה הנוכחית משקפת איזון מורכב בין שמירה על יתרון תחרותי לבין קידום חדשנות גלובלית. ההשקעות העצומות מצד גופים כמו MGX, ודיווחים על כך שמשקיעים צופים ל-Anthropic שווי של טריליון דולר, מצביעים על המשך הבהלה לזהב של ה-AI.</p>
+            <a class="btn-source" href="https://www.marketwatch.com/story/anthropic-gets-all-clear-to-let-foreigners-use-latest-model-ahead-of-crucial-ipo-a1ddc94a?mod=mw_rss_topstories" target="_blank">MarketWatch</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/07/01/mgx-ai-fund-uae-49-billion.html" target="_blank">CNBC</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/anthropic-reactivates-newest-ai-models-after-us-govt-lifts-restrictions" target="_blank">Cointelegraph</a>
+            <a class="btn-source" href="https://finance.yahoo.com/technology/ai/articles/anthropic-bettors-see-1-trillion-095100526.html" target="_blank">Yahoo Finance</a>
+        </div>
+        <div class="section-divider"></div>
+
+        <span class="category-badge">שבבים וטכנולוגיה</span>
+        <h2>ראלי השבבים מתרחב ויוצר מחסור בזיכרון</h2>
+        <div class="content-paragraph">
+            <p>ראלי השבבים הרחב הוסיף <strong>2 טריליון דולר</strong> לשווי השוק המשולב של Micron, Intel ו-AMD ברבעון השני, כאשר AMD זינקה היום בכ- <span class="data-badge positive">+7.67%</span>. סמנכ"ל מיקרון (MU), סנג'אי מהרוטרה, ציין כי שנים של לחץ אגרסיבי על מחירים הובילו לתת-השקעה בתעשיית הזיכרון, ותרמו למחסור הנוכחי באספקה.</p>
+        </div>
+        <h3>למה זה חריג</h3>
+        <div class="content-paragraph">
+            <p>הראלי האחרון מראה שהתלהבות ה-AI מתרחבת מעבר ל-Nvidia, ומביאה עמה עליות משמעותיות גם לספקיות שבבים אחרות כמו AMD ומיקרון. ההערה של מנכ"ל מיקרון חושפת את ההיגיון שמאחורי המחסור בזיכרון, ומדגישה שהביקוש העצום ל-AI פוגש תעשייה שלא הייתה ערוכה לקפיצה כזו.</p>
+        </div>
+        <h3>הלוגיקה</h3>
+        <div class="content-paragraph">
+            <p>הביקוש העולה לשבבי AI מוביל לחידוש תשומת הלב וסנטימנט חיובי כלפי מגוון רחב יותר של חברות שבבים. במקביל, המחסור בזיכרון, כפי שמתאר מנכ"ל מיקרון, צפוי להמשיך לדחוף מחירים כלפי מעלה ולתמוך בהכנסותיהן של חברות כמו Micron בטווח הקרוב, מה שיוצר סביבה חיובית להשקעה בתחום.</p>
+            <a class="btn-source" href="https://www.cnbc.com/2026/06/30/micron-ceo-customers-driving-hard-bargain-on-price-contributed-to-memory-shortage.html" target="_blank">CNBC</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/06/30/ai-chip-rally-in-q2-adds-2-trillion-in-value-to-micron-intel-amd-.html" target="_blank">CNBC</a>
+            <a class="btn-source" href="https://www.marketwatch.com/story/the-chip-rally-has-a-dark-side-and-a-rare-market-risk-is-at-its-highest-level-since-2015-5114fba0?mod=mw_rss_topstories" target="_blank">MarketWatch</a>
+        </div>
+        <div class="section-divider"></div>
+
+        <span class="category-badge">טכנולוגיה / אנרגיה</span>
+        <h2>משבר האנרגיה של ה-AI משנה את שוק כריית הביטקוין</h2>
+        <div class="content-paragraph">
+            <p>הביקוש העצום לאנרגיה מצד תעשיית הבינה המלאכותית הופך את גישתן של כריית הביטקוין לרשת החשמל לנכס יקר ערך. כריית הביטקוין, הידועה בצריכת האנרגיה הגבוהה שלה, מחזיקה באתרי כוח ובתשתיות שעתה נדרשות באופן הולך וגובר על ידי חברות AI המקימות דאטה סנטרים.</p>
+        </div>
+        <h3>למה זה חריג</h3>
+        <div class="content-paragraph">
+            <p>זהו מהלך אסטרטגי משמעותי עבור כורי ביטקוין, שכן הוא מאפשר להם גיוון בהכנסות מעבר לפעילות הכרייה גרידא. היכולת להמיר קמפוסי כרייה ישנים למרכזי נתונים עבור AI מייצרת מודל עסקי חדש ומניבה הכנסות פוטנציאליות בתקופה של שוק קריפטו תנודתי.</p>
+        </div>
+        <h3>הלוגיקה</h3>
+        <div class="content-paragraph">
+            <p>חברות AI זקוקות לתשתית חשמל אמינה ובקנה מידה גדול כדי לתמוך בפעילותן התובענית מבחינה אנרגטית. כורי ביטקוין, שכבר השקיעו בתשתיות אלה, יכולים למצב את עצמם כספקיות פתרונות אנרגיה ודאטה סנטרים לשוק ה-AI הצומח, ובכך ליצור סינרגיה בין שני סקטורים עתירי אנרגיה.</p>
+            <a class="btn-source" href="https://cointelegraph.com/features/bitcoin-miners-ai-data-centers-power-infrastructure" target="_blank">Cointelegraph</a>
+            <a class="btn-source" href="https://finance.yahoo.com/technology/ai/articles/1-3m-stolen-copper-gear-100000256.html" target="_blank">Yahoo Finance</a>
+        </div>
+    </div>
+</body>
+</html>
