@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק הון יומי - תובנות אסטרטגיות</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --text-color: #e0e0e0;
+            --accent-color: #79a6d2; /* Steel blue */
+            --divider-color: #333;
+            --card-bg: #1a202c;
+            --opinion-card-bg: #222938;
+            --positive-color-light: rgba(0, 180, 0, 0.15); /* Muted green with opacity */
+            --positive-color-text: #00cc00; /* Brighter green for text */
+            --negative-color-light: rgba(180, 0, 0, 0.15); /* Muted red with opacity */
+            --negative-color-text: #ff4444; /* Brighter red for text */
+            --neutral-color-light: rgba(100, 100, 100, 0.15);
+            --border-color: #2b303b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            direction: rtl; /* Right-to-left for Hebrew */
+            text-align: right;
+            overflow-x: hidden; /* Prevent horizontal scroll from layout issues */
+        }
+
+        h1, h2, h3 {
+            color: var(--accent-color);
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--divider-color);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            border-bottom: 1px solid var(--divider-color);
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            color: var(--text-color);
+            margin-top: 25px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .slide-container {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 24px 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .section-divider {
+            border-top: 1px solid var(--divider-color);
+            margin: 40px 0;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .pulse-card {
+            background-color: var(--bg-color);
+            border-radius: 6px;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .pulse-symbol {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+
+        .pulse-name {
+            font-size: 0.9rem;
+            color: #ccc;
+            margin-bottom: 10px;
+        }
+
+        .pulse-change {
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 5px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            white-space: nowrap; /* Prevent wrapping for price + percent */
+        }
+        
+        .pulse-change.positive {
+            background-color: var(--positive-color-light);
+            color: var(--positive-color-text);
+        }
+
+        .pulse-change.negative {
+            background-color: var(--negative-color-light);
+            color: var(--negative-color-text);
+        }
+
+        .pulse-change.neutral {
+            background-color: var(--neutral-color-light);
+            color: var(--text-color);
+        }
+
+        .highlight-card {
+            background-color: var(--bg-color);
+            border-right: 4px solid var(--accent-color);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            font-style: italic;
+            color: #c0c0c0;
+            line-height: 1.5;
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-card-bg);
+            border-right: 4px solid var(--positive-color-text); /* Different color for opinion */
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            position: relative;
+            color: #c0c0c0;
+        }
+        .opinion-card::before {
+            content: '“'; /* Quote icon */
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.1);
+            line-height: 1;
+        }
+        .opinion-author {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-top: 10px;
+            display: block;
+            text-align: left; /* Align author to the left */
+        }
+        .opinion-text {
+            font-style: italic;
+        }
+
+        .source-link {
+            font-size: 0.9rem;
+            margin-top: 10px;
+            display: flex; /* Use flexbox for source buttons */
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+            gap: 10px; /* Space between buttons */
+            text-align: left; /* Align to the left for sources */
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: #3a3f4b;
+            color: var(--text-color);
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            transition: background-color 0.3s ease;
+            white-space: nowrap; /* Keep button text on one line */
+        }
+
+        .btn-source:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            text-decoration: none;
+        }
+
+        .news-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        table {
+            width: 100%;
+            table-layout: fixed;
+            word-wrap: break-word;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            overflow-x: auto; /* For table responsiveness */
+            display: block; /* To apply overflow-x */
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: right;
+            border-bottom: 1px solid var(--divider-color);
+        }
+
+        th {
+            background-color: var(--card-bg);
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        tr:hover {
+            background-color: #1c212d;
+        }
+
+        .positive-text {
+            color: var(--positive-color-text);
+        }
+
+        .negative-text {
+            color: var(--negative-color-text);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.4rem;
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            .slide-container {
+                padding: 16px;
+            }
+            .market-pulse-grid {
+                grid-template-columns: 1fr 1fr; /* Two columns on mobile */
+            }
+            th, td {
+                padding: 8px 10px;
+                font-size: 0.9rem;
+            }
+            .source-link {
+                flex-direction: column; /* Stack buttons vertically on mobile */
+            }
+            .btn-source {
+                width: 100%; /* Full width for buttons on mobile */
+                box-sizing: border-box; /* Include padding and border in width */
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>דוח שוק הון יומי: תובנות אסטרטגיות</h1>
+    <p style="text-align: center; color: #aaa;">תאריך: 1 ביולי 2026</p>
+
+    <div class="slide-container">
+        <div class="badge">תמונת מצב מהירה</div>
+        <h2>Market Pulse: סקירה מהירה</h2>
+        <div class="market-pulse-grid">
+            <!-- SPY -->
+            <div class="pulse-card">
+                <div class="pulse-symbol">SPY</div>
+                <div class="pulse-name">SPDR S&P 500 ETF Trust</div>
+                <div class="pulse-change positive">
+                    <span class="positive-text">+0.7786%</span> <span style="font-size: 0.9em;">(746.77$)</span>
+                </div>
+            </div>
+            <!-- QQQ -->
+            <div class="pulse-card">
+                <div class="pulse-symbol">QQQ</div>
+                <div class="pulse-name">Invesco QQQ Trust</div>
+                <div class="pulse-change positive">
+                    <span class="positive-text">+1.7014%</span> <span style="font-size: 0.9em;">(736.40$)</span>
+                </div>
+            </div>
+            <!-- BTC/USD -->
+            <div class="pulse-card">
+                <div class="pulse-symbol">BTC/USD</div>
+                <div class="pulse-name">Bitcoin</div>
+                <div class="pulse-change positive">
+                    <span class="positive-text">+0.4466%</span> <span style="font-size: 0.9em;">(58,785.30$)</span>
+                </div>
+            </div>
+            <!-- ETH/USD -->
+            <div class="pulse-card">
+                <div class="pulse-symbol">ETH/USD</div>
+                <div class="pulse-name">Ethereum</div>
+                <div class="pulse-change positive">
+                    <span class="positive-text">+0.4986%</span> <span style="font-size: 0.9em;">(1,580.16$)</span>
+                </div>
+            </div>
+            <!-- AMD -->
+            <div class="pulse-card">
+                <div class="pulse-symbol">AMD</div>
+                <div class="pulse-name">Advanced Micro Devices</div>
+                <div class="pulse-change positive">
+                    <span class="positive-text">+7.6776%</span> <span style="font-size: 0.9em;">(580.91$)</span>
+                </div>
+            </div>
+            <!-- NVDA -->
+            <div class="pulse-card">
+                <div class="pulse-symbol">NVDA</div>
+                <div class="pulse-name">NVIDIA Corporation</div>
+                <div class="pulse-change positive">
+                    <span class="positive-text">+2.6260%</span> <span style="font-size: 0.9em;">(200.09$)</span>
+                </div>
+            </div>
+            <!-- AAPL -->
+            <div class="pulse-card">
+                <div class="pulse-symbol">AAPL</div>
+                <div class="pulse-name">Apple Inc.</div>
+                <div class="pulse-change positive">
+                    <span class="positive-text">+2.7046%</span> <span style="font-size: 0.9em;">(289.36$)</span>
+                </div>
+            </div>
+            <!-- TSLA -->
+            <div class="pulse-card">
+                <div class="pulse-symbol">TSLA</div>
+                <div class="pulse-name">Tesla, Inc.</div>
+                <div class="pulse-change positive">
+                    <span class="positive-text">+2.1270%</span> <span style="font-size: 0.9em;">(420.60$)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">טכנולוגיה ו-AI</div>
+        <h2>התפתחויות בתחום הבינה המלאכותית: הקלות רגולטוריות ושינויים בשוק השבבים</h2>
+        <h3>מה קרה היום:</h3>
+        <p>ממשלת ארה"ב הסירה את הגבלות הייצוא על מודלי הבינה המלאכותית המתקדמים ביותר של Anthropic, כולל Claude Fable 5 ו-Mythos 5. מהלך זה סולל את הדרך עבור Anthropic להתרחב לשווקים בינלאומיים קריטיים ומוערך כבעל חשיבות מכרעת לקראת ההנפקה הראשונית (IPO) המתוכננת של החברה.</p>
+        <p>במקביל, מגזר השבבים המשיך להפגין עוצמה, כאשר מניית AMD נסחרה במחיר <span class="positive-text">580.91 דולר</span>, בעקבות עלייה של <span class="positive-text">7.6776%</span> במחיר המניה ונגעה בשיא של 52 שבועות (<span class="positive-text">584.73 דולר</span>).</p>
+        <div class="source-link">
+            <a class="btn-source" href="https://www.marketwatch.com/story/anthropic-gets-all-clear-to-let-foreigners-use-latest-model-ahead-of-crucial-ipo-a1ddc94a?mod=mw_rss_topstories">MarketWatch (Jules Rimmer)</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/06/30/anthropic-says-trump-admin-has-lifted-export-controls-on-claude-fable-5-and-mythos-5.html">CNBC</a>
+        </div>
+        <div class="news-image">
+            <img src="https://s3-images.ctmedia.io/media/article-covers/hi-business-to-give-the-access-to-ai-models.jpg" alt="מודלי AI של Anthropic">
+        </div>
+
+        <h3>למה זה חריג:</h3>
+        <p>הקלה רגולטורית משמעותית זו מגיעה לאחר תקופה של חששות לגבי הגבלות ייצוא אמריקאיות על טכנולוגיות AI רגישות, מה שייצר דאגה לגבי יכולתן של חברות AI אמריקאיות להתחרות גלובלית. ההחלטה מאפשרת לאנת'רופיק להגדיל את שוק היעד שלה באופן דרמטי. הגיעה של AMD לשיא 52 שבועות מדגישה את העוצמה המתמשכת בשוק השבבים המונעת על ידי הביקוש ל-AI.</p>
+
+        <h3>הלוגיקה:</h3>
+        <p>הקלת הרגולציה מורידה מחסומי כניסה לשווקים זרים עבור Anthropic, מה שיכול להשפיע לחיוב על שוויה לפני ההנפקה. הרחבת הגישה למודלים אלו צפויה להגביר את התחרותיות של אנת'רופיק מול מתחרותיה הגלובליות. מנכ"ל מיקרון, סנג'אי מהרוטרה, ציין גם כי לחצי תמחור בעבר הובילו לתת-השקעה בתעשיית הזיכרון, מה שתרם למחסור הנוכחי, ומחזק את הצפי לעליית מחירים וביקוש בתחום השבבים כולו.</p>
+        <div class="source-link">
+            <a class="btn-source" href="https://www.cnbc.com/2026/06/30/micron-ceo-customers-driving-hard-bargain-on-price-contributed-to-memory-shortage.html">CNBC</a>
+        </div>
+        <div class="opinion-card">
+            <p class="opinion-text">"Jim Cramer says the AI trade has shifted — and these stocks are leading now: Wall Street is rewarding the companies supplying the artificial intelligence boom rather than the technology giants funding it."</p>
+            <span class="opinion-author">Jim Cramer, CNBC</span>
+            <div class="source-link"><a class="btn-source" href="https://www.cnbc.com/2026/06/30/jim-cramer-ai-trade-shifted-stocks-leading-now.html">CNBC</a></div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">קריפטו</div>
+        <h2>התנודתיות בשוק הקריפטו: יציאות הון מקרנות סל ורגולציה מתפתחת</h2>
+        <h3>מה קרה היום:</h3>
+        <p>קרנות סל (ETFs) נקודתיות של ביטקוין בארה"ב רשמו יציאות הון שיא של <span class="negative-text">4.5 מיליארד דולר</span> ביוני, מה שהעלה את סך היציאות מתחילת השנה ל-<span class="negative-text">5.5 מיליארד דולר</span>. בנוסף, קרנות סל של את'ריום (ETH ETF) רשמו יציאות של <span class="negative-text">345 מיליון דולר</span>.</p>
+        <p>מחיר הביטקוין (BTC/USD) נסחר ב-<span class="positive-text">58,785.30 דולר</span>, עם שינוי יומי חיובי קל של <span class="positive-text">+0.4466%</span>, אך עדיין משקף ירידה שבועית משמעותית של <span class="negative-text">-6.0655%</span>, והיה נתון תחת לחץ לאור יציאות ההון ועליית הדולר מול הין היפני, שמובילה לחששות מירידה מתחת ל-<span class="negative-text">58,000 דולר</span>.</p>
+        <p>במקביל, טייוואן אישרה את הכללים הראשונים שלה לתעשיית הקריפטו וה-Stablecoin, במטרה להשתלב בשוק הקריפטו העולמי.</p>
+        <div class="source-link">
+            <a class="btn-source" href="https://cointelegraph.com/news/bitcoin-etf-4-5-billion-outflow-june-worst-on-record?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Helen Partz)</a>
+            <a class="btn-source" href="https://cointelegraph.com/markets/bitmine-ether-buys-eclipsed-by-345m-eth-etf-345m-outflows-is-sub-15k-next?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Marcel Pechman)</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/taiwans-legislature-passes-crypto-regulation-licensing-laws?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Jesse Coghlan)</a>
+            <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-price-slumps-to-near-58k-as-us-dollar-hits-40-year-high-against-yen?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (William Suberg)</a>
+        </div>
+        <div class="news-image">
+            <img src="https://s3-images.ctmedia.io/media/article-covers/hi-vanilla-drainer-how-one-scam-tool.jpg" alt="יציאות הון מקרנות סל של ביטקוין">
+        </div>
+
+        <h3>למה זה חריג:</h3>
+        <p>יציאות ההון מקרנות הסל של הביטקוין הן שיא שלילי לחודש בודד, ומהוות אינדיקציה ללחץ מכירה משמעותי מצד משקיעים מוסדיים וקמעונאיים כאחד. הציפייה המקורית הייתה שקרנות סל יפחיתו את התנודתיות, אך נראה שהתאוריה הזו נבחנת כעת. הירידה של הביטקוין, למרות עלייה יומית קלה, עדיין משקפת חולשה שבועית משמעותית.</p>
+        <p>הרגולציה בטייוואן היא חלק ממגמה גלובלית של ממשלות המנסות להסדיר את שוק הקריפטו, ומהווה צעד חשוב להגברת הלגיטימציה של התעשייה.</p>
+
+        <h3>הלוגיקה:</h3>
+        <p>יציאות הון גדולות מקרנות סל של ביטקוין ואת'ריום מעידות על סנטימנט שלילי גובר בשוק הקריפטו, המשפיע על נזילות ומוביליות המחירים כלפי מטה. נתונים אלה מחזקים את הנרטיב של "חורף קריפטו" שהוזכר בדיונים האחרונים.</p>
+        <div class="opinion-card">
+            <p class="opinion-text">"Bitcoin's recent selloff brought it within 10% of its realized price — a line that has marked the bottoming zone in Bitcoin's previous bear markets."</p>
+            <span class="opinion-author">William Suberg, Cointelegraph</span>
+            <div class="source-link"><a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-is-just-a-5k-drop-away-from-its-best-investment-opportunity-analysis?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a></div>
+        </div>
+        <div class="opinion-card">
+            <p class="opinion-text">"The record Bitcoin supply held by long-term holders may suggest that the crypto market bottom will come early, according to Swan’s Cory Klippsten."</p>
+            <span class="opinion-author">Cory Klippsten, CEO of Swan</span>
+            <div class="source-link"><a class="btn-source" href="https://cointelegraph.com/news/record-bitcoin-holder-supply-early-bottom-swan-ceo?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a></div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">רגולציה ומוסדיים</div>
+        <h2>התקדמות ברגולציה ואימוץ מוסדי של נכסים דיגיטליים</h2>
+        <h3>מה קרה היום:</h3>
+        <p>לצד הרגולציה בטייוואן, ה-SEC האמריקאי מבקש הערות ציבוריות בנוגע לרגולציה של הדור הבא של קרנות סל, מה שמרמז על התרחבות פוטנציאלית בתחום זה. מספר חברות פיננסיות, כולל Visa ו-Mastercard, חוברות ליצירת Stablecoin חדש של דולר אמריקאי, שיתחרה ב-USDT ו-USDC.</p>
+        <p>חברת NASDAQ שילבה את נתוני השוק הקנייניים שלה לבלוקצ'יין דרך פלטפורמת Pyth, המאפשרת למפתחי בלוקצ'יין גישה לנתונים פיננסיים בזמן אמת. בנוסף, פלטפורמת שוק ההון בבלוקצ'יין Theo השקיעה <span class="positive-text">20 מיליון דולר</span> בקרן נזילות מטוּקנת של Fidelity International.</p>
+        <div class="source-link">
+            <a class="btn-source" href="https://cointelegraph.com/news/sec-seeks-public-comment-on-regulating-novel-etfs?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Nate Kostar)</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/financial-companies-us-dollar-payment-stablecoin?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Turner Wright)</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/nasdaq-brings-proprietary-market-data-onchain-through-pyth?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Nate Kostar)</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/fidelity-tokenized-fund-first-crypto-native-investor?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Nate Kostar)</a>
+        </div>
+        <div class="news-image">
+            <img src="https://s3-images.ctmedia.io/media/article-covers/sec-logo-smaller-background.jpg" alt="לוגו SEC">
+        </div>
+
+        <h3>למה זה חריג:</h3>
+        <p>התפתחות רגולטורית והשתלבות של שחקנים פיננסיים מסורתיים כמו ויזה, מאסטרקארד ונסדא"ק בתחום הקריפטו, מעידות על מגמת אימוץ נרחבת ורצון לייצר יציבות ונגישות לנכסים דיגיטליים. שיתופי פעולה אלו מסמלים מעבר משוק נישתי לשוק שהולך ונהיה מיינסטרים, תוך בחינת פוטנציאל הטוקניזציה.</p>
+
+        <h3>הלוגיקה:</h3>
+        <p>השתלבות נתוני שוק מסורתיים של נאסד"ק בבלוקצ'יין מגבירה את השקיפות והאמינות של נתונים עבור יישומי קריפטו, ומהווה גישור חשוב בין הפיננסים המסורתיים (TradFi) לבין הפיננסים המבוזרים (DeFi). הניסיון ליצור Stablecoin חדש בחסות חברות פיננסיות גדולות משקף את ההבנה בצורך בפתרונות תשלום דיגיטליים יעילים, וכן את הפוטנציאל לרווחי עתודה מה-Stablecoins.</p>
+        <div class="highlight-card">
+            <p>לפי דוח Cybrid, רוב העסקים צפויים להשתמש ב-Stablecoins ב-12 החודשים הקרובים לתשלומים חוצי גבולות, כאשר בהירות רגולטורית נותרה המכשול העיקרי לאימוץ רחב.</p>
+            <div class="source-link">
+                <a class="btn-source" href="https://cointelegraph.com/news/42-of-businesses-surveyed-use-stablecoins-for-cross-border-payments-cybrid-report?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Nate Kostar)</a>
+            </div>
+        </div>
+        <p>בתוך כך, MetaMask השיקה חשבון תשואה ל-Stablecoin המציע עד 4% APY, מה שמספק דרכים חדשות למשתמשים להניב תשואה מנכסיהם הדיגיטליים.</p>
+        <div class="source-link">
+            <a class="btn-source" href="https://cointelegraph.com/news/metamask-money-account-musd-stablecoin-yield?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Helen Partz)</a>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">התפתחויות בתעשייה</div>
+        <h2>חיבורים בין AI לקריפטו, השפעה פוליטית ותפיסות שוק</h2>
+        <h3>מה קרה היום:</h3>
+        <p>OKX השיקה שוק AI סוכנים אוטונומיים, המאפשר לסוכני AI למצוא עבודה ולשתף פעולה באופן עצמאי. במקביל, דו"ח מצביע על כך שחברות קריפטו הוציאו <span class="positive-text">189 מיליון דולר</span> עד כה על מחזור הבחירות בארה"ב לשנת 2026, המשקף את הרצון להשפיע על המדיניות הפוליטית.</p>
+        <p>מחקר מעניין נוסף מראה כי כוח החישוב הדרוש ל-AI הופך את הגישה לרשת של כורי ביטקוין לנכס משמעותי, כאשר אתרי כרייה יכולים להפוך למרכזי נתונים עבור AI.</p>
+        <div class="source-link">
+            <a class="btn-source" href="https://cointelegraph.com/news/okx-ai-marketplace-autonomous-agent-economy?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Zoltan Vardai)</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/crypto-companies-spent-2026-us-election-cycle-public-citizen?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Turner Wright)</a>
+            <a class="btn-source" href="https://cointelegraph.com/features/bitcoin-miners-ai-data-centers-power-infrastructure?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Artem G)</a>
+        </div>
+        <div class="news-image">
+            <img src="https://s3-images.ctmedia.io/media/article-covers/hi-what-happens-when-chatgpt-becomes-the-front-door-to-crypto-1.jpg" alt="OKX AI Marketplace">
+        </div>
+
+        <h3>למה זה חריג:</h3>
+        <p>השקת שוק AI על ידי בורסת קריפטו מדגימה את ההצטלבות הגוברת בין שתי הטכנולוגיות. ההשפעה הפוליטית של תעשיית הקריפטו מגיעה לשיא חדש, מה שמסמן את חשיבותה הגוברת בעיני המחוקקים. הפיכת תשתיות כריית ביטקוין למרכזי נתונים ל-AI מציעה מודל עסקי חדש ומהווה פתרון יצירתי למחסור באנרגיה ובאתרי קצה עבור מערכות AI.</p>
+
+        <h3>הלוגיקה:</h3>
+        <p>החיבור בין AI לקריפטו צפוי להמשיך ולהתחזק, כאשר שתי התעשיות ימצאו סינרגיות חדשות בתחומים כמו מימון מבוזר (DeFi) ומסחר אלגוריתמי. ההוצאות הפוליטיות מציגות את הניסיון של תעשיית הקריפטו לעצב סביבה רגולטורית תומכת יותר, בדומה לתעשיות מבוססות אחרות. המחסור בכוח חישוב ובאתרי נתונים עבור AI דוחף חדשנות ומייצר הזדמנויות עבור כורי ביטקוין, המצוידים בתשתית מתאימה.</p>
+        <div class="highlight-card">
+            <p>"מנכ"ל StarkWare, אלי בן-ששון, הדגיש כי תעשיית הקריפטו אינה יכולה להרשות לעצמה שאננות מול איומי מחשוב קוונטי."</p>
+            <div class="source-link">
+                <a class="btn-source" href="https://cointelegraph.com/news/starkware-ceo-blasts-crypto-complacency-in-quantum-threat-elliptic-illusion?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Martin Young)</a>
+            </div>
+        </div>
+        <div class="news-image">
+            <img src="https://s3-images.ctmedia.io/media/article-covers/hi-cryptocurrency-vs-quantum-computing-1.jpg" alt="מחשוב קוונטי וקריפטו">
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">עבירות וסיכונים</div>
+        <h2>הצל הכהה של הקריפטו: הונאות ותביעות</h2>
+        <h3>מה קרה היום:</h3>
+        <p>כריסטופר דלגדו, מנכ"ל Goliath Ventures לשעבר, הודה באשמה בתיק הונאת קריפטו בסך <span class="negative-text">400 מיליון דולר</span> והסכים להחרים נכסים. בנוסף, הבמאי קארל רינש נדון ל-30 חודשי מאסר לאחר שהשתמש בכספי נטפליקס להימורים על Dogecoin, מניות ומוצרי יוקרה.</p>
+        <p>קבוצת משקיעי קריפטו בבריטניה תובעת את בורסת Binance ואת מייסדה צ'אנגפנג ז'או על <span class="negative-text">200 מיליון דולר</span>, בטענה להפסדים עקב הצעות נגזרים לפני הטלת מגבלות.</p>
+        <div class="source-link">
+            <a class="btn-source" href="https://cointelegraph.com/news/goliath-ceo-guilty-400m-crypto-ponzi-case?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Ezra Reguerra)</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/47-ronin-director-who-gambled-netflix-funds-on-crypto-gets-30-months?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Jesse Coghlan)</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/uk-crypto-investors-sue-binance-changpeng-zhao-for-potential-200m-payout?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Brayden Lindrea)</a>
+        </div>
+        <div class="news-image">
+            <img src="https://s3-images.ctmedia.io/media/article-covers/hi-crypto-bankruptcy-laws-remain-a-mystery.jpg" alt="פשעי קריפטו">
+        </div>
+
+        <h3>למה זה חריג:</h3>
+        <p>המקרים הללו מדגישים את הסיכונים המשמעותיים ואת היעדר הפיקוח שהיו קיימים בעבר בשוק הקריפטו, וכיצד רגולציה מחמירה יותר מובילה לאכיפה משפטית נגד מעשים פליליים. תביעות נגד בורסות גדולות כמו Binance מראות שהמשקיעים דורשים אחריות ושקיפות.</p>
+
+        <h3>הלוגיקה:</h3>
+        <p>מקרים אלו תורמים לחיזוק הקריאות לרגולציה הדוקה יותר בתחום הקריפטו, במיוחד סביב פלטפורמות מסחר ומוצרי נגזרים. בעוד התעשייה שואפת לאמץ מוסדי נרחב, מקרים של הונאה ושימוש לרעה בכספים עלולים לפגוע באמון הציבור ובמאמצים אלו.</p>
+    </div>
+
+</body>
+</html>
