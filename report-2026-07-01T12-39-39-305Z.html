@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי: 1 ביולי 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --text-color: #e0e6ed;
+            --secondary-text-color: #8b949e;
+            --accent-color: #ffb74d; /* Soft goldenrod */
+            --accent-light: #64b5f6; /* Steel blue / light blue */
+            --border-color: #2a2f3a;
+            --card-bg-color: #1a1e27;
+            --positive-color-text: #69f0ae; /* Green accent */
+            --positive-color-bg: rgba(0, 128, 0, 0.2);
+            --negative-color-text: #ff5252; /* Red accent */
+            --negative-color-bg: rgba(255, 0, 0, 0.2);
+            --opinion-card-bg: #22252c;
+            --highlight-card-bg: #2a3142;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            direction: rtl; /* Right-to-left for Hebrew */
+            text-align: right; /* Right align text for Hebrew */
+            font-weight: 400;
+        }
+
+        .slide-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 24px;
+            background-color: var(--card-bg-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        h1, h2, h3 {
+            color: var(--accent-light);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--accent-color);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            color: var(--text-color);
+            margin-top: 25px;
+        }
+
+        p {
+            margin-bottom: 10px;
+            color: var(--secondary-text-color);
+        }
+
+        strong {
+            color: var(--text-color);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        table {
+            width: 100%;
+            table-layout: fixed;
+            overflow-x: auto;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            text-align: right;
+        }
+
+        th {
+            background-color: var(--border-color);
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        td {
+            background-color: var(--card-bg-color);
+            color: var(--secondary-text-color);
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .market-pulse-card {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .market-pulse-card strong {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--text-color);
+        }
+
+        .market-pulse-card .change-positive {
+            color: var(--positive-color-text);
+            background-color: var(--positive-color-bg);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .market-pulse-card .change-negative {
+            color: var(--negative-color-text);
+            background-color: var(--negative-color-bg);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .section-divider {
+            border-top: 1px solid var(--border-color);
+            margin: 40px 0;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--accent-light);
+            color: var(--bg-color);
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-top: 10px;
+            margin-left: 5px; /* For RTL spacing */
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-source:hover {
+            background-color: #4a90d9; /* Darker accent-light */
+        }
+
+        .highlight-card {
+            background-color: var(--highlight-card-bg);
+            border-right: 4px solid var(--accent-color); /* For RTL */
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            color: var(--text-color);
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-card-bg);
+            border-right: 4px solid var(--accent-color); /* For RTL */
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            color: var(--secondary-text-color);
+            position: relative;
+            padding-left: 40px; /* Space for icon */
+            padding-right: 15px; /* Adjust for RTL */
+        }
+
+        .opinion-card::before {
+            content: "\201C"; /* Left double quotation mark */
+            font-family: serif;
+            font-size: 3em;
+            color: var(--accent-color);
+            position: absolute;
+            left: 10px; /* For RTL */
+            right: auto; /* For RTL */
+            top: 5px;
+            line-height: 1;
+        }
+        
+        ul {
+            list-style-type: disc;
+            padding-right: 20px;
+            margin-right: 0;
+            color: var(--secondary-text-color);
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+
+        @media(max-width:768px){
+            .market-pulse-grid{grid-template-columns:1fr 1fr;}
+            .slide-container{padding:16px;}
+            h1{font-size:1.4rem;}
+            h2{font-size:1.2rem;}
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <h1>דוח שוק יומי: 1 ביולי 2026</h1>
+        <p>סקירה יומית של התפתחויות מרכזיות בשוק ההון, דגש על אירועים חריגים ומשמעותם.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">תמונת מצב מהירה</span>
+        <h2>דופק השוק העיקרי</h2>
+        <div class="market-pulse-grid">
+            <!-- S&P 500 (SPY) -->
+            <div class="market-pulse-card">
+                <strong>S&P 500 (SPY)</strong>
+                <span class="change-positive">+0.78%</span>
+                <p>מחיר סגירה: 746.77</p>
+                <a class="btn-source" href="https://www.marketwatch.com/story/is-the-stock-market-open-on-friday-or-will-it-close-early-for-the-fourth-of-july-b9885f36?mod=mw_rss_topstories">MarketWatch</a>
+            </div>
+            <!-- Nasdaq 100 (QQQ) -->
+            <div class="market-pulse-card">
+                <strong>Nasdaq 100 (QQQ)</strong>
+                <span class="change-positive">+1.70%</span>
+                <p>מחיר סגירה: 736.40</p>
+                <a class="btn-source" href="https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-market-rebound-bloom-energy-spacex-buy-point/?src=A00220&yptr=yahoo">Investors.com</a>
+            </div>
+            <!-- AMD -->
+            <div class="market-pulse-card">
+                <strong>AMD</strong>
+                <span class="change-positive">+7.67%</span>
+                <p>מחיר סגירה: 580.91</p>
+                <p>קרוב לשיא 52 שבועות: 584.73</p>
+                <a class="btn-source" href="https://www.cnbc.com/2026/06/30/ai-chip-rally-in-q2-adds-2-trillion-in-value-to-micron-intel-amd-.html">CNBC</a>
+            </div>
+            <!-- SpaceX (SPCX) -->
+            <div class="market-pulse-card">
+                <strong>SpaceX (SPCX)</strong>
+                <span class="change-positive">+4.06%</span>
+                <p>מחיר סגירה: 170.86</p>
+                <a class="btn-source" href="https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-market-rebound-bloom-energy-spacex-buy-point/?src=A00220&yptr=yahoo">Investors.com</a>
+            </div>
+             <!-- CoreWeave (CRWV) -->
+             <div class="market-pulse-card">
+                <strong>CoreWeave (CRWV)</strong>
+                <span class="change-positive">+4.22%</span>
+                <p>מחיר סגירה: 99.54</p>
+                <a class="btn-source" href="https://www.cnbc.com/2026/06/30/aws-amazon-ai-forward-deployed-engineers.html">CNBC</a>
+            </div>
+            <!-- Tesla (TSLA) -->
+            <div class="market-pulse-card">
+                <strong>Tesla (TSLA)</strong>
+                <span class="change-positive">+2.13%</span>
+                <p>מחיר סגירה: 420.60</p>
+                <a class="btn-source" href="https://www.marketwatch.com/story/tesla-deliveries-are-set-to-rise-no-thanks-to-the-u-s-db92a4b1?mod=mw_rss_topstories">MarketWatch</a>
+            </div>
+            <!-- Apple (AAPL) -->
+            <div class="market-pulse-card">
+                <strong>Apple (AAPL)</strong>
+                <span class="change-positive">+2.70%</span>
+                <p>מחיר סגירה: 289.36</p>
+                <a class="btn-source" href="https://www.cnbc.com/2026/07/01/tech-stocks-mag-7-emerging-markets-nvidia-chip-ai.html">CNBC</a>
+            </div>
+            <!-- NVIDIA (NVDA) -->
+            <div class="market-pulse-card">
+                <strong>NVIDIA (NVDA)</strong>
+                <span class="change-positive">+2.63%</span>
+                <p>מחיר סגירה: 200.09</p>
+                <a class="btn-source" href="https://www.cnbc.com/2026/07/01/tech-stocks-mag-7-emerging-markets-nvidia-chip-ai.html">CNBC</a>
+            </div>
+            <!-- AeroVironment (AVAV) - significant jump -->
+            <div class="market-pulse-card">
+                <strong>AeroVironment</strong>
+                <span class="change-positive">+19% (אתמול)</span>
+                <p>בסיכום דו"חות</p>
+                <a class="btn-source" href="https://www.cnbc.com/2026/06/30/aerovironment-avav-stock-earnings-defense.html">CNBC</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">מאקרו כלכלה</span>
+        <h2>שוק העבודה וההשפעה על המאקרו</h2>
+        <h3>מה קרה היום</h3>
+        <p>לפי דוח ADP, עסקים במגזר הפרטי הוסיפו <strong>98,000 משרות</strong> ביוני, נמוך מהצפי ומהווה את הגידול החלש ביותר בשלושת החודשים האחרונים. עיקר הגיוס התרכז במגזרים הקשורים לבריאות.</p>
+        <a class="btn-source" href="https://www.marketwatch.com/story/businesses-add-98-000-new-jobs-in-june-adp-says-154835d8?mod=mw_rss_topstories">MarketWatch</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/07/01/private-payrolls-rose-by-98000-in-june-less-than-expected-adp-reports.html">CNBC</a>
+        <a class="btn-source" href="https://finance.yahoo.com/economy/article/private-employers-added-98000-jobs-in-june-fewer-than-expected-122106116.html">Yahoo Finance</a>
+
+        <h3>למה זה חריג</h3>
+        <div class="highlight-card">
+            נתון זה חריג מכיוון שהתחזיות ציפו לגידול גבוה יותר, והוא מצביע על התקררות מסוימת בשוק העבודה האמריקאי, שהיה יציב וחזק יחסית לאורך תקופה ארוכה. זו היחלשות הגיוס החודשי החלשה ביותר זה שלושה חודשים.
+        </div>
+
+        <h3>הלוגיקה</h3>
+        <p>שוק עבודה מתקרר יכול להשפיע על החלטות הפד בנוגע לריבית. גידול מתון יותר במשרות מפחית את החשש מלחצי אינפלציה כתוצאה מעליית שכר מהירה, מה שעשוי להגביר את הסיכוי להורדת ריבית בעתיד, אם כי הפד ימתין גם לנתוני התעסוקה הרשמיים.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">AI ושבבים</span>
+        <h2>התפתחות ענף ה-AI והשפעותיו</h2>
+        <h3>מה קרה היום</h3>
+        <ul>
+            <li><strong>הסרת בקרות יצוא מ-Anthropic:</strong> ממשל טראמפ הסיר את בקרות היצוא על מודלי ה-AI המובילים של Anthropic, Claude Fable 5 ו-Mythos 5. המודלים יפורסמו מחדש עם מסווגים חדשים לזיהוי וחסימת משימות סייבר.
+                <a class="btn-source" href="https://cointelegraph.com/news/anthropic-reactivates-newest-ai-models-after-us-govt-lifts-restrictions">Cointelegraph</a>
+                <a class="btn-source" href="https://www.cnbc.com/2026/07/01/anthropic-says-trump-admin-has-lifted-export-controls-on-claude-fable-5-and-mythos-5.html">CNBC</a>
+            </li>
+            <li><strong>Anthropic נכנסת לגילוי תרופות:</strong> Anthropic משיקה תוכנית פנימית לגילוי תרופות, כחלק ממהלך רחב יותר למכירת כלי AI לחברות תרופות.
+                <a class="btn-source" href="https://www.cnbc.com/2026/06/30/anthropic-launches-ai-drug-discovery-program-claude-science.html">CNBC</a>
+            </li>
+            <li><strong>גיוס ענק לקרן AI:</strong> MGX, משקיעה ב-OpenAI ו-Anthropic, גייסה 49 מיליארד דולר לקרן AI, מהגדולות בהיסטוריה.
+                <a class="btn-source" href="https://www.cnbc.com/2026/07/01/mgx-ai-fund-uae-49-billion.html">CNBC</a>
+            </li>
+            <li><strong>OKX משיקה שוק AI:</strong> בורסת הקריפטו OKX השיקה שוק בטא ל"כלכלת סוכנים אוטונומיים", המאפשרת לסוכני AI למצוא עבודה ולשתף פעולה.
+                <a class="btn-source" href="https://cointelegraph.com/news/okx-ai-marketplace-autonomous-agent-economy">Cointelegraph</a>
+            </li>
+            <li><strong>AMD זינקה ב-7.67%:</strong> AMD נסגרה ב-580.91 דולר, עלייה של 7.67%, ומתקרבת לשיא של 52 שבועות, 584.73 דולר. זה מגיע כחלק מראלי שבבי ה-AI שהוסיף 2 טריליון דולר לשווי משותף של Micron, Intel ו-AMD ברבעון השני.
+                <a class="btn-source" href="https://www.cnbc.com/2026/06/30/ai-chip-rally-in-q2-adds-2-trillion-in-value-to-micron-intel-amd-.html">CNBC</a>
+            </li>
+        </ul>
+        <div class="highlight-card">
+            <p><strong>השפעת AI על שוק העבודה:</strong> למרות ש-1 מכל 5 חברות בארה"ב משתמשת כעת ב-AI (20.6% ביוני), ההשפעה על שוק העבודה נותרה צרה. חברות שהניחו עובדים בטענה ל-AI החלו להצטער על כך ומחזירות עובדים.</p>
+            <a class="btn-source" href="https://www.marketwatch.com/story/one-in-five-u-s-companies-is-now-using-ai-but-the-impact-on-the-job-market-remains-narrow-say-goldman-analysts-e1c7e11e?mod=mw_rss_topstories">MarketWatch</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/07/01/employers-who-laid-off-workers-for-ai-are-reversing-their-decisions.html">CNBC</a>
+        </div>
+        <p><strong>אבטחת סייבר ו-AI:</strong> חברות אבטחת סייבר מובילות כמו Palo Alto ו-CrowdStrike דיווחו על הרבעון הטוב ביותר שלהן אי פעם, כשאיומי AI מאיצים את הביקוש לאבטחת סייבר, במיוחד בתחום אבטחת זהויות כאשר סוכני AI עולים במספרם על בני אדם.
+            <a class="btn-source" href="https://www.cnbc.com/2026/06/30/palo-alto-crowdstrike-stock-ai-mythos.html">CNBC</a>
+        </p>
+        <p><strong>Amazon AWS משקיעה ב-AI:</strong> אמזון השקיעה מיליארד דולר ביחידת AI חדשה שתשלב מהנדסים בקרב הלקוחות שלה.
+            <a class="btn-source" href="https://www.cnbc.com/2026/06/30/aws-amazon-ai-forward-deployed-engineers.html">CNBC</a>
+        </p>
+
+        <h3>למה זה חריג</h3>
+        <p>הסרת בקרות היצוא על מודלי AI מתקדמים כמו Fable 5 ו-Mythos 5 מסמנת שינוי מדיניות משמעותי שיכול להאיץ חדשנות ואימוץ AI גלובלי. ההשקעה העצומה של MGX מצביעה על אמון עמוק במגזר ה-AI, והצמיחה החדה של AMD יחד עם חברות שבבים אחרות מדגישה שהראלי מתרחב מעבר לשחקניות העל הגדולות.</p>
+        <p>הנתונים הסותרים על שוק העבודה (האטת גיוסים מול חשש "הצטערות" על פיטורי AI) מצביעים על חוסר וודאות לגבי ההשפעה ארוכת הטווח של AI על המעסיקים. גם ההתפתחות של שוקי AI לסוכנים אוטונומיים מצד OKX ויוזמות אבטחת הסייבר מדגישות את המעבר המהיר של AI מיישומים תיאורטיים למודלים עסקיים וטכנולוגיים מורכבים ופרקטיים.</p>
+        <div class="opinion-card">
+            <p><strong>ג'ים קריימר, CNBC:</strong></p>
+            <p>"Jim Cramer said Wall Street is rewarding the companies supplying the artificial intelligence boom rather than the technology giants funding it."</p>
+            <a class="btn-source" href="https://www.cnbc.com/2026/06/30/jim-cramer-ai-trade-shifted-stocks-leading-now.html">CNBC</a>
+            <p>"Intel is going to $200 like a rocket ship," Jim Cramer said Tuesday, referring to the chipmaker as the third-best S&P 500 stock in 2026 and predicting a further 40% jump.</p>
+            <a class="btn-source" href="https://www.cnbc.com/2026/06/30/jim-cramer-this-third-best-sp-500-stock-in-2026-can-jump-another-40percent.html">CNBC</a>
+        </div>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/hi-business-to-give-the-access-to-ai-models.jpg" alt="Anthropic AI models" />
+
+        <h3>הלוגיקה</h3>
+        <p>הסרת בקרות יצוא מאיצה את הפיתוח והאימוץ הגלובלי של AI אמריקאי, אך גם מעוררת חששות לגבי יתרון תחרותי מול סין, שכן ללא הגבלות, הטכנולוגיה עשויה להיות נגישה יותר. המימון הרב שמגויס מראה שמשקיעים ממשיכים לראות ב-AI את המנוע העיקרי לצמיחה. בו בזמן, נראה כי ההתלהבות הראשונית מפיטורי עובדים והחלפתם ב-AI מתחילה להתמתן עם הבנה מעמיקה יותר של המורכבות הדרושה לפריסה יעילה של AI בארגונים.</p>
+        <p>הראלי הרחב יותר במניות השבבים (כמו AMD) מצביע על כך שההשפעה של AI מחלחלת עמוק יותר לשרשרת האספקה הטכנולוגית, לא רק לחברות קצה. זה מצביע על ביקוש רחב לכל רכיבי התשתית הנדרשים להפעלת מודלי AI מתקדמים.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">קריפטו ובלוקצ'יין</span>
+        <h2>התפתחויות רגולטוריות ושינויי שוק בקריפטו</h2>
+        <h3>מה קרה היום</h3>
+        <ul>
+            <li><strong>אישורי MiCA באירופה:</strong> גל אחרון של אישורי MiCA הרחיב את רשימת חברות הקריפטו המורשות באירופה עם תום תקופת המעבר של הרגולציה.
+                <a class="btn-source" href="https://cointelegraph.com/news/new-licenses-issued-eu-mica-grace-period-ends">Cointelegraph</a>
+            </li>
+            <li><strong>בנק צרפזי משיק Stablecoin:</strong> בנק Crédit Agricole הצרפתי, באמצעות CACEIS, השיק Stablecoin צמוד לאירו (EURXT) על גבי רשת Ethereum, עם 20.02 מיליון טוקנים שהונפקו. הוא מיועד לזרימות מוסדיות וגישה לקרנות מבוזרות.
+                <a class="btn-source" href="https://cointelegraph.com/news/credit-agricole-eurxt-euro-stablecoin-caceis">Cointelegraph</a>
+            </li>
+            <li><strong>טאיוואן מאשרת רגולציה לקריפטו ו-Stablecoins:</strong> הרשות המחוקקת של טאיוואן העבירה את הכללים הראשונים במדינה לקריפטו ו-Stablecoins, במטרה לשלב את המדינה בשוק הקריפטו הגלובלי.
+                <a class="btn-source" href="https://cointelegraph.com/news/taiwans-legislature-passes-crypto-regulation-licensing-laws">Cointelegraph</a>
+            </li>
+            <li><strong>ה-SEC האמריקאי מבקש הערות ציבור:</strong> רשות ניירות ערך האמריקאית (SEC) מבקשת הערות ציבור לגבי רגולציה של דור הבא של תעודות סל (ETFs) חדשניות.
+                <a class="btn-source" href="https://cointelegraph.com/news/sec-seeks-public-comment-on-regulating-novel-etfs">Cointelegraph</a>
+            </li>
+            <li><strong>השקת Stablecoin חדש בגיבוי דולר אמריקאי:</strong> קבוצת חברות פיננסיות, כולל ויזה ומאסטרקארד, חוברות להשקת Stablecoin חדש צמוד לדולר האמריקאי, במטרה להתחרות ב-USDT ו-USDC.
+                <a class="btn-source" href="https://cointelegraph.com/news/financial-companies-us-dollar-payment-stablecoin">Cointelegraph</a>
+            </li>
+            <li><strong>יציאות שיא מקרנות סל (ETFs) של ביטקוין:</strong> קרנות סל ספוט של ביטקוין בארה"ב רשמו יציאות שיא של 4.5 מיליארד דולר ביוני, מה שהעלה את סך היציאות מתחילת השנה ל-5.5 מיליארד דולר.
+                <a class="btn-source" href="https://cointelegraph.com/news/bitcoin-etf-4-5-billion-outflow-june-worst-on-record">Cointelegraph</a>
+            </li>
+            <li><strong>יציאות מקרנות סל (ETFs) של את'ריום:</strong> יציאות בהיקף 345 מיליון דולר מקרנות סל של את'ריום שמות לחץ על מחיר ה-ETH.
+                <a class="btn-source" href="https://cointelegraph.com/markets/bitmine-ether-buys-eclipsed-by-345m-eth-etf-345m-outflows-is-sub-15k-next">Cointelegraph</a>
+            </li>
+            <li><strong>ביטקוין קרוב ל"הזדמנות ההשקעה הטובה ביותר":</strong> לאחר ירידה, הביטקוין נמצא כ-10% ממחיר המימוש שלו, רמה שסימנה בעבר נקודות תחתית בשוקי דובים קודמים.
+                <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-is-just-a-5k-drop-away-from-its-best-investment-opportunity-analysis">Cointelegraph</a>
+            </li>
+            <li><strong>דולר אמריקאי בשיא מול הין:</strong> הדולר האמריקאי הגיע לרמות הגבוהות ביותר מול הין היפני מאז 1986, מה שתרם ללחץ כלפי מטה על מחיר הביטקוין שסיכן ירידה מתחת ל-58 אלף דולר.
+                <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-price-slumps-to-near-58k-as-us-dollar-hits-40-year-high-against-yen">Cointelegraph</a>
+            </li>
+            <li><strong>Nasdaq מביאה נתוני שוק לבלוקצ'יין:</strong> Nasdaq משתפת פעולה עם Pyth להבאת נתוני שוק קנייניים לרשתות בלוקצ'יין ופלטפורמות תוכנה אחרות.
+                <a class="btn-source" href="https://cointelegraph.com/news/nasdaq-brings-proprietary-market-data-onchain-through-pyth">Cointelegraph</a>
+            </li>
+        </ul>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/hi-digital-c-man-europe-mica.jpg" alt="EU MiCA approvals" />
+        <img src="https://s3-images.ctmedia.io/media/article-covers/hi-euro-pegged-stablecoin-the-ultimate-growth-driver-for-crypto-lending11.jpg" alt="EURXT Stablecoin" />
+        <img src="https://s3-images.ctmedia.io/media/article-covers/market-bitcoin-ethereum.jpg" alt="Crypto market" />
+
+        <h3>למה זה חריג</h3>
+        <p>הכניסה של ענקיות בנקאות ופיננסים כמו Crédit Agricole, ויזה ומאסטרקארד לשוק ה-Stablecoin, לצד סיום תקופת המעבר של רגולציית MiCA באירופה והחקיקה בטאיוואן, מסמנת התבגרות והכרה הולכת וגוברת של המערכת הפיננסית המסורתית בקריפטו. עם זאת, יציאות השיא מקרנות סל של ביטקוין ואת'ריום מראות כי למרות הרגולציה והאימוץ המוסדי, השוק עדיין חווה לחצי מכירה משמעותיים. הנתונים מ-Talos על ירידה בפתיחת פוזיציות ודלדול נזילות מעידים על זהירות בשוק.</p>
+        <p>הקשר בין חוזקו של הדולר האמריקאי (בפרט מול הין) לבין לחץ כלפי מטה על מחיר הביטקוין מדגיש את הרגישות של נכסי קריפטו לגורמים מאקרו-כלכליים מסורתיים. שילוב נתוני נאסד"ק לבלוקצ'יין פותח אפיקים חדשים למידע שוק שקוף ונגיש יותר, ומהווה צעד משמעותי לגישור בין פיננסים מסורתיים ל-DeFi.</p>
+        <div class="opinion-card">
+            <p><strong>קורי קליפסטן, מנכ"ל Swan:</strong></p>
+            <p>"The record Bitcoin supply held by long-term holders may suggest that the crypto market bottom will come early..."</p>
+            <a class="btn-source" href="https://cointelegraph.com/news/record-bitcoin-holder-supply-early-bottom-swan-ceo">Cointelegraph</a>
+        </div>
+        <div class="opinion-card">
+            <p><strong>פיטר שיף, פרשן כלכלי:</strong></p>
+            <p>"Bitcoin Price Could Fall To $1,000, Claims Peter Schiff, as Citi Cuts Its 12-Month BTC Prediction"</p>
+            <a class="btn-source" href="https://finance.yahoo.com/markets/crypto/articles/bitcoin-price-could-fall-1-120715567.html">Yahoo Finance</a>
+        </div>
+        <h3>הלוגיקה</h3>
+        <p>האישורים הרגולטוריים והשקת Stablecoins על ידי גופים פיננסיים גדולים מגבירים את הלגיטימיות והנגישות של נכסים דיגיטליים למשקיעים מוסדיים ומשתמשים יומיומיים. זה יכול להוביל לצמיחה ארוכת טווח אך בטווח הקצר לא בהכרח מונע מימושי רווחים או תגובה לשינויים מאקרו כלכליים. יציאות ה-ETF מראות כי סנטימנט משקיעי הקריפטו עדיין שברירי, וכי האמונה באפסייד מיידי התמתנה. יחד עם זאת, הרמות הטכניות של הביטקוין, יחסית למחיר המימוש, מצביעות על כך שאנו מתקרבים לאזורי תחתית היסטוריים, מה שמעניין משקיעים לטווח ארוך.</p>
+        <p>מלחמת הרגולציה והמאמצים להשתלב במערכת הפיננסית הקיימת ממשיכים להיות גורם מכריע בעיצוב עתיד שוק הקריפטו, ודורשים ממשקיעים להיות מעודכנים בשינויים תכופים.</p>
+        <p><strong>פרשיות הונאה ורגולציה:</strong></p>
+        <ul>
+            <li>מנכ"ל Goliath Ventures לשעבר, כריסטופר דלגדו, הודה באשמה בתיק הונאת פונזי בקריפטו בהיקף 400 מיליון דולר.
+                <a class="btn-source" href="https://cointelegraph.com/news/goliath-ceo-guilty-400m-crypto-ponzi-case">Cointelegraph</a>
+            </li>
+            <li>בממלכה המאוחדת, משקיעי קריפטו תובעים את Binance ומנכ"לה לשעבר, צ'אנגפנג ז'או, על סכום של עד 200 מיליון דולר בגין הצעת נגזרים לא מורשים.
+                <a class="btn-source" href="https://cointelegraph.com/news/uk-crypto-investors-sue-binance-changpeng-zhao-for-potential-200m-payout">Cointelegraph</a>
+            </li>
+            <li>מנהל הסרט '47 רונין' נידון ל-30 חודשי מאסר לאחר שהימר כספי נטפליקס על Dogecoin.
+                <a class="btn-source" href="https://cointelegraph.com/news/47-ronin-director-who-gambled-netflix-funds-on-crypto-gets-30-months">Cointelegraph</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">עדכוני חברות</span>
+        <h2>עדכונים נקודתיים בחברות ובסקטורים</h2>
+        <h3>מה קרה היום</h3>
+        <ul>
+            <li><strong>AeroVironment מזנקת:</strong> יצרנית המל"טים AeroVironment זינקה ב-19% (ב-30 ביוני) וב-28% (ב-29 ביוני) על רקע דו"חות חזקים, הכנסות ממערכות אוטונומיות שעברו את הציפיות ב-90 מיליון דולר, וצבר הזמנות שגדל ל-1.2 מיליארד דולר. החברה נהנית מהתקציבים המוגדלים לביטחון בארה"ב.
+                <a class="btn-source" href="https://www.cnbc.com/2026/06/30/aerovironment-avav-stock-earnings-defense.html">CNBC</a>
+                <a class="btn-source" href="https://www.cnbc.com/2026/06/29/aerovironment-stock-soars-on-earnings-beat-backlog-grows-to-1point2b.html">CNBC</a>
+            </li>
+            <li><strong>Blue Origin עוברת לכן שיגור חדש:</strong> חברת החלל של ג'ף בזוס, Blue Origin, עברה לתכנון מחדש של כן השיגור שלה לאחר פיצוץ, במטרה לחזור לטיסות עד סוף 2026.
+                <a class="btn-source" href="https://www.cnbc.com/2026/06/30/blue-origin-explosion-launchpad.html">CNBC</a>
+            </li>
+            <li><strong>אספקות טסלה (TSLA) צפויות לעלות:</strong> אספקות טסלה לרבעון השני צפויות לעלות, בעיקר בזכות ביצועים חזקים באירופה, ולא בארה"ב.
+                <a class="btn-source" href="https://www.marketwatch.com/story/tesla-deliveries-are-set-to-rise-no-thanks-to-the-u-s-db92a4b1?mod=mw_rss_topstories">MarketWatch</a>
+            </li>
+            <li><strong>דוחות Nike (NKE):</strong> נייקי עקפה את הערכות וול סטריט ברווחים, אך נתון זה הושפע מהחזר מס על תעריפים.
+                <a class="btn-source" href="https://www.marketwatch.com/story/nike-earnings-crushed-wall-streets-estimates-but-theres-a-catch-83bf3e4a?mod=mw_rss_topstories">MarketWatch</a>
+                <a class="btn-source" href="https://finance.yahoo.com/markets/stocks/article/nikes-latest-weak-quarter-explained-in-4-charts-120451301.html">Yahoo Finance</a>
+            </li>
+        </ul>
+        <h3>למה זה חריג</h3>
+        <p>הזינוק החזק של AeroVironment, חברת הגנה קטנה יחסית, מדגיש את הביקוש הגובר לפתרונות טכנולוגיים מתקדמים בתחום הביטחון ואת השפעת המגמה של הגדלת תקציבי ביטחון. הזינוק הדו-ספרתי של מניה זו מהווה סטייה מהתנודות הרגילות של רוב החברות.</p>
+        <p>המעבר של Blue Origin לכן שיגור חדש לאחר תקלה משמעותית מצביע על הקשיים המהותיים בתעשיית החלל הפרטית ועל ההשפעה שיש לתקלות טכניות על לוחות זמנים ותוכניות. עבור טסלה, ההתבססות על שוק אירופה מדגישה שינויים בגיאוגרפיה של הצמיחה שלה, עם אתגרים מתמשכים בשוק הבית.</p>
+        <h3>הלוגיקה</h3>
+        <p>ההצלחה של AeroVironment משקפת את ההשקעה הגוברת בביטחון ובטכנולוגיות חדשניות כמו מל"טים ומערכות אוטונומיות, שהפכו לחיוניות באסטרטגיית הגנה מודרנית. זה יכול להצביע על הזדמנויות נוספות בחברות ביטחון קטנות ובינוניות בעלות טכנולוגיה ייחודית.</p>
+        <p>עבור חברות חלל כמו Blue Origin, תקלות משפיעות באופן ישיר על אמון המשקיעים ועל התחרות מול חברות כמו SpaceX. ההתאוששות של טסלה באירופה עשויה לאזן את חולשתה בארה"ב, אך היא מחייבת את החברה להיות גמישה יותר באסטרטגיית השיווק והמוצרים שלה בהתאם לדרישות שווקים שונים.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">מאקרו גלובלי</span>
+        <h2>מצב שוק הרכב העולמי ותהליכים פיננסיים</h2>
+        <h3>מה קרה היום</h3>
+        <ul>
+            <li><strong>שוק הרכב הסיני חלש:</strong> דוח של בנק אוף אמריקה מציין כי שוק הרכב הסיני "אוכל את ארוחת הצהריים של כולם" בשוק הגלובלי, אך בתוך סין עצמה הביקוש חלש באופן כרוני.
+                <a class="btn-source" href="https://www.marketwatch.com/story/in-the-global-car-market-china-is-eating-everyones-lunch-except-at-home-99d9338d?mod=mw_rss_topstories">MarketWatch</a>
+            </li>
+            <li><strong>דרישה ל"משכנתאות בסיכון גבוה" יורדת:</strong> הדרישה להלוואות עם ריבית משתנה (ARMs) בארה"ב נחלשה, כאשר הפער בין משכנתאות אלה לבין משכנתאות בריבית קבועה ל-30 שנה מצטמצם.
+                <a class="btn-source" href="https://www.cnbc.com/2026/07/01/demand-for-riskier-mortgages-drops-as-their-advantages-shrink.html">CNBC</a>
+            </li>
+            <li><strong>שינויים בהחזרי הלוואות סטודנטים:</strong> שינויים משמעותיים בהחזרי הלוואות סטודנטים בארה"ב נכנסים לתוקף החל מהיום, כאשר תוכניות החזר מסוימות עשויות להיות מוצאות משימוש.
+                <a class="btn-source" href="https://www.marketwatch.com/story/student-loan-borrowers-face-major-changes-that-start-today-your-repayment-plan-may-be-phased-out-80d34beb?mod=mw_rss_topstories">MarketWatch</a>
+            </li>
+            <li><strong>יום העצמאות האמריקאי:</strong> שוק המניות נסגר מוקדם ביום שישי לקראת יום העצמאות האמריקאי, שחל השנה ביום שבת.
+                <a class="btn-source" href="https://www.marketwatch.com/story/is-the-stock-market-open-on-friday-or-will-it-close-early-for-the-fourth-of-july-b9885f36?mod=mw_rss_topstories">MarketWatch</a>
+            </li>
+        </ul>
+        <h3>למה זה חריג</h3>
+        <p>הפער בין הצלחתה הגלובלית של תעשיית הרכב הסינית לחולשת השוק המקומי הוא חריג ומצביע על דינמיקה כלכלית מורכבת בסין. ירידת הביקוש למשכנתאות בסיכון גבוה מצביעה על שינוי בסנטימנט הצרכני ובתנאי השוק, כאשר הצרכנים מעדיפים יציבות על פני חיסכון קצר טווח כתוצאה מפערים מצטמצמים.</p>
+        <h3>הלוגיקה</h3>
+        <p>ההתפתחויות בשוק הרכב הסיני יכולות להשפיע על חברות רכב גלובליות ועל שוקי הסחורות. חולשה בביקוש המקומי בסין עלולה להשפיע לרעה על היצרנים המערביים הפועלים במדינה, בעוד ההצלחה הגלובלית של היצרנים הסיניים מהווה איום תחרותי. השינויים בשוק המשכנתאות בארה"ב, יחד עם שינויים בהחזרי הלוואות סטודנטים, משפיעים ישירות על הוצאות הצרכנים ועל כוח הקנייה, ועלולים להשפיע על הצמיחה הכלכלית הכוללת.</p>
+    </div>
+
+</body>
+</html>
