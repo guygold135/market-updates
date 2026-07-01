@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי אסטרטגי: 1 ביולי, 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color-dark: #0a0e17;
+            --text-color-light: #e0e6ed;
+            --accent-color: #6a8dff; /* Steel blue / subtle accent */
+            --header-color: #f0f8ff; /* Alice Blue for headers */
+            --divider-color: #2e3a47;
+            --card-bg: #1a202c;
+            --positive-color: rgba(60, 179, 113, 0.2); /* Muted green */
+            --negative-color: rgba(220, 20, 60, 0.2);  /* Muted red */
+            --neutral-color: rgba(128, 128, 128, 0.2); /* Muted grey */
+            --badge-bg: #2e3a47;
+            --badge-text: #a0a8b4;
+            --source-btn-bg: #2e3a47;
+            --source-btn-text: #e0e6ed;
+            --quote-bg: #252a34;
+            --quote-border: #6a8dff;
+            --highlight-bg: #2a2e3a; /* Darker card for highlights */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color-dark);
+            color: var(--text-color-light);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            direction: rtl; /* Right-to-left for Hebrew */
+            text-align: right;
+        }
+
+        h1 {
+            color: var(--header-color);
+            text-align: center;
+            font-weight: 700;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+        }
+
+        h2 {
+            color: var(--header-color);
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            padding-right: 15px;
+            position: relative;
+        }
+
+        h3 {
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            padding-right: 10px;
+        }
+
+        .slide-container {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--badge-bg);
+            color: var(--badge-text);
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            position: absolute;
+            top: 20px;
+            right: 30px;
+        }
+
+        .section-divider {
+            border-top: 1px solid var(--divider-color);
+            margin: 50px 0;
+        }
+
+        .market-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .market-table th, .market-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--divider-color);
+            text-align: right;
+        }
+
+        .market-table th {
+            background-color: var(--badge-bg);
+            color: var(--accent-color);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .market-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .market-table .positive {
+            color: #3cb371; /* Medium Sea Green */
+            background-color: var(--positive-color);
+        }
+
+        .market-table .negative {
+            color: #dc143c; /* Crimson */
+            background-color: var(--negative-color);
+        }
+
+        .market-table .neutral {
+            color: var(--text-color-light);
+        }
+
+        .data-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-right: 8px;
+            white-space: nowrap; /* Prevent badge text from wrapping */
+        }
+
+        .data-badge.positive {
+            background-color: var(--positive-color);
+            color: #3cb371;
+        }
+
+        .data-badge.negative {
+            background-color: var(--negative-color);
+            color: #dc143c;
+        }
+
+        .data-badge.neutral {
+            background-color: var(--neutral-color);
+            color: var(--text-color-light);
+        }
+
+        .fact-card {
+            background-color: var(--highlight-bg);
+            border-right: 4px solid var(--accent-color);
+            border-radius: 4px;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            font-size: 0.95em;
+        }
+
+        .opinion-card {
+            background-color: var(--quote-bg);
+            border-right: 4px solid var(--quote-border);
+            border-radius: 4px;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            font-style: italic;
+            position: relative;
+            font-size: 0.95em;
+        }
+
+        .opinion-card::before {
+            content: "\201C"; /* Left double quotation mark */
+            font-size: 2em;
+            color: var(--quote-border);
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            line-height: 1;
+        }
+
+        .opinion-author {
+            display: block;
+            margin-top: 10px;
+            font-weight: 600;
+            color: var(--accent-color);
+            font-style: normal;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--source-btn-bg);
+            color: var(--source-btn-text);
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: background-color 0.2s;
+            float: left; /* Align to the left (visual right in RTL) */
+            margin-left: 10px; /* Space between buttons */
+        }
+
+        .btn-source:hover {
+            background-color: #4a5568;
+        }
+
+        .news-item {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .news-text {
+            flex-grow: 1;
+        }
+
+        .image-container {
+            width: 100%;
+            max-width: 400px; /* Limit image width */
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        ul {
+            list-style-type: none; /* Remove default bullet */
+            padding-right: 20px;
+        }
+
+        li {
+            position: relative;
+            margin-bottom: 10px;
+            padding-right: 15px;
+        }
+
+        li::before {
+            content: "•"; /* Custom bullet point */
+            color: var(--accent-color);
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>דוח שוק יומי אסטרטגי: 1 ביולי, 2026</h1>
+
+    <div class="slide-container">
+        <div class="badge">תמונת מצב מהירה</div>
+        <h2>Market Pulse: מדדים ומניות בולטות</h2>
+        <p>תמונת מצב יומית מהירה של הנכסים שביצעו תנודה חריגה או הגיעו לנקודות ציון משמעותיות.</p>
+        <table class="market-table">
+            <thead>
+                <tr>
+                    <th>סמל</th>
+                    <th>שם נכס</th>
+                    <th>מחיר סגירה</th>
+                    <th>שינוי יומי</th>
+                    <th>% שינוי</th>
+                    <th>הערות</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SPY</td>
+                    <td>SPDR S&P 500 ETF Trust</td>
+                    <td>746.77</td>
+                    <td class="positive">+5.77</td>
+                    <td class="positive"><span class="data-badge positive">+0.778%</span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>QQQ</td>
+                    <td>Invesco QQQ Trust, Series 1</td>
+                    <td>736.40</td>
+                    <td class="positive">+12.32</td>
+                    <td class="positive"><span class="data-badge positive">+1.701%</span></td>
+                    <td>מובילה את הראלי בטכנולוגיה</td>
+                </tr>
+                <tr>
+                    <td>AMD</td>
+                    <td>Advanced Micro Devices, Inc.</td>
+                    <td>580.91</td>
+                    <td class="positive">+41.42</td>
+                    <td class="positive"><span class="data-badge positive">+7.677%</span></td>
+                    <td>שוברת שיא 52 שבועות</td>
+                </tr>
+                <tr>
+                    <td>CRWV</td>
+                    <td>CoreWeave, Inc.</td>
+                    <td>99.54</td>
+                    <td class="positive">+4.03</td>
+                    <td class="positive"><span class="data-badge positive">+4.219%</span></td>
+                    <td>ביצועים חזקים בתחום תשתיות AI</td>
+                </tr>
+                <tr>
+                    <td>SPCX</td>
+                    <td>Space Exploration Technologies Corp. Class A</td>
+                    <td>170.86</td>
+                    <td class="positive">+6.67</td>
+                    <td class="positive"><span class="data-badge positive">+4.062%</span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>AAPL</td>
+                    <td>Apple Inc.</td>
+                    <td>289.36</td>
+                    <td class="positive">+7.62</td>
+                    <td class="positive"><span class="data-badge positive">+2.704%</span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>NVDA</td>
+                    <td>NVIDIA Corporation</td>
+                    <td>200.09</td>
+                    <td class="positive">+5.12</td>
+                    <td class="positive"><span class="data-badge positive">+2.626%</span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>TSLA</td>
+                    <td>Tesla, Inc.</td>
+                    <td>420.60</td>
+                    <td class="positive">+8.76</td>
+                    <td class="positive"><span class="data-badge positive">+2.127%</span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>BTC/USD</td>
+                    <td>Bitcoin US Dollar</td>
+                    <td>58,824.28</td>
+                    <td class="positive">+300.35</td>
+                    <td class="positive"><span class="data-badge positive">+0.513%</span></td>
+                    <td>נגע בתחתית 52 שבועות של 57,717.55 דולר</td>
+                </tr>
+                <tr>
+                    <td>ETH/USD</td>
+                    <td>Ethereum US Dollar</td>
+                    <td>1,579.92</td>
+                    <td class="positive">+7.60</td>
+                    <td class="positive"><span class="data-badge positive">+0.483%</span></td>
+                    <td>סבל מ-345 מיליון דולר בזרימות ETF שליליות</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">AI ושבבים</div>
+        <h2>AI והשבבים: רוח גבית חזקה לצד סיכונים רגולטוריים וביטחוניים</h2>
+        
+        <h3>מה קרה היום</h3>
+        <ul>
+            <li>
+                <div class="news-item">
+                    <div class="news-text">
+                        <div class="fact-card">
+                            מניית <span style="font-weight: 700;">AMD</span> זינקה ב-<span class="data-badge positive">+7.677%</span> ונסגרה במחיר של <span class="data-badge neutral">580.91 דולר</span>, לאחר שנגעה בשיא של 52 שבועות במחיר של <span class="data-badge neutral">584.73 דולר</span>.
+                        </div>
+                    </div>
+                    <a class="btn-source" href="https://www.marketwatch.com/story/the-chip-rally-has-a-dark-side-and-a-rare-market-risk-is-at-its-highest-level-since-2015-5114fba0?mod=mw_rss_topstories">MarketWatch</a>
+                </div>
+            </li>
+            <li>
+                <div class="news-item">
+                    <div class="news-text">
+                        <div class="fact-card">
+                            חברת CoreWeave (CRWV), המספקת תשתיות מחשוב ל-AI, זינקה ב-<span class="data-badge positive">+4.219%</span> ונסגרה במחיר של <span class="data-badge neutral">99.54 דולר</span>. מניות שבבים נוספות כמו NVIDIA (<span class="data-badge positive">+2.626%</span>) ואפל (<span class="data-badge positive">+2.704%</span>) רשמו עליות חזקות.
+                        </div>
+                    </div>
+                    <a class="btn-source" href="https://www.cnbc.com/2026/06/30/ai-chip-rally-in-q2-adds-2-trillion-in-value-to-micron-intel-amd-.html">CNBC</a>
+                </div>
+            </li>
+            <li>
+                <div class="news-item">
+                    <div class="news-text">
+                        <div class="fact-card">
+                            ממשל טראמפ <span style="font-weight: 700;">הסיר את מגבלות היצוא</span> על מודלי ה-AI המובילים של Anthropic, ‏Fable 5 ו-Mythos 5, מה שמאפשר לחברה להפעילם מחדש.
+                        </div>
+                        <div class="image-container">
+                            <img src="https://s3-images.ctmedia.io/media/article-covers/hi-business-to-give-the-access-to-ai-models.jpg" alt="Anthropic AI models">
+                        </div>
+                    </div>
+                    <a class="btn-source" href="https://cointelegraph.com/news/anthropic-reactivates-newest-ai-models-after-us-govt-lifts-restrictions?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+                    <a class="btn-source" href="https://www.cnbc.com/2026/06/30/anthropic-says-trump-admin-has-lifted-export-controls-on-claude-fable-5-and-mythos-5.html">CNBC</a>
+                </div>
+            </li>
+            <li>
+                <div class="news-item">
+                    <div class="news-text">
+                        <div class="fact-card">
+                            קרן הון סיכון <span style="font-weight: 700;">MGX של איחוד האמירויות</span> סגרה גיוס של <span class="data-badge neutral">49 מיליארד דולר</span>, מה שהופך אותה לאחת מקרנות ה-AI הגדולות בהיסטוריה. הקרן מגבה חברות AI מרכזיות כמו OpenAI ו-Anthropic.
+                        </div>
+                    </div>
+                    <a class="btn-source" href="https://www.cnbc.com/2026/07/01/mgx-ai-fund-uae-49-billion.html">CNBC</a>
+                </div>
+            </li>
+            <li>
+                <div class="news-item">
+                    <div class="news-text">
+                        <div class="fact-card">
+                            AWS (Amazon Web Services) משקיעה <span style="font-weight: 700;">מיליארד דולר ביחידת AI חדשה</span> כדי לשבץ מהנדסים עם לקוחות, במטרה לפתח פתרונות AI תוך שבועות ספורים.
+                        </div>
+                    </div>
+                    <a class="btn-source" href="https://www.cnbc.com/2026/06/30/aws-amazon-ai-forward-deployed-engineers.html">CNBC</a>
+                </div>
+            </li>
+            <li>
+                <div class="news-item">
+                    <div class="news-text">
+                        <div class="fact-card">
+                            חברות כמו Palo Alto Networks ו-CrowdStrike דיווחו על <span style="font-weight: 700;">התקופה הטובה ביותר אי פעם</span>, כאשר איומי AI חדשים מגבירים את הביקוש לאבטחת סייבר.
+                        </div>
+                    </div>
+                    <a class="btn-source" href="https://www.cnbc.com/2026/06/30/palo-alto-crowdstrike-stock-ai-mythos.html">CNBC</a>
+                </div>
+            </li>
+            <li>
+                <div class="news-item">
+                    <div class="news-text">
+                        <div class="fact-card">
+                            מנכ"ל מיקרון ציין כי שנים של לחץ תמחור אגרסיבי תרמו למחסור הנוכחי בשבבי זיכרון, מה שמקדם עסקאות משתלמות יותר לספקים.
+                        </div>
+                    </div>
+                    <a class="btn-source" href="https://www.cnbc.com/2026/06/30/micron-ceo-customers-driving-hard-bargain-on-price-contributed-to-memory-shortage.html">CNBC</a>
+                </div>
+            </li>
+        </ul>
+
+        <h3>למה זה חריג</h3>
+        <ul>
+            <li>
+                <div class="fact-card">
+                    הראלי בשוק השבבים מתרחב ואינו מוגבל עוד רק ל-NVIDIA, כאשר AMD שוברת שיאי 52 שבועות ומניות כמו CRWV מזנקות, מה שמצביע על ביקושים חזקים ורחבים יותר לתשתיות AI.
+                </div>
+            </li>
+            <li>
+                <div class="fact-card">
+                    הסרת מגבלות היצוא על Anthropic היא מהלך מדיניות משמעותי שיכול להשפיע על התחרות בתחום ה-AI, כאשר לצד ההקלה ל-Anthropic, נשמעת אזהרה שמהלך זה עלול לפתוח פתח לסין להשלים פערים.
+                </div>
+            </li>
+            <li>
+                <div class="fact-card">
+                    השקעות ענק (MGX, AWS) מדגישות את האמון העמוק והביקוש המתמשך לטכנולוגיית AI ברחבי העולם ובמגוון מגזרים, לצד ההבנה שנדרשת התאמה אישית של פתרונות AI.
+                </div>
+            </li>
+            <li>
+                <div class="fact-card">
+                    הביקוש המוגבר לפתרונות אבטחת סייבר, במיוחד לאור התרחבות השימוש בסוכני AI, מצביע על התפתחות משמעותית של סיכוני סייבר חדשים והצורך בפתרונות הגנה מתקדמים.
+                </div>
+            </li>
+            <li>
+                <div class="fact-card">
+                    הדיווחים על כך שחברות שהתבססו על פיטורים המוניים עקב AI מתחרטות ומתחילות להחזיר עובדים, מצביעים על כך שהבנת היכולות והמגבלות של AI מתבגרת, ושאין מדובר בהחלפה מלאה של כוח אדם אלא בכלי תומך.
+                </div>
+            </li>
+        </ul>
+
+        <h3>הלוגיקה</h3>
+        <ul>
+            <li>
+                <div class="fact-card">
+                    הסרת מגבלות היצוא על Anthropic, שנבעה ככל הנראה מהצורך לשמר את יתרון החדשנות של ארה"ב, מעוררת דיון סביב ההשפעה על התחרות מול סין, שכן מגבלות קודמות נתפסו כ"מתנה לסין" (CNBC).
+                </div>
+            </li>
+            <li>
+                <div class="fact-card">
+                    השקעות בסדר גודל כזה מצד גופים ריבוניים (MGX) וחברות ענק (AWS) מעידות על מרוץ גלובלי לדומיננטיות ב-AI, כאשר המאמץ מתמקד לא רק בפיתוח מודלים אלא גם ביישום ובאינטגרציה שלהם בפתרונות עסקיים.
+                </div>
+            </li>
+            <li>
+                <div class="fact-card">
+                    הראלי הרחב יותר בשבבים, המערב כעת ספקים כמו AMD ומיקרון, מעיד על התבגרות השוק והבנה כי הצמיחה ב-AI דורשת הרחבת תשתיות מעבר למעבדים גרפיים בלבד, וכי המחסור בשבבי זיכרון הוא גורם משפיע.
+                </div>
+            </li>
+            <li>
+                <div class="fact-card">
+                    הביקוש לאבטחת סייבר סביב AI מצביע על כך שהטכנולוגיה מביאה איתה גם וקטורי התקפה חדשים ועלייה ב"איומי AI", מה שמייצר שוק חדש לצמיחה עבור חברות סייבר.
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">קריפטו</div>
+        <h2>שוק הקריפטו: תנודתיות, הסדרה והשפעת המאקרו</h2>
+        
+        <h3>מה קרה היום</h3>
+        <ul>
+            <li>
+                <div class="news-item">
+                    <div class="news-text">
+                        <div class="fact-card">
+                            מחיר הביטקוין (BTC/USD) נגע ב-<span class="data-badge neutral">57,717.55 דולר</span>, המהווה את תחתית ה-52 שבועות שלו. החדשות הצביעו על סיכון לירידה מתחת ל-58,000 דולר כאשר הדולר האמריקאי הגיע לשיא של 40 שנה מול הין היפני.
+                        </div>
+                        <div class="image-container">
+                            <img src="https://s3-images.ctmedia.io/media/article-covers/article-covers-201145-japan-remixpoint-ceo-salary-bitcoin.jpg" alt="Bitcoin Yen">
+                        </div>
+                    </div>
+                    <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-price-slumps-to-near-58k-as-us-dollar-hits-40-year-high-against-yen?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+                </div>
+            </li>
+            <li>
+                <div class="news-item">
+                    <div class="news-text">
+                        <div class="fact-card">
+                            זרימות את'ריום ETF שליליות הסתכמו ב-<span class="data-badge negative">345 מיליון דולר</span>, תוך כדי דיונים האם ירידה מתחת ל-1,500 דולר היא הבאה בתור.
+                        </div>
+                        <div class="image-container">
+                            <img src="https://s3-images.ctmedia.io/media/article-covers/article-covers-251386-ethereum-price-drops-1-8k-data-eth-bears-not-done-yet.jpg" alt="Ethereum price drop">
+                        </div>
+                    </div>
+                    <a class="btn-source" href="https://cointelegraph.com/markets/bitmine-ether-buys-eclipsed-by-345m-eth-etf-345m-outflows-is-sub-15k-next?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+                </div>
+            </li>
+            <li>
+                <div class="news-item">
+                    <div class="news-text">
+                        <div class="fact-card">
+                            הפרלמנט של טאיוואן אישר את <span style="font-weight: 700;">חוקי הרגולציה הראשונים במדינה לקריפטו וסטייבלקוינס</span>, במטרה לשלב את המדינה בשוק הקריפטו העולמי.
+                        </div>
+                        <div class="image-container">
+                            <img src="https://s3-images.ctmedia.io/media/article-covers/taiwan-coin.jpg" alt="Taiwan crypto regulation">
+                        </div>
+                    </div>
+                    <a class="btn-source" href="https://cointelegraph.com/news/taiwans-legislature-passes-crypto-regulation-licensing-laws?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+                </div>
+            </li>
+            <li>
+                <div class="news-item">
+                    <div class="news-text">
+                        <div class="fact-card">
+                            קבוצה של חברות פיננסיות, כולל ויזה ומאסטרקארד, חוברות יחדיו להשקת <span style="font-weight: 700;">סטייבלקוין חדש</span> בגיבוי דולר ארה"ב, אשר עשוי לאתגר את מעמדן של USDT ו-USDC.
+                        </div>
+                        <div class="image-container">
+                            <img src="https://s3-images.ctmedia.io/media/article-covers/hi-stablecoins-are-dominating-the-market.jpg" alt="Stablecoins">
+                        </div>
+                    </div>
+                    <a class="btn-source" href="https://cointelegraph.com/news/financial-companies-us-dollar-payment-stablecoin?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+                </div>
+            </li>
+            <li>
+                <div class="news-item">
+                    <div class="news-text">
+                        <div class="fact-card">
+                            נאסד"ק מביאה נתוני שוק קנייניים לבלוקצ'יין באמצעות שיתוף פעולה עם פלטפורמת Pyth, מה שמרחיב את הפצת נתוני TotalView שלה ליישומי בלוקצ'יין.
+                        </div>
+                        <div class="image-container">
+                            <img src="https://s3-images.ctmedia.io/media/article-covers/hi-cryptocurrency-vs-stocks-breaking-news.png" alt="Nasdaq Blockchain">
+                        </div>
+                    </div>
+                    <a class="btn-source" href="https://cointelegraph.com/news/nasdaq-brings-proprietary-market-data-onchain-through-pyth?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+                </div>
+            </li>
+            <li>
+                <div class="news-item">
+                    <div class="news-text">
+                        <div class="fact-card">
+                            חברת Solana Company, הנסחרת בנאסד"ק, תתמוך בתוכנית של <span style="font-weight: 700;">קזחסטן לבניית "מטרופולין קריפטו"</span> בהשקעה של <span class="data-badge neutral">6 מיליארד דולר</span> בעיר אלטאו.
+                        </div>
+                    </div>
+                    <a class="btn-source" href="https://cointelegraph.com/news/solana-company-to-back-kazakhstans-6b-crypto-megacity-ambition?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+                </div>
+            </li>
+            <li>
+                <div class="news-item">
+                    <div class="news-text">
+                        <div class="fact-card">
+                            דונלד טראמפ דיווח כי <span style="font-weight: 700;">הרוויח יותר מקריפטו מאשר מנדל"ן</span> בשנת 2025, בעיקר ממכירות memecoin ותמלוגים.
+                        </div>
+                        <div class="image-container">
+                            <img src="https://s3-images.ctmedia.io/media/article-covers/trump-memecoin.jpg" alt="Trump Memecoin">
+                        </div>
+                    </div>
+                    <a class="btn-source" href="https://cointelegraph.com/news/trump-earned-more-from-crypto-than-real-estate-in-2025-filings-show?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+                    <a class="btn-source" href="https://www.marketwatch.com/story/trump-discloses-expanding-financial-empire-including-apple-stock-celebration-coins-and-crypto-8786ef64?mod=mw_rss_topstories">MarketWatch</a>
+                </div>
+            </li>
+            <li>
+                <div class="news-item">
+                    <div class="news-text">
+                        <div class="fact-card">
+                            מנכ"ל לשעבר של Goliath Ventures, כריסטופר דלגדו, הודה באשמה בהונאת פונזי של <span class="data-badge negative">400 מיליון דולר</span> ומעילה בכספים, וצפוי להחזיר נכסים וארנקי קריפטו.
+                        </div>
+                        <div class="image-container">
+                            <img src="https://s3-images.ctmedia.io/media/article-covers/hi-crypto-bankruptcy-laws-remain-a-mystery.jpg" alt="Crypto bankruptcy">
+                        </div>
+                    </div>
+                    <a class="btn-source" href="https://cointelegraph.com/news/goliath-ceo-guilty-400m-crypto-ponzi-case?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+                </div>
+            </li>
+            <li>
+                <div class="news-item">
+                    <div class="news-text">
+                        <div class="fact-card">
+                            קבוצה של משקיעי קריפטו בבריטניה תובעת את Binance ואת מייסדה, צ'אנגפנג זאו (CZ), על סכום פוטנציאלי של <span class="data-badge negative">200 מיליון דולר</span> בגין הפסדים במוצרי נגזרים.
+                        </div>
+                        <div class="image-container">
+                            <img src="https://s3-images.ctmedia.io/media/article-covers/hammerbinance.jpg" alt="Binance lawsuit">
+                        </div>
+                    </div>
+                    <a class="btn-source" href="https://cointelegraph.com/news/uk-crypto-investors-sue-binance-changpeng-zhao-for-potential-200m-payout?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+                </div>
+            </li>
+        </ul>
+
+        <h3>למה זה חריג</h3>
+        <ul>
+            <li>
+                <div class="fact-card">
+                    נגיעת הביטקוי בתחתית 52 שבועות, לצד זרימות את'ריום ETF שליליות, מצביעה על המשך לחץ ירידות במטבעות הדיגיטליים הגדולים. תנועות אלו נבחנות לאור התחזקות הדולר האמריקאי, המדגישה את הרגישות של הקריפטו לגורמי מאקרו.
+                </div>
+            </li>
+            <li>
+                <div class="fact-card">
+                    התפתחות רגולטורית משמעותית בטאיוואן והשקת סטייבלקוין חדש בגיבוי ענקיות פיננסיות, יחד עם שיתוף פעולה של נאסד"ק עם בלוקצ'יין, מסמלים התבגרות והתמזגות הולכת וגוברת של שוק הקריפטו עם הפיננסים המסורתיים.
+                </div>
+            </li>
+            <li>
+                <div class="fact-card">
+                    המעורבות הפוליטית הגוברת של תעשיית הקריפטו בארה"ב, כפי שמשתקף מהוצאות לובינג משמעותיות ומהדיווחים על רווחי הקריפטו של דונלד טראמפ, מעידה על ניסיון מוגבר להשפיע על רגולציה עתידית ולקדם אימוץ רחב יותר.
+                </div>
+            </li>
+            <li>
+                <div class="fact-card">
+                    פעולות אכיפה כנגד הונאות ותביעות נגד בורסות גדולות מדגישות את הצורך בזהירות ובשקיפות בשוק, ומצביעות על גידול בביקורת וברגולציה בעקבות מקרים של ניצול לרעה.
+                </div>
+                <div class="image-container">
+                    <img src="https://s3-images.ctmedia.io/media/article-covers/arrest-police-crime-prison-jail-imprisonment-man-person2.jpg" alt="Arrest Police">
+                </div>
+            </li>
+        </ul>
+
+        <h3>הלוגיקה</h3>
+        <ul>
+            <li>
+                <div class="fact-card">
+                    המתאם בין הביטקוי לבין חוזק הדולר האמריקאי, במיוחד על רקע יחסי הדולר-ין, מדגיש את השפעת גורמי המאקרו על שוק הקריפטו, וכי התחזקות הדולר עלולה להמשיך להוות לחץ שלילי על הביטקוי.
+                </div>
+            </li>
+            <li>
+                <div class="fact-card">
+                    ההתפתחויות הרגולטוריות והכניסה של גופים פיננסיים מסורתיים (ויזה, מאסטרקארד, נאסד"ק) מצביעים על לגיטימציה גוברת לשוק הקריפטו, אך גם על גידול בביקורת ובדרישות תאימות, במיוחד עם בקשת ה-SEC להערות על ETFs חדשים.
+                </div>
+            </li>
+            <li>
+                <div class="fact-card">
+                    זרימות שליליות מ-ETH ETF עלולות להעיד על סנטימנט דובי בטווח הקצר סביב את'ריום, למרות שיפורים טכנולוגיים וצמיחת TVL בטוקניזציה, ומשקפות חששות מהמשך "חורף הקריפטו".
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">דעות ואנליזה</div>
+        <h2>הערכות ודעות: בועת AI וחורף קריפטו</h2>
+        
+        <h3>מה קרה היום</h3>
+        <ul>
+            <li>
+                <div class="news-item">
+                    <div class="news-text">
+                        <div class="opinion-card">
+                            <div>"The chip rally has a dark side, and a rare market risk is at its highest level since 2015... Volatility threatens top gainers including AMD and Micron."</div>
+                            <span class="opinion-author">Michael Kramer, MarketWatch</span>
+                        </div>
+                    </div>
+                    <a class="btn-source" href="https://www.marketwatch.com/story/the-chip-rally-has-a-dark-side-and-a-rare-market-risk-is-at-its-highest-level-since-2015-5114fba0?mod=mw_rss_topstories">MarketWatch</a>
+                </div>
+            </li>
+            <li>
+                <div class="news-item">
+                    <div class="news-text">
+                        <div class="opinion-card">
+                            <div>"Wall Street is rewarding the companies supplying the artificial intelligence boom rather than the technology giants funding it."</div>
+                            <span class="opinion-author">Jim Cramer, CNBC</span>
+                        </div>
+                    </div>
+                    <a class="btn-source" href="https://www.cnbc.com/2026/06/30/jim-cramer-ai-trade-shifted-stocks-leading-now.html">CNBC</a>
+                </div>
+            </li>
+            <li>
+                <div class="news-item">
+                    <div class="news-text">
+                        <div class="opinion-card">
+                            <div>"The record Bitcoin supply held by long-term holders may suggest that the crypto market bottom will come early."</div>
+                            <span class="opinion-author">Cory Klippsten, CEO Swan Bitcoin</span>
+                        </div>
+                        <div class="image-container">
+                            <img src="https://s3-images.ctmedia.io/media/article-covers/cory-klippsten2.jpg" alt="Cory Klippsten">
+                        </div>
+                    </div>
+                    <a class="btn-source" href="https://cointelegraph.com/news/record-bitcoin-holder-supply-early-bottom-swan-ceo?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+                </div>
+            </li>
+            <li>
+                <div class="news-item">
+                    <div class="news-text">
+                        <div class="fact-card">
+                            בסרטונים שונים, Micha.Stocks דן ב"בועת ה-AI", "חורף הקריפטו" ו"קריסת התוכנה שפספסתם".
+                        </div>
+                    </div>
+                    <a class="btn-source" href="https://www.youtube.com/watch?v=Tgsmx-szQaw">Micha.Stocks</a>
+                    <a class="btn-source" href="https://www.youtube.com/shorts/lIXhK0mBi9s">Micha.Stocks</a>
+                </div>
+            </li>
+            <li>
+                <div class="news-item">
+                    <div class="news-text">
+                        <div class="fact-card">
+                            דיונים בשוק הקריפטו אודות האם ETF של ביטקוי יכול למנוע ירידות מחיר כואבות, נבחנים מחדש לאור הירידות האחרונות.
+                        </div>
+                    </div>
+                    <a class="btn-source" href="https://www.marketwatch.com/story/bitcoin-etfs-were-supposed-to-make-selloffs-less-painful-that-theory-is-being-put-to-the-test-f70ba3c6?mod=mw_rss_topstories">MarketWatch</a>
+                </div>
+            </li>
+        </ul>
+
+        <h3>למה זה חריג</h3>
+        <ul>
+            <li>
+                <div class="fact-card">
+                    האזהרה של מייקל קריימר מפני תנודתיות בשוק השבבים, במיוחד לגבי מניות כמו AMD, היא קריטית במיוחד לאור העליות החדות שאלו חוו היום, ומצביעה על סיכון פוטנציאלי לתיקון.
+                </div>
+            </li>
+            <li>
+                <div class="fact-card">
+                    הערכת ג'ים קריימר על שינוי במובילי שוק ה-AI, מהחברות הגדולות המממנות את הפיתוח לספקים המייצרים את התשתית, מציעה עדכון לאסטרטגיית השקעה רלוונטית בתחום.
+                </div>
+            </li>
+            <li>
+                <div class="fact-card">
+                    ההערכה של קורי קליפסטן, המבוססת על היצע שיא של מחזיקי ביטקוי לטווח ארוך, מספקת נקודת מבט אופטימית ואלטרנטיבית לגבי תזמון התחתית בשוק הקריפטו, למרות הירידות האחרונות והסנטימנט השלילי בטווח הקצר.
+                </div>
+            </li>
+            <li>
+                <div class="fact-card">
+                    הדיון ב"בועת AI" והתחזיות על "חורף קריפטו" משקפים סנטימנט מעורב בשוק, המשלב אופטימיות זהירה לגבי AI עם חששות מתיקון פוטנציאלי, ופסימיות מסוימת לגבי הקריפטו.
+                </div>
+            </li>
+        </ul>
+
+        <h3>הלוגיקה</h3>
+        <ul>
+            <li>
+                <div class="fact-card">
+                    הסנטימנט בשוק ה-AI מורכב: מצד אחד, אמונה עמוקה בפוטנציאל הטכנולוגיה מובילה לראלי רחב ומושכת השקעות ענק, אך לצד זאת קיימת דריכות מפני התחממות יתר וסיכון לתנודתיות, כפי שמציין מייקל קריימר.
+                </div>
+            </li>
+            <li>
+                <div class="fact-card">
+                    השינוי בדגש בשוק ה-AI לכיוון ספקים ותשתיות, כפי שצוין על ידי ג'ים קריימר, מעיד על שלב חדש בהתפתחות התחום, שבו ההתמקדות עוברת מחדשנות מודלים ראשונית ליישום תעשייתי ובניית יכולות.
+                </div>
+            </li>
+            <li>
+                <div class="fact-card">
+                    בשוק הקריפטו, למרות ההתקדמות הרגולטורית והאימוץ המוסדי, נותרה אי-ודאות רבה. הדעות החלוקות, בין סימנים לתחתית מוקדמת לבין חששות מ"חורף קריפטו", מדגישות את החשיבות בניתוח מקיף שאינו מסתמך רק על ביצועי מחיר, אלא גם על גורמים יסודיים וסנטימנט משקיעים.
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</body>
+</html>
