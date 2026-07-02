@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי – 2 ביולי 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --text-color: #e2e8f0;
+            --accent-color: #6ee7b7; /* Subtle green-blue for accents */
+            --border-color: #2d3748;
+            --positive-color: rgba(16, 185, 129, 0.2); /* Muted green */
+            --positive-text: #10b981;
+            --negative-color: rgba(239, 68, 68, 0.2); /* Muted red */
+            --negative-text: #ef4444;
+            --card-bg: #1a202c;
+            --divider-color: #4a5568;
+            --opinion-bg: #2b3547; /* Slightly different background for opinions */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--text-color);
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px;
+        }
+
+        .slide-container {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            overflow-x: auto; /* For tables/content that might overflow */
+        }
+
+        .section-divider {
+            border-top: 1px solid var(--divider-color);
+            margin: 40px 0;
+            opacity: 0.7;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background-color: #2d3748;
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 90px;
+        }
+
+        .stat-card .symbol {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 5px;
+        }
+
+        .stat-card .value {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-color);
+        }
+
+        .stat-card .change {
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-top: 8px;
+        }
+
+        .change-positive {
+            background-color: var(--positive-color);
+            color: var(--positive-text);
+        }
+
+        .change-negative {
+            background-color: var(--negative-color);
+            color: var(--negative-text);
+        }
+
+        p {
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: #3f4a5b;
+            color: var(--text-color);
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            transition: background-color 0.2s ease-in-out;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        .btn-source:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .highlight-card {
+            background-color: rgba(110, 231, 183, 0.1); /* Lighter accent background */
+            border-radius: 6px;
+            padding: 15px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            border-right: 3px solid var(--accent-color);
+        }
+        
+        .highlight-card p {
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-bg);
+            border-radius: 6px;
+            padding: 15px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            border-left: 3px solid #fcd34d; /* Yellowish accent for opinions */
+            position: relative;
+            font-style: italic;
+        }
+
+        .opinion-card::before {
+            content: "\201C"; /* Left double quotation mark */
+            font-size: 2.5rem;
+            color: #fcd34d;
+            position: absolute;
+            top: 5px;
+            right: 15px;
+            line-height: 1;
+        }
+
+        .opinion-card p {
+            margin: 0;
+            padding-right: 30px; /* Space for the quote icon */
+        }
+        
+        .opinion-card .author {
+            font-weight: 600;
+            text-align: left;
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #cbd5e0;
+        }
+
+        .topic-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 6px;
+            margin: 20px auto;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 16px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.4rem;
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            .market-pulse-grid {
+                grid-template-columns: 1fr 1fr; /* Two columns for mobile */
+                gap: 10px;
+            }
+            .slide-container {
+                padding: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.6rem;
+            }
+            h2 {
+                font-size: 1.2rem;
+            }
+            .market-pulse-grid {
+                grid-template-columns: 1fr; /* Single column for very small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>דוח שוק יומי אסטרטגי – 2 ביולי 2026</h1>
+
+        <!-- שקופית 1 - תמונת מצב מהירה (Market Pulse) -->
+        <div class="slide-container">
+            <span class="badge">תמונת מצב מהירה</span>
+            <h2>Market Pulse – מדדים ומניות חורגות</h2>
+            <p>סקירה מהירה של המדדים המובילים ומניות מרכזיות שרשמו תנועות חדות היום:</p>
+            <div class="market-pulse-grid">
+                <div class="stat-card">
+                    <span class="symbol">SPY (S&P 500 ETF)</span>
+                    <span class="value">745.76</span>
+                    <span class="change change-negative">-0.14%</span>
+                </div>
+                <div class="stat-card">
+                    <span class="symbol">QQQ (Nasdaq 100 ETF)</span>
+                    <span class="value">725.17</span>
+                    <span class="change change-negative">-1.52%</span>
+                </div>
+                <div class="stat-card">
+                    <span class="symbol">MU (Micron)</span>
+                    <span class="value">1032.28</span>
+                    <span class="change change-negative">-10.57%</span>
+                </div>
+                <div class="stat-card">
+                    <span class="symbol">CRWV (CoreWeave)</span>
+                    <span class="value">85.69</span>
+                    <span class="change change-negative">-13.92%</span>
+                </div>
+                <div class="stat-card">
+                    <span class="symbol">AMD (Adv. Micro Devices)</span>
+                    <span class="value">540.88</span>
+                    <span class="change change-negative">-6.89%</span>
+                </div>
+                <div class="stat-card">
+                    <span class="symbol">HOOD (Robinhood)</span>
+                    <span class="value">108.65</span>
+                    <span class="change change-positive">+8.35%</span>
+                </div>
+                <div class="stat-card">
+                    <span class="symbol">PLTR (Palantir)</span>
+                    <span class="value">125.73</span>
+                    <span class="change change-positive">+7.76%</span>
+                </div>
+                <div class="stat-card">
+                    <span class="symbol">BTC/USD (Bitcoin)</span>
+                    <span class="value">61268.68</span>
+                    <span class="change change-positive">+2.18%</span>
+                </div>
+                <div class="stat-card">
+                    <span class="symbol">ETH/USD (Ethereum)</span>
+                    <span class="value">1656.04</span>
+                    <span class="change change-positive">+3.03%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- שקופית תוכן - תיקון עמוק בסקטור השבבים -->
+        <div class="slide-container">
+            <span class="badge">AI ושבבים</span>
+            <h2>תיקון חד בסקטור השבבים לאחר ראלי שיא</h2>
+            <h3>מה קרה היום</h3>
+            <p>מניות יצרניות השבבים ספגו ירידות חדות ביום רביעי וגם בירידות קדם המסחר ביום חמישי, לאחר ראלי יוצא דופן ברבעון השני. מיקרון (MU), זינקה בכ-240% ברבעון השני, אך נפלה ביום רביעי ב-10.57%, ומחקה כמעט 200 מיליארד דולר משווי השוק שלה. ירידות דומות נרשמו ב-AMD שצנחה ב-6.89%, ואילו מניות סמסונג אלקטרוניקס ו-SK Hynix בדרום קוריאה צללו ביותר מ-9% ביום חמישי, כשגם CoreWeave (CRWV) ספגה ירידה של 13.92%.</p>
+            <a class="btn-source" href="https://www.cnbc.com/2026/07/01/chip-stocks-notched-record-rallies-in-second-quarter-start-q3-with-dud.html">CNBC</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/07/02/samsung-sk-hynix-shares-slide-kospi-tech-selloff-nasdaq.html">CNBC</a>
+            <a class="btn-source" href="https://www.youtube.com/watch?v=SF56QHOO-m4">Micha.Stocks</a>
+
+            <h3>למה זה חריג</h3>
+            <p>הירידות החדות מצביעות על תפנית משמעותית בסנטימנט המשקיעים כלפי מניות שבבים ממוקדות AI, לאחר חודשים של עליות אגרסיביות. זוהי התחלה חלשה לרבעון השלישי, והיא מייצגת נסיגה מהותית מרווחי השיא שנרשמו לאחרונה, בפרט בהתחשב בהיקף הנפילה ובפיזור שלה ברחבי הסקטור ברחבי העולם.</p>
+            
+            <img src="https://s3-images.ctmedia.io/media/article-covers/article-covers-224014-dead-cat-bounce-to-118k-5-things-bitcoin-this-week.jpg" alt="Chip stocks market correction" class="topic-image">
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- שקופית תוכן - מטא נכנסת לשוק הענן עם תשתית AI -->
+        <div class="slide-container">
+            <span class="badge">טכנולוגיה</span>
+            <h2>מטא פונה לשוק הענן: תמנף את תשתית ה-AI שלה</h2>
+            <h3>מה קרה היום</h3>
+            <p>מטא (Meta) מתכננת להיכנס לשוק המחשוב בענן, במטרה לייצר הכנסות מתשתית ה-AI העצומה שבנתה. המהלך הזה כבר גרם למניית החברה לזנק ב-9% ביום רביעי, והיא ממשיכה לעלות גם ביום חמישי.</p>
+            <a class="btn-source" href="https://www.cnbc.com/2026/07/01/meta-stock-cloud-ai-compute.html">CNBC</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/07/02/metas-push-into-cloud-excites-wall-street-despite-lower-margins.html">CNBC</a>
+
+            <h3>למה זה חריג</h3>
+            <p>ההחלטה של מטא להיכנס לתחום הענן מפתיעה וחשובה, כיוון שהיא נועדה להתמודד עם חששות המשקיעים לגבי הוצאותיה האגרסיביות על AI. היא מסמנת שינוי אסטרטגי משמעותי שיכול להפוך את מודל ההכנסות שלה ולפתוח נתיבי צמיחה חדשים מעבר לפלטפורמות המדיה החברתית שלה.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- שקופית תוכן - רובינהוד מתרחבת לקריפטו ו-DeFi -->
+        <div class="slide-container">
+            <span class="badge">קריפטו ו-DeFi</span>
+            <h2>רובינהוד מתרחבת לעולם הקריפטו: בלוקצ'יין ציבורי ומסחר בבריטניה</h2>
+            <h3>מה קרה היום</h3>
+            <p>רובינהוד (HOOD) השיקה את הבלוקצ'יין הציבורי שלה, "Robinhood Chain", והצטרפה ל-dYdX Labs להשקת בורסת DEX חדשה בשם Arcus. בנוסף, החברה מתכננת להציע שירותי מסחר בקריפטו לתושבי בריטניה. מניית רובינהוד הגיבה בזינוק של 8.34% ביום רביעי.</p>
+            <a class="btn-source" href="https://cointelegraph.com/news/robinhood-links-with-dydx-labs-to-launch-new-dex-arcus">Cointelegraph</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/robinhood-public-blockchain-mainnet-launch">Cointelegraph</a>
+            <a class="btn-source" href="https://finance.yahoo.com/markets/crypto/articles/morning-minute-robinhood-debuts-robinhood-120626191.html">Yahoo Finance</a>
+
+            <h3>למה זה חריג</h3>
+            <p>התרחבות אגרסיבית זו של רובינהוד מעבר לשירותי התיווך המסורתיים שלה מסמלת דחיפה גדולה לתחום הפיננסים המבוזרים (DeFi) ולשווקים בינלאומיים. המהלך יכול להגדיל משמעותית את נתח השוק של החברה בתחום הקריפטו הגדל, כפי שמעידה תגובת השוק החיובית למנייתה.</p>
+            
+            <img src="https://s3-images.ctmedia.io/media/article-covers/hi-robinhood-how-the-fast-growing-stock-trading-app-got-into-crypto.jpg" alt="Robinhood Crypto" class="topic-image">
+
+            <div class="opinion-card">
+                <p>Vlad Tenev, Robinhood CEO, told CNBC that AI agents will soon be able to match human traders.</p>
+                <div class="author">— Vlad Tenev, Robinhood CEO</div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- שקופית תוכן - אימוץ מוסדי של Stablecoins ונכסים מפוקפקים -->
+        <div class="slide-container">
+            <span class="badge">מאקרו קריפטו</span>
+            <h2>התחזקות האימוץ המוסדי: Stablecoins ואסימונים בבנקים</h2>
+            <h3>מה קרה היום</h3>
+            <p>בנק Standard Chartered וחברת Circle השיקו שירות הטבעה ופדיון של מטבע USDC מבוסס בנק עבור מוסדות פיננסיים, החל מדובאי. במקביל, הענק הצרפתי Crédit Agricole השיק stablecoin צמוד ליורו בשם EURXT על רשת Ethereum, ו-Tradeweb ביצעה עסקת אג"ח ממשלתיות מיומנות בזמן אמת ברשת Canton.</p>
+            <a class="btn-source" href="https://cointelegraph.com/news/standard-chartered-circle-usdc-minting-banking-rails">Cointelegraph</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/credit-agricole-eurxt-euro-stablecoin-caceis">Cointelegraph</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/tradeweb-executes-real-time-tokenized-us-treasury-transaction-on-canton-network">Cointelegraph</a>
+
+            <h3>למה זה חריג</h3>
+            <p>ההתפתחויות הללו מצביעות על עלייה משמעותית בקבלה ובשילוב נכסים דיגיטליים וטכנולוגיית בלוקצ'יין בתוך המערכת הפיננסית המסורתית. הן מסמלות פוטנציאל לאימוץ שוק רחב יותר ונזילות משופרת, כאשר בנקים גדולים וממוסדים נכנסים באופן פעיל לתחום ה-stablecoins ונכסים מיומנים.</p>
+            
+            <img src="https://s3-images.ctmedia.io/media/article-covers/standard-chartered-circle-bring-usdc-banks-have-deeper-interest-in-digital-than-previously-thought.jpg" alt="Standard Chartered Circle USDC" class="topic-image">
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- שקופית תוכן - ביטקוין: הצטברות תאגידית וסנטימנט שוק מעורב -->
+        <div class="slide-container">
+            <span class="badge">קריפטו</span>
+            <h2>ביטקוין: הצטברות תאגידית מול סנטימנט שוק זהיר</h2>
+            <h3>מה קרה היום</h3>
+            <p>חברת Metaplanet רכשה 2,823 ביטקוין ברבעון השני, והביאה את סך החזקותיה ליותר מ-43,000 BTC, בעלות רכישה ממוצעת של 106,500 דולר לביטקוין. במקביל, הביטקוין זינק מעל 60,000 דולר ביום רביעי, למרות אזהרות של אנליסטים על ירידה פוטנציאלית נוספת לאחר יוני הגרוע ביותר מאז 2022.</p>
+            <a class="btn-source" href="https://cointelegraph.com/news/metaplanet-buys-2823-btc-surpasses-43000-bitcoin-holdings">Cointelegraph</a>
+            <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-pings-60k-amid-fed-inflation-talks-is-bull-trap-or-65k-next?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/renowned-analyst-predicts-btc-drop-to-52k-after-worst-june-since-2022">Cointelegraph</a>
+            <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-bounces-off-21-month-low-but-leverage-data-signals-caution-was-57k-the-bottom?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+
+            <h3>למה זה חריג</h3>
+            <p>רכישות ביטקוין משמעותיות על ידי תאגידים כמו Metaplanet מעידות על אמון מוסדי מתמשך בנכס, גם כאשר סנטימנט השוק נותר זהיר לגבי תנודתיות המחירים. העלייה מעל 60,000 דולר, על אף הנתונים השליליים מחודש יוני, מראה על חוסן מסוים בביטקוין, אך ייתכן שמדובר ב"מלכודת שוורים" כפי שמציינים אנליסטים מסוימים.</p>
+            
+            <img src="https://s3-images.ctmedia.io/media/article-covers/hi-defi-wont-last-long-without-unlocking-bitcoins-treasure-chest-metaplanet-1.jpg" alt="Metaplanet Bitcoin holdings" class="topic-image">
+        </div>
+    </div>
+</body>
+</html>
