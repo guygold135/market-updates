@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק הון יומי - 3 ביולי 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117; /* Deep dark background */
+            color: #e0e6ed; /* Light gray text */
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            direction: rtl; /* Right-to-left for Hebrew */
+        }
+
+        .report-header {
+            background-color: #1a202c; /* Slightly lighter dark for header */
+            padding: 24px 32px;
+            text-align: center;
+            border-bottom: 1px solid #2d3748;
+            margin-bottom: 24px;
+        }
+
+        .report-header h1 {
+            color: #fbd38d; /* Gold accent */
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .slide-container {
+            background-color: #1a202c; /* Card-like background for each slide */
+            border-radius: 8px;
+            padding: 24px 32px;
+            margin: 24px auto;
+            max-width: 900px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border: 1px solid #2d3748;
+        }
+
+        h2 {
+            color: #fbd38d; /* Gold accent for main topic titles */
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 16px;
+            border-bottom: 2px solid #2d3748;
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            color: #81e6d9; /* Steel blue accent for sub-titles */
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-top: 24px;
+            margin-bottom: 12px;
+        }
+
+        p {
+            margin-bottom: 12px;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .market-card {
+            background-color: #2d3748; /* Darker card background */
+            padding: 16px;
+            border-radius: 6px;
+            border: 1px solid #4a5568;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .market-card strong {
+            color: #e0e6ed;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .market-card .price-info {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            font-size: 0.95rem;
+        }
+
+        .market-card .price {
+            font-weight: 600;
+        }
+
+        .change-positive {
+            color: #48bb78; /* Muted green for positive change */
+            background-color: rgba(72, 187, 120, 0.1); /* Transparent green background */
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .change-negative {
+            color: #fc8181; /* Muted red for negative change */
+            background-color: rgba(252, 129, 129, 0.1); /* Transparent red background */
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .change-neutral {
+            color: #a0aec0; /* Gray for neutral change */
+            background-color: rgba(160, 174, 192, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .section-divider {
+            border-top: 1px solid #4a5568; /* Thin divider line */
+            margin: 40px auto;
+            max-width: 900px;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: #81e6d9; /* Steel blue for badges */
+            color: #0d1117; /* Dark text on badge */
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .content-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+            margin: 20px auto;
+            border: 1px solid #4a5568;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: #fbd38d; /* Gold accent for source button */
+            color: #1a202c; /* Dark text on button */
+            padding: 8px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-source:hover {
+            background-color: #ecc94b; /* Slightly darker gold on hover */
+        }
+
+        .opinion-card {
+            background-color: #2d3748; /* Darker background for opinions */
+            border-left: 4px solid #fbd38d; /* Gold left border */
+            padding: 16px 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            font-style: italic;
+            color: #a0aec0; /* Lighter gray for opinion text */
+            position: relative;
+        }
+
+        .opinion-card::before {
+            content: "“";
+            font-size: 3rem;
+            color: #fbd38d;
+            position: absolute;
+            top: 0px;
+            right: 15px; /* RTL adjustment */
+            line-height: 1;
+        }
+
+        .opinion-card .author {
+            display: block;
+            text-align: left; /* RTL adjustment */
+            margin-top: 10px;
+            font-weight: 600;
+            color: #81e6d9;
+            font-style: normal;
+        }
+        
+        .source-group {
+            margin-top: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: flex-end; /* Align sources to the right for RTL */
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .market-pulse-grid {
+                grid-template-columns: 1fr; /* Stack cards on mobile */
+            }
+            .slide-container {
+                padding: 16px;
+                margin: 16px auto;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            .report-header {
+                padding: 16px 20px;
+            }
+            .badge {
+                padding: 4px 8px;
+                font-size: 0.75rem;
+            }
+            .opinion-card::before {
+                font-size: 2rem;
+                top: 5px;
+                right: 10px;
+            }
+            .market-card strong {
+                font-size: 1rem;
+            }
+            .market-card .price-info {
+                font-size: 0.9rem;
+            }
+            .change-positive, .change-negative, .change-neutral {
+                padding: 3px 6px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="report-header">
+        <h1>דוח שוק הון יומי</h1>
+        <p>עדכון תמציתי ל-3 ביולי 2026</p>
+    </div>
+
+    <div class="slide-container" id="market-pulse">
+        <h2><span class="badge">תמונת מצב מהירה</span> דופק השוק</h2>
+        <div class="market-pulse-grid">
+            <!-- S&P 500 -->
+            <div class="market-card">
+                <strong>S&P 500 ETF (SPY)</strong>
+                <div class="price-info">
+                    <span class="price">744.78 $</span>
+                    <span class="change-negative">-0.13%</span>
+                </div>
+            </div>
+            <!-- Nasdaq 100 (QQQ) -->
+            <div class="market-card">
+                <strong>Nasdaq 100 ETF (QQQ)</strong>
+                <div class="price-info">
+                    <span class="price">712.60 $</span>
+                    <span class="change-negative">-1.73%</span>
+                </div>
+            </div>
+            <!-- Bitcoin -->
+            <div class="market-card">
+                <strong>ביטקוין (BTC/USD)</strong>
+                <div class="price-info">
+                    <span class="price">61,875.99 $</span>
+                    <span class="change-positive">+0.64%</span>
+                </div>
+            </div>
+            <!-- Tesla -->
+            <div class="market-card">
+                <strong>טסלה (TSLA)</strong>
+                <div class="price-info">
+                    <span class="price">393.45 $</span>
+                    <span class="change-negative">-7.49%</span>
+                </div>
+            </div>
+            <!-- Micron -->
+            <div class="market-card">
+                <strong>מייקרון (MU)</strong>
+                <div class="price-info">
+                    <span class="price">975.56 $</span>
+                    <span class="change-negative">-5.49%</span>
+                </div>
+            </div>
+            <!-- Coherent -->
+            <div class="market-card">
+                <strong>קוהרנט (COHR)</strong>
+                <div class="price-info">
+                    <span class="price">333.36 $</span>
+                    <span class="change-negative">-9.57%</span>
+                </div>
+            </div>
+            <!-- IREN -->
+            <div class="market-card">
+                <strong>איירן (IREN)</strong>
+                <div class="price-info">
+                    <span class="price">38.82 $</span>
+                    <span class="change-negative">-10.39%</span>
+                </div>
+            </div>
+            <!-- Apple -->
+            <div class="market-card">
+                <strong>אפל (AAPL)</strong>
+                <div class="price-info">
+                    <span class="price">308.63 $</span>
+                    <span class="change-positive">+4.84%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container" id="us-jobs">
+        <h2><span class="badge">מאקרו</span> נתוני תעסוקה חלשים בארה"ב מאותתים על האטה</h2>
+        <p>תוספת המשרות בארה"ב בחודש יוני עמדה על 57,000 בלבד, נמוך בהרבה מהציפיות ל-115,000, ושיעור ההשתתפות בכוח העבודה ירד לשפל של 50 שנה (מחוץ לתקופת הקורונה).</p>
+        <p>נתונים אלו מרמזים על האטה משמעותית בשוק העבודה האמריקאי, מה שעשוי להקל את הלחץ על הפדרל ריזרב בנוגע להעלאות ריבית עתידיות ולתמוך בציפיות להפחתות ריבית, ובכך להשפיע על שוקי המניות והאג"ח.</p>
+        <div class="source-group">
+            <a class="btn-source" href="https://www.cnbc.com/2026/07/02/jobs-report-june-2026-.html" target="_blank">CNBC</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/07/02/job-seekers-giving-up-labor-force-participation-rate-falls-to-lowest-in-50-years-outside-of-covid-era.html" target="_blank">CNBC</a>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container" id="tesla-plunge">
+        <h2><span class="badge">מניות</span> טסלה צונחת ב-7.49% למרות נתוני מסירה חיוביים</h2>
+        <p>מניית טסלה (TSLA) צללה ב-7.49% והציגה את היום הגרוע ביותר שלה מזה כשנה, למרות דיווח על נתוני מסירה חזקים לרבעון השני. נפח המסחר במניה היה גבוה משמעותית מהממוצע.</p>
+        <p>הירידה החדה מצביעה על חששות עמוקים יותר בשוק לגבי הביקוש והרווחיות של החברה, והיא חריגה בהתחשב בנתוני המסירות החיוביים לכאורה. הירידה משקפת תגובה שלילית רחבה יותר למצב החברה, אולי מעבר למספרים הרבעוניים.</p>
+        <div class="source-group">
+            <a class="btn-source" href="https://www.cnbc.com/2026/07/02/tesla-tsla-q2-2026-vehicle-delivery-production.html" target="_blank">CNBC</a>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container" id="chips-ai-sentiment">
+        <h2><span class="badge">טכנולוגיה / AI</span> מייקל בארי מהמר נגד מייקרון וסנטימנט שלילי בשבבים/AI</h2>
+        <p>מניית מייקרון (MU) ירדה ב-5.49% בעקבות דיווחים שמייקל בארי, המשקיע המפורסם מ"השור הקצר הגדול", ביצע הימור דובי משמעותי נגדה, המשקף חשש גובר מהערכות שווי גבוהות בתחום השבבים וה-AI.</p>
+        <p>הימורו של בארי, יחד עם ירידות בולטות נוספות במניות כמו AMD (-4.26%) וקוהרנט (COHR) שצללה ב-9.57%, מדגיש את החששות מפני תיקון אפשרי במניות הבינה המלאכותית לאחר ראלי ארוך. גם מטא דיווחה כי פיתוח סוכני AI לא האיץ כצפוי, מה שמוסיף לחששות.</p>
+        <div class="source-group">
+            <a class="btn-source" href="https://www.marketwatch.com/story/michael-burry-makes-a-bearish-bet-against-hot-memory-stock-micron-reports-4c976262?mod=mw_rss_topstories" target="_blank">MarketWatch</a>
+            <a class="btn-source" href="https://www.youtube.com/watch?v=PKwzt4FZ7zg" target="_blank">Micha.Stocks</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/ai-agent-development-hasnt-accelerated-as-expected-says-zuckerberg?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound" target="_blank">Cointelegraph</a>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container" id="bitcoin-etf-inflows">
+        <h2><span class="badge">קריפטו</span> זרימת הון חזקה לקרנות ספוט ביטקוין</h2>
+        <p>קרנות ספוט ביטקוין בארה"ב רשמו זרימת הון יומית של 221.7 מיליון דולר, הנתון החזק ביותר מאז מאי, מה שתרם לעליית מחיר הביטקוין מעל 61,000 $ למחיר של 61,875.99 $.</p>
+        <p>זרימת ההון המשמעותית ל-ETFs, במקביל לנתוני תעסוקה חלשים בארה"ב שהפחיתו את חששות הריבית, מספקת דחיפה חיובית לשוק הקריפטו ומעלה שאלות לגבי האם הביטקוין מצא תחתית לאחר תקופה של ירידות.</p>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/hi-bitcoin-etf-is-now-superior-over-dollar-2.jpg" alt="Bitcoin ETF" class="content-image">
+        <div class="source-group">
+            <a class="btn-source" href="https://cointelegraph.com/news/spot-bitcoin-etfs-222-million-daily-inflow-reverse?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound" target="_blank">Cointelegraph</a>
+            <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-holds-61k-after-us-jobs-data-report-ai-sector-weakness-did-btc-bottom?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound" target="_blank">Cointelegraph</a>
+            <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-price-taps-new-july-high-above-62k-on-weak-us-jobs-data?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound" target="_blank">Cointelegraph</a>
+        </div>
+    </div>
+
+</body>
+</html>
