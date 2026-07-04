@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי אסטרטגי</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0a0e17;
+            color: #e0e0e0;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            direction: rtl; /* Set overall text direction to right-to-left */
+        }
+        a {
+            color: #00aaff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        h1, h2, h3 {
+            color: #e0e0e0;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-align: right; /* Align headings right */
+        }
+        h1 {
+            font-size: 2.2rem;
+            text-align: center;
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        h2 {
+            font-size: 1.8rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 8px;
+            margin-top: 24px;
+        }
+        h3 {
+            font-size: 1.3rem;
+            color: #a0a0a0;
+            margin-top: 18px;
+        }
+        .slide-container {
+            background-color: #1a1f2c;
+            margin: 20px auto;
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            max-width: 900px;
+            text-align: right; /* Align text right within containers */
+            overflow: hidden; /* Clear floats / contain children */
+        }
+        .section-divider {
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin: 30px auto;
+            max-width: 800px;
+        }
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .market-card {
+            background-color: #2a303d;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .market-symbol {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #c0c0c0;
+            margin-bottom: 5px;
+        }
+        .market-change-positive {
+            color: #00ff80;
+            background-color: rgba(0, 255, 128, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .market-change-negative {
+            color: #ff4d4d;
+            background-color: rgba(255, 77, 77, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .badge {
+            display: inline-block;
+            background-color: #3a414f;
+            color: #a0a0a0;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+            text-align: center;
+        }
+        .content-text {
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+        .highlight-card {
+            background-color: #2a303d;
+            border-right: 4px solid #00aaff; /* Changed to right for RTL */
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            text-align: right;
+        }
+        .opinion-card {
+            background-color: #332b1e;
+            border-right: 4px solid #ffcc00; /* Changed to right for RTL */
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            display: flex;
+            align-items: flex-start;
+            text-align: right;
+            flex-direction: row-reverse; /* For opinion icon on right */
+        }
+        .opinion-card > div {
+            flex-grow: 1; /* Allow content to take available space */
+        }
+        .opinion-icon {
+            margin-right: 10px; /* Adjusted margin for RTL */
+            font-size: 1.5rem;
+            color: #ffcc00;
+            flex-shrink: 0; /* Prevent icon from shrinking */
+        }
+        .btn-source {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            margin-left: 10px; /* Add margin between buttons */
+            transition: background-color 0.2s;
+            text-align: center;
+        }
+        .btn-source:hover {
+            background-color: #0056b3;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 15px auto;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            table-layout: fixed;
+            word-wrap: break-word;
+            border-collapse: collapse;
+            margin-top: 15px;
+            overflow-x: auto; /* For responsive tables */
+        }
+        th, td {
+            padding: 10px;
+            text-align: right; /* Align table content right */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        th {
+            background-color: #1a1f2c;
+            color: #a0a0a0;
+            font-weight: 600;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .market-pulse-grid {
+                grid-template-columns: 1fr 1fr; /* Two columns for mobile */
+            }
+            .slide-container {
+                padding: 16px;
+                margin: 10px auto;
+            }
+            h1 {
+                font-size: 1.4rem;
+            }
+            h2 {
+                font-size: 1.2rem;
+            }
+            .market-card {
+                padding: 10px;
+            }
+            .market-symbol {
+                font-size: 1rem;
+            }
+            .market-change-positive, .market-change-negative {
+                font-size: 0.8rem;
+                padding: 3px 6px;
+            }
+            .badge {
+                padding: 5px 10px;
+                font-size: 0.75rem;
+            }
+            .btn-source {
+                display: block; /* Stack buttons on mobile */
+                margin-bottom: 8px;
+                margin-left: 0;
+            }
+            .btn-source:last-child {
+                margin-bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>דוח שוק יומי אסטרטגי</h1>
+
+    <!-- Slide 1: Market Pulse -->
+    <div class="slide-container">
+        <div class="badge">מבט מהיר</div>
+        <h2>תמונת מצב מהירה: מדדים ומניות בולטות</h2>
+        <div class="market-pulse-grid">
+            <!-- SPY -->
+            <div class="market-card">
+                <div class="market-symbol">S&P 500 (SPY)</div>
+                <div class="market-change-negative">
+                    <span class="value">
+                        -0.13%
+                    </span>
+                </div>
+            </div>
+            <!-- QQQ -->
+            <div class="market-card">
+                <div class="market-symbol">Nasdaq 100 (QQQ)</div>
+                <div class="market-change-negative">
+                    <span class="value">
+                        -1.73%
+                    </span>
+                </div>
+            </div>
+            <!-- BTC/USD -->
+            <div class="market-card">
+                <div class="market-symbol">ביטקוין (BTC)</div>
+                <div class="market-change-positive">
+                    <span class="value">
+                        +0.09%
+                    </span>
+                </div>
+            </div>
+            <!-- ETH/USD -->
+            <div class="market-card">
+                <div class="market-symbol">את'ריום (ETH)</div>
+                <div class="market-change-positive">
+                    <span class="value">
+                        +0.35%
+                    </span>
+                </div>
+            </div>
+            <!-- AAPL -->
+            <div class="market-card">
+                <div class="market-symbol">אפל (AAPL)</div>
+                <div class="market-change-positive">
+                    <span class="value">
+                        +4.84%
+                    </span>
+                </div>
+            </div>
+            <!-- TSLA -->
+            <div class="market-card">
+                <div class="market-symbol">טסלה (TSLA)</div>
+                <div class="market-change-negative">
+                    <span class="value">
+                        -7.49%
+                    </span>
+                </div>
+            </div>
+            <!-- COHR -->
+            <div class="market-card">
+                <div class="market-symbol">קוהרנט (COHR)</div>
+                <div class="market-change-negative">
+                    <span class="value">
+                        -9.57%
+                    </span>
+                </div>
+            </div>
+            <!-- IREN -->
+            <div class="market-card">
+                <div class="market-symbol">איירן (IREN)</div>
+                <div class="market-change-negative">
+                    <span class="value">
+                        -10.39%
+                    </span>
+                </div>
+            </div>
+             <!-- MU -->
+            <div class="market-card">
+                <div class="market-symbol">מיקרון (MU)</div>
+                <div class="market-change-negative">
+                    <span class="value">
+                        -5.49%
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Slide 2: AI Sector: Palantir CEO Warning & Global Investment Drive -->
+    <div class="slide-container">
+        <div class="badge">טכנולוגיה ו-AI</div>
+        <h2>התרעה מפאלנטיר ודחיפה ממשלתית לתשתיות AI</h2>
+        <p class="content-text">
+            מנכ"ל פאלנטיר, אלכס קארפ, הביע דאגה לגבי ההתפתחויות בתחום הבינה המלאכותית, באזהרה כי "משהו לא טוב קורה עם AI" – אמירה חריגה שמציבה סימן שאלה לגבי הכיוון העתידי של התעשייה.
+            התבטאות זו מגיעה במקביל למגמה עולמית שבה ממשלות כמו צרפת והודו מחזרות אחרי ענקיות טכנולוגיה, כולל מנכ"לים, במטרה למשוך השקעות למרכזי נתונים ותשתיות ענן שישמשו לפיתוחי AI.
+            בנוסף, דיווחים מצביעים על כך שמניית Nvidia (NVDA) מהמרת על צמיחה של טריליון דולר בתחום הרובוטיקה, מה שמדגיש את הפוטנציאל העצום אך גם את חוסר הוודאות הנלווה לתחום.
+        </p>
+        <a class="btn-source" href="https://www.youtube.com/watch?v=Squ87Y1ZqWE" target="_blank">Micha.Stocks</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/07/04/macron-modi-ai-infrastructure-tech-ceos.html" target="_blank">CNBC</a>
+        <a class="btn-source" href="https://www.marketwatch.com/story/nvidia-is-betting-on-a-trillion-dollar-robotics-boom-here-is-the-hidden-way-to-trade-it-c5b10c4e?mod=mw_rss_topstories" target="_blank">MarketWatch</a>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Slide 3: Crypto Market: Price Action, ETF Inflows & Regulatory Headwinds -->
+    <div class="slide-container">
+        <div class="badge">קריפטו ורגולציה</div>
+        <h2>שוק הקריפטו: עליות מוגבלות ורוחות רגולטוריות נגדיות</h2>
+        <p class="content-text">
+            הביטקוין (BTC) והאת'ריום (ETH) רשמו עליות קלות של <span class="market-change-positive">+0.09%</span> ו-<span class="market-change-positive">+0.35%</span> בהתאמה, תוך שהם מתאוששים משפלים של מספר שנים, בין היתר בזכות זרימת הון מחודשת לקרנות סל (ETFs) של ביטקוין בסך <span class="market-change-positive">$221 מיליון</span> ב-2 ביולי.
+            עם זאת, השוק עומד בפני אתגרים רגולטוריים משמעותיים: חברת התשלומים Revolut הודיעה כי תפסיק את תמיכתה במטבע היציב USDT באוגוסט בשל חששות רגולטוריים וסיכונים.
+            במקביל, האיחוד האירופי נמצא לקראת סיום תקופת המעבר של תקנות MiCA, מה שמגביר את האכיפה ויוצר חוסר וודאות לגבי פעילותן של חברות קריפטו לא מורשות.
+        </p>
+        <div class="opinion-card">
+            <span class="opinion-icon">&#8221;</span>
+            <div>
+                Bitwise chief investment officer Matt Hougan said the bottom is “closer than ever,” while a Swan Bitcoin analyst suggested investors buy now at a discount rather than overpaying later.
+            </div>
+        </div>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/hi-bitcoin-etf-is-now-superior-over-dollar-2.jpg" alt="Bitcoin ETF" />
+        <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-ether-extend-relief-rallies-as-extreme-fear-meets-renewed-etf-buying?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound" target="_blank">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/revolut-usdt-delisting-regulatory-risk-concerns?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound" target="_blank">Cointelegraph by Helen Partz</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/bitcoin-realized-profit-loss-ratio-falls-to-lowest-level-since-2022-cryptoquant?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound" target="_blank">Cointelegraph by Brayden Lindrea</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/eu-crypto-rulebook-enforcement-challenge-mica-transition-end?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound" target="_blank">Cointelegraph by Helen Partz</a>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Slide 4: Key Stock Movers: Apple's Rally, Tesla's Dip & Coherent's Decline -->
+    <div class="slide-container">
+        <div class="badge">תנודות חריגות</div>
+        <h2>מניות בולטות: אפל בעלייה, טסלה וקוהרנט בירידה חדה</h2>
+        <p class="content-text">
+            המסחר היום התאפיין בתנודות משמעותיות במניות מפתח: אפל (AAPL) זינקה ב-<span class="market-change-positive">+4.84%</span>, תוך שהיא מושכת תשומת לב חיובית בשוק.
+            מנגד, טסלה (TSLA) רשמה ירידה חדה של <span class="market-change-negative">-7.49%</span>, מה שמצביע על חששות ספציפיים סביב החברה.
+            בנוסף, מניית Coherent Corp (COHR) סבלה מירידה משמעותית של <span class="market-change-negative">-9.57%</span>, ומניית כריית הקריפטו IREN Limited ירדה ב-<span class="market-change-negative">-10.39%</span>, מה שמדגיש את הרגישות לחדשות ספציפיות ולסנטימנט השוק כלפי חברות בודדות.
+        </p>
+        <a class="btn-source" href="https://finance.yahoo.com/markets/stocks/articles/bitcoin-crashed-20-over-last-122400994.html" target="_blank">Yahoo Finance</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/07/03/the-hunt-for-ais-next-winners-defined-the-stock-markets-holiday-shortened-week.html" target="_blank">CNBC</a>
+    </div>
+
+</body>
+</html>
