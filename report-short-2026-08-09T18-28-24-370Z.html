@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי אסטרטגי - גרסה מקוצרת</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Body and HTML structure */
+        html { 
+            font-family: 'Inter', sans-serif; 
+            box-sizing: border-box; 
+        }
+        body {
+            background-color: #0d1117; /* Dark navy/charcoal */
+            color: #e0e6ec; /* Off-white for main text */
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            direction: rtl; /* For Hebrew */
+            unicode-bidi: embed;
+        }
+        *, *::before, *::after { 
+            box-sizing: inherit; 
+        }
+
+        /* Headings */
+        h1 {
+            font-size: 2.5rem;
+            color: #f7e096; /* Soft gold accent */
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+        h2 {
+            font-size: 1.8rem;
+            color: #a8dadc; /* Steel blue accent */
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        h3 {
+            font-size: 1.4rem;
+            color: #e0e6ec;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        /* Slide Container */
+        .slide-container {
+            background-color: #1a202c; /* Slightly lighter dark background for content */
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            overflow-x: hidden; /* Prevent horizontal scroll from content */
+        }
+
+        /* Section Divider */
+        .section-divider {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 40px 0;
+        }
+
+        /* Badges for Categories */
+        .category-badge {
+            display: inline-block;
+            background-color: #36454F; /* Dark gray */
+            color: #f7e096; /* Gold accent */
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        /* Market Pulse Grid/Table */
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+            overflow-x: auto; /* Ensure responsiveness for many items */
+            padding-bottom: 10px; /* Add padding for scrollbar if needed */
+        }
+
+        .market-pulse-card {
+            background-color: #242b38;
+            border-radius: 6px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .market-pulse-card .symbol {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #e0e6ec;
+            margin-bottom: 5px;
+        }
+
+        .market-pulse-card .change {
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 5px 0;
+            border-radius: 4px;
+        }
+
+        /* Change colors */
+        .change.positive {
+            color: #90ee90; /* Light green */
+            background-color: rgba(144, 238, 144, 0.15);
+        }
+
+        .change.negative {
+            color: #f08080; /* Light red */
+            background-color: rgba(240, 128, 128, 0.15);
+        }
+        .change.neutral {
+            color: #e0e6ec; /* Neutral color */
+            background-color: rgba(224, 230, 236, 0.1);
+        }
+
+        /* Source Button */
+        .btn-source {
+            display: inline-block;
+            background-color: #36454F; /* Dark gray */
+            color: #f7e096; /* Gold accent */
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            border: 1px solid #f7e096;
+            white-space: nowrap; /* Prevent text wrapping inside button */
+        }
+
+        .btn-source:hover {
+            background-color: #f7e096;
+            color: #0d1117;
+        }
+
+        /* Images */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        /* Media Queries for responsiveness */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            h3 {
+                font-size: 1.2rem;
+            }
+            .slide-container {
+                padding: 16px;
+                margin-bottom: 20px;
+            }
+            .market-pulse-grid {
+                grid-template-columns: 1fr 1fr; /* Two columns on mobile */
+            }
+            .btn-source {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>דוח שוק אסטרטגי יומי (גרסה מקוצרת)</h1>
+
+    <div class="slide-container">
+        <div class="category-badge">סקירה מהירה</div>
+        <h2>תמונת מצב שוק - 9 באוגוסט 2026</h2>
+        <p>סקירה מהירה של המדדים המובילים ותנועות חריגות במניות מרכזיות מהיום האחרון.</p>
+        <div class="market-pulse-grid">
+            <div class="market-pulse-card">
+                <div class="symbol">SPY (S&P 500 ETF)</div>
+                <div class="change positive">+0.61%</div>
+            </div>
+            <div class="market-pulse-card">
+                <div class="symbol">QQQ (Nasdaq 100 ETF)</div>
+                <div class="change positive">+1.17%</div>
+            </div>
+            <div class="market-pulse-card">
+                <div class="symbol">SPCX (SpaceX Class A)</div>
+                <div class="change positive">+15.83%</div>
+            </div>
+            <div class="market-pulse-card">
+                <div class="symbol">OKLO (Oklo Inc.)</div>
+                <div class="change positive">+14.77%</div>
+            </div>
+            <div class="market-pulse-card">
+                <div class="symbol">COHR (Coherent Corp.)</div>
+                <div class="change positive">+13.44%</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="category-badge">מאקרו</div>
+        <h2>התרחבות חוזק השוק: שיאי מכירות ב-S&P 500</h2>
+        <p>צמיחת המכירות של חברות S&P 500 הגיעה לשיא של כמעט חמש שנים ברבעון השני של 2026, בעיקר בזכות זינוק של 42.5% בהכנסות חברות האנרגיה. תופעה זו מצביעה על התרחבות בחוזק השוק, כאשר מספר המניות העולות על מדד S&P 500 הגיע לשיא של ארבע שנים, מה שמעיד על ביצועים טובים גם מחוץ לחברות הטכנולוגיה הגדולות.</p>
+        <p>
+            <a class="btn-source" href="https://www.marketwatch.com/story/s-p-500-sales-growth-is-at-a-nearly-5-year-high-heres-whats-behind-the-surge-a4ccf06d?mod=mw_rss_topstories">MarketWatch</a>
+            <a class="btn-source" href="https://www.marketwatch.com/story/the-number-of-stocks-beating-the-s-p-500-is-the-highest-in-4-years-why-that-number-should-rise-b9bd05b3?mod=mw_rss_topstories">MarketWatch</a>
+        </p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="category-badge">קריפטו</div>
+        <h2>קשיים ביישום פרוטוקול BIP-110 של ביטקוין</h2>
+        <p>שדרוג פרוטוקול BIP-110 המוצע עבור הביטקוין נתקל באתגרים משמעותיים, כשהוא נעצר לאחר שני בלוקים בלבד ותמיכת הכורים בסימון החובה נמוכה מ-3%. תמיכה מוגבלת זו מציבה סימני שאלה לגבי יכולתו של השינוי להתקיים ומעלה דיונים על פוטנציאל לחזור לפתרונות של הארד-פורק.</p>
+        <p>
+            <a class="btn-source" href="https://cointelegraph.com/news/bitcoin-bip-110-branch-stalls-miner-support?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/bitcoin-bip-110-mandatory-signaling?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        </p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="category-badge">אבטחת סייבר ו-AI</div>
+        <h2>סטארט-אפ ישראלי קשור לפריצות AI בחברות טכנולוגיה מובילות</h2>
+        <p>סטארט-אפ ישראלי קטן בשם Irregular נקשר לסדרה של מתקפות AI זדוניות נגד חברות טכנולוגיה גדולות כמו OpenAI, Anthropic ומטא. אירוע זה מדגיש את הפגיעות הגוברת באבטחה בפלטפורמות AI מובילות ואת הפוטנציאל לאיומי סייבר מתוחכמים בנוף הבינה המלאכותית.</p>
+        <p>
+            <a class="btn-source" href="https://www.cnbc.com/2026/08/09/israeli-startup-irregular-linked-to-ai-hacks-openai-anthropic-meta.html">CNBC</a>
+        </p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="category-badge">קריפטו</div>
+        <h2>BTCPay Server מגבילה גישת Lightning בעקבות התקפות סייבר</h2>
+        <p>BTCPay Server הגבילה את הגישה מרחוק לרשת ה-Lightning לאחר שפורצים הצליחו לגנוב כספים מצמתי Lightning הקשורים ל-Foundation ו-Citadel21. היקף הכספים שנגנבו ומספר המפעילים שנפגעו אינו ידוע עדיין, מה שמעלה חששות אבטחה מיידיים למשתמשי רשת ה-Lightning.</p>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/thief-bitcoin.png" alt="תמונת נושא התקפות סייבר בקריפטו">
+        <p>
+            <a class="btn-source" href="https://cointelegraph.com/news/btcpay-restricts-remote-lightning-access-after-attackers-steal-funds?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        </p>
+    </div>
+
+</body>
+</html>
