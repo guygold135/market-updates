@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי: תמונת מצב אסטרטגית</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0a0e17;
+            --card-bg: #1a1e2a;
+            --text-color: #e0e0e0;
+            --heading-color: #f0f0f0;
+            --accent-color: #b38b4f; /* Subtle gold */
+            --border-color: #2a3040;
+            --green-subdued: rgba(34, 139, 34, 0.2);
+            --red-subdued: rgba(220, 20, 60, 0.2);
+            --green-text: #66bb6a;
+            --red-text: #ef5350;
+            --highlight-bg: #2a2e3a;
+            --opinion-bg: #3a3e4a;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            direction: rtl;
+            text-align: right;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            color: var(--heading-color);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--accent-color);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-top: 40px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--accent-color);
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        .slide-container {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .market-item {
+            background-color: var(--highlight-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-end;
+            text-align: right;
+        }
+
+        .market-item strong {
+            color: var(--heading-color);
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .percent-change {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            direction: ltr; /* For showing +/- number */
+        }
+
+        .green-bg {
+            background-color: var(--green-subdued);
+            color: var(--green-text);
+        }
+
+        .red-bg {
+            background-color: var(--red-subdued);
+            color: var(--red-text);
+        }
+
+        .highlight-value {
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        .section-divider {
+            border-top: 1px solid var(--border-color);
+            margin: 40px 0;
+        }
+
+        .highlight-card {
+            background-color: var(--highlight-bg);
+            border-right: 4px solid var(--accent-color);
+            padding: 18px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-bg);
+            border-right: 4px solid var(--green-text);
+            padding: 18px;
+            border-radius: 6px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            font-style: italic;
+        }
+        .opinion-card::before {
+            content: "“";
+            font-size: 3rem;
+            color: var(--green-text);
+            position: absolute;
+            top: 5px;
+            right: 15px;
+            line-height: 1;
+        }
+        .opinion-card .author {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: background-color 0.2s ease-in-out;
+            text-align: center;
+        }
+
+        .btn-source:hover {
+            background-color: #d1a65d;
+        }
+
+        .image-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            table-layout: fixed;
+            overflow-x: auto;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: right;
+            font-size: 0.95rem;
+        }
+
+        th {
+            background-color: var(--highlight-bg);
+            color: var(--heading-color);
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        @media(max-width:768px){
+            body {
+                padding: 10px;
+            }
+            .market-pulse-grid {
+                grid-template-columns:1fr 1fr;
+            }
+            .slide-container {
+                padding:16px;
+            }
+            h1 {
+                font-size:1.4rem;
+            }
+            h2 {
+                font-size:1.2rem;
+            }
+            h3 {
+                font-size: 1rem;
+            }
+            .market-item {
+                padding: 10px;
+            }
+            .market-item strong {
+                font-size: 0.9rem;
+            }
+            .percent-change {
+                font-size: 0.85rem;
+            }
+            .highlight-card, .opinion-card {
+                padding: 12px;
+                font-size: 0.95rem;
+            }
+            .opinion-card::before {
+                font-size: 2.5rem;
+            }
+            th, td {
+                padding: 8px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slide-container">
+        <h1>דוח שוק יומי: תמונת מצב אסטרטגית</h1>
+    </div>
+
+    <div class="slide-container">
+        <span class="badge">תמונת מצב מהירה</span>
+        <h2>דופק השוק היומי: מדדים ומניות בולטות</h2>
+        <p>סקירה מהירה של ביצועי מדדים מובילים ומניות שבלטו בתנודות חדות או נפחי מסחר חריגים ביום המסחר האחרון.</p>
+
+        <div class="market-pulse-grid">
+            <div class="market-item">
+                <strong>S&amp;P 500 (SPY)</strong>
+                <span class="percent-change green-bg" dir="ltr">+0.61%</span>
+                <span><span class="highlight-value">$773.26</span></span>
+            </div>
+            <div class="market-item">
+                <strong>Nasdaq 100 (QQQ)</strong>
+                <span class="percent-change green-bg" dir="ltr">+1.17%</span>
+                <span><span class="highlight-value">$723.03</span></span>
+            </div>
+            <div class="market-item">
+                <strong>Russell 2000 (IWM)</strong>
+                <span class="percent-change green-bg" dir="ltr">+1.11%</span>
+                <span><span class="highlight-value">$301.56</span></span>
+            </div>
+            <div class="market-item">
+                <strong>Bitcoin (BTC/USD)</strong>
+                <span class="percent-change green-bg" dir="ltr">+0.13%</span>
+                <span><span class="highlight-value">$65,049.60</span></span>
+            </div>
+            <div class="market-item">
+                <strong>Ethereum (ETH/USD)</strong>
+                <span class="percent-change green-bg" dir="ltr">+0.34%</span>
+                <span><span class="highlight-value">$1,923.34</span></span>
+            </div>
+        </div>
+
+        <h3>מניות בולטות</h3>
+        <div class="market-pulse-grid">
+            <div class="market-item">
+                <strong>Space Exploration Tech (SPCX)</strong>
+                <span class="percent-change green-bg" dir="ltr">+15.83%</span>
+                <span><span class="highlight-value">$133.11</span></span>
+            </div>
+            <div class="market-item">
+                <strong>Oklo Inc. (OKLO)</strong>
+                <span class="percent-change green-bg" dir="ltr">+14.77%</span>
+                <span><span class="highlight-value">$48.42</span></span>
+            </div>
+            <div class="market-item">
+                <strong>Coherent Corp. (COHR)</strong>
+                <span class="percent-change green-bg" dir="ltr">+13.44%</span>
+                <span><span class="highlight-value">$379.13</span></span>
+            </div>
+            <div class="market-item">
+                <strong>Palantir Tech (PLTR)</strong>
+                <span class="percent-change green-bg" dir="ltr">+10.32%</span>
+                <span><span class="highlight-value">$172.01</span></span>
+            </div>
+            <div class="market-item">
+                <strong>IREN Limited (IREN)</strong>
+                <span class="percent-change green-bg" dir="ltr">+8.70%</span>
+                <span><span class="highlight-value">$41.23</span></span>
+            </div>
+            <div class="market-item">
+                <strong>Nano Nuclear Energy (NNE)</strong>
+                <span class="percent-change green-bg" dir="ltr">+7.04%</span>
+                <span><span class="highlight-value">$18.85</span></span>
+            </div>
+            <div class="market-item">
+                <strong>ServiceNow (NOW)</strong>
+                <span class="percent-change green-bg" dir="ltr">+6.42%</span>
+                <span><span class="highlight-value">$124.88</span></span>
+            </div>
+            <div class="market-item">
+                <strong>CoreWeave (CRWV)</strong>
+                <span class="percent-change green-bg" dir="ltr">+6.26%</span>
+                <span><span class="highlight-value">$90.67</span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">קריפטו</span>
+        <h2>קריפטו: אתגרים רגולטוריים ואבטחתיים</h2>
+
+        <h3>מה קרה היום</h3>
+        <p>ברזיל הציגה כללים חדשים שמטרתם להילחם בהונאות קריפטו, אשר ייכנסו לתוקף ב-1 בינואר 2027. הכללים יאפשרו להשהות העברות קריפטו למשך עד 24 שעות, במיוחד עבור סכומים העולים על 10,000 דולר שנשלחים לספקים בחו"ל או לארנקים בשליטה עצמית.</p>
+        <div class="image-container">
+            <img src="https://s3-images.ctmedia.io/media/article-covers/hi-latin-america-and-blockchain-2.jpg" alt="רגולציה קריפטו בברזיל" style="max-width:100%; height:auto;">
+        </div>
+        <a class="btn-source" href="https://cointelegraph.com/news/brazil-targets-crypto-fraud-with-up-to-24-hour-transfer-hold">Cointelegraph</a>
+
+        <p>במקביל, BTCPay הגבילה גישת Lightning מרחוק לאחר שתוקפים גנבו כספים. קרן Citadel21 דיווחו על צימתי Lightning מרוקנים, אך היקף הגניבה ומספר המפעילים שנפגעו עדיין אינם ידועים.</p>
+        <a class="btn-source" href="https://cointelegraph.com/news/btcpay-restricts-remote-lightning-access-after-attackers-steal-funds">Cointelegraph</a>
+        
+        <p>בארצות הברית, הסנאט יצביע בספטמבר על קידום "חוק הבהירות" (CLARITY Act), הצעת חוק המגדירה את מבנה שוק הקריפטו, וזאת לאחר שתונה הגיש בקשה לסיום דיונים (cloture). מהלך פרוצדורלי זה מחזיר את החקיקה למסלול, בזמן שהמחוקקים ממשיכים במשא ומתן בנוגע לסעיפי אתיקה ומטבעות יציבים.</p>
+        <a class="btn-source" href="https://cointelegraph.com/news/us-senate-clarity-act-september-vote-thune-cloture">Cointelegraph</a>
+
+
+        <h3>למה זה חריג</h3>
+        <p>הכללים החדשים בברזיל מהווים צעד משמעותי בהתפתחות הרגולציה הגלובלית של קריפטו, ומצביעים על מגמה עולמית להגביר את הפיקוח. תקרית BTCPay מדגישה את הסיכונים הביטחוניים המתמשכים בפרוטוקולי קריפטו ומערכות תשלום מבוזרות. ההצבעה הצפויה בסנאט האמריקאי על חוק הבהירות היא קריטית לקביעת המסגרת הרגולטורית שתשפיע על שוק הקריפטו בארה"ב.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>רגולציה מחמירה, כמו בברזיל, עשויה להפחית הונאות ולהגביר אמון בקרב משקיעים מוסדיים ופרטיים, אך עלולה גם להכביד על זרימת כספים מהירה ולהגביל את האנונימיות. אירועי אבטחה כדוגמת תקיפת BTCPay פוגעים באמון ודורשים תגובה מהירה מצד מפתחי פרוטוקולים וספקי שירותים. חקיקה בארה"ב יכולה להביא לבהירות רבה יותר בשוק, אך פרטיה יכולים להשפיע באופן דרמטי על פעילות העסקים בתחום.</p>
+
+        <h3>מה זה אומר לקראת השבוע</h3>
+        <p>משקיעי קריפטו צריכים להיות מודעים להשלכות הרגולטוריות המתפתחות, שכן הן יכולות להשפיע על התנודתיות והאטרקטיביות של נכסים דיגיטליים. דיונים על ה-CLARITY Act בספטמבר יספקו הכוונה נוספת לגבי עתיד הקריפטו בארה"ב. יש לעקוב אחר חדשות הקשורות לאבטחה, שכן אירועים כאלה עלולים להשפיע על הסנטימנט הכללי בשוק.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">קריפטו</span>
+        <h2>קריפטו: תזרים הון ופיתוח פרוטוקולים</h2>
+
+        <h3>מה קרה היום</h3>
+        <p>קרנות ה-ETF הנקודתיות לביטקוי בארה"ב רשמו את השבוע הטוב ביותר שלהן מאז אפריל, עם זרימת הון של <span class="highlight-value">$1 מיליארד</span>. זו ההצגה השלישית החזקה ביותר שלהן מאז אוקטובר, מה שמעיד על סימני מומנטום מחודש בביקוש המוסדי.</p>
+        <div class="image-container">
+            <img src="https://s3-images.ctmedia.io/media/article-covers/hi-part-2-where-oh-where-has-btc-volatility-gone-etf.jpg" alt="US spot Bitcoin ETFs" style="max-width:100%; height:auto;">
+        </div>
+        <a class="btn-source" href="https://cointelegraph.com/news/us-bitcoin-etfs-best-weekly-inflows-april-coldcard-hack">Cointelegraph</a>
+
+        <p>במקביל, הצעת BIP-110 של ביטקוי, שנכנסה לשלב איתות חובה, נתקעה לאחר שני בלוקים בלבד. התמיכה מצד כורי הביטקוי נותרה נמוכה מאוד, מתחת ל-<span class="highlight-value">3%</span> מכוח הכרייה, מה שמעיד על חוסר קונצנזוס משמעותי לשינוי בפרוטוקול.</p>
+        <div class="image-container">
+            <img src="https://s3-images.ctmedia.io/media/article-covers/hi-coinbase-seeks-ipo.png" alt="Bitcoin BIP-110" style="max-width:100%; height:auto;">
+        </div>
+        <a class="btn-source" href="https://cointelegraph.com/news/bitcoin-bip-110-branch-stalls-miner-support?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/bitcoin-bip-110-mandatory-signaling?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+
+        <h3>למה זה חריג</h3>
+        <p>זרימת הון של מיליארד דולר ל-ETFs לביטקוי היא אינדיקטור חזק לביקוש מוסדי מחודש ולחיזוק הלגיטימציה של ביטקוי כנכס השקעה. לעומת זאת, הכישלון המהיר של BIP-110 מצביע על הקושי האדיר ביישום שינויים מהותיים בפרוטוקול הביטקוי ללא תמיכה רחבה, ומדגיש את ערכי הליבה של הביזור והקונצנזוס ברשת.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>תזרימי הון גדולים ל-ETFs לרוב מיתרגמים ללחץ קנייה ומצביעים על סנטימנט שוק חיובי, מה שעשוי לתמוך במחיר הביטקוי בטווח הבינוני. מנגד, קשיים בפיתוח פרוטוקול כמו BIP-110 מציפים שאלות לגבי יכולת הביטקוי להסתגל טכנולוגית ללא הסכמה גורפת, אך גם מדגימים את עמידותו בפני שינויים כפויים.</p>
+
+        <h3>מה זה אומר לקראת השבוע</h3>
+        <p>המומנטום החיובי בזרימות ה-ETF עשוי להמשיך לתמוך בביטקוי. יש לעקוב אחר ההתפתחויות סביב פיתוחים עתידיים בפרוטוקולי קריפטו, וכיצד הקהילה מתמודדת עם חוסר קונצנזוס. למרות העליות הקלות במחיר (BTC/USD עלה ב-0.13% ל-$65,049.60 ו-ETH/USD עלה ב-0.34% ל-$1,923.34), החדשות מהוות אינדיקטורים חשובים לכוחות הפועלים בשוק.</p>
+        
+        <div class="opinion-card">
+            <p>Alex Svanevik, מייסד Nansen, מביע אופטימיות בנוגע לעתיד הביטקוי:</p>
+            <p dir="ltr">"Bitcoin will never fall below $60K again."</p>
+            <span class="author">— Alex Svanevik, מייסד Nansen</span>
+            <a class="btn-source" href="https://cointelegraph.com/magazine/bitcoin-will-never-fall-below-60k-again-nansen-founder?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">טכנולוגיה ובינה מלאכותית</span>
+        <h2>שוק הטכנולוגיה והבינה המלאכותית: תנודתיות וחדשנות</h2>
+
+        <h3>מה קרה היום</h3>
+        <p>מניות הבינה המלאכותית רשמו התאוששות משמעותית השבוע, וסייעו להרים שניים מהמדדים העיקריים לשיאים חדשים.</p>
+        <a class="btn-source" href="https://www.cnbc.com/2026/08/08/heres-how-we-played-the-massive-rebound-in-ai-stocks-this-week.html">CNBC</a>
+
+        <p>במקביל, דווח כי סטארט-אפ ישראלי קטן בשם Irregular נקשר למתקפות AI זדוניות בפלטפורמות של OpenAI, Anthropic ו-Meta.</p>
+        <a class="btn-source" href="https://www.cnbc.com/2026/08/09/israeli-startup-irregular-linked-to-ai-hacks-openai-anthropic-meta.html">CNBC</a>
+
+        <p>ביום המסחר האחרון, בלטו מספר מניות טכנולוגיה ויצרניות שבבים עם עליות חדות ונפחי מסחר משמעותיים:</p>
+        <ul>
+            <li><strong>Space Exploration Technologies (SPCX):</strong> זינקה ב-<span class="percent-change green-bg" dir="ltr">15.83%</span> למחיר סגירה של <span class="highlight-value">$133.11</span>, עם נפח מסחר חריג של <span class="highlight-value">240.6 מיליון</span> יחידות, כמעט כפול מהממוצע.</li>
+            <li><strong>Oklo Inc. (OKLO):</strong> עלתה ב-<span class="percent-change green-bg" dir="ltr">14.77%</span> למחיר <span class="highlight-value">$48.42</span>, עם נפח של <span class="highlight-value">22.04 מיליון</span>, יותר מכפול מהממוצע.</li>
+            <li><strong>Coherent Corp. (COHR):</strong> טיפסה ב-<span class="percent-change green-bg" dir="ltr">13.44%</span> למחיר <span class="highlight-value">$379.13</span>, בנפח של <span class="highlight-value">11.23 מיליון</span>, משמעותית מעל הממוצע.</li>
+            <li><strong>Palantir Technologies Inc. (PLTR):</strong> הוסיפה <span class="percent-change green-bg" dir="ltr">10.32%</span> ונסגרה ב-<span class="highlight-value">$172.01</span>, עם נפח של <span class="highlight-value">77.38 מיליון</span>, מעל הממוצע.</li>
+            <li><strong>IREN Limited (IREN):</strong> עלתה ב-<span class="percent-change green-bg" dir="ltr">8.70%</span> ונסגרה ב-<span class="highlight-value">$41.23</span>.</li>
+            <li><strong>Nano Nuclear Energy Inc. (NNE):</strong> רשמה עלייה של <span class="percent-change green-bg" dir="ltr">7.04%</span> ונסגרה ב-<span class="highlight-value">$18.85</span>.</li>
+            <li><strong>ServiceNow, Inc. (NOW):</strong> עלתה ב-<span class="percent-change green-bg" dir="ltr">6.42%</span> ונסגרה ב-<span class="highlight-value">$124.88</span>.</li>
+            <li><strong>CoreWeave, Inc. (CRWV):</strong> עלתה ב-<span class="percent-change green-bg" dir="ltr">6.26%</span> ונסגרה ב-<span class="highlight-value">$90.67</span>.</li>
+        </ul>
+
+        <h3>למה זה חריג</h3>
+        <p>ההתאוששות החזקה במניות ה-AI השבוע מצביעה על סנטימנט חיובי מתמשך למגזר, למרות העליות הגבוהות שכבר נרשמו. עליות חדות במניות כמו SPCX, OKLO, COHR ו-PLTR, המלוות בנפחי מסחר גבוהים מהרגיל, מצביעות על עניין משקיעים מוגבר בסיפורי צמיחה ספציפיים בתחום הטכנולוגיה והתשתיות המתקדמות, כולל בינה מלאכותית, אנרגיה גרעינית חדשנית ושירותי ענן. החשיפה לפרצות אבטחה ב-AI מדגישה את הסיכונים המתפתחים ואת הצורך בפתרונות אבטחה.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>הביקוש לטכנולוגיות AI ממשיך להניע את הצמיחה בחברות רבות, הן בתחום השבבים (כמו אלה הנדרשים ל-AI) והן בתחום התוכנה והתשתיות (כמו CoreWeave המציעה שירותי ענן ל-AI). סיכונים ביטחוניים, כפי שהודגמו על ידי Irregular, הם חלק בלתי נפרד מכל טכנולוגיה חדשנית ועלולים להשפיע על תדמית התעשייה ועל רגולציה עתידית. עם זאת, נראה שהשוק מתמקד כרגע בפוטנציאל הצמיחה. נפחי המסחר הגבוהים במניות הבולטות מצביעים על חילופי ידיים משמעותיים ועניין חדש בשוק.</p>
+
+        <h3>מה זה אומר לקראת השבוע</h3>
+        <p>המומנטום במניות ה-AI והטכנולוגיה עשוי להימשך, אך המשקיעים צריכים להיות ערניים להתפתחויות באבטחת AI ולכל רגולציה שתתגבש בתגובה לפרצות. מניות שהראו עליות חדות ונפחים גדולים, כמו SPCX, OKLO, COHR ו-PLTR, עשויות להמשיך ולמשוך עניין, אך ייתכן שיחוו תנודתיות גבוהה. ההתאוששות השבועית במדדים העיקריים שנתמכה על ידי מניות AI מרמזת על בסיס יציב יותר.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">מאקרו ושוקי הון</span>
+        <h2>מאקרו ושוקי הון: סימני שאלה וחוזק חבוי</h2>
+
+        <h3>מה קרה היום</h3>
+        <p>78% מהחברות עקפו את תחזיות הרווח ברבעון האחרון. נתון זה, שנשמע חיובי, מעורר דאגה בקרב אנליסט השוק Micha.Stocks.</p>
+        <a class="btn-source" href="https://www.youtube.com/watch?v=0dPuOxPjzB8">Micha.Stocks</a>
+
+        <p>במקביל, מספר המניות שמכות את מדד ה-S&amp;P 500 הגיע לשיא של ארבע שנים, לראשונה מזה תקופה ארוכה, מה שמעיד על התרחבות ברוחב השוק.</p>
+        <a class="btn-source" href="https://www.marketwatch.com/story/the-number-of-stocks-beating-the-s-p-500-is-the-highest-in-4-years-why-that-number-should-rise-b9bd05b3?mod=mw_rss_topstories">MarketWatch</a>
+
+        <h3>למה זה חריג</h3>
+        <p>שיעור גבוה של חברות המכות את תחזיות הרווח נחשב בדרך כלל לסימן חיובי לבריאות תאגידית וכלכלית. דאגתו של Micha.Stocks מערערת את הסנטימנט האופטימי הזה ומציעה פרשנות אלטרנטיבית. הנתון של שיא ארבע-שנתי במספר המניות העולות על ה-S&amp;P 500 הוא אינדיקטור חשוב לכך שהחוזק בשוק רחב יותר ממה שמיוחס לעיתים קרובות למספר מצומצם של "מניות מגה-קאפ", וזהו סימן חיובי מובהק מבחינת רוחב השוק.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>כאשר חברות מכות תחזיות באופן עקבי, זה יכול להצביע על כך שהאנליסטים הציבו רף נמוך מדי, או שהכלכלה חזקה מהצפוי. אם הרף נמוך מדי, ייתכן שהשוק יתקשה להציג "הפתעות" חיוביות בעתיד. מאידך, רוחב שוק מתרחב (כלומר, יותר מניות משתתפות בעליות ומכות את המדדים הגדולים) נתפס באופן מסורתי כסימן לבריאות שוק טובה ולקיימות העליות, שכן הוא פחות תלוי בביצועים של חברות בודדות.</p>
+
+        <h3>מה זה אומר לקראת השבוע</h3>
+        <p>על המשקיעים לבחון את דוחות הרווחים הקרובים בזהירות, תוך התחשבות הן בנתונים היבשים והן בפרשנויות האנליסטים. רוחב השוק המתרחב עשוי לספק תמיכה למדדים בטווח הקצר ולהעיד על חוזק כלכלי רחב יותר. יש לעקוב אחר חדשות ופרשנויות נוספות שיכולות לשפוך אור על הסיבות האמיתיות מאחורי אחוזי הרווח הגבוהים והאם הם בני קיימא. נתוני ה-S&P 500 (SPY), שרשם עלייה של <span class="percent-change green-bg" dir="ltr">+0.61%</span> למחיר <span class="highlight-value">$773.26</span>, משקפים את סנטימנט השוק הכללי.</p>
+        
+        <div class="opinion-card">
+            <p>אנליסט השוק Micha.Stocks מביע דאגה מנתוני רווחי החברות:</p>
+            <p>"78% מהחברות היכו — וזו בדיוק הסיבה שאני מודאג 🚨"</p>
+            <span class="author">— Micha.Stocks</span>
+            <a class="btn-source" href="https://www.youtube.com/watch?v=0dPuOxPjzB8">Micha.Stocks</a>
+        </div>
+    </div>
+
+</body>
+</html>
