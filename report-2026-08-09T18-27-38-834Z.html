@@ -1,0 +1,506 @@
+<p dir="rtl"></p>
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי – ניתוח אסטרטגי</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0e17;
+            --text-light: #e0e0e0;
+            --accent-gold: #ffd700;
+            --divider-color: rgba(255, 255, 255, 0.1);
+            --positive-color: rgba(0, 150, 0, 0.6); /* Muted green */
+            --negative-color: rgba(150, 0, 0, 0.6); /* Muted red */
+            --highlight-bg: #1a1f2c;
+            --opinion-bg: #1e2535;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            direction: rtl; /* For Hebrew */
+            text-align: right; /* For Hebrew */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2, h3 {
+            color: var(--text-light);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            color: var(--accent-gold);
+        }
+
+        h2 {
+            font-size: 2rem;
+            border-bottom: 2px solid var(--accent-gold);
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 25px;
+            color: var(--accent-gold);
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-weight: 400;
+            font-size: 1rem;
+        }
+
+        .slide-container {
+            background-color: var(--highlight-bg);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--accent-gold);
+            color: var(--bg-dark);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            position: absolute;
+            top: 20px;
+            left: 30px; /* Aligned right for RTL, but the "position: absolute" means it stays relative to parent right, so left is still correct for start */
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .market-item {
+            background-color: #1e2535;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .market-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .market-item .symbol {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 5px;
+        }
+
+        .market-item .price {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+
+        .market-item .change {
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .change-positive {
+            background-color: var(--positive-color);
+            color: #d4edda; /* Light green for text */
+        }
+
+        .change-negative {
+            background-color: var(--negative-color);
+            color: #f8d7da; /* Light red for text */
+        }
+        
+        .source-links {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: flex-start; /* For RTL, buttons should start from the right */
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--accent-gold);
+            color: var(--bg-dark);
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-source:hover {
+            background-color: #e0b000;
+            transform: translateY(-1px);
+        }
+
+        .highlight-card {
+            background-color: #2a3040;
+            border-right: 4px solid var(--accent-gold); /* Right border for RTL */
+            padding: 15px 20px;
+            margin-top: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-bg);
+            border-right: 4px solid #87ceeb; /* Steel blue for opinions, right border for RTL */
+            padding: 15px 20px;
+            margin-top: 20px;
+            border-radius: 4px;
+            font-style: italic;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .opinion-card::before {
+            content: '❝'; /* Unicode for a fancy quote */
+            font-size: 2.5rem;
+            color: rgba(135, 206, 235, 0.3); /* Lighter steel blue, transparent */
+            position: absolute;
+            top: 5px;
+            right: 15px; /* Position to the right for RTL */
+            line-height: 1;
+        }
+
+        .opinion-card .author-info {
+            display: block;
+            margin-top: 10px;
+            font-weight: 600;
+            color: #87ceeb;
+            text-align: left; /* Author name can be left-aligned even in RTL for readability */
+            font-style: normal;
+            font-size: 0.9rem;
+        }
+
+        .section-divider {
+            border-top: 1px solid var(--divider-color);
+            margin: 40px 0;
+            padding-top: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        table {
+            width: 100%;
+            table-layout: fixed;
+            overflow-x: auto;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid var(--divider-color);
+            padding: 12px;
+            text-align: right; /* For Hebrew */
+        }
+
+        th {
+            background-color: #1e2535;
+            font-weight: 600;
+            color: var(--accent-gold);
+        }
+
+        tr:nth-child(even) {
+            background-color: #1a1f2c;
+        }
+
+        tr:hover {
+            background-color: #2a3040;
+        }
+
+        .volume-info {
+            font-size: 0.85rem;
+            color: #999;
+            margin-top: 5px;
+        }
+
+
+        /* Media Queries */
+        @media(max-width:768px){
+            .market-pulse-grid{
+                grid-template-columns:1fr 1fr;
+            }
+            .slide-container{
+                padding:16px;
+            }
+            h1{
+                font-size:1.4rem;
+            }
+            h2{
+                font-size:1.2rem;
+            }
+            h3{
+                font-size: 1.1rem;
+            }
+            .badge {
+                position: static;
+                margin-bottom: 10px;
+            }
+            .opinion-card::before {
+                font-size: 2rem;
+                top: 8px;
+                right: 10px;
+            }
+            .source-links {
+                justify-content: center; /* Center buttons on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>דוח שוק יומי – ניתוח אסטרטגי</h1>
+
+        <div class="slide-container">
+            <div class="badge">תמונת מצב מהירה</div>
+            <h2>Market Pulse – מדדים ומניות בולטות</h2>
+            <p>להלן סקירה מהירה של המדדים המובילים ומניות שרשמו תנודות חריגות ו/או נפחי מסחר גבוהים מהרגיל ביום המסחר האחרון.</p>
+
+            <div class="market-pulse-grid">
+                <!-- Indices -->
+                <div class="market-item">
+                    <span class="symbol">SPY</span>
+                    <span class="price">773.26 $</span>
+                    <span class="change change-positive">+0.61%</span>
+                </div>
+                <div class="market-item">
+                    <span class="symbol">QQQ</span>
+                    <span class="price">723.03 $</span>
+                    <span class="change change-positive">+1.17%</span>
+                </div>
+                <!-- Outlier Stocks - Gainers -->
+                <div class="market-item">
+                    <span class="symbol">SPCX</span>
+                    <span class="price">133.11 $</span>
+                    <span class="change change-positive">+15.83%</span>
+                    <div class="volume-info">נפח: 240.6 מיליון (פי 1.9 ממוצע)</div>
+                </div>
+                <div class="market-item">
+                    <span class="symbol">OKLO</span>
+                    <span class="price">48.42 $</span>
+                    <span class="change change-positive">+14.77%</span>
+                    <div class="volume-info">נפח: 22.0 מיליון (פי 2.2 ממוצע)</div>
+                </div>
+                <div class="market-item">
+                    <span class="symbol">COHR</span>
+                    <span class="price">379.13 $</span>
+                    <span class="change change-positive">+13.44%</span>
+                    <div class="volume-info">נפח: 11.2 מיליון (פי 1.6 ממוצע)</div>
+                </div>
+                <div class="market-item">
+                    <span class="symbol">PLTR</span>
+                    <span class="price">172.01 $</span>
+                    <span class="change change-positive">+10.32%</span>
+                    <div class="volume-info">נפח: 77.4 מיליון (פי 1.3 ממוצע)</div>
+                </div>
+                <div class="market-item">
+                    <span class="symbol">IREN</span>
+                    <span class="price">41.23 $</span>
+                    <span class="change change-positive">+8.70%</span>
+                    <div class="volume-info">נפח: 32.3 מיליון (פי 0.7 ממוצע)</div>
+                </div>
+                <div class="market-item">
+                    <span class="symbol">NNE</span>
+                    <span class="price">18.85 $</span>
+                    <span class="change change-positive">+7.04%</span>
+                    <div class="volume-info">נפח: 1.8 מיליון (פי 0.9 ממוצע)</div>
+                </div>
+                <div class="market-item">
+                    <span class="symbol">NOW</span>
+                    <span class="price">124.88 $</span>
+                    <span class="change change-positive">+6.42%</span>
+                    <div class="volume-info">נפח: 26.7 מיליון (פי 1.0 ממוצע)</div>
+                </div>
+                <div class="market-item">
+                    <span class="symbol">CRWV</span>
+                    <span class="price">90.67 $</span>
+                    <span class="change change-positive">+6.26%</span>
+                    <div class="volume-info">נפח: 18.6 מיליון (פי 0.6 ממוצע)</div>
+                </div>
+                <!-- Outlier Stock - Decliners -->
+                <div class="market-item">
+                    <span class="symbol">AppLovin</span>
+                    <span class="price">לא זמין</span>
+                    <span class="change change-negative">-20%</span>
+                    <div class="volume-info">הכנסות עלו ב-53%, אך המניה צנחה</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <div class="badge">מאקרו / דוחות</div>
+            <h2>חששות בקרב אנליסטים על עונת הדוחות הנוכחית</h2>
+
+            <h3>מה קרה היום?</h3>
+            <p>אנליסט השוק Micha.Stocks הביע דאגה לגבי עונת הדוחות הנוכחית, למרות ש-78% מהחברות היכו את תחזיות האנליסטים. נתון זה פורסם ב-9 באוגוסט 2026.</p>
+            <div class="source-links">
+                <a class="btn-source" href="https://www.youtube.com/watch?v=0dPuOxPjzB8">Micha.Stocks</a>
+            </div>
+
+            <h3>למה זה חריג?</h3>
+            <p>בדרך כלל, שיעור גבוה של חברות המכות את התחזיות נתפס כסימן חיובי לשוק. הדאגה של האנליסט מצביעה על פרשנות ניואנסית יותר, העשויה לכלול חשש מהערכות שווי גבוהות מדי או ציפיות יתר לעתיד.</p>
+
+            <h3>הלוגיקה</h3>
+            <div class="opinion-card">
+                "78% of companies beat — and that's exactly why I'm worried 🚨"
+                <span class="author-info">Micha.Stocks, אנליסט שוק</span>
+            </div>
+            <p>הדאגה עשויה לנבוע מההבנה שהשוק כבר תמחר חלק ניכר מההצלחה, וייתכן שאין "בשר" נוסף לעלייה לאחר פרסום הדוחות. כאשר חברות מכות תחזיות בקלות, זה יכול להעיד על תחזיות נמוכות מדי מלכתחילה, או על תגובת יתר של השוק לחדשות חיוביות. במקרים מסוימים, ייתכן שהמשקיעים מצפים לשיפור דרמטי יותר ברווחיות או בתחזיות עתידיות, וגם עמידה ביעדים אינה מספקת כדי לדחוף את המניה קדימה.</p>
+
+            <h3>מה זה אומר לקראת השבוע?</h3>
+            <p>השוק עשוי להפגין רגישות מוגברת לתחזיות עתידיות (guidance) של חברות, ולא רק לנתוני העבר. ייתכן שנראה תגובות חדות יותר למניות שלא יספקו תחזיות אופטימיות במיוחד, גם אם עמדנו ביעדי הרבעון. יש לעקוב אחר סנטימנט המשקיעים והאם תגובות השוק לדוחות ממשיכות להצביע על חששות מתחת לפני השטח.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <div class="badge">קריפטו / אבטחה</div>
+            <h2>אתגרי אבטחה ופרוטוקול בולטים בשוק הקריפטו</h2>
+            <img src="https://s3-images.ctmedia.io/media/article-covers/thief-bitcoin.png" alt="BTCPay restricts remote Lightning access" />
+
+            <h3>מה קרה היום?</h3>
+            <p>יום המסחר האחרון בקריפטו נפתח עם מספר אירועים מדאיגים: ענף ה-BIP-110 של ביטקוי נתקע לאחר שני בלוקים בלבד, כאשר התמיכה מצד הכורים נמוכה מ-3%. במקביל, BTCPay הגבילה את הגישה מרחוק ל-Lightning Network בעקבות גניבת כספים מנודי Lightning, ובברזיל נכנסו לתוקף כללים חדשים החל מ-1 בינואר 2027, המאפשרים להחזיק העברות קריפטו למשך עד 24 שעות במקרים של חשד להונאה עבור סכומים מעל 10,000 דולר, וכן להעברות המסומנות לסקירה.</p>
+            <div class="source-links">
+                <a class="btn-source" href="https://cointelegraph.com/news/bitcoin-bip-110-branch-stalls-miner-support">Cointelegraph</a>
+                <a class="btn-source" href="https://cointelegraph.com/news/bitcoin-bip-110-mandatory-signaling">Cointelegraph</a>
+                <a class="btn-source" href="https://cointelegraph.com/news/btcpay-restricts-remote-lightning-access-after-attackers-steal-funds">Cointelegraph</a>
+                <a class="btn-source" href="https://cointelegraph.com/news/brazil-targets-crypto-fraud-with-up-to-24-hour-transfer-hold">Cointelegraph</a>
+            </div>
+
+            <h3>למה זה חריג?</h3>
+            <p>התקיעות של BIP-110, יחד עם תמיכת כורים נמוכה, מעלה שאלות לגבי מנגנוני השינוי בפרוטוקול הביטקוי ויציבותו. גניבת הכספים מ-Lightning Network מדגישה את הסיכונים הביטחוניים גם ברשתות מהירות יותר. הרגולציה הברזילאית היא צעד משמעותי שמטיל מגבלות חדשות על נזילות ופרטיות בשוק הקריפטו במדינה, ואף עלולה להשפיע על מעבר בינלאומי.</p>
+            <div class="highlight-card">
+                <p>ענף ה-BIP-110 של ביטקוי נתקע על קושי הכרייה המלא של הרשת, כשפחות מ-3% מהכורים תומכים בסיגנלים המנדטוריים.</p>
+                <p>BTCPay הגבילה גישה מרחוק ל-Lightning לאחר גניבת כספים, כאשר סכום הגניבה הכולל ומספר המפעילים שנפגעו אינם ידועים.</p>
+                <p>כללי הרגולציה החדשים בברזיל, החל מינואר 2027, יכללו עיכוב של עד 24 שעות להעברות מעל 10,000 דולר לספקים בחו"ל או לארנקי אחסון עצמי, לצד העברות המסומנות לבדיקה.</p>
+            </div>
+
+            <h3>הלוגיקה</h3>
+            <p>כשלים ביישום פרוטוקולים חדשים כמו BIP-110 עלולים להעיד על חוסר הסכמה בקהילת המפתחים והכורים, או על אתגרים טכניים משמעותיים. אירועי אבטחה ב-Lightning Network פוגעים באמון ובהכנסות הסוחרים המשתמשים בה. הרגולציה בברזיל, בעוד שמטרתה להילחם בהונאות, עלולה להוביל לפגיעה במעמדו של הקריפטו כנכס נזיל וחסר חיכוך, ולהרתיע משקיעים פרטיים ומוסדיים כאחד.</p>
+
+            <h3>מה זה אומר לקראת השבוע?</h3>
+            <p>ההתפתחויות הללו צפויות להגביר את אי הוודאות סביב יציבות פרוטוקולים בקריפטו ואת נושא האבטחה. הרגולציה הברזילאית עלולה לשמש תקדים למדינות אחרות, ועל כן יש לעקוב אחר תגובות השוק ותגובות רגולטוריות נוספות. עשויה להיות השפעה על הסנטימנט הכללי בשוק הקריפטו, וסוחרים צריכים להיות מודעים לסיכונים הטכניים והרגולטוריים המתגברים.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <div class="badge">AI ושבבים / טכנולוגיה</div>
+            <h2>דינמיקה משתנה במגזר הטכנולוגיה, AI והשבבים</h2>
+
+            <h3>מה קרה היום?</h3>
+            <p>חברת סטארט-אפ ישראלית בשם "Irregular" נקשרה למתקפות AI זדוניות נגד OpenAI, Anthropic ו-Meta, מה שמדגיש את החשיבות ההולכת וגוברת של אבטחת AI. בינתיים, מניית Micron (MU), שרשמה זינוק של 207% מתחילת השנה, צפויה לחוות תיקון חד. חדשות אלו מגיעות על רקע צמיחת מכירות ה-S&P 500, שהגיעה לשיא של כמעט 5 שנים, בעיקר בזכות סקטור האנרגיה.</p>
+            <div class="source-links">
+                <a class="btn-source" href="https://www.cnbc.com/2026/08/09/israeli-startup-irregular-linked-to-ai-hacks-openai-anthropic-meta.html">CNBC</a>
+                <a class="btn-source" href="https://finance.yahoo.com/markets/stocks/articles/micron-surged-207-brace-steep-174500170.html">Yahoo Finance</a>
+                <a class="btn-source" href="https://www.marketwatch.com/story/s-p-500-sales-growth-is-at-a-nearly-5-year-high-heres-whats-behind-the-surge-a4ccf06d?mod=mw_rss_topstories">MarketWatch</a>
+            </div>
+
+            <h3>למה זה חריג?</h3>
+            <p>הקישור של סטארט-אפ ישראלי למתקפות AI גדולות מצביע על הפוטנציאל לניצול לרעה של טכנולוגיות AI מתקדמות. הזינוק הדרמטי של Micron, יחד עם אזהרות על תיקון, מדגיש את תנודתיות שוק השבבים וה-AI. צמיחת המכירות הכללית ב-S&P 500, למרות שהיא חיובית, מונעת בעיקר מסקטור האנרגיה, מה שמעיד על דינמיקה פנימית מורכבת בשוק ולאו דווקא על חוסן רוחבי אחיד.</p>
+            <div class="highlight-card">
+                <p>מתקפות ה-AI הזדוניות שכללו את OpenAI, Anthropic ו-Meta נקשרו כולן לסטארט-אפ ישראלי קטן בשם Irregular.</p>
+            </div>
+            <div class="opinion-card">
+                <p>Micron Has Surged 207% This Year. Brace for a Steep Pullback.</p>
+                <p>Opinion: The Best AI Memory Stock to Buy Isn't Micron or Sandisk -- It's This Korean Giant.</p>
+                <span class="author-info">Yahoo Finance</span>
+            </div>
+
+            <h3>הלוגיקה</h3>
+            <p>פגיעות במערכות AI עלולות להשפיע על חברות הטכנולוגיה הגדולות, להעלות את עלויות האבטחה ולפגוע באמון הציבור בטכנולוגיה. במקרה של Micron, זינוק כה חד מצדיק חששות מפני התחממות יתר והערכת שווי גבוהה, מה שהופך אותה לפגיעה לתיקונים. צמיחת מכירות חזקה בסקטור האנרגיה משקפת ככל הנראה מחירי סחורות גבוהים, אך אינה מבטיחה עמידות זהה בסקטורים אחרים, כמו טכנולוגיה, שבהם התחרות והדינמיקה שונים.</p>
+
+            <h3>מה זה אומר לקראת השבוע?</h3>
+            <p>המשקיעים צריכים להיות מודעים לסיכוני הסייבר במרחב ה-AI ולבחון את האסטרטגיות של חברות הטכנולוגיה בתחום זה. לגבי מניות כמו Micron, יש לשקול את הסיכון לתיקון מול פוטנציאל הצמיחה ארוך הטווח בתחום הזיכרון ל-AI. ייתכן שנראה רוטציה מסקטורים בעלי צמיחת שיא (כמו AI) לסקטורים "ערכיים" יותר או בעלי חסינות לתנודתיות, ככל שמונחי שוק רחבים יותר מניעים את המכירות.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <div class="badge">מניות חורגות</div>
+            <h2>מניות בולטות עם תנודות חריגות ואירועים ספציפיים</h2>
+
+            <h3>מה קרה היום?</h3>
+            <p>מספר מניות רשמו תנודות משמעותיות ביום המסחר האחרון (7 באוגוסט 2026). חלקן בלטו גם בנפחי מסחר חריגים, בעוד אחרות הגיבו לחדשות ספציפיות:</p>
+            <ul>
+                <li><strong>SpaceX (SPCX):</strong> זינוק של <strong>+15.83%</strong> למחיר של <strong>133.11 $</strong>. נפח המסחר היה חריג – כ-240.6 מיליון מניות, פי 1.9 מהממוצע. חדשות קשורות הצביעו על כך שמשקיע בחברה גילה כי מניותיו בשווי 300,000 דולר נמכרו ללא הודעה מוקדמת על ידי חברה.</li>
+                <li><strong>Oklo Inc. (OKLO):</strong> עלייה חדה של <strong>+14.77%</strong> למחיר של <strong>48.42 $</strong>. נפח המסחר היה כ-22.0 מיליון מניות, פי 2.2 מהממוצע.</li>
+                <li><strong>Coherent Corp. (COHR):</strong> עלייה משמעותית של <strong>+13.44%</strong> למחיר של <strong>379.13 $</strong>. נפח המסחר היה כ-11.2 מיליון מניות, פי 1.6 מהממוצע.</li>
+                <li><strong>Palantir Technologies Inc. (PLTR):</strong> זינוק של <strong>+10.32%</strong> למחיר של <strong>172.01 $</strong>. נפח המסחר היה כ-77.4 מיליון מניות, פי 1.3 מהממוצע.</li>
+                <li><strong>IREN Limited (IREN):</strong> עלתה ב-<strong>+8.70%</strong> למחיר של <strong>41.23 $</strong>. נפח המסחר היה 32.3 מיליון מניות, פי 0.7 מהממוצע.</li>
+                <li><strong>Nano Nuclear Energy Inc. (NNE):</strong> עלתה ב-<strong>+7.04%</strong> למחיר של <strong>18.85 $</strong>. נפח המסחר היה 1.8 מיליון מניות, פי 0.9 מהממוצע.</li>
+                <li><strong>ServiceNow, Inc. (NOW):</strong> עלתה ב-<strong>+6.42%</strong> למחיר של <strong>124.88 $</strong>. נפח המסחר היה 26.7 מיליון מניות, פי 1.0 מהממוצע.</li>
+                <li><strong>CoreWeave, Inc. (CRWV):</strong> עלתה ב-<strong>+6.26%</strong> למחיר של <strong>90.67 $</strong>. נפח המסחר היה 18.6 מיליון מניות, פי 0.6 מהממוצע.</li>
+                <li><strong>AppLovin:</strong> צנחה ב-<strong>-20%</strong>, למרות שדיווחה על קפיצה של 53% בהכנסות.</li>
+            </ul>
+            <div class="source-links">
+                <a class="btn-source" href="https://finance.yahoo.com/markets/stocks/articles/spacex-investor-thought-had-300-150000689.html">Yahoo Finance (SpaceX)</a>
+                <a class="btn-source" href="https://finance.yahoo.com/markets/stocks/articles/applovin-revenue-jumped-53-why-180300693.html">Yahoo Finance (AppLovin)</a>
+            </div>
+
+            <h3>למה זה חריג?</h3>
+            <p>תנודות דו-ספרתיות במחיר מניה, כמו אלו שנצפו ב-SPCX, OKLO, COHR ו-PLTR, הן חריגות ומרמזות על אירוע משמעותי, גם אם הוא טרם פורסם. במקרה של SpaceX, הדיווח על מכירת מניות ללא ידיעת המשקיע הוא אירוע שלילי עבור משקיעים פרטיים בחברה, אם כי ייתכן שאינו קשור ישירות לזינוק במחיר המניה עצמו. צניחתה של AppLovin ב-20% למרות צמיחת הכנסות חזקה היא מקרה קלאסי של "קנה בשמועה, מכור בחדשות", או חשש מפני הערכת שווי מוגזמת או תחזיות עתידיות מאכזבות.</p>
+            <div class="highlight-card">
+                <p>מניית SpaceX (SPCX) זינקה ב-15.83% ביום המסחר האחרון, בנפח גבוה מהממוצע.</p>
+                <p>מניית AppLovin צנחה ב-20% למרות גידול של 53% בהכנסות, מה שמצביע על חששות עמוקים יותר לגבי עתיד החברה או הערכת שוויה.</p>
+                <p>Oklo, Coherent, Palantir, IREN, Nano Nuclear Energy, ServiceNow ו-CoreWeave רשמו כולן עליות משמעותיות בטווח של 6-15%. חשוב לציין כי במקרים של IREN, NNE ו-CRWV, נפחי המסחר היו למעשה נמוכים מהממוצע, מה שמצביע על תנודה חדה באורבליות נמוכה יחסית.</p>
+            </div>
+
+            <h3>הלוגיקה</h3>
+            <p>תנודות חדות אלו, במיוחד כאלה שלא מלוות בחדשות מפורטות מידיות (למעט במקרים של SpaceX ו-AppLovin), יכולות להיות תוצאה של ספקולציות, פעילות מוסדית חשאית, חדשות פנימיות שטרם הופצו לציבור הרחב, או שינוי סנטימנט מהיר. לעיתים קרובות, מניות אלו הן "מניות תנועה" (momentum stocks) שיכולות להמשיך לנוע באותו כיוון או לחוות תיקון חד. נפחי מסחר גבוהים מעידים על עניין רב מצד השוק, אך נפחים נמוכים עלולים להעיד על תנודות המונעות על ידי קומץ סוחרים או ירידה בנזילות.</p>
+
+            <h3>מה זה אומר לקראת השבוע?</h3>
+            <p>מניות אלו דורשות תשומת לב מיוחדת. עבור העולות, יש לבחון אם קיימים זרזים עתידיים פוטנציאליים או האם מדובר ב"קניות כוח" שימשיכו לדחוף את המניה. עבור AppLovin, הירידה החדה למרות נתוני הכנסות חזקים מצביעה על צורך בבחינה מעמיקה של תחזיות החברה, שולי הרווח, או האם ישנן בעיות פנימיות אחרות. מניות אלו צפויות להמשיך להיות תנודתיות, ועל כן דורשות זהירות וניטור קפדני.</p>
+        </div>
+
+    </div>
+</body>
+</html>
