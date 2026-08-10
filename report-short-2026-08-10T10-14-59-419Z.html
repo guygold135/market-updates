@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי אסטרטגי: 10 באוגוסט 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --text-color: #e0e6f0;
+            --heading-color: #8cadda; /* Steel blue accent for headings */
+            --accent-color: #f7b233; /* Muted gold for highlights/badges */
+            --border-color: #2a303c;
+            --green-light: rgba(30, 180, 50, 0.2);
+            --red-light: rgba(200, 40, 40, 0.2);
+            --green-text: #5cb85c;
+            --red-text: #d9534f;
+            --card-bg: #1c212a;
+            --opinion-bg: #2a2e38;
+            --divider-color: #3e4451;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            direction: rtl; /* For Hebrew */
+            text-align: right;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            font-weight: 700;
+            color: var(--heading-color);
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        h2 {
+            font-weight: 600;
+            color: var(--heading-color);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        h3 {
+            font-weight: 600;
+            color: var(--text-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        p {
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .slide-container {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+            overflow-x: auto; /* For responsive table behavior */
+        }
+
+        .market-pulse-item {
+            background-color: var(--bg-color);
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .market-pulse-item strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--text-color);
+        }
+
+        .market-pulse-item .change-positive {
+            color: var(--green-text);
+            background-color: var(--green-light);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .market-pulse-item .change-negative {
+            color: var(--red-text);
+            background-color: var(--red-light);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .market-pulse-item .change-neutral {
+            color: var(--text-color);
+            background-color: rgba(128, 128, 128, 0.2);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .section-divider {
+            border-top: 1px solid var(--divider-color);
+            margin: 30px 0;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--heading-color);
+            color: var(--bg-color);
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-source:hover {
+            background-color: #6a95cc;
+        }
+
+        .image-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+            margin: 0 auto; /* Center the image */
+            border: 1px solid var(--border-color);
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-style: italic;
+            position: relative;
+        }
+
+        .opinion-card::before {
+            content: '“';
+            font-size: 3rem;
+            color: var(--accent-color);
+            position: absolute;
+            top: 0px;
+            right: 15px;
+            opacity: 0.5;
+            line-height: 1;
+        }
+
+        .opinion-card p {
+            margin: 0;
+            padding-right: 40px; /* Make space for the quote icon */
+        }
+
+        .opinion-card .author {
+            display: block;
+            margin-top: 10px;
+            font-weight: 600;
+            color: var(--heading-color);
+            text-align: left;
+            font-size: 0.9em;
+        }
+        
+        /* General table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            table-layout: fixed; /* Ensures columns are sized proportionally */
+            word-wrap: break-word; /* Prevents long words from breaking layout */
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            text-align: right; /* RTL alignment */
+        }
+
+        th {
+            background-color: var(--bg-color);
+            color: var(--heading-color);
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--card-bg);
+        }
+
+        tr:nth-child(odd) {
+            background-color: #1a1e27;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 16px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            .market-pulse-grid {
+                grid-template-columns: 1fr 1fr; /* Two columns on mobile */
+            }
+            .slide-container {
+                padding: 16px;
+            }
+        }
+        @media (max-width: 480px) {
+            .market-pulse-grid {
+                grid-template-columns: 1fr; /* Single column on very small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>דוח שוק יומי אסטרטגי: 10 באוגוסט 2026</h1>
+
+        <div class="slide-container">
+            <div class="badge">תמונת מצב מהירה</div>
+            <h2>Market Pulse</h2>
+            <p>להלן סקירה מהירה של תנועות השוק הבולטות מהיום האחרון של מסחר במדדים ובמניות נבחרות (נתוני מניות ומדדים מה-7 באוגוסט, קריפטו מה-10 באוגוסט):</p>
+            <div class="market-pulse-grid">
+                <div class="market-pulse-item">
+                    <strong>S&amp;P 500 (SPY)</strong>
+                    <span class="change-positive">+0.61%</span>
+                </div>
+                <div class="market-pulse-item">
+                    <strong>NASDAQ 100 (QQQ)</strong>
+                    <span class="change-positive">+1.17%</span>
+                </div>
+                <div class="market-pulse-item">
+                    <strong>Bitcoin (BTC/USD)</strong>
+                    <span class="change-positive">+0.23%</span>
+                </div>
+                <div class="market-pulse-item">
+                    <strong>Ethereum (ETH/USD)</strong>
+                    <span class="change-positive">+0.44%</span>
+                </div>
+                <div class="market-pulse-item">
+                    <strong>SpaceX (SPCX)</strong>
+                    <span class="change-positive">+15.83%</span>
+                </div>
+                <div class="market-pulse-item">
+                    <strong>Oklo Inc. (OKLO)</strong>
+                    <span class="change-positive">+14.77%</span>
+                </div>
+                <div class="market-pulse-item">
+                    <strong>Coherent Corp. (COHR)</strong>
+                    <span class="change-positive">+13.44%</span>
+                </div>
+                <div class="market-pulse-item">
+                    <strong>Palantir (PLTR)</strong>
+                    <span class="change-positive">+10.32%</span>
+                </div>
+            </div>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="slide-container">
+            <div class="badge">מאקרו | אמון שוק</div>
+            <h2>שיא חדש בשוק והעלאת תחזית של J.P. Morgan</h2>
+            <p>מדד ה-S&amp;P 500 שבר שיא בפעם ה-25 השנה, וזאת על רקע העלאת יעד המחיר של J.P. Morgan למדד בסוף 2026 מ-7,800 ל-8,000, בהסתמך על עוצמת תחום ה-AI והרווחים התאגידיים החזקים.</p>
+            <p>על אף שאנליסטים כמו Micha.Stocks מצביעים על אינדיקטורים המאותתים למכירה לאחר שבירת השיא ה-25, אמון הבנקים הגדולים במגזר הטכנולוגיה וברווחיות ממשיך להניע את השוק כלפי מעלה, וחשוב לעקוב האם עוצמה זו תצליח להתמודד עם אזהרות התחממות יתר.</p>
+            <a class="btn-source" href="https://www.youtube.com/watch?v=xuGs2qN0Qi8">Micha.Stocks</a>
+            <a class="btn-source" href="https://www.marketwatch.com/story/wall-streets-biggest-bank-just-raised-its-expectations-for-the-stock-market-cac6d311?mod=mw_rss_topstories">MarketWatch</a>
+            <a class="btn-source" href="https://finance.yahoo.com/markets/stocks/articles/j-p-morgan-lifts-2026-061958111.html">Yahoo Finance</a>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="slide-container">
+            <div class="badge">AI | תעופה וחלל</div>
+            <h2>אמביציות ה-AI של SpaceX והזינוק במניה</h2>
+            <p>מניית SpaceX (SPCX) זינקה ב-15.83% במסחר האחרון, עם נפח חריג שעמד על כ-240 מיליון מניות, כמעט כפול מהממוצע. זינוק זה מגיע על רקע דיווחים שאנליסטים רואים את תוכניות ה-AI השאפתניות של אילון מאסק עבור SpaceX כרציניות במיוחד, בהשפעת שיתוף פעולה עם מיקרוסופט.</p>
+            <p>התפתחות זו מצביעה על הכרה גוברת במיזוג בין תעשיית החלל לבין טכנולוגיות AI מתקדמות, וממצבת את SpaceX כמובילה פוטנציאלית בתחום שמעבר לשיגורים מסורתיים, מה שעשוי להשפיע על שווי החברה בטווח הקרוב.</p>
+            <a class="btn-source" href="https://www.marketwatch.com/story/these-analysts-say-elon-musks-ambitious-ai-plans-for-spacex-should-be-taken-seriously-thanks-to-microsoft-2c9aa472?mod=mw_rss_topstories">MarketWatch</a>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="slide-container">
+            <div class="badge">קריפטו | רגולציה</div>
+            <h2>התפתחות רגולטורית בבריטניה בתחום הזהב המגונן</h2>
+            <p>הרשות להתנהלות פיננסית בבריטניה (FCA) מדווחת כי היא מכינה מסגרת רגולטורית חדשה עבור זהב מגונן (tokenized gold) ואופן השימוש במוצרים אלו כבטוחות בשווקים הסיטונאיים.</p>
+            <p>מהלך זה מסמן התקדמות משמעותית בהכרה של גופים רגולטוריים בנכסים דיגיטליים מעבר למטבעות קריפטו, ופותח פתח לשילוב רחב יותר של טכנולוגיות בלוקצ'יין בפיננסים המסורתיים.</p>
+            <div class="image-container">
+                <img src="https://s3-images.ctmedia.io/media/article-covers/hi-uk-and-crypto-fca.jpg" alt="UK regulators to prepare tokenized gold framework">
+            </div>
+            <a class="btn-source" href="https://cointelegraph.com/news/uk-regulators-tokenized-gold-framework-report?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="slide-container">
+            <div class="badge">קריפטו | פיתוח ורגולציה</div>
+            <h2>סטטוס חוק ה-CLARITY וכישלון BIP-110 בביטקוין</h2>
+            <p>הצעת הפיתוח BIP-110 בביטקוין נכשלה ולא זכתה לתמיכה מספקת של כוח כרייה, מה שמוביל לקיפאון ביישום שלה. במקביל, חוק ה-CLARITY, הנוגע לרגולציית קריפטו בארה"ב, צפוי לעלות להצבעה בסנאט בספטמבר, כאשר מזכיר ההגנה האמריקאי לשעבר, מארק אספר, כינה אותו "חוק ביטחון לאומי".</p>
+            <p>כישלון BIP-110 מדגיש את האתגרים בהשגת קונצנזוס בפיתוח פרוטוקול הביטקוין. חשיבותו של חוק ה-CLARITY, שנתפס לא רק כחוק שירותים פיננסיים אלא גם כבעל השלכות ביטחוניות, ממחישה את ההשפעה ההולכת וגוברת של רגולציית קריפטו על השוק כולו בארה"ב.</p>
+            <a class="btn-source" href="https://cointelegraph.com/magazine/bip-110-dies-with-a-whimper-clarity-vote-punted-hodlers-digest-aug-9?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/bitcoin-bip-110-branch-stalls-miner-support?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/ex-us-defense-secretary-calls-clarity-act-a-national-security-bill?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="slide-container">
+            <div class="badge">השקעות | Berkshire Hathaway</div>
+            <h2>רכישות עצמיות בהיקף ענק ב-Berkshire Hathaway</h2>
+            <p>חברת Berkshire Hathaway החלה לנצל את יתרות המזומנים העצומות שלה, העומדות על כמעט 400 מיליארד דולר, לרכישת מניותיה שלה. בנוסף, גרג אייבל, יורשו של וורן באפט, רכש מניות Berkshire בשווי 4.5 מיליארד דולר.</p>
+            <p>מהלך זה, המצביע על כך שהחברה רואה במניותיה השקעה אטרקטיבית בהיעדר הזדמנויות חיצוניות טובות יותר, משדר אמון עמוק של ההנהלה בשווי הפנימי של החברה ויכול להוות גורם תומך למניה.</p>
+            <a class="btn-source" href="https://www.marketwatch.com/story/berkshire-hathaway-finally-started-spending-its-nearly-400-billion-in-cash-on-one-stock-it-knows-very-well-f9d56389?mod=mw_rss_topstories">MarketWatch</a>
+            <a class="btn-source" href="https://finance.yahoo.com/markets/stocks/articles/warren-buffetts-successor-greg-abel-092600969.html">Yahoo Finance</a>
+            <a class="btn-source" href="https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-warren-buffett-cisco-lumentum-earnings/?src=A00220&yptr=yahoo">Investors.com</a>
+        </div>
+
+    </div>
+</body>
+</html>
