@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #1a1e26;
+            --text-primary: #E0E0E0;
+            --text-secondary: #B0B0B0;
+            --accent-color-light: #ADD8E6; /* Light steel blue for headings */
+            --accent-color-dark: #6D9EEB; /* Deeper steel blue */
+            --positive-text: #2ECC71; /* Subdued green */
+            --positive-bg: rgba(46, 204, 113, 0.1);
+            --negative-text: #E74C3C; /* Subdued red */
+            --negative-bg: rgba(231, 76, 60, 0.1);
+            --divider-color: #33363D;
+            --border-color: #2F353C;
+            --highlight-bg: #282C34;
+            --quote-border: #FFD700; /* Gold for quotes */
+            --badge-bg: #2F353C;
+            --badge-text: #ADD8E6;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .slide-container {
+            background-color: var(--bg-secondary);
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: var(--accent-color-light);
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--accent-color-light);
+            margin-top: 30px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            border-bottom: 1px solid var(--divider-color);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--badge-bg);
+            color: var(--badge-text);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .market-item {
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .market-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .market-item .symbol {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-color-light);
+            margin-bottom: 5px;
+        }
+
+        .market-item .name {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .market-item .price {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+
+        .market-item .change {
+            font-size: 1rem;
+            font-weight: 600;
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 5px;
+            line-height: 1;
+        }
+
+        .market-item .positive {
+            color: var(--positive-text);
+            background-color: var(--positive-bg);
+        }
+
+        .market-item .negative {
+            color: var(--negative-text);
+            background-color: var(--negative-bg);
+        }
+
+        .section-divider {
+            border-top: 1px solid var(--divider-color);
+            margin-top: 40px;
+            padding-top: 40px;
+        }
+
+        .highlight-card {
+            background-color: var(--highlight-bg);
+            padding: 20px;
+            border-left: 4px solid var(--accent-color-dark);
+            border-radius: 8px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .opinion-card {
+            background-color: var(--highlight-bg);
+            padding: 20px;
+            border-left: 4px solid var(--quote-border);
+            border-radius: 8px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-style: italic;
+            position: relative;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .opinion-card::before {
+            content: "\201C"; /* Left double quotation mark */
+            font-family: serif;
+            font-size: 3rem;
+            color: var(--quote-border);
+            position: absolute;
+            top: 5px;
+            right: 15px;
+            line-height: 1;
+            opacity: 0.3;
+        }
+        .opinion-card .speaker {
+            display: block;
+            margin-top: 10px;
+            font-weight: 600;
+            color: var(--accent-color-light);
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--accent-color-dark);
+            color: var(--bg-primary);
+            padding: 8px 15px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: background-color 0.2s ease;
+            border: 1px solid var(--accent-color-dark);
+        }
+
+        .btn-source:hover {
+            background-color: #5A8BD0; /* Slightly lighter blue */
+            border-color: #5A8BD0;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 15px 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        table {
+            width: 100%;
+            table-layout: fixed;
+            overflow-x: auto;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: right;
+            border-bottom: 1px solid var(--divider-color);
+            white-space: normal; /* Allow text to wrap */
+        }
+
+        th {
+            background-color: var(--highlight-bg);
+            color: var(--accent-color-light);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        td {
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        td.positive-cell {
+            color: var(--positive-text);
+        }
+
+        td.negative-cell {
+            color: var(--negative-text);
+        }
+
+        .meta-info {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 5px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin-bottom: 8px;
+            padding-right: 20px;
+            position: relative;
+        }
+
+        ul li::before {
+            content: "•";
+            color: var(--accent-color-dark);
+            position: absolute;
+            right: 0;
+        }
+
+        @media (max-width: 768px) {
+            .market-pulse-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .slide-container {
+                padding: 16px;
+                margin: 15px auto;
+            }
+            h1 {
+                font-size: 1.4rem;
+            }
+            h2 {
+                font-size: 1.2rem;
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            .badge {
+                padding: 4px 8px;
+                font-size: 0.75rem;
+            }
+            .market-item .symbol {
+                font-size: 1rem;
+            }
+            .market-item .name {
+                font-size: 0.8rem;
+            }
+            .market-item .price {
+                font-size: 0.9rem;
+            }
+            .market-item .change {
+                font-size: 0.8rem;
+            }
+            th, td {
+                padding: 8px 10px;
+                font-size: 0.8rem;
+            }
+            .btn-source {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slide-container">
+        <h1>דוח שוק יומי: עדכון אסטרטגי</h1>
+
+        <div class="badge">תמונת מצב מהירה</div>
+        <h2>Market Pulse - נתונים בולטים היום</h2>
+        <p>סקירה מהירה של תנודות חריגות במדדים ובמניות מרכזיות (נכון ל-11.8.2026 עבור מניות/מדדים, ו-12.8.2026 עבור קריפטו).</p>
+
+        <div class="market-pulse-grid">
+            <div class="market-item">
+                <div class="symbol">SPY</div>
+                <div class="name">SPDR S&P 500 ETF Trust</div>
+                <div class="price">770.56$</div>
+                <div class="change negative">-0.32%</div>
+            </div>
+            <div class="market-item">
+                <div class="symbol">QQQ</div>
+                <div class="name">Invesco QQQ Trust</div>
+                <div class="price">718.45$</div>
+                <div class="change negative">-0.34%</div>
+            </div>
+            <div class="market-item">
+                <div class="symbol">BTC/USD</div>
+                <div class="name">Bitcoin</div>
+                <div class="price">63,960.64$</div>
+                <div class="change positive">+0.57%</div>
+            </div>
+            <div class="market-item">
+                <div class="symbol">ETH/USD</div>
+                <div class="name">Ethereum</div>
+                <div class="price">1,902.63$</div>
+                <div class="change positive">+1.06%</div>
+            </div>
+            <div class="market-item">
+                <div class="symbol">OKLO</div>
+                <div class="name">Oklo Inc.</div>
+                <div class="price">47.01$</div>
+                <div class="change positive">+5.66%</div>
+            </div>
+            <div class="market-item">
+                <div class="symbol">NNE</div>
+                <div class="name">Nano Nuclear Energy Inc.</div>
+                <div class="price">19.38$</div>
+                <div class="change positive">+4.36%</div>
+            </div>
+            <div class="market-item">
+                <div class="symbol">SPCX</div>
+                <div class="name">SpaceX Class A (הערכה)</div>
+                <div class="price">133.29$</div>
+                <div class="change negative">-3.93%</div>
+            </div>
+            <div class="market-item">
+                <div class="symbol">GOOG</div>
+                <div class="name">Alphabet Inc.</div>
+                <div class="price">343.00$</div>
+                <div class="change negative">-3.61%</div>
+            </div>
+            <div class="market-item">
+                <div class="symbol">AMZN</div>
+                <div class="name">Amazon.com, Inc.</div>
+                <div class="price">272.27$</div>
+                <div class="change negative">-2.09%</div>
+            </div>
+            <div class="market-item">
+                <div class="symbol">SPOT</div>
+                <div class="name">Spotify Technology S.A.</div>
+                <div class="price">501.00$</div>
+                <div class="change negative">-2.11%</div>
+            </div>
+            <div class="market-item">
+                <div class="symbol">CRWV</div>
+                <div class="name">CoreWeave, Inc.</div>
+                <div class="price">90.32$</div>
+                <div class="change positive">+2.42%</div>
+            </div>
+            <div class="market-item">
+                <div class="symbol">IREN</div>
+                <div class="name">IREN Limited</div>
+                <div class="price">39.75$</div>
+                <div class="change positive">+2.61%</div>
+            </div>
+            <div class="market-item">
+                <div class="symbol">AMD</div>
+                <div class="name">Advanced Micro Devices, Inc.</div>
+                <div class="price">474.32$</div>
+                <div class="change positive">+1.01%</div>
+            </div>
+            <div class="market-item">
+                <div class="symbol">COHR</div>
+                <div class="name">Coherent Corp.</div>
+                <div class="price">328.57$</div>
+                <div class="change positive">+1.05%</div>
+            </div>
+            <div class="market-item">
+                <div class="symbol">AAPL</div>
+                <div class="name">Apple Inc.</div>
+                <div class="price">304.91$</div>
+                <div class="change negative">-1.09%</div>
+            </div>
+            <div class="market-item">
+                <div class="symbol">UNH</div>
+                <div class="name">UnitedHealth Group Inc.</div>
+                <div class="price">402.19$</div>
+                <div class="change negative">-1.60%</div>
+            </div>
+            <div class="market-item">
+                <div class="symbol">AVGO</div>
+                <div class="name">Broadcom Inc.</div>
+                <div class="price">416.08$</div>
+                <div class="change negative">-1.50%</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">קריפטו</div>
+        <h2>סערה בשוק הקריפטו: פריצות, רגולציה ואימוץ מוסדי</h2>
+
+        <h3>מה קרה היום</h3>
+        <p>שוק הקריפטו חווה היום (12.8.2026) תנודתיות משמעותית לצד התפתחויות רגולטוריות ומוסדיות מרתקות:</p>
+        <ul>
+            <li>
+                <strong>פריצות אבטחה קריטיות:</strong> פלטפורמת Harmony בוחנת "Rollback" לאחר אירוע שגרם להזרמה לא מורשית של 2.8 מיליארד אסימוני ONE לשוק. במקביל, Ravencoin רשמה שפל שיא חדש בעקבות ניצול רשת שמסכן עסקאות.
+                <a class="btn-source" href="https://cointelegraph.com/news/armony-rollback-alleged-one-token-mint">Cointelegraph</a>,
+                <a class="btn-source" href="https://cointelegraph.com/markets/ravencoin-rvn-record-low-consensus-exploit">Cointelegraph</a>
+                <img src="https://s3-images.ctmedia.io/media/article-covers/hi-top-hacks-so-far-4.jpg" alt="Crypto exploit illustration">
+            </li>
+            <li>
+                <strong>תביעות רגולטוריות חריפות:</strong> ה-SEC וה-CFTC הגישו תביעה נגד Goliath Ventures בגין הונאת פונזי של $400 מיליון בנכסי קריפטו. ה-CFTC גם הפעילה סמכויות חירום כדי להבטיח את פעילות Kalshi בניו יורק, מה שמסלים מאבק שיפוטי סביב סיווג חוזי אירועים. ה-SEC צפויה לדון ברגולציה על נכסים דיגיטליים השבוע, בהיעדר התקדמות בחוק ה-CLARITY.
+                <a class="btn-source" href="https://cointelegraph.com/news/sec-cftc-sue-goliath-ventures-400m-crypto-ponzi">Cointelegraph</a>,
+                <a class="btn-source" href="https://cointelegraph.com/news/cftc-kalshi-emergency-order-new-york-lawsuit">Cointelegraph</a>,
+                <a class="btn-source" href="https://cointelegraph.com/news/sec-crypto-regulations-absence-clarity-act">Cointelegraph</a>,
+                <a class="btn-source" href="https://cointelegraph.com/news/clarity-act-senate-delay-window-become-law-midterm-elections">Cointelegraph</a>
+                <img src="https://s3-images.ctmedia.io/media/article-covers/cftc-vs-binance.png" alt="CFTC vs Binance illustration">
+            </li>
+            <li>
+                <strong>אימוץ גלובלי מתרחב:</strong>
+                <ul>
+                    <li><strong>MoneyGram</strong> מרחיבה את שירותי ה"Cash Ramps" שלה ל-Solana, בשיתוף פעולה עם ארנק Rift. <a class="btn-source" href="https://cointelegraph.com/news/moneygram-expands-crypto-cash-ramps-to-solana">Cointelegraph</a></li>
+                    <li>הבנק הברזילאי <strong>Itaú</strong> מצטרף לפיילוט טוקניזציה לאומי. <a class="btn-source" href="https://cointelegraph.com/news/ita-joins-brazil-tokenization-pilot-with-openassets-brief">Cointelegraph</a></li>
+                    <li><strong>נאסד"ק</strong> רוכשת את LeveL Markets, מהלך שצפוי להאיץ את כניסתה לשוקי "Always-on" וניירות ערך ממוינים. <a class="btn-source" href="https://cointelegraph.com/news/nasdaq-to-acquire-level-markets-in-push-toward-always-on-markets">Cointelegraph</a></li>
+                    <li>חברות כמו Flowdesk ו-ARP Digital מבטיחות רישיונות תיווך-דילר מלאים ב<strong>דובאי</strong>. <a class="btn-source" href="https://cointelegraph.com/news/arp-digital-secures-dubai-vara-broker-dealer-license">Cointelegraph</a>, <a class="btn-source" href="https://cointelegraph.com/news/flowdesk-dubai-vara-broker-dealer-license">Cointelegraph</a></li>
+                    <li><strong>רוסיה</strong> מציעה לאפשר מסחר בביטקוין, את'ריום ו-USDT בבורסות מפוקחות. <a class="btn-source" href="https://cointelegraph.com/news/bank-of-russia-trading-bitcoin-ether-tether-usdt">Cointelegraph</a></li>
+                    <li>מנכ"ל <strong>Strategy</strong> מציין כי החברה תחזור לצבור ביטקוין השנה. <a class="btn-source" href="https://cointelegraph.com/news/strategy-ceo-resume-bitcoin-accumulation-this-year">Cointelegraph</a></li>
+                </ul>
+                <img src="https://s3-images.ctmedia.io/media/article-covers/super-coin-chainlink-solana-2.png" alt="MoneyGram Solana partnership">
+            </li>
+            <li>
+                <strong>הפסדים ותנודות:</strong> SharpLink דיווחה על הפסד נקי של 394 מיליון דולר ברבעון השני של 2026, בעיקר כתוצאה מירידה של 23% באת'ריום באותו רבעון. יחד עם זאת, ביטקוין (BTC/USD) נסחר כעת בעלייה של 0.57% ואת'ריום (ETH/USD) בעלייה של 1.06% (נכון ל-12.8.2026).
+                <a class="btn-source" href="https://cointelegraph.com/markets/sharplink-reports-394m-q2-net-loss">Cointelegraph</a>
+            </li>
+        </ul>
+
+        <h3>למה זה חריג</h3>
+        <p>ריבוי אירועי הפריצה והתביעות הרגולטוריות, במקביל לאימוץ המוסדי הגובר, מדגישים את הדינמיקה המורכבת והסותרת לעיתים קרובות בשוק הקריפטו. פריצות בסדר גודל כזה, כמו זו של Harmony, אינן אירוע שגרתי ומאיימות על יציבות ואמון המשתמשים. התביעות המשפטיות נגד גופים כמו Goliath Ventures מאותתות על נחישות הרגולטורים להגן על המשקיעים, אך גם תורמות לחוסר ודאות רגולטורי ארוך טווח בארה"ב. במקביל, המהלכים של MoneyGram, Itaú, Nasdaq ורשויות דובאי מצביעים על התבגרות השוק ושילובו בכלכלה הפיננסית הגלובלית, בניגוד לסיפורי הפריצות וההונאות.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>האירועים הנוכחיים בשוק הקריפטו משקפים את המאבק המתמיד בין הצורך בחדשנות וצמיחה מהירה לבין דרישות האבטחה והרגולציה. בעוד חברות רבות דוחפות לקידום הטוקניזציה ואינטגרציה עם מערכות פיננסיות מסורתיות, הפגיעות של רשתות מסוימות והתרחבות תרמיות Ponzi מדגישות את הסיכונים האינהרנטיים. תגובת Harmony לפריצה, הכוללת שקילת rollback, מעלה דילמות לגבי עקרונות הבלוקצ'יין ומצביעה על הצורך בפתרונות אבטחה חזקים יותר. חוסר הבהירות הרגולטורי בארה"ב, לצד גישות פרו-קריפטו באזורים כמו המזרח התיכון ורוסיה, יוצר פיצול גיאו-כלכלי שעשוי להשפיע על זרימת ההון וההתפתחות הטכנולוגית בשנים הקרובות.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">AI ושבבים</div>
+        <h2>בום ה-AI מתעצם: תוצאות חזקות והשקעות עתק בצל סיכונים</h2>
+
+        <h3>מה קרה היום</h3>
+        <p>תחום הבינה המלאכותית ממשיך לרתק את השוק עם מספר התפתחויות בולטות היום (11-12.8.2026):</p>
+        <ul>
+            <li>
+                <strong>ביצועים פיננסיים מרשימים:</strong>
+                <ul>
+                    <li><strong>CoreWeave (CRWV)</strong>: מניית החברה זינקה ב-2.42% בסגירה (לאחר שדווח על "זינוק של 14%" במהלך המסחר) בעקבות דיווח על הכפלת הכנסות, המשקף ביקוש מואץ לתשתית AI. עם זאת, החברה נושאת חוב של 35 מיליארד דולר.
+                        <a class="btn-source" href="https://www.cnbc.com/2026/08/11/coreweave-crwv-q2-earnings-report-2026.html">CNBC</a>,
+                        <a class="btn-source" href="https://www.marketwatch.com/story/coreweaves-stock-soars-as-earnings-show-major-ai-momentum-d3a5bede">MarketWatch</a>
+                    </li>
+                    <li><strong>Super Micro</strong>: פרסמה דוחות כספיים שעקפו את תחזיות וול סטריט, עם תחזית רווחיות משופרת, המדגישה את המומנטום בתחום ה-AI.
+                        <a class="btn-source" href="https://www.marketwatch.com/story/super-micros-earnings-report-brings-more-good-news-and-the-stock-is-climbing-30e5ca89">MarketWatch</a>
+                    </li>
+                    <li><strong>Lumentum</strong>: דיווחה על הכפלת מכירות, גם היא כתוצאה מביקוש ל-AI, אם כי מנייתה נותרה יציבה יחסית לאחר הדיווח.
+                        <a class="btn-source" href="https://www.marketwatch.com/story/lumentum-sees-sales-more-than-double-as-ai-demand-swells-6ebe6ef1">MarketWatch</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <strong>השקעות ואסטרטגיה בתחום ה-AI:</strong>
+                <ul>
+                    <li><strong>Intel</strong>: הגדילה את הצעת המניות שלה ל-20 מיליארד דולר, בניסיון לממן את הביקוש הגובר ל-AI.
+                        <a class="btn-source" href="https://www.cnbc.com/2026/08/10/intel-intc-stock-offering-ai.html">CNBC</a>
+                    </li>
+                    <li><strong>Riot Platforms</strong>: חברת כריית ביטקוין, חתמה על עסקה של 9 מיליארד דולר למשך 20 שנה עם Anthropic, מה שמסמן שינוי אסטרטגי של כורי ביטקוין לכיוון תשתיות AI.
+                        <a class="btn-source" href="https://www.cnbc.com/2026/08/11/riot-platforms-signs-anthropic-deal-as-miners-shift-to-ai-infrastructure-.html">CNBC</a>
+                    </li>
+                    <li><strong>Nvidia</strong>: השיקה מודל AI פתוח, Nemotron 3.5 Lightning, הנגיש בחינם לחברות. מנכ"ל אנבידיה, ג'נסן הואנג, מציע תוכנית מימון של 500 מיליארד דולר ל-AI, אך היא עומדת בפני סיכון משמעותי מסין.
+                        <a class="btn-source" href="https://www.cnbc.com/2026/08/11/nvidia-unveils-first-open-source-ai-model-since-ceo-jensen-huang-entered-the-chat.html">CNBC</a>,
+                        <a class="btn-source" href="https://www.cnbc.com/2026/08/11/why-jensen-huangs-500-billion-ai-financing-plan-faces-a-big-risk-from-china.html">CNBC</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <strong>אתגרי AI ותחרות:</strong>
+                <ul>
+                    <li><strong>גוגל (GOOG)</strong>: מנייתה ירדה ב-3.61%, כאשר ראש ה-AI החדש של Google DeepMind יורש מרוץ צמוד מול OpenAI ו-Anthropic.
+                        <a class="btn-source" href="https://www.cnbc.com/2026/08/12/google-deepmind-koray-kavukcuoglu.html">CNBC</a>
+                    </li>
+                    <li><strong>Tencent</strong>: דיווחה על עקיפת תחזיות ההכנסות, מונעת ממכירות משחקים מואצות ופרסום מונחה AI, אך המניה ירדה ב-26% מתחילת השנה עקב תחרות עזה בסין בתחום ה-AI.
+                        <a class="btn-source" href="https://www.cnbc.com/2026/08/12/china-tencent-earnings-q2-2026-gaming-ai-advertising.html">CNBC</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>למה זה חריג</h3>
+        <p>הדיווחים מ-CoreWeave, Super Micro ו-Lumentum מראים כי גל הביקוש ל-AI לא מראה סימני האטה, ומוביל לגידולים חסרי תקדים בהכנסות. הזינוק ב-CoreWeave בפרט מעיד על התיאבון העצום של השוק לחברות המספקות תשתית למחשוב AI. יחד עם זאת, ההשקעות העצומות הנדרשות בתשתית (כמו מהלכי אינטל ואנבידיה) מעידות על הון רב הנדרש להוביל בתחום, תוך יצירת סיכונים פיננסיים (חובות CoreWeave) וגיאו-פוליטיים (סיכונים מול סין לאנבידיה). עבור גוגל, האתגר הוא לשמור על תחרותיות בשוק ה-AI המהיר, מה שמשפיע על אמון המשקיעים במניה.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>העלייה המטאורית בביקוש ל-AI ממשיכה להיות הכוח המניע העיקרי בשוק הטכנולוגיה. חברות המספקות תשתית למחשוב AI נהנות ישירות מהצורך הגובר. עם זאת, ההשקעות העצומות הנדרשות בתשתית (כמו מהלכי אינטל ואנבידיה) מעידות על הון רב הנדרש להוביל בתחום, תוך יצירת סיכונים פיננסיים (חובות CoreWeave) וגיאו-פוליטיים (סיכונים מול סין לאנבידיה). עבור גוגל, האתגר הוא לשמור על תחרותיות בשוק ה-AI המהיר, מה שמשפיע על אמון המשקיעים במניה. המהלך של Riot Platforms מסמן התכנסות מעניינת בין תחומי הקריפטו וה-AI, כאשר חברות עם יכולות כרייה חזקות מזהות הזדמנויות חדשות בתשתיות AI.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">מאקרו</div>
+        <h2>החלטת ריבית קרובה ועדכון כלכלי: השוק ממתין לתשובות</h2>
+
+        <h3>מה קרה היום</h3>
+        <p>היום (12.8.2026) מתאפיין בציפייה דרוכה להחלטות ונתונים מאקרו כלכליים חשובים:</p>
+        <ul>
+            <li>
+                <strong>הכרעת ריבית בישראל:</strong> בשעה 15:30 (זמן מקומי), צפויה הכרעה בנוגע למדיניות הריבית, כאשר הסבירות להעלאת ריבית עומדת על 50%.
+                <a class="btn-source" href="https://www.youtube.com/watch?v=-67ynjPr8Xk">Micha.Stocks</a>
+            </li>
+            <li>
+                <strong>דוח אינפלציה בארה"ב:</strong> דוח מדד המחירים לצרכן (CPI) צפוי להתפרסם ביום רביעי, והוא צפוי להראות עלייה מתונה בלבד ביולי. דוח זה נחשב קריטי להחלטות הפדרל ריזרב.
+                <a class="btn-source" href="https://www.cnbc.com/2026/08/11/an-inflation-report-wednesday-should-be-a-big-deal-for-the-fed-heres-what-to-expect.html">CNBC</a>
+            </li>
+            <li>
+                <strong>קרן העושר הנורבגית:</strong> דיווחה על רווח שיא של 184 מיליארד דולר, וחשפה לראשונה אחזקות ב-SpaceX. המניה החוץ-בורסאית של SpaceX ירדה ב-3.93% היום.
+                <a class="btn-source" href="https://www.cnbc.com/2026/08/12/norway-sovereign-wealth-fund-spacex-nvidia-apple-nbim.html">CNBC</a>
+            </li>
+            <li>
+                <strong>מגמות בשוק הדיור:</strong> מנכ"ל Invitation Homes צופה כי איסור על קניית בתים על ידי מוסדות יוביל לירידת מחירים בטווח הארוך.
+                <a class="btn-source" href="https://www.cnbc.com/2026/08/11/invitation-homes-ceo-institutional-homebuying-ban-prices.html">CNBC</a>
+            </li>
+        </ul>
+
+        <h3>למה זה חריג</h3>
+        <p>ההסתברות הגבוהה להעלאת ריבית בישראל (50%) יוצרת אי וודאות בשוק המקומי, עם השלכות פוטנציאליות על עלויות אשראי, שוק הדיור והשקעות. דוח האינפלציה הקרוב בארה"ב הוא נקודת מפתח עבור הפד – עלייה מתונה יכולה לאותת על הקלה בלחצים האינפלציוניים, מה שעשוי להשפיע על ציפיות השוק לגבי מדיניות מוניטרית עתידית. רווחי העתק של קרן העושר הנורבגית, יחד עם חשיפת ההשקעה ב-SpaceX, מדגישים את הכוח הכלכלי של קרנות אלו ואת המגמה שלהן להשקיע בחברות פרטיות בעלות צמיחה גבוהה, אף אם מניות אלו חוות תנודתיות.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>היום מתאפיין בציפייה דרוכה להחלטות ונתונים מאקרו כלכליים חשובים. ההכרעה על הריבית בישראל תשפיע באופן ישיר על הכלכלה המקומית, בעוד שדוח ה-CPI בארה"ב יספק רמזים נוספים לגבי כיוון מדיניות הפד. שני האירועים הללו מכתיבים את סנטימנט השוק בטווח הקצר, כאשר כל חריגה מהציפיות עלולה להוביל לתנודתיות. גילוי האחזקה של קרן העושר הנורבגית ב-SpaceX מדגים את כניסת הכסף המוסדי לשווקים פרטיים טכנולוגיים, ומראה שאפילו חברות ענק פרטיות נכנסות לתחום המיקוד של המשקיעים הגדולים בעולם.</p>
+    </div>
+
+</body>
+</html>
