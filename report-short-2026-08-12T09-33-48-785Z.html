@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי - ניתוח אסטרטגי</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0e17; /* Deep charcoal/navy */
+            --text-light: #e0e6ed; /* Off-white */
+            --accent-color: #00bcd4; /* Steel blue for highlights */
+            --green-subtle: rgba(46, 204, 113, 0.15); /* Soft green */
+            --red-subtle: rgba(231, 76, 60, 0.15); /* Soft red */
+            --green-text: #2ecc71;
+            --red-text: #e74c3c;
+            --divider-color: rgba(255, 255, 255, 0.1);
+            --card-bg: #1a1f2c;
+            --highlight-bg: #222738; /* Slightly different bg for fact highlights */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            direction: rtl; /* Ensure right-to-left for Hebrew */
+        }
+
+        .report-header {
+            background-color: var(--card-bg);
+            padding: 20px 40px;
+            border-bottom: 1px solid var(--divider-color);
+            text-align: center;
+        }
+
+        h1 {
+            color: var(--text-light);
+            font-weight: 700;
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            color: var(--accent-color);
+            font-weight: 700;
+            font-size: 1.8rem;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--divider-color);
+            padding-bottom: 10px;
+        }
+
+        .slide-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 40px;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .pulse-card {
+            background-color: var(--card-bg);
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease-in-out;
+            border: 1px solid var(--divider-color);
+        }
+
+        .pulse-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .pulse-symbol {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+
+        .pulse-name {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 10px;
+        }
+
+        .pulse-change {
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .change-positive {
+            color: var(--green-text);
+        }
+
+        .change-negative {
+            color: var(--red-text);
+        }
+
+        .change-positive-bg {
+            background-color: var(--green-subtle);
+            border-radius: 4px;
+            padding: 3px 8px;
+        }
+
+        .change-negative-bg {
+            background-color: var(--red-subtle);
+            border-radius: 4px;
+            padding: 3px 8px;
+        }
+
+        .highlight-card {
+            background-color: var(--highlight-bg);
+            color: var(--text-light);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        p strong {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+        }
+
+        a:hover {
+            color: #4dd0e1; /* Lighter accent on hover */
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: rgba(0, 188, 212, 0.2); /* Subtle background for button */
+            color: var(--accent-color);
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            margin-right: 10px;
+            border: 1px solid var(--accent-color);
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .btn-source:hover {
+            background-color: rgba(0, 188, 212, 0.4);
+            color: var(--text-light);
+        }
+
+        .section-divider {
+            height: 1px;
+            background-color: var(--divider-color);
+            margin: 40px 0;
+        }
+
+        .image-container {
+            margin: 20px 0;
+            text-align: center; /* Center images */
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            display: block; /* Ensures max-width works correctly */
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            margin: 0 auto; /* Center image within its container */
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-dark);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .market-pulse-grid {
+                grid-template-columns: 1fr 1fr; /* Two columns on mobile */
+            }
+            .slide-container {
+                padding: 16px; /* Smaller padding on mobile */
+            }
+            h1 {
+                font-size: 1.8rem; /* Smaller font on mobile */
+            }
+            h2 {
+                font-size: 1.5rem; /* Smaller font on mobile */
+            }
+        }
+
+        /* Ensure tables are responsive - though not used for main data display in this report, good for general rule */
+        .table-wrapper {
+            overflow-x: auto; /* For tables that might exceed screen width */
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            table-layout: fixed;
+            word-wrap: break-word;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: right;
+            border-bottom: 1px solid var(--divider-color);
+        }
+
+        th {
+            background-color: var(--card-bg);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="report-header">
+        <h1>דוח שוק יומי: תמונת מצב אסטרטגית</h1>
+        <p>סקירה תמציתית ל-12 באוגוסט 2026</p>
+    </div>
+
+    <div class="slide-container">
+        <h2>תמונת מצב מהירה: Market Pulse</h2>
+        <div class="market-pulse-grid">
+            <div class="pulse-card">
+                <div class="pulse-symbol">SPY</div>
+                <div class="pulse-name">SPDR S&P 500 ETF Trust</div>
+                <div class="pulse-change change-negative">
+                    <span class="change-negative-bg">-0.32%</span>
+                    <span>770.56$</span>
+                </div>
+            </div>
+            <div class="pulse-card">
+                <div class="pulse-symbol">QQQ</div>
+                <div class="pulse-name">Invesco QQQ Trust, Series 1</div>
+                <div class="pulse-change change-negative">
+                    <span class="change-negative-bg">-0.34%</span>
+                    <span>718.45$</span>
+                </div>
+            </div>
+            <div class="pulse-card">
+                <div class="pulse-symbol">BTC/USD</div>
+                <div class="pulse-name">Bitcoin US Dollar</div>
+                <div class="pulse-change change-positive">
+                    <span class="change-positive-bg">+0.57%</span>
+                    <span>63,960.64$</span>
+                </div>
+            </div>
+            <div class="pulse-card">
+                <div class="pulse-symbol">ETH/USD</div>
+                <div class="pulse-name">Ethereum US Dollar</div>
+                <div class="pulse-change change-positive">
+                    <span class="change-positive-bg">+1.06%</span>
+                    <span>1,902.63$</span>
+                </div>
+            </div>
+            <div class="pulse-card">
+                <div class="pulse-symbol">CRWV</div>
+                <div class="pulse-name">CoreWeave, Inc.</div>
+                <div class="pulse-change change-positive">
+                    <span class="change-positive-bg">+2.42%</span>
+                    <span>90.32$</span>
+                </div>
+            </div>
+            <div class="pulse-card">
+                <div class="pulse-symbol">GOOG</div>
+                <div class="pulse-name">Alphabet Inc.</div>
+                <div class="pulse-change change-negative">
+                    <span class="change-negative-bg">-3.61%</span>
+                    <span>343.00$</span>
+                </div>
+            </div>
+            <div class="pulse-card">
+                <div class="pulse-symbol">SPCX</div>
+                <div class="pulse-name">Space Exploration Technologies Corp. Class A</div>
+                <div class="pulse-change change-negative">
+                    <span class="change-negative-bg">-3.93%</span>
+                    <span>133.29$</span>
+                </div>
+            </div>
+            <div class="pulse-card">
+                <div class="pulse-symbol">OKLO</div>
+                <div class="pulse-name">Oklo Inc.</div>
+                <div class="pulse-change change-positive">
+                    <span class="change-positive-bg">+5.66%</span>
+                    <span>47.01$</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">AI ושבבים</span>
+        <h2>התנודתיות בסקטור ה-AI: זינוק בחברות תשתיות, לחץ על ענקיות הטק</h2>
+        <p><strong>מה קרה היום:</strong> CoreWeave (CRWV), ספקית תשתית ענן ממוקדת AI, רשמה זינוק של <span class="change-positive-bg">+2.42%</span> במחיר מנייתה, וזאת לאחר שפרסמה דוח רווחים חזק ששיקף ביקוש מתמשך וגובר לשירותי AI. מנכ"ל החברה ציין נקודת מפנה משמעותית בהתפתחותה. במקביל, מניית אלפבית (GOOG) ירדה ב-<span class="change-negative-bg">-3.61%</span>, כשברקע הכרזה על מינוי מנהל AI חדש בחטיבת DeepMind שלה, במטרה להאיץ את התחרות מול OpenAI ו-Anthropic. עוד באותו היום, דווח כי כורי ביטקוין כמו Riot Platforms נוטשים את כריית הקריפטו ועוברים להתמקד באספקת כוח חישוב לתעשיית ה-AI, עם עסקה בהיקף 9 מיליארד דולר עם Anthropic. במקביל, ארגונים בתחום הקריפטו קוראים לחברות AI מובילות להעניק גישה מוקדמת למפתחי ביטקוין, לחיזוק אבטחת סייבר.</p>
+        <div class="image-container">
+            <img src="https://s3-images.ctmedia.io/media/article-covers/blockchain-city-people-future-ai.jpg" alt="AI and Blockchain">
+        </div>
+        <p><strong>למה זה חשוב:</strong> העליות ב-CoreWeave וההסטה האסטרטגית של כורי קריפטו מעידות על הזרמת הון ומשאבים משמעותית לתחום תשתיות ה-AI, מה שמוביל לרווחיות בקרב ספקיות פתרונות ייעודיות. יחד עם זאת, הירידה במניית אלפבית, למרות הצעדים האסטרטגיים, מדגישה את הלחץ הכבד שבו נמצאות ענקיות הטכנולוגיה לשמור על חדשנות ויתרון תחרותי בסביבת AI משתנה במהירות. המגמה מצביעה על התגבשות שוק דו-קוטבי: שגשוג למספקי תשתית ממוקדים, מול תחרות אכזרית בין החברות הגדולות.</p>
+        <div>
+            <a class="btn-source" href="https://www.marketwatch.com/story/coreweaves-stock-soars-as-earnings-show-major-ai-momentum-d3a5bede?mod=mw_rss_topstories">MarketWatch</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/08/11/coreweave-crwv-q2-earnings-report-2026.html">CNBC (CoreWeave)</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/08/12/google-deepmind-koray-kavukcuoglu.html">CNBC (Google)</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/08/11/riot-platforms-signs-anthropic-deal-as-miners-shift-to-ai-infrastructure-.html">CNBC (Riot Platforms)</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/crypto-companies-ai-firms-bitcoin-developers-access?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Crypto & AI)</a>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">קריפטו ורגולציה</span>
+        <h2>רגולציה גלובלית ואיומי אבטחה מעצבים מחדש את שוק הקריפטו</h2>
+        <p><strong>מה קרה היום:</strong> שוק הקריפטו התמודד עם שורה של אתגרי אבטחה ופיקוח. רשת Harmony בוחנת "rollback" בעקבות חשד לניצול לרעה שהוביל להנפקת <span class="highlight-card">2.8 מיליארד אסימוני ONE</span> באופן בלתי מורשה. במקביל, Ravencoin (RVN) צנחה לשפל היסטורי עקב ניצול ברשת שמעמיד בסיכון עסקאות. ה-SEC וה-CFTC הגבירו את אכיפת החוק עם תביעה בסך <span class="highlight-card">400 מיליון דולר</span> נגד Goliath Ventures בגין הפעלת תוכנית פונזי מבוססת קריפטו. מנגד, בנק רוסיה הציע לאפשר מסחר חוקי בביטקוין (BTC), את'ריום (ETH) ו-USDT בבורסות מפוקחות, מה שמגיע בהמשך לחוק חדש שנחתם על ידי הנשיא ולדימיר פוטין. היום, ביטקוין נסחר בעלייה של <span class="change-positive-bg">+0.57%</span> במחיר של <span class="highlight-card">63,960.64$</span>, ואת'ריום עלה ב-<span class="change-positive-bg">+1.06%</span> ל-<span class="highlight-card">1,902.63$</span>, זאת לאחר שביטקוין הגיע לשפל של שבוע קודם לפרסום נתוני ה-CPI בארה"ב.</p>
+        <div class="image-container">
+            <img src="https://s3-images.ctmedia.io/media/article-covers/hi-top-hacks-so-far-4.jpg" alt="Crypto Exploit">
+        </div>
+        <p><strong>למה זה חשוב:</strong> ריבוי האקספלויטים ותוכניות ההונאה ממחיש את הסיכונים המשמעותיים ואת חוסר הבשלות של חלקים בתעשיית הקריפטו, ומגביר את הדרישה לפיקוח הדוק יותר. עם זאת, התקדמות רגולטורית במדינות גדולות כמו רוסיה, שמציעה מסגרת חוקית למסחר בנכסים דיגיטליים, מסמנת שינוי פוטנציאלי לכיוון של לגיטימציה רחבה יותר ואימוץ על ידי הכלכלה המסורתית. ההתפתחויות הללו מציירות תמונה מורכבת של שוק הנאבק בין הצורך באבטחה ורגולציה לבין פוטנציאל הצמיחה והאימוץ הרחב שלו.</p>
+        <div>
+            <a class="btn-source" href="https://cointelegraph.com/news/armony-rollback-alleged-one-token-mint?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Harmony)</a>
+            <a class="btn-source" href="https://cointelegraph.com/markets/ravencoin-rvn-record-low-consensus-exploit?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Ravencoin)</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/sec-cftc-sue-goliath-ventures-400m-crypto-ponzi?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Goliath Ventures)</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/bank-of-russia-trading-bitcoin-ether-tether-usdt?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Russia)</a>
+            <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-drops-to-one-week-low-as-retail-buys-gold-at-highest-prices-since-june">Cointelegraph (Bitcoin Low)</a>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">חדשות חברות</span>
+        <h2>SpaceX: חשיפה של השקעה ענקית מול ירידה במחיר המניה</h2>
+        <p><strong>מה קרה היום:</strong> מניית Space Exploration Technologies Corp. (SPCX) רשמה ירידה בולטת של <span class="change-negative-bg">-3.93%</span> היום, ונסגרה במחיר של <span class="highlight-card">133.29$</span>. ירידה זו התרחשה למרות חשיפה משמעותית של קרן העושר הריבונית הגדולה בעולם, קרן הנפט הנורווגית (NBIM), שחשפה לראשונה את אחזקותיה ב-SpaceX. חשיפה זו הגיעה במסגרת דוח הקרן לרבעון השני, בו דיווחה על רווח שיא של <span class="highlight-card">184 מיליארד דולר</span>, והדגישה את האמון הרב של גופים מוסדיים מובילים בחברת החלל.</p>
+        <p><strong>למה זה חשוב:</strong> הפער בין חשיפתה של השקעה כה יוקרתית על ידי קרן עושר עולמית לבין ירידה משמעותית במחיר המניה של SpaceX מהווה אינדיקציה לשוק מורכב ופוטנציאל למימוש רווחים. בעוד האמון המוסדי מצביע על פוטנציאל צמיחה ארוך טווח וחוסן כלכלי, התנהגות המניה בטווח הקצר יכולה להיות מושפעת מגורמים כמו תמחור גבוה, מימוש רווחים קצר-טווח על ידי משקיעים קודמים, או דאגות ספציפיות שלא פורטו. יש לנתח נתונים נוספים כדי להבין את מכלול הגורמים שמובילים לתנודה זו.</p>
+        <div>
+            <a class="btn-source" href="https://www.cnbc.com/2026/08/12/norway-sovereign-wealth-fund-spacex-nvidia-apple-nbim.html">CNBC</a>
+        </div>
+    </div>
+</body>
+</html>
