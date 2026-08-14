@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי – 14 באוגוסט 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0a0e17;
+            --text-color: #e0e0e0;
+            --secondary-text-color: #a0a0a0;
+            --accent-color: #FFD700; /* Gold */
+            --positive-color: #28a745; /* Muted Green */
+            --negative-color: #dc3545; /* Muted Red */
+            --highlight-bg: rgba(255, 215, 0, 0.1); /* Transparent Gold */
+            --opinion-bg: rgba(50, 50, 100, 0.2); /* Transparent Navy/Purple */
+            --border-color: #2e3a4e;
+            --font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            direction: rtl;
+            text-align: right;
+            line-height: 1.6;
+        }
+
+        .report-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #121825;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        h1 {
+            color: var(--accent-color);
+            text-align: center;
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        h2 {
+            color: var(--accent-color);
+            font-weight: 700;
+            font-size: 1.8rem;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h3 {
+            color: var(--text-color);
+            font-weight: 600;
+            font-size: 1.3rem;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .slide-container {
+            background-color: #1e2533;
+            padding: 24px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: rgba(255, 215, 0, 0.2);
+            color: var(--accent-color);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 215, 0, 0.4);
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .market-card {
+            background-color: #283040;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .market-card strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+
+        .market-card .price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        .market-card .change {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 5px;
+            display: block;
+        }
+
+        .positive {
+            color: var(--positive-color);
+        }
+
+        .negative {
+            color: var(--negative-color);
+        }
+
+        .neutral {
+            color: var(--secondary-text-color);
+        }
+
+        .section-divider {
+            border-top: 1px solid var(--border-color);
+            margin: 40px 0;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: rgba(255, 215, 0, 0.1);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 10px;
+            margin-left: 10px;
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn-source:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .highlight-card {
+            background-color: var(--highlight-bg);
+            border-right: 4px solid var(--accent-color);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-bg);
+            border-right: 4px solid #8a2be2; /* BlueViolet for opinions */
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+            color: var(--text-color);
+            font-style: italic;
+            position: relative;
+        }
+
+        .opinion-card::before {
+            content: "\201C"; /* Left double quotation mark */
+            position: absolute;
+            right: 10px;
+            top: 5px;
+            font-size: 3em;
+            color: rgba(138, 43, 226, 0.3); /* Transparent BlueViolet */
+            line-height: 1;
+        }
+        
+        .opinion-card .speaker {
+            display: block;
+            font-weight: 600;
+            margin-top: 10px;
+            color: var(--secondary-text-color);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            table-layout: fixed;
+            overflow-x: auto;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: right;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: #283040;
+            color: var(--accent-color);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        @media(max-width:768px){
+            .market-pulse-grid{
+                grid-template-columns:1fr 1fr;
+            }
+            .slide-container{
+                padding:16px;
+            }
+            h1{
+                font-size:1.4rem;
+            }
+            h2{
+                font-size:1.2rem;
+            }
+            body {
+                padding: 10px;
+            }
+            .report-container {
+                padding: 15px;
+            }
+            .market-card strong {
+                font-size: 1rem;
+            }
+            .market-card .price {
+                font-size: 1.1rem;
+            }
+            .market-card .change {
+                font-size: 0.9rem;
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            .btn-source {
+                padding: 6px 10px;
+                font-size: 0.8rem;
+                margin-left: 5px;
+                margin-top: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="report-container">
+        <h1>דוח שוק יומי אסטרטגי – 14 באוגוסט 2026</h1>
+
+        <div class="slide-container">
+            <span class="badge">תמונת מצב מהירה</span>
+            <h2>Market Pulse: מדדים ומניות בולטות</h2>
+            <div class="market-pulse-grid">
+                <div class="market-card">
+                    <strong>S&amp;P 500 (SPY)</strong>
+                    <span class="price">778.41$</span>
+                    <span class="change positive">0.07%</span>
+                    <p>נסגר קרוב לשיא 52 שבועות</p>
+                </div>
+                <div class="market-card">
+                    <strong>Nasdaq 100 (QQQ)</strong>
+                    <span class="price">732.96$</span>
+                    <span class="change positive">0.12%</span>
+                </div>
+                <div class="market-card">
+                    <strong>Russell 2000 (IWM)</strong>
+                    <span class="price">304.22$</span>
+                    <span class="change positive">0.24%</span>
+                    <p>נסגר קרוב לשיא 52 שבועות</p>
+                </div>
+                <div class="market-card">
+                    <strong>Bitcoin (BTC/USD)</strong>
+                    <span class="price">62,614.37$</span>
+                    <span class="change negative">-1.38%</span>
+                </div>
+                <div class="market-card">
+                    <strong>Ethereum (ETH/USD)</strong>
+                    <span class="price">1,868.10$</span>
+                    <span class="change negative">-0.96%</span>
+                </div>
+                <div class="market-card">
+                    <strong>Coherent (COHR)</strong>
+                    <span class="price">341.50$</span>
+                    <span class="change positive">4.36%</span>
+                </div>
+                <div class="market-card">
+                    <strong>Spotify (SPOT)</strong>
+                    <span class="price">517.64$</span>
+                    <span class="change positive">3.89%</span>
+                </div>
+                <div class="market-card">
+                    <strong>AMD</strong>
+                    <span class="price">497.85$</span>
+                    <span class="change positive">3.07%</span>
+                </div>
+                <div class="market-card">
+                    <strong>Tesla (TSLA)</strong>
+                    <span class="price">350.06$</span>
+                    <span class="change positive">2.97%</span>
+                </div>
+                <div class="market-card">
+                    <strong>Broadcom (AVGO)</strong>
+                    <span class="price">400.41$</span>
+                    <span class="change negative">-4.17%</span>
+                </div>
+            </div>
+            <p>שוק המניות הכללי הציג תנועה חיובית קלה, כאשר מדדי ה-S&amp;P 500 וה-Russell 2000 נסגרו קרוב לשיאי 52 שבועות. מניות בולטות הציגו תנודתיות משמעותית. הביטקוין והאת'ריום המשיכו להיסחר בירידות קלות.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">AI ושבבים</span>
+            <h2>דינמיקה סוערת בסקטור ה-AI: ירידות מניות, גיוסי ענק ואזהרות</h2>
+            <h3>מה קרה היום</h3>
+            <div class="highlight-card">
+                <p>מניית <span class="price">Cerebras</span> צללה ב-<span class="negative">14%</span> לאחר פרסום דוחות הרבעון השני, למרות שדיווחה על הכנסות גבוהות מהצפוי ועלתה את תחזיתה לשנה כולה.</p>
+                <a class="btn-source" href="https://www.cnbc.com/2026/08/12/cerebras-cbrs-q2-earnings-report-2026.html" target="_blank">CNBC</a>
+            </div>
+            <div class="highlight-card">
+                <p>מניות <span class="price">Applied Materials</span> ירדו על רקע חששות מתחזית רווחיות, אך אנליסטים ממליצים על קנייה, בהתבסס על צמיחה מתמשכת מביקוש לתעשיית ה-AI.</p>
+                <a class="btn-source" href="https://www.marketwatch.com/story/applied-materials-shares-are-down-on-guidance-and-margin-concerns-analysts-call-it-time-to-buy-bd34dd54?mod=mw_rss_topstories" target="_blank">MarketWatch</a>
+            </div>
+            <div class="highlight-card">
+                <p>חברת <span class="price">Anthropic</span>, מפתחת מודל ה-AI קלוד, מקיימת פגישות IPO מוקדמות עם משקיעים, כשה-CFO קרישנה ראו מוביל את הדיונים על מודלי ה-AI והניהול של החברה.</p>
+                <a class="btn-source" href="https://www.cnbc.com/2026/08/13/anthropic-cfo-early-ipo-meetings-valuation.html" target="_blank">CNBC</a>
+            </div>
+            <div class="highlight-card">
+                <p><span class="price">OpenAI</span>, מפתחת ChatGPT, איבדה את סמנכ"לית ההכנסות דניס דרסר, העזיבה הבכירה השנייה תוך ימים ספורים, מה שעלול להוות מכה משמעותית לקראת הנפקתה המתוכננת.</p>
+                <a class="btn-source" href="https://www.cnbc.com/2026/08/13/openai-denise-dresser-executive-exits.html" target="_blank">CNBC</a>
+            </div>
+            <div class="highlight-card">
+                <p><span class="price">Databricks</span> השלימה סבב גיוס מימון של <span class="price">5 מיליארד דולר</span>, המשקף שווי חברה של <span class="price">190 מיליארד דולר</span>, ונהנית מגל ה-AI המניע סוכנים אוטונומיים.</p>
+                <a class="btn-source" href="https://www.cnbc.com/2026/08/13/databricks-funding-round-190-billion-valuation.html" target="_blank">CNBC</a>
+            </div>
+            <div class="highlight-card">
+                <p>כורי ביטקוין ציבוריים קיצצו את ה-hashrate ב-<span class="negative">13.4%</span>, תוך הגדלת הכנסות מתשתיות AI. כריית הביטקוין עוברת הסבה לשימושי AI ו-HPC.</p>
+                <a class="btn-source" href="https://cointelegraph.com/news/bitcoin-miners-hashrate-ai-data-centers-hpc?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound" target="_blank">Cointelegraph</a>
+            </div>
+            <div class="opinion-card">
+                <p>"The revolution is real, but so is the bubble risk."</p>
+                <span class="speaker">Hermann Hauser, co-founder of Arm</span>
+                <a class="btn-source" href="https://www.cnbc.com/2026/08/14/arm-ai-bubble-hermann-hauser-the-tech-download.html" target="_blank">CNBC</a>
+            </div>
+            <h3>למה זה חריג</h3>
+            <p>סקטור ה-AI מפגין היום תנודתיות גבוהה ואירועים סותרים. מחד, נרשמים גיוסי ענק והשקעות בשוויים גבוהים, מה שמדגיש את האופטימיות והפוטנציאל הגלום בטכנולוגיה. מאידך, ירידות חדות במניות כמו Cerebras למרות דוחות טובים ועזיבות מפתח ב-OpenAI מצביעות על רגישות גבוהה של השוק לציפיות. אזהרות מפני בועת AI מפי דמויות מפתח בתעשייה מחזקות את החששות מהערכות השווי המנופחות.</p>
+            <h3>הלוגיקה</h3>
+            <p>השוק מנסה לאזן בין הפוטנציאל העצום והצמיחה המואצת של ה-AI לבין סיכוני הערכות שווי ואתגרי המסחור. המעבר של כורי ביטקוין לתשתיות AI ממחיש את כוח המשיכה של הסקטור ואת האופן שבו הוא משנה תעשיות קיימות, אך יחד עם זאת, הלחצים על חברות כמו Cerebras ו-OpenAI מראים שגם חברות מובילות אינן חסינות מתנודתיות. משקיעים נדרשים לבחון בקפידה את האינדיקטורים ולפעול בזהירות.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">קריפטו ורגולציה</span>
+            <h2>לחצי רגולציה ותנודתיות מחירים בשוק הקריפטו</h2>
+            <h3>מה קרה היום</h3>
+            <div class="highlight-card">
+                <p><span class="price">ביטקוין (BTC/USD)</span> ירד ב-<span class="negative">-1.38%</span> למחיר של <span class="price">62,614.37$</span> ו"עיניו נשואות לתחתיות אוגוסט חדשות", כאשר פוזיציות לונג בבינאנס מתמודדות עם "ניקוי".</p>
+                <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-liquidation-cleanout-open-interest-falls-btc?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound" target="_blank">Cointelegraph</a>
+            </div>
+            <div class="highlight-card">
+                <p><span class="price">את'ריום (ETH/USD)</span> ירד ב-<span class="negative">-0.96%</span> למחיר של <span class="price">1,868.10$</span>. קרן את'ריום נסוגה משימוש בפרוטוקול Poseidon בתכנית ההגנה הפוסט-קוונטית שלה, עקב התקדמות בהוכחות קומפקטיות.</p>
+                <a class="btn-source" href="https://cointelegraph.com/news/ethereum-foundation-drops-poseidon-post-quantum-plan?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound" target="_blank">Cointelegraph</a>
+            </div>
+            <div class="highlight-card">
+                <p><span class="price">בייננס</span> תגביל עסקאות הכוללות את HTX ו-10 פלטפורמות קריפטו נוספות, לאחר ש-HTX נכללה בחבילת סנקציות של האיחוד האירופי נגד רוסיה.</p>
+                <a class="btn-source" href="https://cointelegraph.com/news/binance-restrict-htx-10-crypto-platforms?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound" target="_blank">Cointelegraph</a>
+            </div>
+            <div class="highlight-card">
+                <p><span class="price">ג'מיני</span> דיווחה על הפסד נקי של <span class="negative">108 מיליון דולר</span> ברבעון השני, למרות צמיחה של <span class="positive">37%</span> בהכנסות. הכנסות הבורסה ירדו ב-<span class="negative">38%</span> ונפח המסחר צנח בשני שלישים.</p>
+                <a class="btn-source" href="https://cointelegraph.com/news/gemini-45m-q2-revenue-financial-services?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound" target="_blank">Cointelegraph</a>
+            </div>
+            <div class="highlight-card">
+                <p><span class="price">סולאנה</span> הציגה שיפוץ עמלות מוצע שיקר עסקאות עתירות משאבים ויוזיל פעילויות פשוטות, תוך הגדלת כמות ה-SOL הנשרפת.</p>
+                <a class="btn-source" href="https://cointelegraph.com/magazine/solana-wants-its-biggest-resource-hogs-to-pay-more?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound" target="_blank">Cointelegraph</a>
+                <img src="https://s3-images.ctmedia.io/media/article-covers/solana-simd-0553.jpg" alt="Solana" />
+            </div>
+            <div class="highlight-card">
+                <p>ה-<span class="price">SEC</span> ביטלה פגישה מרכזית בנושא חוקי הצעות קריפטו לאחר שהסנאט יצא להפסקה מבלי להצביע על חוק CLARITY.</p>
+                <a class="btn-source" href="https://cointelegraph.com/news/sec-cancels-crypto-regulatory-meeting?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound" target="_blank">Cointelegraph</a>
+            </div>
+            <div class="highlight-card">
+                <p>ה-<span class="price">CFTC</span> תצטרף ל-SEC בבחינת רגולציות קריפטו ללא חוק CLARITY ותקיים פגישה ב-20 באוגוסט בנוגע לנכסי קריפטו, AI ושווקי חיזוי.</p>
+                <a class="btn-source" href="https://cointelegraph.com/news/cftc-exploring-crypto-regulations-clarity-act?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound" target="_blank">Cointelegraph</a>
+                <img src="https://s3-images.ctmedia.io/media/article-covers/paper-document-man-office-cftc-1.jpg" alt="CFTC" />
+            </div>
+            <div class="highlight-card">
+                <p><span class="price">Tether</span> השלימה ביקורת פיננסית מלאה ראשונה וקיבלה חוות דעת נקייה מ-KPMG, שקבעה כי עתודותיה עלו על התחייבויותיה ב-<span class="price">6.8 מיליארד דולר</span>.</p>
+                <a class="btn-source" href="https://cointelegraph.com/news/tether-completes-first-full-financial-audit-receives-clean-kpmg-opinion?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound" target="_blank">Cointelegraph</a>
+                <img src="https://s3-images.ctmedia.io/media/article-covers/hi-how-to-read-a-stablecoin-attestation-report.png" alt="Tether" />
+            </div>
+            <div class="highlight-card">
+                <p>מנכ"ל חברת הקריפטו <span class="price">Delio</span> בדרום קוריאה נגזר ל-<span class="price">15 שנות מאסר</span> בגין הונאת קריפטו.</p>
+                <a class="btn-source" href="https://cointelegraph.com/news/delio-ceo-prison-crypto-fraud-south-korea?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound" target="_blank">Cointelegraph</a>
+            </div>
+            <div class="highlight-card">
+                <p><span class="price">JPMorgan Chase</span> חתכה קשרי בנקאות עם <span class="price">Polymarket</span> באוקטובר 2025 עקב חששות רגולטוריים.</p>
+                <a class="btn-source" href="https://cointelegraph.com/news/jpmorgan-debanked-polymarket-regulatory-concerns-report?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound" target="_blank">Cointelegraph</a>
+            </div>
+            <div class="highlight-card">
+                <p><span class="price">Neutrl</span> השהתה משיכות NUSD עקב "בעיית עתודות לא ידועה".</p>
+                <a class="btn-source" href="https://cointelegraph.com/news/neutrl-pauses-nusd-redemptions-over-undisclosed-reserve-issue?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound" target="_blank">Cointelegraph</a>
+            </div>
+            <div class="highlight-card">
+                <p><span class="price">Robinhood Chain</span> מתקרב למיליארד דולר ב-TVL, כאשר שילוב עם Uniswap מניע נזילות.</p>
+                <a class="btn-source" href="https://cointelegraph.com/news/robinhood-chain-uniswap-liquidity-uni-burns?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound" target="_blank">Cointelegraph</a>
+            </div>
+            <div class="highlight-card">
+                <p>סקר של ה-<span class="price">ECB</span> מצא כי תשלומי קריפטו בקושי נרשמים בקרב סוחרים באזור האירו, עם שיעור אימוץ של <span class="neutral">0.2%</span> בלבד באינטרנט.</p>
+                <a class="btn-source" href="https://cointelegraph.com/news/ecb-survey-0-2-euro-area-companies-accept-crypto-online?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound" target="_blank">Cointelegraph</a>
+            </div>
+            <h3>למה זה חריג</h3>
+            <p>שוק הקריפטו ממשיך להיות שדה קרב של רגולציה ואתגרי שוק. הירידות בביטקוין ואת'ריום, יחד עם לחצי הפירוק על פוזיציות לונג, מצביעות על המשך חוסר יציבות. מהלכים רגולטוריים גלובליים, כמו הגבלות בייננס בתגובה לסנקציות האיחוד האירופי ואי-הוודאות סביב פגישות ה-SEC וה-CFTC בארה"ב, מחדדים את חוסר הבהירות בתעשייה. בעוד שביקורת חיובית של Tether תורמת לאמון בסטייבלקוינס, השעיית משיכות ב-Neutrl מדגישה סיכונים קיימים. נתוני ה-ECB מציגים קצב אימוץ איטי בקרב סוחרים אירופאים, בעוד שפרויקטים כמו Robinhood Chain מראים צמיחה בתחום ה-DeFi.</p>
+            <h3>הלוגיקה</h3>
+            <p>שוק הקריפטו נמצא בצומת דרכים בין אימוץ טכנולוגי ופיננסי לבין דרישות רגולטוריות גוברות. המחיר של ביטקוין ואת'ריום מושפע ישירות מאירועים אלה. בעיות עתודה וקשיים תפעוליים בפלטפורמות שונות מדגישים את הצורך בשקיפות ואמינות. ההתפתחויות הרגולטוריות בארה"ב ובאירופה, בין אם בהגבלות ובין אם באי-בהירות, ממשיכות לעצב את עתיד הסקטור ואת האמון בו.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">מאקרו וסחורות</span>
+            <h2>נתוני אינפלציה רכים, עלייה בחוב הלאומי ותנודתיות במניות בולטות</h2>
+            <h3>מה קרה היום</h3>
+            <div class="highlight-card">
+                <p>מחירי <span class="price">הכסף</span> נסקו מעל <span class="price">65$</span>, בעקבות נתוני אינפלציה רכים שפורסמו השבוע.</p>
+                <a class="btn-source" href="https://finance.yahoo.com/personal-finance/investing/article/silver-prices-today-friday-august-14-2026-silver-over-65-following-soft-inflation-data-this-week-121251820.html" target="_blank">Yahoo Finance</a>
+            </div>
+            <div class="highlight-card">
+                <p>מחירי <span class="price">הזהב</span> נשמרו מעל <span class="price">4,400$</span> על רקע התמתנות האינפלציה.</p>
+                <a class="btn-source" href="https://finance.yahoo.com/personal-finance/investing/article/gold-prices-today-friday-august-14-2026-gold-prices-hold-above-4400-on-softening-inflation-115406311.html" target="_blank">Yahoo Finance</a>
+            </div>
+            <div class="highlight-card">
+                <p>החוב הלאומי של ארה"ב צפוי להגיע ל-<span class="price">40 טריליון דולר</span> לראשונה, וצפוי לטפס ל-<span class="price">50 טריליון דולר</span> זמן קצר לאחר מכן. בנק אוף אמריקה מציין שמשקיעים מתרחקים מאג"ח מסיבה זו.</p>
+                <a class="btn-source" href="https://www.marketwatch.com/story/u-s-national-debt-about-to-reach-bleak-40-trillion-milestone-and-its-likely-hit-50-trillion-soon-0f10df2d?mod=mw_rss_topstories" target="_blank">MarketWatch</a>
+            </div>
+            <div class="highlight-card">
+                <p>מכירות קמעונאיות בארה"ב רשמו ביולי את הירידה הגדולה ביותר מזה 14 חודשים. הסיבות העיקריות הן מחירי דלק זולים יותר וירידה בקניות מקוונות לאחר מבצעי "אמזון פריים".</p>
+                <a class="btn-source" href="https://www.marketwatch.com/story/retail-sales-slump-in-july-cheaper-gas-and-amazon-prime-hangover-are-the-chief-culprits-b9db8535?mod=mw_rss_topstories" target="_blank">MarketWatch</a>
+            </div>
+            <div class="highlight-card">
+                <p>הלוואת הרכב הממוצעת בארה"ב עומדת כעת על <span class="price">785$</span> לחודש ונפרשת על פני כמעט 6 שנים. אמריקאים לוו סכום שיא של <span class="price">211 מיליארד דולר</span> לרכישת רכב ברבעון האחרון.</p>
+                <a class="btn-source" href="https://www.marketwatch.com/story/the-average-car-loan-is-now-785-a-month-and-lasts-for-almost-6-years-a950c80c?mod=mw_rss_topstories" target="_blank">MarketWatch</a>
+            </div>
+            <h3>למה זה חריג</h3>
+            <p>השוק מגיב לנתוני אינפלציה רכים התומכים בעליית מחירי סחורות כמו זהב וכסף, מה שיכול להצביע על ציפיות להתמתנות במדיניות המוניטרית. במקביל, הגידול המטריד בחוב הלאומי של ארה"ב, העומד לחצות את רף 40 טריליון הדולר, מעורר דאגה בקרב משקיעים וגורם להתרחקות משוק האג"ח. הירידה במכירות הקמעונאיות, למרות שהוסברה על ידי גורמים ספציפיים ולא חולשה כלכלית עמוקה, מעידה על שינויים בהרגלי הצריכה. נתוני שיא בהלוואות רכב מצביעים על ביקושים חזקים אך גם על נטל חוב גובר על הצרכן האמריקאי.</p>
+            <h3>הלוגיקה</h3>
+            <p>התמתנות האינפלציה מספקת רוח גבית לשוק הסחורות, במיוחד למתכות יקרות, ויכולה להשפיע לחיוב על שוקי המניות על ידי הפחתת לחץ על הבנקים המרכזיים. עם זאת, האתגר הפיסקלי של ארה"ב עם החוב הלאומי המתנפח הוא גורם סיכון ארוך טווח. הכלכלה הצרכנית מציגה תמונה מעורבת: ירידה במכירות קמעונאיות כתוצאה ממחירים נמוכים יותר בהיבטים מסוימים והשפעות עונתיות, לעומת שיא בהלוואות רכב המצביע על המשך כוח קנייה, אך גם על התחייבויות גבוהות לצרכנים.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">שוק כללי ודעות</span>
+            <h2>הראלי נמשך: שיאים במדדים, מניות בולטות וקריאות אופטימיות</h2>
+            <h3>מה קרה היום</h3>
+            <div class="highlight-card">
+                <p><span class="price">S&amp;P 500 (SPY)</span> נסגר במחיר של <span class="price">778.41$</span>, קרוב לשיא 52 השבועות שעומד על <span class="price">779.37$</span>.</p>
+                <a class="btn-source" href="#market-pulse" target="_blank">Market Data</a>
+            </div>
+            <div class="highlight-card">
+                <p><span class="price">Russell 2000 (IWM)</span> נסגר במחיר של <span class="price">304.22$</span>, קרוב לשיא 52 השבועות שעומד על <span class="price">305.05$</span>.</p>
+                <a class="btn-source" href="#market-pulse" target="_blank">Market Data</a>
+            </div>
+            <div class="highlight-card">
+                <p>מניות <span class="price">נינטנדו</span> קפצו ב-<span class="positive">7%</span> לאחר שמכירות "Pokémon Pokopia" עלו על <span class="price">5 מיליון</span> יחידות.</p>
+                <a class="btn-source" href="https://www.cnbc.com/2026/08/14/nintendo-shares-pokemon-pokopia-switch-2.html" target="_blank">CNBC</a>
+            </div>
+            <div class="highlight-card">
+                <p>מניות <span class="price">Workday</span> זינקו ביום המסחר הטוב ביותר שלהן מזה 10 שנים, בעקבות דיווח על הצעת השתלטות של Silver Lake.</p>
+                <a class="btn-source" href="https://www.cnbc.com/2026/08/13/workday-skyrockets-25percent-before-trading-halted-on-report-of-silver-lake-takeover.html" target="_blank">CNBC</a>
+            </div>
+            <div class="highlight-card">
+                <p>מניות <span class="price">סיסקו</span> ירדו ב-<span class="negative">8%</span> למרות שעמדו בציפיות הרווח וסיפקו תחזית חזקה מהצפוי. החברה מציגה ביקוש חזק לתשתית AI, אך התוצאות לא סיפקו את המשקיעים.</p>
+                <a class="btn-source" href="https://www.cnbc.com/2026/08/13/cisco-shares-slide-9percent-despite-earnings-beat-and-strong-guidance.html" target="_blank">CNBC</a>
+            </div>
+            <div class="highlight-card">
+                <p>מניות <span class="price">רדיט</span> קפצו על רקע הכללתה במדד S&P 500.</p>
+                <a class="btn-source" href="https://www.cnbc.com/2026/08/13/reddit-shares-jump-11percent-on-inclusion-in-sp-500.html" target="_blank">CNBC</a>
+            </div>
+            <div class="highlight-card">
+                <p>היחסים בין תשואות האג"ח למניות הפכו שוב לשליליים.</p>
+                <a class="btn-source" href="https://www.marketwatch.com/story/rates-are-at-multiyear-highs-yet-stocks-hit-fresh-records-heres-how-long-the-defiance-may-last-b29a5d14?mod=mw_rss_topstories" target="_blank">MarketWatch (LPL Financial)</a>
+            </div>
+            <div class="opinion-card">
+                <p>"The market is obviously on fire."</p>
+                <span class="speaker">Quentin Fottrell, MarketWatch</span>
+                <a class="btn-source" href="https://www.marketwatch.com/story/the-market-is-obviously-on-fire-is-it-a-mistake-to-take-1-000-from-my-brokerage-account-to-pay-my-car-loan-65800d1f?mod=mw_rss_topstories" target="_blank">MarketWatch</a>
+            </div>
+            <div class="opinion-card">
+                <p>"CNBC's Jim Cramer warned investors against relying too heavily on historical comparisons, arguing that doing so can cause them to miss what has fundamentally changed."</p>
+                <span class="speaker">Jim Cramer, CNBC</span>
+                <a class="btn-source" href="https://www.cnbc.com/2026/08/13/cramer-says-investors-shouldnt-let-past-market-crashes-scare-them-out-of-todays-winners.html" target="_blank">CNBC</a>
+            </div>
+            <h3>למה זה חריג</h3>
+            <p>המשך הראלי בשוק המניות, עם מדדים רחבים שנושקים לשיאים ומניות בודדות שמגיבות בעוצמה לחדשות ספציפיות (כמו Workday ורדיט), מדגיש את האופטימיות השוררת. עם זאת, התגובה השלילית למניית סיסקו, למרות דוחות טובים המצביעים על ביקוש ל-AI, מראה שהמשקיעים מציבים רף ציפיות גבוה במיוחד. הניתוק בין תשואות האג"ח (שנמצאות בשיא של שנים) לבין שוק המניות, כפי שציין LPL Financial, הוא חריג ועשוי לרמז על סיכונים נסתרים.</p>
+            <h3>הלוגיקה</h3>
+            <p>השוק ממשיך להפגין חוסן ואופטימיות, המונעים בין היתר על ידי חדשות חיוביות בתחומי טכנולוגיה ואירועים תאגידיים ספציפיים. עם זאת, הציפיות הגבוהות בסקטורים מסוימים (כמו AI) עלולות להוביל לתגובות שליליות גם לחדשות חיוביות לכאורה. הקריאות האופטימיות של אנליסטים כמו קריימר מעודדות משקיעים להישאר בתוך השוק, אך יש לזכור את הסימנים המנוגדים מצד שוק האג"ח, מה שמחייב זהירות ובחינה מתמדת של הסיכונים.</p>
+        </div>
+    </div>
+</body>
+</html>
