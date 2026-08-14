@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי אסטרטגי - 14 באוגוסט 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0e17;
+            --text-light: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --accent-color: #8aa2f8; /* Steel blue / subtle accent */
+            --divider-color: #2a2f3d;
+            --positive-green: rgba(34, 197, 94, 0.2); /* Subdued green with opacity */
+            --positive-text: #22c55e;
+            --negative-red: rgba(239, 68, 68, 0.2);  /* Subdued red with opacity */
+            --negative-text: #ef4444;
+            --badge-bg: #1a1e2b;
+            --card-bg: #151820;
+            --opinion-card-bg: #20242f;
+            --source-btn-bg: #2a2f3d;
+            --source-btn-text: #e0e0e0;
+            --border-radius: 6px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            direction: rtl;
+            text-align: right;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .report-wrapper {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--divider-color);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            position: relative;
+            padding-right: 15px;
+        }
+
+        h2::before {
+            content: "•";
+            position: absolute;
+            right: 0;
+            top: 0;
+            color: var(--accent-color);
+            font-size: 2rem;
+            line-height: 1;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .slide-container {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            margin-bottom: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow-x: auto; /* Ensure tables/images inside are responsive */
+        }
+
+        .section-divider {
+            border-top: 1px solid var(--divider-color);
+            margin: 40px 0;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--badge-bg);
+            color: var(--accent-color);
+            padding: 6px 12px;
+            border-radius: var(--border-radius);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            border: 1px solid var(--divider-color);
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .market-card {
+            background-color: var(--badge-bg);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid var(--divider-color);
+        }
+
+        .market-card strong {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+
+        .market-card span {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .market-card .change {
+            font-weight: 700;
+            margin-top: 8px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .positive-change {
+            background-color: var(--positive-green);
+            color: var(--positive-text);
+        }
+
+        .negative-change {
+            background-color: var(--negative-red);
+            color: var(--negative-text);
+        }
+
+        .highlight-card {
+            background-color: var(--badge-bg);
+            border-right: 4px solid var(--accent-color);
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: var(--border-radius);
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-card-bg);
+            border-right: 4px solid var(--positive-text); /* Use green for opinion highlight */
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: var(--border-radius);
+            position: relative;
+        }
+
+        .opinion-card::before {
+            content: '❝';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 3rem;
+            color: var(--positive-text);
+            opacity: 0.2;
+            line-height: 1;
+        }
+
+        .opinion-card p {
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+
+        .opinion-card .author {
+            font-weight: 600;
+            color: var(--text-light);
+            text-align: left;
+            margin-top: 10px;
+            display: block;
+        }
+
+        a.btn-source {
+            display: inline-block;
+            background-color: var(--source-btn-bg);
+            color: var(--source-btn-text);
+            padding: 8px 15px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            transition: background-color 0.2s ease;
+            border: 1px solid var(--divider-color);
+        }
+
+        a.btn-source:hover {
+            background-color: var(--divider-color);
+            color: var(--accent-color);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: var(--border-radius);
+            margin: 15px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            table-layout: fixed;
+            word-wrap: break-word;
+        }
+
+        th, td {
+            border: 1px solid var(--divider-color);
+            padding: 12px;
+            text-align: right;
+        }
+
+        th {
+            background-color: var(--badge-bg);
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        td {
+            background-color: var(--card-bg);
+        }
+
+        @media (max-width: 768px) {
+            .report-wrapper {
+                margin: 10px auto;
+                padding: 0 10px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.4rem;
+                padding-right: 10px;
+            }
+            h2::before {
+                font-size: 1.5rem;
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            .slide-container {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+            .market-pulse-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .market-card strong {
+                font-size: 1rem;
+            }
+            .market-card span {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="report-wrapper">
+        <h1>דוח שוק יומי אסטרטגי</h1>
+
+        <div class="slide-container">
+            <div class="badge">תמונת מצב מהירה</div>
+            <h2>Market Pulse - תנודות מרכזיות להיום</h2>
+            <p>סקירה מהירה של המדדים המובילים ומניות שרשמו תנועות חריגות היום:</p>
+            <div class="market-pulse-grid">
+                <div class="market-card">
+                    <strong>S&amp;P 500 (SPY)</strong>
+                    <span class="change positive-change">0.07%+</span>
+                    <span>778.41</span>
+                </div>
+                <div class="market-card">
+                    <strong>NASDAQ 100 (QQQ)</strong>
+                    <span class="change positive-change">0.12%+</span>
+                    <span>732.96</span>
+                </div>
+                <div class="market-card">
+                    <strong>Russell 2000 (IWM)</strong>
+                    <span class="change positive-change">0.24%+</span>
+                    <span>304.22</span>
+                </div>
+                <div class="market-card">
+                    <strong>Bitcoin (BTC/USD)</strong>
+                    <span class="change negative-change">1.38%-</span>
+                    <span>62614.37</span>
+                </div>
+                <div class="market-card">
+                    <strong>Ethereum (ETH/USD)</strong>
+                    <span class="change negative-change">0.96%-</span>
+                    <span>1868.10</span>
+                </div>
+                <div class="market-card">
+                    <strong>Coherent (COHR)</strong>
+                    <span class="change positive-change">4.36%+</span>
+                    <span>341.50</span>
+                </div>
+                <div class="market-card">
+                    <strong>Broadcom (AVGO)</strong>
+                    <span class="change negative-change">4.17%-</span>
+                    <span>400.41</span>
+                </div>
+                <div class="market-card">
+                    <strong>Spotify (SPOT)</strong>
+                    <span class="change positive-change">3.89%+</span>
+                    <span>517.64</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <div class="badge">מאקרו</div>
+            <h2>ירידה חדה במכירות הקמעונאיות בארה"ב וחוב לאומי שיא</h2>
+            <p>מכירות קמעונאיות בארה"ב רשמו ביולי את הירידה הגדולה ביותר מזה 14 חודשים, אך הדבר יוחס בעיקר למחירי דלק נמוכים יותר ולשקיעה בצריכה מקוונת לאחר יום הפריים של אמזון, ולא לחולשה כלכלית רחבה יותר. במקביל, החוב הלאומי של ארה"ב צפוי לחצות לראשונה את רף 40 טריליון הדולרים. ירידה זו במכירות, לצד נטל החוב הגדל, מעידים על שינויים בהרגלי הצריכה ועל אתגרים פיסקליים ארוכי טווח.
+                <a class="btn-source" href="https://www.marketwatch.com/story/retail-sales-slump-in-july-cheaper-gas-and-amazon-prime-hangover-are-the-chief-culprits-b9db8535?mod=mw_rss_topstories" target="_blank">MarketWatch</a>
+                <a class="btn-source" href="https://www.marketwatch.com/story/u-s-national-debt-about-to-reach-bleak-40-trillion-milestone-and-its-likely-hit-50-trillion-soon-0f10df2d?mod=mw_rss_topstories" target="_blank">MarketWatch</a>
+            </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <div class="badge">קריפטו</div>
+            <h2>רגולציה הדוקה ושינויים אסטרטגיים בשוק הקריפטו</h2>
+            <p>בורסת Binance הודיעה כי תגביל עסקאות הכוללות את HTX ועוד 10 פלטפורמות קריפטו, בעקבות הכללת HTX בחבילת הסנקציות של האיחוד האירופי נגד רוסיה. במקביל, רשות ניירות ערך האמריקאית (SEC) ביטלה פגישה מרכזית בנושאי רגולציה קריפטו, מה שמגביר את חוסר הוודאות. אלו מקרים המדגישים את הלחץ הרגולטורי הגובר ואת הצורך של פלטפורמות קריפטו להתאים את פעילותן למסגרות משפטיות משתנות.
+                <a class="btn-source" href="https://cointelegraph.com/news/binance-restrict-htx-10-crypto-platforms?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound" target="_blank">Cointelegraph</a>
+                <a class="btn-source" href="https://cointelegraph.com/news/sec-cancels-crypto-regulatory-meeting?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound" target="_blank">Cointelegraph</a>
+            </p>
+            <p>בתוך כך, Solana מציעה מהפכה בעמלות שתייקר עסקאות עתירות משאבים אך תפחית עלויות לפעילות פשוטה יותר, ותגדיל את כמות ה-SOL הנשרפת. שינוי זה מיועד לייעל את הרשת ולהשפיע באופן ישיר על הכלכלה הפנימית של מטבע ה-SOL.
+                <a class="btn-source" href="https://cointelegraph.com/magazine/solana-wants-its-biggest-resource-hogs-to-pay-more?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound" target="_blank">Cointelegraph</a>
+            </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <div class="badge">מניות בולטות</div>
+            <h2>תנודות חדות במניות טכנולוגיה ובידור</h2>
+            <p>היום נרשמו תנועות מחיר משמעותיות במניות מסוימות: מניית Coherent Corp. (COHR) זינקה ב<span class="positive-change">4.36%</span>, בעוד שמניית Broadcom Inc. (AVGO) ירדה ב<span class="negative-change">4.17%</span>. בנוסף, מניית Spotify Technology S.A. (SPOT) רשמה עלייה של <span class="positive-change">3.89%</span>. תנודות אלו מעידות על סנטימנט סלקטיבי בשוק, כשישנן מגמות שונות בתוך סקטורים דומים ללא חדשות ספציפיות בולטות המסבירות את התנועה ביום זה.
+            </p>
+        </div>
+
+    </div>
+</body>
+</html>
