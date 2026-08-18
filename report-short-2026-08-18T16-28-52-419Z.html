@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי – 18 באוגוסט 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0a0e17;
+            --text-color: #e0e0e0;
+            --accent-color: #a0aec0; /* Steel blue/gold-like subtle accent */
+            --header-color: #cbd5e0;
+            --divider-color: #2d3748;
+            --positive-color: rgba(34, 197, 94, 0.2); /* Muted green */
+            --positive-text: #22c55e;
+            --negative-color: rgba(239, 68, 68, 0.2); /* Muted red */
+            --negative-text: #ef4444;
+            --card-bg: #1a202c;
+            --highlight-bg: #2d3748;
+            --opinion-bg: #222c3d;
+            --source-btn-bg: #2c5282;
+            --source-btn-hover-bg: #3182ce;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            direction: rtl;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: var(--header-color);
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 700;
+            border-bottom: 1px solid var(--divider-color);
+            padding-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-align: right;
+            border-bottom: 1px solid var(--divider-color);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            color: var(--header-color);
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-align: right;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #63b3ed; /* Lighter blue on hover */
+        }
+
+        .slide-container {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            overflow: hidden; /* Ensures no content spills out */
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+
+        .market-pulse-card {
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            min-width: 180px;
+            height: 100px;
+        }
+
+        .market-pulse-card strong {
+            font-size: 1.1rem;
+            color: var(--header-color);
+            margin-bottom: 5px;
+        }
+
+        .change-positive {
+            color: var(--positive-text);
+            background-color: var(--positive-color);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .change-negative {
+            color: var(--negative-text);
+            background-color: var(--negative-color);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .category-badge {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .section-divider {
+            border-top: 1px solid var(--divider-color);
+            margin: 40px 0;
+            padding-top: 20px;
+        }
+
+        .highlight-card {
+            background-color: var(--highlight-bg);
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            position: relative;
+            font-style: italic;
+        }
+
+        .opinion-card::before {
+            content: "\201C"; /* Unicode for left double quotation mark */
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            position: absolute;
+            top: 5px;
+            left: 10px;
+            line-height: 1;
+        }
+
+        .opinion-card p {
+            margin-right: 30px; /* Make space for the quote icon */
+            text-align: justify;
+        }
+
+        .opinion-card .author {
+            display: block;
+            text-align: left;
+            margin-top: 10px;
+            font-weight: 600;
+            color: var(--header-color);
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--source-btn-bg);
+            color: #ffffff;
+            padding: 8px 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-source:hover {
+            background-color: var(--source-btn-hover-bg);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            table-layout: fixed;
+            word-wrap: break-word;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            background-color: var(--highlight-bg);
+            border-radius: 6px;
+            overflow-x: auto; /* For table content if it overflows */
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: right;
+            border-bottom: 1px solid var(--divider-color);
+            color: var(--text-color);
+        }
+
+        th {
+            background-color: var(--card-bg);
+            color: var(--header-color);
+            font-weight: 600;
+            text-align: right;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            .market-pulse-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .slide-container {
+                padding: 16px;
+            }
+            h1 {
+                font-size: 1.6rem;
+                margin-bottom: 20px;
+            }
+            h2 {
+                font-size: 1.4rem;
+                margin-top: 20px;
+                margin-bottom: 10px;
+            }
+            h3 {
+                font-size: 1.2rem;
+            }
+            .opinion-card::before {
+                font-size: 2rem;
+            }
+            .market-pulse-card {
+                height: 80px;
+            }
+            .market-pulse-card strong {
+                font-size: 1rem;
+            }
+            .change-positive, .change-negative {
+                padding: 3px 8px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>דוח שוק יומי – 18 באוגוסט 2026: מה חשוב לדעת היום</h1>
+
+    <div class="slide-container">
+        <div class="category-badge">סקירה כללית</div>
+        <h2>תמונת מצב מהירה: Market Pulse</h2>
+        <div class="market-pulse-grid">
+            <div class="market-pulse-card">
+                <strong>S&P 500 (SPY)</strong>
+                <span class="change-negative">-0.58%</span>
+            </div>
+            <div class="market-pulse-card">
+                <strong>Nasdaq 100 (QQQ)</strong>
+                <span class="change-negative">-1.56%</span>
+            </div>
+            <div class="market-pulse-card">
+                <strong>Bitcoin (BTC/USD)</strong>
+                <span class="change-positive">+0.47%</span>
+            </div>
+            <div class="market-pulse-card">
+                <strong>Ethereum (ETH/USD)</strong>
+                <span class="change-positive">+0.12%</span>
+            </div>
+            <div class="market-pulse-card">
+                <strong>Coherent (COHR)</strong>
+                <span class="change-negative">-11.75%</span>
+            </div>
+            <div class="market-pulse-card">
+                <strong>Micron (MU)</strong>
+                <span class="change-negative">-6.62%</span>
+            </div>
+            <div class="market-pulse-card">
+                <strong>CoreWeave (CRWV)</strong>
+                <span class="change-negative">-8.72%</span>
+            </div>
+            <div class="market-pulse-card">
+                <strong>Spotify (SPOT)</strong>
+                <span class="change-positive">+5.70%</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="category-badge">מאקרו / AI</div>
+        <h2>מדדים יורדים וחששות מתרבים סביב מניות AI</h2>
+        <p>מדדי המניות המובילים בארה"ב, ה-S&P 500 והנאסד"ק, הציגו ירידות היום על רקע עלייה מתמשכת בתשואות האג"ח והתחזקות החששות מפני תיקון בשוק מניות ה-AI.</p>
+        <p>אנליסטים מהבנק המרכזי האירופי מזהירים כי ראלי מניות ה-AI "מדאיג" ועלול להוביל לתיקון משמעותי, גם אם ההערכות הנוכחיות משקפות את כוחה הטרנספורמטיבי של הטכנולוגיה. עליית תשואות האג"ח, ובמיוחד התקרבות תשואת אג"ח 10 שנים לרמה של 6%, נתפסת כסיכון הגדול ביותר הניצב בפני שוקי המניות כרגע, ומובילה ללחץ מכירה רחב במניות הטכנולוגיה ובמניות השבבים המובילות.</p>
+        <p><strong>מקורות:</strong>
+            <a class="btn-source" href="https://www.marketwatch.com/story/6-treasury-yields-are-the-biggest-risk-facing-stocks-right-now-heres-why-04fb9bbe?mod=mw_rss_topstories">MarketWatch</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/08/18/ai-tech-rally-correction-economists.html">CNBC</a>
+            <a class="btn-source" href="https://finance.yahoo.com/markets/live/stock-market-today-tuesday-august-18-dow-sp-500-nasdaq-080822735.html">Yahoo Finance</a>
+            <a class="btn-source" href="https://www.investors.com/news/10-year-treasury-yield-near-breakout-why-it-matters/?src=A00220&yptr=yahoo">Investors.com</a>
+        </p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="category-badge">סקטור השבבים / אופטיקה</div>
+        <h2>נפילה חדה במניית Coherent Corp.</h2>
+        <p>מניית Coherent Corp. (COHR), חברה מובילה בתחום טכנולוגיות פוטוניקה ולייזר, צנחה היום בשיעור חד של <span class="change-negative">-11.75%</span> ונסגרה במחיר של <span class="change-negative">$309.96</span>. ירידה כה דרמטית, ללא ידיעה חדשותית ספציפית מיידית המסבירה את התנודה, מסמנת תגובה עזה של השוק.</p>
+        <p>התנודה הקיצונית מצביעה על פוטנציאל לחדשות מהותיות או שינוי דרמטי בסנטימנט המשקיעים כלפי החברה או סקטור תעשיית הלייזר והאופטיקה בכללותו, מה שמחייב מעקב צמוד.</p>
+        <p><strong>מקור:</strong>
+            <a class="btn-source" href="marketData:COHR">Market Data</a>
+        </p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="category-badge">מדיה / טכנולוגיה</div>
+        <h2>זינוק משמעותי במניית Spotify</h2>
+        <p>מניית Spotify Technology S.A. (SPOT) זינקה היום בשיעור של <span class="change-positive">+5.70%</span>, ונסגרה במחיר של <span class="change-positive">$520.56</span>, בניגוד למגמה היורדת בשוק הרחב. עלייה חיובית זו התרחשה על בסיס נפח מסחר גבוה במעט מהממוצע של החברה.</p>
+        <p>הזינוק של Spotify ביום של ירידות שוק כלליות מדגיש אטרקטיביות ספציפית למשקיעים, ייתכן על רקע ציפיות לתוצאות חזקות, התפתחויות חיוביות בתחום המנויים והכנסות, או שיפור בסנטימנט כלפי ענף הזרמת התוכן.</p>
+        <p><strong>מקור:</strong>
+            <a class="btn-source" href="marketData:SPOT">Market Data</a>
+        </p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="category-badge">קריפטו</div>
+        <h2>ביטקוין מתאושש וחידושים בעולם הקריפטו</h2>
+        <p>הביטקוין (BTC) שב לרמה של <span class="change-positive">$65,000</span> היום, לראשונה מזה שבוע, על רקע דיווחים על יציבות במצרר הורמוז, זאת בשעה ששוקי המניות בארה"ב הציגו סימני התאוששות. במקביל, שחקני קריפטו מרכזיים ממשיכים להרחיב את פעילותם ושירותיהם.</p>
+        <p>MoonPay הוסיפה את Cash App Pay כאמצעי תשלום לרכישות קריפטו עבור לקוחותיה בארה"ב, וקרן הפיננסים של טויוטה פתחה מודל חדש המציע אג"ח מתווכות למשקיעים קמעונאיים דרך אפליקציית התשלומים שלה. התפתחויות אלה מדגישות את עמידות הנכסים הדיגיטליים ואת קבלתם ההולכת וגוברת במערכת הפיננסית המסורתית.</p>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/hi-bitcoins-are-flash-green.jpg" alt="Bitcoin tags $65K" />
+        <p><strong>מקורות:</strong>
+            <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-tags-65k-as-sp-500-rebounds-from-2-week-lows-on-us-iran-rhetoric?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Bitcoin tags $65K)</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/moonpay-cash-app-pay-crypto-purchases-us-customers?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (MoonPay)</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/toyota-finance-tokenized-bond-offering-mobile-payment?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Toyota Finance)</a>
+            <a class="btn-source" href="marketData:BTC/USD">Market Data</a>
+        </p>
+    </div>
+
+</body>
+</html>
