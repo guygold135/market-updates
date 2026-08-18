@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי - 18 באוגוסט 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0d1117;
+            --text-light: #e0e0e0;
+            --accent-color: #007bff; /* Steel blue for a professional look */
+            --accent-hover: #0056b3;
+            --positive-change: rgba(46, 204, 113, 0.15); /* Muted green */
+            --negative-change: rgba(231, 76, 60, 0.15);  /* Muted red */
+            --border-color: #2c3e50;
+            --card-bg: #1c2333;
+            --highlight-bg: #2a3447;
+            --opinion-bg: #343f50;
+            --font-inter: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-inter);
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            direction: rtl;
+        }
+
+        .slide-container {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            max-width: 100%; /* Ensure responsiveness */
+            box-sizing: border-box; /* Include padding in width calculation */
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            color: var(--text-light);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+        }
+
+        a:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            display: block; /* Ensures it takes its own line for proper sizing */
+            object-fit: contain; /* Prevents stretching */
+        }
+
+        table {
+            width: 100%;
+            table-layout: fixed;
+            overflow-x: auto;
+            border-collapse: collapse;
+            margin-top: 15px;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            text-align: right;
+            white-space: nowrap; /* Prevent wrapping in cells */
+        }
+
+        th {
+            background-color: var(--highlight-bg);
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        td {
+            background-color: var(--card-bg);
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .market-card {
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .market-card strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--text-light);
+        }
+
+        .change-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .change-positive {
+            background-color: var(--positive-change);
+            color: #2ecc71; /* Brighter green for text */
+        }
+
+        .change-negative {
+            background-color: var(--negative-change);
+            color: #e74c3c; /* Brighter red for text */
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-dark);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .section-divider {
+            border-top: 1px solid var(--border-color);
+            margin: 30px 0;
+        }
+
+        .highlight-card {
+            background-color: var(--highlight-bg);
+            padding: 18px;
+            border-radius: 6px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            border-right: 4px solid var(--accent-color);
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-bg);
+            padding: 18px;
+            border-radius: 6px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            font-style: italic;
+            border-right: 4px solid #f39c12; /* Gold for opinions */
+            position: relative;
+        }
+
+        .opinion-card::before {
+            content: "\201C"; /* Left double quotation mark */
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 3rem;
+            color: rgba(243, 156, 18, 0.3);
+            line-height: 1;
+        }
+
+        .opinion-card p {
+            margin: 0;
+            padding-left: 20px; /* Space for the quote icon */
+        }
+        
+        .opinion-card small {
+            display: block;
+            margin-top: 10px;
+            font-style: normal;
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .btn-source:hover {
+            background-color: var(--accent-hover);
+            text-decoration: none;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            .market-pulse-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .slide-container {
+                padding: 16px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.4rem;
+            }
+            h3 {
+                font-size: 1.2rem;
+            }
+            th, td {
+                padding: 8px;
+                font-size: 0.9rem;
+            }
+            .market-card strong {
+                font-size: 1rem;
+            }
+            .change-badge {
+                font-size: 0.8rem;
+                padding: 3px 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .market-pulse-grid {
+                grid-template-columns: 1fr;
+            }
+            .slide-container {
+                padding: 12px;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+            h2 {
+                font-size: 1.3rem;
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            .market-card strong {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slide-container">
+        <h1>דוח שוק יומי אסטרטגי - 18 באוגוסט 2026</h1>
+        <p>סקירה מהירה של אירועי המפתח והתנודות הבולטות בשווקים, תוך התמקדות בנתונים החריגים ובהשלכותיהם לטווח הקצר.</p>
+    </div>
+
+    <div class="slide-container">
+        <span class="badge">תמונת מצב מהירה</span>
+        <h2>Market Pulse: מדדים ומניות בולטות</h2>
+        <div class="market-pulse-grid">
+            <div class="market-card">
+                <strong>S&amp;P 500 (SPY)</strong>
+                <div class="change-badge change-negative">-0.58%</div>
+                <div>סגירה: 768.195</div>
+            </div>
+            <div class="market-card">
+                <strong>Nasdaq 100 (QQQ)</strong>
+                <div class="change-badge change-negative">-1.56%</div>
+                <div>סגירה: 718.51</div>
+            </div>
+            <div class="market-card">
+                <strong>ביטקוי (BTC/USD)</strong>
+                <div class="change-badge change-positive">+0.47%</div>
+                <div>סגירה: 64,834.81</div>
+            </div>
+            <div class="market-card">
+                <strong>את'ריום (ETH/USD)</strong>
+                <div class="change-badge change-positive">+0.12%</div>
+                <div>סגירה: 1,915.93</div>
+            </div>
+            <div class="market-card">
+                <strong>Coherent Corp. (COHR)</strong>
+                <div class="change-badge change-negative">-11.75%</div>
+                <div>סגירה: 309.96</div>
+            </div>
+            <div class="market-card">
+                <strong>CoreWeave (CRWV)</strong>
+                <div class="change-badge change-negative">-8.72%</div>
+                <div>סגירה: 96.76</div>
+            </div>
+            <div class="market-card">
+                <strong>Micron Technology (MU)</strong>
+                <div class="change-badge change-negative">-6.62%</div>
+                <div>סגירה: 944.76</div>
+            </div>
+            <div class="market-card">
+                <strong>Spotify (SPOT)</strong>
+                <div class="change-badge change-positive">+5.70%</div>
+                <div>סגירה: 520.56</div>
+            </div>
+            <div class="market-card">
+                <strong>AMD</strong>
+                <div class="change-badge change-negative">-5.00%</div>
+                <div>סגירה: 480.70</div>
+            </div>
+            <div class="market-card">
+                <strong>Nvidia (NVDA)</strong>
+                <div class="change-badge change-negative">-2.28%</div>
+                <div>סגירה: 219.89</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">מאקרו וריביות</span>
+        <h2>אג"ח ממשלתיות במוקד: תשואות עולות מפעילות לחץ בשווקי המניות</h2>
+        <h3>מה קרה היום</h3>
+        <p>שוקי המניות בארה"ב, ובפרט מדדי ה-S&amp;P 500 והנאסד"ק, הציגו ירידות זה היום השלישי ברציפות, כאשר מדד ה-S&amp;P 500 נסוג מרמות שפל של שבועיים.</p>
+        <p>הדאגה המרכזית בשווקים נובעת מתשואות אג"ח ממשלתיות העולות, עם אזכורים ספציפיים לתשואת אג"ח ל-10 שנים הנמצאת "קרוב לפריצה" ולתשואת 6% על אג"ח ממשלתיות כאיום המשמעותי ביותר כרגע על שוקי המניות.</p>
+        <a class="btn-source" href="https://www.marketwatch.com/story/6-treasury-yields-are-the-biggest-risk-facing-stocks-right-now-heres-why-04fb9bbe?mod=mw_rss_topstories">MarketWatch</a>
+        <a class="btn-source" href="https://finance.yahoo.com/markets/live/stock-market-today-tuesday-august-18-dow-sp-500-nasdaq-080822735.html">Yahoo Finance</a>
+        <a class="btn-source" href="https://www.investors.com/news/10-year-treasury-yield-near-breakout-why-it-matters/?src=A00220&yptr=yahoo">Investors.com</a>
+
+        <h3>למה זה חריג</h3>
+        <p>הלחץ המתמשך מצד שוק האג"ח הממשלתיות, המצטייר כ"פריצה" אפשרית ברמות התשואה, הוא אירוע מקרו כלכלי בעל השפעה רוחבית. תשואות גבוהות באופן משמעותי הופכות השקעות באג"ח לאטרקטיביות יותר ביחס למניות, מה שגורם להסטת הון משוק המניות.</p>
+        <p>העובדה שאנליסטים מציינים במפורש "6% תשואות אג"ח כאיום הגדול ביותר" מסמנת נקודת מפנה פוטנציאלית בתפיסת הסיכון של השוק.</p>
+        <div class="opinion-card">
+            <p>A global bond-market rout was starting to put some pressure on stocks on Tuesday, as major U.S. indexes headed for a third-straight session in the red.</p>
+            <small>Joseph Adinolfi, MarketWatch</small>
+        </div>
+        <div class="opinion-card">
+            <p>6% Treasury yields are the biggest risk facing stocks right now. Here’s why.</p>
+            <small>Joseph Adinolfi, MarketWatch</small>
+        </div>
+
+        <h3>הלוגיקה</h3>
+        <p>כאשר תשואות האג"ח עולות, עלות ההון לחברות מתייקרת, מה שמשפיע לרעה על רווחיותן ועל הערכות השווי שלהן. בנוסף, תשואה גבוהה על נכסים בטוחים כמו אג"ח ממשלתיות מקטינה את האטרקטיביות היחסית של מניות, במיוחד מניות צמיחה שלא מחלקות דיבידנד, ששווין תלוי יותר ברווחים עתידיים רחוקים.</p>
+        <p>כמו כן, מציין אנליסט כי "Given that investors are sitting on unrealized gains and there few short positions remain open, the markets are more vulnerable to a downturn in economic news flow." כלומר, רווחיות גבוהה בתיקים לצד חוסר גידור משאירים את השוק חשוף לרגישות חדשה לחדשות כלכליות שליליות.</p>
+        <a class="btn-source" href="https://www.marketwatch.com/story/u-s-investors-have-been-buying-stocks-all-month-and-are-sitting-on-profits-heres-what-might-make-them-sell-0371e78a?mod=mw_rss_topstories">MarketWatch</a>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">AI ושבבים</span>
+        <h2>טלטלה בסקטור השבבים וה-AI: אזהרות והצפת הון</h2>
+        <h3>מה קרה היום</h3>
+        <p>מספר מניות מפתח בתחום השבבים וה-AI חוו ירידות חדות. מניית <a href="https://finance.yahoo.com/markets/stocks/articles/why-did-sandisk-stock-drop-152547673.html">Micron (MU)</a> צנחה ב-<span class="change-badge change-negative">-6.62%</span> ונפלה מ-1011.75$ ל-944.76$. גם <a href="https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-treasury-yields-nvidia-stock-nvda/?src=A00220&yptr=yahoo">AMD</a> ירדה ב-<span class="change-badge change-negative">-5.00%</span>, ואילו מניית <a href="https://finance.yahoo.com/markets/stocks/articles/cipher-mining-falls-9-terawulf-152741588.html">CoreWeave (CRWV)</a> נסוגה ב-<span class="change-badge change-negative">-8.72%</span>.</p>
+        <p>כלכלני הבנק המרכזי האירופי מזהירים מפני "תיקון שוק מתקרב" המונע על ידי AI, המכונה "מדאיג" (<span class="opinion-card"><p>'Worrisome': AI is driving a looming market correction, European central bank economists warn</p><small>CNBC</small></span>). למרות זאת, חברת Anthropic דיווחה למשקיעים על קצב הכנסות שנתי שעלה ל-65 מיליארד דולר ביולי, גידול של פי שבעה משנה קודם.</p>
+        <a class="btn-source" href="https://www.cnbc.com/2026/08/18/ai-tech-rally-correction-economists.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/08/18/anthropic-says-annualized-revenue-climbed-to-65-billion-in-july.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/08/18/nvidias-ai-moat-is-shifting-from-chips-to-capital.html">CNBC</a>
+        <a class="btn-source" href="https://finance.yahoo.com/markets/stocks/articles/cipher-mining-falls-9-terawulf-152741588.html">Yahoo Finance</a>
+        <a class="btn-source" href="https://finance.yahoo.com/markets/stocks/articles/why-did-sandisk-stock-drop-152547673.html">Yahoo Finance</a>
+        
+        <h3>למה זה חריג</h3>
+        <p>הירידות החדות במניות שבבים מרכזיות כמו מיקרון ו-AMD, יחד עם אזהרה חריגה וברורה מצד גוף כמו הבנק המרכזי האירופי, מצביעות על חשש גובר מהערכות שווי גבוהות מדי בסקטור ה-AI. זהו סימן לכך שהשוק מתחיל לנתח מחדש את סיכוני הבועה, גם כאשר חברות כמו Anthropic מציגות צמיחה פנומנלית.</p>
+        <p>בנוסף, בעוד Nvidia (NVDA) ירדה ב- <span class="change-badge change-negative">-2.28%</span>, יש דיווחים ש"החפיר" (moat) שלה בתחום ה-AI עובר משבבים להון, שכן היא מגבה מימון של 105 מיליארד דולר למרכז נתונים של OpenAI באוהיו.</p>
+        <a class="btn-source" href="https://www.cnbc.com/2026/08/17/nvidia-financing-open-ai-data-center-ohio.html">CNBC</a>
+
+        <h3>הלוגיקה</h3>
+        <p>הסתירה בין הצמיחה האדירה של חברות AI ספציפיות (כמו Anthropic) לבין החששות המאקרו-כלכליים מצביעה על "נירמול" אפשרי של הערכות שווי. הירידה במניות שבבים עשויה לשקף ציפיות גבוהות מדי וכן השפעות של עליית הריביות המקטינות את התיאבון לסיכון. המעבר של Nvidia להתמקד במימון פרויקטים גדולים מדגיש את החשיבות ההולכת וגוברת של הון ומשאבים פיננסיים גדולים כגורם תחרותי, לצד היכולות הטכנולוגיות.</p>
+        <div class="highlight-card">
+            <p>
+                <strong>עובדת מפתח:</strong> למרות התנודתיות, ה-CFTC בארה"ב מבקשת תגובות ציבוריות על חוזי עתידיים של כוח חישוב AI, כאשר CME שואפת להשיק אותם באוקטובר. זה מצביע על התמסדות השוק סביב כוח חישוב AI כנכס נסחר.
+            </p>
+            <a class="btn-source" href="https://cointelegraph.com/news/cftc-ai-compute-futures-cme-october-launch?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">קריפטו</span>
+        <h2>ביטקוי מתאושש ל-65,000$, חדשות רגולציה ואימוץ נמשכות</h2>
+        <h3>מה קרה היום</h3>
+        <p>הביטקוי (BTC/USD) חזר לרמה של 65,000 דולר לראשונה מזה שבוע, בעקבות הודעות מארה"ב כי מיצרי הורמוז "פתוחים ופועלים". המטבע נסגר בעלייה של <span class="change-badge change-positive">+0.47%</span> ב-64,834.81 דולר. האת'ריום (ETH/USD) נסגר בעלייה קלה של <span class="change-badge change-positive">+0.12%</span> ב-1,915.93 דולר.</p>
+        <p>במקביל, <a href="https://cointelegraph.com/news/moonpay-cash-app-pay-crypto-purchases-us-customers?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">MoonPay</a> הוסיפה את Cash App Pay כאפשרות תשלום לרכישת קריפטו עבור לקוחות אמריקאים כשבידה מעבר לעסקי ה-onramp שלה. <a href="https://cointelegraph.com/news/toyota-finance-tokenized-bond-offering-mobile-payment?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">טויוטה פייננס</a> פתחה אג"ח מתוכנתות (tokenized bonds) למשקיעים קמעונאיים ביפן באמצעות אפליקציית תשלומים.</p>
+        <p>קרקן (Kraken) הרחיבה את פעילותה על ידי השקת מסחר במניות הנסחרות בארה"ב עבור לקוחות באזור הכלכלי האירופי (EEA) וגם השיקה כרטיס דביט עם קאשבק בניסיון להתחרות על ארנקי צרכנים.</p>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/hi-bitcoins-are-flash-green.jpg" alt="Bitcoin tags $65K" />
+        <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-tags-65k-as-sp-500-rebounds-from-2-week-lows-on-us-iran-rhetoric?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/moonpay-cash-app-pay-crypto-purchases-us-customers?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/toyota-finance-tokenized-bond-offering-mobile-payment?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/kraken-us-stock-trading-eea-customers?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/08/18/kraken-launches-debit-card-in-bid-for-consumer-wallets.html">CNBC</a>
+
+        <h3>למה זה חריג</h3>
+        <p>עליית הביטקוי מעל 65,000 דולר, למרות שהוגדרה על ידי אנליסטים כ"מלכודת נזילות בנפח נמוך" ביום שני הקודם, עדיין מהווה רמה פסיכולוגית חשובה. ההתפתחויות בתחום האימוץ (MoonPay, Toyota) מצביעות על המשך חדירה של קריפטו לשירותים פיננסיים מסורתיים. גם הרגולציה ממשיכה להיות דינמית: ה-OCC אישר תזכיר נאמנות לחברת קריפטו ממשפחת טראמפ, בעוד דרום קוריאה חוסמת את Polymarket בטענה להימורים בלתי חוקיים.</p>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/toyota-security-token.png" alt="Toyota Security Token" />
+        <a class="btn-source" href="https://finance.yahoo.com/markets/crypto/articles/bitcoin-rebound-64k-liquidity-illusion-143700870.html">Yahoo Finance</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/occ-donald-trump-world-liberty-financial-trust-charter?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/south-korea-block-polymarket-gambling-concerns?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+
+        <h3>הלוגיקה</h3>
+        <p>תנודות הביטקוי קשורות לא אחת לאירועים גיאופוליטיים או חדשות מאקרו, כפי שמוצג בקשר למיצרי הורמוז. ההתקדמות באימוץ הקריפטו על ידי פלטפורמות תשלום וגופי פיננסים מסורתיים כמו טויוטה מצביעה על מגמה בלתי הפיכה של הטמעת נכסים דיגיטליים בכלכלה הרחבה. עם זאת, המערכת הרגולטורית עדיין מתמודדת עם האתגרים הייחודיים של התחום, כאשר מדינות מנסות לאזן בין חדשנות לבין הגנה על צרכנים ופיקוח. בנוסף, קרן האת'ריום הזהירה כי כלים מסוימים עשויים להפסיק לפעול עם שדרוג ה-"Glamsterdam" הקרוב, מה שמדגיש את מורכבות הפיתוח והתחזוקה של תשתיות בלוקצ'יין גדולות.</p>
+        <a class="btn-source" href="https://cointelegraph.com/news/ethereum-foundation-warns-some-tools-may-break-with-glamsterdam-upgrade?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">חברות ואנליסטים</span>
+        <h2>נושאים נוספים: SpaceX, Meta ו-Spotify בולטות</h2>
+        <h3>מה קרה היום</h3>
+        <p>מניית <a href="https://www.marketwatch.com/story/is-spacex-an-ai-play-or-a-space-stock-two-months-after-the-ipo-investors-still-cant-decide-eaf5fa92?mod=mw_rss_topstories">SpaceX (SPCX)</a> ירדה ב-<span class="change-badge change-negative">-2.26%</span>, כאשר אנליסטים עדיין מתווכחים האם החברה היא מניית AI או מניית חלל, חודשיים לאחר ההנפקה. מניותיה "אינן נסחרות כמו מניות ה'טכנולוגיה הגדולות', והמתאם שלהן לסקטור החלל 'מעורב'".</p>
+        <p>מניית <a href="https://finance.yahoo.com/markets/stocks/articles/meta-platforms-falls-4-trial-153120340.html">Meta Platforms</a> ירדה ב-<span class="change-badge change-negative">-0.41%</span>, כשפניה מועדות למשפט פדרלי בנוגע לטענות בטיחות ילדים, שעלול לגרור קנסות כספיים משמעותיים ושינויים בפייסבוק ובאינסטגרם.</p>
+        <p>מניית <a href="https://finance.yahoo.com/markets/stocks/articles/spotify-technology-sa-spot-q2-140600171.html">Spotify (SPOT)</a> רשמה עלייה חדה של <span class="change-badge change-positive">+5.70%</span>.</p>
+        <a class="btn-source" href="https://www.marketwatch.com/story/is-spacex-an-ai-play-or-a-space-stock-two-months-after-the-ipo-investors-still-cant-decide-eaf5fa92?mod=mw_rss_topstories">MarketWatch</a>
+        <a class="btn-source" href="https://finance.yahoo.com/markets/stocks/articles/meta-platforms-falls-4-trial-153120340.html">Yahoo Finance</a>
+        <a class="btn-source" href="https://finance.yahoo.com/markets/stocks/articles/spotify-technology-sa-spot-q2-140600171.html">Yahoo Finance</a>
+
+        <h3>למה זה חריג</h3>
+        <p>חוסר הוודאות סביב סיווגה של SpaceX משקף את האתגרים בהערכת חברות חדשניות הפועלות במספר סקטורים בו-זמנית, והוא יוצר תנודתיות ייחודית במניה. הסיכונים המשפטיים של Meta הם חריגים בהיקפם ועלולים להשפיע באופן עמוק על מודל הפעילות וההכנסות של החברה. העלייה החדה של Spotify בולטת על רקע יום שקט יותר בשוק.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>עבור SpaceX, הדיון בנוגע לסיווגה נובע מכך שהיא פועלת הן בתחום החלל המסורתי והן בתחומים עם נגיעה משמעותית ל-AI (לדוגמה, עם מערכות הניווט והתקשורת שלה). קבוצות משקיעים שונות מעריכות את החברה באופן שונה בהתאם לסיווג זה, מה שיוצר מתאם "מעורב" ומקשה על קביעת הערכת שווי קונצנזוס. עבור Meta, המשפט הוא דוגמה לסיכון רגולטורי ומוניטין משמעותי שיכול להשפיע על חברות טכנולוגיה גדולות. העלייה של Spotify עשויה להצביע על סנטימנט חיובי ספציפי כלפי החברה או סקטור הסטרימינג, בניגוד למגמה הכללית.</p>
+    </div>
+
+</body>
+</html>
