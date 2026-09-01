@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי אסטרטגי - 1 בספטמבר 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0e17;
+            color: #e0e6f1;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            direction: rtl;
+            text-align: right;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        h1, h2, h3 {
+            color: #d1d9e6;
+            font-weight: 700;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(80, 80, 100, 0.3);
+            padding-bottom: 15px;
+            text-align: center;
+        }
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #505064;
+            display: flex;
+            align-items: center;
+        }
+        h3 {
+            font-size: 1.3rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: #aeb8c6;
+        }
+        .slide-container {
+            background-color: #1a1e27;
+            border: 1px solid #2a2e37;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            overflow: hidden; /* Prevent child elements from overflowing */
+        }
+        .section-divider {
+            border-top: 1px solid rgba(80, 80, 100, 0.4);
+            margin: 35px 0;
+        }
+        .badge {
+            display: inline-block;
+            background-color: #505064;
+            color: #e0e6f1;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-left: 15px; /* Adjust margin for RTL */
+            order: -1; /* Place badge before h2 text */
+        }
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+            overflow-x: auto; /* For small screens to scroll horizontally */
+        }
+        .market-card {
+            background-color: #2a2e37;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            border: 1px solid #3a3e47;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .market-card .symbol {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #9ac2ff; /* Subtle blue for symbols */
+        }
+        .market-card .price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        .market-card .change {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+        .positive {
+            color: #4CAF50; /* Softer green */
+            background-color: rgba(76, 175, 80, 0.1);
+            padding: 3px 6px;
+            border-radius: 3px;
+        }
+        .negative {
+            color: #F44336; /* Softer red */
+            background-color: rgba(244, 67, 54, 0.1);
+            padding: 3px 6px;
+            border-radius: 3px;
+        }
+        .neutral {
+            color: #aeb8c6;
+            background-color: rgba(174, 184, 198, 0.1);
+            padding: 3px 6px;
+            border-radius: 3px;
+        }
+        p {
+            margin-bottom: 12px;
+            font-weight: 400;
+        }
+        strong {
+            font-weight: 600;
+            color: #e0e6f1;
+        }
+        .btn-source {
+            display: inline-block;
+            background-color: #3d465c;
+            color: #e0e6f1;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            margin-left: 10px; /* Adjust margin for RTL */
+            transition: background-color 0.3s ease;
+        }
+        .btn-source:hover {
+            background-color: #5d667c;
+        }
+        .highlight-card {
+            background-color: #2a2e37;
+            border-left: 4px solid #9ac2ff;
+            padding: 15px 20px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+        .opinion-card {
+            background-color: #1f232e;
+            border-right: 4px solid #f0b90b; /* Golden accent for opinion */
+            padding: 15px 20px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            font-style: italic;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: flex-start;
+        }
+        .opinion-card .quote-icon {
+            font-size: 1.5rem;
+            color: #f0b90b;
+            margin-right: 15px;
+            line-height: 1;
+        }
+        .opinion-card .quote-content {
+            flex-grow: 1;
+        }
+        .opinion-card .author {
+            font-weight: 600;
+            margin-top: 10px;
+            display: block;
+            color: #f0b90b;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 6px;
+        }
+        ul {
+            list-style-type: none;
+            padding-right: 20px;
+            margin-top: 10px;
+        }
+        li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+        li::before {
+            content: "•";
+            color: #9ac2ff;
+            position: absolute;
+            right: 0;
+            margin-right: -20px;
+        }
+        table {
+            width: 100%;
+            table-layout: fixed;
+            word-wrap: break-word;
+            border-collapse: collapse;
+            margin-top: 20px;
+            overflow-x: auto; /* Ensures table is responsive */
+            display: block; /* For overflow-x to work properly */
+        }
+        th, td {
+            border: 1px solid #3a3e47;
+            padding: 10px;
+            text-align: right;
+        }
+        th {
+            background-color: #2a2e37;
+            font-weight: 600;
+            color: #aeb8c6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px auto;
+                padding: 0 10px;
+            }
+            h1 {
+                font-size: 1.8rem;
+                text-align: right;
+            }
+            h2 {
+                font-size: 1.4rem;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .badge {
+                margin-left: 0;
+                margin-bottom: 10px;
+                order: 0;
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            .slide-container {
+                padding: 16px;
+                margin-bottom: 20px;
+            }
+            .market-pulse-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .market-card .symbol {
+                font-size: 1rem;
+            }
+            .market-card .price {
+                font-size: 1.1rem;
+            }
+            .market-card .change {
+                font-size: 0.85rem;
+            }
+            .btn-source {
+                margin-left: 5px;
+                padding: 6px 10px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>דוח שוק יומי אסטרטגי - 1 בספטמבר 2026</h1>
+
+        <div class="slide-container">
+            <h2 style="order: 1;"><div class="badge">תמונת מצב מהירה</div>עדכון שוק יומי</h2>
+            <p>להלן סקירה מהירה של נתוני שוק מרכזיים ומניות שבלטו במהלך המסחר האחרון:</p>
+            <div class="market-pulse-grid">
+                <div class="market-card">
+                    <div class="symbol">S&amp;P 500 (SPY)</div>
+                    <div class="price">767.05</div>
+                    <div class="change negative">-0.30%</div>
+                </div>
+                <div class="market-card">
+                    <div class="symbol">Nasdaq (QQQ)</div>
+                    <div class="price">716.76</div>
+                    <div class="change neutral">+0.05%</div>
+                </div>
+                <div class="market-card">
+                    <div class="symbol">Russell 2000 (IWM)</div>
+                    <div class="price">293.93</div>
+                    <div class="change negative">-0.62%</div>
+                </div>
+                <div class="market-card">
+                    <div class="symbol">Bitcoin (BTC/USD)</div>
+                    <div class="price">77,831.99</div>
+                    <div class="change negative">-0.95%</div>
+                </div>
+                <div class="market-card">
+                    <div class="symbol">Ethereum (ETH/USD)</div>
+                    <div class="price">2,445.05</div>
+                    <div class="change negative">-0.92%</div>
+                </div>
+                <div class="market-card">
+                    <div class="symbol">Tesla (TSLA)</div>
+                    <div class="price">367.95</div>
+                    <div class="change positive">+5.51%</div>
+                </div>
+                <div class="market-card">
+                    <div class="symbol">Micron Tech (MU)</div>
+                    <div class="price">958.73</div>
+                    <div class="change positive">+2.77%</div>
+                </div>
+                <div class="market-card">
+                    <div class="symbol">IREN Limited (IREN)</div>
+                    <div class="price">37.12</div>
+                    <div class="change positive">+4.70%</div>
+                </div>
+                <div class="market-card">
+                    <div class="symbol">ServiceNow (NOW)</div>
+                    <div class="price">147.99</div>
+                    <div class="change positive">+2.27%</div>
+                </div>
+                <div class="market-card">
+                    <div class="symbol">NVIDIA (NVDA)</div>
+                    <div class="price">220.78</div>
+                    <div class="change positive">+1.48%</div>
+                </div>
+                <div class="market-card">
+                    <div class="symbol">Alphabet (GOOG)</div>
+                    <div class="price">335.41</div>
+                    <div class="change negative">-2.18%</div>
+                </div>
+                <div class="market-card">
+                    <div class="symbol">Amazon (AMZN)</div>
+                    <div class="price">259.77</div>
+                    <div class="change negative">-2.50%</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <h2><div class="badge">טכנולוגיה / AI</div>שוק השבבים והחששות סביב AI</h2>
+            <h3>מה קרה היום</h3>
+            <p>מניות MediaTek זינקו ב-10% לאחר שדווח על עסקה של 3.5 מיליארד דולר עם Nvidia לשיתוף פעולה בתחום שבבי AI. במקביל, נשמעו אזהרות מפני סיכוני AI: נגיד בנק אנגליה, אנדרו ביילי, הזהיר כי מודלים מתקדמים של AI מאיימים על היציבות הפיננסית הגלובלית, ואילו ועדת המודיעין של בית הנבחרים האמריקאי פרסמה אזהרה מפני סיכוני "ברבור שחור" (אירוע בלתי צפוי ובעל השלכות דרמטיות) הקשורים ב-AI.</p>
+            <div class="btn-group">
+                <a class="btn-source" href="https://www.cnbc.com/2026/09/01/nvidia-deal-mediatek-shares.html" target="_blank">CNBC</a>
+                <a class="btn-source" href="https://www.cnbc.com/2026/08/31/bailey-frontier-ai-financial-stability-risk.html" target="_blank">CNBC</a>
+                <a class="btn-source" href="https://www.cnbc.com/2026/08/31/ai-warning-house-intelligence-committee.html" target="_blank">CNBC</a>
+            </div>
+            <h3>למה זה חריג</h3>
+            <p>האירועים הללו מדגישים את האופי הכפול של מהפכת ה-AI: מצד אחד, הזדמנויות עסקיות עצומות המניעות צמיחה בתעשיית השבבים, ומצד שני, דאגות גוברות מרגולטורים וגורמי ממשל בנוגע להשלכות הפוטנציאליות הלא-יציבות של AI על המערכת הפיננסית ועל הביטחון הלאומי.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <h2><div class="badge">מאקרו / ריביות</div>אינפלציה גלובלית ועליית שיעורי ריבית</h2>
+            <h3>מה קרה היום</h3>
+            <p>שיעור האינפלציה בגוש היורו עלה שוב מעל 3%, מה שמעלה ציפיות להעלאות ריבית נוספות על ידי הבנק המרכזי האירופי כבר בחודש ספטמבר. בארה"ב, שיעורי המשכנתאות זינקו לרמתם הגבוהה ביותר מאז יוני 2025, כתוצאה מהתקפות חדשות במזרח התיכון שהביאו לעלייה במחירי הנפט.</p>
+            <div class="btn-group">
+                <a class="btn-source" href="https://www.cnbc.com/2026/09/01/euro-zone-inflation-rate-hike.html" target="_blank">CNBC</a>
+                <a class="btn-source" href="https://www.cnbc.com/2026/08/31/mortgage-rates-surge-middle-east-attacks-oil.html" target="_blank">CNBC</a>
+                <a class="btn-source" href="https://finance.yahoo.com/personal-finance/mortgages/article/mortgage-and-refinance-interest-rates-today-tuesday-september-1-2026-fixed-rates-move-higher-following-us-airstrikes-near-hormuz-100000288.html" target="_blank">Yahoo Finance</a>
+            </div>
+            <h3>למה זה חריג</h3>
+            <p>התחדשות האינפלציה, במיוחד עקב אירועים גיאופוליטיים המשפיעים על עלויות האנרגיה, מצביעה על כך שהגישה הניצית של בנקים מרכזיים עלולה להימשך זמן רב מהצפוי, דבר שיש לו השפעה ישירה על עלויות ההלוואות לצרכנים ועסקים ברחבי העולם.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <h2><div class="badge">קריפטו</div>התקדמות מוסדית ורגולטורית בקריפטו</h2>
+            <h3>מה קרה היום</h3>
+            <p>בורסת לונדון (LSE) שוקלת שותפות עם חברת האם של Kraken להצעת חשיפה 24/5 למניות בריטיות שעברו טוקניזציה, מה שמסמל התרחבות של המוסדות הפיננסיים המסורתיים לנכסים דיגיטליים. במקביל, סינגפור בוחנת הכרה בסטייבלקוינס זרים הנתמכים ברגולציה, מרחיבה את מסגרת הרגולציה שלה מעבר להנפקות מקומיות בלבד.</p>
+            <p>בתוך כך, Strive רכשה 1,800 יחידות ביטקוין בשווי 143 מיליון דולר, והפכה למחזיקה התאגידית החמישית בגודלה, ו-Bitmine המשיכה ברצף רכישות את'ריום למשך 65 שבועות רצופים, וכעת היא שולטת ב-4.9% מכלל היצע האת'ריום.</p>
+            <div class="btn-group">
+                <a class="btn-source" href="https://cointelegraph.com/news/london-stock-exchange-partners-kraken-for-tokenized-uk-stocks?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound" target="_blank">Cointelegraph</a>
+                <a class="btn-source" href="https://cointelegraph.com/news/singapore-weighs-foreign-regulated-stablecoins-mas-framework?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound" target="_blank">Cointelegraph</a>
+                <a class="btn-source" href="https://cointelegraph.com/news/strive-buys-1800-bitcoin-143m-btc-purchase?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound" target="_blank">Cointelegraph</a>
+                <a class="btn-source" href="https://cointelegraph.com/news/bitmine-ether-buying-streak-65-weeks-ethereum?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound" target="_blank">Cointelegraph</a>
+            </div>
+            <img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M1E661NCT1TRWRA3HD65CEX3/blockchainweek2020uk1-1.jpg" alt="London Stock Exchange Blockchain" />
+            <h3>למה זה חריג</h3>
+            <p>התפתחויות אלו מצביעות על דחיפה משמעותית לשילוב מוסדי ורגולטורי של קריפטו וטכנולוגיית בלוקצ'יין לתוך השווקים הפיננסיים המרכזיים, מה שמעיד על מעבר מעבר למסחר ספקולטיבי לעבר טוקניזציה של נכסים אמיתיים וקבלה רגולטורית רחבה יותר.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <h2><div class="badge">חברות / ניהול</div>חילופי הנהגה באפל</h2>
+            <h3>מה קרה היום</h3>
+            <p>ג'ון טרנוס החל רשמית את תפקידו כמנכ"ל החדש של אפל, כשהוא מקבל את המושכות ב"צומת דרכים קריטית" עבור יצרנית האייפון. הוא ניצב בפני אתגרים מיידיים, הכוללים עלייה במחירי הזיכרון והתחרות הגוברת בתחום ה-AI, בזמן שטים קוק עובר לתפקיד מורחב בדירקטוריון.</p>
+            <div class="btn-group">
+                <a class="btn-source" href="https://www.cnbc.com/2026/09/01/apple-enters-ternus-era-as-ai-challenges-and-memory-crunch-intensify.html" target="_blank">CNBC</a>
+                <a class="btn-source" href="https://www.marketwatch.com/story/new-apple-ceo-john-ternuss-first-big-challenge-leading-when-his-old-boss-is-still-in-the-building-32be88f7?mod=mw_rss_topstories" target="_blank">MarketWatch</a>
+            </div>
+            <h3>למה זה חריג</h3>
+            <p>שינוי ההנהגה מגיע בתקופה שבה אפל מנווטת שינויים טכנולוגיים ודינמיקת שוק משמעותיים, כשטרנוס יידרש להוביל את החברה דרך חידושי AI מרכזיים ולחצי שרשרת האספקה, ובכך להגדיר את כיוונה בעידן המנכ"לות שלאחר קוק.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <h2><div class="badge">שווקים / הערכות אנליסטים</div>תחזית אופטימית לרובינהוד</h2>
+            <h3>מה קרה היום</h3>
+            <p>אנליסטים בבנק מורגן סטנלי העלו את יעד המחיר שלהם למניית Robinhood Markets (HOOD) מ-124 דולר ל-150 דולר, מה שמשקף זינוק פוטנציאלי של 43% עבור פלטפורמת המסחר המקוונת. הערכה אופטימית זו הוצגה כבלתי תלויה בביצועי שוק הקריפטו.</p>
+            <div class="btn-group">
+                <a class="btn-source" href="https://www.marketwatch.com/story/morgan-stanley-sees-a-43-surge-for-robinhood-without-help-from-crypto-906389d9?mod=mw_rss_topstories" target="_blank">MarketWatch</a>
+            </div>
+            <h3>למה זה חריג</h3>
+            <p>שדרוג משמעותי מבנק השקעות גדול כמו מורגן סטנלי מצביע על אמון מחודש במודל העסקי ובמסלול הצמיחה של רובינהוד, גם בתוך אי ודאויות רחבות יותר בשוק, מה שעשוי לאותת על שינוי סנטימנט חיובי עבור המניה.</p>
+        </div>
+    </div>
+</body>
+</html>
