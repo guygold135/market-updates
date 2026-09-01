@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי: תמונת מצב אסטרטגית - 1 בספטמבר 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --text-color: #e0e6f0;
+            --secondary-text-color: #a0a6ae;
+            --accent-color: #a8dadc; /* Steel blue accent */
+            --border-color: #2e3a47;
+            --positive-color: rgba(69, 179, 157, 0.2); /* Muted green with opacity */
+            --negative-color: rgba(231, 76, 60, 0.2);  /* Muted red with opacity */
+            --positive-text: #45b39d;
+            --negative-text: #e74c3c;
+            --card-bg: #1c232e;
+            --highlight-bg: #2e3a47;
+            --opinion-bg: #3b4d61;
+            --quote-icon-color: #7b8d9c;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            direction: rtl; /* Right-to-left for Hebrew */
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .slide-container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 24px;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        h1, h2, h3 {
+            color: var(--accent-color);
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--text-color); /* H2 can be text-color for better hierarchy */
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            color: var(--secondary-text-color);
+        }
+
+        p {
+            margin-bottom: 1em;
+            color: var(--secondary-text-color);
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--highlight-bg);
+            color: var(--accent-color);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            border: 1px solid var(--border-color);
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .market-pulse-item {
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .market-pulse-item .symbol {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 5px;
+        }
+
+        .market-pulse-item .price {
+            font-size: 0.95rem;
+            color: var(--secondary-text-color);
+            margin-bottom: 8px;
+        }
+
+        .market-pulse-value {
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+            min-width: 80px;
+        }
+
+        .positive {
+            background-color: var(--positive-color);
+            color: var(--positive-text);
+        }
+
+        .negative {
+            background-color: var(--negative-color);
+            color: var(--negative-text);
+        }
+
+        .neutral {
+            background-color: var(--highlight-bg);
+            color: var(--secondary-text-color);
+        }
+
+        .section-divider {
+            border-top: 1px solid var(--border-color);
+            margin: 40px 0;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-source:hover {
+            background-color: #8bb7bb;
+            text-decoration: none;
+        }
+
+        .highlight-card {
+            background-color: var(--highlight-bg);
+            padding: 18px;
+            border-radius: 6px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-bg);
+            padding: 18px;
+            border-radius: 6px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-left: 3px solid #f39c12; /* A subtle orange for opinion */
+            position: relative;
+        }
+
+        .quote-icon {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 2rem;
+            color: var(--quote-icon-color);
+            line-height: 1;
+        }
+
+        .opinion-card strong {
+            display: block;
+            margin-top: 10px;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        table {
+            width: 100%;
+            table-layout: fixed;
+            overflow-x: auto;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            text-align: right;
+            color: var(--secondary-text-color);
+        }
+
+        th {
+            background-color: var(--highlight-bg);
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        /* Responsive adjustments */
+        @media(max-width:768px){
+            .market-pulse-grid{grid-template-columns:1fr 1fr;}
+            .slide-container{padding:16px;}
+            h1{font-size:1.4rem;}
+            h2{font-size:1.2rem;}
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <h1>דוח שוק יומי אסטרטגי: 1 בספטמבר 2026</h1>
+    </div>
+
+    <div class="slide-container">
+        <div class="badge">תמונת מצב מהירה</div>
+        <h2>Market Pulse - סקירה יומית</h2>
+        <p>סקירה מהירה של תנועות מפתח בשווקים, תוך התמקדות בנכסים ובמדדים שרשמו תנודות חריגות או בולטות היום.</p>
+
+        <div class="market-pulse-grid">
+            <div class="market-pulse-item">
+                <span class="symbol">SPY</span>
+                <span class="price">767.05 $</span>
+                <span class="market-pulse-value negative">-0.30%</span>
+            </div>
+            <div class="market-pulse-item">
+                <span class="symbol">QQQ</span>
+                <span class="price">716.76 $</span>
+                <span class="market-pulse-value positive">+0.05%</span>
+            </div>
+            <div class="market-pulse-item">
+                <span class="symbol">BTC/USD</span>
+                <span class="price">77831.99 $</span>
+                <span class="market-pulse-value negative">-0.95%</span>
+            </div>
+            <div class="market-pulse-item">
+                <span class="symbol">ETH/USD</span>
+                <span class="price">2445.05 $</span>
+                <span class="market-pulse-value negative">-0.92%</span>
+            </div>
+            <div class="market-pulse-item">
+                <span class="symbol">GOOG</span>
+                <span class="price">335.41 $</span>
+                <span class="market-pulse-value negative">-2.18%</span>
+            </div>
+            <div class="market-pulse-item">
+                <span class="symbol">TSLA</span>
+                <span class="price">367.95 $</span>
+                <span class="market-pulse-value positive">+5.51%</span>
+            </div>
+            <div class="market-pulse-item">
+                <span class="symbol">AMZN</span>
+                <span class="price">259.77 $</span>
+                <span class="market-pulse-value negative">-2.50%</span>
+            </div>
+            <div class="market-pulse-item">
+                <span class="symbol">IREN</span>
+                <span class="price">37.12 $</span>
+                <span class="market-pulse-value positive">+4.70%</span>
+            </div>
+            <div class="market-pulse-item">
+                <span class="symbol">NOW</span>
+                <span class="price">147.99 $</span>
+                <span class="market-pulse-value positive">+2.27%</span>
+            </div>
+            <div class="market-pulse-item">
+                <span class="symbol">MU</span>
+                <span class="price">958.73 $</span>
+                <span class="market-pulse-value positive">+2.77%</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">מאקרו וריביות</div>
+        <h2>החמרה בשוק האג"ח והחשש מאינפלציה באירופה</h2>
+
+        <h3>מה קרה היום</h3>
+        <p>שיעורי המשכנתאות בארה"ב זינקו לרמתם הגבוהה ביותר מאז יוני 2025, על רקע העלייה במחירי הנפט בעקבות התקפות חדשות במזרח התיכון. במקביל, האינפלציה בגוש היורו חזרה לרמה של מעל 3%, מה שצפוי להוביל להעלאות ריבית מצד הבנק המרכזי האירופי כבר בספטמבר.</p>
+        <div class="highlight-card">
+            <strong>אירועי מפתח:</strong>
+            <ul>
+                <li>שיעורי המשכנתאות בארה"ב הגיעו לשיא של מעל שנה, בהשפעת מחירי נפט עולים. <a class="btn-source" href="https://www.cnbc.com/2026/08/31/mortgage-rates-surge-middle-east-attacks-oil.html">CNBC</a></li>
+                <li>האינפלציה בגוש היורו נסקה מעל 3% (נתוני 1 בספטמבר 2026). <a class="btn-source" href="https://www.cnbc.com/2026/09/01/euro-zone-inflation-rate-hike.html">CNBC</a></li>
+                <li>ציפיות בשוק להעלאת ריבית על ידי ה-ECB בספטמבר. <a class="btn-source" href="https://www.cnbc.com/2026/09/01/euro-zone-inflation-rate-hike.html">CNBC</a></li>
+                <li>תשואות האג"ח בארה"ב מתקרבות לשיא של 20 שנה. <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-begins-volatile-monthly-close-as-us-bond-yields-eye-new-20-year-high?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a></li>
+            </ul>
+        </div>
+        <p>כתוצאה מכך, מחירי הזהב והכסף ממשיכים לרדת, מכיוון שציפיות להעלאות ריבית נוטות להפעיל לחץ כלפי מטה על מתכות יקרות.</p>
+        <a class="btn-source" href="https://finance.yahoo.com/personal-finance/investing/article/silver-prices-today-tuesday-september-1-2026-silver-prices-sliding-as-higher-rates-feel-inevitable-121826094.html">Yahoo Finance (Silver)</a>
+        <a class="btn-source" href="https://finance.yahoo.com/personal-finance/investing/article/gold-prices-today-tuesday-september-1-2026-gold-moves-lower-as-rate-hike-expectations-grow-120810063.html">Yahoo Finance (Gold)</a>
+
+        <h3>למה זה חריג</h3>
+        <p>הציפייה בשוק הייתה לירידה בשיעורי הריבית השנה, אך המלחמה באיראן והעלייה הנלווית במחירי הנפט שינו את התמונה. העלייה המהירה והמתמשכת בריביות המשכנתא, יחד עם חזרת האינפלציה בגוש היורו לרמות מעל 3%, מסמנות שינוי מדיניות מהותי של הבנקים המרכזיים ומגבירה את אי הוודאות הכלכלית העולמית.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>מחירי נפט גבוהים מתורגמים לעלויות אנרגיה גבוהות יותר, מה שמזין את האינפלציה. בתגובה, בנקים מרכזיים נוטים להעלות ריביות כדי לקרר את הכלכלה ולרסן את עליית המחירים. תהליך זה מייקר את עלות ההלוואות, כגון משכנתאות, ועלול להאט את הצמיחה הכלכלית. מתכות יקרות, הנחשבות לרוב כמקלט מאינפלציה, נוטות לרדת כשתשואות האג"ח עולות והריביות ריאליות חיוביות, מכיוון שהן אינן מניבות תשואה.</p>
+        <div class="opinion-card">
+            <span class="quote-icon">"</span>
+            “Are rising bond rates really so bad? Maybe not, say these experts. The near-zero interest rates that characterized the decade after the global financial crisis were a sign of economic dysfunction. Higher rates reflect a stronger demand for capital and robust economic growth.”
+            <strong>MarketWatch</strong>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">קריפטו ורגולציה</div>
+        <h2>התפתחויות רגולטוריות ומוסדיות משמעותיות בתחום הקריפטו</h2>
+
+        <h3>מה קרה היום</h3>
+        <p>היום נרשמו מספר התפתחויות קריטיות בזירת הקריפטו, המשקפות הן את המשך האימוץ המוסדי והן את האתגרים הרגולטוריים והביטחוניים:</p>
+        <div class="highlight-card">
+            <ul>
+                <li><strong>אימוץ מוסדי ונכסים מבוקשים:</strong>
+                    <ul>
+                        <li>הבורסה לניירות ערך בלונדון משתפת פעולה עם חברת האם של Kraken להשקת מניות בריטיות מבוססות טוקן. <a class="btn-source" href="https://cointelegraph.com/news/london-stock-exchange-partners-kraken-for-tokenized-uk-stocks?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a></li>
+                        <li>Bitfinex Securities מציעה ניירות ערך מבוססי טוקן הקשורים ל-Strategy (לשעבר MicroStrategy) ו-Metaplanet. <a class="btn-source" href="https://cointelegraph.com/news/bitfinex-tokenized-strategy-metaplanet-notes?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a></li>
+                        <li>קרן 1789 Capital המקושרת לדונלד טראמפ ג'וניור מובילה סבב גיוס של מיליארד דולר לפלטפורמת Polymarket. <a class="btn-source" href="https://cointelegraph.com/news/trump-jr-linked-fund-invest-300m-polymarket-1b-round?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a></li>
+                        <li>בלקרוק רושמת הזרמות של 217 מיליון דולר לקרן הסל שלה על הביטקוין, וקרנות סל על את'ר, XRP וסולנה ממשיכות רצף הזרמות חיובי. <a class="btn-source" href="https://cointelegraph.com/markets/blackrock-bitcoin-etf-inflow-rebound?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a></li>
+                        <li>Webull מרחיבה את מסחר הקריפטו לקנדה בשיתוף פעולה עם Coinbase. <a class="btn-source" href="https://cointelegraph.com/news/webull-canada-crypto-trading-coinbase?utm_source=rss_feed&utm_medium=rss_campaign=rss_partner_inbound">Cointelegraph</a></li>
+                        <li>Bitmine הגדילה את אחזקותיה ב-ETH ב-53.5K ETH ושולטת כעת ב-4.9% מכלל האספקה. <a class="btn-source" href="https://cointelegraph.com/news/bitmine-ether-buying-streak-65-weeks-ethereum?utm_source=rss_feed&utm_medium=rss_campaign=rss_partner_inbound">Cointelegraph</a></li>
+                        <li>חברת Strive רכשה 1,800 ביטקוין בשווי 143 מיליון דולר והפכה למחזיקה התאגידית החמישית בגודלה. <a class="btn-source" href="https://cointelegraph.com/news/strive-buys-1800-bitcoin-143m-btc-purchase?utm_source=rss_feed&utm_medium=rss_campaign=rss_partner_inbound">Cointelegraph</a></li>
+                        <li>Strategy ביצעה את רכישת הביטקוין התאגידית הראשונה שלה מאז יוני, בסך 370 מיליון דולר. <a class="btn-source" href="https://cointelegraph.com/news/strategy-buys-370m-bitcoin-first-acquisition-june?utm_source=rss_feed&utm_medium=rss_campaign=rss_partner_inbound">Cointelegraph</a></li>
+                        <li>Metaplanet העבירה 4,800 ביטקוין בשווי 377 מיליון דולר ל-Coinbase. <a class="btn-source" href="https://cointelegraph.com/news/mutiny-metaplanet-moves-4800-btc-worth-377m-to-coinbase?utm_source=rss_feed&utm_medium=rss_campaign=rss_partner_inbound">Cointelegraph</a></li>
+                    </ul>
+                </li>
+                <li><strong>רגולציה בינלאומית:</strong>
+                    <ul>
+                        <li>סינגפור שוקלת להכיר בסטייבלקוינס שהונפקו במדינות זרות. <a class="btn-source" href="https://cointelegraph.com/news/singapore-weighs-foreign-regulated-stablecoins-mas-framework?utm_source=rss_feed&utm_medium=rss_campaign=rss_partner_inbound">Cointelegraph</a></li>
+                        <li>ה-SEC התאילנדי מציע גישה קמעונאית לנגזרים קריפטוגרפיים מפוקחים בחו"ל. <a class="btn-source" href="https://cointelegraph.com/news/thailand-sec-retail-overseas-crypto-derivatives?utm_source=rss_feed&utm_medium=rss_campaign=rss_partner_inbound">Cointelegraph</a></li>
+                        <li>רוסיה צפויה לראות 46 מיליארד דולר בנפח מסחר בקריפטו בבורסות מפוקחות בשנה הראשונה לאחר הלגליזציה. <a class="btn-source" href="https://cointelegraph.com/news/russian-crypto-trading-bring-46b-regulated-exchanges-legalization?utm_source=rss_feed&utm_medium=rss_campaign=rss_partner_inbound">Cointelegraph</a></li>
+                        <li>הרגולטור היפני מבקש פטור מדיווח מס לסטייבלקוינס מבוססי נאמנות משנת 2027. <a class="btn-source" href="https://cointelegraph.com/news/japanese-regulator-tax-exemption-trust-type-stablecoins-2027?utm_source=rss_feed&utm_medium=rss_campaign=rss_partner_inbound">Cointelegraph</a></li>
+                        <li>אירלנד ממשיכה לא לכלול קריפטו מחשבונות השקעה עם הטבות מס. <a class="btn-source" href="https://cointelegraph.com/news/ireland-crypto-tax-advantaged-investment-accounts?utm_source=rss_feed&utm_medium=rss_campaign=rss_partner_inbound">Cointelegraph</a></li>
+                    </ul>
+                </li>
+                <li><strong>אבטחה ואירועים חריגים:</strong>
+                    <ul>
+                        <li>ארנקי קריפטו המקושרים לקבוצת Lazarus העבירו 30 מיליון דולר בנכסים דיגיטליים דרך Hyperliquid. <a class="btn-source" href="https://cointelegraph.com/news/lazarus-group-move-30m-hyperliquid?utm_source=rss_feed&utm_medium=rss_campaign=rss_partner_inbound">Cointelegraph</a> <img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M1ECEA4C5T8RQGQMN13AT1TY/hi-who-is-the-lazarus-group-the-hackers-behind-billion-dollar-heists.jpg" alt="Lazarus Group" /></li>
+                        <li>מסתורין סביב שריפת מיליון דולר בביטקוין (20 BTC) על ידי "OG" של ביטקוין. <a class="btn-source" href="https://cointelegraph.com/magazine/mystery-surrounds-why-an-og-burned-1m-in-bitcoin?utm_source=rss_feed&utm_medium=rss_campaign=rss_partner_inbound">Cointelegraph</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <h3>למה זה חריג</h3>
+        <p>היום בולט בריבוי החדשות המעידות על אימוץ מוסדי הולך וגובר של נכסים דיגיטליים (מניות מבוססות טוקן, קרנות סל, השקעות תאגידיות בביטקוין ואת'ר) לצד מאמצי רגולציה מתמשכים - חלקם מקלים (סינגפור, תאילנד, יפן, רוסיה) וחלקם מגבילים (אירלנד). נפחים משמעותיים של ביטקוין ואת'ר משנים ידיים או מצטברים על ידי גופים גדולים, מה שמסמן המשך התבגרות של השוק. במקביל, אירוע העברת ה-30 מיליון דולר על ידי קבוצת Lazarus מדגיש את אתגרי האבטחה והציות המהותיים שנותרו בתחום.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>אימוץ על ידי מוסדות פיננסיים מסורתיים (TradFi) וגופים תאגידיים מעיד על הכרה גוברת בלגיטימיות ובפוטנציאל של נכסים דיגיטליים. המעבר למניות מבוססות טוקן ומוצרים נגזרים מעיד על שיפור בנזילות ונגישות. מצד שני, הפעילות של קבוצות עברייניות והחששות הרגולטוריים (כמו באירלנד) מראים שהדרך לשוק קריפטו מוסדר ומאובטח באופן מלא עוד ארוכה. הזרמות לקרנות סל קריפטו כמו של בלקרוק מעידות על ביקוש איתן מציבור המשקיעים המעדיף גישה מוסדרת ובטוחה יותר לחשיפה לקריפטו, תוך עקיפת מסחר ישיר במטבעות.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">טכנולוגיה ו-AI</div>
+        <h2>השפעת AI ושינויים ארגוניים בענף הטכנולוגיה</h2>
+
+        <h3>מה קרה היום</h3>
+        <p>סקטור הטכנולוגיה חווה היום מספר אירועים בולטים הקשורים לבינה מלאכותית, שינויים הנהגתיים ואתגרים רגולטוריים:</p>
+        <div class="highlight-card">
+            <ul>
+                <li><strong>שיתופי פעולה וקפיצות מחיר:</strong>
+                    <ul>
+                        <li>חברת MediaTek, מתחרה של קוואלקום, קפצה ב-<strong>10%</strong> לאחר שחתמה על עסקת שבבי AI בשווי 3.5 מיליארד דולר עם Nvidia. <a class="btn-source" href="https://www.cnbc.com/2026/09/01/nvidia-deal-mediatek-shares.html">CNBC</a></li>
+                        <li>חברת OneRail משיקה פלטפורמת AI עם Nvidia כדי לסייע לקמעונאים בקבלת החלטות אספקה מהירות ויעילות יותר. <a class="btn-source" href="https://www.cnbc.com/2026/09/01/onerail-nvidia-ai-delivery-platform.html">CNBC</a></li>
+                    </ul>
+                </li>
+                <li><strong>שינויים הנהגתיים ואתגרים:</strong>
+                    <ul>
+                        <li>ג'ון טרנוס נכנס לתפקידו כמנכ"ל החדש של אפל, עם אתגרים בתחום ה-AI ומחסור בזיכרון. טים קוק פורש מתפקידו כמנכ"ל אך יישאר בתפקיד מורחב בדירקטוריון. <a class="btn-source" href="https://www.cnbc.com/2026/09/01/apple-enters-ternus-era-as-ai-challenges-and-memory-crunch-intensify.html">CNBC</a> <a class="btn-source" href="https://www.marketwatch.com/story/new-apple-ceo-john-ternuss-first-big-challenge-leading-when-his-old-boss-is-still-in-the-building-32be88f7?mod=mw_rss_topstories">MarketWatch</a></li>
+                        <li>מניות אפל (AAPL) ירדו ב-0.89% ל-316.85 דולר.</li>
+                        <li>מניות גוגל (GOOG) ירדו ב-2.18% ל-335.41 דולר.</li>
+                    </ul>
+                </li>
+                <li><strong>רגולציה וסיכונים של AI:</strong>
+                    <ul>
+                        <li>הוועדה המודיעינית של בית הנבחרים בארה"ב מזהירה מפני "סיכוני ברבור שחור" של AI. <a class="btn-source" href="https://www.cnbc.com/2026/08/31/ai-warning-house-intelligence-committee.html">CNBC</a></li>
+                        <li>נגיד הבנק המרכזי של אנגליה, אנדרו ביילי, הזהיר כי מודלים חדשים של AI מאיימים על היציבות הפיננסית העולמית. <a class="btn-source" href="https://www.cnbc.com/2026/08/31/bailey-frontier-ai-financial-stability-risk.html">CNBC</a></li>
+                        <li>דונלד טראמפ טען כי קהילות בארה"ב המתנגדות למרכזי נתונים של AI עלולות להפוך ל"נחשלות ועניות". <a class="btn-source" href="https://www.cnbc.com/2026/08/31/trump-data-centers-backlash-elections-congress.html">CNBC</a></li>
+                    </ul>
+                </li>
+                <li><strong>התפתחות בתחום ה-AI:</strong>
+                    <ul>
+                        <li>פעילות הפרסום של OpenAI מציגה צמיחה מהירה, והגיעה לקצב הכנסות שנתי של מיליארד דולר. <a class="btn-source" href="https://www.cnbc.com/2026/08/31/open-ai-chatgpt-ads-revenue.html">CNBC</a></li>
+                        <li>מיקרוסופט אאוטלוק ו-ChatGPT Work של OpenAI חוו הפרעות למשתמשים. <a class="btn-source" href="https://www.cnbc.com/2026/08/31/microsoft-outlook-and-openais-chatgpt-work-experience-outages-.html">CNBC</a></li>
+                        <li>הרובוט החדש "Microduck" של Hugging Face נמכר במהירות, ומצויד בשבב סיני. <a class="btn-source" href="https://www.cnbc.com/2026/09/01/hugging-faces-new-duck-robot-is-selling-fast-a-chinese-chip-powers-it.html">CNBC</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <p>בנוסף, ה-FTC תבעה את אמזון, בטענה שהחברה הטעתה מפרסמים באמצעות מערכת מכרזים מטעה. מניית אמזון (AMZN) ירדה ב-2.50% ל-259.77 דולר. <a class="btn-source" href="https://www.cnbc.com/2026/08/31/amazon-ftc-lawsuit-advertisers.html">CNBC</a></p>
+
+        <h3>למה זה חריג</h3>
+        <p>הקפיצה של 10% במניית MediaTek, כתוצאה מעסקת AI עם Nvidia, מצביעה על עוצמת הביקוש לפתרונות AI ועל חשיבות השותפויות בתחום. מנגד, התביעה של ה-FTC נגד אמזון, יחד עם הירידה במנייתה, מדגישה את הסיכונים הרגולטוריים ההולכים וגדלים לחברות טכנולוגיה גדולות. האזהרות של גורמים ממשלתיים ובנקאיים בכירים לגבי סיכוני AI משקפות את ההכרה הגוברת באתגרים הלא-פיננסיים של הטכנולוגיה, שעלולים להשפיע על המערכת הכלכלית כולה.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>השקעות ב-AI ממשיכות להיות מנוע צמיחה מרכזי בסקטור הטכנולוגיה, כאשר חברות כמו Nvidia נמצאות בחזית. עסקאות ושיתופי פעולה בתחום זה מביאים לעיתים קרובות לתנודות חדות במניות המעורבות. עם זאת, לצד ההזדמנויות, הבינה המלאכותית מציבה גם סיכונים חדשים (כגון אבטחת סייבר ויציבות פיננסית) שממשלות ורגולטורים מתחילים להתמודד איתם. שינויי הנהגה באפל, אחת החברות הגדולות בעולם, מהווים תמיד אירוע בעל משקל רב, והציפיות ממנכ"ל חדש בתקופה כזו, עם אתגרי AI ושרשרת אספקה, יכולות להשפיע על תמחור המניה.</p>
+        <div class="opinion-card">
+            <span class="quote-icon">"</span>
+            “Cramer: Why Tim Cook deserves more credit for his accomplishments as Apple CEO. Tim Cook's defining achievement at Apple has been building an enduring consumer franchise through 15 years of changing technology and competition.”
+            <strong>Jim Cramer, CNBC</strong>
+            <a class="btn-source" href="https://www.cnbc.com/2026/08/31/cramer-why-tim-cook-deserves-more-credit-for-his-accomplishments-as-apple-ceo.html">CNBC</a>
+        </div>
+        <p>בהקשר למניות TSLA, IREN, NOW, MU שרשמו תנודות חדות, לא זוהו ידיעות חדשות ספציפיות שהתפרסמו היום שיכלו להסביר את התנודה החריגה. ייתכן שמדובר בתגובה טכנית, מגזרים ספציפיים, או חדשות פנימיות שלא דווחו באופן רחב.</p>
+    </div>
+</body>
+</html>
