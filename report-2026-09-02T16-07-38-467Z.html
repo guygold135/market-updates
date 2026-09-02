@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק הון יומי: 2 בספטמבר 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background-primary: #0a0e17; /* Deep charcoal/navy */
+            --background-secondary: #1a202c; /* Slightly lighter for cards/sections */
+            --text-primary: #e2e8f0; /* Off-white */
+            --text-secondary: #a0aec0; /* Light grey */
+            --accent-color: #f6ad55; /* Soft gold */
+            --positive-color-text: #68d391; /* Muted green */
+            --negative-color-text: #fc8181; /* Muted red */
+            --positive-color-bg: rgba(104, 211, 145, 0.15); /* Muted green with opacity */
+            --negative-color-bg: rgba(252, 129, 129, 0.15); /* Muted red with opacity */
+            --border-color: #2d3748; /* Dark grey for borders */
+            --divider-color: #4a5568; /* Medium grey for dividers */
+            --opinion-bg: #28303f; /* Darker blue-grey for opinions */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-primary);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 20px;
+            direction: rtl; /* Right-to-left for Hebrew */
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3 {
+            color: var(--accent-color);
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--text-primary); /* Main title slightly different */
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #ffb700; /* Slightly brighter gold on hover */
+        }
+
+        .slide-container {
+            background-color: var(--background-secondary);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 90%; /* Use % for responsiveness */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-divider {
+            border-top: 1px solid var(--divider-color);
+            margin: 40px auto;
+            width: 80%;
+        }
+
+        .badge-category {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--background-primary);
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .market-item {
+            background-color: var(--background-primary);
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .market-item strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--text-primary);
+        }
+
+        .market-item .price {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .market-item .change {
+            font-size: 1.05rem;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-top: 8px;
+            display: inline-block;
+            min-width: 70px;
+        }
+
+        .change-positive {
+            color: var(--positive-color-text);
+            background-color: var(--positive-color-bg);
+        }
+
+        .change-negative {
+            color: var(--negative-color-text);
+            background-color: var(--negative-color-bg);
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--border-color);
+            color: var(--text-primary);
+            padding: 8px 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-source:hover {
+            background-color: var(--divider-color);
+        }
+
+        .highlight-card {
+            background-color: var(--background-primary);
+            border-right: 4px solid var(--accent-color);
+            padding: 15px 20px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .highlight-card p {
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-bg);
+            border-left: 4px solid var(--positive-color-text); /* Different accent for opinion */
+            padding: 15px 20px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            font-style: italic;
+            position: relative;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .opinion-card::before {
+            content: '❝'; /* Unicode for left double quotation mark */
+            font-size: 2.5rem;
+            color: var(--positive-color-text);
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            line-height: 1;
+        }
+        
+        .opinion-card p {
+            margin: 0;
+            padding-right: 40px; /* Make space for the quote icon */
+            color: var(--text-primary);
+        }
+
+        .opinion-card .author {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-align: left;
+            padding-right: 40px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            display: block; /* Ensure it takes full width when alone */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            table-layout: fixed;
+            overflow-x: auto; /* For small screens, if content overflows */
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: right;
+            white-space: normal; /* Allow text wrapping in table headers/cells */
+        }
+
+        th {
+            background-color: var(--background-primary);
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        td {
+            background-color: var(--background-secondary);
+            color: var(--text-secondary);
+        }
+
+        .price-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+
+        .price-positive {
+            background-color: var(--positive-color-bg);
+            color: var(--positive-color-text);
+        }
+
+        .price-negative {
+            background-color: var(--negative-color-bg);
+            color: var(--negative-color-text);
+        }
+
+        /* Media Queries */
+        @media(max-width:768px){
+            .market-pulse-grid{grid-template-columns:1fr 1fr;}
+            .slide-container{padding:16px; max-width: 95%;}
+            h1{font-size:1.4rem;}
+            h2{font-size:1.2rem;}
+            th, td {
+                padding: 8px;
+                font-size: 0.9rem;
+            }
+            .opinion-card::before {
+                font-size: 2rem;
+                top: 5px;
+                right: 10px;
+            }
+            .opinion-card p {
+                padding-right: 30px;
+            }
+            .opinion-card .author {
+                padding-right: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>דוח שוק הון יומי: 2 בספטמבר 2026</h1>
+
+    <div class="slide-container">
+        <div class="badge-category">תמונת מצב מהירה</div>
+        <h2>Market Pulse - מה חשוב לדעת מהשוק היום</h2>
+        <p>סקירה מהירה של תנועות משמעותיות במדדים ובמניות בולטות מרשימת המעקב והשוק הרחב. נתונים אלו משקפים שינויים חריגים או אירועים מרכזיים.</p>
+        <div class="market-pulse-grid">
+            <div class="market-item">
+                <strong>S&amp;P 500 (SPY)</strong>
+                <span class="price">765.84</span>
+                <span class="change change-positive">+0.53%</span>
+            </div>
+            <div class="market-item">
+                <strong>Nasdaq 100 (QQQ)</strong>
+                <span class="price">709.04</span>
+                <span class="change change-positive">+0.19%</span>
+            </div>
+            <div class="market-item">
+                <strong>Bitcoin (BTC/USD)</strong>
+                <span class="price">77,243.22</span>
+                <span class="change change-negative">-0.25%</span>
+            </div>
+            <div class="market-item">
+                <strong>Ethereum (ETH/USD)</strong>
+                <span class="price">2,388.31</span>
+                <span class="change change-negative">-1.25%</span>
+            </div>
+            <div class="market-item">
+                <strong>NVIDIA (NVDA)</strong>
+                <span class="price">227.50</span>
+                <span class="change change-positive">+4.63%</span>
+            </div>
+            <div class="market-item">
+                <strong>Palantir (PLTR)</strong>
+                <span class="price">166.69</span>
+                <span class="change change-negative">-7.35%</span>
+            </div>
+            <div class="market-item">
+                <strong>ServiceNow (NOW)</strong>
+                <span class="price">136.82</span>
+                <span class="change change-negative">-4.25%</span>
+            </div>
+            <div class="market-item">
+                <strong>Spotify (SPOT)</strong>
+                <span class="price">558.99</span>
+                <span class="change change-positive">+2.73%</span>
+            </div>
+             <div class="market-item">
+                <strong>IREN Limited (IREN)</strong>
+                <span class="price">37.735</span>
+                <span class="change change-positive">+2.49%</span>
+            </div>
+            <div class="market-item">
+                <strong>Robinhood (HOOD)</strong>
+                <span class="price">105.335</span>
+                <span class="change change-positive">+1.76%</span>
+            </div>
+            <div class="market-item">
+                <strong>Micron Tech (MU)</strong>
+                <span class="price">946.17</span>
+                <span class="change change-positive">+1.36%</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge-category">מאקרו וגאו-פוליטיקה</div>
+        <h2>השלכות העימות באיראן ונתוני תעסוקה</h2>
+        <h3>מה קרה היום</h3>
+        <p>השוק מגיב להסלמה צבאית באיראן, שהובילה לירידות בשערי מטבעות קריפטוגרפיים ומתכות יקרות. במקביל, דו"ח ADP הצביע על עלייה נמוכה מהצפוי בשוק העבודה האמריקאי.</p>
+        <ul>
+            <li>דיווחים על הסלמה צבאית באיראן הובילו לירידות בשוקי הקריפטו, כאשר מחירי הביטקוין (<span class="price-badge price-negative">-0.25%</span>) והאת'ריום (<span class="price-badge price-negative">-1.25%</span>) רשמו ירידות, וכן לירידה נוספת במחירי הזהב והכסף.
+                <a class="btn-source" href="https://finance.yahoo.com/personal-finance/investing/article/bitcoin-and-ethereum-prices-today-wednesday-september-2-2026-crypto-prices-tumble-as-iran-war-reignites-112639522.html">Yahoo Finance</a>,
+                <a class="btn-source" href="https://finance.yahoo.com/personal-finance/investing/article/gold-price-today-wednesday-september-2-2026-gold-slips-further-as-military-actions-escalate-in-iran-104514058.html">Yahoo Finance</a>
+            </li>
+            <li>מדדי המניות (S&amp;P 500 ו-Nasdaq) רשמו עליות קלות לאחר נתוני התעסוקה.
+                <a class="btn-source" href="https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-jobs-data-ai-stock-credo-earnings/?src=A00220&yptr=yahoo">Investors.com</a>
+            </li>
+            <li>חברת ADP דיווחה כי התעסוקה בסקטור הפרטי בארה"ב עלתה ב-38,000 משרות באוגוסט, נמוך מהצפי ומהווה את העלייה הקטנה ביותר מאז ינואר 2026.
+                <a class="btn-source" href="https://www.cnbc.com/2026/09/02/private-payrolls-rose-by-38000-in-august-fewer-than-expected-adp-reports.html">CNBC</a>
+            </li>
+            <li>יו"ר הפד, וויליאמס, שוקל העלאות ריבית, מה שמעורר דיון בשוק.
+                <a class="btn-source" href="https://www.marketwatch.com/story/feds-williams-is-opening-options-to-interest-rate-hikes-why-that-could-be-a-bad-trade-4ba6b32f?mod=mw_rss_topstories">MarketWatch</a>
+            </li>
+            <li>מחירי המשכנתאות ממשיכים לעלות, ומגיעים לרמות הגבוהות ביותר מאז יוני 2025, מה שדוחף רוכשים להלוואות מסוכנות יותר עם ריבית משתנה.
+                <a class="btn-source" href="https://www.cnbc.com/2026/09/02/demand-for-riskier-mortgages-rises-along-with-interest-rates.html">CNBC</a>
+            </li>
+            <li>מניית Chevron נמצאת בדרך לשיא חדש על רקע תוכנית הרחבה של 7 מיליארד דולר בוונצואלה.
+                <a class="btn-source" href="https://www.marketwatch.com/story/chevron-outlines-7-billion-plan-to-expand-in-venezuela-3cc5ef7c?mod=mw_rss_topstories">MarketWatch</a>
+            </li>
+        </ul>
+
+        <h3>למה זה חריג</h3>
+        <p>הסלמה גאו-פוליטית במזרח התיכון מציגה גורם סיכון משמעותי לשווקים הגלובליים, בייחוד למחירי אנרגיה וביטחון. נתוני התעסוקה הנמוכים מכלים את הציפיות להידוק אגרסיבי של הפד, אך עדיין מעידים על שוק עבודה חיובי. העליות במחירי המשכנתאות מדגישות לחץ על שוק הנדל"ן. הזינוק ב-Chevron מייצג נקודת אור חריגה בסקטור האנרגיה, על רקע המצב הגיאו-פוליטי.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>השוק מגיב לאירועים גאו-פוליטיים כגורם "מקלט בטוח", אך במקרה זה, מחירי הקריפטו והמתכות נחלשו באופן עקבי עם עליית הסיכון. נתוני התעסוקה של ADP מציעים תמונה מורכבת: מצד אחד, קצב ההתמתנות עשוי להפחית את הצורך של הפד להעלות ריבית, אך מצד שני, זה מצביע על האטה כללית. הודעת Chevron מדגישה את התלות הגוברת של שוק האנרגיה בנפט מוונצואלה לנוכח המתיחות הגאו-פוליטית והשפעתה על היצע הנפט העולמי.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge-category">AI ושבבים</div>
+        <h2>ההיבט הדומיננטי של AI: מ-Dell ועד Palantir</h2>
+        <h3>מה קרה היום</h3>
+        <p>סנטימנט חיובי חזק סביב AI ממשיך להשפיע על מניות הטכנולוגיה, עם דגש על חברות המפתחות תשתית ושירותים בתחום.</p>
+        <ul>
+            <li>מניית Dell <span class="price-badge price-positive">זינקה ב-9%</span> לאחר שחברתה הרמה את תחזיתה לשנת הכספים 2027, וצופה כי הכנסותיה משרתי AI ישולשו.
+                <a class="btn-source" href="https://www.cnbc.com/2026/09/01/dell-q2-earnings-report-2027.html">CNBC</a>,
+                <a class="btn-source" href="https://finance.yahoo.com/markets/article/dell-stock-surges-on-record-orders-for-ai-servers-205629050.html">Yahoo Finance</a>
+            </li>
+            <li>מנכ"ל Palo Alto Networks ציין כי תשתית אבטחת הסייבר הקיימת בשווי טריליון דולר אינה מוכנה לאתגרי ה-AI, על רקע דיווחי רווח טובים של החברה שבה עקפה את התחזיות בשל דרישה מוגברת ל-AI.
+                <a class="btn-source" href="https://www.cnbc.com/2026/09/01/palo-alto-ceo-says-1-trillion-of-cybersecurity-infrastructure-isnt-ready-for-ai.html">CNBC</a>,
+                <a class="btn-source" href="https://www.cnbc.com/2026/09/01/palo-alto-networks-panw-q4-2026-earnings.html">CNBC</a>
+            </li>
+            <li>מניית Palantir (PLTR) <span class="price-badge price-negative">ירדה ב-7.35%</span>, למרות שאלכס קרפ, מנכ"ל החברה, תומך בסטארט-אפ טכנולוגי חדש בתחום ההגנה באוקראינה.
+                <a class="btn-source" href="https://www.cnbc.com/2026/09/02/palantir-alex-karp-ukraine-federov-defense-startup.html">CNBC</a>
+            </li>
+            <li>מניית NVIDIA (NVDA) <span class="price-badge price-positive">+4.63%</span> עלתה על רקע העמקת השותפות שלה עם Equinix בתחום הסקת מסקנות באמצעות AI (AI inference).
+                <a class="btn-source" href="https://finance.yahoo.com/technology/ai/articles/nvidia-equinix-deepen-ai-inference-143402756.html">Yahoo Finance</a>
+            </li>
+            <li>מניית GoPro <span class="price-badge price-positive">נסקה ב-40%</span> לאחר הכרזתה על מיזוג עם חברת Photonics פרטית והתמקדות במרכזי נתונים AI.
+                <a class="btn-source" href="https://www.cnbc.com/2026/09/01/gopro-stock-ai-data-centers.html">CNBC</a>
+            </li>
+            <li>גוגל (GOOG) ניצחה בתביעה של ארה"ב שאיימה לחייב אותה למכור את טכנולוגיית הפרסום שלה.
+                <a class="btn-source" href="https://finance.yahoo.com/media-advertising/articles/google-defeats-us-bid-force-143055450.html">Yahoo Finance</a>
+            </li>
+            <li>Meta הגיעה להסדר שעשוי לפתוח את הדרך להשקות מוצרי AI חדשים.
+                <a class="btn-source" href="https://www.cnbc.com/2026/09/02/meta-18-billion-settlement-ai-products.html">CNBC</a>
+            </li>
+             <li>חברת SB Energy של Softbank הגישה בקשה להנפקה ראשונית ומצהירה על תלות משמעותית ב-OpenAI.
+                <a class="btn-source" href="https://www.cnbc.com/2026/09/01/sb-energy-ipo-softbank-open-ai-nvidia.html">CNBC</a>
+            </li>
+        </ul>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M1GAJCXZX0S74T4ZCR5AKST8/hype-treasury.png" alt="AI Servers" />
+        <a class="btn-source" href="https://cointelegraph.com/news/hyperliquid-strategies-equity-facility-2-5-billion">Cointelegraph (תמונה המדגימה תשתית)</a>
+
+        <h3>למה זה חריג</h3>
+        <p>הזינוק של Dell ב-9% וההערכות המשופרות שלה ממחישות את ההתחממות המהירה בשוק שרתי ה-AI, עם שינוי דרמטי בתחזיות בתוך חצי שנה. קריאתו של מנכ"ל Palo Alto Networks מדגישה פער קריטי במוכנות הסייבר לאיומי AI, מה שמייצר הן סיכון והן הזדמנות עצומה לחברות אבטחת סייבר מתאימות. הירידה החדה ב-Palantir מעידה על רגישות המשקיעים לחדשות ספציפיות, גם כשהן קשורות להרחבת פעילות.</p>
+        <p>הזינוק של GoPro מדגים את "הטרנד החם" של חברות המנסות למצב עצמן כקשורות ל-AI, גם אם פעילותן המסורתית שונה בתכלית. האירועים סביב Meta, Google, ו-SB Energy מחזקים את התפיסה כי AI הוא כיום הגורם המניע העיקרי בצמיחת הטכנולוגיה, הן במוצרים חדשים והן בתשתיות.</p>
+        
+        <h3>הלוגיקה</h3>
+        <p>הביקוש העולה לשרתי AI מוביל לצמיחה חסרת תקדים בחברות כמו Dell ו-NVIDIA. ככל שהטכנולוגיה מתפתחת, כך גוברים גם איומי הסייבר, מה שהופך את אבטחת המידע לתחום קריטי בהשקעות AI. ההתאמות האסטרטגיות של חברות כמו GoPro, שמצטרפות ל"בהלת הזהב" של ה-AI, מראות את הלחץ והפוטנציאל שטמון בשוק זה. הפעולות המשפטיות נגד גוגל והסדרים של מטא משפיעים על האקלים הרגולטורי והתחרותי בתחום, מה שיכול להשפיע על פיתוח מוצרי AI עתידיים.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge-category">קריפטו</div>
+        <h2>רגולציה, אימוץ ודעות בולטות בשוק הקריפטו</h2>
+        <h3>מה קרה היום</h3>
+        <p>שוק הקריפטו ממשיך להתמודד עם אתגרי רגולציה לצד חדשות על אימוץ מוסדי ופיתוחים טכנולוגיים.</p>
+        <ul>
+            <li>חברות כמו Grayscale, a16z וה-CCI קוראות ל-SEC להימנע מהגבלות גורפות על קרנות סל (ETFs) חדשות בתחום הקריפטו.
+                <a class="btn-source" href="https://cointelegraph.com/news/crypto-industry-sec-novel-etf-restrictions">Cointelegraph</a>
+            </li>
+            <li>ה-SEC הציעה עדכון מקיף לכללים ישנים בנוגע לסוכני העברה, עם התייחסות למערכות רישום מבוססות בלוקצ'יין וניירות ערך מפוצלים (tokenized securities).
+                <a class="btn-source" href="https://cointelegraph.com/news/sec-proposes-transfer-agent-overhaul-as-securities-move-onchain">Cointelegraph</a>
+            </li>
+            <li>מדינות ה-G20, בנשיאות ארה"ב, ציינו כי נכסים דיגיטליים יכולים לתמוך ב"צמיחה כלכלית רחבה" וקראו לשיפור בעסקאות חוצות גבולות.
+                <a class="btn-source" href="https://cointelegraph.com/news/g20-members-clear-pathways-digital-asset-innovation">Cointelegraph</a>
+            </li>
+            <li>תאילנד אימצה את "כלל הנסיעות" של הקריפטו, המחייב מפעילים של נכסים דיגיטליים לוודא שליטה בארנקים בשמירה עצמית ולשמור נתוני עסקאות למשך חמש שנים.
+                <a class="btn-source" href="https://cointelegraph.com/news/thailand-crypto-travel-rule-self-custodial-wallet-checks">Cointelegraph</a>
+            </li>
+            <li>חברת Hashkey הצטרפה לקבוצת העבודה של ה-DTCC על חדשנות בטוקניזציה, כספקית שירותי הקריפטו האסייתית הראשונה, יחד עם למעלה מ-100 מוסדות פיננסיים.
+                <a class="btn-source" href="https://cointelegraph.com/news/hashkey-dtcc-first-asian-crypto-service-provider">Cointelegraph</a>
+            </li>
+            <li>מוסדות פיננסיים גדולים ובהם BofA, Citi, Goldman Sachs, הם בין 21 מוסדות המתכננים השקת Stablecoin שיתמקד בתחילה בדולר ארה"ב, ולאחר מכן במטבעות G7 נוספים.
+                <a class="btn-source" href="https://cointelegraph.com/news/21-financial-institutions-g7-stablecoin-venture">Cointelegraph</a>
+            </li>
+            <li>חברת Remixpoint היפנית מכרה אלטקוינים (ETH, SOL, XRP, DOGE) בשווי 5.5 מיליון דולר ורשמה רווח נקי של 736 אלף דולר, כשהיא מתמקדת בביטקוין בלבד עם 1,506 BTC.
+                <a class="btn-source" href="https://cointelegraph.com/news/remixpoint-dumps-altcoins-1506-btc-sole-crypto-bet">Cointelegraph</a>
+            </li>
+            <li>Binance הרחיבה את פעילותה הפיננסית המסורתית (TradFi) עם הוספת אופציות על 1,000 מניות וקרנות סל אמריקאיות.
+                <a class="btn-source" href="https://cointelegraph.com/news/binance-adds-options-on-1000-us-stocks-and-etfs-in-tradfi-expansion">Cointelegraph</a>
+            </li>
+            <li>חברת Ethena השיקה אפליקציית תשלומים מבוססת USDe המציעה תשואה של עד 6% לשנה.
+                <a class="btn-source" href="https://cointelegraph.com/news/ethena-loses-usde-powered-money-app-across-48-countries?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+            </li>
+        </ul>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M1H85V728VXBM9KYCSEJAD01/g20-discuss-crypto-desk-table-meeting-hand-paper-people2.jpg" alt="G20 members discuss crypto" />
+        <a class="btn-source" href="https://cointelegraph.com/news/g20-members-clear-pathways-digital-asset-innovation">Cointelegraph</a>
+
+        <h3>למה זה חריג</h3>
+        <p>ההכרה של ה-G20 בפוטנציאל של נכסים דיגיטליים מסמלת שינוי מהותי ביחס של גופים רשמיים, מה שיכול להאיץ אימוץ רחב יותר. במקביל, הצעת ה-SEC לעדכן את כללי סוכני ההעברה (Transfer Agent rules) לוקחת בחשבון לראשונה טכנולוגיות בלוקצ'יין, מה שמעיד על הבשלה רגולטורית משמעותית. הצטרפות Hashkey ו-21 מוסדות פיננסיים לפרויקטי טוקניזציה וסטייבלקוינים מראה על אימוץ מוסדי הולך וגובר של נכסים דיגיטליים, המהווה אבן דרך קריטית עבור הלגיטימציה של התעשייה.</p>
+        <p>החלטתה של Remixpoint למכור אלטקוינים ולהתמקד בביטקוין בלבד היא דוגמה למגמה בשוק לריכוז סיכונים במטבעות עם נזילות ובטחון גבוהים יותר בתקופות אי-ודאות. מנגד, Binance ממשיכה לגשר בין עולמות ה-TradFi והקריפטו.</p>
+        
+        <h3>הלוגיקה</h3>
+        <p>התפתחויות רגולטוריות חיוביות, כמו הכרת ה-G20 והתאמת כללי ה-SEC, יוצרות סביבה בטוחה יותר להשקעה ופיתוח בתחום הקריפטו. אימוץ נרחב של סטייבלקוינים על ידי מוסדות פיננסיים גדולים יכול להגדיל באופן משמעותי את הנזילות והשימושיות של נכסים דיגיטליים, תוך שילובם במערכות פיננסיות מסורתיות. פעולות של חברות כמו Remixpoint משקפות את הפוטנציאל הגלום בביטקוין כ"זהב דיגיטלי" ואת הזהירות סביב אלטקוינים פחות מבוססים. ההתרחבות של Binance מספקת נתיבים חדשים למשקיעים להשתתף בשוק הקריפטו.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge-category">דעות וסיכונים</div>
+        <h2>קולות מהשוק: ביטקוין, את'ריום וסיכוני רגולציה</h2>
+        <h3>מה קרה היום</h3>
+        <p>אנליסטים וגורמים בתעשייה מביעים דעות על עתיד הביטקוין והאת'ריום, ועל סיכונים רגולטוריים.</p>
+        <ul>
+            <li>ארתור הייז צופה שביטקוין יגיע למיליון דולר עד 2030, אך מציין כי הוא קונה את'ריום בשל פוטנציאל לעלייה של "פי 3 עד 5 די במהירות".
+                <a class="btn-source" href="https://cointelegraph.com/magazine/btc-will-hit-1m-by-2030-but-arthur-hayes-is-buying-eth-instead?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+            </li>
+            <li>קרנות סל ספוט של ביטקוין בארה"ב רשמו את החודש הטוב ביותר שלהן ב-2026, כשהביטקוין עלה בכ-25% באוגוסט. קרנות סל את'ריום עברו למאזן חיובי YTD עם 732 מיליון דולר, וקרנות סל XRP הגיעו ל-502 מיליון דולר.
+                <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-etf-best-month-2026-btc-up-25-august">Cointelegraph</a>
+            </li>
+            <li>פרוטוקול DeFi בשם Full Sail בפלטפורמת Sui עומד להיסגר לאחר תקרית אבטחה שבה נגנבו כ-91,000 דולר.
+                <a class="btn-source" href="https://cointelegraph.com/news/full-sail-sui-wind-down-switchboard-incident">Cointelegraph</a>
+            </li>
+            <li>סוכנות פשע בבריטניה הקפיאה 13.5 מיליון דולר בחקירה נגד Sorare, נותנת חסות קריפטו לפרמייר ליג.
+                <a class="btn-source" href="https://cointelegraph.com/news/uk-crime-agency-froze-premier-league-crypto-partner-sorare">Cointelegraph</a>
+            </li>
+            <li>משקיעים תאילנדים תובעים את Tether על הקפאת 42 מיליון דולר במסגרת מקרה הונאה בסך 61 מיליון דולר ("pig butchering scam").
+                <a class="btn-source" href="https://cointelegraph.com/news/thai-sue-tether-freezing-61m-pig-butchering-case">Cointelegraph</a>
+            </li>
+        </ul>
+        <div class="opinion-card">
+            <p>Arthur Hayes says Bitcoin is going to grind higher from here, but Ethereum is his number one pick due to its potential to increase “3x to 5x pretty quickly.”</p>
+            <span class="author">— Arthur Hayes, Cointelegraph</span>
+        </div>
+        <a class="btn-source" href="https://cointelegraph.com/magazine/btc-will-hit-1m-by-2030-but-arthur-hayes-is-buying-eth-instead?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+
+        <h3>למה זה חריג</h3>
+        <p>התחזית האופטימית של ארתור הייז לביטקוין, יחד עם ההעדפה שלו לאת'ריום לטווח הקצר, מספקת תובנה משמעותית לגבי אסטרטגיות השקעה של דמויות מפתח בתעשייה, המשקפת שוק עם פוטנציאל לטווח ארוך אך גם הזדמנויות לטווח קצר. הביצועים החזקים של קרנות הסל של ביטקוין, את'ריום ו-XRP באוגוסט מצביעים על עניין מחודש וזרימת הון חיובית לתחום, בניגוד לירידות הקצרות של היום בעקבות אירועים גאו-פוליטיים. מקרי ההונאה (Full Sail) והפעולות הרגולטוריות (UK, Tether) מדגישים את הסיכונים והאתגרים המתמשכים בשוק הקריפטו, וחשובות להערכת סיכונים.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>העדפת האת'ריום על ידי הייז, למרות אמונתו בביטקוין, נובעת כנראה מהפוטנציאל של פרוטוקולי DeFi ו-NFTs שמבוססים על את'ריום, שעשויים להניב תשואות גבוהות יותר בתקופות צמיחה. הצמיחה של קרנות הסל מבשרת על אימוץ רחב יותר של נכסים דיגיטליים על ידי משקיעים מוסדיים וקמעונאיים המעדיפים מסגרות רגולטוריות ונוחות מסחר. עם זאת, אירועי אבטחה וחקירות רגולטוריות מהווים תזכורת מתמדת לסיכונים הטמונים בשוק הצעיר הזה, הדורש תשומת לב לביטחון וליציבות.</p>
+    </div>
+
+</body>
+</html>
