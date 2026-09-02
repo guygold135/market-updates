@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק הון יומי - 2 בספטמבר 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0a0e17;
+            --text-color: #e0e6f0;
+            --accent-color: #1a73e8; /* Bloomberg blue */
+            --header-color: #ffffff;
+            --divider-color: #2e3a47;
+            --card-bg: #111a2c;
+            --green-light: #28a745;
+            --red-light: #dc3545;
+            --green-subtle-bg: rgba(40, 167, 69, 0.1);
+            --red-subtle-bg: rgba(220, 53, 69, 0.1);
+            --opinion-card-bg: #1d2538;
+            --opinion-icon-color: #8c8c8c;
+            --badge-bg: #334054;
+            --badge-text: #e0e6f0;
+            --source-btn-bg: #334054;
+            --source-btn-hover-bg: #44556c;
+            --source-btn-text: #e0e6f0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .report-header {
+            background-color: var(--card-bg);
+            padding: 24px;
+            text-align: center;
+            border-bottom: 1px solid var(--divider-color);
+        }
+
+        h1 {
+            color: var(--header-color);
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            color: var(--header-color);
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-top: 24px;
+            margin-bottom: 16px;
+            border-bottom: 1px solid var(--divider-color);
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 16px;
+            margin-bottom: 8px;
+        }
+
+        p {
+            margin-bottom: 12px;
+        }
+
+        .slide-container {
+            max-width: 900px;
+            margin: 24px auto;
+            background-color: var(--card-bg);
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            overflow: hidden; /* Prevent overflow issues with floats/images */
+        }
+
+        .section-divider {
+            height: 1px;
+            background-color: var(--divider-color);
+            margin: 40px auto;
+            max-width: 800px;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+            overflow-x: auto; /* For small screens with many cards */
+        }
+
+        .market-card {
+            background-color: #1e2637;
+            border-radius: 6px;
+            padding: 16px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-width: 150px;
+        }
+
+        .market-card strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+            color: var(--header-color);
+        }
+
+        .market-card .value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .market-card .change {
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background-color: var(--green-subtle-bg);
+            color: var(--green-light);
+        }
+
+        .market-card .change.negative {
+            background-color: var(--red-subtle-bg);
+            color: var(--red-light);
+        }
+
+        .market-card .change.positive {
+            background-color: var(--green-subtle-bg);
+            color: var(--green-light);
+        }
+
+        .highlight-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--accent-color);
+            border-radius: 6px;
+            padding: 16px;
+            margin-bottom: 16px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-card-bg);
+            border-right: 4px solid var(--accent-color);
+            padding: 16px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            font-style: italic;
+            position: relative;
+            color: var(--text-color);
+        }
+
+        .opinion-card::before {
+            content: "\201C"; /* Left double quotation mark */
+            font-size: 3em;
+            color: var(--opinion-icon-color);
+            position: absolute;
+            top: 0px;
+            right: 10px;
+            opacity: 0.3;
+            line-height: 1;
+        }
+
+        .opinion-card .author {
+            display: block;
+            margin-top: 10px;
+            font-weight: 600;
+            color: var(--accent-color);
+            font-style: normal;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--source-btn-bg);
+            color: var(--source-btn-text);
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: background-color 0.2s ease-in-out;
+            margin-left: 8px;
+        }
+
+        .btn-source:hover {
+            background-color: var(--source-btn-hover-bg);
+        }
+
+        .content-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 6px;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--badge-bg);
+            color: var(--badge-text);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            .slide-container {
+                padding: 16px;
+                margin: 16px auto;
+            }
+            .market-pulse-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .market-card {
+                padding: 12px;
+            }
+            .market-card .value {
+                font-size: 1.1rem;
+            }
+            .market-card .change {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            h2 {
+                font-size: 1.3rem;
+            }
+            .market-pulse-grid {
+                grid-template-columns: 1fr;
+            }
+            .badge {
+                font-size: 0.75rem;
+                padding: 4px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="report-header">
+        <h1>דוח שוק הון יומי תמציתי</h1>
+        <p>2 בספטמבר 2026</p>
+    </div>
+
+    <div class="slide-container">
+        <h2>תמונת מצב מהירה (Market Pulse)</h2>
+        <div class="market-pulse-grid">
+            <div class="market-card">
+                <strong>S&P 500 (SPY)</strong>
+                <span class="value">765.84</span>
+                <span class="change positive">+0.53%</span>
+            </div>
+            <div class="market-card">
+                <strong>Nasdaq 100 (QQQ)</strong>
+                <span class="value">709.04</span>
+                <span class="change positive">+0.19%</span>
+            </div>
+            <div class="market-card">
+                <strong>NVIDIA (NVDA)</strong>
+                <span class="value">227.50</span>
+                <span class="change positive">+4.62%</span>
+            </div>
+            <div class="market-card">
+                <strong>Palantir (PLTR)</strong>
+                <span class="value">166.69</span>
+                <span class="change negative">-7.35%</span>
+            </div>
+            <div class="market-card">
+                <strong>ServiceNow (NOW)</strong>
+                <span class="value">136.82</span>
+                <span class="change negative">-4.25%</span>
+            </div>
+            <div class="market-card">
+                <strong>Dell Technologies</strong>
+                <span class="value">מגמת עליה</span>
+                <span class="change positive">+9% (מחדשות)</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">AI & חומרה</div>
+        <h2>חומרת AI: זינוק של Dell ו-NVIDIA בצל הביקוש הגובר</h2>
+        <p>
+            חברת Dell Technologies זינקה ב-9% לאחר שעדכנה כלפי מעלה את תחזית ההכנסות שלה לשנת הכספים 2027, וצופה כעת כי הכנסותיה משרתי AI ישולשו.
+            מהלך זה משקף ביקוש חזק במיוחד בתחום ה-AI וממצב את Dell כמדד קריטי להשקעות בתשתית AI רחבה.
+            גם NVIDIA הציגה ביצועים חזקים עם עלייה של 4.62%, תוך שהיא ממשיכה ליהנות מהביקוש המתמשך לחומרה הקשורה לבינה מלאכותית.
+        </p>
+        <a class="btn-source" href="https://www.cnbc.com/2026/09/01/dell-q2-earnings-report-2027.html" target="_blank">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/09/02/dell-is-now-the-most-important-stock-in-the-market-heres-why-.html" target="_blank">CNBC</a>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">קריפטו ורגולציה</div>
+        <h2>שוק הקריפטו: צעדים מוסדיים ומאמצים לבהירות רגולטורית</h2>
+        <p>
+            חברות ה-G20, תחת נשיאות ארה"ב, הכירו בפוטנציאל של נכסים דיגיטליים לתמוך ב"צמיחה כלכלית רחבה" וקראו לשיפור בעסקאות חוצות גבולות, מה שמסמן קבלה הולכת וגוברת למיינסטרים.
+            במקביל, 21 מוסדות פיננסיים, כולל BofA, סיטי וגולדמן זאקס, מתכננים השקת Stablecoin של מדינות ה-G7, שיתחיל ב-Stablecoin צמוד לדולר ארה"ב, מה שמחזק את אמון המוסדות בפיננסים מבוססי טוקן.
+            תעשיית הקריפטו דחקה ברשות ניירות ערך (SEC) להימנע מהגבלות גורפות על קרנות סל (ETFs) חדשניות, ובמקום זאת לדגול בבחינות מותאמות אישית לקידום חדשנות.
+        </p>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M1H85V728VXBM9KYCSEJAD01/g20-discuss-crypto-desk-table-meeting-hand-paper-people2.jpg" alt="G20 members discuss digital asset innovation" class="content-image" />
+        <a class="btn-source" href="https://cointelegraph.com/news/g20-members-clear-pathways-digital-asset-innovation?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound" target="_blank">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/21-financial-institutions-g7-stablecoin-venture?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound" target="_blank">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/crypto-industry-sec-novel-etf-restrictions?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound" target="_blank">Cointelegraph</a>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">מאקרו כלכלה</div>
+        <h2>אינדיקטורים מאקרו כלכליים: שוק עבודה מתקרר וריביות עולות</h2>
+        <p>
+            נתוני השכר במגזר הפרטי באוגוסט הראו עלייה של 38,000 משרות בלבד, נמוך משמעותית מהצפי והרווח הקטן ביותר מאז ינואר, מה שמעיד על האטה רחבה יותר בשוק העבודה.
+            במקביל, שיעורי המשכנתאות עלו לרמתם הגבוהה ביותר מאז יוני 2025, כתוצאה מהסלמת המתיחות באיראן, ודחפו חלק מהרוכשים ללקיחת הלוואות בריבית משתנה מסוכנות יותר במטרה לחסוך בעלויות.
+            התפתחויות אלו מצביעות על כלכלה מתקררת ותנאים פיננסיים הדוקים יותר.
+        </p>
+        <a class="btn-source" href="https://www.cnbc.com/2026/09/02/private-payrolls-rose-by-38000-in-august-fewer-than-expected-adp-reports.html" target="_blank">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/09/02/demand-for-riskier-mortgages-rises-along-with-interest-rates.html" target="_blank">CNBC</a>
+        <a class="btn-source" href="https://finance.yahoo.com/personal-finance/mortgages/article/mortgage-and-refinance-rates-today-wednesday-september-2-2026-rates-up-double-digits-as-iran-war-reescalates-100000964.html" target="_blank">Yahoo Finance</a>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">מניות טכנולוגיה</div>
+        <h2>צניחה חדה ב-Palantir על רקע מיזם חדש של המנכ"ל</h2>
+        <p>
+            מניית Palantir Technologies (PLTR) חוותה ירידה משמעותית של 7.35%, מה שהופך אותה לאחת החריגות הבולטות של היום.
+            ירידה זו התרחשה במקביל לחדשות כי המנכ"ל אלכס קרפ תומך בסטארט-אפ חדש בתחום טכנולוגיות הביטחון, שהושק על ידי שר ההגנה האוקראיני המודח, במטרה למנף את ניסיון המלחמה לפיתוחים טכנולוגיים.
+            בעוד שהשפעת הידיעה על ירידת המניה אינה מצוינת במפורש כלילית שלילית, הירידה החדה דורשת תשומת לב ממשקיעים העוקבים אחר ביצועי החברה וכיווניה האסטרטגיים.
+        </p>
+        <a class="btn-source" href="https://www.cnbc.com/2026/09/02/palantir-alex-karp-ukraine-federov-defense-startup.html" target="_blank">CNBC</a>
+    </div>
+
+</body>
+</html>
