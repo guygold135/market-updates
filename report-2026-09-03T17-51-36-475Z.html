@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי: 3 בספטמבר 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0e17; /* Deep charcoal/navy */
+            --text-light: #e0e0e0; /* Off-white */
+            --accent-color: #ffd700; /* Gold */
+            --accent-soft: rgba(255, 215, 0, 0.1);
+            --positive-green: #2ecc71; /* Muted green */
+            --positive-green-bg: rgba(46, 204, 113, 0.1);
+            --negative-red: #e74c3c; /* Muted red */
+            --negative-red-bg: rgba(231, 76, 60, 0.1);
+            --card-bg: #1a1e27;
+            --divider-color: #333;
+            --border-radius: 8px;
+            --padding-base: 24px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            direction: rtl; /* Right-to-left for Hebrew */
+            text-align: right; /* Align text to the right for Hebrew */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--padding-base);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--accent-color);
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--divider-color);
+            margin-bottom: var(--padding-base);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .slide-container {
+            background-color: var(--card-bg);
+            padding: var(--padding-base);
+            margin-bottom: var(--padding-base);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--accent-soft);
+            color: var(--accent-color);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            direction: rtl;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .market-card {
+            background-color: var(--bg-dark);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--divider-color);
+        }
+
+        .market-card .symbol {
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: var(--text-light);
+        }
+
+        .market-card .price {
+            font-size: 1.1em;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+
+        .market-card .change {
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            font-size: 0.9em;
+        }
+
+        .change.positive {
+            color: var(--positive-green);
+            background-color: var(--positive-green-bg);
+        }
+
+        .change.negative {
+            color: var(--negative-red);
+            background-color: var(--negative-red-bg);
+        }
+
+        .highlight-card {
+            background-color: var(--accent-soft);
+            border-right: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 1rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+        }
+
+        .opinion-card {
+            background-color: rgba(255, 215, 0, 0.05); /* Lighter accent background */
+            border-right: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 1rem;
+            border-radius: var(--border-radius);
+            position: relative;
+            font-style: italic;
+        }
+        .opinion-card::before {
+            content: '“';
+            font-size: 2em;
+            color: var(--accent-color);
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            line-height: 1;
+        }
+        .opinion-card .author {
+            display: block;
+            margin-top: 10px;
+            font-weight: 600;
+            font-style: normal;
+            color: var(--accent-color);
+        }
+
+        .news-item {
+            margin-bottom: 1rem;
+        }
+
+        .image-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-dark);
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 10px;
+            margin-left: 10px; /* Adjust for RTL */
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .btn-source:hover {
+            background-color: #e0b800; /* Slightly darker gold */
+            text-decoration: none;
+        }
+
+        .section-divider {
+            border-bottom: 1px solid var(--divider-color);
+            margin: 40px 0;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+        }
+
+        /* Utility for text alignment within RTL context */
+        .ltr-text {
+            direction: ltr;
+            text-align: left;
+            display: inline-block; /* To allow applying ltr */
+        }
+        
+        /* Responsive adjustments */
+        @media(max-width:768px){
+            .market-pulse-grid{grid-template-columns:1fr 1fr;}
+            .slide-container{padding:16px;}
+            h1{font-size:1.4rem;}
+            h2{font-size:1.2rem;}
+            body{font-size:0.9rem;}
+            .badge{font-size:0.7em; padding:4px 8px;}
+            .market-card .symbol{font-size:1em;}
+            .market-card .price{font-size:0.9em;}
+            .market-card .change{font-size:0.8em;}
+            .btn-source{padding:6px 10px; font-size:0.8em; margin-left:5px;}
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>דוח שוק יומי: 3 בספטמבר 2026</h1>
+
+        <div class="slide-container">
+            <span class="badge">תמונת מצב מהירה</span>
+            <h2>Market Pulse</h2>
+            <div class="market-pulse-grid">
+                <!-- SPY -->
+                <div class="market-card">
+                    <div class="symbol">SPY</div>
+                    <div class="price">772.95</div>
+                    <div class="change positive ltr-text">+1.02%</div>
+                </div>
+                <!-- QQQ -->
+                <div class="market-card">
+                    <div class="symbol">QQQ</div>
+                    <div class="price">717.56</div>
+                    <div class="change positive ltr-text">+1.17%</div>
+                </div>
+                <!-- HOOD -->
+                <div class="market-card">
+                    <div class="symbol">HOOD</div>
+                    <div class="price">124.41</div>
+                    <div class="change positive ltr-text">+16.28%</div>
+                </div>
+                <!-- TSLA -->
+                <div class="market-card">
+                    <div class="symbol">TSLA</div>
+                    <div class="price">382.51</div>
+                    <div class="change positive ltr-text">+7.14%</div>
+                </div>
+                <!-- PLTR -->
+                <div class="market-card">
+                    <div class="symbol">PLTR</div>
+                    <div class="price">182.87</div>
+                    <div class="change positive ltr-text">+7.91%</div>
+                </div>
+                <!-- NOW -->
+                <div class="market-card">
+                    <div class="symbol">NOW</div>
+                    <div class="price">144.52</div>
+                    <div class="change positive ltr-text">+5.71%</div>
+                </div>
+                <!-- AVGO -->
+                <div class="market-card">
+                    <div class="symbol">AVGO</div>
+                    <div class="price">354.03</div>
+                    <div class="change negative ltr-text">-3.60%</div>
+                </div>
+                <!-- BTC/USD -->
+                <div class="market-card">
+                    <div class="symbol">BTC/USD</div>
+                    <div class="price">81,162.24</div>
+                    <div class="change positive ltr-text">+4.94%</div>
+                </div>
+                <!-- ETH/USD -->
+                <div class="market-card">
+                    <div class="symbol">ETH/USD</div>
+                    <div class="price">2,505.36</div>
+                    <div class="change positive ltr-text">+4.74%</div>
+                </div>
+                <!-- SNOW (from news, no live data) -->
+                 <div class="market-card">
+                    <div class="symbol">SNOW</div>
+                    <div class="price">דיווח עלייה</div>
+                    <div class="change positive ltr-text">~+22%</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">AI ושבבים</span>
+            <h2>סקטור ה-AI והשבבים ממשיך ללהוט עם רכישות ודיווחים</h2>
+            <h3>רכישת Hugging Face על ידי Nvidia</h3>
+            <p>חברת Nvidia <span class="highlight-card">הסכימה לרכוש את Hugging Face תמורת 12.93 מיליארד דולר</span>, מהלך המרחיב את נוכחותה בתחום תוכנות ה-AI ונותן לה גישה לפלטפורמה המשמשת יותר מ-18 מיליון מפתחים לשיתוף ופריסת מודלי AI. המניה עלתה היום ב-<span class="ltr-text change positive">+2.22%</span>.</p>
+            <div class="news-item">
+                <div class="image-container">
+                    <img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M1KKFHFD5J5RD9BJBAS2SSBF/hi-how-to-train-an-ai-bot-to-day-trade-crypto2.jpg" alt="Nvidia Hugging Face Acquisition" />
+                </div>
+                <p>מנכ"ל Nvidia, ג'נסן הואנג, ציין כי הרכישה תאפשר לחברה "להרחיב את הגישה ל-AI למפתחים ולמוסדות ברחבי העולם". המשא ומתן החל מספר שבועות לפני ההכרזה, כאשר Hugging Face פנתה ל-Nvidia.</p>
+                <div class="opinion-card">
+                    The acquisition will give Nvidia access to “one of the most important parcels of real estate in the AI market” and promote open-source technology.
+                    <span class="author">MarketWatch</span>
+                </div>
+                <p>
+                    <a class="btn-source" href="https://cointelegraph.com/news/nvidia-buys-hugging-face-12-9-billion-ai-software?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph by Helen Partz</a>
+                    <a class="btn-source" href="https://www.marketwatch.com/story/heres-what-nvidias-13-billion-hugging-face-deal-means-for-the-world-of-ai-360e9fd1?mod=mw_rss_topstories">MarketWatch by Emily Bary</a>
+                    <a class="btn-source" href="https://www.cnbc.com/2026/09/03/nvidia-agrees-to-buy-hugging-face-for-almost-13-billion-ai-expansion.html">CNBC</a>
+                </p>
+            </div>
+            <h3>Snowflake מזנקת על רקע תוצאות חיוביות ומומנטום AI</h3>
+            <p>מניית Snowflake <span class="highlight-card">זינקה ב-22%</span> לאחר דיווח על תוצאות חזקות ואימוץ סייען קידוד מבוסס בינה מלאכותית, המניע צמיחה משמעותית במכירות. החברה מדווחת על צמיחה מהירה, בין היתר בזכות סייען ה-AI לכתיבת קוד.</p>
+            <p>
+                <a class="btn-source" href="https://www.marketwatch.com/story/shares-in-snowflake-are-surging-heres-what-wall-street-analysts-are-saying-0b6343c0?mod=mw_rss_topstories">MarketWatch by Nora Redmond</a>
+                <a class="btn-source" href="https://www.cnbc.com/2026/09/02/snowflake-snow-q2-earnings-report-2027.html">CNBC</a>
+                <a class="btn-source" href="https://www.youtube.com/watch?v=wU5dtiCu-UE">Micha.Stocks</a>
+                <a class="btn-source" href="https://www.youtube.com/shorts/oZENIu7YZdw">The Compound</a>
+            </p>
+            <h3>דיווחים נוספים בסקטור:</h3>
+            <ul>
+                <li><strong>Broadcom (AVGO):</strong> החברה דיווחה על <span class="highlight-card">תחזית רווחים חזקה לשנת הכספים 2028</span>, אך סיפקה תחזית הכנסות מאכזבת לרבעון הנוכחי, מה שהביא לירידה של <span class="ltr-text change negative">-3.60%</span> במניה.
+                    <a class="btn-source" href="https://www.cnbc.com/2026/09/02/broadcom-avgo-q3-earnings-report-2026.html">CNBC</a>
+                    <a class="btn-source" href="https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-treasury-yields-broadcom-stock-avgo/?src=A00220&yptr=yahoo">Investors.com</a>
+                    <a class="btn-source" href="https://www.youtube.com/watch?v=wU5dtiCu-UE">Micha.Stocks</a>
+                </li>
+                <li><strong>Google (GOOG):</strong> החברה פותחת את ספטמבר עם <span class="highlight-card">מומנטום מחודש בתחום ה-AI</span>, לאחר רצף ההפסדים החודשי הארוך ביותר שלה למעלה מעשור, בסיוע מודלי AI חדשים. המניה עלתה <span class="ltr-text change positive">+1.59%</span>.
+                    <a class="btn-source" href="https://www.cnbc.com/2026/09/03/google-starts-september-with-ai-momentum-after-long-losing-streak.html">CNBC</a>
+                </li>
+                <li><strong>ייצוא שבבים מדרום קוריאה:</strong> ייצוא המוליכים למחצה של דרום קוריאה <span class="highlight-card">הוכפל פי שלושה בחישוב שנה-על-שנה</span>, אך עולות חששות לגבי סיכוני האטה עתידיים לכלכלה הקוריאנית.
+                    <a class="btn-source" href="https://www.cnbc.com/2026/09/03/south-korea-semiconductor-exports-surging-concerns.html">CNBC</a>
+                </li>
+                <li><strong>מרכזי נתונים AI וסיכוני סין:</strong> קיים <span class="highlight-card">חשש מסיכונים נסתרים הקשורים לסין</span> בבום מרכזי הנתונים של ה-AI באמריקה, כאשר ארה"ב מסתמכת על ציוד מחובר לסין.
+                    <a class="btn-source" href="https://www.cnbc.com/2026/09/03/us-ai-data-centers-china-supply-chain.html">CNBC</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">תעשיית הרכב האוטונומי</span>
+            <h2>טסלה מאיצה לקראת השקת ה-Cybercab</h2>
+            <h3>הצגה רשמית וציפיות גבוהות</h3>
+            <p>מניית טסלה (TSLA) <span class="highlight-card">נסקה ב-<span class="ltr-text change positive">+7.14%</span></span> היום, כאשר המשקיעים מתכוננים לאירוע השקת רכב ה-Cybercab האוטונומי של החברה, שצפוי להתקיים היום. אילון מאסק טיזר למעריצים עם ההודעה שברכב <span class="highlight-card">"אין הגה ואין דוושות"</span>, מה שמצביע על רכב אוטונומי לחלוטין. הטסלה חשפה לראשונה את ה-Cybercab לפני כשנתיים, והציפייה לפרטים נוספים גדלה.</p>
+            <div class="news-item">
+                <p>חברות נוספות בתחום הרכב האוטונומי מתרחבות: Waymo ו-Zoox <span class="highlight-card">מרחיבות את פעילותן לשווקים נוספים בארה"ב</span>, מה שמחמם את התחרות בתחום הרובוטקסי. Waymo מביאה נסיעות ללא נהג לשלוש ערים נוספות, ואמזון מתכננת להתחיל בדיקות בשני שווקים נוספים בארה"ב.</p>
+                <p>
+                    <a class="btn-source" href="https://www.marketwatch.com/story/teslas-stock-is-rallying-as-investors-prepare-for-a-storm-of-cybercabs-c738ac98?mod=mw_rss_topstories">MarketWatch by William Gavin</a>
+                    <a class="btn-source" href="https://www.cnbc.com/2026/09/03/tesla-teases-no-steering-wheel-no-pedals-ahead-of-cybercab-update.html">CNBC</a>
+                    <a class="btn-source" href="https://finance.yahoo.com/markets/stocks/articles/tesla-finally-launch-robotaxi-fleet-172754679.html">Yahoo Finance</a>
+                    <a class="btn-source" href="https://www.youtube.com/watch?v=DtndT2AbrjA">Micha.Stocks</a>
+                    <a class="btn-source" href="https://www.cnbc.com/2026/09/01/waymo-and-zoox-expand-into-more-us-markets-as-robotaxi-race-heats-up.html">CNBC (Waymo/Zoox)</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">קריפטו</span>
+            <h2>התפתחויות מרכזיות בשוק הקריפטו: עליות מחירים ואימוץ מוסדי</h2>
+            <h3>ביטקוין ואת'ריום בעלייה</h3>
+            <p>שוק הקריפטו מראה סימני התאוששות, כאשר <span class="highlight-card">הביטקוין (BTC) עבר את רף ה-80,000 דולר</span> ונסחר כעת במחיר של <span class="ltr-text">81,162.24$ (+4.94%)</span>. האת'ריום (ETH) גם הוא בעלייה של <span class="ltr-text">+4.74%</span> ונסחר ב-<span class="ltr-text">2,505.36$</span>. אנליסטים רבים מציינים כי "חורף הקריפטו קרוב לסיומו".</p>
+            <div class="news-item">
+                <div class="opinion-card">
+                    'Crypto winter is close to being over'
+                    <span class="author">Yahoo Finance</span>
+                </div>
+                <p>
+                    <a class="btn-source" href="https://finance.yahoo.com/markets/article/bitcoin-tops-80000-crypto-winter-is-close-to-being-over-173224980.html">Yahoo Finance</a>
+                    <a class="btn-source" href="https://finance.yahoo.com/personal-finance/investing/article/bitcoin-and-ethereum-prices-today-thursday-september-3-2026-crypto-prices-lift-this-morning-despite-oil-costs-gaining-steam-113526770.html">Yahoo Finance</a>
+                </p>
+            </div>
+            <h3>זרימת קרנות ואימוץ מוסדי</h3>
+            <p><span class="highlight-card">הביטקוין חווה התאוששות בזרימת כספים לקרנות סל (ETFs)</span>, בעוד שקרנות את'ריום ו-XRP סיימו רצף של זרימות חיוביות. קרנות את'ריום רשמו יציאות של 48 מיליון דולר לאחר שמשכו 1.62 מיליארד דולר במהלך 12 ימי מסחר.</p>
+            <div class="news-item">
+                <div class="image-container">
+                    <img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M1K0R10249Q6B17ZZ511GTM6/hi-ethereum-etfs-navigating-tracking-difference-vs-tracking-error.jpg" alt="Crypto ETFs" />
+                </div>
+                <p>בנוסף, בנק Standard Chartered <span class="highlight-card">השיק מסחר ספוט בביטקוין ובאת'ריום באיחוד האמירויות</span>, מה שהופך אותו לבנק הגלובלי הגדול הראשון שמציע גישה מוסדית למסחר כזה באזור. פייוורד (החברה האם של Kraken) <span class="highlight-card">שיתפה פעולה עם SoFi</span> להשקת stablecoin ורשת סליקה 24/7, ו-Bybit Pay <span class="highlight-card">שילבה עם Mesh</span> כדי להרחיב את תשלומי הקריפטו.</p>
+                <p>
+                    <a class="btn-source" href="https://cointelegraph.com/markets/eth-xrp-etf-inflow-streaks-end-bitcoin-funds-rebound?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph by Helen Partz</a>
+                    <a class="btn-source" href="https://cointelegraph.com/news/standard-chartered-bitcoin-ether-trading-uae?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph by Zoltan Vardai</a>
+                    <a class="btn-source" href="https://cointelegraph.com/news/kraken-parent-payward-partners-with-sofi-stablecoin-247-settlement?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph by Nate Kostar</a>
+                    <a class="btn-source" href="https://cointelegraph.com/news/bybit-pay-integrates-with-mesh-to-expand-crypto-payments?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph by Nate Kostar</a>
+                </p>
+            </div>
+            <h3>רגולציה ואבטחה</h3>
+            <ul>
+                <li><strong>אוסטרליה:</strong> הרשות לניירות ערך באוסטרליה (ASIC) <span class="highlight-card">מזהירה חברות קריפטו ללא רישיון מפני קנסות</span> של עד 10% מהמחזור השנתי, עם התקרבות תוקף הקלה אכיפה זמנית בסוף ספטמבר.
+                    <a class="btn-source" href="https://cointelegraph.com/news/australia-warns-unlicensed-crypto-firms-of-fines-up-to-10-of-annual-turnover?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph by Ezra Reguerra</a>
+                </li>
+                <li><strong>קנדה:</strong> Coinbase <span class="highlight-card">השיקה נגזרים קריפטוגרפיים מפוקחים בקנדה</span>, המציעה ללקוחות כשירים חוזים עתידיים עם מינוף של עד פי 10.
+                    <a class="btn-source" href="https://cointelegraph.com/news/coinbase-launches-regulated-crypto-derivatives-in-canada?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph by Nate Kostar</a>
+                </li>
+                <li><strong>וויאומינג:</strong> המדינה <span class="highlight-card">מוסיפה אימות עתודות Chainlink</span> לאסימון היציב שהיא מנפיקה.
+                    <a class="btn-source" href="https://cointelegraph.com/news/wyoming-chainlink-onchain-reserves-of-state-issued-stable-token?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph by Nate Kostar</a>
+                </li>
+                <li><strong>שיתוף פעולה נגד נוזקות:</strong> גורמים רשמיים בארה"ב <span class="highlight-card">משתפים פעולה עם CrowdStrike</span> כדי להילחם בנוזקות שגונבות קריפטו, שהפנו כ-150,000 דולר במהלך שמונה השנים האחרונות.
+                    <a class="btn-source" href="https://cointelegraph.com/news/us-officials-crowdstrike-malware-stealing-crypto?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph by Turner Wright</a>
+                </li>
+                <li><strong>מייסד BitMEX ותרומות פוליטיות:</strong> מייסד שותף של בורסת BitMEX תרם <span class="highlight-card">75% מסך התרומות של מפלגת Reform UK</span> ברבעון השני של 2026.
+                    <a class="btn-source" href="https://cointelegraph.com/news/bitmex-cofounder-ben-delo-reform-uk-donations?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph by Turner Wright</a>
+                </li>
+                <li><strong>Hyperscale Data מפסיקה כריית ביטקוין:</strong> חברת Hyperscale Data <span class="highlight-card">מפסיקה את פעילות כריית הביטקוין במישיגן</span>, כאשר אחזקותיה בביטקוין צנחו ב-79% ל-215 BTC. החברה מפנה את ההון שלה למרכז הנתונים שלה בתחום ה-AI.
+                    <a class="btn-source" href="https://cointelegraph.com/news/hyperscale-data-ends-michigan-bitcoin-mining-ai?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph by Ezra Reguerra</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">מאקרו כלכלה</span>
+            <h2>התפתחויות מאקרו כלכליות וחדשות נוספות</h2>
+            <h3>הבנק המרכזי ושיעורי הריבית</h3>
+            <p>נגיד הפדרל ריזרב, וולר, <span class="highlight-card">אותת על תמיכתו בהשארת שיעורי הריבית יציבים בפגישה בספטמבר</span>. הצהרתו מנוגדת להצהרותיו של היו"ר קווין וורש בשבוע שעבר, כשוולר הביע אמון במגמות האינפלציה הנוכחיות. החדשות הובילו לעליות בשווקים וירידה בתשואות האג"ח.</p>
+            <p>
+                <a class="btn-source" href="https://www.cnbc.com/2026/09/03/fed-governor-waller-indicates-he-will-support-holding-rates-steady-at-september-meeting.html">CNBC</a>
+                <a class="btn-source" href="https://finance.yahoo.com/markets/stocks/articles/stocks-rally-yields-retreat-waller-162644511.html">Yahoo Finance</a>
+            </p>
+            <h3>עליית ריביות המשכנתא</h3>
+            <p><span class="highlight-card">ריביות המשכנתא הגיעו כבר ל-7%</span>, רמה שלא נראתה למעלה משנה. זהו חדשות רעות נוספות לרוכשי דירות, כאשר שיעורי המשכנתא עולים לשיא חדש לשנה.</p>
+            <p>
+                <a class="btn-source" href="https://www.marketwatch.com/story/7-mortgage-rates-are-already-here-some-buyers-mortgage-experts-say-c51a7e04?mod=mw_rss_topstories">MarketWatch by Aarthi Swaminathan</a>
+                <a class="btn-source" href="https://finance.yahoo.com/personal-finance/mortgages/article/mortgage-rates-hit-highest-level-in-over-a-year-mortgage-and-refinance-interest-rates-today-thursday-september-3-2026-100000627.html">Yahoo Finance</a>
+            </p>
+            <h3>השפעות אקלים על הכלכלה</h3>
+            <p>האו"ם מזהיר מפני תופעת <span class="highlight-card">"אל ניניו מוגדל"</span> שצפויה לפגוע בכלכלה העולמית ובשווקים, עם סיכונים גבוהים של שיטפונות, בצורת וחום קיצוני שיימשכו עד פברואר 2027.</p>
+            <p>
+                <a class="btn-source" href="https://www.cnbc.com/2026/09/03/supersized-el-nino-un-economy.html">CNBC</a>
+            </p>
+            <h3>עדכונים נוספים:</h3>
+            <ul>
+                <li><strong>מחירי נפט:</strong> נפט גולמי מתקרב ל-<span class="highlight-card">97 דולר לחבית</span>, ומחירי הסולר בשיא מאז 2022.
+                    <a class="btn-source" href="https://finance.yahoo.com/energy/articles/crude-oil-nears-97-barrel-173149836.html">Yahoo Finance</a>
+                </li>
+                <li><strong>Uber:</strong> החברה <span class="highlight-card">תקצץ 10% מכוח העבודה שלה</span> בניסיון "לפעול בפשטות ובמהירות רבה יותר".
+                    <a class="btn-source" href="https://www.cnbc.com/2026/09/02/uber-to-cut-10percent-of-workforce-in-bid-to-move-simpler-and-faster.html">CNBC</a>
+                </li>
+                <li><strong>Robinhood (HOOD):</strong> המניה <span class="highlight-card">פרצה בעוצמה עם <span class="ltr-text change positive">+16.28%</span></span>, כאשר אנליסטים מביעים שוריות לגבי התחזית שלה ושוקי החיזוי.
+                    <a class="btn-source" href="https://www.investors.com/research/ibd-stock-of-the-day/robinhood-stock-breakout-ibd-stock-of-the-day-analyst-upgrades-price-target-event-contracts-options-crypto/?src=A00220&yptr=yahoo">Investors.com</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</body>
+</html>
