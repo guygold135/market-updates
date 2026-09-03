@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק הון יומי: 3 בספטמבר 2026 - גרסה מקוצרת</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0e17;
+            --text-light: #e0e6f0;
+            --accent-color: #00bcd4; /* Steel blue / Cyan */
+            --header-color: #f0f8ff; /* Alice Blue */
+            --divider-color: rgba(255, 255, 255, 0.1);
+            --positive-gain: rgba(0, 150, 0, 0.2); /* Muted green with opacity */
+            --negative-loss: rgba(255, 0, 0, 0.2); /* Muted red with opacity */
+            --positive-text: #69f0ae; /* Lighter green for text */
+            --negative-text: #ff8a80; /* Lighter red for text */
+            --card-bg: #1a202c;
+            --opinion-card-bg: #2d3748;
+            --badge-bg: #374151;
+            --badge-text: #cbd5e0;
+            --source-btn-bg: #4a5568;
+            --source-btn-text: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .slide-container {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            overflow: hidden; /* Prevent content from spilling */
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: var(--header-color);
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--divider-color);
+            padding-bottom: 10px;
+            font-weight: 600;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            color: var(--header-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .market-item {
+            background-color: #2d3748;
+            padding: 15px;
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-end; /* Align text to the right */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        }
+
+        .market-item .name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--header-color);
+            margin-bottom: 8px;
+            text-align: right;
+            width: 100%;
+        }
+
+        .market-item .price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-align: right;
+            width: 100%;
+        }
+
+        .market-item .change {
+            font-size: 1rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-align: right;
+            width: 100%;
+        }
+
+        .positive {
+            background-color: var(--positive-gain);
+            color: var(--positive-text);
+        }
+
+        .negative {
+            background-color: var(--negative-loss);
+            color: var(--negative-text);
+        }
+
+        .section-divider {
+            border-top: 1px solid var(--divider-color);
+            margin: 40px 0;
+            padding-top: 20px;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--badge-bg);
+            color: var(--badge-text);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            margin-left: 10px; /* Adjust for RTL */
+        }
+
+        .highlight-card {
+            background-color: var(--card-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-card-bg);
+            border: 1px solid var(--accent-color);
+            padding: 15px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            position: relative;
+            font-style: italic;
+            color: var(--text-light);
+        }
+
+        .opinion-card::before {
+            content: "🗣️";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .opinion-card .author {
+            display: block;
+            margin-top: 10px;
+            font-weight: 600;
+            color: var(--accent-color);
+            text-align: left; /* Keep author name left-aligned */
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--source-btn-bg);
+            color: var(--source-btn-text);
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s ease;
+            margin-top: 10px;
+            margin-left: 10px; /* Adjust for RTL */
+        }
+
+        .btn-source:hover {
+            background-color: #6b7280;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .market-pulse-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .slide-container {
+                padding: 16px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.4rem;
+            }
+            .market-item .name {
+                font-size: 1rem;
+            }
+            .market-item .price {
+                font-size: 1.1rem;
+            }
+            .market-item .change {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .market-pulse-grid {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+            h2 {
+                font-size: 1.2rem;
+            }
+            .badge {
+                padding: 4px 8px;
+                font-size: 0.8rem;
+            }
+            .btn-source {
+                padding: 6px 10px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>דוח שוק הון יומי - גרסה מקוצרת</h1>
+
+        <div class="slide-container">
+            <h2>תמונת מצב מהירה: Market Pulse</h2>
+            <div class="market-pulse-grid">
+                <div class="market-item">
+                    <div class="name">S&P 500 (SPY)</div>
+                    <div class="price">772.95</div>
+                    <div class="change positive">+1.02%</div>
+                </div>
+                <div class="market-item">
+                    <div class="name">Nasdaq 100 (QQQ)</div>
+                    <div class="price">717.56</div>
+                    <div class="change positive">+1.17%</div>
+                </div>
+                <div class="market-item">
+                    <div class="name">ביטקוין (BTC/USD)</div>
+                    <div class="price">81,162.24</div>
+                    <div class="change positive">+4.94%</div>
+                </div>
+                <div class="market-item">
+                    <div class="name">את'ריום (ETH/USD)</div>
+                    <div class="price">2,505.36</div>
+                    <div class="change positive">+4.74%</div>
+                </div>
+                <div class="market-item">
+                    <div class="name">טסלה (TSLA)</div>
+                    <div class="price">382.51</div>
+                    <div class="change positive">+7.14%</div>
+                </div>
+                <div class="market-item">
+                    <div class="name">רובינהוד (HOOD)</div>
+                    <div class="price">124.41</div>
+                    <div class="change positive">+16.28%</div>
+                </div>
+                <div class="market-item">
+                    <div class="name">פלנטיר (PLTR)</div>
+                    <div class="price">182.87</div>
+                    <div class="change positive">+7.91%</div>
+                </div>
+                <div class="market-item">
+                    <div class="name">ברודקום (AVGO)</div>
+                    <div class="price">354.03</div>
+                    <div class="change negative">-3.60%</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">AI ושבבים</span>
+            <h2>Nvidia רוכשת את Hugging Face בהשקעה של 12.9 מיליארד דולר</h2>
+            <p>חברת Nvidia הודיעה על רכישת Hugging Face תמורת 12.93 מיליארד דולר, במהלך משמעותי שמטרתו להרחיב את נוכחותה בתחום תוכנות ה-AI. רכישה זו תאפשר ל-Nvidia להגיע לפלטפורמה המשמשת למעלה מ-18 מיליון מפתחים לשיתוף ופריסת מודלי AI, ולחזק את מעמדה כמובילה אסטרטגית מעבר לחומרה.</p>
+            <p>המהלך מדגיש את האסטרטגיה של Nvidia להשפיע באופן עמוק יותר על שכבת התוכנה של הבינה המלאכותית, ונותן לה גישה ל"אחד מנכסי הנדל"ן החשובים ביותר בשוק ה-AI", כפי שצוין ב-MarketWatch. מנכ"ל Nvidia, ג'נסן הואנג, ציין כי הרכישה תרחיב את הגישה ל-AI עבור מפתחים ומוסדות ברחבי העולם.</p>
+            <a class="btn-source" href="https://cointelegraph.com/news/nvidia-buys-hugging-face-12-9-billion-ai-software" target="_blank">Cointelegraph</a>
+            <a class="btn-source" href="https://www.marketwatch.com/story/heres-what-nvidias-13-billion-hugging-face-deal-means-for-the-world-of-ai-360e9fd1" target="_blank">MarketWatch</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/09/03/nvidia-agrees-to-buy-hugging-face-for-almost-13-billion-ai-expansion.html" target="_blank">CNBC</a>
+            <img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M1KKFHFD5J5RD9BJBAS2SSBF/hi-how-to-train-an-ai-bot-to-day-trade-crypto2.jpg" alt="Nvidia Hugging Face Acquisition">
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">תוכנה וענן</span>
+            <h2>מניית Snowflake מזנקת לאחר דוחות חזקים ואימוץ AI</h2>
+            <p>מניית Snowflake זינקה בשיעור של 22% בעקבות דוחות רווחים חזקים ואימוץ גובר של עוזר הקידוד מבוסס ה-AI שלה, כפי שדיווחו CNBC ו-MarketWatch. עלייה חדה זו מדגישה את הביצועים המרשימים של החברה ואת ההשפעה החיובית המיידית של שילוב בינה מלאכותית על מכירות תוכנה ארגונית ועל סנטימנט המשקיעים.</p>
+            <a class="btn-source" href="https://www.marketwatch.com/story/shares-in-snowflake-are-surging-heres-what-wall-street-analysts-are-saying-0b6343c0" target="_blank">MarketWatch</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/09/02/snowflake-snow-q2-earnings-report-2027.html" target="_blank">CNBC</a>
+            <a class="btn-source" href="https://www.youtube.com/watch?v=wU5dtiCu-UE" target="_blank">Micha.Stocks</a>
+            <a class="btn-source" href="https://www.youtube.com/shorts/oZENIu7YZdw" target="_blank">The Compound</a>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">רכב אוטונומי</span>
+            <h2>הייפ סביב השקת ה-Cybercab של טסלה</h2>
+            <p>מניית טסלה (TSLA) רשמה עלייה של 7.14% היום, על רקע טיזר לאירוע השקה של רכב ה-"Cybercab" האוטונומי שלה, שתואר כבעל "ללא הגה וללא דוושות". הציפייה סביב פלטפורמת הרובוטקסיים העתידית, שהוצגה לראשונה לפני כשנתיים, ממשיכה לרגש את המשקיעים ומבססת את הפוטנציאל של טסלה בשוק הרכב האוטונומי.</p>
+            <a class="btn-source" href="https://www.marketwatch.com/story/teslas-stock-is-rallying-as-investors-prepare-for-a-storm-of-cybercabs-c738ac98" target="_blank">MarketWatch</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/09/03/tesla-teases-no-steering-wheel-no-pedals-ahead-of-cybercab-update.html" target="_blank">CNBC</a>
+            <a class="btn-source" href="https://finance.yahoo.com/markets/stocks/articles/tesla-finally-launch-robotaxi-fleet-172754679.html" target="_blank">Yahoo Finance</a>
+            <img src="https://i.ytimg.com/vi/DtndT2AbrjA/maxresdefault.jpg" alt="Tesla Cybercab Teaser">
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">פינטק</span>
+            <h2>מניית Robinhood מזנקת ב-16.28%</h2>
+            <p>מניית Robinhood (HOOD) זינקה היום ב-16.28% ונסגרה במחיר של 124.41 דולר, כשאנליסטים מביעים סנטימנט שורי לגבי תחזיותיה ושוקי החיזוי שלה. זינוק משמעותי זה משקף אמון מחודש מצד המשקיעים באסטרטגיית הצמיחה של החברה, ובמיוחד בהתרחבותה לשירותים פיננסיים חדשניים, כולל שוקי חיזוי עליהם היא קיבלה תשומת לב חיובית.</p>
+            <a class="btn-source" href="https://www.investors.com/research/ibd-stock-of-the-day/robinhood-stock-breakout-ibd-stock-of-the-day-analyst-upgrades-price-target-event-contracts-options-crypto/?src=A00220&yptr=yahoo" target="_blank">Investors.com</a>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">קריפטו</span>
+            <h2>הביטקוין חצה את רף 80,000 דולר ביום של תנופה בשוק הקריפטו</h2>
+            <p>הביטקוין (BTC/USD) חצה היום את רף 80,000 דולר ונסגר ב-81,162.24 דולר, עם עלייה של 4.94%, ואילו האת'ריום (ETH/USD) רשם עלייה של 4.74% למחיר של 2,505.36 דולר. תנופה זו מגיעה במקביל להשקת מסחר בביטקוין ואת'ריום נקודתיים באיחוד האמירויות על ידי בנקים גדולים כמו Standard Chartered, מה שמצביע על לגיטימציה גוברת ואימוץ מוסדי הולך ומתרחב.</p>
+            <a class="btn-source" href="https://finance.yahoo.com/markets/article/bitcoin-tops-80000-crypto-winter-is-close-to-being-over-173224980.html" target="_blank">Yahoo Finance</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/standard-chartered-bitcoin-ether-trading-uae" target="_blank">Cointelegraph</a>
+            <a class="btn-source" href="https://finance.yahoo.com/personal-finance/investing/article/bitcoin-and-ethereum-prices-today-thursday-september-3-2026-crypto-prices-lift-this-morning-despite-oil-costs-gaining-steam-113526770.html" target="_blank">Yahoo Finance</a>
+            <img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M1KANTKWQNSCNEMJXC5A98C8/hi-crypto-assets-regulation-in-dubai-is-cryptocurrency-regulated-in-uae.jpg" alt="Bitcoin and Ethereum in UAE">
+        </div>
+    </div>
+</body>
+</html>
