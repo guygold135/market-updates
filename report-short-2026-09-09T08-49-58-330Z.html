@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי אסטרטגי</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --text-color: #e2e8f0;
+            --accent-color: #007bff; /* Steel blue / subtle accent */
+            --header-color: #ffffff;
+            --divider-color: #2d3748;
+            --card-bg: #1a202c;
+            --positive-color: rgba(34, 197, 94, 0.7); /* Muted green */
+            --negative-color: rgba(239, 68, 68, 0.7); /* Muted red */
+            --neutral-color: rgba(107, 114, 128, 0.7); /* Muted gray */
+            --badge-bg: #2d3748;
+            --badge-text: #a0aec0;
+            --source-btn-bg: #2d3748;
+            --source-btn-text: #a0aec0;
+            --opinion-card-bg: #2b303b; /* Slightly different background for opinions */
+            --opinion-icon-color: #ecc94b; /* Gold for quote icon */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            direction: rtl; /* Ensure right-to-left for Hebrew */
+            text-align: right; /* Align text to the right */
+        }
+
+        h1, h2, h3 {
+            color: var(--header-color);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin-top: 25px;
+            color: var(--accent-color);
+        }
+
+        p {
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .slide-container {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow-x: auto; /* For tables/wide content */
+        }
+
+        .section-divider {
+            border-top: 1px dashed var(--divider-color);
+            margin: 40px 0;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--badge-bg);
+            color: var(--badge-text);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .market-card {
+            background-color: #242b3a;
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .market-card strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--header-color);
+        }
+
+        .market-change {
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .positive {
+            background-color: var(--positive-color);
+            color: #fff;
+        }
+
+        .negative {
+            background-color: var(--negative-color);
+            color: #fff;
+        }
+
+        .neutral {
+            background-color: var(--neutral-color);
+            color: #fff;
+        }
+
+        .highlight-card {
+            background-color: #242b3a;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 6px;
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-card-bg);
+            border-right: 4px solid var(--opinion-icon-color); /* Opinion highlight */
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 6px;
+            position: relative;
+            font-style: italic;
+        }
+
+        .opinion-card::before {
+            content: "\201C"; /* Left double quotation mark */
+            font-family: serif;
+            font-size: 3rem;
+            color: var(--opinion-icon-color);
+            position: absolute;
+            top: 10px;
+            right: 15px; /* Adjust for RTL */
+            opacity: 0.3;
+            line-height: 1;
+        }
+
+        .opinion-card .speaker {
+            display: block;
+            font-weight: 600;
+            margin-top: 10px;
+            text-align: left; /* Name aligned left */
+            color: var(--opinion-icon-color);
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--source-btn-bg);
+            color: var(--source-btn-text);
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
+            margin-left: 10px; /* Space between multiple buttons */
+        }
+
+        .btn-source:hover {
+            background-color: var(--accent-color);
+            color: var(--header-color);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 6px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.4rem;
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            .slide-container {
+                padding: 16px;
+            }
+            .market-pulse-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .btn-source {
+                margin-top: 10px;
+                padding: 6px 10px;
+                font-size: 0.8rem;
+            }
+            .opinion-card::before {
+                font-size: 2rem;
+                top: 5px;
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>דוח שוק יומי אסטרטגי</h1>
+
+    <div class="slide-container">
+        <span class="badge">תמונת מצב מהירה</span>
+        <h2>דופק השוק: תנועות בולטות</h2>
+        <p>סקירה מהירה של המדדים המובילים ומניות שחוו תנודתיות משמעותית היום:</p>
+        <div class="market-pulse-grid">
+            <div class="market-card">
+                <strong>S&amp;P 500 (SPY)</strong>
+                <span class="market-change negative">-0.55%</span>
+            </div>
+            <div class="market-card">
+                <strong>Nasdaq 100 (QQQ)</strong>
+                <span class="market-change neutral">-0.08%</span>
+            </div>
+            <div class="market-card">
+                <strong>Coherent (COHR)</strong>
+                <span class="market-change positive">+7.10%</span>
+            </div>
+            <div class="market-card">
+                <strong>Nano Nuclear Energy (NNE)</strong>
+                <span class="market-change positive">+9.20%</span>
+            </div>
+            <div class="market-card">
+                <strong>CoreWeave (CRWV)</strong>
+                <span class="market-change positive">+11.72%</span>
+            </div>
+            <div class="market-card">
+                <strong>AMD</strong>
+                <span class="market-change positive">+5.90%</span>
+            </div>
+            <div class="market-card">
+                <strong>Robinhood (HOOD)</strong>
+                <span class="market-change negative">-3.91%</span>
+            </div>
+            <div class="market-card">
+                <strong>Bitcoin (BTC/USD)</strong>
+                <span class="market-change positive">+1.44%</span>
+            </div>
+            <div class="market-card">
+                <strong>Ethereum (ETH/USD)</strong>
+                <span class="market-change positive">+1.32%</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">AI ושבבים</span>
+        <h2>השקעות ענק ב-AI ותנודת מניות השבבים</h2>
+        <p>Google הודיעה כי תשקיע סכום שיא של <strong style="color:var(--accent-color);">$15.1 מיליארד</strong> בתשתית AI בפינלנד, מה שמסמן את ההשקעה היחידה הגדולה ביותר של ענקית הטכנולוגיה באירופה. במקביל, שוק השבבים רשם תנודתיות משמעותית עם חדשות על עסקאות אסטרטגיות.</p>
+        <p>Qualcomm הבטיחה עסקה משמעותית עם Amazon במסגרת הסכם תשתית AI, ובכך מחזקת את כניסתה לתחום מרכזי נתונים AI. מהלך זה, יחד עם התחייבויות של TSMC ו-Samsung לאמץ את כלי ייצור השבבים המתקדמים ביותר של ASML, תרם לעלייה במניות סקטור השבבים, עם AMD שזינקה ב-<span class="market-change positive">+5.90%</span>, ו-Coherent (COHR) שעלתה ב-<span class="market-change positive">+7.10%</span>, CoreWeave (CRWV) ב-<span class="market-change positive">+11.72%</span> ו-Nano Nuclear Energy (NNE) שעלתה ב-<span class="market-change positive">+9.20%</span>.</p>
+        <p style="font-size: 0.9em; margin-top: 20px;">
+            <a class="btn-source" href="https://www.cnbc.com/2026/09/09/google-finland-ai-infrastructure-investment.html">CNBC (Google)</a>
+            <a class="btn-source" href="https://www.marketwatch.com/story/qualcomms-stock-climbs-as-amazon-chip-deal-offers-investors-some-much-needed-good-news-5b6a95ca?mod=mw_rss_topstories">MarketWatch (Qualcomm)</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/09/08/qualcomm-amazon-data-center-infrastructure-deal.html">CNBC (Qualcomm)</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/09/08/ai-infrastructure-stocks-rally-on-deal-from-qualcomm-and-corning.html">CNBC (AI Rally)</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/09/08/tsmc-samsung-asml-high-na-euv-machine-ai-chips.html">CNBC (TSMC/ASML)</a>
+        </p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">מאקרו וסחר</span>
+        <h2>העלאת ריבית צפויה ב-ECB והסלמת מלחמת הסחר ארה"ב-קנדה</h2>
+        <p>הבנק המרכזי האירופי (ECB) צפוי כמעט בוודאות להעלות את הריבית היום, כחלק מהמאמצים לבלום את האינפלציה, כאשר ישנה מחלוקת בשוקי האג"ח לגבי שיעור הריבית הסופי במחזור ההידוק הנוכחי.</p>
+        <p>במקביל, מלחמת הסחר בין ארה"ב לקנדה התחזקה משמעותית. קנדה הגיבה להטלת מכסים אמריקאים בהטלת מכסי גמול בשווי <strong style="color:var(--accent-color);">27.6 מיליארד דולר קנדי</strong>, ושיעורי המכס על יבוא פלדה ואלומיניום אמריקאיים הוכפלו ל-<strong style="color:var(--accent-color);">50%</strong>. ידיעה זו כבר גרמה לירידת מניות Bombardier הקנדית, מה שמדגיש את ההשפעה המיידית של הסלמה במתחי הסחר על חברות ספציפיות.</p>
+        <p style="font-size: 0.9em; margin-top: 20px;">
+            <a class="btn-source" href="https://www.marketwatch.com/story/the-ecb-is-virtually-certain-to-hike-rates-thursday-here-is-why-wall-street-is-bracing-for-what-comes-next-7ec46af0?mod=mw_rss_topstories">MarketWatch (ECB)</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/09/08/canada-retaliatory-tariffs.html">CNBC (Canada Tariffs)</a>
+            <a class="btn-source" href="https://www.marketwatch.com/story/bombardiers-stock-drops-as-the-u-s-canada-trade-war-intensifies-heres-what-trump-may-target-next-b389065e?mod=mw_rss_topstories">MarketWatch (Bombardier)</a>
+        </p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">קריפטו ורגולציה</span>
+        <h2>התקדמות רגולטורית ושימוש גלובלי במטבעות קריפטו</h2>
+        <p>חברת Block של ג'ק דורסי הגישה בקשה לרישיון בנק נאמנות בארה"ב, צעד שיאפשר לה להציע משמורת מוסדרת על נכסים דיגיטליים כמו ביטקוין ו-Stablecoins. במקביל, Gemini קיבלה רישיון תשלום בסינגפור לשירותי קריפטו ללא מגבלות נפח סטנדרטיות, מה שמעיד על הרחבת אימוץ המטבעות הדיגיטליים במערכות פיננסיות מבוססות.</p>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M22GDYQR3DVCE1PJVZEV5JJ4/hi-who-is-jack-dorsey-profile-and-biography.jpg" alt="Jack Dorsey's Block" />
+        <img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M22A0GM1G22S8VPZXWGBQS1G/hi-time-to-switch-license-singapore.jpg" alt="Gemini Singapore" />
+        <p>במישור הגיאופוליטי, איראן הקלה את כללי המטבע שלה במטרה לעקוף סנקציות אמריקאיות באמצעות קריפטו, וזאת על ידי התרת יצואנים לממן יבוא עם רווחים מחו"ל מבלי למכור תחילה מטבע חוץ בשערים רשמיים. בנוסף, חברת Circle הודיעה על רכישת Tazapay כדי להרחיב את תשלומי ה-USDC שלה חוצי גבולות, וחברת Bybit השיקה מכשירים נגזרים (perpetuals) למטבעות פיאט עיקריים עם מינוף עד פי 100, מה שמדגיש את ההתמזגות בין TradFi לקריפטו.</p>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M22ESE8ZYFYS2R1YN4CJ0FMK/hi-iran-launching-a-currency.jpg" alt="Iran Crypto" />
+        <p style="font-size: 0.9em; margin-top: 20px;">
+            <a class="btn-source" href="https://cointelegraph.com/news/block-us-trust-bank-charter-bitcoin-stablecoin-custody?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Block)</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/gemini-singapore-mpi-license-crypto-services?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Gemini)</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/iran-central-bank-encourages-crypto-evade-sanctions?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Iran)</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/circle-tazapay-usdc-cross-border-payments?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Circle)</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/bybit-expands-tradfi-push-with-100x-fx-perpetuals?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Bybit)</a>
+        </p>
+    </div>
+
+</body>
+</html>
