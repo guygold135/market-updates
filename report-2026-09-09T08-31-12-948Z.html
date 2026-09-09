@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי: תמונת מצב אסטרטגית</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0e17;
+            --card-bg: #1a1f2c;
+            --text-light: #e0e0e0;
+            --text-medium: #a0a8b4;
+            --accent-gold: #ffd700;
+            --accent-steel-blue: #4682b4;
+            --positive-green-bg: rgba(44, 110, 73, 0.2); /* Muted dark green with transparency */
+            --positive-green-text: #60d080; /* Brighter green for text */
+            --negative-red-bg: rgba(143, 45, 86, 0.2); /* Muted dark red with transparency */
+            --negative-red-text: #f06c6c; /* Brighter red for text */
+            --neutral-bg: rgba(100, 100, 100, 0.1);
+            --divider-color: #2a2f3d;
+            --quote-border: #ffd700;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            margin: 0;
+            padding: 20px 0;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-steel-blue);
+            margin-top: 30px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--divider-color);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-weight: 400;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        a {
+            color: var(--accent-gold);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: #ffeb99;
+        }
+
+        .slide-container {
+            max-width: 900px;
+            width: 90%;
+            margin: 20px auto;
+            padding: 24px;
+            border-radius: 8px;
+            background-color: var(--card-bg);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            box-sizing: border-box; /* Ensures padding doesn't increase total width */
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 4px;
+            background-color: var(--accent-steel-blue);
+            color: var(--text-light);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .market-pulse-item {
+            background-color: #2a2f3d;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .market-pulse-item strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--text-light);
+        }
+
+        .market-pulse-item .change-value {
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .positive-change {
+            background-color: var(--positive-green-bg);
+            color: var(--positive-green-text);
+        }
+
+        .negative-change {
+            background-color: var(--negative-red-bg);
+            color: var(--negative-red-text);
+        }
+
+        .neutral-change {
+            background-color: var(--neutral-bg);
+            color: var(--text-medium);
+        }
+
+        .section-divider {
+            border-top: 1px solid var(--divider-color);
+            margin: 40px 0;
+            opacity: 0.7;
+        }
+
+        .highlight-card {
+            background-color: var(--accent-steel-blue);
+            padding: 18px;
+            border-radius: 8px;
+            margin: 20px 0;
+            color: var(--bg-dark); /* Dark text on light blue/steel */
+            font-weight: 600;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .highlight-card p {
+            color: var(--bg-dark);
+            margin-bottom: 0;
+        }
+
+        .opinion-card {
+            background-color: #2c2f3e;
+            padding: 20px 20px 20px 25px; /* Adjust padding for border-left */
+            border-radius: 8px;
+            margin: 20px 0;
+            border-right: 4px solid var(--quote-border); /* Changed to right for RTL */
+            position: relative;
+            font-style: italic;
+            color: var(--text-medium);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .opinion-card::before {
+            content: "\201C"; /* Left double quotation mark */
+            position: absolute;
+            right: 10px; /* Position to the right for RTL */
+            top: 10px;
+            font-size: 3em;
+            color: var(--quote-border);
+            opacity: 0.3;
+            line-height: 1;
+        }
+        
+        .opinion-card p {
+            font-style: italic;
+            color: var(--text-medium);
+            margin-bottom: 5px;
+        }
+
+        .opinion-card .author {
+            display: block;
+            text-align: left;
+            margin-top: 10px;
+            font-style: normal;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .btn-source {
+            display: inline-block;
+            padding: 8px 15px;
+            margin-top: 15px;
+            background-color: var(--accent-gold);
+            color: var(--bg-dark);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .btn-source:hover {
+            background-color: #ffeb99;
+            transform: translateY(-1px);
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            display: block; /* Ensure image takes its own line */
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        table {
+            width: 100%;
+            table-layout: fixed;
+            overflow-x: auto;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #2a2f3d;
+            border-radius: 6px;
+            overflow: hidden; /* For rounded corners to apply to internal elements */
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: right; /* RTL */
+            border-bottom: 1px solid var(--divider-color);
+            color: var(--text-light);
+        }
+
+        th {
+            background-color: var(--accent-steel-blue);
+            font-weight: 700;
+            color: var(--bg-dark);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        @media(max-width:768px){
+            .market-pulse-grid{grid-template-columns:1fr 1fr;}
+            .slide-container{padding:16px;}
+            h1{font-size:1.4rem;}
+            h2{font-size:1.2rem;}
+            h3{font-size:1rem;}
+            .market-pulse-item strong {font-size: 0.9rem;}
+            .market-pulse-item .change-value {font-size: 1.1rem;}
+            .badge {font-size: 0.75rem; padding: 5px 10px;}
+            .btn-source {font-size: 0.8rem; padding: 6px 12px;}
+        }
+    </style>
+</head>
+<body>
+    <h1>דוח שוק יומי אסטרטגי</h1>
+
+    <div class="slide-container">
+        <span class="badge">תמונת מצב מהירה</span>
+        <h2>דופק השוק: מבט יומי (08-09.09.2026)</h2>
+        <p>סקירה מהירה של תנועות המדדים, המטבעות הדיגיטליים ומניות בולטות מרשימת המעקב שעשו תנודה חריגה או הפגינו נפח מסחר גבוה מהרגיל.</p>
+        <div class="market-pulse-grid">
+            <!-- Indices -->
+            <div class="market-pulse-item neutral-change">
+                <strong>S&amp;P 500 (SPY)</strong>
+                <span class="change-value">-0.55%</span>
+            </div>
+            <div class="market-pulse-item neutral-change">
+                <strong>Nasdaq (QQQ)</strong>
+                <span class="change-value">-0.08%</span>
+            </div>
+            <div class="market-pulse-item neutral-change">
+                <strong>Russell 2000 (IWM)</strong>
+                <span class="change-value">-0.45%</span>
+            </div>
+
+            <!-- Crypto -->
+            <div class="market-pulse-item positive-change">
+                <strong>ביטקוין (BTC/USD)</strong>
+                <span class="change-value">+1.44%</span>
+            </div>
+            <div class="market-pulse-item positive-change">
+                <strong>את'ריום (ETH/USD)</strong>
+                <span class="change-value">+1.32%</span>
+            </div>
+
+            <!-- Outlier Stocks -->
+            <div class="market-pulse-item positive-change">
+                <strong>CoreWeave (CRWV)</strong>
+                <span class="change-value">+11.72%</span>
+            </div>
+            <div class="market-pulse-item positive-change">
+                <strong>Nano Nuclear (NNE)</strong>
+                <span class="change-value">+9.20%</span>
+            </div>
+            <div class="market-pulse-item positive-change">
+                <strong>Coherent Corp. (COHR)</strong>
+                <span class="change-value">+7.10%</span>
+            </div>
+            <div class="market-pulse-item positive-change">
+                <strong>AMD</strong>
+                <span class="change-value">+5.90%</span>
+            </div>
+            <div class="market-pulse-item positive-change">
+                <strong>IREN Limited</strong>
+                <span class="change-value">+5.04%</span>
+            </div>
+            <div class="market-pulse-item negative-change">
+                <strong>ServiceNow (NOW)</strong>
+                <span class="change-value">-4.99%</span>
+            </div>
+            <div class="market-pulse-item negative-change">
+                <strong>Robinhood (HOOD)</strong>
+                <span class="change-value">-3.91%</span>
+            </div>
+            <div class="market-pulse-item positive-change">
+                <strong>Tesla (TSLA)</strong>
+                <span class="change-value">+3.98%</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">AI ושבבים</span>
+        <h2>גוגל משקיעה 15.1 מיליארד דולר בתשתיות AI בפינלנד</h2>
+        <h3>מה קרה היום</h3>
+        <p>ענקית הטכנולוגיה <strong class="highlight-text">גוגל (GOOG)</strong> הודיעה כי תשקיע <span class="highlight-text">15.1 מיליארד דולר</span> בתשתיות AI בפינלנד. זוהי ההשקעה הגדולה ביותר של גוגל באירופה עד כה, והיא מגיעה כחלק ממהלך רחב יותר לחיזוק יכולות הבינה המלאכותית שלה. (CNBC, 09.09.2026)</p>
+        <a class="btn-source" href="https://www.cnbc.com/2026/09/09/google-finland-ai-infrastructure-investment.html">CNBC</a>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2037DZ5S9S3CCDQM2HBV9NY/crypto-card-online-payment-cashless-payments-google-ai.png" alt="Google AI Infrastructure" />
+
+        <h3>למה זה חריג</h3>
+        <p>גודל ההשקעה חריג, והוא מצביע על מחויבותה של גוגל להוביל בתחום ה-AI, תוך הרחבת נוכחותה הפיזית באירופה. זהו איתות חזק לשוק על חשיבות התשתית הפיזית לצורך פיתוח ופריסת יכולות AI מתקדמות.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>השקעות ענק בתשתית מחשוב ענן וחוות שרתים חיוניות להמשך ההתפתחות של מודלי AI מורכבים. עם הצורך הגובר בכוח עיבוד עבור אימון מודלים והרצת יישומי AI, חברות טכנולוגיה נדרשות להגדיל משמעותית את קיבולת התשתיות שלהן. פינלנד מציעה יתרונות אקלימיים ורגולטוריים שעשויים לתמוך בהקמת מרכז נתונים בסדר גודל כזה.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">AI ושבבים</span>
+        <h2>ראלי במניות שבבי AI ודאגות בטיחות בתחום</h2>
+        <h3>מה קרה היום</h3>
+        <p>מניות הקשורות לתשתית AI רשמו עלייה בולטת ב-8 בספטמבר, על רקע חדשות חיוביות. <strong class="highlight-text">AMD</strong> זינקה ב-<span class="positive-change change-value">+5.90%</span> עם נפח מסחר חריג של <span class="highlight-text">27.9 מיליון</span> מניות לעומת ממוצע של <span class="highlight-text">16.8 מיליון</span>. <strong class="highlight-text">CoreWeave (CRWV)</strong> הובילה עם עלייה של <span class="positive-change change-value">+11.72%</span> בנפח אדיר של <span class="highlight-text">50.8 מיליון</span> מניות (ממוצע <span class="highlight-text">20 מיליון</span>). מניית <strong class="highlight-text">קוהירנט (COHR)</strong> עלתה ב-<span class="positive-change change-value">+7.10%</span> בנפח גבוה של <span class="highlight-text">8.6 מיליון</span> מניות (ממוצע <span class="highlight-text">5.3 מיליון</span>). מניות <strong class="highlight-text">קוואלקום</strong> ו-<strong class="highlight-text">אינטל</strong> גם כן רשמו עלייה על רקע עסקאות וכוונות להעלות מחירים.</p>
+        <p>מניית <strong class="highlight-text">מיקרון טכנולוגיות (MU)</strong> רשמה ירידה קלה של <span class="negative-change change-value">-1.61%</span> למרות כתבה ב-MarketWatch שציינה את עליונותה בתחום שבבי הזיכרון עבור AI. (08.09.2026)</p>
+        <p>בתוך כך, חוקר בטיחות ב-Anthropic הצהיר כי יש סיכוי של יותר מ-<span class="highlight-text">10%</span> ש-AI "יקטול את כל בני האדם", לאחר שקולגה לשעבר התפטר על רקע חששות בטיחות. (CNBC, 09.09.2026)</p>
+        <a class="btn-source" href="https://www.cnbc.com/2026/09/08/ai-infrastructure-stocks-rally-on-deal-from-qualcomm-and-corning.html">CNBC - AI Rally</a>
+        <a class="btn-source" href="https://www.marketwatch.com/story/memory-chips-have-come-to-rule-the-ai-boom-why-microns-reign-could-be-here-to-stay-607a4622?mod=mw_rss_topstories">MarketWatch - Micron</a>
+        <a class="btn-source" href="https://www.marketwatch.com/story/qualcomms-stock-climbhttps://www.marketwatch.com/story/qualcomms-stock-climbs-as-amazon-chip-deal-offers-investors-some-much-needed-good-news-5b6a95ca?mod=mw_rss_topstories">MarketWatch - Qualcomm/Amazon</a>
+        <a class="btn-source" href="https://www.marketwatch.com/story/intels-stock-is-rising-as-the-company-looks-primed-to-boost-prices-even-more-8b8dfc99?mod=mw_rss_topstories">MarketWatch - Intel</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/09/09/anthropic-researcher-quits-ai-safety.html">CNBC - Anthropic</a>
+
+        <h3>למה זה חריג</h3>
+        <p>הראלי במניות תשתית ה-AI, ובמיוחד העליות הדו-ספרתיות ב-CRWV, מצביעות על ביקוש מתמשך וחזק לפתרונות חומרה המאפשרים את מהפכת ה-AI. נפחי המסחר הגבוהים באותן מניות מחזקים את עוצמת המגמה. דבריו של חוקר Anthropic מדגישים את הסיכונים הפוטנציאליים הנתפסים בתחום, ועלולים להשפיע על התפתחות רגולטורית ועל סנטימנט משקיעים בטווח הארוך.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>השבבים ממשיכים להיות הליבה של מהפכת ה-AI, וכל התפתחות בתחום זה מניעה את השוק. הידיעה על עסקת שבבים בין קוואלקום לאמזון, למשל, מספקת דחיפה לשחקנים שמנסים להתחרות בניווידיה בתחום הדאטה סנטר. הביקוש לשבבי זיכרון מתקדמים כמו HBM (High Bandwidth Memory) מבית מיקרון חיוני עבור מערכות AI, וההשקעות בתחום צפויות להימשך. במקביל, הדיון על בטיחות ה-AI מקבל תאוצה, מה שעלול להוביל לרגולציה מחמירה יותר, שתשפיע על חברות הטכנולוגיה.</p>
+        <div class="opinion-card">
+            <p>CNBC's Jim Cramer said investors should look beyond the AI data-center trade as compelling opportunities emerge in other areas of the market.</p>
+            <span class="author">Jim Cramer, CNBC (08.09.2026)</span>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">קריפטו ורגולציה</span>
+        <h2>התפתחויות רגולטוריות ומוסדיות בשוק הקריפטו העולמי</h2>
+        <h3>מה קרה היום</h3>
+        <p><strong class="highlight-text">איראן</strong> מקלה את חוקי המטבע כדי לעקוף סנקציות אמריקאיות באמצעות קריפטו, וזאת על פי דיווח של הפייננשל טיימס. השינוי מאפשר ליצואנים לממן יבוא עם רווחי חו"ל ללא מכירת מט"ח בשערי חליפין רשמיים. (Cointelegraph, 09.09.2026)</p>
+        <p><strong class="highlight-text">Block</strong> של ג'ק דורסי מבקשת רישיון בנק נאמנות בארה"ב עבור משמורת ביטקוין ומטבעות יציבים, במטרה להציע שירותי משמורת נכסים דיגיטליים בפיקוח פדרלי. במקביל, <strong class="highlight-text">ג'מיני (Gemini)</strong> קיבלה רישיון תשלומים בסינגפור להרחבת שירותי הקריפטו שלה באזור. (Cointelegraph, 09.09.2026)</p>
+        <p><strong class="highlight-text">רובין הוד (HOOD)</strong>, שמנייתה ירדה היום ב-<span class="negative-change change-value">-3.91%</span> ב-8 בספטמבר, נוקטת בצעדים להרחבת עסקיה בשוקי חיזוי, ורוכשת החזקות ב-Crypto.com ו-OG.com. אנליסטים מברנשטיין מעריכים כי רשת הבלוקצ'יין של רובין הוד תוכל לייצר <span class="highlight-text">160 מיליון דולר</span> הכנסות שנתיות מעמלות עד שנת 2028. (Cointelegraph, 08.09.2026)</p>
+        <p><strong class="highlight-text">ויזה (Visa)</strong> משלבת אשראי מבוסס בלוקצ'יין בעסקי כרטיסי המטבעות היציבים שלה, כאשר נפח תשלומי המטבעות היציבים ברשת שלה זינק בכמעט <span class="highlight-text">200%</span> משנה לשנה. <strong class="highlight-text">Circle</strong> רוכשת את Tazapay כדי להרחיב את תשלומי USDC חוצי גבולות. (Cointelegraph, 08.09.2026)</p>
+        <a class="btn-source" href="https://cointelegraph.com/news/iran-central-bank-encourages-crypto-evade-sanctions?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph - Iran</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/block-us-trust-bank-charter-bitcoin-stablecoin-custody?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph - Block</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/gemini-singapore-mpi-license-crypto-services?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph - Gemini</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/robinhood-takes-stakes-in-cryptocom-ogcom-in-prediction-markets-deal?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph - Robinhood Stakes</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/robinhood-chain-160m-annual-fees-2028-bernstein?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph - Robinhood Fees</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/visa-stablecoin-blockchain-lending-payment-settlement?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph - Visa</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/circle-tazapay-usdc-cross-border-payments?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph - Circle</a>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M22GDYQR3DVCE1PJVZEV5JJ4/hi-who-is-jack-dorsey-profile-and-biography.jpg" alt="Jack Dorsey's Block" />
+
+        <h3>למה זה חריג</h3>
+        <p>התפתחויות אלו מצביעות על המשך מגמת הלגיטימציה והאימוץ המוסדי של קריפטו, למרות האתגרים הרגולטוריים. ניסיונה של איראן להשתמש בקריפטו לעקיפת סנקציות מראה את הפוטנציאל הגלובלי של נכסים דיגיטליים מעבר למסחר פיננסי. נפילת מניית רובין הוד עלולה להיות תוצאה של סנטימנט שלילי רחב יותר בשוק או תגובה לאתגרי רגולציה פוטנציאליים למרות תוכניות הצמיחה שלה.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>החיפוש אחר רישיונות בנקאיים ורגולטוריים על ידי שחקנים מרכזיים כמו Block ו-Gemini מצביע על התבגרות השוק והצורך להשתלב במערכת הפיננסית המסורתית. השימוש במטבעות יציבים לתשלומים וסליקה צובר תאוצה, כפי שמדגימה ויזה, והוא מהווה גשר קריטי בין פיננסים מסורתיים (TradFi) לעולם הבלוקצ'יין. חדשות על אימוץ ממשלתי, כמו פיילוט התשלומים של אוזבקיסטן עם stablecoin המגובה באג"ח (Cointelegraph, 08.09.2026), מחזקות את התפיסה כי מטבעות דיגיטליים הופכים לחלק אינטגרלי מהכלכלה הגלובלית.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">מאקרו וגיאופוליטיקה</span>
+        <h2>העלאת ריבית צפויה ב-ECB ומלחמת הסחר ארה"ב-קנדה מתרחבת</h2>
+        <h3>מה קרה היום</h3>
+        <p>הבנק המרכזי האירופי (ECB) צפוי כמעט בוודאות להעלות ריבית ביום חמישי הקרוב, כאשר השווקים מתכוננים להשפעות. קיימת מחלוקת בשוקי האג"ח לגבי הריבית הסופית במחזור ההידוק הנוכחי, וזאת תלויה גם באירועים במזרח התיכון והשפעתם על מחירי האנרגיה והאינפלציה. (MarketWatch, 09.09.2026)</p>
+        <p>מלחמת הסחר בין ארה"ב לקנדה מתעצמת: מניית <strong class="highlight-text">Bombardier</strong> הקנדית ירדה ב-8 בספטמבר לאחר שארה"ב איימה לאסור על יצרנית המטוסים אם לא תתחייב לבנות יותר בארה"ב. בתגובה, קנדה הטילה מכסים בסך <span class="highlight-text">27.6 מיליארד דולר קנדי</span> על יבוא מוצרי פלדה ואלומיניום אמריקאיים, שהוכפלו ל-<span class="highlight-text">50%</span>. (MarketWatch, CNBC, 08.09.2026)</p>
+        <p>בנוסף, עליות במחירי הנפט הגולמי בארה"ב, שהגיעו לשיא של שלושה חודשים, מהוות גורם אינפלציוני נוסף. (Cointelegraph, 08.09.2026)</p>
+        <a class="btn-source" href="https://www.marketwatch.com/story/the-ecb-is-virtually-certain-to-hike-rates-thursday-here-is-why-wall-street-is-bracing-for-what-comes-next-7ec46af0?mod=mw_rss_topstories">MarketWatch - ECB</a>
+        <a class="btn-source" href="https://www.marketwatch.com/story/bombardiers-stock-drops-as-the-u-s-canada-trade-war-intensifies-heres-what-trump-may-target-next-b389065e?mod=mw_rss_topstories">MarketWatch - Bombardier</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/09/08/canada-retaliatory-tariffs.html">CNBC - Canada Tariffs</a>
+        <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-faces-key-support-test-at-783k-as-us-crude-oil-hits-three-month-high?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph - Crude Oil</a>
+
+        <h3>למה זה חריג</h3>
+        <p>העלאת הריבית הצפויה ב-ECB, לצד מלחמת סחר מתפתחת בין שתי שותפות סחר גדולות, יוצרת אי ודאות מאקרו כלכלית משמעותית. עליות מחירי הנפט הגולמי מחריפות חששות אינפלציה, מה שעלול להשפיע על החלטות בנקים מרכזיים נוספים ועל סנטימנט המשקיעים הגלובלי.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>בנקים מרכזיים מנסים לאזן בין שליטה באינפלציה לבין שמירה על צמיחה כלכלית. מחירי אנרגיה גבוהים מקשים על משימה זו. מלחמות סחר פוגעות בשרשרת האספקה הגלובלית ומעלות עלויות, מה שפוגע ברווחיות חברות ובצמיחה כלכלית. המצב הגיאופוליטי במזרח התיכון ממשיך להיות גורם סיכון מרכזי המשפיע על שווקי האנרגיה ולפיכך על התחזית האינפלציונית.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">טכנולוגיה צרכנית</span>
+        <h2>אפל וסערת האייפון המתקפל: מחיר ותחרות</h2>
+        <h3>מה קרה היום</h3>
+        <p>שעות ספורות לפני אירוע אפל הצפוי ב-9 בספטמבר, שמועות לגבי השקת אייפון מתקפל במחיר של <span class="highlight-text">2,000 דולר</span> ממשיכות לרחף באוויר. מניית <strong class="highlight-text">אפל (AAPL)</strong> ירדה ב-<span class="negative-change change-value">-1.17%</span> ב-8 בספטמבר. ברקע, חברות טכנולוגיה סיניות כמו שיאומי וואווי ממהרות להשיק דגמים מתקפלים משלהן, במטרה להקדים את אפל בשוק המתפתח. (The Compound, Micha.Stocks, CNBC)</p>
+        <a class="btn-source" href="https://www.youtube.com/shorts/MOEa-zjee44">The Compound</a>
+        <a class="btn-source" href="https://www.youtube.com/watch?v=hslonnhI5Lo">Micha.Stocks</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/09/08/xiaomi-huawei-apple-foldable-iphone.html">CNBC</a>
+
+        <h3>למה זה חריג</h3>
+        <p>השמועות על אייפון מתקפל מסמנות שינוי אסטרטגי פוטנציאלי באפל, שנוטה לאמץ טכנולוגיות חדשות רק לאחר שאלה הוכחו בשוק. הדיון סביב תמחור של 2,000 דולר והתחרות הגוברת מצד יצרניות אנדרואיד משפיעים על סנטימנט המשקיעים, מה שבא לידי ביטוי בירידת המניה.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>אפל ידועה בכניסה מאוחרת אך דומיננטית לקטגוריות מוצרים חדשות. שוק הטלפונים המתקפלים עדיין נמצא בחיתוליו אך עם פוטנציאל צמיחה. הצפי הוא שאפל תציג פתרון פרימיום, אך הצלחתה תלויה ביכולתה להצדיק את תג המחיר הגבוה מול תחרות הולכת וגוברת. דילמות לגבי מכפיל הרווח של אפל (34.3), שצוינו באחד מהמקורות (Micha.Stocks, 09.09.2026), לעומת מתחרות כמו Nvidia וגוגל, משקפות את השאלה האם החברה מצדיקה פרמיית שווי כזו לאור שיעורי צמיחה איטיים יותר.</p>
+    </div>
+
+</body>
+</html>
