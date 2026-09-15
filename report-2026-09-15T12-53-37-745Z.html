@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי: תמונת מצב אסטרטגית</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0a0e17;
+            color: #e0e0e0;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            margin: 0;
+            direction: rtl; /* Right-to-left for Hebrew */
+        }
+
+        .slide-container {
+            background-color: #1a1f2e;
+            border-radius: 8px;
+            padding: 32px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid #2a3040;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: #a0c0e0;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #a0c0e0;
+            font-weight: 700;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #3a475a;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: #c0d0e0;
+            font-weight: 600;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: #3a475a;
+            color: #a0c0e0;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .market-pulse-card {
+            background-color: #2a3040;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            border: 1px solid #3a475a;
+        }
+
+        .market-pulse-card .symbol {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #e0e0e0;
+            margin-bottom: 5px;
+        }
+
+        .market-pulse-card .name {
+            font-size: 0.9rem;
+            color: #a0a0a0;
+            margin-bottom: 10px;
+        }
+
+        .market-pulse-card .change-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 5px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .change-positive {
+            color: #6edc6e;
+            background-color: rgba(110, 220, 110, 0.1);
+        }
+
+        .change-negative {
+            color: #ff6e6e;
+            background-color: rgba(255, 110, 110, 0.1);
+        }
+
+        .section-divider {
+            border-top: 1px solid #3a475a;
+            margin: 40px 0;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: #3a475a;
+            color: #a0c0e0;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            margin-left: 10px; /* For RTL, keep spacing on left */
+            transition: background-color 0.3s ease;
+            white-space: nowrap; /* Prevent line breaks */
+        }
+
+        .btn-source:hover {
+            background-color: #4a576a;
+        }
+
+        .highlight-card {
+            background-color: #2e354a;
+            border-right: 4px solid #a0c0e0; /* RTL: border-right */
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+
+        .opinion-card {
+            background-color: #252a3a;
+            border-right: 4px solid #e0c0a0; /* RTL: border-right */
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+            position: relative;
+            padding-right: 40px; /* Adjust for quote icon */
+        }
+
+        .opinion-card::before {
+            content: '‟';
+            font-size: 2.5rem;
+            color: #e0c0a0;
+            position: absolute;
+            right: 10px; /* RTL: right */
+            top: 5px;
+            line-height: 1;
+        }
+
+        .opinion-card .author {
+            font-weight: 600;
+            color: #c0d0e0;
+            display: block;
+            margin-top: 10px;
+            font-size: 0.95rem;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 4px;
+        }
+
+        /* Media Query for smaller screens */
+        @media (max-width: 768px) {
+            .market-pulse-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .slide-container {
+                padding: 16px;
+            }
+            h1 {
+                font-size: 1.4rem;
+            }
+            h2 {
+                font-size: 1.2rem;
+            }
+            .market-pulse-card {
+                padding: 10px;
+            }
+            .market-pulse-card .symbol {
+                font-size: 1rem;
+            }
+            .market-pulse-card .name {
+                font-size: 0.8rem;
+            }
+            .market-pulse-card .change-value {
+                font-size: 0.9rem;
+                padding: 3px 6px;
+            }
+            .opinion-card, .highlight-card {
+                padding-right: 15px; /* Adjust for mobile */
+                padding: 15px; /* Reset padding for smaller screens */
+            }
+            .opinion-card::before {
+                right: 5px;
+                font-size: 2rem;
+                top: 2px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slide-container">
+        <h1>דוח שוק אסטרטגי יומי - 15 בספטמבר 2026</h1>
+        <div class="badge">תמונת מצב מהירה</div>
+        <h2>Market Pulse - נתוני מפתח</h2>
+        <div class="market-pulse-grid">
+            <div class="market-pulse-card">
+                <div class="symbol">SPY</div>
+                <div class="name">S&P 500 ETF</div>
+                <div class="change-value change-negative">
+                    -0.45%
+                </div>
+            </div>
+            <div class="market-pulse-card">
+                <div class="symbol">QQQ</div>
+                <div class="name">Nasdaq 100 ETF</div>
+                <div class="change-value change-negative">
+                    -0.80%
+                </div>
+            </div>
+            <div class="market-pulse-card">
+                <div class="symbol">BTC/USD</div>
+                <div class="name">ביטקוין</div>
+                <div class="change-value change-negative">
+                    -1.55%
+                </div>
+            </div>
+            <div class="market-pulse-card">
+                <div class="symbol">ETH/USD</div>
+                <div class="name">את'ריום</div>
+                <div class="change-value change-negative">
+                    -1.43%
+                </div>
+            </div>
+            <div class="market-pulse-card">
+                <div class="symbol">NOW</div>
+                <div class="name">ServiceNow Inc.</div>
+                <div class="change-value change-positive">
+                    +7.41%
+                </div>
+            </div>
+            <div class="market-pulse-card">
+                <div class="symbol">SPOT</div>
+                <div class="name">Spotify Technology S.A.</div>
+                <div class="change-value change-positive">
+                    +5.81%
+                </div>
+            </div>
+            <div class="market-pulse-card">
+                <div class="symbol">COHR</div>
+                <div class="name">Coherent Corp.</div>
+                <div class="change-value change-negative">
+                    -12.73%
+                </div>
+            </div>
+            <div class="market-pulse-card">
+                <div class="symbol">CRWV</div>
+                <div class="name">CoreWeave Inc.</div>
+                <div class="change-value change-negative">
+                    -6.75%
+                </div>
+            </div>
+            <div class="market-pulse-card">
+                <div class="symbol">MU</div>
+                <div class="name">Micron Technology</div>
+                <div class="change-value change-negative">
+                    -5.25%
+                </div>
+            </div>
+            <div class="market-pulse-card">
+                <div class="symbol">AVGO</div>
+                <div class="name">Broadcom Inc.</div>
+                <div class="change-value change-negative">
+                    -4.77%
+                </div>
+            </div>
+            <div class="market-pulse-card">
+                <div class="symbol">AMD</div>
+                <div class="name">AMD</div>
+                <div class="change-value change-negative">
+                    -4.40%
+                </div>
+            </div>
+            <div class="market-pulse-card">
+                <div class="symbol">PLTR</div>
+                <div class="name">Palantir Technologies</div>
+                <div class="change-value change-positive">
+                    +3.64%
+                </div>
+            </div>
+            <div class="market-pulse-card">
+                <div class="symbol">GOOG</div>
+                <div class="name">Alphabet Inc.</div>
+                <div class="change-value change-positive">
+                    +3.06%
+                </div>
+            </div>
+            <div class="market-pulse-card">
+                <div class="symbol">NVDA</div>
+                <div class="name">NVIDIA Corporation</div>
+                <div class="change-value change-negative">
+                    -3.36%
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-container">
+        <div class="badge">AI ושבבים</div>
+        <h2>דינמיקת תעשיית ה-AI: קריאות להאטה, רגולציה והשפעה על השוק</h2>
+        <h3>מה קרה היום</h3>
+        <p>תעשיית הבינה המלאכותית חווה תנודות משמעותיות סביב קריאות להאטה בפיתוח ודיון בנושאי רגולציה. מנכ"לים של חברות מובילות קוראים לבחון מחדש את קצב הפיתוח:</p>
+        <div class="highlight-card">
+            מנכ"לי Anthropic ו-OpenAI, דריו אמודיי וסם אלטמן, קראו להנהיג בדיקות בטיחות מחייבות ולהאט את קצב שיפור יכולות מודלי ה-AI, על רקע חששות מסיכונים גוברים.
+            <a class="btn-source" href="https://www.cnbc.com/2026/09/14/sam-altman-ai-slowdown-anthropic-amodei-musk.html">CNBC</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/09/14/ai-stocks-slowdown-amodei-altman.html">CNBC</a>
+        </div>
+        <p>בתגובה, חברות כמו מיקרוסופט קבעו מגבלות למודלי AI עתידיים שלהן, במטרה להיתפס כגוף אחראי בתחום. מנגד, הדעות הפוליטיות חלוקות:</p>
+        <div class="highlight-card">
+            נשיא ארה"ב דונלד טראמפ כינה את החששות מ-AI "תרמית" ומתנגד לכללי AI, תוך שהוא מתנגד לרגולציה על דאטה סנטרים. במקביל, סין דחתה את קריאות מנכ"לי ה-AI להאטה כ"הפצת פחד".
+            <a class="btn-source" href="https://www.cnbc.com/2026/09/15/trump-opposition-to-ai-rules-undercuts-industrys-calls-for-a-slowdown.html">CNBC</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/09/14/china-ai-slowdown-us-tech-ceos.html">CNBC</a>
+        </div>
+        <p>ההתפתחויות משפיעות באופן ישיר על מניות הטכנולוגיה:</p>
+        <div class="highlight-card">
+            מניות AI ירדו, בעוד שמניות אבטחת סייבר רשמו עליות על רקע חששות ההאטה. חברות נדל"ן של דאטה סנטרים, כמו Digital Realty ו-Equinix, ראו את מניותיהן יורדות בעקבות אזהרות מפני התקדמות ה-AI.
+            <a class="btn-source" href="https://www.cnbc.com/2026/09/15/data-center-reit-ceo-ai-slowdown.html">CNBC</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/09/15/investors-ai-slowdown-data-center-buildout.html">CNBC</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/09/14/ai-stocks-sink-while-cybersecurity-shares-rally-on-slowdown-fears.html">CNBC</a>
+        </div>
+        <p>ברמה החברותית, סמסונג הובילה סבב מימון של 230 מיליון דולר עבור סטארט-אפ שבבי AI בשם Euclyd, מתחרה ל-Nvidia, מה שמדגיש את התחרות הגוברת בתחום החומרה ל-AI. מנכ"ל Broadcom הצהיר כי יעדי ההכנסות שלהם מ-AI לא השתנו. Apple, מצידה, שחררה גרסת ניסוי של העוזרת האישית Siri בגרסה מעוצבת מחדש, לפני השקת האייפון 18 השבוע.</p>
+        <div class="highlight-card">
+            <img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2G1M9RG81KG7CSFP69XNX5A/hi-what-is-chaosgpt-an-ai-tool-that-wants-to-destroy-humanity.jpg" alt="AI Slowdown - Robot Image">
+            <a class="btn-source" href="https://cointelegraph.com/magazine/why-are-biggest-ai-companies-suddenly-asking-to-slow-down?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph by Christina Comben</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/09/14/samsung-euclyd-ai-chip-funding.html">CNBC</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/09/14/broadcom-ceo-on-anthropics-slowdown-push-ai-revenue-targets-havent-changed.html">CNBC</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/09/14/apple-releases-ios-27-redesigned-siri-ai.html">CNBC</a>
+        </div>
+        <h3>למה זה חריג</h3>
+        <p>קריאות מובילי התעשייה להאטה ולקביעת מגבלות מרצון הן אירוע יוצא דופן, המצביע על חששות עמוקים ומהותיים מיכולות הבינה המלאכותית והשלכותיהן. הפער בין הקריאות הללו לתגובות הפוליטיות (טראמפ וסין) מדגיש את המורכבות הגלובלית ואת הפוטנציאל לחיכוכים רגולטוריים עתידיים. תנודות השוק החדות בתגובה לחדשות אלו מעידות על רגישות גבוהה בקרב המשקיעים לתחום ה-AI.</p>
+        <h3>הלוגיקה</h3>
+        <p>חששות מפיתוח AI בלתי מבוקר ואי-וודאות רגולטורית מורידים את סנטימנט המשקיעים, במיוחד בחברות הקשורות לתשתית AI (דאטה סנטרים ושבבים). התנגדות פוליטית לרגולציה בארה"ב מול חששות האבטחה מעידה על קרב מתמשך שיכול להשפיע על אסטרטגיות פיתוח ועל גישת השוק הגלובלית. במקביל, תחרות גוברת בתחום חומרת ה-AI, כפי שנראה מהשקעת סמסונג, מצביעה על ניסיונות להפחית את התלות במובילות שוק קיימות כמו Nvidia.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">קריפטו ורגולציה</div>
+        <h2>שוק הקריפטו: אתגרים רגולטוריים ושינויים מבניים בתעשייה</h2>
+        <h3>מה קרה היום</h3>
+        <p>שוק הקריפטו ממשיך להתמודד עם אתגרי רגולציה משמעותיים ושינויים פנימיים:</p>
+        <div class="highlight-card">
+            חבילת מס הקריפטו של בית הנבחרים בארה"ב הושמטה מהצעת החוק בנושא דחיית תשלומי מס על כרייה ותגמולי Staking. הצעת החוק תתמקד בשינויים בטיפול המס בעמלות קריפטו, Stablecoins והלוואות, תוך השארת תזמון המס הקיים לפרסים ללא שינוי.
+            <a class="btn-source" href="https://cointelegraph.com/news/us-house-crypto-tax-bill-mining-staking-reward-deferral">Cointelegraph by Ezra Reguerra</a>
+        </div>
+        <p>במקביל, הצעת חוק ה-CLARITY Act מתמודדת עם קשיים משמעותיים:</p>
+        <div class="highlight-card">
+            הסיכויים לחקיקת ה-CLARITY Act צנחו ל-16% בלבד, כשדמוקרטים מרכזיים מתנגדים להצעה "הסופית" של הרפובליקנים. קבוצות בנקאות הזהירו שהנוסח הסופי משאיר פרצות ב-Stablecoin, ו-18 תובעים כלליים של מדינות הביעו התנגדות לחקיקה מתוקנת שתחליש את הפיקוח המדינתי.
+            <a class="btn-source" href="https://cointelegraph.com/news/clarity-act-odds-fall-democrats-gop-final-offer">Cointelegraph by Ezra Reguerra</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/clarity-act-faces-new-opposition-ahead-of-key-senate-vote">Cointelegraph by Sam Bourgi</a>
+        </div>
+        <p>רשויות אכיפת החוק ממשיכות לפעול נגד שימוש בלתי חוקי במטבעות קריפטו, והתעשייה רואה גם סימני התכווצות:</p>
+        <div class="highlight-card">
+            ארה"ב מבקשת 61 מיליון דולר ב-USDT, שלפי החשד קשורים למכירת נפט איראני שהוטלה עליו סנקציות. הסכום הוקפא על ידי Tether ב-2025. במקביל, בורסת הקריפטו CoinEx תפסיק את פעילותה לאחר 9 שנים, בטענה ל"התכווצות משמעותית בשוק הקריפטו" ועלויות רגולציה גבוהות. פלטפורמת DeFi Balancer בוחנת סגירה לאחר שארגון מחדש לא הצליח להחיות הכנסות, ומתקפת סייבר של 128 מיליון דולר בנובמבר ממשיכה להכביד.
+            <a class="btn-source" href="https://cointelegraph.com/news/doj-61m-usdt-forfeiture-iranian-oil">Cointelegraph by Ezra Reguerra</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/coinex-cease-operation-citing-significant-crypto-contraction">Cointelegraph by Felix Ng</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/balancer-eyes-wind-down-after-restructuring-fails-revive-revenue">Cointelegraph by Felix Ng</a>
+        </div>
+        <p>עם זאת, התפתחויות חיוביות והמשך אימוץ נרשמים בחלקים אחרים של השוק:</p>
+        <div class="highlight-card">
+            סולאנה שילשה את מגבלת גודל העסקאות שלה ל-4,096 בתים, ו-Kraken מביאה תשואות DeFi למניות ותעודות סל מטוּקנות (כולל Nvidia). חברת Strive רכשה 469 ביטקוין נוספים והגיעה למאגר של 25,000 BTC. Bitmine צופה הכנסות שנתיות של 334 מיליון דולר מ-Staking, ממאגר קריפטו בשווי 15.8 מיליארד דולר.
+            <a class="btn-source" href="https://cointelegraph.com/news/solana-transaction-size-limit-4096-bytes-upgrade">Cointelegraph by Zoltan Vardai</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/kraken-brings-defi-yield-to-tokenized-stocks-and-etfs">Cointelegraph by Nate Kostar</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/strive-adds-469-bitcoin-to-reach-25000-btc-treasury">Cointelegraph by Nate Kostar</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/bitmine-5-million-eth-staked-334-million-revenue">Cointelegraph by Sam Bourgi</a>
+        </div>
+        <p>בחדשות נוספות, נכשלו השיחות לאיחוד סטנדרטי הארנקים בין Ethereum ו-Base, ושתי הפלטפורמות ימשיכו לפתח עיצובים שונים ל-Account Abstraction. כמו כן, ראש ארגון הסחר העולמי (WTO) הצהיר כי רגולציה מקוטעת מגבילה את אימוץ Stablecoins במימון בינלאומי ל-3% בלבד מכלל התשלומים העולמיים.</p>
+        <div class="highlight-card">
+            <img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2J4CY20932Q9DX6CEYR4793/robotethereum.jpg" alt="Ethereum/Base Wallet Standards">
+            <a class="btn-source" href="https://cointelegraph.com/news/ethereum-base-wallet-standards-collaboration-breaks">Cointelegraph by Zoltan Vardai</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/fragmented-regulations-limit-stablecoin-adoption-in-international-finance-wto-director">Cointelegraph by Zoltan Vardai</a>
+        </div>
+        <h3>למה זה חריג</h3>
+        <p>המאבק הרגולטורי המתמשך סביב ה-CLARITY Act בארה"ב מדגים חוסר וודאות מתמשך וחוסר הסכמה פוליטית לגבי מסגרת רגולטורית מקיפה לקריפטו. הדבר מעיב על התעשייה ומונע אימוץ רחב. סגירת בורסות ופרויקטים (CoinEx, Balancer) על רקע התכווצות שוק ועלויות תפעול/רגולציה גבוהות מעידה על שלב קונסולידציה והישרדות בתעשייה. מנגד, המשך ההשקעות המוסדיות (Strive, Bitmine) והחדשנות הטכנולוגית (Solana, Kraken) מראים על המשך צמיחה ואמונה בפוטנציאל ארוך הטווח של הנכסים הדיגיטליים, גם אם בסביבה תחרותית ומאתגרת יותר.</p>
+        <h3>הלוגיקה</h3>
+        <p>חוסר הוודאות הרגולטורית בארה"ב נותר מכשול מרכזי לאימוץ רחב של קריפטו ומונע ממשקיעים מוסדיים להיכנס באופן מלא. אכיפה מחמירה יותר נגד שימושים בלתי חוקיים בקריפטו מדגישה את הסיכונים הרגולטוריים ומעמידה את יציבות Stablecoins במבחן. השוק מתפתח לכיוון של הבשלה, כאשר חברות עם מודל עסקי חזק וטכנולוגיה חדשנית מצליחות לשרוד ולצמוח, בעוד שאחרות נסוגות. חוסר הסכמה על סטנדרטים טכניים (Ethereum/Base) ורגולציה (Stablecoins) עלול להמשיך לפצל את האקוסיסטם ולעכב צמיחה גלובלית.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">מאקרו</div>
+        <h2>מגמות מאקרו-כלכליות: תשואות, נפט וציפיות הריבית של הפד</h2>
+        <h3>מה קרה היום</h3>
+        <p>היום מתאפיין בנתונים מאקרו-כלכליים מרכזיים המצביעים על לחצים אינפלציוניים וציפיות להמשך מדיניות מוניטרית הדוקה:</p>
+        <div class="highlight-card">
+            תשואת אג"ח האוצר ל-10 שנים הגיעה לרמתה הגבוהה ביותר מאז 2007. החוזים העתידיים נסוגו לקראת פגישת הפד הקרובה, כאשר סוחרים מתמחרים הסתברות של יותר מ-92% להעלאת ריבית בספטמבר, ויותר מ-75% להעלאה נוספת בדצמבר. מזכיר האוצר סקוט בסנט צפוי להעיד בפני הקונגרס בנוגע למחירי האנרגיה, מדיניות הפד וחובות הממשלה.
+            <a class="btn-source" href="https://finance.yahoo.com/markets/article/10-year-treasury-yield-hits-highest-level-since-2007-121942773.html">Yahoo Finance</a>
+            <a class="btn-source" href="https://www.wsj.com/finance/stocks/stock-futures-retreat-10-year-treasury-yield-holds-above-5-as-investors-await-fed-decision-1cde847e?siteid=yhoof2&yptr=yahoo">WSJ</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/09/14/counting-the-votes-warsh-faces-tough-battle-as-fed-girds-for-expected-rate-hike.html">CNBC</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/09/15/scott-bessent-house-hearing-economy-midterms.html">CNBC</a>
+        </div>
+        <p>מחירי הנפט מטפסים, מה שמעצים את החששות האינפלציוניים:</p>
+        <div class="highlight-card">
+            מחירי הנפט עלו על רקע התקפות וחסימת צינורות שהעמיקו את החששות מאספקת סעודיה. רזרבת הנפט האסטרטגית של ארה"ב הגיעה לשפל מאז 1982. זאת למרות שבעבר רמזים של טראמפ על סיום המלחמה באיראן הורידו את מחירי הנפט.
+            <a class="btn-source" href="https://finance.yahoo.com/news/oil-prices-rise-saudi-pipeline-003617502.html">Yahoo Finance</a>
+            <a class="btn-source" href="https://finance.yahoo.com/energy/articles/u-strategic-petroleum-hits-lowest-124132562.html">Yahoo Finance</a>
+            <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-passes-79k-oil-prices-cool-on-trump-iran-war-hints">Cointelegraph by William Suberg</a>
+        </div>
+        <p>הסנטימנט השלילי מתבטא גם בתחזיות שוק המניות:</p>
+        <div class="highlight-card">
+            Wells Fargo קיצצה את יעד המחיר שלה למדד S&P 500, במה שעשוי להיות הקיצוץ הראשון מאז תחילת המלחמה בין ארה"ב לאיראן.
+            <a class="btn-source" href="https://www.marketwatch.com/story/wells-fargo-just-cuts-its-s-p-500-price-target-will-others-follow-e32f968a?mod=mw_rss_topstories">MarketWatch by Steve Goldstein</a>
+        </div>
+        <h3>למה זה חריג</h3>
+        <p>תשואת אג"ח האוצר ל-10 שנים ברמתה הגבוהה ביותר מזה 19 שנה היא אירוע חריג המצביע על שינוי עמוק בציפיות השוק לאינפלציה ולריבית, ומשפיע על כלל נכסי ההשקעה. ההסתברות הגבוהה להעלאות ריבית נוספות, לצד עליות במחירי הנפט, מדגישה את האתגרים האינפלציוניים המתמשכים. קיצוץ יעד מחיר למדד S&P 500 על ידי בנק גדול מסמן שינוי בולט בסנטימנט האנליסטים כלפי שוק המניות, המשקף דאגה מביצועי חברות בתנאים אלו.</p>
+        <h3>הלוגיקה</h3>
+        <p>עליית תשואות האג"ח מגדילה את עלויות הגיוס עבור חברות וממשלות, מה שעלול להאט את הצמיחה הכלכלית ולהפעיל לחץ על הערכות השווי של מניות, במיוחד מניות צמיחה. מחירי נפט גבוהים מזינים את האינפלציה ומציבים דילמה עבור הפד: להעלות ריבית נוספת כדי להילחם באינפלציה, או להסתכן בהאטה כלכלית חריפה יותר. השילוב של ריביות גבוהות, אינפלציה עיקשת וסיכונים גיאופוליטיים יוצר סביבה מאתגרת לשוק המניות, וגורם לזהירות בקרב אנליסטים ומשקיעים.</p>
+    </div>
+
+</body>
+</html>
