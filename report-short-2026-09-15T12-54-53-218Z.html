@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק הון יומי: 15 בספטמבר 2026 - מהדורת בזק</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0a0e17;
+            --text-color-light: #e0e6ed;
+            --text-color-dark: #8c9ba5;
+            --accent-color: #007bff; /* Steel blue */
+            --header-color: #f5f5f5;
+            --border-color: #2a333d;
+            --positive-color: rgba(0, 180, 0, 0.4);
+            --negative-color: rgba(255, 0, 0, 0.4);
+            --positive-text: #0fdd0f;
+            --negative-text: #ff4d4d;
+            --highlight-bg: #1c2331;
+            --opinion-bg: #2a2a2a; /* Slightly different for opinion */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color-light);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            direction: rtl; /* For Hebrew */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: var(--header-color);
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-top: 35px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            font-weight: 600;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--header-color);
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: var(--text-color-light);
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .slide-container {
+            background-color: var(--highlight-bg);
+            border-radius: 8px;
+            padding: 25px 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--header-color);
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            margin-left: 10px; /* Adjust for RTL */
+            position: absolute;
+            top: 25px;
+            right: 30px;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .market-card {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            height: 100px; /* Fixed height for consistency */
+        }
+
+        .market-card .symbol {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--header-color);
+            margin-bottom: 5px;
+        }
+
+        .market-card .value {
+            font-size: 1rem;
+            color: var(--text-color-light);
+            margin-bottom: 5px;
+        }
+
+        .market-card .change {
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+            white-space: nowrap; /* Prevent wrapping */
+        }
+
+        .positive {
+            background-color: var(--positive-color);
+            color: var(--positive-text);
+        }
+
+        .negative {
+            background-color: var(--negative-color);
+            color: var(--negative-text);
+        }
+
+        .section-divider {
+            border-bottom: 1px dashed var(--border-color);
+            margin: 40px 0;
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            position: relative;
+        }
+
+        .opinion-card::before {
+            content: '“'; /* Quote icon */
+            font-size: 3rem;
+            color: var(--accent-color);
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            opacity: 0.6;
+        }
+        
+        .opinion-card p {
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .opinion-card .author {
+            font-weight: 600;
+            color: var(--text-color-dark);
+            text-align: left; /* Keep author left-aligned for clarity */
+            display: block;
+            margin-top: 10px;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--border-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            border-radius: 4px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            margin-left: 8px;
+        }
+
+        .btn-source:hover {
+            background-color: var(--accent-color);
+            color: var(--header-color);
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+            margin: 15px auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.5rem; }
+            h3 { font-size: 1.1rem; }
+            .slide-container { padding: 16px; }
+            .badge {
+                position: static;
+                margin-bottom: 10px;
+                margin-left: 0;
+                display: inline-block; /* Changed to inline-block for better flow on mobile */
+                text-align: center;
+            }
+            .market-pulse-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .market-card {
+                height: 90px;
+                padding: 10px;
+            }
+            .market-card .symbol { font-size: 1rem; }
+            .market-card .value { font-size: 0.9rem; }
+            .market-card .change { font-size: 0.8rem; }
+            .opinion-card::before {
+                font-size: 2rem;
+                top: 5px;
+                right: 10px;
+            }
+        }
+        
+        table {
+            width: 100%;
+            table-layout: fixed;
+            word-wrap: break-word;
+            border-collapse: collapse;
+            margin: 20px 0;
+            overflow-x: auto; /* For table content */
+            display: block; /* To apply overflow-x */
+        }
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            text-align: right; /* For RTL */
+        }
+        th {
+            background-color: var(--bg-color);
+            color: var(--header-color);
+            font-weight: 600;
+        }
+        .data-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .data-positive {
+            background-color: var(--positive-color);
+            color: var(--positive-text);
+        }
+        .data-negative {
+            background-color: var(--negative-color);
+            color: var(--negative-text);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>דוח שוק הון יומי: 15 בספטמבר 2026 - מהדורת בזק</h1>
+
+        <div class="slide-container">
+            <span class="badge">תמונת מצב מהירה</span>
+            <h2>Market Pulse</h2>
+            <div class="market-pulse-grid">
+                <!-- SPY -->
+                <div class="market-card">
+                    <span class="symbol">SPY</span>
+                    <span class="value">760.88</span>
+                    <span class="change negative">-0.45%</span>
+                </div>
+                <!-- QQQ -->
+                <div class="market-card">
+                    <span class="symbol">QQQ</span>
+                    <span class="value">709.18</span>
+                    <span class="change negative">-0.79%</span>
+                </div>
+                <!-- BTC/USD -->
+                <div class="market-card">
+                    <span class="symbol">BTC/USD</span>
+                    <span class="value">76,974.01</span>
+                    <span class="change negative">-1.55%</span>
+                </div>
+                <!-- ETH/USD -->
+                <div class="market-card">
+                    <span class="symbol">ETH/USD</span>
+                    <span class="value">2,479.67</span>
+                    <span class="change negative">-1.43%</span>
+                </div>
+                <!-- NOW -->
+                <div class="market-card">
+                    <span class="symbol">NOW</span>
+                    <span class="value">142.35</span>
+                    <span class="change positive">+7.41%</span>
+                </div>
+                <!-- SPOT -->
+                <div class="market-card">
+                    <span class="symbol">SPOT</span>
+                    <span class="value">556.31</span>
+                    <span class="change positive">+5.81%</span>
+                </div>
+                <!-- COHR -->
+                <div class="market-card">
+                    <span class="symbol">COHR</span>
+                    <span class="value">266.50</span>
+                    <span class="change negative">-12.73%</span>
+                </div>
+                <!-- CRWV -->
+                <div class="market-card">
+                    <span class="symbol">CRWV</span>
+                    <span class="value">82.98</span>
+                    <span class="change negative">-6.75%</span>
+                 </div>
+                 <!-- MU -->
+                 <div class="market-card">
+                    <span class="symbol">MU</span>
+                    <span class="value">924.03</span>
+                    <span class="change negative">-5.25%</span>
+                </div>
+                <!-- AVGO -->
+                <div class="market-card">
+                    <span class="symbol">AVGO</span>
+                    <span class="value">344.72</span>
+                    <span class="change negative">-4.77%</span>
+                </div>
+                <!-- AMD -->
+                <div class="market-card">
+                    <span class="symbol">AMD</span>
+                    <span class="value">493.41</span>
+                    <span class="change negative">-4.40%</span>
+                </div>
+                <!-- NVDA -->
+                <div class="market-card">
+                    <span class="symbol">NVDA</span>
+                    <span class="value">210.96</span>
+                    <span class="change negative">-3.36%</span>
+                </div>
+                <!-- GOOG -->
+                <div class="market-card">
+                    <span class="symbol">GOOG</span>
+                    <span class="value">345.71</span>
+                    <span class="change positive">+3.06%</span>
+                </div>
+                <!-- PLTR -->
+                <div class="market-card">
+                    <span class="symbol">PLTR</span>
+                    <span class="value">173.31</span>
+                    <span class="change positive">+3.64%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">AI ושבבים</span>
+            <h2>חששות מהאטה ב-AI מטלטלים את מניות הטכנולוגיה והשבבים</h2>
+            <h3>מה קרה היום</h3>
+            <p>חששות גוברים סביב קריאות להאטה בפיתוח AI, במיוחד מצד מנכ"לי Anthropic ו-OpenAI, הובילו לירידות משמעותיות במניות טכנולוגיה ושבבים מרכזיות. מניות כמו Broadcom <span class="data-badge data-negative">-4.77%</span>, AMD <span class="data-badge data-negative">-4.40%</span>, Nvidia <span class="data-badge data-negative">-3.36%</span> ו-Micron <span class="data-badge data-negative">-5.25%</span> חוו ירידות חדות, כמו גם CoreWeave <span class="data-badge data-negative">-6.75%</span> ו-Coherent Corp <span class="data-badge data-negative">-12.73%</span>.</p>
+            <p>נשיא ארה"ב, דונלד טראמפ, התייחס לחששות אלה כ"תרמית" וקרא להתנגדות לרגולציה של מרכזי נתונים, בעוד שחברות כמו Microsoft מנסות למצב עצמן כגורם אחראי בפיתוח AI. במקביל, סמסונג הובילה סבב מימון של <span class="data-badge">$230 מיליון</span> ל-Euclyd, סטארט-אפ הולנדי המהווה יריב לשבבי AI של Nvidia.</p>
+            <p>
+                <a class="btn-source" href="https://www.cnbc.com/2026/09/15/ai-stocks-slowdown-amodei-altman.html">CNBC</a>
+                <a class="btn-source" href="https://www.cnbc.com/2026/09/15/trump-opposition-to-ai-rules-undercuts-industrys-calls-for-a-slowdown.html">CNBC</a>
+                <a class="btn-source" href="https://www.cnbc.com/2026/09/14/samsung-euclyd-ai-chip-funding.html">CNBC</a>
+                <a class="btn-source" href="https://www.cnbc.com/2026/09/14/microsoft-ai-model-limits-anthropic-openai.html">CNBC</a>
+            </p>
+            <img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2G1M9RG81KG7CSFP69XNX5A/hi-what-is-chaosgpt-an-ai-tool-that-wants-to-destroy-humanity.jpg" alt="AI slowdown image">
+
+            <h3>למה זה חריג</h3>
+            <p>האפקט הכפול של קריאות מנהיגי התעשייה להאטה וגישות רגולטוריות שונות, לצד תמיכה בטכנולוגיות חלופיות, יצר סנטימנט שלילי מיידי על סקטור ה-AI והשבבים. הירידות החדות במניות מובילות בתחום, כמו Coherent Corp. שצנחה ב<span class="data-badge data-negative">-12.73%</span> ו-Micron ב<span class="data-badge data-negative">-5.25%</span>, מדגישות את הרגישות הגבוהה של השוק להתפתחויות בתחום. מנגד, חברת גוגל (GOOG) דווקא עלתה ב<span class="data-badge data-positive">+3.06%</span>, ייתכן על רקע חדשות חיוביות אחרות או תפיסה שהיא פחות חשופה לסיכונים אלו.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">מאקרו ושיעורי ריבית</span>
+            <h2>תשואות האג"ח ל-10 שנים בשיא מאז 2007 לקראת העלאת ריבית צפויה</h2>
+            <h3>מה קרה היום</h3>
+            <p>תשואת אג"ח האוצר האמריקאית ל-10 שנים זינקה לרמות הגבוהות ביותר מאז שנת 2007, המשקפת ציפיות גוברות להעלאת ריבית על ידי הפדרל ריזרב. הסוחרים מתמחרים הסתברות של מעל <span class="data-badge">92%</span> להעלאת ריבית בספטמבר, וסיכוי של מעל <span class="data-badge">75%</span> להעלאה נוספת בדצמבר. במקביל, מחירי הנפט עלו עקב חששות מהיצע, ורזרבות הנפט האסטרטגיות של ארה"ב הגיעו לשפל מאז 1982.</p>
+            <p>
+                <a class="btn-source" href="https://finance.yahoo.com/markets/article/10-year-treasury-yield-hits-highest-level-since-2007-121942773.html">Yahoo Finance</a>
+                <a class="btn-source" href="https://www.cnbc.com/2026/09/14/fed-rate-hike-anticipated-what-it-means-for-your-money.html">CNBC</a>
+                <a class="btn-source" href="https://www.cnbc.com/2026/09/14/counting-the-votes-warsh-faces-tough-battle-as-fed-girds-for-expected-rate-hike.html">CNBC</a>
+                <a class="btn-source" href="https://finance.yahoo.com/news/oil-prices-rise-saudi-pipeline-003617502.html">Yahoo Finance</a>
+                <a class="btn-source" href="https://finance.yahoo.com/energy/articles/u-strategic-petroleum-hits-lowest-124132562.html">Yahoo Finance</a>
+            </p>
+            <img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2GMDWFDT25SQYFK0HHP7F8E/oil-bitcoin-petrol-2.jpg" alt="Oil prices and financial charts">
+
+            <h3>למה זה חריג</h3>
+            <p>עלייה חדה בתשואות האג"ח מצביעה על עלייה חדה בציפיות האינפלציה והריבית, דבר המשפיע ישירות על עלויות המימון לכלכלה כולה. שיעורי המשכנתא בארה"ב כבר חצו את רף <span class="data-badge">7%</span>, ו-Wells Fargo הוריד את יעד המחיר של מדד S&P 500 – צעד חריג המעיד על פסימיות גוברת לגבי סביבת הריבית והצמיחה. מחירי הנפט העולים אף הם מוסיפים ללחץ האינפלציוני ומגבירים את הסבירות להמשך מדיניות מוניטרית הדוקה.</p>
+            <p>
+                <a class="btn-source" href="https://finance.yahoo.com/personal-finance/mortgages/article/mortgage-and-refinance-interest-rates-today-tuesday-september-15-2026-rates-cross-the-7-threshold-100000413.html">Yahoo Finance</a>
+                <a class="btn-source" href="https://www.marketwatch.com/story/wells-fargo-just-cuts-its-s-p-500-price-target-will-others-follow-e32f968a?mod=mw_rss_topstories">MarketWatch</a>
+            </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">קריפטו ורגולציה</span>
+            <h2>מגמת התכווצות בשוק הקריפטו מלווה בחוסר וודאות רגולטורית</h2>
+            <h3>מה קרה היום</h3>
+            <p>שוק הקריפטו חווה יום של ירידות, כאשר הביטקוין <span class="data-badge data-negative">-1.55%</span> והאת'ריום <span class="data-badge data-negative">-1.43%</span> נסוגו. ברקע, חילופי דברים פוליטיים בארה"ב הובילו לירידה בסיכויים לחוק CLARITY, הצעת חוק קריפטו מרכזית, ל- <span class="data-badge">16%</span> בלבד. כמו כן, משרד המשפטים האמריקאי מבקש להחרים <span class="data-badge">$61 מיליון</span> ב-USDT, אשר הוקפאו על ידי Tether בשנת 2025, בטענה שהיו קשורים למכירת נפט איראני שהוטלו עליה סנקציות.</p>
+            <p>חדשות שליליות נוספות כוללות את ההודעה של בורסת הקריפטו CoinEx על סגירת פעילותה לאחר 9 שנים, בטענה ל"התכווצות משמעותית" בשוק ועלויות תפעול ורגולציה גוברות. גם פרוטוקול ה-DeFi Balancer שוקל לסיים את פעילותו לאחר שמאמצי ארגון מחדש נכשלו בהחייאת הכנסותיו, כשפריצה קודמת של <span class="data-badge">$128 מיליון</span> עדיין מכבידה על אימוץ הפלטפורמה.</p>
+            <p>
+                <a class="btn-source" href="https://cointelegraph.com/news/us-house-crypto-tax-bill-mining-staking-reward-deferral">Cointelegraph</a>
+                <a class="btn-source" href="https://cointelegraph.com/news/clarity-act-odds-fall-democrats-gop-final-offer">Cointelegraph</a>
+                <a class="btn-source" href="https://cointelegraph.com/news/doj-61m-usdt-forfeiture-iranian-oil">Cointelegraph</a>
+                <a class="btn-source" href="https://cointelegraph.com/news/coinex-cease-operation-citing-significant-crypto-contraction">Cointelegraph</a>
+                <a class="btn-source" href="https://cointelegraph.com/news/balancer-eyes-wind-down-after-restructuring-fails-revive-revenue">Cointelegraph</a>
+                <a class="btn-source" href="https://finance.yahoo.com/personal-finance/investing/article/bitcoin-and-ethereum-prices-today-tuesday-september-15-2026-crypto-prices-sliding-this-morning-ahead-of-fed-meeting-113732149.html">Yahoo Finance</a>
+            </p>
+            <img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2HV2WP39A13M6VPCXQJBABW/single-leaf-on-tree-balance.png" alt="Crypto market contraction">
+
+            <h3>למה זה חריג</h3>
+            <p>השילוב של אי-ודאות רגולטורית גוברת בארה"ב (חוק CLARITY), פעולות אכיפה כנגד שימוש לרעה בנכסים דיגיטליים (USDT), וקריסת ישויות מרכזיות בתעשייה (CoinEx, Balancer) מצביע על אתגרים מהותיים בתעשיית הקריפטו. אירועים אלו מחזקים את התפיסה כי הסקטור נמצא בתקופה של התכווצות, כאשר לחצי רגולציה ומימון מקשים על הישרדותם של שחקנים קטנים יותר ומגבירים את הסיכון הכולל.</p>
+        </div>
+
+    </div>
+</body>
+</html>
