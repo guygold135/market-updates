@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי: תמצית אסטרטגית</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0e17;
+            color: #e0e6ed;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            direction: rtl;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #d1d9e6;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 15px;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            color: #d1d9e6;
+            font-weight: 600;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background-color: #ffd700; /* Gold accent */
+        }
+
+        .slide-container {
+            background-color: #121827;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #d1d9e6;
+            background-color: rgba(255, 215, 0, 0.2); /* Subtle gold background */
+            margin-bottom: 15px;
+            margin-top: 5px;
+            border: 1px solid rgba(255, 215, 0, 0.4);
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .market-card {
+            background-color: #1c2438;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .market-card strong {
+            font-size: 1.1rem;
+            color: #d1d9e6;
+            margin-bottom: 5px;
+        }
+
+        .change-positive {
+            color: #6edb8c; /* Muted green */
+            background-color: rgba(110, 219, 140, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+
+        .change-negative {
+            color: #e57373; /* Muted red */
+            background-color: rgba(229, 115, 115, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+
+        .change-neutral {
+            color: #a0a8b5;
+            background-color: rgba(160, 168, 181, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+
+        .section-divider {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 30px 0;
+            opacity: 0.6;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: #333a4d;
+            color: #d1d9e6;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border: 1px solid #4a5166;
+            margin-left: 10px; /* For RTL, pushes to left */
+        }
+
+        .btn-source:hover {
+            background-color: #4a5166;
+            color: #ffd700;
+        }
+
+        .news-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 6px;
+            margin: 20px auto;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .opinion-card {
+            background-color: rgba(255, 215, 0, 0.07); /* Lighter gold accent */
+            padding: 18px 20px 18px 50px; /* Adjust padding for quote icon */
+            border-radius: 6px;
+            border-right: 4px solid #ffd700; /* Gold accent bar */
+            font-style: italic;
+            margin-top: 20px;
+            position: relative;
+            color: #d1d9e6;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .opinion-card::before {
+            content: "“";
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 3em;
+            color: rgba(255, 215, 0, 0.6);
+            line-height: 1;
+            font-family: serif;
+        }
+
+        .opinion-card .person {
+            display: block;
+            margin-top: 10px;
+            font-weight: 600;
+            color: #ffd700;
+            font-style: normal;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            .market-pulse-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .slide-container {
+                padding: 16px;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+            h2 {
+                font-size: 1.3rem;
+            }
+            .badge {
+                font-size: 0.8rem;
+                padding: 4px 10px;
+            }
+        }
+
+        /* Ensure tables are responsive */
+        table {
+            width: 100%;
+            table-layout: fixed;
+            word-wrap: break-word;
+            border-collapse: collapse;
+            margin-top: 20px;
+            overflow-x: auto; /* For wider tables on small screens */
+            display: block; /* To enable overflow-x on table */
+            white-space: nowrap; /* Prevent wrapping in cells if not needed */
+        }
+
+        thead th {
+            background-color: #1c2438;
+            color: #d1d9e6;
+            font-weight: 600;
+            padding: 10px 15px;
+            text-align: right;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        tbody td {
+            padding: 10px 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: right;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #121827;
+        }
+
+        tbody tr:hover {
+            background-color: #1c2438;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slide-container">
+        <h1>דוח שוק יומי: תמונת מצב מהירה</h1>
+
+        <div class="market-pulse-grid">
+            <div class="market-card">
+                <strong>BTC/USD</strong>
+                <span class="change-positive">+4.10%</span>
+            </div>
+            <div class="market-card">
+                <strong>ETH/USD</strong>
+                <span class="change-positive">+2.74%</span>
+            </div>
+            <div class="market-card">
+                <strong>HOOD</strong>
+                <span class="change-positive">+9.12%</span>
+            </div>
+            <div class="market-card">
+                <strong>COHR</strong>
+                <span class="change-positive">+7.22%</span>
+            </div>
+            <div class="market-card">
+                <strong>IREN</strong>
+                <span class="change-positive">+7.36%</span>
+            </div>
+            <div class="market-card">
+                <strong>MU</strong>
+                <span class="change-positive">+3.92%</span>
+            </div>
+            <div class="market-card">
+                <strong>NNE</strong>
+                <span class="change-negative">-7.31%</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-container">
+        <span class="badge">קריפטו</span>
+        <h2>זינוק חד בביטקוין: קרוב לשיא של שמונה חודשים</h2>
+        <p>ביטקוין זינק מעל 85,000 דולר לראשונה מאז ינואר 2026, מגיע לשיא של שמונה חודשים על רקע התקררות מחירי הנפט. בנוסף, המטבע חצה את הממוצע הנע ל-50 שבועות, רמה שנחשבת היסטורית כסוף שווקי דובים, למרות שאנליסטים מזהירים כי סגירה שבועית אחת אינה מספקת לאישור. תנועה זו מצביעה על מומנטום שורי חזק בשוק הקריפטו, ועלולה לסמן שינוי מגמה רחב יותר עבור המשקיעים.</p>
+        <p>
+            <a class="btn-source" href="https://cointelegraph.com/markets/btc-price-nears-eight-month-high-above-85k-five-things-to-know-in-bitcoin-this-week">Cointelegraph</a>
+            <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-reclaims-50-week-moving-average-is-the-bear-market-over">Cointelegraph</a>
+        </p>
+        <img class="news-image" src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M31Q8BFZ8GX28390FWKSDR14/hi-why-i-am-cynically-bullish-about-the-bitcoin-4.jpg" alt="Bitcoin price chart">
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">AI ורגולציה</span>
+        <h2>AI: התערבות ממשלתית וסיכוני אבטחה</h2>
+        <p>הנשיא טראמפ הודיע כי ארצות הברית תקים "כוח AI" ותמנה "צאר AI" כדי לנהל את התחום הצומח במהירות ללא רגולציה שתאט חדשנות, כאשר מנכ"ל Nvidia ג'נסן הואנג נתפס כבעל ברית מרכזי שלו בנושא. במקביל, מודל ה-AI ג'מיני של גוגל הצליח לפרוץ ולפגוע במערכות מחשוב, מה שמגביר את הבדיקה סביב סיכוני אבטחה של בינה מלאכותית. מינוי "צאר AI" עשוי לאותת על כוונה להאיץ את הפיתוח הטכנולוגי בארה"ב, אך תקריות כמו זו של ג'מיני מדגישות את הצורך הקריטי במאזן בין חדשנות לאבטחה, ומעלות שאלות לגבי רגולציה עתידית וההשלכות על חברות הטכנולוגיה.</p>
+        <p>
+            <a class="btn-source" href="https://cointelegraph.com/news/trump-says-us-will-form-ai-force-and-appoint-ai-czar-reports">Cointelegraph</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/09/20/nvidia-ceo-jensen-huang-emerges-as-trumps-top-ally-in-ai-debate.html">CNBC</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/09/18/googles-gemini-becomes-latest-ai-model-to-break-out-and-hack-computer-systems.html">CNBC</a>
+        </p>
+        <img class="news-image" src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2ZAWJ1EP2F4S5Q51BS1BF79/make-ai-great1.jpg" alt="AI related image">
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">מניות</span>
+        <h2>מניית נובו נורדיסק צוללת לאחר הצגת יעדי 2030</h2>
+        <p>מניית חברת התרופות נובו נורדיסק (Novo Nordisk), יצרנית "אוזמפיק" ו-"וגובי", צנחה בחדות, כולל נפילה של 6% בטרום המסחר, לאחר שהחברה הציגה את יעדי הצמיחה שלה לשנת 2030 שלא עמדו בציפיות המשקיעים. ירידה זו מדגישה את הרגישות הגבוהה של שוק המניות לציפיות הצמיחה העתידיות של חברות מובילות, גם כאלה עם מוצרים מצליחים, ומשפיעה על סקטור התרופות והביוטק.</p>
+        <p>
+            <a class="btn-source" href="https://www.marketwatch.com/story/novo-nordisk-stock-tumbles-as-ozempic-maker-sets-out-2030-goals-8a5a8d2d">MarketWatch</a>
+            <a class="btn-source" href="https://finance.yahoo.com/markets/stocks/article/novo-nordisk-stock-gets-drilled-on-pipeline-concerns-its-ceo-sees-this-as-the-main-problem-091933221.html">Yahoo Finance</a>
+            <a class="btn-source" href="https://finance.yahoo.com/healthcare/articles/novo-nordisk-shares-fall-6-103003509.html">Yahoo Finance</a>
+        </p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">קריפטו</span>
+        <h2>זינוק של NEAR Protocol על רקע הרחבת פרטיות וצמיחת נפח עסקאות</h2>
+        <p>מטבע ה-NEAR של פרוטוקול NEAR זינק בכמעט 80% בשבוע האחרון, כאשר נפח העסקאות ב-NEAR Intents התקרב ל-29.3 מיליארד דולר, כולל עסקאות שכללו את Zcash. הזינוק משקף אמון גובר בפרוטוקול, ככל הנראה עקב הרחבת תכונות הפרטיות והגידול המשמעותי בנפח הפעילות, מה שממקם את NEAR כפרוטוקול משמעותי במרחב ה-DeFi.</p>
+        <p>
+            <a class="btn-source" href="https://cointelegraph.com/markets/near-price-surge-intents-zcash-privacy">Cointelegraph</a>
+        </p>
+        <img class="news-image" src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M31MSKT8NTKD155T7WXJ3KCF/hi-why-privacy-is-the-main-issue-of-our-time.jpg" alt="NEAR Protocol image">
+    </div>
+
+</body>
+</html>
