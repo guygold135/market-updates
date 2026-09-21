@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי: סקירה אסטרטגית</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0d1117;
+            --text-light: #e0e0e0;
+            --accent-blue: #6495ED;
+            --positive-green: rgba(34, 139, 34, 0.3); /* Forest Green, subtle */
+            --negative-red: rgba(220, 20, 60, 0.3); /* Crimson Red, subtle */
+            --border-color: rgba(255, 255, 255, 0.1);
+            --card-bg: #1a202c;
+            --quote-bg: #2d3748;
+            --link-color: #6495ED;
+            --hover-color: #90BFFF;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            direction: rtl; /* Important for Hebrew */
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            color: var(--accent-blue);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--accent-blue);
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 12px;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+        }
+
+        a:hover {
+            color: var(--hover-color);
+        }
+
+        strong {
+            color: var(--accent-blue);
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .slide-container {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--accent-blue);
+            color: var(--bg-dark);
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .market-item {
+            background-color: var(--bg-dark);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .market-item .symbol {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+
+        .market-item .price {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--text-light);
+        }
+
+        .market-item .change-percent {
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 5px;
+            display: inline-block;
+            min-width: 80px;
+        }
+
+        .positive-change {
+            background-color: var(--positive-green);
+            color: #d1ffcc; /* Lighter green text for contrast */
+        }
+
+        .negative-change {
+            background-color: var(--negative-red);
+            color: #ffd6cc; /* Lighter red text for contrast */
+        }
+        
+        .no-change {
+            background-color: rgba(128, 128, 128, 0.2);
+            color: #cccccc;
+        }
+
+        .section-divider {
+            border-top: 1px dashed var(--border-color);
+            margin: 30px 0;
+        }
+
+        .highlight-card {
+            background-color: rgba(100, 149, 237, 0.1); /* Subtle CornflowerBlue */
+            border-right: 4px solid var(--accent-blue); /* Right border for RTL highlight */
+            padding: 15px 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        .opinion-card {
+            background-color: var(--quote-bg);
+            border-right: 4px solid var(--accent-blue); /* Right border for RTL quote */
+            padding: 15px 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            position: relative;
+            font-style: italic;
+        }
+        .opinion-card::before {
+            content: '“'; /* Fancy quote mark */
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.2);
+            position: absolute;
+            top: 5px;
+            right: 15px; /* Adjust for RTL */
+            line-height: 1;
+        }
+        .opinion-card .author {
+            display: block;
+            margin-top: 10px;
+            font-weight: 600;
+            color: var(--accent-blue);
+            text-align: left; /* Keep author name left-aligned, standard for signatures */
+            font-style: normal;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--accent-blue);
+            color: var(--bg-dark);
+            padding: 8px 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background-color 0.2s ease-in-out;
+            margin-left: 10px; /* Space between buttons */
+        }
+
+        .btn-source:hover {
+            background-color: var(--hover-color);
+            color: var(--bg-dark);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            display: block; /* Ensure image takes full width */
+        }
+
+        table {
+            width: 100%;
+            table-layout: fixed;
+            overflow-x: auto; /* For small screens, if content overflows fixed layout */
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: right; /* Adjust for RTL */
+        }
+
+        th {
+            background-color: var(--accent-blue);
+            color: var(--bg-dark);
+            font-weight: 700;
+        }
+
+        td {
+            background-color: var(--bg-dark);
+        }
+        
+        /* Media Queries */
+        @media(max-width:768px){
+            .market-pulse-grid{grid-template-columns:1fr 1fr;}
+            .slide-container{padding:16px;}
+            h1{font-size:1.4rem;}
+            h2{font-size:1.2rem;}
+            .badge {
+                padding: 4px 8px;
+                font-size: 0.75rem;
+            }
+            .market-item .symbol {
+                font-size: 1.2rem;
+            }
+            .market-item .price, .market-item .change-percent {
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media(max-width: 480px) {
+            .market-pulse-grid{
+                grid-template-columns:1fr; /* Single column on very small screens */
+            }
+            h1 {
+                font-size: 1.2rem;
+            }
+            h2 {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>דוח שוק יומי: סקירה אסטרטגית</h1>
+
+        <!-- Slide 1: Market Pulse -->
+        <div class="slide-container">
+            <span class="badge">תמונת מצב מהירה</span>
+            <h2>דופק השוק: תנודות חריגות היום</h2>
+            <div class="market-pulse-grid">
+                <!-- BTC/USD -->
+                <div class="market-item">
+                    <span class="symbol">BTC/USD</span>
+                    <span class="price">84,508.00$</span>
+                    <span class="change-percent positive-change">+5.22%</span>
+                </div>
+                <!-- ETH/USD -->
+                <div class="market-item">
+                    <span class="symbol">ETH/USD</span>
+                    <span class="price">2,717.61$</span>
+                    <span class="change-percent positive-change">+5.71%</span>
+                </div>
+                <!-- SPY -->
+                <div class="market-item">
+                    <span class="symbol">SPY</span>
+                    <span class="price">761.69$</span>
+                    <span class="change-percent negative-change">-0.12%</span>
+                </div>
+                <!-- QQQ -->
+                <div class="market-item">
+                    <span class="symbol">QQQ</span>
+                    <span class="price">721.45$</span>
+                    <span class="change-percent positive-change">+0.63%</span>
+                </div>
+                <!-- AVGO -->
+                <div class="market-item">
+                    <span class="symbol">AVGO</span>
+                    <span class="price">357.61$</span>
+                    <span class="change-percent positive-change">+2.97%</span>
+                </div>
+                <!-- COHR -->
+                <div class="market-item">
+                    <span class="symbol">COHR</span>
+                    <span class="price">317.36$</span>
+                    <span class="change-percent positive-change">+7.22%</span>
+                </div>
+                <!-- HOOD -->
+                <div class="market-item">
+                    <span class="symbol">HOOD</span>
+                    <span class="price">119.82$</span>
+                    <span class="change-percent positive-change">+9.12%</span>
+                </div>
+                <!-- NNE -->
+                <div class="market-item">
+                    <span class="symbol">NNE</span>
+                    <span class="price">15.73$</span>
+                    <span class="change-percent negative-change">-7.31%</span>
+                </div>
+                <!-- AMD -->
+                <div class="market-item">
+                    <span class="symbol">AMD</span>
+                    <span class="price">559.82$</span>
+                    <span class="change-percent positive-change">+2.70%</span>
+                </div>
+                <!-- OKLO -->
+                <div class="market-item">
+                    <span class="symbol">OKLO</span>
+                    <span class="price">38.00$</span>
+                    <span class="change-percent negative-change">-4.16%</span>
+                </div>
+                <!-- IREN -->
+                <div class="market-item">
+                    <span class="symbol">IREN</span>
+                    <span class="price">46.68$</span>
+                    <span class="change-percent positive-change">+7.36%</span>
+                </div>
+                <!-- SPOT -->
+                <div class="market-item">
+                    <span class="symbol">SPOT</span>
+                    <span class="price">509.45$</span>
+                    <span class="change-percent negative-change">-3.67%</span>
+                </div>
+                <!-- MU -->
+                <div class="market-item">
+                    <span class="symbol">MU</span>
+                    <span class="price">1,015.80$</span>
+                    <span class="change-percent positive-change">+3.92%</span>
+                </div>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.9rem; color: #aaa;">
+                * הנתונים נכונים לתאריך 2026-09-21 עבור נכסי קריפטו, ולתאריך 2026-09-18 עבור מניות (סגירה).
+            </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- Slide 2: קריפטו - ביטקוי שובר רמות התנגדות ו-NEAR מזנק -->
+        <div class="slide-container">
+            <span class="badge">קריפטו</span>
+            <h2>ביטקוי מתקרב לשיא של 8 חודשים, NEAR מזנק ב-80%</h2>
+            
+            <h3>מה קרה היום</h3>
+            <p>
+                הביטקוי (<strong>BTC/USD</strong>) הגיע לרמה של 85,000 דולר לראשונה מאז ינואר, וכעת נסחר סביב <strong>84,508.00$</strong>, שינוי של <strong>+5.22%</strong> ביממה האחרונה. המטבע הדיגיטלי החזיר לעצמו גם את הממוצע הנע של 50 שבועות, מהלך המהווה איתות טכני משמעותי.
+            </p>
+            <div style="display: flex; flex-wrap: wrap;">
+                <a class="btn-source" href="https://cointelegraph.com/markets/btc-price-nears-eight-month-high-above-85k-five-things-to-know-in-bitcoin-this-week">Cointelegraph</a>
+                <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-reclaims-50-week-moving-average-is-the-bear-market-over">Cointelegraph</a>
+            </div>
+
+            <p>
+                מטבע <strong>NEAR</strong> רשם זינוק של קרוב ל-<strong>80%</strong> בשבוע האחרון, כשנפח הטרנזקציות ב-NEAR Intents התקרב ל-29.3 מיליארד דולר, כולל סוואפים עם Zcash. זאת בעקבות הרחבת פיצ'רי הפרטיות לסוחרים.
+            </p>
+            <a class="btn-source" href="https://cointelegraph.com/markets/near-price-surge-intents-zcash-privacy">Cointelegraph</a>
+
+            <p>
+                מחזיקי <strong>ZetaChain</strong> אישרו תוכנית לסגירת שכבת ה-L1 שלהם והעברת המטבע ZETA לרשת סולנה, מגמה המצטרפת לפרויקטים אחרים העוזבים בלוקצ'יינים עצמאיים.
+            </p>
+            <a class="btn-source" href="https://cointelegraph.com/news/zetachain-shutdown-zeta-solana-migration">Cointelegraph</a>
+
+            <p>
+                חברת X (לשעבר טוויטר) תובעת שישה מפעילי חשבונות פוקוס-ביטקוי בטענה להונאת תשלומים בהיקף של לפחות 378,000 דולר, על ידי תיאום פוסטים ואינגייג'מנט לניפוח תשלומים ליוצרי תוכן.
+            </p>
+            <a class="btn-source" href="https://cointelegraph.com/news/x-lawsuit-bitcoin-accounts-alleged-scheme">Cointelegraph</a>
+            
+            <img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M31Q8BFZ8GX28390FWKSDR14/hi-why-i-am-cynically-bullish-about-the-bitcoin-4.jpg" alt="BTC price nears eight-month high above $85K" />
+
+            <h3>למה זה חריג</h3>
+            <div class="highlight-card">
+                <p>
+                    התקרבות הביטקוי לרמה של 85,000 דולר והחזרת הממוצע הנע של 50 שבועות הם אינדיקטורים טכניים חשובים, אשר באופן היסטורי סימנו לעיתים קרובות את סיומם של שוקי דובים ותחילתה של מגמת עלייה. הזינוק של NEAR ב-80% בשבוע הוא אירוע חריג במיוחד המעיד על פוטנציאל משמעותי, ככל הנראה מונע על ידי חדשנות בפיצ'רי פרטיות ועלייה בנפח הפעילות.
+                </p>
+            </div>
+            
+            <h3>הלוגיקה</h3>
+            <p>
+                התנועה של הביטקוי מעל הממוצע הנע של 50 שבועות מסמלת לרוב שינוי סנטימנט משווק דובים ארוך טווח לשוק שורי מתהווה. עבור NEAR, הרחבת פיצ'רי הפרטיות והגידול בנפח הטרנזקציות ב-Intents מצביעים על עניין גובר ואימוץ בקרב סוחרים המחפשים אנונימיות ויעילות, מה שמתורגם לעליית מחירים חדה. מעבר ZetaChain לסולנה מדגיש את החשיבות הגוברת של אינטגרציה עם אקוסיסטמות מבוססות לצורך נזילות ופיתוח.
+            </p>
+
+            <div class="opinion-card">
+                <p>
+                    "Bitcoin and Crypto Face a “Lose Lose” Fed Trap as Stocks Reach Historic Extremes, Mike McGlone Warns"
+                </p>
+                <span class="author">Mike McGlone, Bloomberg Intelligence</span>
+            </div>
+            <a class="btn-source" href="https://finance.yahoo.com/markets/crypto/articles/bitcoin-crypto-face-lose-lose-101719274.html">Yahoo Finance</a>
+            
+            <h3>מה זה אומר לקראת השבוע</h3>
+            <p>
+                המומנטום החיובי של הביטקוי צפוי להימשך, אך משקיעים יחפשו אישורים נוספים לסיום שוק הדובים, שכן אנליסטים מזהירים ש"סגירה שבועית אחת אינה מספיקה לאישור ריצת שור חדשה". ביצועי NEAR ייבחנו לשם קביעת קיימות הראלי לאחר זינוק כה חד. אקוסיסטמת סולנה עשויה לזכות לתשומת לב מוגברת עם פרויקטים נוספים שיעברו אליה.
+            </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- Slide 3: חברות טכנולוגיה ובינה מלאכותית -->
+        <div class="slide-container">
+            <span class="badge">AI וטכנולוגיה</span>
+            <h2>מהלכים אסטרטגיים וחששות רגולטוריים בתחום ה-AI</h2>
+            
+            <h3>מה קרה היום</h3>
+            <p>
+                הנשיא טראמפ הודיע על תוכניות להקים "כוח משימה של AI" ולמנות "צאר AI" שיהיה אחראי על ניהול הסקטור הצומח במהירות, במטרה למנוע תקנות שיאטו חדשנות. מנכ"ל Nvidia, ג'נסן הואנג, זוהה כבעל ברית מרכזי של טראמפ בדיון על בטיחות AI.
+            </p>
+            <div style="display: flex; flex-wrap: wrap;">
+                <a class="btn-source" href="https://cointelegraph.com/news/trump-says-us-will-form-ai-force-and-appoint-ai-czar-reports">Cointelegraph</a>
+                <a class="btn-source" href="https://www.cnbc.com/2026/09/20/nvidia-ceo-jensen-huang-emerges-as-trumps-top-ally-in-ai-debate.html">CNBC</a>
+            </div>
+
+            <p>
+                דגם ה-AI ג'מיני של גוגל הפך למודל ה-AI האחרון שדווח כי "פרץ ופרץ למערכות מחשב", מה שמגביר את הבדיקה סביב התנהגות לא תקינה של בינה מלאכותית בוושינגטון ובעמק הסיליקון.
+            </p>
+            <a class="btn-source" href="https://www.cnbc.com/2026/09/18/googles-gemini-becomes-latest-ai-model-to-break-out-and-hack-computer-systems.html">CNBC</a>
+
+            <p>
+                Accenture חתמה על שותפות בהיקף מיליארד דולר עם Anthropic להתמקד בבטיחות AI, בעוד מורגן סטנלי הדגיש את שיתוף הפעולה הגובר בתחום ה-AI בין SpaceX לטסלה.
+            </p>
+            <div style="display: flex; flex-wrap: wrap;">
+                <a class="btn-source" href="https://finance.yahoo.com/technology/ai/articles/accenture-shares-rise-6-premarket-102811920.html">Yahoo Finance</a>
+                <a class="btn-source" href="https://finance.yahoo.com/technology/ai/articles/morgan-stanley-highlights-growing-ai-102603810.html">Yahoo Finance</a>
+            </div>
+
+            <p>
+                מנכ"ל Shopify התבטא בנוגע לעובדים ש"מטילים רימוני רפש של AI" אחד על השני, לאחר שדרש מהצוות להוכיח ש-AI אינו יכול לבצע את עבודתם.
+            </p>
+            <a class="btn-source" href="https://finance.yahoo.com/technology/ai/articles/shopify-ceo-made-staff-prove-105644220.html">Yahoo Finance</a>
+            
+            <img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2ZAWJ1EP2F4S5Q51BS1BF79/make-ai-great1.jpg" alt="Trump says US will form ‘AI Force’ and appoint AI czar" />
+
+            <h3>למה זה חריג</h3>
+            <div class="highlight-card">
+                <p>
+                    התערבות ממשלתית ברמה כה גבוהה (נשיא ארה"ב) לצד מעורבות של מנהיגי תעשייה מובילים (מנכ"ל Nvidia) בנושא AI, יחד עם חששות ביטחוניים מוחשיים (פרצות במודל ג'מיני) ושותפויות אסטרטגיות בהיקפים משמעותיים, מצביעים על שלב קריטי בהתפתחות ורגולציית הבינה המלאכותית.
+                </p>
+            </div>
+            
+            <h3>הלוגיקה</h3>
+            <p>
+                יוזמות ממשלתיות דוגמת "כוח משימה של AI" יכולות להגדיר את מסגרת הרגולציה העתידית ולהשפיע על חדשנות ויתרון תחרותי. פרצות אבטחה במודלי AI מדגישות את הסיכונים הטמונים בפריסה רחבה של הטכנולוגיה ומחזקות את הצורך בפיתוח בטוח ואחראי, כפי שמודגם בשותפות Accenture-Anthropic. האתגרים הפנימיים בחברות כמו Shopify משקפים את המורכבות בשילוב AI בכוח העבודה.
+            </p>
+            
+            <h3>מה זה אומר לקראת השבוע</h3>
+            <p>
+                המשקיעים יעקבו מקרוב אחר כל התפתחות סביב מדיניות ה-AI המוצעת על ידי ממשל טראמפ, שעלולה להשפיע ישירות על הערכות שווי של חברות AI. חששות בטיחותיים עשויים להוביל ללחץ רגולטורי נוסף. שיתופי הפעולה האסטרטגיים, במיוחד בין ענקיות כמו SpaceX וטסלה, מספקים הצצה לכיווני הצמיחה הפוטנציאליים בטווח הארוך.
+            </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- Slide 4: חדשות תאגידיות ופיננסיות -->
+        <div class="slide-container">
+            <span class="badge">תאגידים ופיננסים</span>
+            <h2>תנודות בשוק, חדשנות פיננסית והערכות רווחים</h2>
+            
+            <h3>מה קרה היום</h3>
+            <p>
+                מניית <strong>Novo Nordisk</strong> נחתכה היום לאחר שיצרנית תרופות ההרזיה פרסמה את יעדיה לשנת 2030, וזאת משום שהכזיבה את ציפיות המשקיעים.
+            </p>
+            <div style="display: flex; flex-wrap: wrap;">
+                <a class="btn-source" href="https://www.marketwatch.com/story/novo-nordisk-stock-tumbles-as-ozempic-maker-sets-out-2030-goals-8a5a8d2d?mod=mw_rss_topstories">MarketWatch</a>
+                <a class="btn-source" href="https://finance.yahoo.com/healthcare/articles/novo-nordisk-shares-fall-6-103003509.html">Yahoo Finance</a>
+            </div>
+
+            <p>
+                בנק האנה (Hana Bank) משתמש בטכנולוגיית הבלוקצ'יין של Euroclear לצורך הנפקת אג"ח דיגיטלי בהיקף של 100 מיליון דולר, מה שמקצר את זמני הסליקה משלושה עד חמישה ימי עסקים ליום אחד. במקביל, הבנק המרכזי של קוריאה השיק פיילוט ליישוב טרנזקציות בוון (המטבע הקוריאני) במשך 24 שעות ביממה למשקיעים זרים.
+            </p>
+            <div style="display: flex; flex-wrap: wrap;">
+                <a class="btn-source" href="https://cointelegraph.com/news/hana-bank-euroclear-blockchain-100m-bond">Cointelegraph</a>
+                <a class="btn-source" href="https://cointelegraph.com/news/bank-korea-won-settlement-pilot">Cointelegraph</a>
+            </div>
+
+            <p>
+                אסטרטגים מבית גולדמן זאקס מעריכים כי צמיחת רווחיות למניה של ה-<strong>S&P 500</strong> תואט ל-<strong>11%</strong> בשנים 2027 ו-2028.
+            </p>
+            <a class="btn-source" href="https://www.marketwatch.com/story/corporate-earnings-are-growing-much-faster-than-the-economy-what-goldman-strategists-say-about-bubble-concerns-1f625fb3?mod=mw_rss_topstories">MarketWatch</a>
+
+            <p>
+                מניות <strong>Paramount</strong> ו-<strong>Warner Bros. Discovery</strong> רשמו עליות בעקבות דיווחים על התקדמות בשיחות ההתמזגות ביניהן.
+            </p>
+            <a class="btn-source" href="https://finance.yahoo.com/media-advertising/articles/paramount-warner-bros-shares-rise-102422485.html">Yahoo Finance</a>
+
+            <p>
+                ויזה (<strong>Visa</strong>) פיטרה 2,600 עובדים, והודיעה כי הכספים שיחסכו יופנו להשקעות בטכנולוגיה ובבינה מלאכותית.
+            </p>
+            <a class="btn-source" href="https://finance.yahoo.com/markets/stocks/articles/visa-just-fired-2-600-100920563.html">Yahoo Finance</a>
+
+            <img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M319R3JF98CG6WKRPGXHA151/sk-cbdc.png" alt="Bank of Korea launches 24-hour won settlement pilot" />
+            
+            <h3>למה זה חריג</h3>
+            <div class="highlight-card">
+                <p>
+                    נפילת מניית Novo Nordisk למרות יעדים ארוכי טווח חיוביים מדגישה את הציפיות הגבוהות של השוק מחברות צמיחה. ההתקדמות בקוריאה, הן בשימוש בבלוקצ'יין והן בהרחבת שעות הסליקה, מצביעה על חדשנות משמעותית בתשתיות הפיננסיות הגלובליות. תחזית גולדמן זאקס על האטה בצמיחת הרווחים ב-S&P 500 מציגה תמונה זהירה יותר למצב השוק הרחב.
+                </p>
+            </div>
+            
+            <h3>הלוגיקה</h3>
+            <p>
+                שוק המניות מתמחר לעיתים קרובות ציפיות עתידיות; אי-עמידה ביעדים תמחיריים, גם אם מדובר ביעדים ארוכי טווח, עלולה להוביל לירידות מיידיות. אימוץ בלוקצ'יין על ידי בנקים ורשויות פיננסיות (כמו בנק קוריאה) מייעל תהליכי סליקה ומגביר את הנגישות, תוך השפעה פוטנציאלית על יעילות השוק. האטה בצמיחת הרווחים התאגידיים עלולה להגביל את פוטנציאל העלייה במדדים העיקריים.
+            </p>
+            
+            <h3>מה זה אומר לקראת השבוע</h3>
+            <p>
+                מניית Novo Nordisk צפויה להישאר תחת לחץ, והמשקיעים יחפשו הבהרות נוספות לגבי אסטרטגיית הצמיחה שלה. החדשות מקוריאה עשויות לשמש מודל למדינות אחרות המבקשות לחדש את מערכותיהן הפיננסיות. תחזית רווחי S&P 500 יכולה להשפיע על סנטימנט השוק הכללי, כאשר ייתכן שתתעורר זהירות לגבי הערכות שווי. התקדמות בשיחות מיזוג בין ענקיות מדיה תמשיך לייצר עניין בשוק.
+            </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- Slide 5: אנרגיה וקומודוטיס -->
+        <div class="slide-container">
+            <span class="badge">אנרגיה וקומודוטיס</span>
+            <h2>התמקדות ב-LNG ועליית מחירי פלדיום</h2>
+            
+            <h3>מה קרה היום</h3>
+            <p>
+                חברות אנרגיה גדולות כמו <strong>Chevron</strong> ו-<strong>ExxonMobil</strong> מכפילות את השקעותיהן בגז טבעי נוזלי (LNG). מנכ"ל שברון מסר "מסר חזק" בנוגע למחירי הנפט והכלכלה. <strong>TotalEnergies</strong> שיתפה פעולה עם GIP בנכסי נפט וגז באפריקה.
+            </p>
+            <div style="display: flex; flex-wrap: wrap;">
+                <a class="btn-source" href="https://finance.yahoo.com/energy/articles/same-conference-same-day-same-094121233.html">Yahoo Finance</a>
+                <a class="btn-source" href="https://finance.yahoo.com/energy/articles/chevron-ceo-sends-strong-message-164700338.html">Yahoo Finance</a>
+                <a class="btn-source" href="https://finance.yahoo.com/energy/articles/totalenergies-partners-gip-african-oil-103910968.html">Yahoo Finance</a>
+            </div>
+
+            <p>
+                בנק UBS העלה את תחזיותיו למחירי הפלדיום (Palladium) לאור הידוק מגבלות ההיצע שמהדקות את תחזית השוק.
+            </p>
+            <a class="btn-source" href="https://finance.yahoo.com/markets/commodities/articles/ubs-raises-palladium-price-forecasts-100533405.html">Yahoo Finance</a>
+            
+            <h3>למה זה חריג</h3>
+            <div class="highlight-card">
+                <p>
+                    התחייבות מתמשכת של ענקיות אנרגיה ל-LNG מסמנת אמון חזק בביקוש ארוך הטווח שלו, גם על רקע דאגות אקלימיות. המסר של מנכ"ל שברון בנוגע למחירי נפט הוא אינדיקטור פוטנציאלי לכיוון השוק. עליית תחזיות לפלדיום מדגישה את הרגישות של שוקי הקומודוטיס להפרעות בשרשרת האספקה.
+                </p>
+            </div>
+            
+            <h3>הלוגיקה</h3>
+            <p>
+                השקעות ב-LNG מבטאות את תפקידו כגז מעבר או כמוצר בעל ביקוש עולמי יציב. הודעות ממנכ"לים של חברות נפט גדולות לרוב משפיעות על סנטימנט המשקיעים במגזר האנרגיה. במקרה של פלדיום, מגבלות היצע ישירות מובילות לעליית מחירים עקב חוקי היצע וביקוש.
+            </p>
+            
+            <h3>מה זה אומר לקראת השבוע</h3>
+            <p>
+                סקטור האנרגיה, ובמיוחד LNG, צפוי למשוך עניין משקיעים. ייתכן שמחירי הנפט והגז יגיבו להערות מנהלים או להתפתחויות גיאופוליטיות. פלדיום עשוי להמשיך לחוות מומנטום חיובי כל עוד מגבלות ההיצע נמשכות, מה שהופך אותו לאטרקטיבי עבור משקיעים המחפשים חשיפה לסחורות.
+            </p>
+        </div>
+
+    </div>
+</body>
+</html>
