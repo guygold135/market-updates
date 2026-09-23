@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק הון יומי: תמונת מצב אסטרטגית</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0a0e17;
+            --text-color: #e0e0e0;
+            --accent-color: #00FFFF; /* Steel blue / Cyan */
+            --divider-color: #333;
+            --card-bg: #1a202c;
+            --highlight-bg: #2a2f3a;
+            --opinion-bg: #202633;
+            --positive-text: #00FF00;
+            --negative-text: #FF0000;
+            --positive-bg-light: rgba(0, 128, 0, 0.2);
+            --negative-bg-light: rgba(255, 0, 0, 0.2);
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            direction: rtl; /* Right-to-left for Hebrew */
+        }
+
+        h1, h2, h3 {
+            color: var(--accent-color);
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: right;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            padding: 30px 20px;
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--divider-color);
+            margin-bottom: 0;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--text-color);
+            margin-top: 20px;
+        }
+
+        p, div {
+            text-align: right; /* Ensure right-to-left for general text flow */
+        }
+
+        .slide-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow-x: auto; /* Ensure horizontal scroll for wide content like tables */
+        }
+
+        .section-divider {
+            border-top: 1px dashed var(--divider-color);
+            margin: 40px 0;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .market-pulse-item {
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            border: 1px solid var(--divider-color);
+        }
+
+        .market-pulse-item strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .change-positive {
+            color: var(--positive-text);
+            background-color: var(--positive-bg-light);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .change-negative {
+            color: var(--negative-text);
+            background-color: var(--negative-bg-light);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        .market-pulse-table {
+            width: 100%;
+            table-layout: fixed;
+            word-wrap: break-word;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .market-pulse-table th, .market-pulse-table td {
+            border: 1px solid var(--divider-color);
+            padding: 10px;
+            text-align: right; /* Align text to right for Hebrew */
+        }
+        
+        .market-pulse-table th {
+            background-color: var(--highlight-bg);
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+        
+        .market-pulse-table tbody tr:nth-child(even) {
+            background-color: #121620;
+        }
+
+        .content-block {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: var(--highlight-bg);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--divider-color);
+        }
+        
+        .content-block p {
+            margin-bottom: 10px;
+        }
+
+        .highlight-card {
+            background-color: var(--highlight-bg);
+            border: 1px solid var(--accent-color);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            position: relative;
+            direction: rtl;
+        }
+        
+        .highlight-card::before {
+            content: '✨'; /* Star or other subtle icon */
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-bg);
+            border-right: 5px solid var(--accent-color); /* Adjusted for RTL */
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin: 20px 0;
+            font-style: italic;
+            position: relative;
+            direction: rtl;
+        }
+
+        .opinion-card::before {
+            content: '💬'; /* Speech bubble icon */
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .opinion-card .author {
+            display: block;
+            margin-top: 10px;
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 10px;
+            margin-right: 10px; /* Adjusted for RTL */
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-source:hover {
+            background-color: #00b3b3;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: var(--border-radius);
+            margin: 20px auto; /* Center images */
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; padding: 20px 10px; }
+            h2 { font-size: 1.4rem; }
+            h3 { font-size: 1.1rem; }
+            .slide-container { padding: 16px; margin: 10px auto; }
+            .market-pulse-grid { grid-template-columns: 1fr 1fr; } /* Changed to 1fr 1fr for mobile as requested */
+            .market-pulse-item strong { font-size: 1rem; }
+            .badge { font-size: 0.75rem; padding: 4px 10px; }
+        }
+    </style>
+</head>
+<body>
+    <h1>דוח שוק הון יומי: תמונת מצב אסטרטגית</h1>
+
+    <div class="slide-container">
+        <span class="badge">תמונת מצב מהירה</span>
+        <h2>Market Pulse: סקירה יומית</h2>
+        <p>סקירה תמציתית של התנועות החריגות בשוק היום, עם התמקדות במדדים מרכזיים ומניות שחרגו מהנורמה.</p>
+
+        <table class="market-pulse-table">
+            <thead>
+                <tr>
+                    <th>נכס</th>
+                    <th>מחיר סגירה</th>
+                    <th>שינוי יומי %</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>S&P 500 (SPY)</td>
+                    <td>768.105</td>
+                    <td class="change-negative">-0.68%</td>
+                </tr>
+                <tr>
+                    <td>Nasdaq 100 (QQQ)</td>
+                    <td>740.94</td>
+                    <td class="change-negative">-0.87%</td>
+                </tr>
+                <tr>
+                    <td>ביטקוין (BTC/USD)</td>
+                    <td>84,158.01</td>
+                    <td class="change-negative">-2.38%</td>
+                </tr>
+                <tr>
+                    <td>את'ריום (ETH/USD)</td>
+                    <td>2,661.65</td>
+                    <td class="change-negative">-3.34%</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>מניות בולטות מרשימת המעקב:</h3>
+        <div class="market-pulse-grid">
+            <div class="market-pulse-item">
+                <strong>פלנטיר (PLTR)</strong>
+                <span class="change-positive">+3.07%</span>
+            </div>
+            <div class="market-pulse-item">
+                <strong>סרוויס-נואו (NOW)</strong>
+                <span class="change-positive">+2.58%</span>
+            </div>
+            <div class="market-pulse-item">
+                <strong>אלפאבית (GOOG)</strong>
+                <span class="change-negative">-3.29%</span>
+            </div>
+            <div class="market-pulse-item">
+                <strong>אמזון (AMZN)</strong>
+                <span class="change-negative">-2.17%</span>
+            </div>
+            <div class="market-pulse-item">
+                <strong>ברודקום (AVGO)</strong>
+                <span class="change-negative">-2.54%</span>
+            </div>
+            <div class="market-pulse-item">
+                <strong>קואהרנט (COHR)</strong>
+                <span class="change-negative">-2.59%</span>
+            </div>
+            <div class="market-pulse-item">
+                <strong>אוקלו (OKLO)</strong>
+                <span class="change-negative">-3.19%</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">מאקרו וריביות</span>
+        <h2>שוק יורד על רקע עליית תשואות האג"ח וחששות מהפד</h2>
+        <h3>מה קרה היום</h3>
+        <p>תשואות האג"ח זינקו היום, כאשר תשואת אג"ח ארה"ב ל-10 שנים הגיעה ל-5.12%, מה שעורר חששות בשוק מפני העלאות ריבית נוספות מצד הפדרל ריזרב. הדבר הוביל לירידות שערים במדדים המובילים, כאשר מדד ה-S&P 500 ומדד הנאסד"ק נסוגו משטחי שיא.<a class="btn-source" href="https://www.marketwatch.com/story/bond-yields-surge-as-wall-street-fears-more-potential-federal-reserve-rate-hikes-eabcd3da?mod=mw_rss_topstories">MarketWatch</a></p>
+        <p>מדד הנאסד"ק נגע בשיא לאחרונה, אך עליית מדד הפחד (VIX) ל-35 משקפת חוסר וודאות גובר.<a class="btn-source" href="https://www.youtube.com/watch?v=QLPsKk8Y014">Micha.Stocks</a> במקביל, דווח כי הפעילות העסקית בארה"ב גדלה בקצב המהיר ביותר מזה למעלה מארבע שנים, מה שמצביע על כלכלה עמידה למרות עלויות גבוהות ואינפלציה.<a class="btn-source" href="https://www.marketwatch.com/story/businesses-are-growing-at-the-fastest-pace-in-over-four-years-why-war-and-inflation-isnt-slowing-the-u-s-economy-down-2e39e7c7?mod=mw_rss_topstories">MarketWatch</a></p>
+
+        <h3>למה זה חריג</h3>
+        <p>השילוב של עליית תשואות אג"ח חדה, נסיגה ממדדי שיא בשוק המניות, ועלייה במדד הפחד, כל זאת יחד עם נתונים חזקים על צמיחה עסקית, מצביע על חוסר התאמה ומתח בשוק. המשקיעים מתלבטים בין סימני חוסן כלכלי לבין חששות מהתחממות יתר והמשך מדיניות מוניטרית מרסנת שתעיק על הצמיחה העתידית.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">קריפטו ופיננסים מסורתיים</span>
+        <h2>הפיננסים המסורתיים מאמצים טוקניזציה: שיתופי פעולה משמעותיים</h2>
+        <h3>מה קרה היום</h3>
+        <p>הבורסה לניירות ערך בניו יורק (NYSE) ו-Blockchain.com הכריזו על שיתוף פעולה שיאפשר למשתמשי Blockchain.com גישה למניות ואת'ריום אמריקאיים מבוזרים (tokenized stocks and ETFs) דרך פלטפורמת המסחר הדיגיטלית המתוכננת של NYSE.<a class="btn-source" href="https://cointelegraph.com/news/nyse-blockchaincom-team-up-to-bring-tokenized-us-stocks-to-crypto-users">Cointelegraph</a></p>
+        <p>מהלך זה מגיע לאחר שה-SEC פתחה מסלול לחמש שנים עבור מניות מבוזרות, ויושב ראש ה-CFTC, מייקל סליג, תומך בטוקניזציה שתשנה את השווקים הפיננסיים.<a class="btn-source" href="https://cointelegraph.com/magazine/winners-and-losers-of-the-secs-new-tokenized-stocks-rules">Cointelegraph (SEC)</a><a class="btn-source" href="https://cointelegraph.com/news/cftc-selig-mass-tokenization-sec-onchain-markets">Cointelegraph (CFTC)</a> בנוסף, MoonPay הודיעה על רכישת North Capital בעסקה בשווי של למעלה מ-60 מיליון דולר במניות, במטרה להרחיב את שירותיה לניירות ערך מבוזרים.<a class="btn-source" href="https://cointelegraph.com/news/moonpay-north-capital-acquisition">Cointelegraph</a></p>
+        <p>במקביל, שישה מהבנקים הגדולים בקנדה בוחנים פיקדונות דולר קנדי מבוזרים לתשלומים בין בנקים, מה שמדגיש את המגמה העולמית לאימוץ טוקניזציה בפיננסים המסורתיים.<a class="btn-source" href="https://cointelegraph.com/news/canada-six-largest-banks-explore-tokenized-canadian-dollar-deposits">Cointelegraph</a></p>
+
+        <h3>למה זה חריג</h3>
+        <p>שיתופי פעולה ויוזמות אלו מצביעים על קבלה גוברת של טכנולוגיות בלוקצ'יין וטוקניזציה על ידי גופים פיננסיים מסורתיים ורגולטורים. מדובר בשינוי פרדיגמה שמעביר את הנכסים הדיגיטליים מקטגוריית "השקעת נישה" למרכיב אינטגרלי במערכת הפיננסית העולמית, תוך שיפור היעילות והנגישות לשווקים.</p>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M37EH0Z8ZWVTWRY7BAG5D2K4/new-york-stock-exchange-nyse.png" alt="NYSE and Blockchain.com tie-up">
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">שוק הקריפטו</span>
+        <h2>תנודתיות בקריפטו: ירידות ב-BTC ו-ETH לצד זרימות ETF חזקות</h2>
+        <h3>מה קרה היום</h3>
+        <p>שוק הקריפטו חווה היום תנודתיות, כאשר הביטקוין (BTC/USD) ירד ל-84,158.01 דולר, ירידה של <span class="change-negative">-2.38%</span>, לאחר שנגע לזמן קצר מתחת ל-84,000 דולר, מה שהוביל לחיסול פוזיציות לונג בשווי 280 מיליון דולר.<a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-long-liquidations-hit-280m-as-btc-price-dips-under-84k">Cointelegraph</a><a class="btn-source" href="https://finance.yahoo.com/personal-finance/investing/article/bitcoin-and-ethereum-prices-today-wednesday-september-23-2026-crypto-prices-open-near-8-month-highs-is-the-crypto-winter-over-113908671.html">Yahoo Finance</a> האת'ריום (ETH/USD) ירד אף הוא ב-<span class="change-negative">-3.34%</span> ונסגר על 2,661.65 דולר.<a class="btn-source" href="https://finance.yahoo.com/personal-finance/investing/article/bitcoin-and-ethereum-prices-today-wednesday-september-23-2026-crypto-prices-open-near-8-month-highs-is-the-crypto-winter-over-113908671.html">Yahoo Finance</a></p>
+        <p>למרות הירידות, קרנות סל ספוט (ETF) לביטקוין בארה"ב רשמו זרימות נטו של למעלה מ-1.7 מיליארד דולר ביומיים האחרונים, כאשר הביטקוין עלה מעל למחיר עלות ממוצע של מחזיקיו.<a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-etf-inflow-2-days-holder-profitable">Cointelegraph</a> בנוסף, זרימות חוצות גבולות של Stablecoins זינקו ב-78%, תוך התנגדות לשוק דובי רחב יותר בקריפטו.<a class="btn-source" href="https://cointelegraph.com/news/stablecoin-cross-border-flows-surge-78-defying-crypto-bear-market">Cointelegraph</a></p>
+
+        <h3>למה זה חריג</h3>
+        <p>היום מציג תמונה מורכבת בשוק הקריפטו: מצד אחד, ירידות מחירים חדות בנכסים המרכזיים וחיסולי פוזיציות. מצד שני, המשך זרימה חזקה של הון למוצרי ETF מוסדיים וצמיחה אדירה בשימוש ב-Stablecoins לתשלומים חוצי גבולות. הדבר מצביע על התרחבות השימוש והלגיטימציה של קריפטו בטווח הארוך, גם כאשר השוק חווה תנודתיות יומית.</p>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M1HEBC31STJ1V8Y61W60PS20/analytics-red-market-falling-drop-bitcoin-3.jpg" alt="Bitcoin price drop graphic">
+        <div class="opinion-card">
+            <p>"AI potential to drive crypto demand remains ‘underappreciated’."</p>
+            <span class="author">BlackRock</span>
+            <a class="btn-source" href="https://cointelegraph.com/news/ai-potential-to-drive-crypto-demand-remains-underappreciated-blackrock">Cointelegraph</a>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">בינה מלאכותית וטכנולוגיה</span>
+        <h2>התרחבות תחום הבינה המלאכותית: מודלים חדשים ורגולציה גלובלית</h2>
+        <h3>מה קרה היום</h3>
+        <p>חברות ה-AI המובילות, OpenAI ואנתרופיק, השיקו מודלים זולים יותר, כאשר OpenAI הציגה את GPT-6 Sol ו-GPT-6 Luna, ואנתרופיק חשפה את Claude Opus 5.5.<a class="btn-source" href="https://www.cnbc.com/2026/09/22/anthropic-openai-cheaper-ai-models.html">CNBC</a> במקביל, קוואלקום הוציאה שבב אנדרואיד חדש המיועד לבינה מלאכותית, על רקע מחסור בזכרונות בשוק הסמארטפונים.<a class="btn-source" href="https://www.cnbc.com/2026/09/22/qualcomm-releases-android-chip-built-for-ai-amid-memory-shortage.html">CNBC</a></p>
+        <p>במישור הפוליטי, נושא בטיחות ה-AI יעמוד על סדר היום בפסגת טראמפ-שי, אף שאף צד אינו מעוניין להאט את הפיתוח בתחום.<a class="btn-source" href="https://www.cnbc.com/2026/09/23/trump-xi-meeting-ai-safety-chips-us-china-dialogue.html">CNBC</a> כמו כן, מנכ"לי OpenAI ו-Anthropic צפויים לתדרך את מועצת הביטחון של האו"ם בנוגע לסיכוני AI וביטחון גלובלי.<a class="btn-source" href="https://cointelegraph.com/news/openai-anthropic-to-brief-un-security-council-on-ai-risks">Cointelegraph</a></p>
+
+        <h3>למה זה חריג</h3>
+        <p>התפתחויות אלו ממחישות את הקצב המהיר של חדשנות בבינה מלאכותית, הן מבחינת פיתוח מוצרים נגישים ויעילים יותר (מודלים זולים, שבבים ייעודיים) והן מבחינת המודעות הגוברת לסיכונים ולצורך ברגולציה ודיאלוג בינלאומי ברמה הגבוהה ביותר. התחום הופך מצד אחד למנוע צמיחה טכנולוגי וכלכלי, ומצד שני לאתגר גלובלי המחייב התייחסות רצינית מצד קובעי מדיניות.</p>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M363YGST64BF2W89BBFFTBJA/ai-un-flags.png" alt="UN flags with AI graphic">
+    </div>
+
+</body>
+</html>
