@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי אסטרטגי</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0e17; /* Deep charcoal/navy */
+            --bg-secondary: #1a1e27; /* Slightly lighter for cards */
+            --text-primary: #e0e6ed; /* Off-white */
+            --text-secondary: #a0a8b3; /* Light gray for details */
+            --accent-color: #007bff; /* Steel blue for links/highlights */
+            --positive-color-light: rgba(39, 174, 96, 0.15); /* Soft green background */
+            --positive-color-text: #27ae60; /* Green text */
+            --negative-color-light: rgba(231, 76, 60, 0.15); /* Soft red background */
+            --negative-color-text: #e74c3c; /* Red text */
+            --divider-color: #343a40; /* Darker gray for dividers */
+            --card-border-color: #2c303a;
+            --border-radius-sm: 4px;
+            --border-radius-md: 8px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            direction: rtl; /* Right-to-left for Hebrew */
+            text-align: right;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: var(--spacing-lg) auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: calc(var(--spacing-lg) * 1.5);
+            border-bottom: 1px solid var(--divider-color);
+            padding-bottom: var(--spacing-md);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-top: calc(var(--spacing-lg) * 2);
+            margin-bottom: var(--spacing-md);
+        }
+
+        p {
+            margin-bottom: var(--spacing-md);
+            color: var(--text-primary);
+        }
+
+        .slide-container {
+            background-color: var(--bg-secondary);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--text-primary);
+            padding: 4px var(--spacing-sm);
+            border-radius: var(--border-radius-sm);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+            position: absolute;
+            top: var(--spacing-md);
+            right: var(--spacing-md);
+        }
+
+        .section-divider {
+            border-bottom: 1px solid var(--divider-color);
+            margin: var(--spacing-lg) 0;
+            opacity: 0.6;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+            overflow-x: auto; 
+            padding-bottom: var(--spacing-sm);
+        }
+
+        .market-card {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--card-border-color);
+            border-radius: var(--border-radius-sm);
+            padding: var(--spacing-md);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .market-card strong {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .market-card .price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .market-card .change {
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: var(--border-radius-sm);
+            display: inline-block;
+        }
+
+        .market-card .change.positive {
+            background-color: var(--positive-color-light);
+            color: var(--positive-color-text);
+        }
+
+        .market-card .change.negative {
+            background-color: var(--negative-color-light);
+            color: var(--negative-color-text);
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--text-primary);
+            padding: 8px var(--spacing-md);
+            border-radius: var(--border-radius-sm);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: var(--spacing-md);
+            margin-left: var(--spacing-sm); /* Adjusted for RTL */
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .btn-source:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: var(--spacing-md) auto;
+            border-radius: var(--border-radius-sm);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            .slide-container {
+                padding: var(--spacing-md);
+                margin-bottom: var(--spacing-md);
+            }
+            .market-pulse-grid {
+                grid-template-columns: 1fr 1fr; /* Two columns on mobile */
+                gap: var(--spacing-sm);
+            }
+            .badge {
+                position: static; /* Stack badges on mobile */
+                margin-bottom: var(--spacing-sm);
+            }
+            .container {
+                padding: 0 var(--spacing-sm);
+            }
+        }
+
+        @media (max-width: 480px) {
+             .market-pulse-grid {
+                grid-template-columns: 1fr; /* Single column on very small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>דוח שוק יומי אסטרטגי – גרסה תמציתית</h1>
+
+        <div class="slide-container">
+            <div class="badge">תמונת מצב מהירה</div>
+            <h2>Market Pulse – נתוני יום מסחר (2026-10-14)</h2>
+            <div class="market-pulse-grid">
+                <div class="market-card">
+                    <strong>S&P 500 (SPY)</strong>
+                    <span class="price">773.31$</span>
+                    <span class="change negative">-0.60%</span>
+                </div>
+                <div class="market-card">
+                    <strong>Nasdaq 100 (QQQ)</strong>
+                    <span class="price">736.21$</span>
+                    <span class="change negative">-0.99%</span>
+                </div>
+                <div class="market-card">
+                    <strong>ביטקוין (BTC/USD)</strong>
+                    <span class="price">82,416.82$</span>
+                    <span class="change negative">-0.90%</span>
+                </div>
+                <div class="market-card">
+                    <strong>את'ריום (ETH/USD)</strong>
+                    <span class="price">2,455.42$</span>
+                    <span class="change negative">-1.70%</span>
+                </div>
+                <div class="market-card">
+                    <strong>CRWV</strong>
+                    <span class="price">66.27$</span>
+                    <span class="change negative">-14.83%</span>
+                </div>
+                <div class="market-card">
+                    <strong>OKLO</strong>
+                    <span class="price">30.18$</span>
+                    <span class="change negative">-5.03%</span>
+                </div>
+                 <div class="market-card">
+                    <strong>IREN</strong>
+                    <span class="price">31.385$</span>
+                    <span class="change negative">-9.81%</span>
+                </div>
+                <div class="market-card">
+                    <strong>UNH</strong>
+                    <span class="price">391.41$</span>
+                    <span class="change positive">+3.61%</span>
+                </div>
+                <div class="market-card">
+                    <strong>AMD</strong>
+                    <span class="price">586.605$</span>
+                    <span class="change negative">-3.13%</span>
+                </div>
+                <div class="market-card">
+                    <strong>AAPL</strong>
+                    <span class="price">345.48$</span>
+                    <span class="change positive">+1.23%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <div class="badge">מאקרו כלכלה</div>
+            <h2>האינפלציה מתחדדת והפד נשאר ניצי</h2>
+            <p>מדד המחירים לצרכן (CPI) בארה"ב עלה ב-3.7% בספטמבר על בסיס שנתי, מעט מעל התחזיות, כאשר עליות מחירי הגז היו גורם מרכזי.</p>
+            <p>נתון זה מחזק את העמדה הניצית של הפדרל ריזרב, כשנשיא הפד של ניו יורק, ג'ון וויליאמס, שב והדגיש כי קיים צורך אפשרי בהעלאת ריבית נוספת השנה.</p>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/14/cpi-inflation-report-september-2026.html">CNBC</a>
+            <a class="btn-source" href="https://www.cointelegraph.com/markets/feds-williams-sees-ai-supply-squeeze-lasting-beyond-2-years">Cointelegraph</a>
+            <a class="btn-source" href="https://www.youtube.com/watch?v=dPt0lMF9bUY">Micha.Stocks</a>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <div class="badge">טכנולוגיה ושבבים</div>
+            <h2>ביקוש ארוך טווח ל-AI לצד לחצי מכירה נקודתיים במגזר השבבים</h2>
+            <p>חברת ASML דיווחה על התעניינות בביצוע הזמנות עד לשנת 2030 ורווחים שעלו על הציפיות, מה שמעיד על ביקוש חזק וארוך טווח לתשתיות AI.</p>
+            <p>מנגד, מניות שבבים אמריקאיות כמו Micron ו-AMD חוו יום שני של ירידות, לאחר דיווחים על התקדמות יצרנית שבבי זיכרון סינית וסנטימנט מכירה רוחבי במגזר.</p>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/14/asml-3q-earnings-ai-demand-orders-capacity.html">CNBC</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/13/micron-sinks-other-memory-linked-names-dip-for-a-second-day.html">CNBC</a>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <div class="badge">פיננסים</div>
+            <h2>בנק אוף אמריקה נקנס ונכשל בתחזיות רווח</h2>
+            <p>מניית בנק אוף אמריקה (Bank of America) ירדה בעקבות דיווח על פספוס תחזיות הרווח לרבעון, אשר הצטרף לקנס משמעותי בסך 1.2 מיליארד דולר שהוטל על הבנק על ידי הממשלה.</p>
+            <p>שילוב של ביצועים תפעוליים חלשים עם קנס רגולטורי כבד מצביע על אתגרים משמעותיים העומדים בפני אחד ממוסדות הפיננסים הגדולים בארה"ב, ופוגע באמון המשקיעים.</p>
+            <a class="btn-source" href="https://www.marketwatch.com/story/bank-of-america-adds-a-profit-miss-to-the-misery-of-a-1-2-billion-government-fine-d4420bfa?mod=mw_rss_topstories">MarketWatch</a>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <div class="badge">קריפטו</div>
+            <h2>התקדמות ברגולציה ואימוץ מוסדי במטבעות קריפטו</h2>
+            <p>חברת Qivalis קיבלה אישור מפתח מהבנק המרכזי ההולנדי להשקת Stablecoin מגובה יורו, בעוד ש-Standard Chartered הרחיב את שירותי המסחר בביטקוין ואת'ריום למשקיעים מקצועיים באיחוד האמירויות.</p>
+            <p>בנוסף, חברת האם של בורסת Kraken מתכוונת לרכוש בנק בליטא, צעדים המעידים על מגמה מתמשכת של אינטגרציה עמוקה יותר בין עולם הקריפטו למערכת הפיננסית המסורתית.</p>
+            <a class="btn-source" href="https://cointelegraph.com/news/qivalis-authorization-dutch-central-bank-euro-stablecoin">Cointelegraph</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/standard-chartered-bitcoin-ether-trading-professional-investors-uae">Cointelegraph</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/krakens-parent-buy-lithuanian-saldo-bank-tradFi-expansion">Cointelegraph</a>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <div class="badge">קריפטו ואבטחה</div>
+            <h2>חששות אבטחה וקריאות להפסקת מכירת ארנקי חומרה</h2>
+            <p>יצרנית ארנקי החומרה Ledger ביקשה ממפיציה להפסיק מכירות בדרום מזרח אסיה ובהונג קונג עקב דיווחים על התערבות במכשירים, כצעד המדגיש את החשיבות הקריטית של אבטחת שרשרת האספקה.</p>
+            <p>במקביל, Trezor, יצרנית ארנקי חומרה נוספת, הודיעה כי תפחית את מספר המפיצים המורשים שלה כ"צעד מונע", מה שמשקף דאגה עמוקה לגבי סיכוני אבטחה פוטנציאליים לאורך תהליך ההפצה.</p>
+            <img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4VRR79KQN4B5CCVR567DB5T/ledger.jpg" alt="ארנק חומרה של Ledger" />
+            <a class="btn-source" href="https://cointelegraph.com/news/ledger-asks-resellers-to-halt-sales-in-southeast-asia-and-hong-kong">Cointelegraph</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/trezor-preventative-steps-wallet-tampering-reports">Cointelegraph</a>
+        </div>
+
+    </div>
+</body>
+</html>
