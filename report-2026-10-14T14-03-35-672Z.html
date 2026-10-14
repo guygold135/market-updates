@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי: עדכונים אסטרטגיים ל-14 באוקטובר 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            color: #e0e0e0;
+            background-color: #0d1117;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            direction: rtl; /* For Hebrew text alignment */
+            text-align: right;
+        }
+
+        .slide-container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 24px;
+            background-color: #1a1e27;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #FFD700; /* Gold accent */
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ADD8E6; /* Light steel blue accent */
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #2a2e37;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #e0e0e0;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 1em;
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-right: 20px;
+            margin-bottom: 1em;
+        }
+
+        ol {
+            list-style-type: decimal;
+            margin-right: 20px;
+            margin-bottom: 1em;
+        }
+
+        li {
+            margin-bottom: 0.5em;
+        }
+
+        a {
+            color: #ADD8E6;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #FFD700;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .pulse-item {
+            background-color: #2a2e37;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .pulse-item strong {
+            display: block;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+            color: #FFD700;
+        }
+
+        .change-positive {
+            color: #8bc34a; /* Muted green */
+            background-color: rgba(139, 195, 74, 0.1);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .change-negative {
+            color: #ef5350; /* Muted red */
+            background-color: rgba(239, 83, 80, 0.1);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .badge.macro {
+            background-color: rgba(90, 128, 176, 0.2);
+            color: #ADD8E6;
+        }
+
+        .badge.ai-chips {
+            background-color: rgba(100, 149, 237, 0.2);
+            color: #6495ED;
+        }
+
+        .badge.crypto {
+            background-color: rgba(255, 215, 0, 0.1);
+            color: #FFD700;
+        }
+
+        .badge.company-news {
+            background-color: rgba(176, 90, 128, 0.2);
+            color: #F08080;
+        }
+
+        .section-divider {
+            border-top: 1px solid #3a3e47;
+            margin: 40px 0;
+        }
+
+        .highlight-card {
+            background-color: #2a2e37;
+            border-right: 4px solid #FFD700; /* Gold accent for facts */
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+        }
+
+        .opinion-card {
+            background-color: #2a3540;
+            border-right: 4px solid #5a80b0; /* Steel blue accent for opinions */
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            position: relative;
+            font-style: italic;
+        }
+
+        .opinion-card::before {
+            content: "\201C"; /* Left double quotation mark */
+            position: absolute;
+            left: 10px; /* Adjust as needed */
+            top: 5px; /* Adjust as needed */
+            font-size: 3em;
+            color: rgba(90, 128, 176, 0.3);
+            line-height: 1;
+        }
+
+        .opinion-card p {
+            margin: 0;
+            padding-right: 30px; /* Space for the quote icon */
+        }
+
+        .opinion-card .speaker {
+            display: block;
+            margin-top: 10px;
+            font-weight: 600;
+            color: #ADD8E6;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: #3a3e47;
+            color: #e0e0e0;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+
+        .btn-source:hover {
+            background-color: #5a5e67;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            display: block;
+            margin: 15px 0;
+        }
+
+        table {
+            width: 100%;
+            table-layout: fixed;
+            overflow-x: auto;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            direction: rtl;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: right; /* Align table content to right for RTL */
+            border-bottom: 1px solid #3a3e47;
+        }
+
+        th {
+            background-color: #1a1e27;
+            color: #FFD700;
+            font-weight: 600;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        @media(max-width:768px){
+            .market-pulse-grid{grid-template-columns:1fr 1fr;}
+            .slide-container{padding:16px;}
+            h1{font-size:1.4rem;}
+            h2{font-size:1.2rem;}
+            .pulse-item strong {font-size: 1em;}
+            .pulse-item span {font-size: 0.8em;}
+            .btn-source {padding: 6px 10px; font-size: 0.8em;}
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <h1>דוח שוק יומי: עדכונים אסטרטגיים</h1>
+        <p>14 באוקטובר 2026</p>
+    </div>
+
+    <div class="slide-container">
+        <div class="badge macro">תמונת מצב מהירה</div>
+        <h2>Market Pulse: מדדים ומניות בולטות</h2>
+        <p>סקירה מהירה של תנועות משמעותיות במדדי המפתח ובמניות ספציפיות שבלטו במסחר היום:</p>
+        <div class="market-pulse-grid">
+            <div class="pulse-item">
+                <strong>SPY</strong>
+                <span class="change-negative">-0.60%</span>
+            </div>
+            <div class="pulse-item">
+                <strong>QQQ</strong>
+                <span class="change-negative">-0.99%</span>
+            </div>
+            <div class="pulse-item">
+                <strong>IWM</strong>
+                <span class="change-negative">-1.23%</span>
+            </div>
+            <div class="pulse-item">
+                <strong>BTC/USD</strong>
+                <span class="change-negative">-0.90%</span>
+            </div>
+            <div class="pulse-item">
+                <strong>ETH/USD</strong>
+                <span class="change-negative">-1.70%</span>
+            </div>
+            <div class="pulse-item">
+                <strong>CRWV</strong>
+                <span class="change-negative">-14.83%</span>
+            </div>
+            <div class="pulse-item">
+                <strong>IREN</strong>
+                <span class="change-negative">-9.81%</span>
+            </div>
+            <div class="pulse-item">
+                <strong>OKLO</strong>
+                <span class="change-negative">-5.03%</span>
+            </div>
+            <div class="pulse-item">
+                <strong>NNE</strong>
+                <span class="change-negative">-4.88%</span>
+            </div>
+            <div class="pulse-item">
+                <strong>COHR</strong>
+                <span class="change-negative">-4.67%</span>
+            </div>
+            <div class="pulse-item">
+                <strong>HOOD</strong>
+                <span class="change-negative">-4.27%</span>
+            </div>
+            <div class="pulse-item">
+                <strong>AMD</strong>
+                <span class="change-negative">-3.12%</span>
+            </div>
+            <div class="pulse-item">
+                <strong>TSLA</strong>
+                <span class="change-negative">-2.85%</span>
+            </div>
+            <div class="pulse-item">
+                <strong>AVGO</strong>
+                <span class="change-negative">-2.41%</span>
+            </div>
+            <div class="pulse-item">
+                <strong>UNH</strong>
+                <span class="change-positive">+3.61%</span>
+            </div>
+            <div class="pulse-item">
+                <strong>AAPL</strong>
+                <span class="change-positive">+1.23%</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-container">
+        <div class="badge macro">מאקרו</div>
+        <h2>דוח ה-CPI האחרון מצביע על התחממות אינפלציונית, ובנק ההשקעות מזהיר מפני המשך העלאות ריבית</h2>
+        <h3>מה קרה היום</h3>
+        <div class="highlight-card">
+            <p>מדד המחירים לצרכן (CPI) עלה ב-3.7% בשנה בספטמבר 2026, כאשר ציפיות השוק עמדו על עלייה של 3.6%.</p>
+            <p>זאת, על רקע עלייה חדה במחירי הדלק.</p>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/14/cpi-inflation-report-september-2026.html">CNBC</a>
+        </div>
+        <div class="highlight-card">
+            <p>נשיא הפד של ניו יורק, ג'ון וויליאמס, חיזק את עמדתו כי הפדרל ריזרב יצטרך ככל הנראה להעלות את הריבית פעם נוספת השנה.</p>
+            <a class="btn-source" href="https://cointelegraph.com/markets/feds-williams-sees-ai-supply-squeeze-lasting-beyond-2-years?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        </div>
+        <div class="highlight-card">
+            <p>האינפלציה המתמשכת הובילה לכך שיותר לווים בוחרים במשכנתאות מסוכנות יותר עם ריבית משתנה, מכיוון ששיעורי הריבית הגבוהים מקשים על יכולת ההשגה.</p>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/14/even-more-borrowers-choose-riskier-mortgages-as-higher-interest-rates-crush-affordability.html">CNBC</a>
+        </div>
+        <div class="highlight-card">
+            <p>ה-COLA (התאמת עלות המחיה) של הביטוח הלאומי יעמוד על 3.6% בשנת 2027, מה שמצביע על המשך התמשכות האינפלציה.</p>
+            <a class="btn-source" href="https://www.marketwatch.com/story/social-securitys-cola-will-be-3-6-in-2027-as-inflation-persists-f7c9dff2?mod=mw_rss_topstories">MarketWatch</a>
+        </div>
+
+        <h3>למה זה חריג</h3>
+        <p>נתון ה-CPI שפורסם היום עקף את התחזיות, מה שמאותת על דבקות האינפלציה, במיוחד במרכיבי יסוד כמו אנרגיה. דבריו של וויליאמס מחזקים את החשש מפני המשך מדיניות מוניטרית הדוקה, שאינה נותנת מרחב נשימה לשווקים המצפים להתמתנות. הבחירה הגוברת במשכנתאות מסוכנות מעידה על הלחץ הכלכלי על הצרכן ועל הקושי במציאת מימון בר השגה, בעוד עדכון ה-COLA ל-2027 מדגיש כי האינפלציה נתפסת כבעיה ארוכת טווח.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>אינפלציה גבוהה ועקשנית, כפי שמשתקף בנתוני ה-CPI ובהתאמות ה-COLA, יוצרת לחץ על הפד להמשיך במדיניות העלאות הריבית. ריביות גבוהות פוגעות ביכולת ההחזר של הלוואות, מגבירות את עלות המימון לחברות ופרטים, ומעלות את הסיכון למיתון. המשך הלחץ האינפלציוני עלול להגביל את המרווח של הפד "לרדת מהעץ" ולהקל על התנאים הפיננסיים בזמן הקרוב.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge ai-chips">AI ושבבים</div>
+        <h2>צדדים סותרים בתעשיית השבבים וה-AI: אופטימיות ב-ASML מול חששות מהיחלשות במיקרון וספקולציות AI</h2>
+        <h3>מה קרה היום</h3>
+        <div class="highlight-card">
+            <p>חברת ASML, יצרנית ציוד ייצור שבבים מובילה, דיווחה על רווחים שעקפו את הציפיות וציינה עניין בהזמנות עד שנת 2030, מה שמעיד על ביקוש ארוך טווח חזק בתעשיית השבבים.</p>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/14/asml-3q-earnings-ai-demand-orders-capacity.html">CNBC</a>
+        </div>
+        <div class="highlight-card">
+            <p>מניית Micron Technology צנחה, יחד עם שאר מניות יצרניות שבבי הזיכרון, לאחר דיווחים על התקדמות של יצרנית שבבים סינית פחות מוכרת, CXMT, בתכנוני שבבי זיכרון חדשים, מה שעורר חששות מתחרות.</p>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/13/cxmt-memory-chip-stock-rout.html">CNBC</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/13/sk-hynix-softbank-samsung-electronics-shares-tech-stocks-fall.html">CNBC</a>
+        </div>
+        <div class="highlight-card">
+            <p>חברות טכנולוגיה גדולות מאיצות את פיתוח גאדג'טים מבוססי AI לקראת עונת החגים, עם ציפייה שהם יגיעו לרשימת הקניות של הצרכנים.</p>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/14/tech-giants-race-to-get-ai-gadgets-on-shelves-for-holiday-rush.html">CNBC</a>
+        </div>
+        <div class="highlight-card">
+            <p>סטארט-אפ ה-AI Character.ai הגיש בקשה לפשיטת רגל לפי פרק 11, בטענה לעלויות פיתוח וצמיחה גבוהות והליכים משפטיים.</p>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/13/character-ai-chapter-11-disney-bid.html">CNBC</a>
+        </div>
+        <div class="opinion-card">
+            <p>Jim Cramer, מ-CNBC, הצהיר כי משקיעים לא צריכים לוותר על מניות מוליכים למחצה למרות המכירה האחרונה, אך המליץ להמתין עם קניית חברת תשתיות ה-AI החדשה Accelevation Holdings.</p>
+            <span class="speaker">Jim Cramer, CNBC</span>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/13/jim-cramer-semiconductor-stocks-sell-off.html">CNBC</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/13/jim-cramer-accelevation-stock.html">CNBC</a>
+        </div>
+
+        <h3>למה זה חריג</h3>
+        <p>היום מאופיין בניגודים חדים בסקטור הטכנולוגיה: מצד אחד, אופטימיות ארוכת טווח מצד ASML, המצביעה על יציבות ואמון בבסיס התעשייה. מצד שני, ירידה משמעותית ב-Micron על רקע חששות תחרות גוברת וקריסתו של סטארט-אפ AI בולט, המדגישים את הסיכונים והתנודתיות בשוק. ההתלהבות מגאדג'טים מבוססי AI נראית גבוהה, אך ההבחנה של קריימר בין מניות מוליכים למחצה ותשתית AI ספציפית מדגישה את הצורך בבחינה מדוקדקת.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>הסקטור נהנה מביקוש עצום לטכנולוגיות AI, אך זה לא מתורגם בהכרח להצלחה אחידה. בעוד שיצרני ציוד קריטיים כמו ASML נהנים מיתרון תחרותי חזק ובסיס הזמנות יציב, מגזרים אחרים כמו שבבי זיכרון (Micron) חשופים יותר לתחרות מחירים ושינויים בשרשרת האספקה הגלובלית, כולל איומים ממתחרים חדשים. ההתלהבות מ-AI מניעה חדשנות, אך דורשת מימון משמעותי, כפי שמודגם על ידי פשיטת הרגל של Character.ai. גם בשוק ה-AI עצמו קיימת הבחנה בין סגמנטים שונים, ומשקיעים נדרשים לבחון את היתכנות העסקית והתחרותיות של כל חברה בנפרד.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge crypto">קריפטו</div>
+        <h2>קריפטו - אימוץ מוסדי גובר מול חששות אבטחה ורגולציה: קרקן ובנקים מרכזיים מתקדמים, אך נושא הארנקים בחקירה</h2>
+        <h3>מה קרה היום</h3>
+        <div class="highlight-card">
+            <p>Standard Chartered הרחיב את שירותי המסחר בביטקוין (BTC) ואתריום (ETH) למשקיעים מקצועיים באיחוד האמירויות הערביות.</p>
+            <a class="btn-source" href="https://cointelegraph.com/news/standard-chartered-bitcoin-ether-trading-professional-investors-uae?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        </div>
+        <div class="highlight-card">
+            <p>חברת האם של בורסת הקריפטו Kraken, Payward, מתכננת לרכוש את Saldo Bank הליטאי במטרה להרחיב את שירותי הבנקאות המסורתיים שלה לארבעה שווקי האיחוד האירופי.</p>
+            <a class="btn-source" href="https://cointelegraph.com/news/krakens-parent-buy-lithuanian-saldo-bank-tradfi-expansion?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        </div>
+        <div class="highlight-card">
+            <p>חברת Qivalis קיבלה אישור ממוסד כסף אלקטרוני (EMI) מהבנק המרכזי ההולנדי, מה שיאפשר לה להשיק Stablecoin מגובה ביורו.</p>
+            <a class="btn-source" href="https://cointelegraph.com/news/qivalis-authorization-dutch-central-bank-euro-stablecoin?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        </div>
+        <div class="highlight-card">
+            <p>העברות קריפטו בגודל 'Remittance' מקנדה למדינות אסיאתיות זינקו ב-141% והגיעו ל-2.36 מיליארד דולר, לפי Chainalysis.</p>
+            <a class="btn-source" href="https://cointelegraph.com/news/canada-crypto-remittances-asia-surge-chainalysis?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        </div>
+        <div class="highlight-card">
+            <p>חברות ארנקי חומרה, Ledger ו-Trezor, הודיעו על צעדים להגברת האבטחה והפחתת מפיצים משניים, זאת בעקבות דיווחים על מכשירים מזויפים או כאלה ששולבו בהם שתלים.</p>
+            <a class="btn-source" href="https://cointelegraph.com/news/hardware-wallet-supply-chain-risk-ledger-incident?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/ledger-asks-resellers-to-halt-sales-in-southeast-asia-and-hong-kong?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/trezor-preventative-steps-wallet-tampering-reports?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        </div>
+        <div class="opinion-card">
+            <p>מאט הוגן מ-Bitwise טוען כי גרפים של הרבעון השלישי מצביעים על "אביב קריפטו", כאשר כמעט כל האינדיקטורים הפונדמנטליים שאותם עוקבת החברה זינקו בחדות.</p>
+            <span class="speaker">Matt Hougan, Bitwise</span>
+            <a class="btn-source" href="https://cointelegraph.com/markets/bitwises-hougan-says-q3-charts-point-to-crypto-spring?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        </div>
+        <div class="highlight-card">
+            <p>חברת Strive דיווחה על גידול של 11% בהחזקות הביטקוין שלה, המסתכמות כעת ב-32,773 BTC, והפכה למחזיקת הביטקוין התאגידית הציבורית החמישית בגודלה.</p>
+            <a class="btn-source" href="https://cointelegraph.com/news/strive-bitcoin-holdings-32773-btc-warrant-exercises?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        </div>
+
+        <h3>למה זה חריג</h3>
+        <p>היום בלט בקידום האימוץ המוסדי והרגולטורי של קריפטו, עם בנקים מסורתיים ורגולטורים באירופה המכירים ומשלבים נכסים דיגיטליים. במקביל, הנתונים מ-Chainalysis ו-Strive מראים גידול משמעותי בשימוש בפועל ובאימוץ תאגידי. הניתוח של Bitwise מוסיף אופטימיות לגבי מגמות השוק. עם זאת, דיווחי האבטחה סביב ארנקי חומרה מדגישים את האתגרים הבסיסיים של אבטחה בסיסית, שהיא קריטית לאמון ולצמיחה ארוכת טווח.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>השילוב של אימוץ מוסדי, התקדמות רגולטורית וגידול בשימושים מעשיים (כמו העברות כספים) מצביע על התבגרות מתמשכת של שוק הקריפטו. בנקים גדולים ומחזיקי BTC תאגידיים מעידים על הפיכת הקריפטו מנכס ספקולטיבי ללגיטימי יותר. עם זאת, פרצות אבטחה בארנקי חומרה עלולות לערער את האמון הבסיסי של המשתמשים ולעכב את האימוץ הרחב יותר. השוק נמצא בצומת דרכים בין התרחבות למיינסטרים לבין הצורך להתגבר על אתגרי אבטחה קריטיים כדי להבטיח קיימות ארוכת טווח.</p>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/article-covers-110589-what-happened-in-crypto-today.jpg" alt="Crypto Today">
+        <a class="btn-source" href="https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge company-news">חדשות חברות</div>
+        <h2>קנס ענק לבנק אוף אמריקה ותנודות חדות במניות בולטות: מ-CRWV ו-OKLO בצלילה חופשית ועד עליות ביונייטדהלת'</h2>
+        <h3>מה קרה היום</h3>
+        <div class="highlight-card">
+            <p>מניית בנק אוף אמריקה (BAC) ירדה לאחר דיווח על פספוס ברווחים הרבעוניים, בתוספת קנס ממשלתי משמעותי בסך 1.2 מיליארד דולר.</p>
+            <a class="btn-source" href="https://www.marketwatch.com/story/bank-of-america-adds-a-profit-miss-to-the-misery-of-a-1-2-billion-government-fine-d4420bfa?mod=mw_rss_topstories">MarketWatch</a>
+        </div>
+        <div class="highlight-card">
+            <p>מניות CoreWeave (<span class="change-negative">-14.83%</span>) ו-IREN Ltd. (<span class="change-negative">-9.81%</span>) חוו ירידות חדות.</p>
+            <p>מניות Oklo Inc. (<span class="change-negative">-5.03%</span>) ו-Nano Nuclear Energy Inc. (<span class="change-negative">-4.88%</span>) נגעו בתחתית ה-52 שבועות שלהן ביום המסחר הנוכחי.</p>
+            <ul>
+                <li><strong>OKLO:</strong> מחיר סגירה <span class="change-negative">30.18$</span>, תחתית 52 שבועות: 30.18$.</li>
+                <li><strong>NNE:</strong> מחיר סגירה <span class="change-negative">13.65$</span>, תחתית 52 שבועות: 13.64$.</li>
+            </ul>
+        </div>
+        <div class="highlight-card">
+            <p>מספר מניות טכנולוגיה וחברות בצמיחה רשמו ירידות משמעותיות: Coherent Corp. (<span class="change-negative">-4.67%</span>), Robinhood Markets (<span class="change-negative">-4.27%</span>), Advanced Micro Devices (<span class="change-negative">-3.12%</span>), Tesla (<span class="change-negative">-2.85%</span>), Broadcom (<span class="change-negative">-2.41%</span>) ו-Space Exploration Technologies Corp. (<span class="change-negative">-2.40%</span>).</p>
+        </div>
+        <div class="highlight-card">
+            <p>מניית UnitedHealth Group Inc. (<span class="change-positive">+3.61%</span>) עלתה בחדות, ומניית Apple Inc. (<span class="change-positive">+1.23%</span>) התקרבה לשיא ה-52 שבועות שלה (במרחק של 0.77% בלבד מהשיא).</p>
+        </div>
+        <div class="highlight-card">
+            <p>BlackRock, ענקית ניהול הנכסים, דיווחה כי הנכסים המנוהלים שלה הגיעו לכמעט 15.5 טריליון דולר לאחר צמיחה של 15%, שווה למחצית מגודל כלכלת ארה"ב.</p>
+            <a class="btn-source" href="https://www.marketwatch.com/story/blackrock-now-has-assets-equal-to-half-the-size-of-the-u-s-economy-after-15-growth-c382b289?mod=mw_rss_topstories">MarketWatch</a>
+        </div>
+
+        <h3>למה זה חריג</h3>
+        <p>היום התאפיין במספר אירועים חריגים ברמת החברות: קנס רגולטורי כבד לבנק גדול כמו Bank of America משפיע על אמון המשקיעים בסקטור. הירידות החדות במניות כמו CRWV ו-IREN, יחד עם נגיעתן של OKLO ו-NNE בתחתית 52 שבועות, מצביעות על בעיות ספציפיות בחברות אלו או על תגובה חריפה לנתונים שפורסמו. לעומת זאת, העלייה המשמעותית ב-UnitedHealth והתקרבותה של Apple לשיא, לצד צמיחתה המרשימה של BlackRock, מציגות חוזקה ספציפית בחברות מסוימות על אף תנודתיות השוק הכללית.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>קנסות רגולטוריים ופספוסי רווח בחברות פיננסיות גדולות משפיעים ישירות על שולי הרווח ועל התפיסה הציבורית, ועלולים להוביל לירידת ערך משמעותית. ירידות חדות במניות כמו OKLO ו-NNE, במיוחד כשהן מגיעות לתחתית 52 שבועות, משקפות לרוב חדשות ספציפיות לחברה (כגון חששות מימון, בעיות תפעוליות או שינויים בתחזית) או סנטימנט שלילי קיצוני מצד המשקיעים. מנגד, חברות כמו UnitedHealth ו-Apple מדגימות עמידות ופוטנציאל צמיחה גם בסביבה מאתגרת, כאשר BlackRock מדגימה את כוחן של ענקיות ניהול נכסים בסביבת שוק תנודתית.</p>
+    </div>
+</body>
+</html>
