@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי – תובנות אסטרטגיות</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background-dark: #0a0e17;
+            --text-light: #f0f0f0;
+            --accent-color: #bb914a; /* Golden hue */
+            --border-color: rgba(255, 255, 255, 0.1);
+            --positive-color: rgba(0, 150, 0, 0.3); /* Muted green with transparency */
+            --negative-color: rgba(150, 0, 0, 0.3); /* Muted red with transparency */
+            --neutral-color: rgba(100, 100, 100, 0.2);
+            --card-background: #1a1f2c;
+            --highlight-background: #2a2f3a;
+            --quote-background: #3a3f4a;
+            --badge-background: #333945;
+            --font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--background-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            direction: rtl; /* Right-to-left for Hebrew */
+            text-align: right;
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 40px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin-top: 25px;
+            color: var(--text-light);
+        }
+
+        .slide-container {
+            background-color: var(--card-background);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        .section-divider {
+            border-top: 1px dashed var(--border-color);
+            margin: 40px 0;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .market-item {
+            background-color: var(--highlight-background);
+            padding: 15px;
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid var(--border-color);
+        }
+
+        .market-item strong {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .change-positive {
+            color: #72f272; /* Muted positive green */
+            background-color: var(--positive-color);
+            padding: 5px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .change-negative {
+            color: #ff6e6e; /* Muted negative red */
+            background-color: var(--negative-color);
+            padding: 5px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .change-neutral {
+            color: var(--text-light);
+            background-color: var(--neutral-color);
+            padding: 5px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        p {
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: #333945;
+            color: var(--text-light);
+            padding: 8px 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-source:hover {
+            background-color: #444b5c;
+            text-decoration: none;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--background-dark);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .highlight-card {
+            background-color: var(--highlight-background);
+            border-right: 4px solid var(--accent-color);
+            padding: 15px 20px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .opinion-card {
+            background-color: var(--quote-background);
+            border-right: 4px solid #72f272; /* A distinct accent for opinions */
+            padding: 15px 20px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            font-style: italic;
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .opinion-card::before {
+            content: "\201C"; /* Left double quotation mark */
+            font-size: 3rem;
+            color: #72f272;
+            line-height: 1;
+            margin-left: 10px; /* Space for the quote mark */
+            margin-top: -5px;
+            display: block;
+        }
+
+        .opinion-card p {
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .opinion-author {
+            display: block;
+            margin-top: 10px;
+            font-weight: 600;
+            font-style: normal;
+            color: var(--accent-color);
+            text-align: left;
+            font-size: 0.9em;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        table {
+            width: 100%;
+            table-layout: fixed;
+            overflow-x: auto;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: right;
+        }
+
+        th {
+            background-color: var(--highlight-background);
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .market-pulse-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .slide-container {
+                padding: 16px;
+            }
+            h1 {
+                font-size: 1.4rem;
+            }
+            h2 {
+                font-size: 1.2rem;
+            }
+            body {
+                padding: 10px;
+            }
+            .opinion-card::before {
+                font-size: 2rem;
+                margin-left: 5px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .market-pulse-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>דוח שוק יומי: תובנות אסטרטגיות</h1>
+
+    <div class="slide-container">
+        <div class="badge">תמונת מצב מהירה</div>
+        <h2>Market Pulse – נתונים עיקריים להיום</h2>
+        <div class="market-pulse-grid">
+            <!-- SPY -->
+            <div class="market-item">
+                <strong>S&amp;P 500 (SPY)</strong>
+                <span class="change-negative" dir="ltr">
+                    -0.316% <br> (-2.46)
+                </span>
+                <a class="btn-source" href="https://www.google.com/finance/quote/SPY:NYSE">Google Finance</a>
+            </div>
+            <!-- QQQ -->
+            <div class="market-item">
+                <strong>Nasdaq 100 (QQQ)</strong>
+                <span class="change-negative" dir="ltr">
+                    -0.887% <br> (-6.60)
+                </span>
+                <a class="btn-source" href="https://www.google.com/finance/quote/QQQ:NASDAQ">Google Finance</a>
+            </div>
+            <!-- BTC/USD -->
+            <div class="market-item">
+                <strong>ביטקוין (BTC/USD)</strong>
+                <span class="change-negative" dir="ltr">
+                    -0.315% <br> (-262.01)
+                </span>
+                <a class="btn-source" href="https://www.binance.com/en/trade/BTC_USDT">Binance</a>
+            </div>
+            <!-- ETH/USD -->
+            <div class="market-item">
+                <strong>את'ריום (ETH/USD)</strong>
+                <span class="change-negative" dir="ltr">
+                    -0.585% <br> (-14.63)
+                </span>
+                <a class="btn-source" href="https://www.binance.com/en/trade/ETH_USDT">Binance</a>
+            </div>
+            <!-- AAPL -->
+            <div class="market-item">
+                <strong>Apple Inc. (AAPL)</strong>
+                <span class="change-positive" dir="ltr">
+                    +1.595% <br> (+5.445)
+                </span>
+                <p>קרוב לשיא 52 שבועות (<span dir="ltr">348.15</span>)</p>
+                <a class="btn-source" href="https://www.google.com/finance/quote/AAPL:NASDAQ">Google Finance</a>
+            </div>
+            <!-- UNH -->
+            <div class="market-item">
+                <strong>UnitedHealth Group (UNH)</strong>
+                <span class="change-positive" dir="ltr">
+                    +3.856% <br> (+14.56)
+                </span>
+                <a class="btn-source" href="https://www.google.com/finance/quote/UNH:NYSE">Google Finance</a>
+            </div>
+            <!-- NOW -->
+            <div class="market-item">
+                <strong>ServiceNow Inc. (NOW)</strong>
+                <span class="change-positive" dir="ltr">
+                    +2.417% <br> (+3.35)
+                </span>
+                <a class="btn-source" href="https://www.google.com/finance/quote/NOW:NYSE">Google Finance</a>
+            </div>
+            <!-- CRWV -->
+            <div class="market-item">
+                <strong>CoreWeave Inc. (CRWV)</strong>
+                <span class="change-negative" dir="ltr">
+                    -12.99% <br> (-10.11)
+                </span>
+                <a class="btn-source" href="https://www.google.com/finance/quote/CRWV:NASDAQ">Google Finance</a>
+            </div>
+             <!-- IREN -->
+             <div class="market-item">
+                <strong>IREN Ltd. (IREN)</strong>
+                <span class="change-negative" dir="ltr">
+                    -7.44% <br> (-2.59)
+                </span>
+                <a class="btn-source" href="https://www.google.com/finance/quote/IREN:NASDAQ">Google Finance</a>
+            </div>
+            <!-- OKLO -->
+            <div class="market-item">
+                <strong>Oklo Inc. (OKLO)</strong>
+                <span class="change-negative" dir="ltr">
+                    -4.21% <br> (-1.34)
+                </span>
+                <p>בתחתית 52 שבועות (<span dir="ltr">30.34</span>)</p>
+                <a class="btn-source" href="https://www.google.com/finance/quote/OKLO:NYSE">Google Finance</a>
+            </div>
+            <!-- NNE -->
+            <div class="market-item">
+                <strong>Nano Nuclear Energy (NNE)</strong>
+                <span class="change-negative" dir="ltr">
+                    -4.67% <br> (-0.67)
+                </span>
+                <p>בתחתית 52 שבועות (<span dir="ltr">13.65</span>)</p>
+                <a class="btn-source" href="https://www.google.com/finance/quote/NNE:NASDAQ">Google Finance</a>
+            </div>
+            <!-- AMD -->
+            <div class="market-item">
+                <strong>AMD</strong>
+                <span class="change-negative" dir="ltr">
+                    -3.24% <br> (-19.64)
+                </span>
+                <a class="btn-source" href="https://www.google.com/finance/quote/AMD:NASDAQ">Google Finance</a>
+            </div>
+            <!-- TSLA -->
+            <div class="market-item">
+                <strong>Tesla Inc. (TSLA)</strong>
+                <span class="change-negative" dir="ltr">
+                    -2.01% <br> (-7.575)
+                </span>
+                <a class="btn-source" href="https://www.google.com/finance/quote/TSLA:NASDAQ">Google Finance</a>
+            </div>
+            <!-- AVGO -->
+            <div class="market-item">
+                <strong>Broadcom Inc. (AVGO)</strong>
+                <span class="change-negative" dir="ltr">
+                    -2.22% <br> (-7.95)
+                </span>
+                <a class="btn-source" href="https://www.google.com/finance/quote/AVGO:NASDAQ">Google Finance</a>
+            </div>
+            <!-- COHR -->
+            <div class="market-item">
+                <strong>Coherent Corp. (COHR)</strong>
+                <span class="change-negative" dir="ltr">
+                    -3.34% <br> (-9.68)
+                </span>
+                <a class="btn-source" href="https://www.google.com/finance/quote/COHR:NYSE">Google Finance</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">מאקרו כלכלה</div>
+        <h2>האינפלציה מתחממת: מדד המחירים לצרכן בספטמבר עולה על הציפיות והפד רומז להעלאות ריבית נוספות</h2>
+        
+        <h3>מה קרה היום</h3>
+        <p>מדד המחירים לצרכן (CPI) עלה ב-<span class="highlight-card" dir="ltr">3.7%</span> בשיעור שנתי בספטמבר, כאשר עלויות הדלק הרקיעו שחקים. הנתון גבוה מעט מהתחזית של <span class="highlight-card" dir="ltr">3.6%</span> שציפו לה אנליסטים על בסיס חודשי. בנק אוף אמריקה דיווח על פספוס ברווחים וקנס של <span class="highlight-card" dir="ltr">1.2 מיליארד דולר</span> מהממשלה, מה שהכביד על ביצועי המניה.</p>
+        <p>נשיא הפדרל ריזרב בניו יורק, ג'ון וויליאמס, ציין כי הוא צופה שמצוקת האספקה בתחום ה-AI תימשך מעבר לשנתיים הקרובות, ובאותה נשימה אישר מחדש את עמדתו כי הפד עשוי להזדקק להעלות את הריבית פעם נוספת השנה.</p>
+        <p>ממשלת צרפת פתחה בדיון על תקציב 2027 שלה, תוך התמודדות עם גירעונות גבוהים ועלייה בחובות. כמו כן, תשלומי קצבאות הביטוח הלאומי (COLA) בארה"ב יעלו ב-<span class="highlight-card" dir="ltr">3.6%</span> בשנת 2027 בשל התמשכות האינפלציה.</p>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/14/cpi-inflation-report-september-2026.html">CNBC</a>
+        <a class="btn-source" href="https://www.marketwatch.com/story/bank-of-america-adds-a-profit-miss-to-the-misery-of-a-1-2-billion-government-fine-d4420bfa?mod=mw_rss_topstories">MarketWatch</a>
+        <a class="btn-source" href="https://cointelegraph.com/markets/feds-williams-sees-ai-supply-squeeze-lasting-beyond-2-years">Cointelegraph</a>
+        <a class="btn-source" href="https://www.marketwatch.com/story/social-securitys-cola-will-be-3-6-in-2027-as-inflation-persists-f7c9dff2?mod=mw_rss_topstories">MarketWatch</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/13/france-2027-budget-debt.html">CNBC</a>
+        
+        <img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4WDVRKK44RE061434J5PYP7/hi-bitcoin-miners-as-energy-buyers-ai-1.jpg" alt="Fed's Williams speaks on AI supply squeeze">
+
+        <h3>למה זה חריג</h3>
+        <p>העלייה במדד המחירים לצרכן מעל הצפי מצביעה על כך שהלחצים האינפלציוניים עדיין חזקים, במיוחד לאור עליות במחירי האנרגיה. רמזיו של נשיא הפד, ג'ון וויליאמס, להעלאת ריבית נוספת, מדגישים את החשש המתמשך של הבנק המרכזי מפני אינפלציה "דביקה", גם כאשר מדברים על צמיחה בתחומי טכנולוגיה כמו AI. תנודות אלו משפיעות ישירות על כוח הקנייה ועל מדיניות הבנק המרכזי.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>מדד ה-CPI הוא אינדיקטור קריטי לבריאות הכלכלה וללחצים אינפלציוניים. עלייה מעל הצפי עשויה להוביל להידוק מוניטרי נוסף מצד הפד, מה שעלול להאט את הצמיחה הכלכלית אך להיאבק בעליות המחירים. הקנס שהוטל על בנק אוף אמריקה והפספוס ברווחיו מציגים סיכון ספציפי למגזר הפיננסי ויכולים לשמש כגורם מעכב למניה עצמה, אך גם לאינדיקציה רחבה יותר למגבלות על רווחיות הבנקים בסביבת ריבית גבוהה ורגולציה הדוקה. הדיון בתקציב צרפת מדגים את האתגרים הפיסקליים במדינות מפותחות בסביבה של חוב גדל.</p>
+        
+        <div class="opinion-card">
+            <p>During the Animal Spirits podcast, one of the hosts reflected on the current rate environment:<br>
+            "Are Higher Rates Worse Than ZIRP?"</p>
+            <span class="opinion-author">The Compound (Animal Spirits 486)</span>
+            <a class="btn-source" href="https://www.youtube.com/watch?v=btp2AupmwAM">The Compound</a>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">AI ושבבים</div>
+        <h2>שוק השבבים מתמודד עם תנודתיות, חששות AI גוברים, וניצוצות חדשנות</h2>
+        
+        <h3>מה קרה היום</h3>
+        <p>חברת ASML, יצרנית ציוד לייצור שבבים מרכזית, דיווחה על רווחים שעלו על הציפיות וציינה עניין בהזמנות עד שנת 2030, מה שמעיד על ביקוש ארוך טווח חזק בתעשיית השבבים.</p>
+        <p>במקביל, מניות מוליכים למחצה רבות חוו ירידות, כולל <span class="change-negative" dir="ltr">AMD שירדה ב-3.24%</span> ו-<span class="change-negative" dir="ltr">AVGO שירדה ב-2.22%</span>, ו-<span class="change-negative" dir="ltr">COHR שירדה ב-3.34%</span>. ירידות אלו הגיעו לאחר דיווחים על התקדמות של יצרנית שבבי זיכרון סינית לא מוכרת, CXMT, שהובילה לסנטימנט שלילי ולצניחת מניות כמו <span class="change-negative" dir="ltr">Micron (MU) שירדה ב-1.05%</span>. הסל-אוף התפשט לשווקים באסיה ואירופה. יצרנית פתרונות מחשוב ענן <span class="change-negative" dir="ltr">CoreWeave (CRWV) ירדה ב-12.99%</span>.</p>
+        <p>בתחום ה-AI, Anthropic הזהירה מפני "תולעי AI" שעלולות להתפשט באופן אוטונומי, וביקשה מבית המשפט הפדרלי לדון מחדש בערעור על הרשמתה לרשימה השחורה של הפנטגון. עובד OpenAI נעצר בחשד להצבת מכשיר הקלטה בחדר ישיבות. חברת הסטארט-אפ AI Character.ai הגישה בקשה לפשיטת רגל לפי פרק 11 עקב עלויות וליטיגציה. מנגד, אפל השיקה את ה-"HomeView", רכזת בית חכם חדשה עם מסך, המשלבת את היכולות של Siri AI.</p>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/14/asml-3q-earnings-ai-demand-orders-capacity.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/13/micron-sinks-other-memory-linked-names-dip-for-a-second-day.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/13/cxmt-memory-chip-stock-rout.html">CNBC</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/anthropic-ai-worms-autonomously-spread-devices-virus">Cointelegraph</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/14/anthropic-wants-court-in-dc-to-rehear-appeal-of-pentagon-blacklist-.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/14/openai-employee-arrested-recording-device.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/13/character-ai-chapter-11-disney-bid.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/13/apple-homeview-smart-home-siri-ai.html">CNBC</a>
+
+        <img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4WDVRKK44RE061434J5PYP7/hi-bitcoin-miners-as-energy-buyers-ai-1.jpg" alt="AI and semiconductors">
+
+        <h3>למה זה חריג</h3>
+        <p>הדיווחים של ASML מעידים על חוזק מבני ארוך טווח בשוק השבבים למרות התנודות היומיות. הירידות במניות השבבים המקומיות, במיוחד Micron, מדגישות את הרגישות לתחרות ולחדשנות גלובלית, גם מצד שחקנים פחות מוכרים. אירועי ה-AI, החל מחששות ביטחוניים ועד לפשיטת רגל של סטארט-אפ, מציגים את האתגרים והסיכונים המתעוררים בתחום, לצד פוטנציאל הצמיחה וההשקעה של ענקיות טק כמו אפל.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>החוזק של ASML משקף את המעמד המרכזי שלה בתהליך ייצור השבבים ואת הדרישה הבלתי פוסקת לשבבים מתקדמים עבור AI, מחשוב ענן ויישומים אחרים. עם זאת, התחרות הגוברת, במיוחד מסין, יכולה לערער את מחירי הזיכרון ולפגוע בשחקנים מבוססים. האירועים בתחום ה-AI מדגישים את חוסר הבשלות של התעשייה החדשנית הזו, הכוללת סיכונים משמעותיים (אבטחה, כשלים עסקיים) לצד ההזדמנויות העצומות. הירידה החדה של CRWV משקפת ככל הנראה חשש מוגבר בתחום זה.</p>
+        
+        <div class="opinion-card">
+            <p>Jim Cramer stated on CNBC: <br>
+            "investors shouldn't give up on semiconductor stocks despite the recent sell-off."</p>
+            <span class="opinion-author">Jim Cramer, CNBC</span>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/13/jim-cramer-semiconductor-stocks-sell-off.html">CNBC</a>
+        </div>
+        <div class="opinion-card">
+            <p>Michael Dell, CEO of Dell, emphasized:<br>
+            "AI models need safeguards and controls, with companies and government both playing a role in safety."</p>
+            <span class="opinion-author">Michael Dell, CEO of Dell</span>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/13/michael-dell-ai-safeguards-government.html">CNBC</a>
+        </div>
+        <div class="opinion-card">
+            <p>The Compound podcast discussed IPOs:<br>
+            "The Danger of Glamorous IPOs"</p>
+            <span class="opinion-author">The Compound</span>
+            <a class="btn-source" href="https://www.youtube.com/shorts/XS2cr4wmxKk">The Compound</a>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">קריפטו ובלוקצ'יין</div>
+        <h2>התרחבות אימוץ מוסדי לצד אתגרי אבטחה ורגולציה בשוק הקריפטו</h2>
+        
+        <h3>מה קרה היום</h3>
+        <p>נרשמה עלייה משמעותית בהעברות כספים קריפטוגרפיות מקנדה למדינות אסיה, אשר זינקו ב-<span class="highlight-card" dir="ltr">141%</span> והגיעו ל-<span class="highlight-card" dir="ltr">2.36 מיליארד דולר</span>. חברת Qivalis קיבלה אישור ממוסד תשלומים (EMI) מהבנק המרכזי ההולנדי להשקת Stablecoin מגובה יורו, ו-Standard Chartered הרחיבה את שירותי מסחר הספוט שלה בביטקוין ובאת'ריום למשקיעים מקצועיים באיחוד האמירויות.</p>
+        <p>בחדשות החברות, Payward (חברת האם של Kraken) צפויה לרכוש את Saldo Bank הליטאי ב-2027, מה שמרחיב את שירותי הבנקאות המסורתיים שלה ל-4 שווקי האיחוד האירופי. חברת Coins.ph מהפיליפינים אישרה כי רישיון הבנק המרכזי שלה נותר בתוקף, למרות טענות על אפשרות לביטול.</p>
+        <p>בצד הביטחוני, Ledger ביקשה ממפיצים ברחבי דרום מזרח אסיה והונג קונג להשעות מכירות של ארנקי חומרה בעקבות דיווחים על שיבושים (tampering) בשרשרת האספקה. Trezor, מתחרה בתחום, הודיעה כי תצמצם את רשימת המפיצים שלה כצעד מונע. עורך דינו של סם בנקמן-פריד (מנכ"ל FTX לשעבר) הציג את טיעוני הערעור שלו לבית המשפט העליון בארה"ב. מניית <span class="change-negative" dir="ltr">IREN, כורה ביטקוין, ירדה ב-7.44%</span>.</p>
+        <a class="btn-source" href="https://cointelegraph.com/news/canada-crypto-remittances-asia-surge-chainalysis">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/qivalis-authorization-dutch-central-bank-euro-stablecoin">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/standard-chartered-bitcoin-ether-trading-professional-investors-uae">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/krakens-parent-buy-lithuanian-saldo-bank-tradFi-expansion">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/coinsph-says-bsp-license-intact-amid-claims-of-potential-revocation">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/ledger-asks-resellers-to-halt-sales-in-southeast-asia-and-hong-kong">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/trezor-preventative-steps-wallet-tampering-reports">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/ftx-sam-bankman-fried-lawyer-supreme-court-appeal">Cointelegraph</a>
+        
+        <img src="https://s3-images.ctmedia.io/media/article-covers/article-covers-110589-what-happened-in-crypto-today.jpg" alt="What happened in crypto today">
+
+        <h3>למה זה חריג</h3>
+        <p>העלייה הדרמטית בהעברות כספים קריפטוגרפיות מדגישה את הפוטנציאל הגלובלי של קריפטו מעבר למסחר, ככלי פיננסי מעשי. אישורי רגולציה לחברות כמו Qivalis והתרחבות בנקים כמו Standard Chartered ו-Kraken, מצביעים על אימוץ מוסדי גובר ואינטגרציה עם הפיננסים המסורתיים. מנגד, פרשת ארנקי החומרה של Ledger והתגובה של Trezor חושפים את חשיבות האבטחה בשרשרת האספקה ואת הרגישות של משתמשים לנושאי בטיחות נכסים דיגיטליים. מצבו המשפטי של SBF ממשיך להשפיע על תדמית התעשייה.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>האימוץ המוסדי והרגולציה החיובית הם מנועי צמיחה מרכזיים לשוק הקריפטו, שכן הם מספקים לגיטימציה וביטחון למשקיעים ומשתמשים גדולים. הגידול בהעברות כספים מצביע על שימוש הולך וגובר בקריפטו לצרכים יומיומיים ובינלאומיים. סוגיות אבטחה, לעומת זאת, יכולות לערער אמון ולעכב אימוץ רחב יותר, ולכן התגובה של יצרניות ארנקים קריטית. מניות כמו IREN, שמכירותיה תלויות במחירי מטבעות קריפטו, מושפעות ישירות מסנטימנט השוק והאירועים בו.</p>
+        
+        <div class="opinion-card">
+            <p>Bitwise's Matt Hougan stated:<br>
+            "nearly every fundamental indicator that Bitwise tracks spiked sharply higher," pointing to a "crypto spring."</p>
+            <span class="opinion-author">Matt Hougan, Bitwise</span>
+            <a class="btn-source" href="https://cointelegraph.com/markets/bitwises-hougan-says-q3-charts-point-to-crypto-spring">Cointelegraph</a>
+        </div>
+        <div class="opinion-card">
+            <p>Saifedean Ammous, author of 'The Bitcoin Standard', argues:<br>
+            "Bitcoin already functions as money when held as a store of value; expects it will become larger and less volatile than gold as it matures."</p>
+            <span class="opinion-author">Saifedean Ammous</span>
+            <a class="btn-source" href="https://cointelegraph.com/news/bitcoin-less-volatile-larger-gold-bitcoin-standard-author">Cointelegraph</a>
+        </div>
+    </div>
+</body>
+</html>
