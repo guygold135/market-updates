@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי אסטרטגי - 16 באוקטובר 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0d1117; /* Deep charcoal/navy */
+            --text-color: #E0E0E0; /* Light grey */
+            --accent-color: #00A38D; /* Steel blue/teal */
+            --darker-accent-color: #007A6D;
+            --card-bg-color: #1a202c;
+            --divider-color: #333d4e;
+            --positive-change: rgba(50, 205, 50, 0.2); /* LimeGreen muted */
+            --negative-change: rgba(220, 20, 60, 0.2); /* Crimson muted */
+            --border-radius: 6px;
+            --padding-base: 16px;
+            --font-inter: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-inter);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            direction: rtl; /* Right-to-left for Hebrew */
+        }
+
+        .slide-container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: var(--padding-base) 24px;
+            background-color: var(--card-bg-color);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 24px;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-top: 32px;
+            margin-bottom: 16px;
+            border-bottom: 2px solid var(--divider-color);
+            padding-bottom: 8px;
+            font-weight: 600;
+            position: relative;
+        }
+        
+        h3 {
+            font-size: 1.3rem;
+            color: var(--text-color);
+            margin-top: 24px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 12px;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+        }
+
+        a:hover {
+            color: var(--darker-accent-color);
+            text-decoration: underline;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--divider-color);
+            color: var(--text-color);
+            padding: 6px 12px;
+            border-radius: var(--border-radius);
+            font-size: 0.85rem;
+            margin-top: 8px;
+            margin-left: 8px;
+            transition: background-color 0.2s ease-in-out;
+            direction: ltr; /* Ensure source button text reads LTR */
+        }
+
+        .btn-source:hover {
+            background-color: var(--darker-accent-color);
+            text-decoration: none;
+        }
+
+        .section-divider {
+            border-top: 1px solid var(--divider-color);
+            margin: 40px 0;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: var(--padding-base);
+            margin-top: 20px;
+        }
+
+        .market-card {
+            background-color: var(--card-bg-color);
+            border: 1px solid var(--divider-color);
+            border-radius: var(--border-radius);
+            padding: var(--padding-base);
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .market-card strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .market-card .price {
+            font-size: 0.95rem;
+            color: #ccc;
+            direction: ltr; /* Price numbers should be LTR */
+            unicode-bidi: embed; /* Ensures LTR override */
+        }
+
+        .market-card .change {
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-top: 8px;
+            display: inline-block;
+            direction: ltr; /* Change percentage should be LTR */
+            unicode-bidi: embed;
+        }
+
+        .change.positive {
+            background-color: var(--positive-change);
+            color: LimeGreen;
+        }
+
+        .change.negative {
+            background-color: var(--negative-change);
+            color: Crimson;
+        }
+        
+        .badge {
+            display: inline-block;
+            background-color: var(--darker-accent-color);
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: var(--border-radius);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            position: absolute;
+            top: -10px;
+            right: 0; /* Align badge to the right for RTL */
+        }
+        
+        .highlight-card {
+            background-color: rgba(0, 163, 141, 0.1); /* Lighter accent background */
+            border-right: 3px solid var(--accent-color); /* Emphasize right border for RTL */
+            padding: var(--padding-base);
+            border-radius: var(--border-radius);
+            margin-top: 16px;
+            margin-bottom: 16px;
+        }
+
+        .opinion-card {
+            background-color: #2a2f3b; /* Slightly different background for opinions */
+            border-right: 3px solid #FFD700; /* Gold border for opinions */
+            padding: var(--padding-base);
+            border-radius: var(--border-radius);
+            margin-top: 16px;
+            margin-bottom: 16px;
+            position: relative;
+            font-style: italic;
+            direction: ltr; /* Ensure quote text is LTR */
+            text-align: left; /* Ensure quote text is left-aligned */
+        }
+
+        .opinion-card::before {
+            content: "\201C"; /* Left double quotation mark for RTL context */
+            font-family: Georgia, serif;
+            font-size: 2.5rem;
+            color: #FFD700;
+            position: absolute;
+            left: 10px; /* Position quote icon on the left for LTR quote block */
+            top: 5px;
+            opacity: 0.6;
+            direction: ltr;
+        }
+        .opinion-card .author-info {
+            display: block;
+            margin-top: 10px;
+            font-weight: 600;
+            color: #FFD700;
+            text-align: right; /* Align author name to the right */
+            direction: rtl; /* Author name is Hebrew, so RTL */
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: var(--border-radius);
+            margin-top: 16px;
+            margin-bottom: 16px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+            overflow-x: auto; /* Ensure tables are scrollable on smaller screens */
+            display: block; /* For overflow-x to work */
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid var(--divider-color);
+            text-align: right;
+        }
+
+        th {
+            background-color: #2a2f3b;
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        td {
+            background-color: var(--card-bg-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .slide-container {
+                padding: var(--padding-base);
+                margin: 10px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            .market-pulse-grid {
+                grid-template-columns: 1fr 1fr; /* 2 columns on mobile */
+            }
+            .badge {
+                position: static; /* Adjust badge position for mobile */
+                margin-top: 5px;
+                margin-bottom: 5px;
+                display: inline-block; /* Changed to inline-block to prevent full width block */
+                width: fit-content;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <h1>דוח שוק יומי אסטרטגי - 16 באוקטובר 2026</h1>
+
+        <h2>תמונת מצב מהירה (Market Pulse)</h2>
+        <p>סקירה מהירה של המדדים המובילים ומניות שרשמו תנודות חריגות היום:</p>
+        <div class="market-pulse-grid">
+            <div class="market-card">
+                <strong>S&amp;P 500 (SPY)</strong>
+                <span class="price" dir="ltr">768.70$</span>
+                <span class="change negative" dir="ltr">-0.40%</span>
+            </div>
+            <div class="market-card">
+                <strong>Nasdaq 100 (QQQ)</strong>
+                <span class="price" dir="ltr">717.58$</span>
+                <span class="change negative" dir="ltr">-1.43%</span>
+            </div>
+            <div class="market-card">
+                <strong>CoreWeave (CRWV)</strong>
+                <span class="price" dir="ltr">62.83$</span>
+                <span class="change negative" dir="ltr">-9.85%</span>
+            </div>
+            <div class="market-card">
+                <strong>IREN Ltd. (IREN)</strong>
+                <span class="price" dir="ltr">27.93$</span>
+                <span class="change negative" dir="ltr">-8.11%</span>
+            </div>
+            <div class="market-card">
+                <strong>Palantir (PLTR)</strong>
+                <span class="price" dir="ltr">188.44$</span>
+                <span class="change negative" dir="ltr">-6.02%</span>
+            </div>
+            <div class="market-card">
+                <strong>Coherent (COHR)</strong>
+                <span class="price" dir="ltr">235.93$</span>
+                <span class="change negative" dir="ltr">-5.86%</span>
+            </div>
+            <div class="market-card">
+                <strong>Oklo Inc. (OKLO)</strong>
+                <span class="price" dir="ltr">28.81$</span>
+                <span class="change negative" dir="ltr">-4.02%</span>
+            </div>
+            <div class="market-card">
+                <strong>AMD</strong>
+                <span class="price" dir="ltr">540.64$</span>
+                <span class="change negative" dir="ltr">-3.84%</span>
+            </div>
+            <div class="market-card">
+                <strong>Micron (MU)</strong>
+                <span class="price" dir="ltr">896.06$</span>
+                <span class="change negative" dir="ltr">-3.78%</span>
+            </div>
+            <div class="market-card">
+                <strong>Apple (AAPL)</strong>
+                <span class="price" dir="ltr">346.33$</span>
+                <span class="change positive" dir="ltr">+1.27%</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">טכנולוגיה / AI</span>
+        <h2>סערה במגזר ה-AI: חששות מימון מפילים מניות</h2>
+        <p>מניות טכנולוגיה רבות בתחום ה-AI רשמו ירידות חדות היום, כאשר CoreWeave (CRWV) צללה ב-<strong dir="ltr">-9.85%</strong> למחיר של <span dir="ltr">62.83$</span>, על רקע דיווחים כי חוזי החלף למחדל אשראי (CDS) שלה הגיעו לרמות מצוקה. תנועה זו משקפת חששות גוברים בקרב המשקיעים לגבי מימון חברות AI, מגמה שהשפיעה גם על מניות כמו Palantir (PLTR) שירדה ב-<strong dir="ltr">-6.02%</strong> ו-AMD (AMD) שירדה ב-<strong dir="ltr">-3.84%</strong>. בנוסף, חברות כמו Coherent (COHR) ו-Micron (MU) שהן חלק משרשרת האספקה של AI, חוו ירידות של <strong dir="ltr">-5.86%</strong> ו-<strong dir="ltr">-3.78%</strong> בהתאמה, על רקע "מלחמת שבבים" על קיבולת הייצור של TSMC. ירידות אלו ממחישות את הרגישות הגבוהה של השוק לחדשות בתחום, כאשר צמיחה מהירה מצד אחד פוגשת אי-וודאות לגבי מודלים עסקיים וזמינות מימון.</p>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/15/coreweave-credit-default-swaps-hit-distress-levels-as-investors-sour-on-ai-debt.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/15/nvidia-amd-dell-sink-in-global-tech-rout-on-ai-funding-worries.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/15/nvidia-apple-broadcom-in-fierce-battle-to-make-chips-at-tsmc.html">CNBC</a>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">מאקרו כלכלה</span>
+        <h2>לחצים אינפלציוניים וסיכוני העלאת ריבית</h2>
+        <p>מדד מחירי היצרן (PPI) בארה"ב זינק ב-<strong dir="ltr">6.3%</strong> בחישוב שנתי בספטמבר, הזינוק הגדול ביותר מאז 2022. נתון זה עולה על ציפיות הכלכלנים ומוביל להערכות כי הפדרל ריזרב יצטרך להמשיך במדיניות העלאות הריבית, עם "סיכונים אמיתיים שהפד יבצע העלאה נוספת בעוד שבועיים". העלייה במחירי היצרן מהווה אינדיקציה ללחצים אינפלציוניים מתמשכים בשוק, אשר עלולים להתגלגל לצרכן ולהשפיע לרעה על כוח הקנייה, וכן על רווחיות החברות.</p>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/15/pce-ppi-september-fed-reserve-rate-hike.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/15/september-producer-price-index-retail-sales-data.html">CNBC</a>
+        <div class="opinion-card">
+            "Even though October’s correction has brought about some relief for bond markets and revivified the rate sensitive sectors of the stock market, Bank of America’s strategists recommend staying risk-off until after the midterms and the next Fed meeting."
+            <span class="author-info">Bank of America Strategists, <a href="https://www.marketwatch.com/story/a-stock-market-sell-signal-has-been-silenced-but-these-bank-of-america-strategists-say-its-too-early-to-buy-8cdf98c8?mod=mw_rss_topstories">MarketWatch</a></span>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">קריפטו / בנקאות</span>
+        <h2>אימוץ מוסדי לקריפטו צובר תאוצה, לצד אתגרי אבטחה</h2>
+        <p>Deutsche Bank, הבנק הגדול בגרמניה, מתקדם בהשקת שירותי משמורת נכסים דיגיטליים בגרמניה ובוחן הרחבה לאסיה, מה שמעיד על המשך האימוץ המוסדי של שוק הקריפטו. במקביל, Mastercard ממשיכה לשלב יתרות stablecoin בפלטפורמות בנקאות ותשלומים מסורתיות, וגם אוסטרליה פרסמה טיוטת חוק לאימוץ מסגרת הדיווח על מיסים של ה-OECD לקריפטו, מה שמספק בהירות רגולטורית חשובה. לצד ההתפתחויות החיוביות, עולות דאגות אבטחה משמעותיות: מנכ"ל Mt. Gox לשעבר, מארק קרפלס, טוען כי אזהרות מוקדמות בנוגע לארנקי חומרה של Ledger שנפגעו לא זכו לתגובה מספקת, ונוכל אף איבד <strong dir="ltr">4.8 מיליון דולר</strong> שאוחסנו בארנקי Ledger "מטופלים".</p>
+        <a class="btn-source" href="https://cointelegraph.com/news/deutsche-bank-crypto-custody-expansion-asia-2027">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/mastercard-bvnk-global-money-platform-stablecoins">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/australia-releases-draft-bill-to-adopt-oecd-crypto-tax-reporting-framework">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/ledger-early-implant-warnings-mark-karpeles">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/magazine/scammer-loses-48m-stored-on-tampered-ledgers-asia-express">Cointelegraph</a>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M524SQBMBJKYH096V7N5FT2A/teal-security-warning.png" alt="אזהרת אבטחה של Ledger">
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">טכנולוגיה / חדשנות</span>
+        <h2>אפל נכנסת לשוק הטלפונים המתקפלים ומרחיבה שיתוף פעולה ב-AI</h2>
+        <p>אפל (AAPL) רשמה היום עלייה של <strong dir="ltr">+1.27%</strong> ונסחרת קרוב לשיא של 52 השבועות, על רקע חדשות משמעותיות. החברה השיקה באופן רשמי הזמנות מוקדמות ל-iPhone Duo, הטלפון המתקפל הראשון שלה, ובכך נכנסה לשוק שנשלט עד כה על ידי סמסונג וגוגל, מהלך שמסמן התרחבות אסטרטגית משמעותית. בנוסף, אפל שיתפה פעולה עם מטא כדי לאפשר למודל ה-AI Muse Spark Open לפעול באופן מקומי במערכות Mac Studio, מה שמדגיש את המעורבות הגוברת של אפל בתחום הבינה המלאכותית ואת פוטנציאל האינטגרציה העמוקה יותר של AI במוצריה.</p>
+        <a class="btn-source" href="https://www.marketwatch.com/story/is-apples-foldable-iphone-duo-worth-2-000-see-how-it-stacks-up-against-other-foldable-phones-c9066b13?mod=mw_rss_topstories">MarketWatch</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/15/apple-meta-partner-ai.html">CNBC</a>
+    </div>
+</body>
+</html>
