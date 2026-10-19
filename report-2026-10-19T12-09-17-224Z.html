@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי: עדכונים אסטרטגיים וניתוח לאוקטובר 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background-primary: #0a0e17; /* Deep charcoal/navy */
+            --text-primary: #e0e0e0; /* Off-white */
+            --accent-color: #ffd700; /* Gold */
+            --accent-color-dark: #ccaa00;
+            --divider-color: rgba(255, 255, 255, 0.1);
+            --positive-light: rgba(34, 197, 94, 0.2); /* Soft green */
+            --positive-dark: #22c55e;
+            --negative-light: rgba(239, 68, 68, 0.2); /* Soft red */
+            --negative-dark: #ef4444;
+            --card-background: #1a202c; /* Darker grey */
+            --opinion-background: #2a3340; /* Slightly lighter for opinions */
+            --border-radius: 8px;
+            --spacing-unit: 16px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-primary);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            direction: rtl; /* For Hebrew */
+            text-align: right; /* For Hebrew */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-unit);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            text-align: center;
+            padding-bottom: var(--spacing-unit);
+            border-bottom: 1px solid var(--divider-color);
+            margin-bottom: var(--spacing-unit) * 2;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-top: var(--spacing-unit) * 2;
+            margin-bottom: var(--spacing-unit);
+            font-weight: 700;
+            border-bottom: 1px solid var(--divider-color);
+            padding-bottom: var(--spacing-unit) / 2;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-top: var(--spacing-unit) * 1.5;
+            margin-bottom: var(--spacing-unit);
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: var(--spacing-unit);
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .slide-container {
+            background-color: var(--card-background);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-unit) * 2;
+            margin-bottom: var(--spacing-unit) * 2;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            max-width: 100%; /* Ensure it's not fixed px width */
+            box-sizing: border-box;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--background-primary);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-unit);
+            text-transform: uppercase;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-unit);
+            margin-top: var(--spacing-unit);
+        }
+
+        .market-item {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: var(--spacing-unit);
+            border-radius: var(--border-radius);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .market-item strong {
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .market-item .price {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .market-item .change {
+            font-size: 1rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        .positive-change {
+            background-color: var(--positive-light);
+            color: var(--positive-dark);
+        }
+
+        .negative-change {
+            background-color: var(--negative-light);
+            color: var(--negative-dark);
+        }
+
+        .section-divider {
+            border-top: 1px solid var(--divider-color);
+            margin: var(--spacing-unit) * 3 0;
+        }
+
+        .highlight-card {
+            background-color: rgba(255, 255, 255, 0.07);
+            border-left: 4px solid var(--accent-color);
+            padding: var(--spacing-unit);
+            margin-bottom: var(--spacing-unit);
+            border-radius: var(--border-radius);
+            line-height: 1.8;
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-background);
+            border-right: 4px solid var(--positive-dark); /* Changed to right for RTL, icon on left */
+            padding: var(--spacing-unit);
+            margin-bottom: var(--spacing-unit);
+            border-radius: var(--border-radius);
+            font-style: italic;
+            display: flex;
+            align-items: flex-start;
+            line-height: 1.8;
+        }
+
+        .opinion-card .quote-icon {
+            font-size: 2rem;
+            color: var(--positive-dark);
+            margin-left: var(--spacing-unit); /* For RTL */
+            line-height: 1;
+        }
+        
+        .opinion-card .quote-content {
+            flex-grow: 1;
+        }
+
+        .opinion-card strong {
+            display: block;
+            margin-top: var(--spacing-unit) / 2;
+            font-style: normal;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            padding: 8px 16px;
+            border-radius: 4px;
+            margin-top: var(--spacing-unit);
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin-left: 8px; /* Spacing for multiple buttons */
+        }
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: var(--spacing-unit);
+        }
+
+
+        .btn-source:hover {
+            background-color: var(--accent-color-dark);
+            color: var(--background-primary);
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            margin-bottom: var(--spacing-unit);
+            display: block; /* Ensures it takes its own line */
+        }
+
+        table {
+            width: 100%;
+            table-layout: fixed;
+            overflow-x: auto;
+            border-collapse: collapse;
+            margin-top: var(--spacing-unit);
+            margin-bottom: var(--spacing-unit);
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid var(--divider-color);
+            text-align: right;
+            white-space: nowrap; /* Prevent content from wrapping too early */
+        }
+
+        th {
+            background-color: rgba(255, 255, 255, 0.1);
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        td {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .market-table-name {
+            font-weight: 600;
+        }
+
+        .market-table-change.positive {
+            color: var(--positive-dark);
+            font-weight: 600;
+        }
+
+        .market-table-change.negative {
+            color: var(--negative-dark);
+            font-weight: 600;
+        }
+
+        @media(max-width:768px){
+            .market-pulse-grid{grid-template-columns:1fr 1fr;}
+            .slide-container{padding:16px;}
+            h1{font-size:1.4rem;}
+            h2{font-size:1.2rem;}
+            h3{font-size:1rem;}
+            .badge {font-size: 0.7rem; padding: 3px 8px;}
+            .market-item strong {font-size: 1rem;}
+            .market-item .price {font-size: 0.9rem;}
+            .market-item .change {font-size: 0.8rem;}
+            th, td {padding: 8px;}
+            .btn-group {
+                flex-direction: column;
+                gap: 4px;
+            }
+            .btn-source {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>דוח שוק יומי אסטרטגי</h1>
+        <div class="slide-container">
+            <span class="badge">תמונת מצב מהירה</span>
+            <h2>דופק השוק היומי: סקירה מהירה</h2>
+            <p>להלן סקירה של הנכסים הבולטים והשינויים החריגים ביותר ביום המסחר האחרון:</p>
+            <div class="market-pulse-grid">
+                <!-- BTC/USD - 2026-10-19 -->
+                <div class="market-item">
+                    <strong>ביטקוין (BTC)</strong>
+                    <span class="price">82,359.99 USD</span>
+                    <span class="change positive-change">+0.30%</span>
+                </div>
+                <!-- ETH/USD - 2026-10-19 -->
+                <div class="market-item">
+                    <strong>אתריום (ETH)</strong>
+                    <span class="price">2,422.06 USD</span>
+                    <span class="change positive-change">+0.49%</span>
+                </div>
+                <!-- SPY (S&P 500 ETF) - 2026-10-16 -->
+                <div class="market-item">
+                    <strong>S&P 500 ETF (SPY)</strong>
+                    <span class="price">763.25 USD</span>
+                    <span class="change negative-change">-1.11%</span>
+                </div>
+                <!-- QQQ (Nasdaq 100 ETF) - 2026-10-16 -->
+                <div class="market-item">
+                    <strong>Nasdaq 100 ETF (QQQ)</strong>
+                    <span class="price">709.79 USD</span>
+                    <span class="change negative-change">-2.50%</span>
+                </div>
+                <!-- Outlier stocks - selecting top decliners / significant movers from watchlist or generally -->
+                <!-- CRWV: -11.90% (watchlist, significant) - 2026-10-16 -->
+                <div class="market-item">
+                    <strong>CoreWeave (CRWV)</strong>
+                    <span class="price">61.39 USD</span>
+                    <span class="change negative-change">-11.91%</span>
+                </div>
+                <!-- IREN: -11.19% (watchlist, significant) - 2026-10-16 -->
+                <div class="market-item">
+                    <strong>IREN Ltd. (IREN)</strong>
+                    <span class="price">26.99 USD</span>
+                    <span class="change negative-change">-11.19%</span>
+                </div>
+                <!-- COHR: -7.06% (watchlist, significant) - 2026-10-16 -->
+                <div class="market-item">
+                    <strong>Coherent Corp. (COHR)</strong>
+                    <span class="price">232.89 USD</span>
+                    <span class="change negative-change">-7.06%</span>
+                </div>
+                <!-- PLTR: -7.22% (watchlist, significant) - 2026-10-16 -->
+                <div class="market-item">
+                    <strong>Palantir (PLTR)</strong>
+                    <span class="price">186.03 USD</span>
+                    <span class="change negative-change">-7.22%</span>
+                </div>
+                <!-- MU: -5.63% (watchlist, significant) - 2026-10-16 -->
+                <div class="market-item">
+                    <strong>Micron Tech (MU)</strong>
+                    <span class="price">878.84 USD</span>
+                    <span class="change negative-change">-5.63%</span>
+                </div>
+                <!-- AMD: -5.95% (watchlist, significant) - 2026-10-16 -->
+                <div class="market-item">
+                    <strong>AMD</strong>
+                    <span class="price">528.75 USD</span>
+                    <span class="change negative-change">-5.95%</span>
+                </div>
+            </div>
+            <p><small>נתוני שוק מעודכנים לתאריך: ביטקוין/אתריום - 19 באוקטובר 2026, מדדים ומניות - 16 באוקטובר 2026 (סוף יום המסחר הקודם).</small></p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">קריפטו</span>
+            <h2>רגולציה, זרימות הון ותנודתיות בשוק הקריפטו</h2>
+            
+            <h3>מה קרה היום</h3>
+            <p>שוק הקריפטו מציג סימני תנודתיות משמעותיים לצד התפתחויות רגולטוריות באירופה ובצרפת. קרנות סל אמריקאיות (ETFs) לביטקוין ולאתריום רשמו יציאות הון ניכרות, כאשר קרנות סל לאתריום איבדו כ-955 מיליון דולר בחודש אוקטובר לבדו, וקרנות ביטקוין המשיכו רצף של שבועיים של משיכות (נתון ל-19 באוקטובר 2026). במקביל, ה-stablecoin USD1 של World Liberty Financial איבד למעלה מ-400 מיליון דולר משווי השוק שלו תוך שבועיים עקב פדיונות גדולים ב-Ethereum וב-BNB Chain.</p>
+            <p>בגזרת הרגולציה, BingX, YouHodler ו-Openbank של Banco Santander התווספו לרשימת ה-MiCA של ESMA, המכילה כעת 375 ספקי שירותי נכסים קריפטוגרפיים (CASPs). צרפת מתקדמת בתיקוני מס על קריפטו המכוונים להחלפות מסוימות של stablecoin, ובוחנת הצעות נוספות לגבי ארנקים בשליטה עצמית ומסי יציאה. במקביל, ג'יי.פי.מורגן מרחיב את השימוש ב-JPM Coin שלו לפלטפורמת Ethereum עבור לקוחות מוסדיים.</p>
+            <p>חדשות שליליות נוספות כוללות את הקפאת רשת Qubic לאחר תקיפה שרוקנה 1,400 ארנקים, ומעצרו של ריצ'רד הארט, מייסד HEX, באיסטנבול, מה שגרם לצלילה של כמעט 50% בשווי Starknet (למרות שההצבעה להפיכתה ל-L1 היא כנראה גורם נוסף).</p>
+            <div class="btn-group">
+                <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-ether-etfs-549-million-weekly-outflows">Cointelegraph by Helen Partz</a>
+                <a class="btn-source" href="https://cointelegraph.com/news/world-liberty-usd1-stablecoin-market-cap-drops-400-million">Cointelegraph by Ezra Reguerra</a>
+                <a class="btn-source" href="https://cointelegraph.com/news/bingx-youhodler-esma-mica-register-friday-update">Cointelegraph by Helen Partz</a>
+                <a class="btn-source" href="https://cointelegraph.com/news/france-stablecoin-tax-eyes-self-custodial-wallets-exit-tax">Cointelegraph by Zoltan Vardai</a>
+                <a class="btn-source" href="https://cointelegraph.com/news/jpmorgan-jpm-coin-ethereum-institutional-clients">Cointelegraph by Ezra Reguerra</a>
+                <a class="btn-source" href="https://cointelegraph.com/news/qubic-freezes-chain-after-attacker-drains-14k-wallets-with-weak-seeds">Cointelegraph by Felix Ng</a>
+                <a class="btn-source" href="https://cointelegraph.com/magazine/richard-heart-caught-with-pants-down-qday-gets-even-closer-hodlers-digest">Cointelegraph by Andrew Fenton</a>
+            </div>
+            
+            <h3>למה זה חריג</h3>
+            <p>יציאות הון כה משמעותיות מקרנות סל של ETH (קרוב למיליארד דולר בחודש) מהוות איתות שלילי חזק לביקוש המוסדי, ובמיוחד על רקע דיונים סביב יציאת קרנות סל ל-Ethereum. הצניחה ב-stablecoin כמו USD1 מדגישה את הסיכונים בנכסים אלו, גם אם הם "מגובים", ומזכירה אירועי אי-יציבות קודמים בתחום. המגמה הרגולטורית המחמירה באירופה, ובפרט בצרפת, עם דיונים על מיסוי ארנקים בשליטה עצמית, עשויה להשפיע על פוטנציאל הצמיחה והאימוץ של קריפטו באזור.</p>
+            <p>המעבר של JPM Coin ל-Ethereum הוא אירוע חיובי המעיד על המשך אימוץ טכנולוגיית בלוקצ'יין על ידי מוסדות פיננסיים מסורתיים, אך הוא שונה מהשוק הקריפטו הקמעונאי והספקולטיבי. אירועי אבטחה כמו פריצת Qubic והמעצר של דמויות מפתח כמו ריצ'רד הארט מדגישים את הסיכונים הטכנולוגיים והרגולטוריים הטמונים בשוק.</p>
+
+            <h3>מה זה אומר לקראת השבוע</h3>
+            <p>השבוע צפויות להתעצם הבחינה סביב נתוני זרימות הון מקרנות סל קריפטו. המשקיעים יעקבו מקרוב אחר כל התפתחות סביב רגולציית MiCA באירופה והחקיקה בצרפת, שיכולות להשפיע על המסחר ב-stablecoins ועל אופן ההחזקה של נכסים דיגיטליים. הצפי הוא ללחץ מתמשך על מחירי האתריום בפרט, אם מגמת יציאות ההון תימשך. בטווח הקצר, הצפי הוא שביטקוין ינסה לבחון שוב את רמת התמיכה סביב 80,000 דולר, על רקע התאוששות בשוקי המניות.</p>
+            <div class="opinion-card">
+                <span class="quote-icon">&#8220;</span>
+                <div class="quote-content">
+                    <p>Analysts expect Bitcoin to retest $80,000 support again as stock markets attempt to recover last week’s losses.</p>
+                    <strong>Cointelegraph by William Suberg</strong>
+                </div>
+            </div>
+            <a class="btn-source" href="https://cointelegraph.com/markets/stocks-rebound-into-key-tech-earnings-three-things-to-know-in-bitcoin-this-week">Cointelegraph by William Suberg</a>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">טכנולוגיה ו-AI</span>
+            <h2>טלטלה במניות הטכנולוגיה ואתגרי AI: הזדמנויות וסיכונים</h2>
+            
+            <h3>מה קרה היום</h3>
+            <p>מניות הטכנולוגיה הראו סימני היחלשות לקראת שבוע מכריע של דוחות כספיים. מורגן סטנלי מצביעים על כך שמתחת לפני השטח, ה-S&P 500 מסתיר נסיגה נרחבת יותר בשוק. גולדמן זאקס ממליצים למשקיעים לחפש מניות "לא אהובות" (unloved stocks) הממוקדות בצרכנים, כאלטרנטיבה למניות הטכנולוגיה הגדולות שמתמודדות עם קשיי צמיחה. מניית יצרנית השבבים הסינית CXMT נפלה בכמעט 8% לאחר פרסום תחזית רווחים לרבעון (נתון ל-19 באוקטובר 2026).</p>
+            <p>בנוסף, מתעוררים דיונים סביב השפעת ה-AI על שוק העבודה, כאשר נטען שנשים עלולות להיות בסיכון גבוה יותר לאובדן משרות עקב התפשטות ה-AI. בתגובה לאתגרי Deepfake, חברת Zoom השיקה "תגי הוכחה לאנושיות" (proof of human badges) עבור משתמשים ארגוניים, בשיתוף עם World ID, במטרה להילחם בהתחזויות והונאות המבוססות על AI.</p>
+            <div class="btn-group">
+                <a class="btn-source" href="https://www.marketwatch.com/story/tech-stocks-stumbled-now-comes-a-crucial-week-for-wall-street-2a093abe">MarketWatch by Mark DeCambre</a>
+                <a class="btn-source" href="https://www.marketwatch.com/story/the-s-p-500-is-masking-a-hidden-market-pullback-why-morgan-stanley-says-an-index-retreat-would-signal-a-buying-opportunity-08d079c0">MarketWatch by Jules Rimmer</a>
+                <a class="btn-source" href="https://www.marketwatch.com/story/big-tech-is-wobbling-goldman-sachs-says-its-time-to-buy-these-23-unloved-stocks-instead-cff7a9e0">MarketWatch by Barbara Kollmeyer</a>
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/19/china-cxmt-profit-outlook-shares.html">CNBC</a>
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/19/ai-job-losses-women-automation-risk.html">CNBC</a>
+                <a class="btn-source" href="https://cointelegraph.com/news/zoom-proof-of-human-badges-world-id-ai-deepfakes">Cointelegraph by Ezra Reguerra</a>
+            </div>
+
+            <h3>למה זה חריג</h3>
+            <p>ההיחלשות במניות הטכנולוגיה לקראת עונת הדוחות היא אירוע קריטי, במיוחד לאור העובדה שמניות אלו היוו מנוע צמיחה עיקרי לשוק בתקופה האחרונה. המלצת גולדמן זאקס להפנות השקעות למניות ערך "לא אהובות" מעידה על שינוי אפשרי במגמת השוק, שמתרחק מריכוזיות ב"שבעת המופלאים". דאגות מפני השפעת ה-AI על שוק העבודה, יחד עם פתרונות אבטחה נגד Deepfake, מדגישים את הדו-קיום של חדשנות וסיכון בתחום ה-AI.</p>
+
+            <h3>מה זה אומר לקראת השבוע</h3>
+            <p>השבוע יהיה מכריע עבור סקטור הטכנולוגיה, כאשר דוחות הרבעון של חברות מפתח יספקו אינדיקציה ברורה יותר לגבי כיוון השוק. אם הדוחות יאכזבו, אנו צפויים לראות לחץ נוסף על מניות הטכנולוגיה וייתכן אף העברת הון למניות מסורתיות יותר. המשקיעים יצטרכו לשקול את הסיכונים של ריכוזיות יתר בסקטור ה-AI ולבחון את הפוטנציאל במגזרי שוק אחרים.</p>
+            <div class="opinion-card">
+                <span class="quote-icon">&#8220;</span>
+                <div class="quote-content">
+                    <p>The idea that the AI trade has been mostly immune to rising bond yields isn’t quite right, one strategist notes.</p>
+                    <strong>MarketWatch by Joseph Adinolfi</strong>
+                </div>
+            </div>
+            <p>תשומת לב מיוחדת תינתן לאופן שבו חברות הטכנולוגיה הגדולות מנהלות את הסיכונים וההזדמנויות סביב ה-AI, הן מבחינה תפעולית והן מבחינת חדשנות.</p>
+            <a class="btn-source" href="https://www.marketwatch.com/story/stocks-are-heading-for-a-high-stakes-showdown-as-strong-earnings-collide-with-rising-borrowing-costs-6f8ea5b8">MarketWatch by Joseph Adinolfi</a>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">השקעות אסטרטגיות</span>
+            <h2>השקעות ענק בתעשיות הביטחון והחלל</h2>
+            
+            <h3>מה קרה היום</h3>
+            <p>JPMorgan Chase הודיעה כי השקיעה כבר 5 מיליארד דולר מחוץ למאזן שלה בהשקעות ישירות בטכנולוגיות ביטחוניות, חומרה ושרשרת האספקה בתחום. מדובר בהשקעות ב"מפעלי רובוטים וטילים היפרסוניים", מה שמצביע על התמקדות בחדשנות אסטרטגית בתחום הביטחון.</p>
+            <p>בחדשות מפתיעות, אילון מאסק הודיע כי בשנה הבאה יעניק מניה אחת של SpaceX לכל ילד בארה"ב. פרטים לגבי אופן חלוקת המניות לא נמסרו.</p>
+            <div class="btn-group">
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/19/jpmorgan-security-defense-investments.html">CNBC</a>
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/19/elon-musk-spacex-shares-giveaway-kids.html">CNBC</a>
+            </div>
+
+            <h3>למה זה חריג</h3>
+            <p>היקף ההשקעה של ג'יי.פי.מורגן בתחום הביטחון חריג, ומעיד על מגמה מתרחבת של בנקים ומוסדות פיננסיים גדולים להיכנס לתחומים הנחשבים בעבר נחלתן הבלעדית של קרנות הון סיכון המתמחות. ההתמקדות בטכנולוגיות מתקדמות כמו טילים היפרסוניים משקפת את החשיבות הגוברת של חדשנות ביטחונית ושיבוש תעשייתי. ההצהרה של אילון מאסק לגבי חלוקת מניות SpaceX לילדים היא יוצאת דופן ודורשת הבהרות לגבי המנגנון וההשפעות הכלכליות, אם וכאשר תמומש.</p>
+
+            <h3>מה זה אומר לקראת השבוע</h3>
+            <p>השבוע עשוי להביא פרטים נוספים על מנגנון ההשקעה של ג'יי.פי.מורגן בתחום הביטחון, וכן הבהרות מצד אילון מאסק לגבי חלוקת מניות SpaceX. המגמה של השקעות ענק בתעשיות אסטרטגיות אלו מעידה על פוטנציאל צמיחה ארוך טווח, ועל תשומת לב גוברת מצד שחקנים פיננסיים מסורתיים לטכנולוגיות פורצות דרך, גם מחוץ לסקטור הטכנולוגיה הצרכנית הרגילה. משקיעים יכולים לחפש הזדמנויות בחברות הקשורות לשרשרת האספקה של טכנולוגיות ביטחוניות מתקדמות.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">מאקרו כלכלה</span>
+            <h2>מלחמה בין רווחי חברות לעלויות מימון עולות</h2>
+            
+            <h3>מה קרה היום</h3>
+            <p>שוקי המניות נמצאים בפני "קרב הכרעה" מכיוון שדוחות רווחים חזקים מתנגשים עם עלויות מימון עולות. אנליסטים מציינים כי חברות ניהול תיקים מתמקדות מאז אמצע הקיץ בתזרים מזומנים חופשי, רווחיות, מרווחים גבוהים, מאזנים חזקים ורווחים יציבים בבחירת מניות. עם זאת, קיים חשש שה-S&P 500 מסווה נסיגה פנימית עמוקה יותר בשוק, וכי ירידה במדד עשויה דווקא לאותת על הזדמנות קנייה.</p>
+            <div class="btn-group">
+                <a class="btn-source" href="https://www.marketwatch.com/story/stocks-are-heading-for-a-high-stakes-showdown-as-strong-earnings-collide-with-rising-borrowing-costs-6f8ea5b8">MarketWatch by Joseph Adinolfi</a>
+                <a class="btn-source" href="https://www.marketwatch.com/story/the-s-p-500-is-masking-a-hidden-market-pullback-why-morgan-stanley-says-an-index-retreat-would-signal-a-buying-opportunity-08d079c0">MarketWatch by Jules Rimmer</a>
+            </div>
+
+            <h3>למה זה חריג</h3>
+            <p>הניגוד בין דוחות כספיים חיוביים של חברות מסוימות לבין עליית עלויות המימון (תשואות אג"ח) יוצר סביבה מורכבת ובלתי וודאית. זה מעיד על כך שהשוק אינו מגיב באופן אחיד, וכי בעוד שחברות חזקות ממשיכות להציג ביצועים טובים, גורמים מאקרו-כלכליים רחבים יותר מפעילים לחץ. התובנה שמורגן סטנלי מציגים, לפיה ירידה במדד הרחב עשויה להיות הזדמנות, מהווה תפיסה אסטרטגית שונה מהתגובה האינסטינקטיבית לירידות.</p>
+
+            <h3>מה זה אומר לקראת השבוע</h3>
+            <p>השבוע צפוי להיות בסימן המשך בחינת דוחות רווחים, כאשר המיקוד יהיה על ההשפעה של עלויות המימון על שולי הרווח והתחזיות העתידיות של החברות. משקיעים יצטרכו לנקוט בגישה סלקטיבית, לבחור חברות עם עקרונות פיננסיים חזקים ויכולת עמידה בפני לחצים מאקרו-כלכליים. ייתכנו תנודות חדות יותר במדדים בהתאם לפרשנות השוק של הדוחות והנתונים הכלכליים הבאים.</p>
+            <div class="opinion-card">
+                <span class="quote-icon">&#8220;</span>
+                <div class="quote-content">
+                    <p>Since midsummer portfolio managers have been emphasizing free cash flow, profitability, high margins, strong balance sheets and stable earnings when stockpicking.</p>
+                    <strong>MarketWatch by Jules Rimmer</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
