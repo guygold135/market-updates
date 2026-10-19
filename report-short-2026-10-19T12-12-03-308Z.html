@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק הון יומי: גרסה מקוצרת</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0e17; /* Deep charcoal/navy */
+            --bg-light-dark: #1a1e27; /* Slightly lighter for cards */
+            --text-light: #e0e0e0; /* Off-white for main text */
+            --accent-color: #f7a80a; /* Muted gold for accents */
+            --border-color: #333;
+            --positive-color: rgba(34, 139, 34, 0.7); /* Muted forest green */
+            --negative-color: rgba(178, 34, 34, 0.7); /* Muted brick red */
+            --positive-text: #66bb6a;
+            --negative-text: #ef5350;
+            --highlight-bg: #2a2e37; /* For highlight-card */
+            --opinion-bg: #2a2e37; /* For opinion-card */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            direction: rtl; /* Right-to-left for Hebrew */
+            text-align: right;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 30px;
+            padding-top: 20px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--text-light);
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end; /* Align title and badge to the right */
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .slide-container {
+            background-color: var(--bg-light-dark);
+            padding: 30px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-dark);
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-right: 10px; /* Adjust margin for RTL */
+            vertical-align: middle;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .market-card {
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .market-card strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--text-light);
+        }
+
+        .change-value {
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        .change-positive {
+            background-color: var(--positive-color);
+            color: var(--positive-text);
+        }
+
+        .change-negative {
+            background-color: var(--negative-color);
+            color: var(--negative-text);
+        }
+
+        .section-divider {
+            border-top: 1px solid var(--border-color);
+            margin: 40px 0;
+            opacity: 0.6;
+        }
+
+        .highlight-card {
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            border-radius: 6px;
+            border-right: 3px solid var(--accent-color);
+            margin-top: 15px;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-bg);
+            padding: 15px;
+            border-radius: 6px;
+            border-right: 3px solid #6c757d; /* A subtle grey for opinions */
+            margin-top: 15px;
+            margin-bottom: 15px;
+            font-style: italic;
+            position: relative;
+            padding-right: 40px; /* Space for quote icon */
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .opinion-card::before {
+            content: "“"; /* Quote icon */
+            font-family: Georgia, serif; /* Or any elegant font for quotes */
+            font-size: 3em;
+            color: #6c757d;
+            position: absolute;
+            right: 10px;
+            top: 5px;
+            line-height: 1;
+        }
+
+        .opinion-card .author {
+            display: block;
+            margin-top: 10px;
+            font-weight: 600;
+            color: var(--accent-color);
+            text-align: left;
+            font-style: normal;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: #34495e; /* Darker blue-grey for buttons */
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            margin-left: 10px; /* Margin between buttons */
+            transition: background-color 0.3s ease;
+            white-space: nowrap; /* Prevent button text from wrapping */
+        }
+
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px; /* Space between buttons */
+            margin-top: 15px;
+            justify-content: flex-end; /* Align buttons to the right */
+        }
+
+        .btn-source:hover {
+            background-color: #4a6a8a;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+            margin: 15px auto;
+        }
+
+        table {
+            width: 100%;
+            table-layout: fixed;
+            word-wrap: break-word;
+            border-collapse: collapse;
+            margin-top: 20px;
+            overflow-x: auto; /* For table responsiveness */
+            display: block; /* For table responsiveness on smaller screens */
+        }
+
+        th, td {
+            padding: 12px 10px;
+            text-align: right;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: #1a202c; /* Slightly different background for header */
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.4rem; justify-content: flex-start; /* For small screens, badge first, then title */ }
+            h3 { font-size: 1.1rem; }
+            .slide-container { padding: 16px; margin-bottom: 15px; }
+            .market-pulse-grid { grid-template-columns: 1fr 1fr; } /* Two columns on mobile */
+            .market-card strong { font-size: 1rem; }
+            .change-value { font-size: 0.9rem; padding: 3px 6px; }
+            .badge { font-size: 0.7rem; padding: 3px 8px; margin-right: 5px; }
+            .btn-source { padding: 6px 10px; font-size: 0.75rem; }
+            .opinion-card::before { font-size: 2.5em; top: 10px; right: 8px; }
+            .opinion-card { padding-right: 30px; }
+            .btn-group { justify-content: flex-start; } /* Align buttons to left on mobile */
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 0 10px; }
+            h1 { font-size: 1.5rem; }
+            h2 { font-size: 1.2rem; }
+            h3 { font-size: 1rem; }
+            .market-pulse-grid { grid-template-columns: 1fr; } /* One column on very small screens */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>דוח שוק הון יומי: גרסה מקוצרת</h1>
+
+        <div class="slide-container">
+            <h2>תמונת מצב שוק (16.10.2026)</h2>
+            <p>להלן סקירה מהירה של תנועות משמעותיות בשוק נכון לנעילת המסחר ב-16 באוקטובר 2026. הנתונים מתארים את השינוי באחוזים מהסגירה הקודמת.</p>
+            <div class="market-pulse-grid">
+                <!-- S&P 500 -->
+                <div class="market-card">
+                    <strong>S&P 500 (SPY)</strong>
+                    <span class="change-value change-negative">-1.11%</span>
+                    <span>763.25</span>
+                </div>
+                <!-- Nasdaq 100 -->
+                <div class="market-card">
+                    <strong>NASDAQ 100 (QQQ)</strong>
+                    <span class="change-value change-negative">-2.50%</span>
+                    <span>709.80</span>
+                </div>
+                <!-- CoreWeave Inc. -->
+                <div class="market-card">
+                    <strong>CRWV</strong>
+                    <span class="change-value change-negative">-11.91%</span>
+                    <span>61.39</span>
+                </div>
+                <!-- IREN Ltd. -->
+                <div class="market-card">
+                    <strong>IREN</strong>
+                    <span class="change-value change-negative">-11.19%</span>
+                    <span>26.99</span>
+                </div>
+                <!-- Palantir Technologies Inc. -->
+                <div class="market-card">
+                    <strong>PLTR</strong>
+                    <span class="change-value change-negative">-7.22%</span>
+                    <span>186.03</span>
+                </div>
+                <!-- Advanced Micro Devices Inc. -->
+                <div class="market-card">
+                    <strong>AMD</strong>
+                    <span class="change-value change-negative">-5.95%</span>
+                    <span>528.75</span>
+                </div>
+                 <!-- Micron Technology Inc. -->
+                <div class="market-card">
+                    <strong>MU</strong>
+                    <span class="change-value change-negative">-5.63%</span>
+                    <span>878.84</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <h2><span class="badge">טכנולוגיה & AI</span> טלטלה במניות הטכנולוגיה ו-AI לקראת עונת הדוחות</h2>
+            <p>מניות הטכנולוגיה וה-AI, שהובילו את השוק לאחרונה, הציגו חולשה משמעותית בסוף השבוע ותחילת השבוע הנוכחי. מדד ה-NASDAQ 100 (QQQ) ירד ב-<span class="change-negative">2.50%</span> ב-16.10.2026, ומניות AI כמו CoreWeave (CRWV) צללו ב-<span class="change-negative">11.91%</span>, Palantir (PLTR) ב-<span class="change-negative">7.22%</span> ו-AMD ב-<span class="change-negative">5.95%</span>. זאת לקראת שבוע קריטי של דוחות כספיים לחברות טכנולוגיה גדולות.</p>
+            <p>החולשה מצביעה על חשש גובר בשוק כי עליות הריבית הגבוהות והתשואות על אג"ח מתחילות לכרסם ביתרון של מגזר ה-AI, בניגוד לתפיסה הקודמת שהיה חסין. אנליסטים במורגן סטנלי וגולדמן זאקס מצביעים על כך שהשוק מחפש כעת חברות עם תזרים מזומנים חזק, רווחיות יציבה ומאזנים בריאים מעבר לצמיחת AI בלבד.</p>
+            <div class="btn-group">
+                <a class="btn-source" href="https://www.marketwatch.com/story/stocks-are-heading-for-a-high-stakes-showdown-as-strong-earnings-collide-with-rising-borrowing-costs-6f8ea5b8?mod=mw_rss_topstories">MarketWatch (J. Adinolfi)</a>
+                <a class="btn-source" href="https://www.marketwatch.com/story/tech-stocks-stumbled-now-comes-a-crucial-week-for-wall-street-2a093abe?mod=mw_rss_topstories">MarketWatch (M. DeCambre)</a>
+                <a class="btn-source" href="https://www.marketwatch.com/story/big-tech-is-wobbling-goldman-sachs-says-its-time-to-buy-these-23-unloved-stocks-instead-cff7a9e0?mod=mw_rss_topstories">MarketWatch (B. Kollmeyer)</a>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <h2><span class="badge">קריפטו</span> תנודתיות ופיקוח מתגבר בשוק הקריפטו</h2>
+            <p>שוק הקריפטו חווה תנודתיות וזעזועים רגולטוריים. ה-stablecoin USD1 של World Liberty איבד למעלה מ-400 מיליון דולר משווי השוק שלו בשבועיים האחרונים. קרנות סל (ETFs) של את'ריום וביטקוין רשמו יציאות של 549 מיליון דולר בשבוע, כאשר קרנות את'ריום לבדן איבדו קרוב למיליארד דולר באוקטובר.</p>
+            <p>במקביל, צרפת מקדמת חוקי מס חדשים על stablecoins, ורשויות רגולציה אירופיות ממשיכות להוסיף בורסות קריפטו לרשימת הפיקוח שלהן. בנוסף, רשת Qubic הוקפאה לאחר מתקפת סייבר שרוקנה 1,400 ארנקים. יציאות ההון מקרנות סל והתנודתיות סביב stablecoins מסמנות חוסר אמון גובר בחלקים מהשוק, בעוד הלחץ הרגולטורי הגובר עשוי להעיד על סביבת פעולה מאתגרת יותר למטבעות דיגיטליים בעתיד הקרוב.</p>
+            <p> נכון ל-19.10.2026, מחיר הביטקוין (BTC/USD) עומד על <span class="change-value change-positive">82359.99$ (+0.30%)</span> ומחיר האת'ריום (ETH/USD) על <span class="change-value change-positive">2422.06$ (+0.49%)</span>.</p>
+            <div class="btn-group">
+                <a class="btn-source" href="https://cointelegraph.com/news/world-liberty-usd1-stablecoin-market-cap-drops-400-million?utm_source=rss_feed&utm_medium=rss_campaign=rss_partner_inbound">Cointelegraph (E. Reguerra)</a>
+                <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-ether-etfs-549-million-weekly-outflows?utm_source=rss_feed&utm_medium=rss_campaign=rss_partner_inbound">Cointelegraph (H. Partz)</a>
+                <a class="btn-source" href="https://cointelegraph.com/news/france-stablecoin-tax-eyes-self-custodial-wallets-exit-tax?utm_source=rss_feed&utm_medium=rss_campaign=rss_partner_inbound">Cointelegraph (Z. Vardai)</a>
+                <a class="btn-source" href="https://cointelegraph.com/news/bingx-youhodler-esma-mica-register-friday-update?utm_source=rss_feed&utm_medium=rss_campaign=rss_partner_inbound">Cointelegraph (H. Partz)</a>
+                <a class="btn-source" href="https://cointelegraph.com/news/qubic-freezes-chain-after-attacker-drains-14k-wallets-with-weak-seeds?utm_source=rss_feed&utm_medium=rss_campaign=rss_partner_inbound">Cointelegraph (F. Ng)</a>
+            </div>
+            <img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M59F6KYERPENFDEPMTNEM29K/big-wave-bitcoin-ethereum-market-fall-1.jpg" alt="Bitcoin, Ether ETFs shed $549M" />
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <h2><span class="badge">פיננסים & אסטרטגיה</span> ג'יי.פי. מורגן מתרחב בתחום הקריפטו המוסדי ובתעשיית הביטחון</h2>
+            <p>בנק ג'יי.פי. מורגן צ'ייס מרחיב את פעילות ה-JPM Coin שלו לרשת את'ריום, ויאפשר ללקוחות מוסדיים לבצע תשלומים ולסלוק עסקאות נכסים מבוזרים. מהלך זה מצביע על אימוץ מוסדי הולך וגובר של טכנולוגיית בלוקצ'יין על ידי בנקים מסורתיים.</p>
+            <p>במקביל, הבנק השקיע 5 מיליארד דולר ישירות בטכנולוגיות הגנה, כולל מפעלי רובוטים וטילים היפרסוניים. השקעה זו מדגישה את המיקוד של ג'יי.פי. מורגן בהשקעות אסטרטגיות בתחומים מתפתחים וקריטיים המשפיעים על הכלכלה הריאלית והביטחונית.</p>
+            <div class="btn-group">
+                <a class="btn-source" href="https://cointelegraph.com/news/jpmorgan-jpm-coin-ethereum-institutional-clients?utm_source=rss_feed&utm_medium=rss_campaign=rss_partner_inbound">Cointelegraph (E. Reguerra)</a>
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/19/jpmorgan-security-defense-investments.html">CNBC</a>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+    </div>
+</body>
+</html>
