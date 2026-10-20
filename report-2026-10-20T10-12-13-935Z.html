@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי - אנליסט שוק הון</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color-dark: #0a0e17; /* Deep charcoal/navy */
+            --text-color-light: #e0e6ed; /* Off-white */
+            --accent-color: #6a82fb; /* Steel blue */
+            --highlight-bg: #1a1e27; /* Slightly lighter dark */
+            --opinion-bg: #2a2e37; /* Even lighter dark for opinion cards */
+            --divider-color: #3b4352; /* Subtle gray for dividers */
+            --positive-color: rgba(102, 204, 153, 0.2); /* Muted green with transparency */
+            --positive-text: #66cc99;
+            --negative-color: rgba(255, 102, 102, 0.2); /* Muted red with transparency */
+            --negative-text: #ff6666;
+            --badge-bg: #222a36; /* Darker grey for badges */
+            --border-radius: 8px;
+            --spacing-unit: 16px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color-dark);
+            color: var(--text-color-light);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            direction: rtl; /* Right-to-left for Hebrew */
+            text-align: right;
+        }
+
+        .slide-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: var(--spacing-unit) 24px;
+            background-color: var(--highlight-bg);
+            border-radius: var(--border-radius);
+            margin-bottom: calc(2 * var(--spacing-unit));
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-weight: 700;
+            font-size: 2.2rem;
+            color: var(--accent-color);
+            text-align: center;
+            padding-bottom: var(--spacing-unit);
+            border-bottom: 1px solid var(--divider-color);
+            margin-bottom: calc(2 * var(--spacing-unit));
+        }
+
+        h2 {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-top: calc(2 * var(--spacing-unit));
+            margin-bottom: var(--spacing-unit);
+            border-bottom: 1px solid var(--divider-color);
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            font-weight: 600;
+            font-size: 1.3rem;
+            color: var(--text-color-light);
+            margin-top: calc(1.5 * var(--spacing-unit));
+            margin-bottom: calc(0.75 * var(--spacing-unit));
+        }
+
+        p {
+            margin-bottom: var(--spacing-unit);
+            font-weight: 400;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+        }
+
+        a:hover {
+            color: #8c9eff; /* Lighter accent on hover */
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--badge-bg);
+            color: var(--text-color-light);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-unit);
+            text-align: center;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-unit);
+            margin-top: var(--spacing-unit);
+        }
+
+        .market-item {
+            background-color: var(--bg-color-dark);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-unit);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--divider-color);
+        }
+
+        .market-item-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-color-light);
+        }
+
+        .market-item-value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .market-item-grid-value { /* For percent change in the grid */
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .positive {
+            background-color: var(--positive-color);
+            color: var(--positive-text);
+        }
+
+        .negative {
+            background-color: var(--negative-color);
+            color: var(--negative-text);
+        }
+
+        .section-divider {
+            border-top: 1px solid var(--divider-color);
+            margin: calc(2 * var(--spacing-unit)) 0;
+        }
+
+        .highlight-card {
+            background-color: var(--bg-color-dark);
+            border-right: 4px solid var(--accent-color);
+            padding: var(--spacing-unit);
+            margin-bottom: var(--spacing-unit);
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-bg);
+            border-right: 4px solid var(--positive-text); /* Using a softer color for opinion border */
+            padding: var(--spacing-unit);
+            margin-bottom: var(--spacing-unit);
+            border-radius: var(--border-radius);
+            font-style: italic;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .opinion-card::before {
+            content: "“";
+            position: absolute;
+            top: 0;
+            right: 10px;
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.1);
+            line-height: 1;
+        }
+
+        .opinion-card strong {
+            display: block;
+            margin-top: 8px;
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            text-align: left; /* Align name to left, quote to right */
+        }
+        
+        .opinion-card p {
+            margin: 0;
+            font-style: normal; /* Reset italic for the paragraph inside */
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-color-dark);
+            padding: 8px 16px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 8px;
+            margin-left: 8px; /* For RTL spacing */
+            transition: background-color 0.2s ease-in-out;
+            font-size: 0.9rem;
+        }
+
+        .btn-source:hover {
+            background-color: #8c9eff;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            margin-bottom: var(--spacing-unit);
+            display: block; /* Ensures image takes its own line for proper spacing */
+            margin-right: auto; /* Center image for RTL */
+            margin-left: auto;
+        }
+
+        table {
+            width: 100%;
+            table-layout: fixed;
+            overflow-x: auto;
+            border-collapse: collapse;
+            margin-bottom: var(--spacing-unit);
+        }
+
+        th, td {
+            border: 1px solid var(--divider-color);
+            padding: 10px;
+            text-align: right;
+            white-space: normal; /* Allow wrapping in cells for general content */
+        }
+
+        th {
+            background-color: var(--bg-color-dark);
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        /* Media Queries */
+        @media(max-width:768px){
+            .market-pulse-grid{grid-template-columns:1fr 1fr;}
+            .slide-container{padding:16px;}
+            h1{font-size:1.4rem;}
+            h2{font-size:1.2rem;}
+            .market-item-name {font-size: 1rem;}
+            .market-item-value {font-size: 1.1rem;}
+            .market-item-grid-value {font-size: 0.9rem; padding: 2px 6px;}
+            th, td {padding: 8px;}
+            .btn-source {padding: 6px 12px; font-size: 0.8rem;}
+            .badge {padding: 3px 8px; font-size: 0.75rem;}
+        }
+
+        @media(max-width:480px){
+            .market-pulse-grid{grid-template-columns:1fr;} /* Single column on very small screens */
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="slide-container">
+        <h1>דוח שוק יומי אסטרטגי</h1>
+        <p>תאריך: 20 באוקטובר 2026</p>
+        <p>סקירה ממוקדת של תנועות השוק והחדשות החשובות ביותר להיום ולהמשך השבוע.</p>
+    </div>
+
+    <div class="slide-container">
+        <span class="badge">סקירה מהירה</span>
+        <h2>תמונת מצב מהירה: דופק השוק</h2>
+        <p>להלן סקירה מהירה של המדדים והמניות הבולטות ביותר שחוו תנועות חריגות היום, עם דגש על שינויים משמעותיים מהרגיל.</p>
+        
+        <div class="market-pulse-grid">
+            <!-- S&P 500 (SPY) -->
+            <div class="market-item">
+                <div class="market-item-name">S&P 500 (SPY)</div>
+                <div class="market-item-value">766.48</div>
+                <div class="market-item-grid-value positive">+0.42%</div>
+            </div>
+            <!-- Nasdaq 100 (QQQ) -->
+            <div class="market-item">
+                <div class="market-item-name">Nasdaq 100 (QQQ)</div>
+                <div class="market-item-value">718.36</div>
+                <div class="market-item-grid-value positive">+1.21%</div>
+            </div>
+            <!-- Bitcoin (BTC/USD) -->
+            <div class="market-item">
+                <div class="market-item-name">ביטקוין (BTC/USD)</div>
+                <div class="market-item-value">81,541.36$</div>
+                <div class="market-item-grid-value negative">-0.48%</div>
+            </div>
+            <!-- Ethereum (ETH/USD) -->
+            <div class="market-item">
+                <div class="market-item-name">את'ריום (ETH/USD)</div>
+                <div class="market-item-value">2,387.01$</div>
+                <div class="market-item-grid-value negative">-0.87%</div>
+            </div>
+            <!-- Tesla (TSLA) - Outlier -->
+            <div class="market-item">
+                <div class="market-item-name">טסלה (TSLA)</div>
+                <div class="market-item-value">368.06$</div>
+                <div class="market-item-grid-value positive">+3.76%</div>
+            </div>
+            <!-- Palantir (PLTR) - Outlier -->
+            <div class="market-item">
+                <div class="market-item-name">פלאנטיר (PLTR)</div>
+                <div class="market-item-value">194.15$</div>
+                <div class="market-item-grid-value positive">+4.36%</div>
+            </div>
+            <!-- Amazon (AMZN) - Outlier -->
+            <div class="market-item">
+                <div class="market-item-name">אמזון (AMZN)</div>
+                <div class="market-item-value">262.45$</div>
+                <div class="market-item-grid-value positive">+4.98%</div>
+            </div>
+            <!-- Robinhood (HOOD) - Outlier -->
+            <div class="market-item">
+                <div class="market-item-name">רובינהוד (HOOD)</div>
+                <div class="market-item-value">96.52$</div>
+                <div class="market-item-grid-value negative">-2.38%</div>
+            </div>
+            <!-- Oklo (OKLO) - Outlier -->
+            <div class="market-item">
+                <div class="market-item-name">אוקלו (OKLO)</div>
+                <div class="market-item-value">27.24$</div>
+                <div class="market-item-grid-value negative">-2.61%</div>
+            </div>
+            <!-- IREN Ltd. (IREN) - Outlier -->
+            <div class="market-item">
+                <div class="market-item-name">אירן (IREN)</div>
+                <div class="market-item-value">27.73$</div>
+                <div class="market-item-grid-value positive">+2.74%</div>
+            </div>
+            <!-- Spotify (SPOT) - Outlier -->
+            <div class="market-item">
+                <div class="market-item-name">ספוטיפיי (SPOT)</div>
+                <div class="market-item-value">518.76$</div>
+                <div class="market-item-grid-value negative">-2.21%</div>
+            </div>
+            <!-- ServiceNow (NOW) - Outlier -->
+            <div class="market-item">
+                <div class="market-item-name">סרוויסנואו (NOW)</div>
+                <div class="market-item-value">145.36$</div>
+                <div class="market-item-grid-value positive">+2.39%</div>
+            </div>
+            <!-- Micron (MU) - Outlier -->
+            <div class="market-item">
+                <div class="market-item-name">מיקרון טכנולוגיה (MU)</div>
+                <div class="market-item-value">904.90$</div>
+                <div class="market-item-grid-value positive">+2.97%</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">טכנולוגיה ו-AI</span>
+        <h2>התפתחויות בתחום הבינה המלאכותית ושוק השבבים</h2>
+
+        <h3>מה קרה היום:</h3>
+        <p>הממשל האמריקאי הטיל איסור על שימוש בטכנולוגיה הקשורה ל-DeepSeek במערכות ה-IT של סוכנויות אזרחיות פדרליות, מה שמרחיב איסורים קודמים בסוכנויות הגנה וביטחון. זאת על רקע חששות ש-DeepSeek עלולה לחשוף מידע פדרלי לסין.</p>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/20/us-deepseek-federal-agency-ban.html">CNBC</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/us-bans-deepseek-from-civilian-agency-it-systems?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+
+        <p>חברת השבבים Nvidia הכריזה על השקעות מתוכננות בארבעה סטארט-אפים גרמניים, במקביל לכך שקנצלר גרמניה, פרידריך מרץ, קרא לעסקים לאמץ את הבינה המלאכותית בפסגה תעשייתית בברלין.</p>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/20/german-chancellor-urges-businesses-to-embrace-ai.html">CNBC</a>
+
+        <p>עם זאת, בתחום תשתית ה-AI, נרשמה אכזבה בשוק הראשוני (IPO) בדרום קוריאה, כאשר הנפקת חברת AI מקומית נכשלה. אירוע זה מצטרף לשלוש הנפקות שתוכננו לספקיות מרכזי נתונים שנתמכות על ידי ענקיות AI כמו Nvidia, Blackstone ו-SoftBank, אשר נדחו או נגנזו באוקטובר. המשקיעים אינם משוכנעים בקיימות של הוצאות הון אלו.</p>
+        <a class="btn-source" href="https://www.marketwatch.com/story/south-korean-ipo-flop-is-the-latest-in-a-string-of-disappointments-for-the-global-ai-trade-fc97748c?mod=mw_rss_topstories">MarketWatch</a>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M5BPZ4H9R43QB2KJ6EFY4RNJ/hi-can-a-blockchain-take-over-your-job-new.jpg" alt="US bans DeepSeek" />
+
+        <h3>למה זה חריג:</h3>
+        <div class="highlight-card">
+            <p>האיסור האמריקאי על DeepSeek מצביע על התרחבות המתחים הגיאופוליטיים לתחום ה-AI, עם השלכות פוטנציאליות על שוק הטכנולוגיה העולמי והשקעות ב-AI סיני. כשלון הנפקות בתחום תשתית ה-AI, למרות תמיכת שחקנים מרכזיים, מסמן חוסר אמון גובר בקרב משקיעים לגבי היתכנות כלכלית ארוכת טווח בהשקעות עתירות הון בתחום, וזאת בניגוד לאופטימיות הכללית סביב חדשנות ה-AI.</p>
+        </div>
+
+        <h3>הלוגיקה:</h3>
+        <p>האיסור על DeepSeek ממחיש את המאבק על שליטה טכנולוגית ואת הסכנות הנתפסות בשימוש בטכנולוגיות זרות בתשתיות קריטיות, מה שעשוי להוביל לפיצול נוסף בשוק ה-AI העולמי. במקביל, בעוד שנראה שיש עידוד ממשלתי לאימוץ AI באירופה (כמו בגרמניה), כשלון ה-IPOs מצביע על כך שהשוק הפיננסי עדיין מתקשה לתמחר את הסיכונים וההחזרים על השקעות ענק בתשתיות AI, מה שעשוי להשפיע על חברות כמו Nvidia ועל תוכניות ההשקעה שלהן.</p>
+        
+        <div class="opinion-card">
+            <p>"Don't chase the AI rebound just yet."</p>
+            <strong>ג'ים קריימר, CNBC</strong>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/19/jim-cramer-dont-chase-ai-rebound-yet.html">CNBC</a>
+        </div>
+        <div class="opinion-card">
+            <p>"The 1987 stock market crash offers an important lesson that can be applied to the recent AI sell-off."</p>
+            <strong>ג'ים קריימר, CNBC</strong>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/19/cramer-recent-ai-sell-off-echoes-lesson-1987-crash.html">CNBC</a>
+        </div>
+        <p>לצד זאת, מניות שבבים כמו Micron (MU) הראו התאוששות חזקה של <span class="badge positive">+2.97%</span>, ו-Nvidia (NVDA) עלתה ב-<span class="badge positive">+1.38%</span> לאחר ימים של ירידות, מה שמעיד על עניין מתמשך במגזר למרות החששות. Apple (AAPL) ירדה קלות ב-<span class="badge negative">-0.15%</span>, אך מוקדם יותר היום, דווח כי הזמנות מוקדמות ל-iPhone Duo מוכיחות את עצמן כזרז חיובי, כאשר אנליסטים מצפים למחשב נייד עם מסך מגע באירוע ההשקה של החברה ב-28 באוקטובר.</p>
+        <a class="btn-source" href="https://www.marketwatch.com/story/micron-and-other-chip-stocks-spring-back-to-life-after-bruising-selloff-16486541?mod=mw_rss_topstories">MarketWatch</a>
+        <a class="btn-source" href="https://www.cnbc.com/investingclub/2026/10/19/apples-iphone-duo-is-proving-the-catalyst-that-jim-cramer-said-it-would-be.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/19/apple-product-launch-event-oct-28-analysts-expect-touchscreen-laptop.html">CNBC</a>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">קריפטו ובלוקצ'יין</span>
+        <h2>התפתחויות מרכזיות בשוק הקריפטו העולמי</h2>
+
+        <h3>מה קרה היום:</h3>
+        <p>הביטקוין נדחה מרמת 83,000 דולר, כאשר התשואות על אג"ח ארה"ב עלו והשוקי מניות התאוששו. פעולת המחיר של הביטקוין לא הצליחה להשתפר יחד עם מניות, כשקיר מכירה ב-83,000 דולר שמר על BTC בטווח צר. מחיר הביטקוין כרגע עומד על <span class="badge negative">81,541.36$</span>, ירידה של <span class="badge negative">-0.48%</span>.</p>
+        <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-is-rejected-at-83k-as-us-bond-yields-reverse-higher-with-equities?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+
+        <p>קרנות סל (ETFs) אמריקאיות לביטקוין משכו 527 מיליון דולר, הזרמה הגדולה ביותר מאז ספטמבר, כאשר IBIT של BlackRock הובילה עם 665.2 מיליון דולר בהזרמות, קיזזה משיכות מפידליטי ו-Grayscale. בנוסף, BlackRock הגישה בקשה לקרן סל שלישית לביטקוין, שתשתמש באופציות להגבלת הפסדים ורווחים פוטנציאליים.</p>
+        <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-etfs-527m-inflows-biggest-since-september?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/blackrock-files-for-third-bitcoin-etf-still-no-solana-or-xrp?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M5C39B3JZZVK92X4QK4F6ZY6/bitcoin-etf-blackrock.jpg" alt="Bitcoin ETF BlackRock" />
+
+        <p>JPMorgan הוסיפה את הביטקוין לתחזית שוק ההון ארוכת הטווח שלה לראשונה, ומצפה שהביטקוין יתעלה על מניות ארה"ב וזהב בעשור הקרוב. עם זאת, הזהירה כי תנודתיות ומתאמים לא יציבים מגבילים את תפקידו בתיקי השקעות.</p>
+        <a class="btn-source" href="https://cointelegraph.com/markets/jpmorgan-bitcoin-outperform-stocks-gold-annual-returns?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+
+        <p>חברת הגזברות הקריפטוגרפית Metaplanet צפויה לרכוש 93.7% מחברת Super League בעסקת 2,100 BTC. חברת Strive רכשה 335 מיליון דולר בביטקוין, והגדילה את אחזקותיה ל-36,818 BTC. Visa ו-Mesh שיתפו פעולה כדי לאפשר הוצאות קריפטו ב-175 מיליון מיקומי סוחרים. Mastercard השיקה שירות סינון סיכונים עבור בנקים וספקי תשלומים לזיהוי עסקאות חשודות ב-Stablecoin.</p>
+        <a class="btn-source" href="https://cointelegraph.com/news/metaplanet-super-league-2100-btc-us-bitcoin-treasury-deal?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/strive-buys-335m-in-bitcoin-boosting-holdings-to-36818-btc?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/visa-mesh-partner-crypto-spending-175m-merchant-locations?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/mastercard-stablecoin-risk-screening-banks-payments?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+
+        <p>Revolut קיבלה רישיון קריפטו בגיברלטר לתמיכה בהתרחבות גלובלית. צרפת מקדמת חוק מס על Stablecoin ושוקלת הצעות למיסוי יציאה ודיווח על ארנקים בשמירה עצמית. חברות ציבוריות מתנגדות לתוכנית המניות המטוקנות של OKX-ICE.</p>
+        <a class="btn-source" href="https://cointelegraph.com/news/revolut-secures-gibraltar-crypto-license-to-support-global-expansion?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/france-stablecoin-tax-eyes-self-custodial-wallets-exit-tax?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/public-companies-object-okx-ice-tokenized-stock?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+
+        <p>מנגד, Stablecoin בשם USD1 של World Liberty איבד 400 מיליון דולר משווי השוק שלו תוך שבועיים עקב פדיונות גדולים. חברת הגזברות SkyAI המבוססת על Solana מכרה את כל אחזקותיה ב-SOL והשיקה תוכנית רכישה חוזרת של 201 מיליון דולר. Bitget מתכננת רכישת בורסת קריפטו בתאילנד שבועות לאחר פריצה של 388 מיליון דולר.</p>
+        <a class="btn-source" href="https://cointelegraph.com/news/world-liberty-usd1-stablecoin-market-cap-drops-400-million?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/solana-treasury-skyai-sells-all-sol-holdings-lunches-201m-buyback?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/bitget-plans-thai-crypto-exchange-acquisition-weeks-after-388m-hack?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M5913E3NB29C5XXKGWE4B5TQ/thailand-2.jpg" alt="Bitget Thailand" />
+
+        <h3>למה זה חריג:</h3>
+        <div class="highlight-card">
+            <p>למרות ירידה קלה בביטקוין, הזרמות משמעותיות לקרנות סל בביטקוין ובקשתה של BlackRock לקרן סל שלישית מצביעות על עניין מוסדי הולך וגובר. תחזית JPMorgan חיובית לטווח ארוך היא אירוע חריג התומך בנרטיב האימוץ המוסדי. במקביל, שיתופי פעולה עם Visa ו-Mastercard מעידים על התקדמות באימוץ הקריפטו בזרם המרכזי. מנגד, ירידה דרמטית בשווי שוק של Stablecoin והיציאה מ-Solana על ידי SkyAI מדגישות סיכונים תפעוליים ורגולטוריים בתחום.</p>
+        </div>
+
+        <h3>הלוגיקה:</h3>
+        <p>שוק הקריפטו ממשיך לנוע בין מגמות מנוגדות: אימוץ מוסדי הולך וגובר מצד אחד, וסיכונים רגולטוריים ותפעוליים מצד שני. ההזרמות לקרנות סל לביטקוין והתמיכה של JPMorgan מצביעות על בניית יסודות חזקים לביטקוין כמעמד נכסים לגיטימי. שיתופי הפעולה עם ענקיות התשלומים Visa ו-Mastercard מסמנים את הגברת הנגישות והלגיטימציה של קריפטו עבור משתמשים קמעונאיים. עם זאת, התפתחויות רגולטוריות בצרפת, ההתנגדות למניות מטוקנות והבעיות ב-USD1 וב-Solana, מדגישות את הצורך בזהירות ובבחינה מעמיקה של סיכוני פלטפורמה ורגולציה.</p>
+        <div class="opinion-card">
+            <p>"JPMorgan included Bitcoin in its long-term capital market outlook for the first time but warned that volatility and unstable correlations limit its role in investment portfolios."</p>
+            <strong>Cointelegraph by Ezra Reguerra</strong>
+            <a class="btn-source" href="https://cointelegraph.com/markets/jpmorgan-bitcoin-outperform-stocks-gold-annual-returns?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        </div>
+        <div class="opinion-card">
+            <p>“A return to last year’s indiscriminate capital raising looks unlikely.”</p>
+            <strong>Jag Kooner, Bitfinex head of derivatives</strong>
+            <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-rally-could-revive-treasury-buying-but-easy-money-days-over?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">מאקרו וכלכלה</span>
+        <h2>עדכוני מאקרו ואינדיקטורים כלכליים</h2>
+
+        <h3>מה קרה היום:</h3>
+        <p>גולדמן זאקס צופה שהשוק הנדל"ני בארה"ב יחווה החמרה, למרות שכבר נמצא במצב קשה עם התחלות בנייה ועסקאות כמעט שטוחות במשך שלוש שנים וריביות משכנתא מעל 7%. בנקים מקומיים בארה"ב מביעים חששות לגבי תיקי הנדל"ן המסחריים שלהם, והשוק נמצא בתקופה קריטית.</p>
+        <a class="btn-source" href="https://www.marketwatch.com/story/its-a-rough-housing-market-and-goldman-sachs-expects-it-to-get-worse-be2c5aac?mod=mw_rss_topstories">MarketWatch</a>
+
+        <p>שוקי האשראי שולחים מסרים מעורבים באופן חריג למשקיעים, במיוחד באג"ח הזבל (Junk Bonds) המסוכנות ביותר, מה שמעורר עצבנות בקרב חלק מהמשקיעים. זה מצביע על חוסר וודאות במגזר האשראי.</p>
+        <a class="btn-source" href="https://www.marketwatch.com/story/credit-markets-have-entered-uncharted-territory-as-the-riskiest-junk-bonds-send-a-warning-to-investors-816a05d5?mod=mw_rss_topstories">MarketWatch</a>
+
+        <h3>למה זה חריג:</h3>
+        <div class="highlight-card">
+            <p>התחזית הפסימית של גולדמן זאקס לגבי שוק הדיור באה כאשר כבר קיימת יציבות שלילית, מה שמרמז על סיכון להחמרה נוספת ולא רק סטגנציה. המסרים המעורבים משוקי האשראי, במיוחד אזהרות מאג"ח זבל, מעידים על תנאים פיננסיים הדוקים יותר ועלייה בסיכון אשראי, מה שעלול להשפיע על המימון של חברות ועל הצמיחה הכלכלית הכוללת.</p>
+        </div>
+
+        <h3>הלוגיקה:</h3>
+        <p>המשך החולשה בשוק הנדל"ן, בצירוף ריביות גבוהות, עלול להכביד על הצרכן האמריקאי ולהאט את הכלכלה. אזהרות משוקי האשראי, במיוחד מצד אג"ח זבל, משקפות דאגה ליכולת ההחזר של חברות מסוכנות יותר ומצביעות על סביבה מאקרו-כלכלית שבה הון הופך יקר יותר וקשה יותר להשגה. זה יכול להוביל לירידה בהשקעות ובהתכווצות כלכלית פוטנציאלית. חוסר הוודאות הזה משרת תזכורת למשקיעים להקפיד על ניהול סיכונים.</p>
+        <div class="opinion-card">
+            <p>"As bad as it is for the housing market — starts and transactions basically flat for the last three years with mortgage rates over 7%— it can get still get worse."</p>
+            <strong>סטיב גולדשטיין, MarketWatch</strong>
+            <a class="btn-source" href="https://www.marketwatch.com/story/its-a-rough-housing-market-and-goldman-sachs-expects-it-to-get-worse-be2c5aac?mod=mw_rss_topstories">MarketWatch</a>
+        </div>
+        <div class="opinion-card">
+            <p>"Credit markets are sending unusually mixed messages to investors right now, and it’s making some people nervous."</p>
+            <strong>כריסטין אידזל, MarketWatch</strong>
+            <a class="btn-source" href="https://www.marketwatch.com/story/credit-markets-have-entered-uncharted-territory-as-the-riskiest-junk-bonds-send-a-warning-to-investors-816a05d5?mod=mw_rss_topstories">MarketWatch</a>
+        </div>
+    </div>
+
+</body>
+</html>
