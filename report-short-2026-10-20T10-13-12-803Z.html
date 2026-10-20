@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי אסטרטגי - תמציתי</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0e17;
+            --text-light: #e0e0e0;
+            --accent-color: #007bff; /* Steel blue */
+            --border-color: #2a303c;
+            --highlight-bg: #1a202c;
+            --positive-color: rgba(0, 128, 0, 0.4); /* Muted green */
+            --negative-color: rgba(255, 0, 0, 0.4); /* Muted red */
+            --positive-text: #66bb6a;
+            --negative-text: #ef5350;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2, h3 {
+            color: var(--accent-color);
+            font-weight: 700;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            border-right: 4px solid var(--accent-color);
+            padding-right: 10px;
+            margin-right: -20px; /* Adjust for padding on small screens */
+            background-color: rgba(0, 123, 255, 0.1);
+            padding: 10px 20px 10px 10px;
+            border-radius: 4px 0 0 4px;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #4da6ff;
+        }
+
+        .slide-container {
+            background-color: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .section-divider {
+            border-bottom: 1px dashed var(--border-color);
+            margin: 40px 0;
+            opacity: 0.6;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .pulse-card {
+            background-color: var(--highlight-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        .pulse-card .symbol {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+
+        .pulse-card .name {
+            font-size: 0.8rem;
+            color: #b0b0b0;
+            margin-bottom: 10px;
+            height: 32px; /* Fixed height for name to prevent layout shifts */
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .pulse-card .price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .pulse-card .change {
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            min-width: 70px; /* Ensure consistent width for change badge */
+        }
+
+        .positive .change {
+            background-color: var(--positive-color);
+            color: var(--positive-text);
+        }
+
+        .negative .change {
+            background-color: var(--negative-color);
+            color: var(--negative-text);
+        }
+
+        .highlight-card {
+            background-color: #1a202c; /* Slightly lighter dark background */
+            border-left: 4px solid var(--accent-color);
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 4px;
+            position: relative;
+        }
+        .highlight-card::before {
+            content: "\2190"; /* Left arrow icon */
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-color);
+            font-size: 1.5rem;
+        }
+
+        .opinion-card {
+            background-color: #2c2f3a; /* Different shade for opinion */
+            border-right: 4px solid #f0b90b; /* Yellow/Gold accent for opinion */
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 4px;
+            font-style: italic;
+            position: relative;
+        }
+        .opinion-card::before {
+            content: "\201C"; /* Quotation mark icon */
+            position: absolute;
+            left: 15px;
+            top: 10px;
+            color: #f0b90b;
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+        .opinion-card p {
+            margin: 0;
+            padding-right: 30px; /* Make space for quote icon */
+        }
+        .opinion-card .author {
+            display: block;
+            text-align: left;
+            margin-top: 10px;
+            font-weight: 600;
+            color: #f0b90b;
+            font-style: normal;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 6px;
+            margin: 20px auto;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--border-color);
+            color: var(--text-light);
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            margin-left: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-source:hover {
+            background-color: #4a505c;
+            color: white;
+        }
+
+        .source-links {
+            margin-top: 15px;
+            border-top: 1px dashed var(--border-color);
+            padding-top: 15px;
+        }
+
+        .data-badge {
+            display: inline-block;
+            background-color: rgba(0, 123, 255, 0.2);
+            color: var(--accent-color);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-left: 8px;
+            font-weight: 600;
+            direction: ltr; /* Ensure numbers and symbols are LTR */
+        }
+        .data-badge.positive {
+            background-color: var(--positive-color);
+            color: var(--positive-text);
+        }
+        .data-badge.negative {
+            background-color: var(--negative-color);
+            color: var(--negative-text);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            table-layout: fixed;
+            word-wrap: break-word;
+            overflow-x: auto; /* For potential wide tables */
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            text-align: right;
+            white-space: normal;
+        }
+
+        th {
+            background-color: var(--highlight-bg);
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            h1 {
+                font-size: 1.8rem;
+                padding-bottom: 15px;
+            }
+            h2 {
+                font-size: 1.4rem;
+                padding: 8px 15px 8px 8px;
+                margin-right: -10px;
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            .slide-container {
+                padding: 16px;
+                margin-bottom: 20px;
+            }
+            .market-pulse-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .pulse-card .symbol {
+                font-size: 1rem;
+            }
+            .pulse-card .name {
+                font-size: 0.75rem;
+                height: auto;
+            }
+            .pulse-card .price {
+                font-size: 1.1rem;
+            }
+            .pulse-card .change {
+                font-size: 0.9rem;
+                min-width: auto;
+            }
+            .badge {
+                top: 10px;
+                left: 10px;
+                padding: 4px 8px;
+                font-size: 0.8rem;
+            }
+            .highlight-card::before, .opinion-card::before {
+                font-size: 1.2rem;
+                right: 10px;
+            }
+            .opinion-card p {
+                padding-right: 25px;
+            }
+        }
+        @media (max-width: 480px) {
+            .market-pulse-grid {
+                grid-template-columns: 1fr;
+            }
+            .pulse-card .name {
+                height: 40px; /* Allow more space for name on single column */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>דוח שוק יומי אסטרטגי</h1>
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">תמונת מצב מהירה</span>
+            <h2>Market Pulse</h2>
+            <div class="market-pulse-grid">
+                <!-- SPY -->
+                <div class="pulse-card positive">
+                    <div class="symbol">SPY</div>
+                    <div class="name">State Street SPDR S&P 500 ETF Trust</div>
+                    <div class="price">766.48 USD</div>
+                    <div class="change">+0.42%</div>
+                </div>
+                <!-- QQQ -->
+                <div class="pulse-card positive">
+                    <div class="symbol">QQQ</div>
+                    <div class="name">Invesco QQQ Trust, Series 1</div>
+                    <div class="price">718.36 USD</div>
+                    <div class="change">+1.21%</div>
+                </div>
+                <!-- BTC/USD -->
+                <div class="pulse-card negative">
+                    <div class="symbol">BTC/USD</div>
+                    <div class="name">Bitcoin</div>
+                    <div class="price">81,541.36 USD</div>
+                    <div class="change">-0.48%</div>
+                </div>
+                <!-- ETH/USD -->
+                <div class="pulse-card negative">
+                    <div class="symbol">ETH/USD</div>
+                    <div class="name">Ethereum</div>
+                    <div class="price">2,387.01 USD</div>
+                    <div class="change">-0.87%</div>
+                </div>
+                <!-- AMZN -->
+                <div class="pulse-card positive">
+                    <div class="symbol">AMZN</div>
+                    <div class="name">Amazon.com Inc.</div>
+                    <div class="price">262.45 USD</div>
+                    <div class="change">+4.98%</div>
+                </div>
+                <!-- PLTR -->
+                <div class="pulse-card positive">
+                    <div class="symbol">PLTR</div>
+                    <div class="name">Palantir Technologies Inc.</div>
+                    <div class="price">194.15 USD</div>
+                    <div class="change">+4.36%</div>
+                </div>
+                <!-- TSLA -->
+                <div class="pulse-card positive">
+                    <div class="symbol">TSLA</div>
+                    <div class="name">Tesla, Inc.</div>
+                    <div class="price">368.06 USD</div>
+                    <div class="change">+3.76%</div>
+                </div>
+                <!-- MU -->
+                <div class="pulse-card positive">
+                    <div class="symbol">MU</div>
+                    <div class="name">Micron Technology Inc.</div>
+                    <div class="price">904.90 USD</div>
+                    <div class="change">+2.97%</div>
+                </div>
+                <!-- IREN -->
+                <div class="pulse-card positive">
+                    <div class="symbol">IREN</div>
+                    <div class="name">IREN Ltd.</div>
+                    <div class="price">27.73 USD</div>
+                    <div class="change">+2.74%</div>
+                </div>
+                <!-- OKLO -->
+                <div class="pulse-card negative">
+                    <div class="symbol">OKLO</div>
+                    <div class="name">Oklo Inc.</div>
+                    <div class="price">27.24 USD</div>
+                    <div class="change">-2.61%</div>
+                </div>
+                <!-- HOOD -->
+                <div class="pulse-card negative">
+                    <div class="symbol">HOOD</div>
+                    <div class="name">Robinhood Markets Inc.</div>
+                    <div class="price">96.52 USD</div>
+                    <div class="change">-2.38%</div>
+                </div>
+                <!-- SPOT -->
+                <div class="pulse-card negative">
+                    <div class="symbol">SPOT</div>
+                    <div class="name">Spotify Technology S.A.</div>
+                    <div class="price">518.76 USD</div>
+                    <div class="change">-2.21%</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">קריפטו</span>
+            <h2>זרימת הון מוסדית ואופטימיות ארוכת טווח בשוק הקריפטו</h2>
+            <div class="highlight-card">
+                <h3>מה קרה היום</h3>
+                <p>קרנות סל לביטקוין בארה"ב רשמו זרימת הון כוללת של <span class="data-badge positive">$527 מיליון דולר</span>, הנתון הגבוה ביותר מאז ספטמבר, כאשר קרן IBIT של BlackRock הובילה עם <span class="data-badge positive">$665.2 מיליון דולר</span> בזרימות. במקביל, ג'יי.פי.מורגן כללה לראשונה את הביטקוין בתחזית שוק ההון ארוכת הטווח שלה, וצופה כי יתעלה על מניות וזהב בעשור הקרוב, ובלאקרוק אף הגישה בקשה לקרן סל שלישית לביטקוין.</p>
+            </div>
+            <div class="highlight-card">
+                <h3>למה זה חריג</h3>
+                <p>זרימת ההון המשמעותית לקרנות הסל, יחד עם הכרה מוסדית כזו מג'יי.פי.מורגן ובלאקרוק, מחזקת באופן ניכר את מעמדו של הביטקוין כנכס לגיטימי. המהלכים הללו מעידים על עניין גובר והולך מצד משקיעים גדולים ומוסדות פיננסיים, מה שמסמן התבגרות של השוק למרות התנודתיות היומית.</p>
+            </div>
+            <div class="source-links">
+                <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-etfs-527m-inflows-biggest-since-september" target="_blank">Cointelegraph</a>
+                <a class="btn-source" href="https://cointelegraph.com/markets/jpmorgan-bitcoin-outperform-stocks-gold-annual-returns" target="_blank">Cointelegraph</a>
+                <a class="btn-source" href="https://cointelegraph.com/news/blackrock-ishares-bitcoin-managed-protection-etf-pbit" target="_blank">Cointelegraph</a>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">טכנולוגיה ורגולציה</span>
+            <h2>בינה מלאכותית: ספקנות גוברת ורגולציה הדוקה מטילה צל על השוק</h2>
+            <div class="highlight-card">
+                <h3>מה קרה היום</h3>
+                <p>שוק הבינה המלאכותית העולמי חווה אכזבות משמעותיות, כאשר הנפקה ראשונית (IPO) בדרום קוריאה נכשלה, ועוד שלוש הנפקות מתוכננות של ספקי דאטה סנטרים – המגובות על ידי ענקיות כמו Nvidia, בלקסטון וסופטבנק – נדחו באוקטובר. במקביל, ארה"ב אסרה על שימוש בטכנולוגיות DeepSeek במערכות IT של סוכנויות אזרחיות, מתוך חשש לחשיפת מידע פדרלי לסין, והגבלות אלו מרחיבות איסורים קודמים בסוכנויות ביטחון.</p>
+            </div>
+            <div class="highlight-card">
+                <h3>למה זה חריג</h3>
+                <p>כישלונות בשוק ההנפקות ודחיית עסקאות משמעותיות, לצד הידוק הרגולציה מצד ארה"ב, מצביעים על ספקנות גוברת לגבי קיימות ההשקעות העצומות בתחום ה-AI והסיכונים הגיאופוליטיים סביבו. אזהרות של אנליסטים בכירים שלא למהר חזרה למניות AI משקפות חשש שהסנטימנט השלילי עדיין לא הגיע לתחתית, ומוסיפות לחוסר הוודאות בסקטור.</p>
+            </div>
+            <div class="source-links">
+                <a class="btn-source" href="https://www.marketwatch.com/story/south-korean-ipo-flop-is-the-latest-in-a-string-of-disappointments-for-the-global-ai-trade-fc97748c?mod=mw_rss_topstories" target="_blank">MarketWatch</a>
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/20/us-deepseek-federal-agency-ban.html" target="_blank">CNBC</a>
+                <a class="btn-source" href="https://cointelegraph.com/news/us-bans-deepseek-from-civilian-agency-it-systems" target="_blank">Cointelegraph</a>
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/19/jim-cramer-dont-chase-ai-rebound-yet.html" target="_blank">CNBC</a>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">מאקרו כלכלה</span>
+            <h2>שוק הדיור בארה"ב: גולדמן זאקס צופה הרעה נוספת</h2>
+            <div class="highlight-card">
+                <h3>מה קרה היום</h3>
+                <p>בנק ההשקעות גולדמן זאקס פרסם הערכה כי שוק הדיור בארה"ב, אשר חווה קיפאון בהתחלות בנייה ועסקאות בשלוש השנים האחרונות ומתמודד עם ריביות משכנתא העולות על 7%, צפוי להמשיך ולהידרדר. הדוח מציין כי המצב הנוכחי, למרות שהוא קשה, יכול אף להחמיר.</p>
+            </div>
+            <div class="highlight-card">
+                <h3>למה זה חריג</h3>
+                <p>תחזית פסימית זו מצד מוסד פיננסי מוביל כמו גולדמן זאקס היא משמעותית, שכן היא מצביעה על חששות עמוקים בחוסנו של שוק הדיור האמריקאי. המשך ההידרדרות במגזר הדיור עלול להשפיע לרעה על הצמיחה הכלכלית הכוללת ועל החלטות השקעה הקשורות לענף הנדל"ן.</p>
+            </div>
+            <div class="source-links">
+                <a class="btn-source" href="https://www.marketwatch.com/story/its-a-rough-housing-market-and-goldman-sachs-expects-it-to-get-worse-be2c5aac?mod=mw_rss_topstories" target="_blank">MarketWatch</a>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">מניות בולטות</span>
+            <h2>מומנטום חיובי במניות טכנולוגיה נבחרות</h2>
+            <div class="highlight-card">
+                <h3>מה קרה היום</h3>
+                <p>מספר מניות טכנולוגיה בולטות רשמו עליות חדות במהלך יום המסחר: אמזון (AMZN) זינקה ב-<span class="data-badge positive">+4.98%</span> ונסגרה על <span class="data-badge">$262.45</span> דולר, פלנטיר (PLTR) עלתה ב-<span class="data-badge positive">+4.36%</span> למחיר של <span class="data-badge">$194.15</span> דולר, וטסלה (TSLA) התחזקה ב-<span class="data-badge positive">+3.76%</span> למחיר של <span class="data-badge">$368.06</span> דולר. בנוסף, מיקרון טכנולוגיות (MU) עלתה ב-<span class="data-badge positive">+2.97%</span> ונסגרה על <span class="data-badge">$904.90</span> דולר, כחלק מהתאוששות במניות השבבים.</p>
+            </div>
+            <div class="highlight-card">
+                <h3>למה זה חריג</h3>
+                <p>עליות אלו בולטות במיוחד לאחר תקופה של מכירות חזקות שפקדו את מניות הטכנולוגיה. הן מהוות אינדיקציה אפשרית להתאוששות או למומנטום חיובי ספציפי בחברות אלו, ומאותתות כי ייתכן ומשקיעים מזהים הזדמנויות רכישה במניות מסוימות על אף הסנטימנט המעורב בשוק ה-AI הרחב יותר.</p>
+            </div>
+            <div class="source-links">
+                <a class="btn-source" href="#market-pulse" target="_self">נתוני שוק</a>
+                <a class="btn-source" href="https://www.marketwatch.com/story/micron-and-other-chip-stocks-spring-back-to-life-after-bruising-selloff-16486541?mod=mw_rss_topstories" target="_blank">MarketWatch</a>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
