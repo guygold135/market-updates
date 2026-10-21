@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי: תמצית אסטרטגית</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0e17; /* Deep charcoal/navy */
+            color: #e0e0e0; /* Off-white text */
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            direction: rtl; /* For Hebrew */
+            text-align: right;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3, h4 {
+            color: #d1d9e6; /* Slightly lighter for headings */
+            font-weight: 700;
+            margin-top: 2em;
+            margin-bottom: 0.8em;
+        }
+        h1 {
+            font-size: 2.2rem;
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #2a3040;
+            margin-top: 0;
+        }
+        h2 {
+            font-size: 1.8rem;
+            border-bottom: 1px solid #2a3040;
+            padding-bottom: 10px;
+            margin-bottom: 1em;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            gap: 10px;
+        }
+        h2 .title-text {
+            flex-grow: 1;
+        }
+        h3 {
+            font-size: 1.3rem;
+            color: #a7b0c2; /* Muted accent for sub-headings */
+            margin-top: 1.5em;
+            font-weight: 600;
+        }
+        p {
+            margin-bottom: 1em;
+            font-weight: 400;
+        }
+        a {
+            color: #8cafff; /* Steel-blue accent for links */
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Market Pulse Grid */
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #1a1e28;
+            border-radius: 8px;
+            border: 1px solid #2a3040;
+        }
+        .market-card {
+            background-color: #0d1117;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #2a3040;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .market-card strong {
+            display: block;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+            color: #e0e0e0;
+            font-weight: 600;
+        }
+        .market-card .change {
+            font-size: 1.2em;
+            font-weight: 700;
+        }
+        .change.positive {
+            color: #4CAF50; /* Muted green */
+        }
+        .change.negative {
+            color: #F44336; /* Muted red */
+        }
+        .market-card small {
+            font-weight: 400;
+            color: #a7b0c2;
+        }
+
+        /* Slide Container */
+        .slide-container {
+            background-color: #1a1e28;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid #2a3040;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Section Divider */
+        .section-divider {
+            border-top: 1px dashed #2a3040;
+            margin: 40px 0;
+            opacity: 0.7;
+        }
+
+        /* Badges for Categories */
+        .category-badge {
+            background-color: #2a3040;
+            color: #8cafff;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 600;
+            white-space: nowrap; /* Prevent wrapping */
+            flex-shrink: 0;
+        }
+
+        /* Source Buttons */
+        .btn-source {
+            display: inline-block;
+            background-color: #2a3040;
+            color: #d1d9e6;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            transition: background-color 0.2s ease;
+            white-space: nowrap;
+        }
+        .btn-source:hover {
+            background-color: #3b4255;
+            text-decoration: none;
+        }
+        .source-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        /* Image Styling */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 6px;
+            margin: 20px auto; /* Center image */
+            border: 1px solid #2a3040;
+        }
+
+        /* Fact vs Opinion Cards */
+        .highlight-card { /* For key facts/data points */
+            background-color: #202633;
+            border-left: 4px solid #8cafff; /* Blue accent */
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            font-style: italic;
+        }
+        .opinion-card { /* For quotes/opinions */
+            background-color: #2a2c3a; /* Slightly different dark */
+            border-left: 4px solid #ffcc00; /* Gold accent */
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            position: relative;
+        }
+        .opinion-card::before {
+            content: "\201C"; /* Left double quotation mark */
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 3em;
+            color: #ffcc00;
+            opacity: 0.3;
+            line-height: 1;
+        }
+        .opinion-card p {
+            margin: 0;
+            font-style: italic;
+        }
+        .opinion-card .author {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #a7b0c2;
+            text-align: left; /* Keep author name left-aligned */
+            direction: ltr; /* Override RTL for specific elements if needed for names */
+        }
+        /* Numerical badges within text */
+        .data-badge {
+            background-color: #3b4255; /* Darker grey */
+            color: #d1d9e6;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.9em;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .data-badge.positive {
+            background-color: rgba(76, 175, 80, 0.2); /* Muted green background */
+            color: #4CAF50;
+        }
+        .data-badge.negative {
+            background-color: rgba(244, 67, 54, 0.2); /* Muted red background */
+            color: #F44336;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .market-pulse-grid {
+                grid-template-columns: 1fr; /* Single column on mobile */
+                padding: 16px;
+            }
+            .slide-container {
+                padding: 16px;
+            }
+            h1 {
+                font-size: 1.8rem; /* Smaller heading */
+            }
+            h2 {
+                font-size: 1.5rem; /* Smaller sub-heading */
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            .category-badge {
+                font-size: 0.75em;
+                padding: 4px 8px;
+            }
+            .market-card {
+                padding: 12px;
+            }
+            .market-card strong {
+                font-size: 1em;
+            }
+            .market-card .change {
+                font-size: 1.1em;
+            }
+            .opinion-card::before {
+                font-size: 2.5em;
+            }
+            .source-group {
+                flex-direction: column; /* Stack source buttons vertically */
+                align-items: flex-end; /* Align to the right in RTL */
+            }
+        }
+
+        /* Ensure tables and wide content are scrollable */
+        table {
+            width: 100%;
+            table-layout: fixed;
+            word-wrap: break-word;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 10px;
+            text-align: right;
+            border-bottom: 1px solid #2a3040;
+        }
+        th {
+            background-color: #2a3040;
+            font-weight: 600;
+            color: #d1d9e6;
+        }
+        tr:hover {
+            background-color: #1f232e;
+        }
+        .table-responsive {
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>דוח שוק יומי: תמצית אסטרטגית</h1>
+
+        <div class="slide-container">
+            <h2><span class="title-text">תמונת מצב מהירה</span> <span class="category-badge">Market Pulse</span></h2>
+            <p>סקירה מהירה של תנודות חריגות במדדים ובמניות נבחרות מהיום האחרון.</p>
+            <div class="market-pulse-grid">
+                <!-- SPY -->
+                <div class="market-card">
+                    <strong>S&amp;P 500 (SPY)</strong>
+                    <div class="change positive"><span class="data-badge positive">+2.57</span> <span class="data-badge positive">+0.34%</span></div>
+                    <small>מחיר סגירה: <span class="data-badge">769.05</span></small>
+                </div>
+                <!-- QQQ -->
+                <div class="market-card">
+                    <strong>Nasdaq 100 (QQQ)</strong>
+                    <div class="change negative"><span class="data-badge negative">-0.73</span> <span class="data-badge negative">-0.10%</span></div>
+                    <small>מחיר סגירה: <span class="data-badge">717.63</span></small>
+                </div>
+                <!-- BTC/USD -->
+                <div class="market-card">
+                    <strong>Bitcoin (BTC/USD)</strong>
+                    <div class="change positive"><span class="data-badge positive">+477.84</span> <span class="data-badge positive">+0.58%</span></div>
+                    <small>מחיר סגירה: <span class="data-badge">83,505.99</span></small>
+                </div>
+                <!-- ETH/USD -->
+                <div class="market-card">
+                    <strong>Ethereum (ETH/USD)</strong>
+                    <div class="change positive"><span class="data-badge positive">+20.01</span> <span class="data-badge positive">+0.82%</span></div>
+                    <small>מחיר סגירה: <span class="data-badge">2,469.21</span></small>
+                </div>
+                <!-- UNH (Outlier) -->
+                <div class="market-card">
+                    <strong>UnitedHealth (UNH)</strong>
+                    <div class="change positive"><span class="data-badge positive">+12.38</span> <span class="data-badge positive">+3.04%</span></div>
+                    <small>מחיר סגירה: <span class="data-badge">419.26</span></small>
+                </div>
+                <!-- NOW (Outlier) -->
+                <div class="market-card">
+                    <strong>ServiceNow (NOW)</strong>
+                    <div class="change positive"><span class="data-badge positive">+4.18</span> <span class="data-badge positive">+2.88%</span></div>
+                    <small>מחיר סגירה: <span class="data-badge">149.54</span></small>
+                </div>
+                <!-- IREN (Outlier) -->
+                <div class="market-card">
+                    <strong>IREN Ltd.</strong>
+                    <div class="change negative"><span class="data-badge negative">-1.11</span> <span class="data-badge negative">-4.00%</span></div>
+                    <small>מחיר סגירה: <span class="data-badge">26.62</span></small>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <h2><span class="title-text">מוסק ובליל AI: שיחות מיזוג וקפיצת מדרגה ב-SpaceX</span> <span class="category-badge">חדשות חברות / AI</span></h2>
+            <h3>מה קרה היום:</h3>
+            <p>מניית SpaceX עלתה ב-<span class="data-badge positive">8%</span> במסחר המוקדם ביום רביעי, בעקבות דיווחים על צמיחה חדה בהכנסות מתחום ה-AI ורמזים של אילון מאסק לגבי מיזוג פוטנציאלי עם טסלה. מאסק אמר כי מיזוג בין SpaceX לטסלה הוא "רעיון טוב", דבר שיאחד את טסלה תחת אותה קבוצה תאגידית עם מפתחת Grok, SpaceXAI ופלטפורמת המדיה החברתית X.</p>
+            <h3>למה זה משנה:</h3>
+            <p>העלייה ב-SpaceX מספקת סיבה נוספת לוול סטריט להאמין בבום הבינה המלאכותית, שכן הביקוש לכוח המחשוב שלה נמצא "מחוץ למצעדים". דיון במיזוג כזה עשוי להשפיע על שווי השוק של <span class="data-badge">TSLA</span> וליצור ישות טכנולוגית עוצמתית עם חשיפה מוגברת ל-AI ושיגורים לחלל.</p>
+            <div class="source-group">
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/21/spacex-spcx-stock-musk-merger-tesla.html">CNBC</a>
+                <a class="btn-source" href="https://www.marketwatch.com/story/musk-says-hes-exploring-a-spacex-tesla-megamerger-what-would-a-combined-company-be-worth-f35566aa?mod=mw_rss_topstories">MarketWatch</a>
+                <a class="btn-source" href="https://cointelegraph.com/markets/musk-says-spacex-tesla-merger-a-good-idea-as-ai-revenue-jumps-ninefold?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+                <a class="btn-source" href="https://www.marketwatch.com/story/why-spacexs-stock-is-surging-and-lifting-the-broader-ai-universe-along-with-it-0cd62f39?mod=mw_rss_topstories">MarketWatch</a>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <h2><span class="title-text">האטה בביטקוי, יציאות את'ריום ורגולציה גוברת בקריפטו</span> <span class="category-badge">קריפטו / רגולציה</span></h2>
+            <h3>מה קרה היום:</h3>
+            <p>קרנות סל (ETFs) של את'ריום בארה"ב רשמו יציאות של <span class="data-badge negative">$1.08 מיליארד</span> עד כה באוקטובר 2026, היציאה החודשית הגדולה ביותר השנה, בעוד שזרימת ההון לקרנות סל של ביטקוי הואטה. במקביל, רשות המטבע (OCC) סיימה את התקנות הסופיות שלה בנוגע להנפקה ומשמורת של מטבעות יציבים (stablecoins) תחת מסגרת חוק ה-GENIUS, ותקנות אלו ייכנסו לתוקף באמצע ינואר.</p>
+            <h3>למה זה משנה:</h3>
+            <p>היציאות המשמעותיות מקרנות סל של את'ריום מצביעות על ירידה בסנטימנט המשקיעים כלפי נכס זה בטווח הקצר. מנגד, התקדמות הרגולציה בארה"ב ובשווקים גלובליים, כולל כללי ה-OCC ויוזמות בנקאיות, משקפת התבגרות של שוק הקריפטו ומספקת מסגרת ברורה יותר לשחקנים מוסדיים, גם אם היא מלווה בבדיקות והגבלות הדוקות יותר.</p>
+            <div class="source-group">
+                <a class="btn-source" href="https://cointelegraph.com/markets/ether-etf-outflows-near-1-1-billion-october?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (Ether ETF Outflows)</a>
+                <a class="btn-source" href="https://cointelegraph.com/news/occ-finalizes-genius-act-rules-stablecoin-issuers-custody?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph (OCC Rules)</a>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <h2><span class="title-text">שוק הדיור קפוא והאינפלציה בבריטניה מטפסת</span> <span class="category-badge">מאקרו כלכלה</span></h2>
+            <h3>מה קרה היום:</h3>
+            <p>נתוני ספטמבר הצביעו על "קיפאון עמוק" בשוק הדיור, כאשר מכירות, בנייה וסנטימנט צרכנים נפלו יותר מהצפוי בארה"ב. שיעורי המשכנתא ירדו לראשונה מזה חודשיים, אך הביקוש עדיין ממשיך לרדת. בבריטניה, האינפלציה השנתית קפצה ל-<span class="data-badge negative">3.5%</span> בספטמבר, עלייה חדה יותר מהצפוי, בעיקר בשל עלויות דלק גבוהות.</p>
+            <h3>למה זה משנה:</h3>
+            <p>החולשה המתמשכת בשוק הדיור בארה"ב, למרות ירידה בשיעורי המשכנתא, מצביעה על לחץ מתמשך על הצרכנים ועלולה להוות אות אזהרה לבנק הפדרלי לקראת החלטותיו בנוגע לריבית. בבריטניה, הזינוק באינפלציה מחזק את הציפיות להעלאת ריבית נוספת על ידי הבנק המרכזי של אנגליה, מה שעשוי להעיק על הצמיחה הכלכלית ולשפיע על המטבע המקומי.</p>
+            <div class="source-group">
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/21/mortgage-rates-drop-for-the-first-time-in-2-months-but-demand-falls.html">CNBC (Mortgage Rates)</a>
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/20/september-data-shows-housing-market-in-a-deep-freeze.html">CNBC (Housing Freeze)</a>
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/21/inflation-uk-cpi-interest-rates.html">CNBC (UK Inflation)</a>
+                <a class="btn-source" href="https://www.youtube.com/shorts/sFJwVXAl-C4">The Compound (Housing Unaffordable)</a>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <h2><span class="title-text">זינוק חד ב-Zcash (ZEC) בעקבות שדרוג NU7</span> <span class="category-badge">קריפטו / אלטקוינים</span></h2>
+            <h3>מה קרה היום:</h3>
+            <p>מטבע ה-Zcash (ZEC) זינק ב-<span class="data-badge positive">12%</span> ביום רביעי, לאחר שמפתחים אישרו את גובה ההפעלה של שדרוג ה-Mainnet NU7. השדרוג מיועד ל-5 בנובמבר, כאשר עבודת סנכרון הצמתים עדיין ממתינה.</p>
+            <h3>למה זה משנה:</h3>
+            <p>העלייה החדה ב-ZEC מדגימה את התגובה החיובית של השוק להתקדמות בפיתוח הפרוטוקול, ובמיוחד לשדרוגים טכניים משמעותיים. שדרוג NU7 אמור לשפר את הביצועים והפרטיות של Zcash, מה שמוביל לעניין מחודש וגידול בביקוש למטבע.</p>
+            <div class="source-group">
+                <a class="btn-source" href="https://cointelegraph.com/markets/zcash-zec-rallies-12-percent-nu7-mainnet-upgrade?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
