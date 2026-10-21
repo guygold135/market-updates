@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי: 21 באוקטובר 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0e17; /* Deep charcoal/navy */
+            --text-light: #e0e6f0; /* Off-white/light gray */
+            --accent-color: #ffd700; /* Subtle gold for titles/links */
+            --border-color: #2a303a;
+            --card-bg: #1a202c;
+            --highlight-bg: rgba(255, 215, 0, 0.1); /* Gold with transparency */
+            --opinion-bg: rgba(70, 130, 180, 0.1); /* Steel blue with transparency */
+            --positive-color: #3cb371; /* Medium Sea Green (muted green) */
+            --positive-bg: rgba(60, 179, 113, 0.1);
+            --negative-color: #dc143c; /* Crimson (muted red) */
+            --negative-bg: rgba(220, 20, 60, 0.1);
+            --neutral-color: #8c96a7;
+            --font-family-inter: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family-inter);
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            direction: rtl; /* For Hebrew text */
+            text-align: right; /* For Hebrew text */
+        }
+
+        h1, h2, h3 {
+            color: var(--accent-color);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 25px;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: var(--text-light); /* Sub-headings can be lighter */
+        }
+
+        p {
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #ffeb8d; /* Lighter gold on hover */
+        }
+
+        .slide-container {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            max-width: 100%; /* Required, use % or max-width */
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--border-color);
+            color: var(--accent-color);
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .section-divider {
+            border-bottom: 1px solid var(--border-color);
+            margin: 40px 0;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .market-pulse-item {
+            background-color: var(--bg-dark);
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease;
+        }
+
+        .market-pulse-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .market-pulse-item strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--text-light);
+        }
+
+        .market-pulse-item .change-positive {
+            color: var(--positive-color);
+            background-color: var(--positive-bg);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .market-pulse-item .change-negative {
+            color: var(--negative-color);
+            background-color: var(--negative-bg);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .market-pulse-item .change-neutral {
+            color: var(--neutral-color);
+            background-color: var(--border-color);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .highlight-card {
+            background-color: var(--highlight-bg);
+            border-right: 4px solid var(--accent-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-bg);
+            border-right: 4px solid steelblue; /* A distinct accent for opinions */
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            color: var(--text-light);
+            position: relative;
+            padding-left: 50px; /* Space for quote icon */
+        }
+
+        .opinion-card::before {
+            content: "\201C"; /* Left double quotation mark */
+            font-size: 3rem;
+            color: steelblue;
+            position: absolute;
+            right: 15px;
+            top: 5px;
+            line-height: 1;
+        }
+
+        .opinion-card .speaker {
+            display: block;
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-top: 10px;
+            font-size: 0.85rem;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--border-color);
+            color: var(--text-light);
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            margin-top: 10px;
+            margin-left: 10px;
+            border: 1px solid var(--border-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .btn-source:hover {
+            background-color: #4a5568;
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: var(--bg-dark);
+            table-layout: fixed; /* Required */
+            overflow-x: auto; /* Required */
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: right;
+            font-weight: 400;
+        }
+
+        th {
+            background-color: #2a303a;
+            font-weight: 600;
+            color: var(--accent-color);
+            white-space: nowrap;
+        }
+
+        .change-up {
+            color: var(--positive-color);
+        }
+
+        .change-down {
+            color: var(--negative-color);
+        }
+
+        @media(max-width:768px){
+            .market-pulse-grid{grid-template-columns:1fr 1fr;}
+            .slide-container{padding:16px;}
+            h1{font-size:1.4rem;}
+            h2{font-size:1.2rem;}
+            .market-pulse-item strong {font-size: 1rem;}
+            .market-pulse-item .change-positive, .market-pulse-item .change-negative, .market-pulse-item .change-neutral {font-size: 0.8rem;}
+            .btn-source { padding: 6px 10px; font-size: 0.75rem;}
+        }
+    </style>
+</head>
+<body>
+    <h1>דוח שוק יומי: 21 באוקטובר 2026</h1>
+
+    <div class="slide-container">
+        <div class="badge">תמונת מצב מהירה</div>
+        <h2>Market Pulse - נתוני מפתח</h2>
+        <div class="market-pulse-grid">
+            <div class="market-pulse-item">
+                <strong>S&P 500 (SPY)</strong>
+                <span class="change-positive">+2.57 (+0.34%)</span>
+            </div>
+            <div class="market-pulse-item">
+                <strong>Nasdaq 100 (QQQ)</strong>
+                <span class="change-negative">-0.73 (-0.10%)</span>
+            </div>
+            <div class="market-pulse-item">
+                <strong>Bitcoin (BTC/USD)</strong>
+                <span class="change-positive">+477.84 (+0.58%)</span>
+            </div>
+            <div class="market-pulse-item">
+                <strong>Ethereum (ETH/USD)</strong>
+                <span class="change-positive">+20.01 (+0.82%)</span>
+            </div>
+            <div class="market-pulse-item">
+                <strong>UnitedHealth (UNH)</strong>
+                <span class="change-positive">+12.38 (+3.04%)</span>
+            </div>
+            <div class="market-pulse-item">
+                <strong>ServiceNow (NOW)</strong>
+                <span class="change-positive">+4.18 (+2.88%)</span>
+            </div>
+            <div class="market-pulse-item">
+                <strong>iShares Russell 2000 (IWM)</strong>
+                <span class="change-positive">+4.50 (+1.66%)</span>
+            </div>
+            <div class="market-pulse-item">
+                <strong>Tesla (TSLA)</strong>
+                <span class="change-positive">+5.65 (+1.54%)</span>
+            </div>
+            <div class="market-pulse-item">
+                <strong>IREN Ltd. (IREN)</strong>
+                <span class="change-negative">-1.11 (-4.00%)</span>
+            </div>
+            <div class="market-pulse-item">
+                <strong>Apple (AAPL)</strong>
+                <span class="change-negative">-3.44 (-1.00%)</span>
+            </div>
+            <div class="market-pulse-item">
+                <strong>Alphabet (GOOG)</strong>
+                <span class="change-negative">-3.76 (-1.11%)</span>
+            </div>
+            <div class="market-pulse-item">
+                <strong>CoreWeave (CRWV)</strong>
+                <span class="change-positive">+1.01 (+1.65%)</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">טכנולוגיה</div>
+        <div class="badge">מאקרו</div>
+        <h2>AI ומרכזי נתונים: אתגרי צמיחה ותהיות רגולטוריות</h2>
+        <h3>מה קרה היום</h3>
+        <p>מגזר ה-AI ומרכזי הנתונים ממשיך להוביל את סנטימנט השוק אך נתקל בקשיים מתגברים. לארי פינק, מנכ"ל בלקרוק, התריע כי התנגדות למרכזי נתונים תגרום לעליית אינפלציה. אזהרה זו התממשה חלקית עם צניחה של 40% במניות NextDC האוסטרלית לאחר שקיצצה את תחזית הרווחים שלה עקב עיכובים באספקת חשמל במתקן במלבורן, שיוחסו להתנגדות קהילתית ושל בעלי עניין מקומיים.</p>
+        <div class="btn-source"><a href="https://www.marketwatch.com/story/opposition-to-data-centers-will-drive-up-inflation-says-blackrocks-larry-fink-831c25b9?mod=mw_rss_topstories">MarketWatch</a></div>
+        <div class="btn-source"><a href="https://www.cnbc.com/2026/10/21/australia-data-center-operator-nexdc-datacenter.html">CNBC</a></div>
+        <p>באותו נושא, דונלד טראמפ הציע שמרכזי נתונים יצטרכו לשלם "דיבידנד" לקהילות כדי לזכות בתמיכה, על רקע חששות גוברים לגבי מימון AI. במקביל, משקיעים מביעים ספק לגבי המודל העסקי של "Neoclouds", אך חברת Nebius טוענת כי מחירי מחשוב AI דווקא עולים.</p>
+        <div class="btn-source"><a href="https://www.cnbc.com/2026/10/21/trump-data-centers-community-dividend.html">CNBC</a></div>
+        <div class="btn-source"><a href="https://www.cnbc.com/2026/10/21/nebius-ai-computing-nvidia-gpu-prices.html">CNBC</a></div>
+        <p>בחדשות חיוביות יותר לתעשייה, OpenAI מרחיבה את נוכחותה ותביא את מודלי ה-AI שלה גם לענן של גוגל, בנוסף למיקרוסופט, מה שיעניק למפתחים תאגידיים יותר גמישות. NVIDIA הכריזה על מתקני "Vera Rubin racks" מוכנים לשימוש, שניתן לשלוח במשאית, ומאפשרים לקצר את זמן ההפעלה של שירותי AI ל-14 ימים בלבד.</p>
+        <div class="btn-source"><a href="https://www.cnbc.com/2026/10/21/openai-bring-its-ai-models-to-googles-cloud-expands-beyond-microsoft.html">CNBC</a></div>
+        <div class="btn-source"><a href="https://www.cnbc.com/2026/10/21/nvidia-announces-vera-rubin-racks-that-can-be-shipped-on-a-truck-.html">CNBC</a></div>
+
+        <h3>למה זה חריג</h3>
+        <div class="highlight-card">
+            השוק חווה פרדוקס: בעוד שהביקוש למחשוב AI וההשקעות בתחום ממשיכים לנסוק, התשתית הפיזית הנדרשת (מרכזי נתונים) נתקלת בהתנגדות גוברת ובקשיים לוגיסטיים ורגולטוריים. זה יוצר פער בין קצב החדשנות הטכנולוגית לבין יכולת ההטמעה בפועל, ועלול להוביל לעלויות גבוהות יותר ולחץ אינפלציוני.
+        </div>
+
+        <h3>הלוגיקה</h3>
+        <p>הדרישה הגוברת לכוח חישוב AI דוחפת להקמת מרכזי נתונים עצומים. עם זאת, מרכזים אלו צורכים כמויות אדירות של חשמל ושטח, מה שמעורר התנגדות מצד קהילות מקומיות ורשויות. עיכובים כאלה גוררים עלויות גבוהות יותר עבור ספקי שירותי AI, ובסופו של דבר עלולים להתגלגל למחירים גבוהים יותר לצרכנים ולתרום לאינפלציה. פתרונות כמו ה-Vera Rubin racks של NVIDIA מנסים לייעל את הפריסה, אך האתגרים הסביבתיים והחברתיים נותרים בעינם.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">חדשות חברה</div>
+        <div class="badge">טכנולוגיה</div>
+        <h2>אילון מאסק, SpaceX וטסלה: אסטרטגיה אינטגרטיבית בצל ביצועים חזקים</h2>
+        <h3>מה קרה היום</h3>
+        <p>מניות SpaceX זינקו בכ-8% במסחר המוקדם לאחר שדיווחה על רווחי רבעון שלישי חזקים ובעליה, אילון מאסק, רמז על מיזוג אפשרי עם טסלה (TSLA). ענקית החלל נמצאת בתנופה עם זינוק של פי תשעה בהכנסות ה-AI שלה, דבר שמחזק את האמונה הכללית בשוק ה-AI. מיזוג כזה יאחד את טסלה עם SpaceXAI (מפתחת Grok) ופלטפורמת המדיה החברתית X, ויחבר את חברותיו של מאסק לקבוצה תאגידית אחת.</p>
+        <div class="btn-source"><a href="https://www.cnbc.com/2026/10/21/spacex-spcx-stock-musk-merger-tesla.html">CNBC</a></div>
+        <div class="btn-source"><a href="https://www.marketwatch.com/story/why-spacexs-stock-is-surging-and-lifting-the-broader-ai-universe-along-with-it-0cd62f39?mod=mw_rss_topstories">MarketWatch</a></div>
+        <div class="btn-source"><a href="https://www.marketwatch.com/story/musk-says-hes-exploring-a-spacex-tesla-megamerger-what-would-a-combined-company-be-worth-f35566aa?mod=mw_rss_topstories">MarketWatch</a></div>
+        <div class="btn-source"><a href="https://cointelegraph.com/markets/musk-says-spacex-tesla-merger-a-good-idea-as-ai-revenue-jumps-ninefold?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a></div>
+        <p>בנוסף, AT&T דיווחה על גידול ניכר במספר מנויי האינטרנט שלה, כשהיא "מתנערת מחששות SpaceX" – רמז לתחרות הגוברת מצד שירותי האינטרנט הלווייניים של סטארלינק.</p>
+        <div class="btn-source"><a href="https://www.marketwatch.com/story/at-t-shrugs-off-spacex-fears-with-its-own-large-haul-of-new-internet-subscribers-644f66a8?mod=mw_rss_topstories">MarketWatch</a></div>
+        <div class="btn-source"><a href="https://www.cnbc.com/2026/10/21/at-t-shrugs-off-spacex-fears-with-its-own-large-haul-of-new-internet-subscribers-644f66a8.html">CNBC</a></div>
+
+        <h3>למה זה חריג</h3>
+        <div class="highlight-card">
+            העניין במיזוג פוטנציאלי בין טסלה ל-SpaceX אינו רק אירוע תאגידי גדול אלא איתות אסטרטגי משמעותי על כוונתו של מאסק למזג יכולות AI מתקדמות (מ-SpaceXAI) עם יישומי רכב ואנרגיה (מטסלה). זה מעיד על חזון של מערכת אקולוגית טכנולוגית משולבת ועמוקה יותר, עם השלכות רחבות על תחום ה-AI.
+        </div>
+        
+        <h3>הלוגיקה</h3>
+        <p>אילון מאסק שואף ליצור סינרגיה בין החברות שבשליטתו, תוך מינוף פיתוחי AI מתקדמים בפלטפורמות שונות. מיזוג SpaceX-טסלה יאפשר שיתוף משאבים וידע ב-AI, ייצור והפצה, ויחזק את מעמדו של המכלול התאגידי בתחומים כמו רכבים אוטונומיים, רובוטיקה ושירותי לוויין מתקדמים. הנתונים החיוביים של SpaceX תומכים בבסיס חזק להמשך הרחבת פעילות ה-AI שלה.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">מאקרו</div>
+        <h2>שוק הדיור והאינפלציה: מיתון והשלכות על מדיניות מוניטרית</h2>
+        <h3>מה קרה היום</h3>
+        <p>שוק הדיור בארה"ב מציג סימני מצוקה מתגברים. למרות ירידה ראשונה מזה חודשיים בשיעורי המשכנתאות, הביקוש לדיור ממשיך לרדת. נתוני ספטמבר הציגו "קיפאון עמוק" בשוק הדיור, עם ירידות גדולות מהצפוי במכירות, בבנייה ובסנטימנט הכללי. השוק מראה "סימני אזהרה" בזמן שהפד שוקל העלאות ריבית נוספות, כאשר יוקר הדיור נמצא ברמה חסרת תקדים.</p>
+        <div class="btn-source"><a href="https://www.cnbc.com/2026/10/21/mortgage-rates-drop-for-the-first-time-in-2-months-but-demand-falls.html">CNBC</a></div>
+        <div class="btn-source"><a href="https://www.cnbc.com/2026/10/20/september-data-shows-housing-market-in-a-deep-freeze.html">CNBC</a></div>
+        <div class="btn-source"><a href="https://www.cnbc.com/2026/10/21/housing-mortgage-rates-real-estate-federal-reserve.html">CNBC</a></div>
+        <div class="btn-source"><a href="https://www.youtube.com/shorts/sFJwVXAl-C4">The Compound (YouTube)</a></div>
+        <p>באירופה, האינפלציה בבריטניה קפצה ל-3.5% בספטמבר, גבוה מהצפוי, בעיקר בשל עלויות דלק גבוהות. נתון זה מחזק את הציפיות להעלאות ריבית נוספות מצד הבנק המרכזי באנגליה.</p>
+        <div class="btn-source"><a href="https://www.cnbc.com/2026/10/21/inflation-uk-cpi-interest-rates.html">CNBC</a></div>
+
+        <h3>למה זה חריג</h3>
+        <div class="highlight-card">
+            המשך הידרדרות בשוק הדיור בארה"ב, למרות ירידה קלה בשיעורי המשכנתאות, מצביע על בעיה מבנית עמוקה יותר בכושר ההשגה. בשילוב עם עליית האינפלציה בבריטניה, זה מציב דילמה קשה בפני בנקים מרכזיים, הנאלצים לאזן בין שליטה באינפלציה לבין הסיכון למיתון כלכלי.
+        </div>
+        
+        <h3>הלוגיקה</h3>
+        <p>יוקר המחיה, הנגרם בין היתר משיעורי ריבית גבוהים ומחירי אנרגיה ודיור עולים, משפיע ישירות על כושר הקנייה של הצרכנים. הירידה בביקוש לדיור מעידה על כך שגם הורדה קלה בריביות אינה מספקת כדי להחזיר את הקונים לשוק. עבור הבנקים המרכזיים, המשך הלחץ האינפלציוני, גם במחיר האטה כלכלית, עשוי להצדיק מדיניות מוניטרית הדוקה יותר, מה שיכול להעמיק את הקיפאון בשוק הדיור ואף להרחיב אותו לתחומים נוספים.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">קריפטו</div>
+        <div class="badge">רגולציה</div>
+        <h2>קריפטו: איתותים מעורבים של רגולציה, אימוץ ותנודתיות שוק</h2>
+        <h3>מה קרה היום</h3>
+        <p>הרשויות ממשיכות לגבש רגולציה סביב נכסי קריפטו: ה-OCC (משרד מבקר המטבע האמריקאי) סיים את גיבוש כללי חוק ה-GENIUS עבור מנפיקי ומספקי משמורת של מטבעות יציבים, כשהמסגרת תיכנס לתוקף באמצע ינואר 2027.</p>
+        <div class="btn-source"><a href="https://cointelegraph.com/news/occ-finalizes-genius-act-rules-stablecoin-issuers-custody?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a></div>
+        <p>צרפת הציעה תיקוני רגולציה שיחייבו בורסות קריפטו באחריות על גישה לפרוטוקולי DeFi, ובשווייץ, FINMA אישרה את תעודת הסל (ETF) הראשונה לביטקוין עבור משקיעים קמעונאיים.</p>
+        <div class="btn-source"><a href="https://cointelegraph.com/news/france-liability-crypto-exchange-defi-access?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a></div>
+        <div class="btn-source"><a href="https://cointelegraph.com/news/finma-approves-switzerlands-first-bitcoin-etf-retail?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a></div>
+        <p>באשר לשוק עצמו, תזרימי האית'ר מקרנות סל (ETFs) המשיכו לרדת, ועברו את רף המיליארד דולר בחודש אוקטובר, הנתון החודשי הגבוה ביותר לשנת 2026. זאת בניגוד להאטה בתזרים הביטקוין לקרנות הסל לאחר הזינוק ביום שני. במקביל, Zcash (ZEC) זינקה ב-12% לאחר שמפתחים סיימו את קביעת גובה הפעלת עדכון NU7 שצפוי ב-5 בנובמבר.</p>
+        <div class="btn-source"><a href="https://cointelegraph.com/markets/ether-etf-outflows-near-1-1-billion-october?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a></div>
+        <div class="btn-source"><a href="https://cointelegraph.com/markets/zcash-zec-rallies-12-percent-nu7-mainnet-upgrade?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a></div>
+        <p>פעילות מוסדית בעולם הקריפטו ממשיכה להתחמם: Standard Chartered חתמה על הסכם לרכישת Zodia Custody (שירותי משמורת קריפטו). דו"ח של Coinbase מראה כי העברות Stablecoin גדלו פי ארבעה ל-891 מיליארד דולר, עם אימוץ גובר על ידי בנקים ועסקים בארה"ב. עם זאת, Alphabet ומיקרוסופט מצטרפות להתנגדות לפלטפורמת מניות ממוינות (Tokenized Stock Platform) המוצעת על ידי OKX-ICE.</p>
+        <div class="btn-source"><a href="https://cointelegraph.com/news/standard-chartered-acquire-zodia-custody-uk?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a></div>
+        <div class="btn-source"><a href="https://cointelegraph.com/news/stablecoins-move-400m-an-hour-as-73-of-volume-occurs-outside-banking-hours-coinbase-report?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a></div>
+        <div class="btn-source"><a href="https://cointelegraph.com/news/alphabet-microsoft-goldman-object-okx-ice-tokenized-stock?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a></div>
+        <div class="btn-source"><a href="https://www.cnbc.com/2026/10/21/tokenized-stocks-us-companies-object.html">CNBC</a></div>
+
+        <h3>למה זה חריג</h3>
+        <div class="highlight-card">
+            אנו רואים שתי מגמות מנוגדות ומשלימות: אימוץ מוסדי הולך וגובר מצד גופים פיננסיים מסורתיים (בנקים, קרנות סל) לצד רגולציה מחמירה יותר שמנסה להגדיר גבולות אחריות ולהגן על המשקיעים. יציאות משמעותיות מקרנות סל של את'ר, בניגוד לביטקוין, מעידות על סנטימנט שונה כלפי המטבעות הללו, בעוד שזינוק ב-Zcash מדגיש שעדכוני פרוטוקול יכולים להוביל לתנועות מחיר חדות במטבעות קטנים יותר.
+        </div>
+        
+        <h3>הלוגיקה</h3>
+        <p>שוק הקריפטו ממשיך להתפתח במהירות, כשפעילים מוסדיים רואים בו הזדמנויות חדשות (כמו משמורת וסטייבלקוינס) בעוד מחוקקים מנסים להדביק את הקצב. אישור תעודות סל בביטקוין בשווייץ וגידול בשימוש בסטייבלקוינס מצביעים על לגיטימציה גוברת. עם זאת, התנגדות מצד חברות טכנולוגיה גדולות למוצרים חדשים כמו מניות ממוינות מראה שעדיין קיימים חיכוכים. תזרימי האית'ר השליליים עשויים לשקף חששות ספציפיים לגבי רגולציה או אירועים בשוק ה-DeFi (כמו מקרה Drift exploiter), או פשוט מימוש רווחים לאחר תקופה של עלייה.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">אנליזה</div>
+        <div class="badge">מאקרו</div>
+        <h2>דעות ואנליזה: בועת AI ושוק דואלי של ספק מול היעדר פחד</h2>
+        <h3>מה קרה היום</h3>
+        <p>סנטימנט השוק הכללי ממשיך להיות מורכב. בפרק "Animal Spirits 487" דובר על "It's a Bloodbath" (טבח), בעוד שבפרק "WAYT?" מציינים "A Market Full of Doubt, but Very Little Fear" (שוק מלא בספק, אך מעט מאוד פחד).</p>
+        <div class="btn-source"><a href="https://www.youtube.com/watch?v=uc1N5YyNzTs">The Compound</a></div>
+        <div class="btn-source"><a href="https://www.youtube.com/watch?v=LjTS-BXdPp0">The Compound</a></div>
+        <p>סביב נושא ה-AI, מתגברים הדיונים האם אנו עדים ל"בועת AI".</p>
+        <div class="btn-source"><a href="https://www.youtube.com/shorts/70meZiQ5A4w">The Compound</a></div>
+        <p>מנכ"ל גוגל לשעבר אמר: "AI אינה בועה. זו צמיחה אמיתית, כסף אמיתי, לקוחות אמיתיים שמשלמים על משהו שימושי". הוא גם העיר כי העובדה שסין נמצאת רק שישה חודשים מאחורי ארה"ב ב-AI "אומרת שהם מנצחים".</p>
+        <div class="opinion-card">
+            "AI is not a bubble, says Google’s former CEO. It’s real growth, real money, real customers paying for something useful."<br>
+            <span class="speaker">Former Google CEO</span>
+            <div class="btn-source"><a href="https://www.marketwatch.com/story/in-the-battle-for-ai-supremacy-china-is-only-six-months-behind-the-u-s-but-that-means-theyre-winning-says-former-google-ceo-82d71e7a?mod=mw_rss_topstories">MarketWatch</a></div>
+        </div>
+        <p>יאט סיו, יו"ר Animoca Brands, הזהיר כי למרות שסוכני AI יכולים לסחור 24/7, על המשתמשים לתכנן מראש למקרה שיאבדו גישה לבוטים.</p>
+        <div class="opinion-card">
+            "The Animoca Brands chairman explains that AI agents can make trades while you sleep, but users need to plan for the day they lose access to the bots."<br>
+            <span class="speaker">Yat Siu, Animoca Brands Chairman</span>
+            <div class="btn-source"><a href="https://cointelegraph.com/magazine/ai-trade-sleep-yat-siu-warns-losing-agent?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a></div>
+        </div>
+
+        <h3>למה זה חריג</h3>
+        <div class="highlight-card">
+            השוק מציג תמונה מנוגדת: מחד, סנטימנט כללי של ספק והאטה ("Bloodbath"), ומאידך, חוסר בפחד קיצוני. בתחום ה-AI, הדיון על "בועה" מתקיים במקביל להכרה בצמיחה מהותית ובמועילות אמיתית. האזהרות לגבי "אובדן גישה לבוטים" מדגישות סיכונים תפעוליים ורגולטוריים פוטנציאליים בשימוש ב-AI.
+        </div>
+        
+        <h3>הלוגיקה</h3>
+        <p>הסנטימנט המעורב בשוק משקף חוסר ודאות: המשקיעים ערים לאתגרים כלכליים וגיאופוליטיים, אך אינם ממהרים להיכנס לפאניקה. בתחום ה-AI, הדעות חלוקות בין מי שמזהה בועה לבין מי שרואה צמיחה אורגנית. ההערכה של מנכ"ל גוגל לשעבר, כי הפיגור הקטן של סין ב-AI הופך אותה ל"מנצחת", מדגישה את חשיבות קצב הפיתוח היחסי. האזהרה של יאט סיו מצביעה על הצורך לחשוב מעבר לביצועים פיננסיים של AI ולהתייחס גם לסיכונים תפעוליים וביטחוניים שעלולים לצוץ ככל שהטכנולוגיה תשתלב עמוק יותר במסחר ובחיי היומיום.</p>
+    </div>
+
+</body>
+</html>
