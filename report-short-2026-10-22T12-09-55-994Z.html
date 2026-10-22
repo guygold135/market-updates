@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי: תמונת מצב אסטרטגית</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0e17; /* Deep charcoal/navy */
+            --text-light: #e0e0e0;
+            --accent-color: #ffd700; /* Gold */
+            --divider-color: #333;
+            --positive-color-text: #4CAF50;
+            --negative-color-text: #F44336;
+            --positive-color-bg: rgba(76, 175, 80, 0.1); /* Muted green with transparency */
+            --negative-color-bg: rgba(244, 67, 54, 0.1); /* Muted red with transparency */
+            --card-bg: #1a1e27;
+            --opinion-card-bg: #2a2e37;
+            --badge-bg: rgba(255, 255, 255, 0.1);
+            --source-btn-bg: #333;
+            --source-btn-text: var(--text-light);
+            --hover-light: #444;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: var(--bg-dark); /* Ensure main container has the dark background */
+            border-radius: 8px;
+        }
+
+        h1, h2, h3 {
+            color: var(--accent-color);
+            font-weight: 700;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            text-align: right;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 40px;
+            padding-right: 10px;
+            border-right: 4px solid var(--accent-color);
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            color: var(--text-light);
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #ffe066; /* Slightly lighter gold on hover */
+        }
+
+        .slide-container {
+            background-color: var(--card-bg);
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow-x: auto; /* For potential wide content like tables */
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-dark);
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            direction: ltr; /* Ensure LTR for category name */
+        }
+
+        .section-divider {
+            border-top: 1px solid var(--divider-color);
+            margin: 30px 0;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .pulse-card {
+            background-color: var(--card-bg);
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            border: 1px solid var(--divider-color);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .pulse-card .symbol {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+
+        .pulse-card .value {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .pulse-card .change {
+            font-size: 1em;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        .positive-change {
+            color: var(--positive-color-text);
+            background-color: var(--positive-color-bg);
+        }
+
+        .negative-change {
+            color: var(--negative-color-text);
+            background-color: var(--negative-color-bg);
+        }
+
+        .data-badge {
+            display: inline-block;
+            background-color: var(--badge-bg);
+            color: var(--text-light);
+            padding: 2px 7px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-left: 5px;
+            direction: ltr; /* For numbers to be LTR */
+        }
+
+        .highlight-card {
+            background-color: var(--opinion-card-bg);
+            border-right: 5px solid var(--accent-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-card-bg);
+            border-right: 5px solid #6a5acd; /* Steel blue/purple for opinions */
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            font-style: italic;
+            position: relative;
+        }
+
+        .opinion-card::before {
+            content: "\201C"; /* Left double quotation mark */
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            font-size: 2em;
+            color: #6a5acd;
+            line-height: 1;
+        }
+        .opinion-card .speaker {
+            display: block;
+            font-weight: 600;
+            margin-top: 10px;
+            font-style: normal;
+            color: var(--accent-color);
+            text-align: left; /* Align speaker name to the left for clarity */
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--source-btn-bg);
+            color: var(--source-btn-text);
+            padding: 8px 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-size: 0.9em;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            direction: ltr; /* Ensure LTR for source name */
+        }
+
+        .btn-source:hover {
+            background-color: var(--hover-light);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .market-pulse-grid {
+                grid-template-columns: 1fr 1fr; /* Two columns for smaller screens */
+            }
+            .slide-container {
+                padding: 16px;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+            h2 {
+                font-size: 1.3rem;
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            .container {
+                margin: 10px auto;
+                padding: 10px;
+            }
+            .badge {
+                font-size: 0.7em;
+            }
+            .pulse-card .symbol, .pulse-card .value {
+                font-size: 1em;
+            }
+            .pulse-card .change {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>דוח שוק יומי: תמונת מצב אסטרטגית</h1>
+
+        <div class="slide-container">
+            <span class="badge">תמונת מצב מהירה</span>
+            <h2>Market Pulse – נתונים מרכזיים</h2>
+            <div class="market-pulse-grid">
+                <div class="pulse-card">
+                    <div class="symbol">S&P 500 (SPY)</div>
+                    <div class="value">773.09</div>
+                    <div class="change positive-change">+0.53%</div>
+                </div>
+                <div class="pulse-card">
+                    <div class="symbol">Nasdaq 100 (QQQ)</div>
+                    <div class="value">725.20</div>
+                    <div class="change positive-change">+1.05%</div>
+                </div>
+                <div class="pulse-card">
+                    <div class="symbol">Bitcoin (BTC/USD)</div>
+                    <div class="value">81,768.01</div>
+                    <div class="change negative-change">-2.77%</div>
+                </div>
+                <div class="pulse-card">
+                    <div class="symbol">Ethereum (ETH/USD)</div>
+                    <div class="value">2,403.00</div>
+                    <div class="change negative-change">-2.86%</div>
+                </div>
+                <div class="pulse-card">
+                    <div class="symbol">SpaceX (SPCX)</div>
+                    <div class="value">159.28</div>
+                    <div class="change positive-change">+7.77%</div>
+                </div>
+                <div class="pulse-card">
+                    <div class="symbol">Tesla (TSLA)</div>
+                    <div class="value">386.47</div>
+                    <div class="change positive-change">+3.41%</div>
+                </div>
+                <div class="pulse-card">
+                    <div class="symbol">NVIDIA (NVDA)</div>
+                    <div class="value">221.97</div>
+                    <div class="change positive-change">+2.54%</div>
+                </div>
+                <div class="pulse-card">
+                    <div class="symbol">Palantir (PLTR)</div>
+                    <div class="value">201.72</div>
+                    <div class="change positive-change">+4.74%</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">תעשייה וטכנולוגיה</span>
+            <h2>טסלה ו-SpaceX: רווחים, ציפיות מיזוג ופער בתגובת השוק</h2>
+            <h3>מה קרה היום</h3>
+            <p>טסלה דיווחה על רווחים ומכירות טובים מהצפוי ברבעון השלישי של שנת 2026. עם זאת, מניית החברה הגיבה בירידה ראשונית בשוק, בין היתר עקב חוסר עדכון מאילון מאסק בנוגע למיזוג פוטנציאלי עם SpaceX. לעומת זאת, מניית SpaceX (SPCX) זינקה ב-<span class="positive-change">7.77%</span> למחיר של <span class="data-badge">$159.28</span>, על רקע חדשות חיוביות על רווחיה ורמיזות המיזוג.</p>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/21/tesla-tsla-q3-2026-earnings-report.html">CNBC</a>
+            <a class="btn-source" href="https://www.marketwatch.com/story/teslas-stock-falls-as-elon-musk-leaves-investors-wanting-more-eb347f38?mod=mw_rss_topstories">MarketWatch</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/21/spacex-spcx-stock-musk-merger-tesla.html">CNBC</a>
+            <a class="btn-source" href="https://www.youtube.com/watch?v=cJ51JT2vZHI">Micha.Stocks</a>
+            <img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M5FFNBMBTT9KJFWC3TVMA71T/hi-what-is-spacex-ipo-and-binance-1.jpg" alt="SpaceX launch" />
+
+            <h3>למה זה חריג</h3>
+            <p>התגובה המנוגדת למניות טסלה ו-SpaceX מהווה חריגה משמעותית בשוק. מניה של חברה בת (טסלה) שדוחותיה היו חיוביים הגיבה באכזבה, בעוד חברה קשורה (SpaceX) שאינה נסחרת בבורסה ישירות אלא דרך סמלים עוקבים, קופצת משמעותית על רקע דיבורים על מיזוג. נפח המסחר ב-SPCX היה גבוה באופן חריג ועמד על <span class="data-badge">437.26M</span> מניות, הרבה מעל הממוצע.</p>
+
+            <h3>הלוגיקה</h3>
+            <p>משקיעי טסלה ציפו לאיתות מפורש ממאסק לגבי המיזוג עם SpaceX, שיכול היה להפיח רוח גבית במניית טסלה. העדר האיתות, לצד ירידה בהכנסות מתחום הרכב (למרות עלייה כוללת במכירות ורווחים), העיב על הדוחות החיוביים. לעומת זאת, SpaceX נהנתה מהסנטימנט החיובי סביב דוחותיה שלה ומהפוטנציאל הגלום במיזוג המוזכר, מה שמשך השקעות לקרנות הסל העוקבות אחריה. הדבר משקף את הרגישות של השוק ל"נרטיבים" סביב מניות צמיחה וחדשנות.</p>
+            <div class="opinion-card">
+                <p>The only narrative that matters is what you tell Wall Street about your company for the future. The stocks of the Magnificent 7 are not trading on their current earnings multiples, they're trading on the narrative of the future.</p>
+                <span class="speaker">The Compound</span>
+            </div>
+            <a class="btn-source" href="https://www.youtube.com/shorts/i1a-4Fai8ok">The Compound</a>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">טכנולוגיה ו-AI</span>
+            <h2>התחזקות ענף ה-AI וביקושי שיא לתשתיות</h2>
+            <h3>מה קרה היום</h3>
+            <p>מנכ"ל Nvidia, ג'נסן הואנג, ציין כי הביקוש לשירותי ענן AI (neocloud) הוא "מעבר לכל דמיון", אך המחסור בהון מגביל את הצמיחה בתעשייה. במקביל, חברות טכנולוגיה גדולות כמו IBM מדווחות על עמידה בציפיות הרווח וההכנסות, כשמנכ"ל החברה, ארווינד קרישנה, מדגיש את המשיכה של פתרונות "Super Intelligence" שלה. כמו כן, בנקים גלובליים כמו Barclays הודיעו על קיצוץ של <span class="data-badge">5,000</span> משרות, כ-<span class="data-badge">5%</span> מכוח האדם שלהם, תוך הסתמכות גוברת על בינה מלאכותית למשימות בקצה האחורי. מניית Nvidia (NVDA) עלתה היום ב-<span class="positive-change">2.54%</span> ל-<span class="data-badge">$221.97</span>.</p>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/22/nvidia-jensen-huang-neocloud-demand-capital.html">CNBC</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/21/ibm-q3-earnings-report-2026.html">CNBC</a>
+            <a class="btn-source" href="https://www.marketwatch.com/story/why-a-global-bank-is-slashing-thousands-of-jobs-and-what-the-fed-says-about-ai-replacing-workers-9529b6ca?mod=mw_rss_topstories">MarketWatch</a>
+            <a class="btn-source" href="https://www.youtube.com/shorts/uzsMkMOeOsY">The Compound</a>
+
+            <h3>למה זה חריג</h3>
+            <p>ענף ה-AI ממשיך להראות חוזקה ועניין חריגים, עם דמויות מפתח כמו הואנג שמאשרות ביקוש עצום, למרות אתגרי מימון וצורך בהשקעות עתק. השילוב של צמיחה בביקוש טכנולוגי והשפעה תעסוקתית מיידית (קיצוצי משרות) מדגיש את המהפכה המואצת והרב-ממדית שמביאה עימה הבינה המלאכותית.</p>
+
+            <h3>הלוגיקה</h3>
+            <p>הביקוש ל-GPU וליכולות AI עולה בהתמדה, כפי שמשתקף בביצועי Nvidia, ההתפתחות בפלטפורמות AI (כמו שילוב OpenAI ב-Google Cloud), והצמיחה ברווחי IBM. חברות מאיצות השקעה בתשתיות AI, ואימוץ AI למטרות ייעול כבר מתורגם לשינויים ארגוניים משמעותיים, כולל התייעלות בכוח אדם, מה שמשפיע על מגזורים מסורתיים כמו בנקאות.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">קריפטו ורגולציה</span>
+            <h2>תיקון חד בביטקוין ושלל אתגרי רגולציה גלובליים</h2>
+            <h3>מה קרה היום</h3>
+            <p>הביטקוין (BTC/USD) תיקן כלפי מטה בחדות, ירד ב-<span class="negative-change">2.77%</span> למחיר של <span class="data-badge">$81,768.01</span>, לאחר שנגע קודם לכן ברמה של <span class="data-badge">$84,600</span>. תיקון זה מיוחס בין היתר לדוחות הרבעוניים של טסלה ולסנטימנט השוק הרחב. במקביל, רשויות פיקוח ברחבי העולם ממשיכות לקדם חקיקה סביב נכסי קריפטו: משרד מבקר המטבע האמריקאי (OCC) סיים את כללי חוק ה-GENIUS לסטייבלקוינס, הרגולטור הפיננסי בבריטניה (FCA) פתח בהתייעצויות להנחיות DeFi, וקרן קרדנו דחקה באיחוד האירופי שלא להרחיב את כללי MiCA לתחומי DeFi וסטייקינג.</p>
+            <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-corrects-below-82k-after-tesla-q3-results-kospi-falls">Cointelegraph</a>
+            <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-etfs-528-million-btc-tops-84k">Cointelegraph</a>
+            <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-price-tags-846k-as-us-stocks-head-higher-on-spacex-q3-earnings-beat">Cointelegraph</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/occ-finalizes-genius-act-rules-stablecoin-issuers-custody">Cointelegraph</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/cardano-foundation-urges-eu-against-expanding-mica-rules-to-defi-and-staking">Cointelegraph</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/uk-fca-consultations-defi-crypto-laws">Cointelegraph</a>
+            <img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M5HJSXMPY51PCJ82B9PXHE2E/hi-market-correction-vs-bear-market-btc-2.jpg" alt="Bitcoin price correction" />
+
+            <h3>למה זה חריג</h3>
+            <p>הנפילה של הביטקוין ביום של נתוני זרימה חיוביים לקרנות סל (ETFs) (מעל <span class="data-badge">$1 מיליארד</span> בשלושה ימים) היא חריגה, ומצביעה על רגישות גבוהה בשוק לנרטיבים רחבים יותר כמו דוחות חברות טכנולוגיה מובילות ואי-ודאות רגולטורית. שלל היוזמות הרגולטוריות ברחבי העולם, מסטייבלקוינס ועד DeFi, מדגיש כי התעשייה נמצאת בצומת דרכים קריטי.</p>
+
+            <h3>הלוגיקה</h3>
+            <p>תנודתיות הביטקוין מושפעת לא רק מזרימת הון ישירה אלא גם מסנטימנט שוק רחב יותר ומאירועים בחברות מפתח (כמו דוחות טסלה). אי-הוודאות הרגולטורית הגוברת, הן בארה"ב והן באירופה ובבריטניה, מכניסה סיכון נוסף לשוק הקריפטו. יוזמות רגולטוריות אלו, למרות שהן שואפות ליציבות, עלולות ליצור חוסר ודאות עבור עסקי קריפטו ולהכתיב את אופי השוק בימים ובשנים הקרובות.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">רגולציה וטכנולוגיה</span>
+            <h2>מטא: קנסות ענק והתמקדות עתידית ב-AI</h2>
+            <h3>מה קרה היום</h3>
+            <p>חברת מטא (Meta) נצטוותה לשלם קנס ענק של <span class="negative-change">$25 מיליארד</span> בגין פרשת קיימברידג' אנליטיקה במקסיקו. קנס זה מגיע בתקופה בה מטא מנסה למצב את עצמה מחדש כמובילה בתחום הבינה המלאכותית, כשהיא מרמזת על הזדמנות גדולה אף יותר מעסקי הפרסום המסורתיים סביב העוזרת האישית "Muse" שהיא מפתחת.</p>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/21/meta-new-mexico-cambridge-analytica-penalty.html">CNBC</a>
+            <a class="btn-source" href="https://www.marketwatch.com/story/metas-stock-rises-as-investors-glimpse-an-opportunity-that-could-dwarf-the-ad-business-89369c6c?mod=mw_rss_topstories">MarketWatch</a>
+            <a class="btn-source" href="https://www.youtube.com/watch?v=cJ51JT2vZHI">Micha.Stocks</a>
+
+            <h3>למה זה חריג</h3>
+            <p>הקנס בסך <span class="data-badge">$25 מיליארד</span> הוא יוצא דופן בגודלו ומדגיש את הסיכונים הרגולטוריים והמשפטיים הגבוהים העומדים בפני ענקיות הטכנולוגיה, במיוחד אלו עם מודלים עסקיים המבוססים על איסוף וניתוח נתונים. הדיווח על הקנס מגיע במקביל לניסיונות של מטא להסיט את תשומת הלב הציבורית והשוקית לחדשנותה בתחום ה-AI.</p>
+
+            <h3>הלוגיקה</h3>
+            <p>בעוד מטא מנסה למצב עצמה כמובילה בתחום ה-AI על מנת להצדיק את השקעותיה העתידיות ולהפיח אמון בשוק, היא עדיין מתמודדת עם ההשלכות הפיננסיות והמוניטין של פרשות עבר. זהו מתח מובנה בין חדשנות עתידית, הכרוכה בהשקעות עתק ובתחרות אדירה, לבין עלויות תפעוליות ורגולטוריות בהווה, שיכולות להשפיע באופן דרמטי על שורת הרווח.</p>
+        </div>
+    </div>
+</body>
+</html>
