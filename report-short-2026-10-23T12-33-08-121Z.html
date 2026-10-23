@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי – 23 באוקטובר 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0a0e17;
+            --text-color: #e0e0e0;
+            --accent-color: #64b5f6; /* Steel Blue */
+            --header-color: #ffffff;
+            --positive-color: rgba(67, 160, 71, 0.2); /* Muted Green with opacity */
+            --positive-text: #4CAF50;
+            --negative-color: rgba(229, 57, 53, 0.2); /* Muted Red with opacity */
+            --negative-text: #F44336;
+            --divider-color: #2c313a;
+            --card-bg: #1a1f26;
+            --opinion-bg: #2a2e34;
+            --border-radius: 6px;
+            --spacing-unit: 16px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: var(--spacing-unit);
+            line-height: 1.6;
+            direction: rtl; /* Right-to-left for Hebrew */
+            text-align: right;
+        }
+
+        h1, h2, h3 {
+            color: var(--header-color);
+            font-weight: 700;
+            margin-top: calc(var(--spacing-unit) * 2);
+            margin-bottom: var(--spacing-unit);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            text-align: center;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: var(--spacing-unit);
+            margin-bottom: calc(var(--spacing-unit) * 1.5);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--divider-color);
+            padding-bottom: calc(var(--spacing-unit) / 2);
+            margin-top: calc(var(--spacing-unit) * 2);
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--header-color);
+            margin-top: calc(var(--spacing-unit) * 1.5);
+            margin-bottom: calc(var(--spacing-unit) / 2);
+        }
+
+        .slide-container {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: calc(var(--spacing-unit) * 1.5);
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-divider {
+            border-bottom: 1px dashed var(--divider-color);
+            margin: calc(var(--spacing-unit) * 2) 0;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            padding: 4px 10px;
+            border-radius: var(--border-radius);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-unit);
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-unit);
+            margin-top: var(--spacing-unit);
+            overflow-x: auto; /* For small screens if grid elements overflow */
+        }
+
+        .market-card {
+            background-color: var(--bg-color);
+            padding: var(--spacing-unit);
+            border-radius: var(--border-radius);
+            text-align: center;
+            border: 1px solid var(--divider-color);
+        }
+
+        .market-card strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--header-color);
+        }
+
+        .market-card .change-value {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .change-positive {
+            color: var(--positive-text);
+            background-color: var(--positive-color);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .change-negative {
+            color: var(--negative-text);
+            background-color: var(--negative-color);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        p {
+            margin-bottom: var(--spacing-unit);
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: #3f51b5; /* Slightly darker accent for button */
+            color: white;
+            padding: 6px 12px;
+            border-radius: var(--border-radius);
+            font-size: 0.85rem;
+            margin-top: var(--spacing-unit);
+            margin-left: 10px; /* Adjust for RTL */
+            margin-right: 0;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-source:hover {
+            background-color: #303f9f;
+            text-decoration: none;
+        }
+
+        .image-container {
+            margin: var(--spacing-unit) 0;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            display: block;
+            margin: 0 auto;
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-bg);
+            border-left: 4px solid var(--accent-color); /* Adjust for RTL */
+            border-right: none;
+            padding: var(--spacing-unit);
+            border-radius: var(--border-radius);
+            margin: var(--spacing-unit) 0;
+            font-style: italic;
+            position: relative;
+        }
+
+        .opinion-card::before {
+            content: "\201C"; /* Unicode for left double quotation mark */
+            font-size: 3rem;
+            color: var(--accent-color);
+            position: absolute;
+            top: 5px;
+            right: var(--spacing-unit); /* Adjust for RTL */
+            opacity: 0.3;
+        }
+
+        .opinion-card .speaker {
+            display: block;
+            font-weight: 600;
+            margin-top: 10px;
+            text-align: left; /* Keep name left-aligned */
+            color: var(--accent-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .market-pulse-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .slide-container {
+                padding: 16px;
+            }
+            h1 {
+                font-size: 1.4rem;
+            }
+            h2 {
+                font-size: 1.2rem;
+            }
+            .opinion-card::before {
+                right: 10px;
+            }
+            .btn-source {
+                margin-left: 5px;
+            }
+            body {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>דוח שוק יומי אסטרטגי</h1>
+    <p style="text-align: center; color: #b0b0b0;">תאריך: 23 באוקטובר 2026</p>
+
+    <div class="slide-container">
+        <div class="badge">תמונת מצב מהירה</div>
+        <h2>Market Pulse</h2>
+        <div class="market-pulse-grid">
+            <div class="market-card">
+                <strong>SPY</strong>
+                <span class="change-value change-negative">-1.18%</span>
+            </div>
+            <div class="market-card">
+                <strong>QQQ</strong>
+                <span class="change-value change-negative">-2.86%</span>
+            </div>
+            <div class="market-card">
+                <strong>SPOT</strong>
+                <span class="change-value change-positive">+11.10%</span>
+            </div>
+            <div class="market-card">
+                <strong>COHR</strong>
+                <span class="change-value change-negative">-12.51%</span>
+            </div>
+            <div class="market-card">
+                <strong>CRWV</strong>
+                <span class="change-value change-negative">-10.06%</span>
+            </div>
+            <div class="market-card">
+                <strong>SPCX</strong>
+                <span class="change-value change-negative">-9.14%</span>
+            </div>
+            <div class="market-card">
+                <strong>AMD</strong>
+                <span class="change-value change-negative">-8.10%</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">מאקרו | טכנולוגיה</div>
+        <h2>פיצול בשוק: מדדי הטכנולוגיה תחת לחץ ומעבר למקלט בטוח</h2>
+        <h3>מה קרה היום</h3>
+        <p>מדד הנסד"ק רשם ירידה חדה של 2.9% אמש, למרות שיותר מ-300 מניות במדד ה-S&P 500 סיימו את יום המסחר בעלייה. מניות טכנולוגיה ו-AI מרכזיות כמו <span class="change-negative">NVIDIA (-4.39%)</span>, <span class="change-negative">AMD (-8.10%)</span>, <span class="change-negative">Amazon (-4.57%)</span>, <span class="change-negative">Alphabet (-3.08%)</span> ו-<span class="change-negative">Tesla (-3.08%)</span> חוו ירידות משמעותיות. במקביל, תשואות האג"ח ל-10 שנים של משרד האוצר האמריקאי רשמו את הירידה היומית הגדולה ביותר מאז משבר הבנקים ב-2023, וקרנות גידור הגבירו את פוזיציות השורט שלהן על מניות אמריקאיות בתגובה להפסדים על עסקאות פופולריות.</p>
+        <p>
+            <a class="btn-source" href="https://www.marketwatch.com/story/the-u-s-stock-market-is-fracturing-into-two-camps-and-its-leaving-investors-with-a-brutal-case-of-whiplash-e8580a99?mod=mw_rss_topstories">MarketWatch</a>
+            <a class="btn-source" href="https://www.marketwatch.com/story/treasury-yields-see-extreme-plunge-why-investors-are-ducking-for-cover-60044c66?mod=mw_rss_topstories">MarketWatch</a>
+            <a class="btn-source" href="https://www.marketwatch.com/story/its-been-a-painful-month-for-hedge-funds-to-turn-it-around-they-are-shorting-u-s-stocks-d36ee922?mod=mw_rss_topstories">MarketWatch</a>
+            <a class="btn-source" href="https://www.youtube.com/watch?v=akiFzi6tFPM">Micha.Stocks (YouTube)</a>
+        </p>
+
+        <h3>למה זה חריג</h3>
+        <p>הפער הבולט בין הירידות במדדי הטכנולוגיה לבין העליות ברוב מניות ה-S&P 500 מצביע על "פיצול" חריג בשוק, המרמז על שינוי עמוק בסנטימנט המשקיעים שבו מניות צמיחה בעלות סיכון גבוה ננטשות לטובת נכסים בטוחים. הירידה החדה בתשואות האג"ח מהווה אינדיקטור נוסף למעבר למקלטי השקעה בטוחים יותר, המשקף חשש גובר מאי-ודאות כלכלית או גלובלית.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>הסנטימנט השלילי בשוק הטכנולוגיה נובע מ"מקרה אכזרי של צליפת שוט" עבור משקיעים, כשהתנודתיות גוברת ואינדקס ה"פחד וחמדנות" של CNN מראה "פחד". המעבר לאג"ח, המהווה מקלט בטוח, הוא תגובה לחשש מהאטה כלכלית, כאשר המשקיעים מזרימים הון מחוץ למניות עם סיכון גבוה. קרנות גידור, בתורן, מנסות להחזיר הפסדים באמצעות הגברת פוזיציות שורט, מה שמחזק את הלחץ כלפי מטה בשוק.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">טכנולוגיה | טלקום</div>
+        <h2>השפעת SpaceX: אתגרי Starlink ותנועה במניות טלקום</h2>
+        <h3>מה קרה היום</h3>
+        <p>מניות חברות הטלקום הגדולות בארה"ב, כגון ורייזון, AT&T ו-T-Mobile, הושפעו לרעה בעקבות דיווחים על דיונים של Starlink (חברת הבת של SpaceX) עם בעלי מגדלי סלולר להרחבת שירותי הסלולר שלה. במקביל, מניות <span class="change-negative">SPCX</span> (Space Exploration Technologies Corp.) ירדו ב-<span class="change-negative">9.14%</span>. דמוקרטים בקונגרס דורשים לחקור את הגבלות ש-Starlink הטילה על שירותיה באוקראינה, מה שמגביר את הביקוש לחלופות. עלו גם שמועות על מיזוג פוטנציאלי בין טסלה ל-SpaceX, כאשר SpaceX רשמה לאחרונה רווח השקעה של 561 מיליון דולר מחברת הבת The Boring Co.</p>
+        <p>
+            <a class="btn-source" href="https://www.marketwatch.com/story/the-mobile-ambitions-of-spacex-see-telecom-stocks-get-hit-again-what-the-latest-developments-mean-9a4159b5?mod=mw_rss_topstories">MarketWatch</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/23/starlink-ukraine-musk-trump-congress.html">CNBC</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/23/spacex-tesla-merger-chatter-takes-center-stage-after-earnings.html">CNBC</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/22/spacex-records-561-million-investment-gain-from-stake-in-boring-co.html">CNBC</a>
+        </p>
+
+        <h3>למה זה חריג</h3>
+        <p>התחרות הגוברת מצד Starlink בתחום הנייד מאיימת באופן ישיר על מודל העסקים של חברות הטלקום המסורתיות, ודוחפת את מניותיהן כלפי מטה. הירידה המשמעותית ב-<span class="change-negative">SPCX</span> משקפת רגישות המשקיעים לחדשות סביב החברה ולרגולציה פוטנציאלית. הדרישה לחקירה בנוגע לשירותי Starlink באוקראינה, יחד עם חיפושים אחר חלופות, מצביעה על אתגרים רגולטוריים ותחרותיים משמעותיים עבור SpaceX.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>תחרות מוגברת מצד שחקנים חדשניים כמו Starlink יכולה להוביל ללחץ על רווחיות ונתחי שוק של חברות הטלקום הוותיקות, מה שמתבטא בירידות במניות. שמועות על מיזוג טסלה-SpaceX עשויות להשפיע על המבנה הארגוני והפיננסי של שתי החברות, בעוד שאתגרים רגולטוריים וביטחוניים עלולים להגביל את יכולתה של Starlink לפעול בחופשיות ולהרחיב את שירותיה, ובכך להשפיע על התחזית העסקית שלה.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">קריפטו | רגולציה</div>
+        <h2>זרימות ETF של ביטקוין והתפתחויות רגולטוריות בקריפטו</h2>
+        <h3>מה קרה היום</h3>
+        <p>קרנות ספוט של ביטקוין בארה"ב ספגו יציאות הון משמעותיות של 635 מיליון דולר ביום חמישי, מה שדחף את חודש אוקטובר לסך יציאות נטו של 175 מיליון דולר. במקביל, שוויץ צפויה להשיק את ה-ETF הראשון לביטקוין ספוט למשקיעים קמעונאיים בנובמבר, ובורסת Bybit הבטיחה רישיון מסחר ספוט מלא בדובאי. HSBC השיק stablecoin בדולר הונג קונגי לתשלומים קמעונאיים, ומלזיה ותאילנד מצטרפות ליוזמת Stablecoin חוצת גבולות של סינגפור. פלטפורמת Cysic ספגה מתקפת סייבר שבה נגנבו 744,000 דולר ב-ETH וב-BNB, שהועברו ל-Tornado Cash, ואירלנד קנסה את Coinbase ב-3.6 מיליון דולר על ליקויי פיקוח והגנה על לקוחות.</p>
+        <p>
+            <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-etfs-erase-october-gains-outflow">Cointelegraph</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/switzerland-approves-first-spot-bitcoin-etf-for-retail-investors">Cointelegraph</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/bybit-first-full-dubai-spot-trading-license">Cointelegraph</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/hsbc-launches-redcoin-hong-kong-dollar-stablecoin-payme">Cointelegraph</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/cysic-exploiter-eth-tornado-cash-white-hat-offer">Cointelegraph</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/ireland-central-bank-coinbase-oversight-safeguard-failure">Cointelegraph</a>
+        </p>
+        <div class="image-container">
+            <img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M5M0F2CE9T8P48F2FE5V5FKF/bybit-uae-license-dubai.jpg" alt="Bybit secures full Dubai license">
+        </div>
+
+        <h3>למה זה חריג</h3>
+        <p>יציאות ההון הגדולות מ-ETF של ביטקוין בארה"ב, בניגוד לזרימות חיוביות קודמות, מצביעות על תנודתיות גבוהה ושינוי בתפיסת הסיכון בקרב המשקיעים המוסדיים. במקביל, הקנס על Coinbase ועיכוב בפיתוח Ethereum בשל סיכוני אבטחה מדגישים את אתגרי הרגולציה והאבטחה הקיימים. עם זאת, התפתחויות רגולטוריות חיוביות בשוויץ, דובאי והשקת stablecoins על ידי בנקים מסורתיים מעידות על התבגרות גלובלית ואימוץ הולך וגובר של נכסי קריפטו על ידי גופים ממוסדים.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>יציאות ההון מ-ETF בביטקוין משקפות ככל הנראה התנהגות של "עוקבי מגמה" ולא של "יוצרי מגמה", המגיבים לתנודות מחירים במקום לחזות אותן. הרגולציה ההדוקה והקנסות, כמו במקרה של Coinbase, נועדו לחזק את אמון המשקיעים ולהגן עליהם, למרות שהם עשויים להאט חדשנות בטווח הקצר. התרחבות stablecoins מפוקחים ויוזמות אזוריות חוצות גבולות מסמנות לגיטימציה גוברת לנכסים דיגיטליים, פותחות שווקים חדשים ומטשטשות את הגבולות בין פיננסים מסורתיים לתחום הקריפטו.</p>
+    </div>
+
+</body>
+</html>
+```
