@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק הון יומי - 23 באוקטובר 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117; /* Dark charcoal/navy */
+            color: #e0e0e0; /* Light gray for main text */
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            direction: rtl; /* Right-to-left for Hebrew */
+            text-align: right;
+        }
+
+        .slide-container {
+            max-width: 960px;
+            margin: 0px auto 32px auto; /* 32px bottom margin for separation */
+            padding: 24px;
+            background-color: #1a1e27; /* Slightly lighter dark background for content */
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(40, 50, 60, 0.5); /* Subtle border */
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #f0f0f0; /* White for main title */
+            text-align: center;
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #333; /* Darker line */
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #d1d9e6; /* Steel blue for main topic headings */
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(60, 70, 80, 0.6);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #a7b7c9; /* Lighter steel blue for sub-headings */
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 12px;
+            font-weight: 400;
+        }
+
+        .category-badge {
+            display: inline-block;
+            background-color: #3b4252; /* Darker gray for badge */
+            color: #e0e0e0;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            border: 1px solid #5a6477;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .pulse-card {
+            background-color: #2a2f3b; /* Card background */
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            border: 1px solid #4a5468;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .pulse-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .pulse-card .symbol {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #f0f0f0;
+            margin-bottom: 8px;
+        }
+
+        .pulse-card .change {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .change.positive {
+            color: #4CAF50; /* Softer green */
+        }
+
+        .change.negative {
+            color: #F44336; /* Softer red */
+        }
+
+        .highlight-card {
+            background-color: #2d3240; /* Slightly different dark for highlight */
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            border-left: 4px solid #b3a362; /* Gold accent */
+            display: inline-block; /* To make it wrap content */
+            margin-left: 5px; /* Spacing from surrounding text */
+            margin-right: 5px;
+            vertical-align: middle; /* Align with text */
+        }
+
+        .opinion-card {
+            background-color: #252a34; /* Darker background for opinions */
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            border-right: 4px solid #7cb9e8; /* Steel blue accent */
+            position: relative;
+            font-style: italic;
+            padding-right: 45px;
+        }
+
+        .opinion-card::before {
+            content: "\201C"; /* Left double quotation mark */
+            font-family: 'Times New Roman', serif; /* Classic font for quote icon */
+            font-size: 3em;
+            color: rgba(124, 185, 232, 0.5); /* Semi-transparent blue */
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            line-height: 1;
+        }
+
+        .source-link {
+            font-size: 0.9em;
+            color: #b3a362; /* Gold for links */
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 8px;
+            border-bottom: 1px dotted #b3a362;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .source-link:hover {
+            color: #e0d090;
+            border-color: #e0d090;
+        }
+
+        .btn-source {
+            background-color: #3b4252;
+            color: #e0e0e0;
+            padding: 6px 12px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 10px;
+            margin-left: 5px; /* Spacing between buttons */
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border: 1px solid #5a6477;
+        }
+
+        .btn-source:hover {
+            background-color: #5a6477;
+            color: #fff;
+        }
+
+        .section-divider {
+            height: 1px;
+            background-color: rgba(60, 70, 80, 0.6);
+            margin: 40px 0;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            table-layout: fixed;
+            overflow-x: auto;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #2a2f3b;
+            border-radius: 6px;
+            border: 1px solid #4a5468;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: right;
+            border-bottom: 1px solid #3a414f;
+        }
+
+        th {
+            background-color: #3b4252;
+            color: #f0f0f0;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        @media(max-width:768px){
+            .market-pulse-grid{grid-template-columns:1fr 1fr;}
+            .slide-container{padding:16px;}
+            h1{font-size:1.4rem;}
+            h2{font-size:1.2rem;}
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <h1>דוח שוק יומי אסטרטגי - 23 באוקטובר 2026</h1>
+        <p>סקירה ממוקדת על האירועים הבולטים ביותר בשוק ההון היום, עם דגש על תנודות חריגות, חדשות משמעותיות ותובנות אסטרטגיות.</p>
+    </div>
+
+    <div class="slide-container">
+        <span class="category-badge">סקירה מהירה</span>
+        <h2>תמונת מצב מהירה (Market Pulse)</h2>
+        <p>להלן סקירה מהירה של מדדי המפתח ונכסים בעלי תנודה חריגה ביום המסחר האחרון (22.10.26 עבור מניות/ETFs, 23.10.26 עבור קריפטו):</p>
+        <div class="market-pulse-grid">
+            <div class="pulse-card">
+                <div class="symbol">SPY (S&P 500 ETF)</div>
+                <div class="change negative">-1.18%</div>
+            </div>
+            <div class="pulse-card">
+                <div class="symbol">QQQ (Nasdaq 100 ETF)</div>
+                <div class="change negative">-2.86%</div>
+            </div>
+            <div class="pulse-card">
+                <div class="symbol">IWM (Russell 2000 ETF)</div>
+                <div class="change positive">+0.07%</div>
+            </div>
+            <div class="pulse-card">
+                <div class="symbol">SPOT (Spotify)</div>
+                <div class="change positive">+11.10%</div>
+            </div>
+            <div class="pulse-card">
+                <div class="symbol">COHR (Coherent Corp.)</div>
+                <div class="change negative">-12.51%</div>
+            </div>
+            <div class="pulse-card">
+                <div class="symbol">CRWV (CoreWeave)</div>
+                <div class="change negative">-10.06%</div>
+            </div>
+            <div class="pulse-card">
+                <div class="symbol">SPCX (SpaceX)</div>
+                <div class="change negative">-9.14%</div>
+            </div>
+            <div class="pulse-card">
+                <div class="symbol">IREN (IREN Ltd.)</div>
+                <div class="change negative">-8.37%</div>
+            </div>
+            <div class="pulse-card">
+                <div class="symbol">AMD (Advanced Micro Devices)</div>
+                <div class="change negative">-8.10%</div>
+            </div>
+            <div class="pulse-card">
+                <div class="symbol">MU (Micron Technology)</div>
+                <div class="change negative">-6.26%</div>
+            </div>
+            <div class="pulse-card">
+                <div class="symbol">NNE (Nano Nuclear Energy)</div>
+                <div class="change negative">-6.00%</div>
+            </div>
+            <div class="pulse-card">
+                <div class="symbol">HOOD (Robinhood Markets)</div>
+                <div class="change negative">-5.25%</div>
+            </div>
+             <div class="pulse-card">
+                <div class="symbol">BTC/USD (Bitcoin)</div>
+                <div class="change positive">+0.26%</div>
+            </div>
+            <div class="pulse-card">
+                <div class="symbol">ETH/USD (Ethereum)</div>
+                <div class="change positive">+0.37%</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="category-badge">מאקרו ושוקי מניות</span>
+        <h2>השוק מתפצל: נפילת הנאסד"ק מול עליית רוב המניות</h2>
+        <h3>מה קרה היום</h3>
+        <p>היום, 23 באוקטובר 2026, הנאסד"ק נסגר בירידה חדה של <span class="change negative">2.9%</span>. עם זאת, דיווחים מצביעים על כך שרוב המניות במדד S&P 500 דווקא רשמו עליות, תופעה שהתרחשה שוב בימים האחרונים.</p>
+        <p>התשואות על אגרות החוב של משרד האוצר האמריקאי רשמו את הירידה הגדולה ביותר מאז משבר הבנקים של 2023, כאשר התשואה ל-10 שנים הגיעה לשפל משמעותי, מה שמעיד על חיפוש נכסי מקלט בטוחים.</p>
+        <p>קרנות גידור, בתגובה להפסדים מ"עסקאות פופולריות" (popular trades), החלו לבצע שורטים אגרסיביים על מניות אמריקאיות במטרה להחזיר ביצועים.</p>
+        <p>
+            <a class="btn-source" href="https://www.youtube.com/watch?v=akiFzi6tFPM">Micha.Stocks</a>
+            <a class="btn-source" href="https://www.marketwatch.com/story/the-stock-market-is-splitting-in-two-is-that-signaling-trouble-ahead-or-just-a-new-set-of-winners-f51aaeab?mod=mw_rss_topstories">MarketWatch</a>
+            <a class="btn-source" href="https://www.marketwatch.com/story/the-u-s-stock-market-is-fracturing-into-two-camps-and-its-leaving-investors-with-a-brutal-case-of-whiplash-e8580a99?mod=mw_rss_topstories">MarketWatch</a>
+            <a class="btn-source" href="https://www.marketwatch.com/story/its-been-a-painful-month-for-hedge-funds-to-turn-it-around-they-are-shorting-u-s-stocks-d36ee922?mod=mw_rss_topstories">MarketWatch</a>
+            <a class="btn-source" href="https://www.marketwatch.com/story/treasury-yields-see-extreme-plunge-why-investors-are-ducking-for-cover-60044c66?mod=mw_rss_topstories">MarketWatch</a>
+        </p>
+        
+        <h3>למה זה חריג</h3>
+        <p>התופעה של ירידה חדה במדדים הראשיים (כמו הנאסד"ק, שירד ב-<span class="change negative">2.86%</span> כפי שמשתקף ב-QQQ) במקביל לעלייה ברוב המניות היא אינדיקטור ל"פיצול רוחב שוק" (market breadth divergence). מצב זה מצביע על כך שהירידות במדד מונעות על ידי מספר מצומצם של מניות כבדות משקל, בעוד הבריאות הכוללת של השוק (מספר המניות העולות לעומת היורדות) נשארת חיובית, או לפחות פחות דרמטית.</p>
+        <p>נפילת תשואות האג"ח בסדר גודל כזה, מאז משבר 2023, אינה אירוע שגרתי ומצביעה על חשש מוגבר וחיפוש הגנה מצד המשקיעים.</p>
+        
+        <h3>הלוגיקה</h3>
+        <p>הפיצול בשוק מעיד על כך שהמשקיעים נוטשים את מניות ה"מגה-קאפ" ששלטו בביצועי השוק בתקופה האחרונה, אולי בשל חששות מהערכות שווי או שינויים בסנטימנט כלפי מגזרי צמיחה. במקביל, ירידת התשואות באג"ח ממשלתיות משקפת תנועה ל"מקלט בטוח" (flight to safety), מה שמעיד על חשש מהסיכון הכלכלי או חשש מהמשך עליית ריבית. קיצור טווח הזמן של ההתחייבויות באג"ח ממשלתיות לטובת אג"ח ארוכות יותר (כמו מה שמופיע בחדשות) יכול להעיד על ציפייה להורדת ריבית בעתיד. דרישות הקרנות גידור לפצות על הפסדים על ידי שורט אגרסיבי מצידה מראה על רמת אי-וודאות גבוהה ותגובת הד למצב.</p>
+        <div class="opinion-card">
+            "It’s a take-back trade, Not an all-out fear of recession type of situation."
+            <br />
+            &mdash; PGIM’s Tipp (<a class="btn-source" href="https://www.marketwatch.com/story/treasury-yields-see-extreme-plunge-why-investors-are-ducking-for-cover-60044c66?mod=mw_rss_topstories">MarketWatch</a>)
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="category-badge">טכנולוגיה ו-AI</span>
+        <h2>עדכוני AI וביצועי מניות שבבים</h2>
+        <h3>מה קרה היום</h3>
+        <p>מניית SK Hynix קפצה ביותר מ-<span class="change positive">4%</span> לאחר שמוקדם יותר רשמה ירידות. זאת, בעקבות החלטת יצרנית השבבים לבטל את תוכניות ההנפקה (IPO) של חברת הבת Solidigm בארה"ב. הידיעה משפיעה על סנטימנט השוק כלפי חברות זיכרון נוספות כמו <span class="symbol">MU</span> (מיקרון), שירדה ב-<span class="change negative">6.26%</span>.</p>
+        <p>מניית <span class="symbol">AMD</span> (Advanced Micro Devices), חברה מובילה בתחום השבבים ו-AI, רשמה ירידה חדה של <span class="change negative">8.10%</span> ביום המסחר האחרון. גם <span class="symbol">NVDA</span> (NVIDIA) ירדה ב-<span class="change negative">4.40%</span>. ירידות אלו מתרחשות למרות התפתחויות חיוביות סביב ועידת GTC של Nvidia בברלין ופעילותו של מנכ"ל Nvidia, ג'נסן הואנג, בקזחסטן.</p>
+        <p><span class="highlight-card">OpenAI</span> מתקרבת לסיום סבב גיוס מימון חדש בהובלת משקיעים מאיחוד האמירויות, המשקף שווי חברה של עד <span class="change positive">$1.25 טריליון דולר</span>, לקראת הנפקה עתידית ב-2027.</p>
+        <p><span class="highlight-card">אטסי (Etsy)</span> אסרה על שימוש במתכונים ודוגמאות שנוצרו על ידי AI בפלטפורמתה, וקבעה כללים ברורים יותר בנוגע לשימוש ב-AI ללא מעורבות אנושית. דוגמה לכך היא מניית <span class="symbol">CRWV</span> (CoreWeave), שירדה ב-<span class="change negative">10.06%</span>.</p>
+        <p><span class="highlight-card">מטא (Meta)</span> צנחה בכמעט <span class="change negative">7%</span> לאחר שדיווחה על תזרים מזומנים שלילי כתוצאה מהשקעות אדירות בתחום ה-AI. זה מעיד על ההשפעה של ההשקעות העצומות ב-AI על שולי הרווח של חברות הטכנולוגיה הגדולות.</p>
+        <p>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/23/sk-hynix-solidigm-ipo-.html">CNBC (SK Hynix)</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/23/jensen-huang-gtc-robot-ducks-neocloud-distress.html">CNBC (Nvidia GTC)</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/23/nvidia-huang-investment-kazakhstan-.html">CNBC (Nvidia Kazakhstan)</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/22/jensen-huang-nvidia-memory-selloff-shortage.html">CNBC (Jensen Huang memory)</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/22/openai-funding-round-uae-investors.html">CNBC (OpenAI Funding)</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/22/etsy-bans-ai-generated-recipes-patterns-from-its-online-marketplace.html">CNBC (Etsy AI Ban)</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/22/meta-stock-q3-earnings-free-cash-flow.html">CNBC (Meta Earnings)</a>
+        </p>
+
+        <h3>למה זה חריג</h3>
+        <p>הירידות במניות שבבים כמו AMD ו-NVIDIA, למרות המשך ההייפ סביב AI וחדשות חיוביות מחברות אלו, מצביעות על לקיחת רווחים או חששות לגבי הערכות שווי גבוהות. בנוסף, ביטול IPO של Solidigm משפיע באופן ישיר על חברות זיכרון. ההתנהגות של מניות אלו מנוגדת לתחזיות אופטימיות של מנהלים כמו ג'נסן הואנג לגבי הביקוש לזיכרון ב-AI. מנגד, הערכת השווי של OpenAI בגובה של 1.25 טריליון דולר היא אדירה ומעידה על האמונה העצומה בפוטנציאל של AI, למרות חשיפת פרצות אבטחה במערכות הניטור שלה.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>שוק ה-AI חווה ככל הנראה שינוי פרדיגמה, בו לאחר ריצה מטורפת בשנים האחרונות, כעת ישנו מימוש רווחים בקרב מניות ה"מגף-קאפ" שמובילות את המהפכה (כפי שנצפה בתנודות של AMD, NVDA, GOOG, AMZN). החברות הקטנות יותר, או אלו שנחשבות "חדשניות" אך ללא הוכחת רווחיות (כמו CRWV, IREN), חוטפות מכה חזקה יותר כחלק מתהליך הרציונליזציה. חברות כמו Meta מראות שההשקעות ב-AI הן כבדות ומעיקות על תזרים המזומנים בטווח הקצר. ההחלטה של SK Hynix לבטל את ה-IPO של Solidigm עשויה לשקף תנאי שוק קשים או הערכת שווי לא מספקת בתחום הזיכרון, אך ההשפעה המיידית הייתה חיובית על מניית האם. פעולות כמו זו של אטסי מדגישות את הצורך הגובר לרגולציה ולהגדרת גבולות ברורים לשימוש ב-AI בפלטפורמות מסחריות, מה שיכול להשפיע על מודלים עסקיים רבים.</p>
+        <div class="opinion-card">
+            "Nvidia's Jensen Huang told CNBC that a surplus of memory supply is unlikely by 2029, as memory stocks have taken a beating in the past week."
+            <br />
+            &mdash; Jensen Huang, CEO Nvidia (<a class="btn-source" href="https://www.cnbc.com/2026/10/22/jensen-huang-nvidia-memory-selloff-shortage.html">CNBC</a>)
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="category-badge">אילון מאסק ותאגידיו</span>
+        <h2>חדשות סביב SpaceX, טסלה וסטארלינק</h2>
+        <h3>מה קרה היום</h3>
+        <p>מניית <span class="symbol">SPCX</span> (SpaceX) רשמה ירידה חדה של <span class="change negative">9.14%</span> ביום המסחר האחרון, בצל דיווחים על שילוב אפשרי עם טסלה, לחצים פוליטיים סביב סטארלינק ושינויים בתחום התקשורת.</p>
+        <p>שמועות על מיזוג פוטנציאלי בין <span class="symbol">טסלה (TSLA)</span> ו-<span class="symbol">SpaceX</span> תופסות תאוצה, למרות הצורך במו"מ ארוך ואישורים רגולטוריים. מניית טסלה ירדה ב-<span class="change negative">3.08%</span>.</p>
+        <p>קבוצת מחוקקים דמוקרטים מעמק הסיליקון דורשת חקירה של הגבלות סטארלינק באוקראינה, מה שמעלה את הסיכונים הרגולטוריים והפוליטיים עבור SpaceX.</p>
+        <p>בחדשות פיננסיות, SpaceX רשמה רווח השקעה של <span class="change positive">$561 מיליון דולר</span> מהחזקתה בחברת הבת של אילון מאסק, Boring Co., מה שסייע להגדיל את ההכנסה הנקייה שלה ברבעון השלישי.</p>
+        <p>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/23/spacex-tesla-merger-chatter-takes-center-stage-after-earnings.html">CNBC (SpaceX-Tesla Merger)</a>
+            <a class="btn-source" href="https://www.marketwatch.com/story/the-mobile-ambitions-of-spacex-see-telecom-stocks-get-hit-again-what-the-latest-developments-mean-9a4159b5?mod=mw_rss_topstories">MarketWatch (SpaceX Telecom)</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/23/starlink-ukraine-musk-trump-congress.html">CNBC (Starlink Ukraine)</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/22/spacex-records-561-million-investment-gain-from-stake-in-boring-co.html">CNBC (SpaceX Boring Co.)</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/22/elon-musk-ukraine-starlink-alternatives.html">CNBC (Starlink Alternatives)</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/22/elon-musk-midterm-election-spacex-tesla.html">CNBC (Musk Election)</a>
+        </p>
+
+        <h3>למה זה חריג</h3>
+        <p>השמועות על מיזוג בין טסלה ל-SpaceX, שתי ענקיות בניהולו של אילון מאסק, הן בעלות פוטנציאל לשנות את מפת השוק באופן דרמטי. למרות שטסלה היא חברה ציבורית ו-SpaceX פרטית, שילוב כזה יצור ישות טכנולוגית בעלת השפעה עצומה בתחומי הרכב, חלל, תקשורת ו-AI. הלחץ הפוליטי סביב סטארלינק מציף סיכונים גיאופוליטיים שעלולים להשפיע על מודל ההכנסות של החברה ועל תדמיתה. הירידה של SPCX (SpaceX) משקפת חוסר ודאות בשוק לגבי עתיד החברה.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>מיזוג בין טסלה ל-SpaceX, אם יתממש, יוכל לאפשר סינרגיות בתחומי AI, אנרגיה (סוללות) וייצור מתקדם, אך גם יציב אתגרים רגולטוריים ופיננסיים משמעותיים. הבעיות עם סטארלינק באוקראינה והביקוש לחלופות מדגישים את חשיבותן של רשתות תקשורת לוויניות ופוטנציאל התחרות העתידי, כפי שהדבר משפיע גם על חברות תקשורת מסורתיות כמו ורייזון ו-AT&T. הרווח מ-Boring Co. מראה את הפיזור והאסטרטגיה של מאסק לייצר ערך ממגוון רחב של מיזמים טכנולוגיים, אך שוק הנגזרות סביב SPCX מגיב כנראה להתרחשויות המורכבות בשילוב.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="category-badge">קריפטו ובלוקצ'יין</span>
+        <h2>התפתחות רגולציה, אבטחה ומוצרי קריפטו חדשים</h2>
+        <h3>מה קרה היום</h3>
+        <p>שוק ה-ETF של ביטקוין בארה"ב חווה יציאות הון משמעותיות של <span class="change negative">$635 מיליון דולר</span> ביום חמישי, מה שמחק את רווחי אוקטובר והביא לסה"כ יציאות נטו של <span class="change negative">$175 מיליון דולר</span> לחודש זה.</p>
+        <p>מחיר הביטקוין (BTC/USD) נסחר סביב <span class="symbol">$81,628</span> עם עלייה קלה של <span class="change positive">0.26%</span>, בעוד אתריום (ETH/USD) נסחר סביב <span class="symbol">$2,397.99</span> עם עלייה של <span class="change positive">0.37%</span>.</p>
+        <p><span class="highlight-card">HSBC</span> השיק מטבע יציב בדולר הונג קונגי (RedCoin) עבור תשלומי קמעונאות, עם תוכניות להרחבה למנויי השקעות ממוינים ולשימושים מוסדיים.</p>
+        <p><span class="highlight-card">שוויץ</span> צפויה להשיק את תעודת הסל (ETF) הראשונה לביטקוין עבור משקיעים קמעונאיים בנובמבר, כאשר ההצעה הציבורית תהיה מוגבלת לשוויץ בלבד.</p>
+        <p><span class="highlight-card">בייביט (Bybit)</span> קיבלה את רישיון דובאי המלא הראשון לשירותי מסחר ספוט, מה שמהווה צעד משמעותי להרחבת פעילותה המוסדרת.</p>
+        <p>מטבע <span class="symbol">אתריום</span> דחה את השקת ה-testnet "Glamsterdam Hoodi" בשל חששות אבטחה שזוהו על ידי ChainSecurity, שזיהתה 13 דוגמאות לחוזים חכמים שעלולים להיות מושפעים.</p>
+        <p>
+            <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-etfs-erase-october-gains-outflow">Cointelegraph (Bitcoin ETF Outflows)</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/hsbc-launches-redcoin-hong-kong-dollar-stablecoin-payme">Cointelegraph (HSBC Stablecoin)</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/switzerland-approves-first-spot-bitcoin-etf-for-retail-investors">Cointelegraph (Switzerland ETF)</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/bybit-first-full-dubai-spot-trading-license">Cointelegraph (Bybit Dubai)</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/ethereum-delays-glamsterdam-testnet-fork-gas-security-risks">Cointelegraph (Ethereum Delay)</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/cysic-exploiter-eth-tornado-cash-white-hat-offer">Cointelegraph (Cysic Hack)</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/bitcoin-core-changes-security-policy-as-ai-makes-bugs-easier-to-find">Cointelegraph (Bitcoin Core AI)</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/was-crypto-self-custody-ever-designed-for-beginners">Cointelegraph (Self-Custody Debate)</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/ireland-central-bank-coinbase-oversight-safeguard-failure">Cointelegraph (Coinbase Fine)</a>
+            <a class="btn-source" href="https://cointelegraph.com/markets/cryptoquant-rising-bitcoin-hashrate-indirect-bullish-signal">Cointelegraph (CryptoQuant Hashrate)</a>
+        </p>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M5KQ8H85QR2DC93BFCNF4N1X/hi-what-is-a-bitcoin-node-a-beginners-guide-on-blockchain-nodes-etf3-2.jpg" alt="Bitcoin ETFs" />
+        <p>פלטפורמת הקריפטו <span class="highlight-card">Coinbase</span> נקנסה ב-<span class="change negative">$3.6 מיליון דולר</span> על ידי הבנק המרכזי של אירלנד בגין כשלים בפיקוח ואבטחה.</p>
+
+        <h3>למה זה חריג</h3>
+        <p>יציאות ההון הגדולות מקרנות סל של ביטקוין (ETFs) הן חריגות ומעידות על סנטימנט שלילי משמעותי בקרב משקיעי המוסדיים או הגדולים, למרות העלייה הקלה בביטקוין עצמו. השקת מטבע יציב על ידי בנק מסורתי כמו HSBC, לצד אימוץ רגולטורי בדובאי ושוויץ (עם השקת ETF קמעונאי לביטקוין), מצביעה על הכרה הולכת וגוברת של המערכת הפיננסית המסורתית בנכסי קריפטו ובטכנולוגיית בלוקצ'יין, למרות הקנסות הרגולטוריים כמו זה של Coinbase. דחיית ה-testnet של אתריום מדגישה את חשיבות האבטחה והאתגרים הטכניים בפיתוח בלוקצ'יין.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>יציאות הון מ-Bitcoin ETFs עשויות לשקף מימוש רווחים לאחר תקופה של עליות או שינוי בסנטימנט המאקרו-כלכלי, כולל התגובה לדברי טראמפ על איראן. הצעדים מצד HSBC ורשויות הרגולציה בדובאי ובשוויץ, יחד עם יוזמות כמו BLOOM בדרום מזרח אסיה, מצביעים על מגמה ברורה של שילוב קריפטו במערכת הפיננסית הקיימת, עם דגש על מטבעות יציבים ופתרונות לתשלומים חוצי גבולות. זהו ניסיון להגביר את היעילות ולהוריד עלויות. מצד שני, קנסות כמו אלו של Coinbase מבהירים את הצורך בציות קפדני לרגולציה. אתגרי אבטחה, כמו ב-Ethereum testnet ובאקספלויט של Cysic, מזכירים את הסיכונים המובנים בטכנולוגיית הבלוקצ'יין המתפתחת, כשגם Bitcoin Core משנה את מדיניות האבטחה שלה בעקבות האיום הגובר מצד כלי AI במציאת באגים. עליית ה-hashrate של ביטקוין, למרות תנאי השוק, נתפסת כסימן שורי עקיף ממוסדות.</p>
+        <div class="opinion-card">
+            "Public miners backed by major TradFi players are coming back online, boosting Bitcoin’s hashrate, a positive sign for BTC’s fundamentals, according to CryptoQuant’s Ki Young Ju."
+            <br />
+            &mdash; Ki Young Ju, CEO CryptoQuant (<a class="btn-source" href="https://cointelegraph.com/markets/cryptoquant-rising-bitcoin-hashrate-indirect-bullish-signal">Cointelegraph</a>)
+        </div>
+        <div class="opinion-card">
+            "Recent hardware wallet security incidents have renewed debate over whether self-custody is suitable for beginners, as multisig and seedless designs carry their own risks."
+            <br />
+            &mdash; Helen Partz (<a class="btn-source" href="https://cointelegraph.com/news/self-custody-crypto-beginners-mainstream-adoption">Cointelegraph</a>)
+        </div>
+    </div>
+</body>
+</html>
