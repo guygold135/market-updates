@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק הון יומי: 26 באוקטובר 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --text-color: #e0e0e0;
+            --header-color: #A0D2EB; /* Steel blue / light cyan */
+            --accent-color: #89CFF0; /* Lighter blue for links/highlights */
+            --border-color: #2e3547;
+            --positive-bg: rgba(40, 167, 69, 0.2);
+            --positive-text: #28a745;
+            --negative-bg: rgba(220, 53, 69, 0.2);
+            --negative-text: #dc3545;
+            --highlight-bg: #1a202c;
+            --opinion-bg: #1f2533;
+            --opinion-border: #444a5b;
+            --badge-bg: #1f2533;
+            --badge-text: #A0D2EB;
+            --font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .main-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h1 {
+            color: var(--header-color);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: var(--header-color);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h3 {
+            color: var(--accent-color);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .slide-container {
+            background-color: #0a0e17;
+            padding: 32px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        .section-divider {
+            border-top: 1px dashed var(--border-color);
+            margin: 40px 0;
+            opacity: 0.5;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--badge-bg);
+            color: var(--badge-text);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            border: 1px solid var(--badge-text);
+            opacity: 0.8;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .market-pulse-item {
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .market-pulse-item strong {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--accent-color);
+        }
+
+        .market-pulse-item .change-value {
+            font-size: 1.05rem;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-top: 8px;
+        }
+
+        .positive {
+            background-color: var(--positive-bg);
+            color: var(--positive-text);
+        }
+
+        .negative {
+            background-color: var(--negative-bg);
+            color: var(--negative-text);
+        }
+
+        .flat {
+            background-color: rgba(128, 128, 128, 0.1);
+            color: #ccc;
+        }
+
+        .highlight-card {
+            background-color: var(--highlight-bg);
+            border-radius: 6px;
+            padding: 15px 20px;
+            margin-top: 15px;
+            margin-bottom: 20px;
+            border-right: 4px solid var(--accent-color);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .highlight-card::before {
+            content: '📊'; /* Data icon */
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-bg);
+            border-radius: 6px;
+            padding: 15px 20px;
+            margin-top: 15px;
+            margin-bottom: 20px;
+            border-right: 4px solid var(--header-color);
+            font-style: italic;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .opinion-card::before {
+            content: '💬'; /* Quote icon */
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+        .opinion-card strong {
+            color: var(--header-color);
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--border-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+        }
+
+        .btn-source:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            table-layout: fixed;
+            overflow-x: auto;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: var(--highlight-bg);
+            border-radius: 6px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: right;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--opinion-bg);
+            color: var(--header-color);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        @media(max-width:768px){
+            .main-container {
+                padding: 16px;
+            }
+            .market-pulse-grid{
+                grid-template-columns:1fr 1fr;
+            }
+            .slide-container{
+                padding:16px;
+            }
+            h1{
+                font-size:1.4rem;
+            }
+            h2{
+                font-size:1.2rem;
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            .badge {
+                font-size: 0.75rem;
+            }
+            .market-pulse-item strong {
+                font-size: 0.95rem;
+            }
+            .market-pulse-item .change-value {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <header>
+            <h1>דוח שוק הון יומי</h1>
+            <p>26 באוקטובר 2026</p>
+        </header>
+
+        <div class="slide-container">
+            <span class="badge">תמונת מצב מהירה</span>
+            <h2>דופק השוק היומי</h2>
+            <div class="market-pulse-grid">
+                <div class="market-pulse-item">
+                    <strong>SPY (S&P 500)</strong>
+                    <span class="change-value negative">-0.52%</span>
+                    <span class="change-value negative">759.97</span>
+                </div>
+                <div class="market-pulse-item">
+                    <strong>QQQ (Nasdaq 100)</strong>
+                    <span class="change-value flat">-0.01%</span>
+                    <span class="change-value flat">704.40</span>
+                </div>
+                <div class="market-pulse-item">
+                    <strong>VIX</strong>
+                    <span class="change-value flat">נתונים אינם זמינים</span>
+                </div>
+                <div class="market-pulse-item">
+                    <strong>BTC/USD</strong>
+                    <span class="change-value positive">+0.41%</span>
+                    <span class="change-value positive">80,485.16</span>
+                </div>
+                <div class="market-pulse-item">
+                    <strong>MU</strong>
+                    <span class="change-value positive">+2.46%</span>
+                    <span class="change-value positive">877.55</span>
+                </div>
+                <div class="market-pulse-item">
+                    <strong>NNE</strong>
+                    <span class="change-value negative">-2.95%</span>
+                    <span class="change-value negative">12.16</span>
+                </div>
+                <div class="market-pulse-item">
+                    <strong>CRWV</strong>
+                    <span class="change-value negative">-2.45%</span>
+                    <span class="change-value negative">54.24</span>
+                </div>
+                <div class="market-pulse-item">
+                    <strong>OKLO</strong>
+                    <span class="change-value negative">-2.44%</span>
+                    <span class="change-value negative">26.35</span>
+                </div>
+                <div class="market-pulse-item">
+                    <strong>IREN</strong>
+                    <span class="change-value negative">-2.37%</span>
+                    <span class="change-value negative">24.91</span>
+                </div>
+                <div class="market-pulse-item">
+                    <strong>SPCX</strong>
+                    <span class="change-value positive">+1.89%</span>
+                    <span class="change-value positive">147.49</span>
+                </div>
+                <div class="market-pulse-item">
+                    <strong>AMD</strong>
+                    <span class="change-value positive">+1.74%</span>
+                    <span class="change-value positive">516.79</span>
+                </div>
+                <div class="market-pulse-item">
+                    <strong>UNH</strong>
+                    <span class="change-value negative">-1.62%</span>
+                    <span class="change-value negative">418.09</span>
+                </div>
+                <div class="market-pulse-item">
+                    <strong>HOOD</strong>
+                    <span class="change-value negative">-1.56%</span>
+                    <span class="change-value negative">95.07</span>
+                </div>
+                <div class="market-pulse-item">
+                    <strong>NOW</strong>
+                    <span class="change-value positive">+1.25%</span>
+                    <span class="change-value positive">158.96</span>
+                </div>
+                <div class="market-pulse-item">
+                    <strong>GOOG</strong>
+                    <span class="change-value negative">-1.08%</span>
+                    <span class="change-value negative">317.28</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">AI ושבבים</span>
+            <h2>השקעות ענק ב-AI ואזהרות מפני התפוצצות בועת הניאוקלאוד</h2>
+
+            <h3>מה קרה היום?</h3>
+            <p>חברות טכנולוגיה ענקיות מבצעות מהלכים אסטרטגיים בתחום הבינה המלאכותית: <a class="btn-source" href="https://www.cnbc.com/2026/10/26/meta-stock-offering-ai.html">מטא (Meta) הודיעה על תוכנית גיוס הון של 95 מיליארד דולר</a>, שמטרתה לממן הרחבת תשתיות AI ופיתוח "בינת-על". במסגרת זו, <a class="btn-source" href="https://www.marketwatch.com/story/nvidia-amd-and-broadcom-could-buy-meta-shares-as-part-of-35-billion-stock-offering-d816fec2?mod=mw_rss_topstories">Nvidia, AMD וברודקום (Broadcom) בוחנות רכישת מניות בשווי של עד 5 מיליארד דולר</a> מתוך ההצעה.</p>
+            <p>במקביל, <a class="btn-source" href="https://www.cnbc.com/2026/10/26/spacex-closes-40-billion-debt-deal-for-ai-chips-elon-musk-.html">אילון מאסק הודיע ש-SpaceX סגרה עסקה של 40 מיליארד דולר למימון חובות לרכישת כרטיסים גרפיים (GPUs)</a>, מה שמחזק את ההשקעה האדירה בתשתיות חומרת AI. לעומת זאת, <a class="btn-source" href="https://www.cnbc.com/2026/10/26/neocloud-stocks-today-coreweave-nebius-iren-elon-musk.html">מאסק גם הזהיר שמעל 200 חברות "ניאוקלאוד" (Neoclouds) עומדות בפני "מוות ברמת גאפי"</a>, כשלדבריו, Gartner חוזה שיותר מ-80% מספקיות ענן מומחיות יפסיקו לפעול באופן עצמאי עד 2030. אזהרה זו הובילה לירידות משמעותיות במניות ניאוקלאוד כגון IREN (-2.37%), CRWV (-2.45%) ו-OKLO (-2.44%).</p>
+            <p><a class="btn-source" href="https://www.cnbc.com/2026/10/26/softbank-masayoshi-son-malaysia-ai-billions.html">קבוצת SoftBank דיווחה על כוונה להשקיע 50 מיליארד דולר במגזר הטכנולוגיה של מלזיה</a>, כולל בינה מלאכותית ומרכזי נתונים, מה שמצביע על המשך ההשקעה הגלובלית הנרחבת ב-AI.</p>
+            <p>גולדמן זאקס, באמצעות האסטרטג טים מו, <a class="btn-source" href="https://www.marketwatch.com/story/the-kospi-index-is-the-leading-indicator-for-the-global-ai-trade-and-goldman-just-slashed-its-forecast-by-25-ccfe2690?mod=mw_rss_topstories">חתך את תחזית מדד הקוספי (Kospi) ב-25%</a>, בציינו ירידה במכפיל הצמיחה שמשקיעים מוכנים לשלם עבור מניות AI ועלייה בתנודתיות, מה שמעיד על חששות מתמחור יתר בשוק ה-AI העולמי.</p>
+
+            <h3>למה זה חריג?</h3>
+            <div class="highlight-card">
+                <p>היקף גיוס ההון של מטא והמעורבות הפוטנציאלית של יצרניות שבבים מובילות כמו AMD (+1.74%) מצביעים על הירתמות חסרת תקדים של ענקיות טכנולוגיה למרוץ ה-AI, תוך דגש על בניית תשתית עצומה. אזהרתו של אילון מאסק, יחד עם נתוני Gartner, יוצרת תמונה של "שוק דו-קוטבי" בתוך תחום ה-AI – מצד אחד השקעות ענק בחברות המובילות, ומצד שני סיכון קונסולידציה גבוה וחוסר יציבות לחברות ניאוקלאוד קטנות יותר, כפי שמשתקף בירידות במניות IREN, CRWV ו-OKLO.</p>
+            </div>
+            <div class="opinion-card">
+                <p>אילון מאסק: "מעל 200 חברות ניאוקלאוד ימותו במוות ברמת גאפי"</p>
+                <p><strong>Elon Musk</strong></p>
+            </div>
+            <div class="opinion-card">
+                <p>MarketWatch מדווחת כי: "הפחתה במכפיל הצמיחה שמשקיעים מוכנים לשלם עבור מניות AI ועלייה בתנודתיות אילצה את האסטרטג של גולדמן, טים מו, לחתוך את יעד השוק הקוריאני שלו."</p>
+                <p><strong>Tim Moe, Goldman Sachs Strategist</strong></p>
+            </div>
+
+            <h3>מה זה אומר לקראת השבוע?</h3>
+            <p>השבוע הקרוב ימשיך להיות מושפע מהדינמיקה הזו. השקעות הענק מציגות פוטנציאל צמיחה עצום למובילות השוק, אך גם מעלות שאלות לגבי קיימות ותמחור בחברות קטנות יותר. יש לעקוב אחר דוחות רווחים של חברות טכנולוגיה גדולות וענקיות AI, שעלולים לספק הבהרות נוספות לגבי קצב ההשקעות וההחזרים הצפויים. מניות הניאוקלאוד (IREN, CRWV, OKLO) צפויות להישאר תחת לחץ.</p>
+            <p>בנוסף, ייתכן שנראה דיונים נוספים על רגולציה בתחום הבינה המלאכותית, כפי שצויין ב-<a class="btn-source" href="https://www.youtube.com/shorts/rwqvO7ZnBJg">The Compound</a> לגבי הסיכונים הפוטנציאליים ב-AI.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">קריפטו</span>
+            <h2>התאוששות ב-ETFs של ביטקוין, התרחבות טוקניזציה ורגולציה</h2>
+
+            <h3>מה קרה היום?</h3>
+            <p><a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-etfs-rebound-weekly-inflow-301-million">קרנות סל (ETFs) לביטקוין סיימו שבועיים של יציאות כספים עם חזרה מרשימה של 301 מיליון דולר בנכסים נקיים</a>, למרות משיכות כבדות בחלק מימי השבוע. מוקדם יותר, מחיר הביטקוין <a class="btn-source" href="https://cointelegraph.com/markets/btc-price-risks-80k-loss-into-fomc-earnings-three-things-to-know-in-bitcoin-this-week">נאבק על תמיכה באזור 80,000 דולר</a> לקראת שבוע עמוס בדוחות רווחים של חברות טכנולוגיה גדולות ונתוני אינפלציה (FOMC), כאשר נסחר סביב 80,485.16 דולר (+0.41% היום).</p>
+            <p>בתחום הטוקניזציה, <a class="btn-source" href="https://cointelegraph.com/news/aviva-investors-launches-tokenized-share-class-of-sterling-fund-on-xrp-ledger">Aviva Investors השיקה מחלקת מניות טוקניזציה לקרן הסטרלינג שלה בשווי 29 מיליארד דולר על גבי רשת XRP Ledger</a>, וזו הקרן השנייה של החברה שתעשה זאת. עם זאת, שווי המניות המטוקננות של <a class="btn-source" href="https://cointelegraph.com/markets/securitizes-tokenized-stock-circle-lead">Securitize (SECZ) נחתך בחצי</a> ל-208.6 מיליון דולר, בזמן שאסימונים המקושרים ל-Circle הגיעו לשווי כולל של 383.6 מיליון דולר בשוק ההון המטוקנן המוערך ב-3.3 מיליארד דולר.</p>
+            <p>התפתחויות רגולטוריות ממשיכות: <a class="btn-source" href="https://cointelegraph.com/news/ecb-official-sees-digital-euro-tool-to-protect-eu-sovereignty">גורם רשמי ב-ECB רואה ביורו דיגיטלי מפתח להגנה על "ריבונות" האיחוד האירופי</a>, וציין כי האיחוד בדרך לבחון עסקאות אמיתיות ב-2027 ולגלגל יורו דיגיטלי כבר ב-2029. <a class="btn-source" href="https://cointelegraph.com/news/hong-kong-names-nasdaq-listed-solana-company-a-strategic-enterprise">הונג קונג הכריזה על חברת סולנה הנסחרת בנסד"ק כ"מפעל אסטרטגי"</a>, כאשר החברה מתכננת להקים פעילות מאמתת (validator) של סולנה בעיר. מצד שני, <a class="btn-source" href="https://cointelegraph.com/news/standard-chartered-led-anchorpoint-says-its-not-rushing-retail-stablecoin">חברת Anchorpoint בהובלת Standard Chartered, לא ממהרת להשיק stablecoin קמעונאי</a>, לאחר שבעבר כיוונה לגישה קמעונאית עד סוף 2026.</p>
+            <p>בחזית האבטחה, <a class="btn-source" href="https://cointelegraph.com/news/keystone-says-website-breach-exposed-hardware-wallet-buyers-addresses">חברת Keystone דיווחה על פריצה לאתר שלה שחשפה כתובות של רוכשי ארנקי חומרה</a>, מה שעלול לחשוף מחזיקי קריפטו להונאות ממוקדות.</p>
+
+            <h3>למה זה חריג?</h3>
+            <div class="highlight-card">
+                <p>החזרה של כספים ל-ETFs של ביטקוין מסמלת חידוש עניין מוסדי לאחר תקופה של חוסר ודאות, מה שעשוי לספק דחיפה חיובית למחיר הביטקוין עצמו. ההתקדמות בטוקניזציה, במיוחד עם מעורבות שחקנים פיננסיים מסורתיים כמו Aviva, מדגישה את הפוטנציאל ארוך הטווח של נכסים דיגיטליים, על אף האתגרים שחוו חברות כמו Securitize. הפעילות הרגולטורית הנמרצת מצד בנקים מרכזיים וממשלות (ECB, הונג קונג) מעידה על הכרה גוברת בחשיבות נכסים דיגיטליים ו-CBDCs, אך גם על הזהירות סביב יישומים קמעונאיים. אירועי אבטחה כמו הפריצה ל-Keystone ממחישים את הסיכונים המתמשכים ואת החשיבות של אבטחה במרחב הקריפטו.</p>
+            </div>
+
+            <h3>מה זה אומר לקראת השבוע?</h3>
+            <p>השבוע הקרוב יהיה מכריע עבור שוק הקריפטו, כאשר האירועים המאקרו-כלכליים (FOMC, דוחות רווחים) צפויים להשפיע על תנודות הביטקוין ומטבעות נוספים. היכולת של הביטקוין להחזיק את רמת התמיכה של 80,000 דולר תהיה משמעותית. יש לעקוב אחר חדשות נוספות בנוגע לאימוץ מוסדי של נכסים מטוקננים ולרגולציה בתחום, במיוחד לאור ההתפתחויות מהונג קונג והאיחוד האירופי. משקיעים צריכים להיות מודעים לסיכוני אבטחה ולנקוט משנה זהירות.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="slide-container">
+            <span class="badge">מצב שוק</span>
+            <h2>שבוע מבחן לשוק והזהרות למשקיעים קטנים</h2>
+
+            <h3>מה קרה היום?</h3>
+            <p><a class="btn-source" href="https://www.marketwatch.com/story/the-stock-markets-biggest-test-in-weeks-is-here-256f5a37?mod=mw_rss_topstories">השוק עומד בפני המבחן הגדול ביותר שלו מזה שבועות</a>, עם שבוע עמוס בקטליזטורים פוטנציאליים שיכולים לקבוע את כיוון השוק, כך לפי מארק דה-קאמברה מ-MarketWatch. בין הקטליזטורים המרכזיים ניתן למצוא את החלטת ה-FOMC הקרובה ודוחות הרווחים של חברות טכנולוגיה מובילות.</p>
+            <p>על רקע זה, <a class="btn-source" href="https://www.marketwatch.com/story/a-dot-com-survivor-warns-retail-investors-against-buying-the-tech-dip-youre-taking-a-knife-to-a-gunfight-6c940361?mod=mw_rss_topstories">טד מורטנסון, ותיק השוק ששרד את בועת הדוט-קום, הזהיר משקיעים קטנים מפני קניית הירידות במניות הטכנולוגיה</a>, בציינו שהם "מביאים סכין לקרב יריות" (You’re taking a knife to a gunfight).</p>
+            <p>מנגד, <a class="btn-source" href="https://www.marketwatch.com/story/these-four-shocks-could-hand-investors-an-unexpected-buying-window-strategists-say-5ae7c4db?mod=mw_rss_topstories">חברת המחקר Yardeni Research ציינה כי ארבעה "הלמים" אפשריים בשוק יכולים לספק חלון הזדמנויות קנייה בלתי צפוי למשקיעים</a>. הלמים אלו כוללים החלטת ריבית מפתיעה של הפדרל ריזרב או אילוצים גוברים בתחום המסחר בבינה מלאכותית.</p>
+
+            <h3>למה זה חריג?</h3>
+            <div class="highlight-card">
+                <p>השוק נמצא בצומת דרכים עם דעות קוטביות: מצד אחד, אזהרות חמורות ממשקיעים ותיקים המדגישות את הסיכון למשקיעים קטנים בתחום הטכנולוגיה. מצד שני, אנליסטים שמצביעים על הזדמנויות קנייה פוטנציאליות במקרה של "הלמים" בשוק. מונח ה-<a class="btn-source" href="https://www.youtube.com/shorts/0ACevyJi3_s">"שוק השור מנקה את הבית" (The Bull Market Is Cleaning House)</a> מצד The Compound משקף את התנודתיות והסינון הפנימי בשוק, גם בתקופה של מגמה חיובית לכאורה, כפי שבא לידי ביטוי בירידות במניות מסוימות כמו GOOG (-1.08%) ו-UNH (-1.62%).</p>
+            </div>
+            <div class="opinion-card">
+                <p>טד מורטנסון: "אתה לוקח סכין לקרב יריות."</p>
+                <p><strong>Ted Mortonson, Dot-com Survivor</strong></p>
+            </div>
+
+            <h3>מה זה אומר לקראת השבוע?</h3>
+            <p>שבוע זה צפוי להיות תנודתי וקריטי לקביעת מגמת השוק בטווח הקרוב. משקיעים צריכים לנקוט בזהירות מוגברת, במיוחד בנכסים הנחשבים למסוכנים יותר או אלו שנסחרו בעליות חדות. יש לעקוב מקרוב אחר נתוני המאקרו והודעות הפד, כמו גם אחר דוחות הרווחים של חברות הטכנולוגיה, שיכולים לשמש כזרזים משמעותיים. ההמלצה למשקיעים קטנים היא להפחית חשיפה לנכסים תנודתיים ולהימנע מקניית "טבילות" ללא ניתוח מעמיק.</p>
+        </div>
+    </div>
+</body>
+</html>
