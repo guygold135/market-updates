@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח יומי - תמונת מצב אסטרטגית (גרסה מקוצרת)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --text-color: #e0e0e0;
+            --accent-color: #6a8dbe; /* Steel blue */
+            --header-color: #f0f0f0;
+            --border-color: #2e3a47;
+            --positive-color-light: rgba(76, 175, 80, 0.2); /* Muted green */
+            --positive-color-text: #4CAF50;
+            --negative-color-light: rgba(244, 67, 54, 0.2); /* Muted red */
+            --negative-color-text: #F44336;
+            --card-bg-color: #1a1e26;
+            --opinion-bg-color: #2a2e36;
+            --source-btn-bg: #3c424d;
+            --source-btn-text: #e0e0e0;
+            --badge-bg-color: #3c424d;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            direction: rtl;
+            text-align: right;
+        }
+
+        h1, h2, h3 {
+            color: var(--header-color);
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            text-align: center;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 90%;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-right: 70px; /* Space for badge */
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            color: var(--accent-color);
+            margin-bottom: 0.8rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #8daedc; /* Lighter accent */
+        }
+
+        .slide-container {
+            background-color: var(--card-bg-color);
+            border-radius: 8px;
+            padding: 24px;
+            margin: 20px auto;
+            max-width: 900px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .market-pulse-card {
+            background-color: var(--bg-color);
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            text-align: right;
+        }
+
+        .market-pulse-card strong {
+            font-size: 1.1rem;
+            color: var(--header-color);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .market-pulse-value {
+            font-size: 1.0rem;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .market-change-positive {
+            color: var(--positive-color-text);
+            background-color: var(--positive-color-light);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .market-change-negative {
+            color: var(--negative-color-text);
+            background-color: var(--negative-color-light);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .badge {
+            background-color: var(--badge-bg-color);
+            color: var(--text-color);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            position: absolute;
+            top: 0;
+            right: 0;
+            transform: translateY(-50%);
+            white-space: nowrap;
+        }
+
+        .section-divider {
+            border-top: 1px dashed var(--border-color);
+            margin: 3rem auto;
+            width: 80%;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--source-btn-bg);
+            color: var(--source-btn-text);
+            padding: 8px 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            float: left; /* Aligns to the left in RTL */
+        }
+
+        .btn-source:hover {
+            background-color: #5c6776;
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-bg-color);
+            border-radius: 6px;
+            padding: 15px 20px;
+            margin-top: 1.5rem;
+            border-right: 4px solid var(--accent-color);
+            display: flex;
+            align-items: flex-start;
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+
+        .opinion-card::before {
+            content: "\201C"; /* Left double quotation mark */
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            line-height: 1;
+            margin-left: 10px; /* Space between quote and text */
+            margin-top: -5px;
+        }
+
+        .opinion-meta {
+            font-size: 0.85rem;
+            color: #a0a0a0;
+            margin-top: 10px;
+            text-align: left;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 6px;
+            margin: 1.5rem auto;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        table {
+            width: 100%;
+            table-layout: fixed;
+            word-wrap: break-word;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background-color: var(--bg-color);
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            text-align: right;
+        }
+
+        th {
+            background-color: var(--badge-bg-color);
+            font-weight: 600;
+            color: var(--header-color);
+        }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 768px) {
+            .market-pulse-grid {
+                grid-template-columns: 1fr 1fr; /* Two columns on mobile */
+            }
+            .slide-container {
+                padding: 16px;
+                margin: 10px auto;
+            }
+            h1 {
+                font-size: 1.8rem;
+                margin-top: 1rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+                padding-right: 50px;
+            }
+            h3 {
+                font-size: 1.2rem;
+            }
+            .badge {
+                padding: 4px 8px;
+                font-size: 0.7rem;
+            }
+            .opinion-card {
+                padding: 12px 15px;
+                font-size: 0.9rem;
+            }
+            .opinion-card::before {
+                font-size: 2rem;
+            }
+            .btn-source {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .market-pulse-grid {
+                grid-template-columns: 1fr; /* Single column on very small screens */
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            h2 {
+                font-size: 1.3rem;
+                padding-right: 40px;
+            }
+        }
+
+        /* Ensure overflow for wide elements */
+        .slide-container {
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>דוח שוק יומי: תמונת מצב אסטרטגית</h1>
+    <div class="slide-container">
+        <h2>תמונת מצב מהירה <span class="badge">Market Pulse</span></h2>
+        <p>נתוני שוק מעודכנים (מניות נסחרו ב-23 באוקטובר 2026, קריפטו ב-26 באוקטובר 2026):</p>
+        <div class="market-pulse-grid">
+            <div class="market-pulse-card">
+                <strong>S&P 500 (SPY)</strong>
+                <span class="market-pulse-value">
+                    <span><?php echo number_format($marketData['SPY']['close'], 2); ?></span>
+                    <span class="<?php echo ($marketData['SPY']['percent_change'] >= 0) ? 'market-change-positive' : 'market-change-negative'; ?>">
+                        <?php echo ($marketData['SPY']['percent_change'] >= 0 ? '+' : '') . number_format($marketData['SPY']['percent_change'], 2); ?>%
+                    </span>
+                </span>
+            </div>
+            <div class="market-pulse-card">
+                <strong>Nasdaq 100 (QQQ)</strong>
+                <span class="market-pulse-value">
+                    <span><?php echo number_format($marketData['QQQ']['close'], 2); ?></span>
+                    <span class="<?php echo ($marketData['QQQ']['percent_change'] >= 0) ? 'market-change-positive' : 'market-change-negative'; ?>">
+                        <?php echo ($marketData['QQQ']['percent_change'] >= 0 ? '+' : '') . number_format($marketData['QQQ']['percent_change'], 2); ?>%
+                    </span>
+                </span>
+            </div>
+            <div class="market-pulse-card">
+                <strong>Bitcoin (BTC/USD)</strong>
+                <span class="market-pulse-value">
+                    <span><?php echo number_format($marketData['BTC/USD']['close'], 2); ?></span>
+                    <span class="<?php echo ($marketData['BTC/USD']['percent_change'] >= 0) ? 'market-change-positive' : 'market-change-negative'; ?>">
+                        <?php echo ($marketData['BTC/USD']['percent_change'] >= 0 ? '+' : '') . number_format($marketData['BTC/USD']['percent_change'], 2); ?>%
+                    </span>
+                </span>
+            </div>
+            <div class="market-pulse-card">
+                <strong>Micron (MU)</strong>
+                <span class="market-pulse-value">
+                    <span><?php echo number_format($marketData['MU']['close'], 2); ?></span>
+                    <span class="<?php echo ($marketData['MU']['percent_change'] >= 0) ? 'market-change-positive' : 'market-change-negative'; ?>">
+                        <?php echo ($marketData['MU']['percent_change'] >= 0 ? '+' : '') . number_format($marketData['MU']['percent_change'], 2); ?>%
+                    </span>
+                </span>
+            </div>
+            <div class="market-pulse-card">
+                <strong>AMD</strong>
+                <span class="market-pulse-value">
+                    <span><?php echo number_format($marketData['AMD']['close'], 2); ?></span>
+                    <span class="<?php echo ($marketData['AMD']['percent_change'] >= 0) ? 'market-change-positive' : 'market-change-negative'; ?>">
+                        <?php echo ($marketData['AMD']['percent_change'] >= 0 ? '+' : '') . number_format($marketData['AMD']['percent_change'], 2); ?>%
+                    </span>
+                </span>
+            </div>
+            <div class="market-pulse-card">
+                <strong>CoreWeave (CRWV)</strong>
+                <span class="market-pulse-value">
+                    <span><?php echo number_format($marketData['CRWV']['close'], 2); ?></span>
+                    <span class="<?php echo ($marketData['CRWV']['percent_change'] >= 0) ? 'market-change-positive' : 'market-change-negative'; ?>">
+                        <?php echo ($marketData['CRWV']['percent_change'] >= 0 ? '+' : '') . number_format($marketData['CRWV']['percent_change'], 2); ?>%
+                    </span>
+                </span>
+            </div>
+            <div class="market-pulse-card">
+                <strong>IREN Ltd. (IREN)</strong>
+                <span class="market-pulse-value">
+                    <span><?php echo number_format($marketData['IREN']['close'], 2); ?></span>
+                    <span class="<?php echo ($marketData['IREN']['percent_change'] >= 0) ? 'market-change-positive' : 'market-change-negative'; ?>">
+                        <?php echo ($marketData['IREN']['percent_change'] >= 0 ? '+' : '') . number_format($marketData['IREN']['percent_change'], 2); ?>%
+                    </span>
+                </span>
+            </div>
+            <div class="market-pulse-card">
+                <strong>Oklo Inc. (OKLO)</strong>
+                <span class="market-pulse-value">
+                    <span><?php echo number_format($marketData['OKLO']['close'], 2); ?></span>
+                    <span class="<?php echo ($marketData['OKLO']['percent_change'] >= 0) ? 'market-change-positive' : 'market-change-negative'; ?>">
+                        <?php echo ($marketData['OKLO']['percent_change'] >= 0 ? '+' : '') . number_format($marketData['OKLO']['percent_change'], 2); ?>%
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <h2>תנודות סביב תשתית AI וענן <span class="badge">AI & Cloud</span></h2>
+        <p><strong>מה קרה היום:</strong> אילון מאסק הזהיר כי למעלה מ-200 ספקי "ניאו-קלאוד" בתחום ה-AI עלולים לעמוד בפני "מוות ברמת גופי", וציין כי תחזיות גרטנר מראות שיותר מ-80% מספקי הענן המתמחים יפסיקו לפעול באופן עצמאי עד 2030. במקביל, גולדמן זאקס קיצץ באופן משמעותי את תחזית מדד הקוספי ב-25%, תוך ציון ירידה במכפילי הצמיחה שנכונות חברות לשלם עבור מניות AI ועלייה בתנודתיות, מה שמעיד על גישה זהירה יותר לסחר גלובלי ב-AI.</p>
+        <p>עם זאת, ענקיות הטכנולוגיה ממשיכות להשקיע בהיקפים עצומים: מטא הכריזה על הצעת מניות בסך 95 מיליארד דולר למימון הרחבת ה-AI שלה, עם פוטנציאל לרכישת מניות של עד 5 מיליארד דולר על ידי אנבידיה (NVDA), AMD וברודקום (AVGO). במקביל, סופטבנק מתכננת השקעה של 50 מיליארד דולר במלזיה עבור טכנולוגיות AI ומרכזי נתונים, וספייס אקס (SPCX) סגרה עסקת חוב של 40 מיליארד דולר לרכישת שבבי AI.</p>
+        <p><strong>למה זה משנה:</strong> התמונה המורכבת הזו מראה כיצד הזרמת ההון האדירה לתחום ה-AI מתרכזת אצל השחקנים הגדולים והמבוססים, בעוד שקיים חשש גובר מפני קונסולידציה רחבה וכשלונות אפשריים בקרב החברות הקטנות יותר בתחום תשתית הענן, כפי שהדבר בא לידי ביטוי במניות כמו CoreWeave (CRWV) ו-IREN Ltd. (IREN) שירדו משמעותית היום (CRWV -2.45%, IREN -2.37%). הורדת התחזית של גולדמן זאקס למדד AI מרכזי מחזקת את התפיסה שהשוק בוחן מחדש את שווי החברות בתחום. מניות AMD ומיקרון (MU) שהתחזקו (AMD +1.74%, MU +2.45%) מדגישות את הביקוש לשבבים גם אל מול הסנטימנט המעורב.</p>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/26/neocloud-stocks-today-coreweave-nebius-iren-elon-musk.html" target="_blank">CNBC</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/musk-warns-over-200-ai-neoclouds-face-guppy-level-death" target="_blank">Cointelegraph</a>
+        <a class="btn-source" href="https://www.marketwatch.com/story/the-kospi-index-is-the-leading-indicator-for-the-global-ai-trade-and-goldman-just- slashed-its-forecast-by-25-ccfe2690" target="_blank">MarketWatch</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/26/meta-stock-offering-ai.html" target="_blank">CNBC</a>
+        <a class="btn-source" href="https://www.marketwatch.com/story/nvidia-amd-and-broadcom-could-buy-meta-shares-as-part-of-35-billion-stock-offering-d816fec2" target="_blank">MarketWatch</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/26/softbank-masayoshi-son-malaysia-ai-billions.html" target="_blank">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/26/spacex-closes-40-billion-debt-deal-for-ai-chips-elon-musk-.html" target="_blank">CNBC</a>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <h2>זרם כספים חיובי לקרנות סל של ביטקוין <span class="badge">קריפטו</span></h2>
+        <p><strong>מה קרה היום:</strong> קרנות סל (ETFs) של ביטקוין נקודתי בארה"ב שברו רצף של שבועיים עם יציאות כספים, ורשמו השבוע סך כניסות נטו של 301 מיליון דולר. זאת, על רקע מאבק של שורי הביטקוין סביב רמת התמיכה של 80,000 דולר במהלך סוף השבוע, לקראת שבוע גדוש בפרסומי רווחי חברות טכנולוגיה גדולות בארה"ב ונתוני אינפלציה.</p>
+        <p><strong>למה זה משנה:</strong> חזרתן של כניסות כספים משמעותיות לקרנות הסל של הביטקוין מצביעה על עניין מחודש מצד גופים מוסדיים או תמיכה מצד משקיעים קמעונאיים לאחר תקופה של משיכות, מה שעשוי לאותת על שינוי בסנטימנט לטווח הקצר, למרות הקטליזטורים המאקרו-כלכליים הממשמשים ובאים.</p>
+        <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-etfs-rebound-weekly-inflow-301-million" target="_blank">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/markets/btc-price-risks-80k-loss-into-fomc-earnings-three-things-to-know-in-bitcoin-this-week" target="_blank">Cointelegraph</a>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <h2>התפתחות סביב טוקניזציה מוסדית <span class="badge">קריפטו</span></h2>
+        <p><strong>מה קרה היום:</strong> חברת Aviva Investors השיקה מחלקת מניות מטוּקנת עבור קרן הסטרלינג שלה בשווי 29 מיליארד דולר על גבי ה-XRP Ledger, במה שמהווה את הקרן השנייה שלה בפורמט זה. במקביל, שוק המניות המטוקנות חווה תזוזות, כאשר שווי השוק האונצ'יין של Securitize הצטמצם בחצי ל-208.6 מיליון דולר, בעוד אסימונים המקושרים ל-Circle הרחיבו את ההובלה שלהם עם שווי משולב של 383.6 מיליון דולר בשוק המניות המטוקנות הכולל, המוערך ב-3.3 מיליארד דולר.</p>
+        <p><strong>למה זה משנה:</strong> התפתחויות אלו ממחישות את ההתקדמות המתמשכת של מוסדות פיננסיים גדולים בתחום הטוקניזציה, תוך ניצול טכנולוגיית הבלוקצ'יין עבור נכסים מסורתיים. הן גם מדגישות נוף תחרותי מתפתח ודינמיקת הערכת שווי בתוך שוק ניירות הערך המטוקנים, הנמצא עדיין בחיתוליו.</p>
+        <a class="btn-source" href="https://cointelegraph.com/news/aviva-investors-launches-tokenized-share-class-of-sterling-fund-on-xrp-ledger" target="_blank">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/markets/securitizes-tokenized-stock-circle-lead" target="_blank">Cointelegraph</a>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <h2>אזהרה מצד וותיק שוק: היזהרו מקניית דיפים בטכנולוגיה <span class="badge">סנטימנט שוק</span></h2>
+        <p><strong>מה קרה היום:</strong> טד מורטנסון, שורד עידן הדוט-קום ואנליסט שוק ותיק, פרסם אזהרה חריפה למשקיעים קמעונאיים מפני קניית ה"דיפ" הנוכחי במניות הטכנולוגיה, וקבע: "אתם מביאים סכין לקרב יריות."</p>
+        <p><strong>למה זה משנה:</strong> הצהרה זהירה וחדה זו מצד משקיע מנוסה מצביעה על כך שתנאי השוק הנוכחיים למניות טכנולוגיה עשויים להיות מסוכנים יותר ממה שהם נראים, והיא קוראת למשקיעים פרטיים לנקוט זהירות רבה במקום לראות בירידות האחרונות הזדמנויות קנייה אוטומטיות.</p>
+        <div class="opinion-card">
+            <p>"You're taking a knife to a gunfight."<br/><span class="opinion-meta">― Ted Mortonson, Dot-com survivor and Industry Veteran</span></p>
+        </div>
+        <a class="btn-source" href="https://www.marketwatch.com/story/a-dot-com-survivor-warns-retail-investors-against-buying-the-tech-dip-youre-taking-a-knife-to-a-gunfight-6c940361" target="_blank">MarketWatch</a>
+    </div>
+</body>
+</html>
+<?php
+// PHP block for data injection - This part would be used to dynamically insert data.
+// For the purpose of this request, I'm simulating it as if the data was already processed and available.
+// In a real scenario, $marketData and $news would be populated here.
+// I've hardcoded the marketData and news variables based on the prompt for generating the HTML.
+
+$marketData = [
+    "BTC/USD" => [
+        "symbol" => "BTC/USD", "name" => "Bitcoin US Dollar", "exchange" => "Binance", "datetime" => "2026-10-26", "timestamp" => 1792972800, "last_quote_at" => 1793018280, "open" => "80154.09", "high" => "80575.45", "low" => "79368.67", "close" => "80485.16", "previous_close" => "80154.09", "change" => "331.070000", "percent_change" => "0.41304193", "rolling_1d_change" => "0.066528537", "rolling_7d_change" => "-2.58314", "rolling_change" => "0.066528537", "is_market_open" => true, "fifty_two_week" => ["low" => "57800.19", "high" => "116400", "low_change" => "22684.97", "high_change" => "-35914.84", "low_change_percent" => "39.24722", "high_change_percent" => "-30.85467", "range" => "57800.190000 - 116400.000000"]
+    ],
+    "ETH/USD" => [
+        "symbol" => "ETH/USD", "name" => "Ethereum US Dollar", "exchange" => "Binance", "datetime" => "2026-10-26", "timestamp" => 1792972800, "last_quote_at" => 1793018280, "open" => "2329.86", "high" => "2338.45", "low" => "2293.09", "close" => "2331.44", "previous_close" => "2329.87", "change" => "1.57000", "percent_change" => "0.067385734", "rolling_1d_change" => "-0.036873473", "rolling_7d_change" => "-3.90649", "rolling_change" => "-0.036873473", "is_market_open" => true, "fifty_two_week" => ["low" => "1507.050049", "high" => "4251.50977", "low_change" => "824.38995", "high_change" => "-1920.069766", "low_change_percent" => "54.70223", "high_change_percent" => "-45.16207", "range" => "1507.050049 - 4251.509766"]
+    ],
+    "AVGO" => [
+        "symbol" => "AVGO", "name" => "Broadcom Inc.", "exchange" => "NASDAQ", "mic_code" => "XNGS", "currency" => "USD", "datetime" => "2026-10-23", "timestamp" => 1792762200, "last_quote_at" => 1792785540, "open" => "321.5", "high" => "327.70001", "low" => "320.23001", "close" => "321.67999", "volume" => "15871100", "previous_close" => "323.23999", "change" => "-1.56000", "percent_change" => "-0.48261280", "average_volume" => "20956950", "is_market_open" => false, "fifty_two_week" => ["low" => "289.95999", "high" => "495", "low_change" => "31.72000", "high_change" => "-173.32001", "low_change_percent" => "10.93944", "high_change_percent" => "-35.014143", "range" => "289.959991 - 495.000000"]
+    ],
+    "COHR" => [
+        "symbol" => "COHR", "name" => "Coherent Corp.", "exchange" => "NYSE", "mic_code" => "XNYS", "currency" => "USD", "datetime" => "2026-10-23", "timestamp" => 1792762200, "last_quote_at" => 1792785540, "open" => "207.85001", "high" => "215.38000", "low" => "203.55000", "close" => "209.28999", "volume" => "6154200", "previous_close" => "207.82001", "change" => "1.46999", "percent_change" => "0.70733611", "average_volume" => "7474530", "is_market_open" => false, "fifty_two_week" => ["low" => "115", "high" => "440", "low_change" => "94.28999", "high_change" => "-230.71001", "low_change_percent" => "81.99130", "high_change_percent" => "-52.43409", "range" => "115.000000 - 440.000000"]
+    ],
+    "HOOD" => [
+        "symbol" => "HOOD", "name" => "Robinhood Markets Inc. Class A Common Stock", "exchange" => "NASDAQ", "mic_code" => "XNGS", "currency" => "USD", "datetime" => "2026-10-23", "timestamp" => 1792762200, "last_quote_at" => 1792785540, "open" => "96.43000", "high" => "97.75", "low" => "94.79000", "close" => "95.070000", "volume" => "13879700", "previous_close" => "96.58000", "change" => "-1.51000", "percent_change" => "-1.56347", "average_volume" => "16878950", "is_market_open" => false, "fifty_two_week" => ["low" => "63.51500", "high" => "150.47000", "low_change" => "31.55500", "high_change" => "-55.40000", "low_change_percent" => "49.68118", "high_change_percent" => "-36.81797", "range" => "63.514999 - 150.470001"]
+    ],
+    "NNE" => [
+        "symbol" => "NNE", "name" => "Nano Nuclear Energy Inc.", "exchange" => "NASDAQ", "mic_code" => "XNCM", "currency" => "USD", "datetime" => "2026-10-23", "timestamp" => 1792762200, "last_quote_at" => 1792785540, "open" => "12.40000", "high" => "12.45000", "low" => "11.95000", "close" => "12.16000", "volume" => "1660000", "previous_close" => "12.53000", "change" => "-0.36999989", "percent_change" => "-2.95291", "average_volume" => "1971500", "is_market_open" => false, "fifty_two_week" => ["low" => "11.95000", "high" => "49.5", "low_change" => "0.21000004", "high_change" => "-37.34000", "low_change_percent" => "1.75732", "high_change_percent" => "-75.43434", "range" => "11.950000 - 49.500000"]
+    ],
+    "SPCX" => [
+        "symbol" => "SPCX", "name" => "Space Exploration Technologies Corp. Class A Common Stock", "exchange" => "NASDAQ", "mic_code" => "XNMS", "currency" => "USD", "datetime" => "2026-10-23", "timestamp" => 1792762200, "last_quote_at" => 1792785540, "open" => "147.92999", "high" => "149.75", "low" => "144.089996", "close" => "147.49001", "volume" => "110352500", "previous_close" => "144.75", "change" => "2.74001", "percent_change" => "1.89292", "average_volume" => "111439490", "is_market_open" => false, "fifty_two_week" => ["low" => "104.83000", "high" => "225.64000", "low_change" => "42.66000", "high_change" => "-78.14999", "low_change_percent" => "40.69446", "high_change_percent" => "-34.63481", "range" => "104.830002 - 225.639999"]
+    ],
+    "QQQ" => [
+        "symbol" => "QQQ", "name" => "Invesco QQQ Trust, Series 1", "exchange" => "NASDAQ", "mic_code" => "XNMS", "currency" => "USD", "datetime" => "2026-10-23", "timestamp" => 1792762200, "last_quote_at" => 1792785540, "open" => "702.20001", "high" => "709.29999", "low" => "701.15997", "close" => "704.40002", "volume" => "30138000", "previous_close" => "704.46997", "change" => "-0.069946289", "percent_change" => "-0.0099289242", "average_volume" => "41790810", "is_market_open" => false, "fifty_two_week" => ["low" => "555.59998", "high" => "762.85999", "low_change" => "148.80005", "high_change" => "-58.45996", "low_change_percent" => "26.78187", "high_change_percent" => "-7.66326", "range" => "555.599976 - 762.859985"]
+    ],
+    "AAPL" => [
+        "symbol" => "AAPL", "name" => "Apple Inc.", "exchange" => "NASDAQ", "mic_code" => "XNGS", "currency" => "USD", "datetime" => "2026-10-23", "timestamp" => 1792762200, "last_quote_at" => 1792785540, "open" => "349.12000", "high" => "351.73001", "low" => "345.75", "close" => "347.73001", "volume" => "39496500", "previous_close" => "348.22000", "change" => "-0.48999023", "percent_change" => "-0.14071283", "average_volume" => "40709330", "is_market_open" => false, "fifty_two_week" => ["low" => "243.42000", "high" => "351.73001", "low_change" => "104.31001", "high_change" => "-4", "low_change_percent" => "42.85187", "high_change_percent" => "-1.13724", "range" => "243.419998 - 351.730011"]
+    ],
+    "GOOG" => [
+        "symbol" => "GOOG", "name" => "Alphabet Inc. Class C Common Stock", "exchange" => "NASDAQ", "mic_code" => "XNGS", "currency" => "USD", "datetime" => "2026-10-23", "timestamp" => 1792762200, "last_quote_at" => 1792785540, "open" => "317.75", "high" => "321.23001", "low" => "316.98999", "close" => "317.28000", "volume" => "10825000", "previous_close" => "320.76001", "change" => "-3.48001", "percent_change" => "-1.084927", "average_volume" => "15859980", "is_market_open" => false, "fifty_two_week" => ["low" => "252.76801", "high" => "404.47000", "low_change" => "64.51199", "high_change" => "-87.19000", "low_change_percent" => "25.52221", "high_change_percent" => "-21.55661", "range" => "252.768005 - 404.470001"]
+    ],
+    "TSLA" => [
+        "symbol" => "TSLA", "name" => "Tesla, Inc.", "exchange" => "NASDAQ", "mic_code" => "XNGS", "currency" => "USD", "datetime" => "2026-10-23", "timestamp" => 1792762200, "last_quote_at" => 1792785540, "open" => "373.20001", "high" => "377.32001", "low" => "365.26999", "close" => "372.22000", "volume" => "34689700", "previous_close" => "374.57999", "change" => "-2.35999", "percent_change" => "-0.63003509", "average_volume" => "36455190", "is_market_open" => false, "fifty_two_week" => ["low" => "297.38000", "high" => "498.82999", "low_change" => "74.84000", "high_change" => "-126.60999", "low_change_percent" => "25.16645", "high_change_percent" => "-25.38139", "range" => "297.380005 - 498.829987"]
+    ],
+    "PLTR" => [
+        "symbol" => "PLTR", "name" => "Palantir Technologies Inc. Class A Common Stock", "exchange" => "NASDAQ", "mic_code" => "XNGS", "currency" => "USD", "datetime" => "2026-10-23", "timestamp" => 1792762200, "last_quote_at" => 1792785540, "open" => "195.020004", "high" => "197.49001", "low" => "190.57001", "close" => "196.75", "volume" => "17614200", "previous_close" => "196.19000", "change" => "0.55999756", "percent_change" => "0.28543634", "average_volume" => "22622110", "is_market_open" => false, "fifty_two_week" => ["low" => "106.37000", "high" => "212.94000", "low_change" => "90.38000", "high_change" => "-16.19000", "low_change_percent" => "84.96756", "high_change_percent" => "-7.60308", "range" => "106.370003 - 212.940002"]
+    ],
+    "AMD" => [
+        "symbol" => "AMD", "name" => "Advanced Micro Devices Inc.", "exchange" => "NASDAQ", "mic_code" => "XNGS", "currency" => "USD", "datetime" => "2026-10-23", "timestamp" => 1792762200, "last_quote_at" => 1792785540, "open" => "510.20999", "high" => "523.91998", "low" => "508.35999", "close" => "516.78998", "volume" => "15135900", "previous_close" => "507.92999", "change" => "8.85999", "percent_change" => "1.74433", "average_volume" => "20357080", "is_market_open" => false, "fifty_two_week" => ["low" => "188.22000", "high" => "658.52002", "low_change" => "328.56998", "high_change" => "-141.73004", "low_change_percent" => "174.56698", "high_change_percent" => "-21.52251", "range" => "188.220001 - 658.520020"]
+    ],
+    "AMZN" => [
+        "symbol" => "AMZN", "name" => "Amazon.com Inc.", "exchange" => "NASDAQ", "mic_code" => "XNGS", "currency" => "USD", "datetime" => "2026-10-23", "timestamp" => 1792762200, "last_quote_at" => 1792785540, "open" => "248.85001", "high" => "250.0099945", "low" => "246.45000", "close" => "248", "volume" => "25518200", "previous_close" => "250.38000", "change" => "-2.38000", "percent_change" => "-0.95055709", "average_volume" => "35835280", "is_market_open" => false, "fifty_two_week" => ["low" => "196", "high" => "287.20001", "low_change" => "52", "high_change" => "-39.20001", "low_change_percent" => "26.53061", "high_change_percent" => "-13.64903", "range" => "196.000000 - 287.200012"]
+    ],
+    "CRWV" => [
+        "symbol" => "CRWV", "name" => "CoreWeave Inc. Class A Common Stock", "exchange" => "NASDAQ", "mic_code" => "XNGS", "currency" => "USD", "datetime" => "2026-10-23", "timestamp" => 1792762200, "last_quote_at" => 1792785540, "open" => "54.92000", "high" => "56.11000", "low" => "54.0099983", "close" => "54.23500", "volume" => "46499600", "previous_close" => "55.60000", "change" => "-1.36500", "percent_change" => "-2.45503", "average_volume" => "79110960", "is_market_open" => false, "fifty_two_week" => ["low" => "53.5", "high" => "141.78999", "low_change" => "0.73500061", "high_change" => "-87.55499", "low_change_percent" => "1.37383", "high_change_percent" => "-61.74977", "range" => "53.500000 - 141.789993"]
+    ],
+    "OKLO" => [
+        "symbol" => "OKLO", "name" => "Oklo Inc. Class A Common Stock", "exchange" => "NYSE", "mic_code" => "XNYS", "currency" => "USD", "datetime" => "2026-10-23", "timestamp" => 1792762200, "last_quote_at" => 1792785540, "open" => "26.68000", "high" => "26.90000", "low" => "26.070000", "close" => "26.35000", "volume" => "6107300", "previous_close" => "27.010000", "change" => "-0.65999985", "percent_change" => "-2.44354", "average_volume" => "8948890", "is_market_open" => false, "fifty_two_week" => ["low" => "26.070000", "high" => "152.059998", "low_change" => "0.28000069", "high_change" => "-125.71000", "low_change_percent" => "1.074034", "high_change_percent" => "-82.67131", "range" => "26.070000 - 152.059998"]
+    ],
+    "SPY" => [
+        "symbol" => "SPY", "name" => "State Street SPDR S&P 500 ETF Trust", "exchange" => "NYSE", "mic_code" => "ARCX", "currency" => "USD", "datetime" => "2026-10-23", "timestamp" => 1792762200, "last_quote_at" => 1792785540, "open" => "759.90002", "high" => "763.46997", "low" => "758.67999", "close" => "759.96997", "volume" => "33377700", "previous_close" => "763.96002", "change" => "-3.99005", "percent_change" => "-0.52228535", "average_volume" => "40106170", "is_market_open" => false, "fifty_two_week" => ["low" => "629.28003", "high" => "781.62000", "low_change" => "130.68994", "high_change" => "-21.65002", "low_change_percent" => "20.76817", "high_change_percent" => "-2.76989", "range" => "629.280029 - 781.619995"]
+    ],
+    "IREN" => [
+        "symbol" => "IREN", "name" => "IREN Ltd.", "exchange" => "NASDAQ", "mic_code" => "XNGS", "currency" => "USD", "datetime" => "2026-10-23", "timestamp" => 1792762200, "last_quote_at" => 1792785540, "open" => "25.35000", "high" => "26.47000", "low" => "24.88000", "close" => "24.90500", "volume" => "38706200", "previous_close" => "25.51000", "change" => "-0.60499954", "percent_change" => "-2.37162", "average_volume" => "63590170", "is_market_open" => false, "fifty_two_week" => ["low" => "24.85500", "high" => "76.87000", "low_change" => "0.050001144", "high_change" => "-51.96500", "low_change_percent" => "0.20117138", "high_change_percent" => "-67.60115", "range" => "24.855000 - 76.870003"]
+    ],
+    "UNH" => [
+        "symbol" => "UNH", "name" => "UnitedHealth Group Inc.", "exchange" => "NYSE", "mic_code" => "XNYS", "currency" => "USD", "datetime" => "2026-10-23", "timestamp" => 1792762200, "last_quote_at" => 1792785540, "open" => "424.29999", "high" => "425.25", "low" => "416.37000", "close" => "418.089996", "volume" => "3888000", "previous_close" => "424.98001", "change" => "-6.89001", "percent_change" => "-1.62126", "average_volume" => "6970210", "is_market_open" => false, "fifty_two_week" => ["low" => "255.97000", "high" => "461.62000", "low_change" => "162.12000", "high_change" => "-43.53000", "low_change_percent" => "63.33554", "high_change_percent" => "-9.42983", "range" => "255.970001 - 461.619995"]
+    ],
+    "SPOT" => [
+        "symbol" => "SPOT", "name" => "Spotify Technology S.A.", "exchange" => "NYSE", "mic_code" => "XNYS", "currency" => "USD", "datetime" => "2026-10-23", "timestamp" => 1792762200, "last_quote_at" => 1792785540, "open" => "582.78003", "high" => "593.79999", "low" => "571.94000", "close" => "584.21997", "volume" => "2478300", "previous_close" => "583.65997", "change" => "0.55999756", "percent_change" => "0.095945856", "average_volume" => "1978660", "is_market_open" => false, "fifty_two_week" => ["low" => "405", "high" => "683.96002", "low_change" => "179.21997", "high_change" => "-99.74005", "low_change_percent" => "44.25184", "high_change_percent" => "-14.58273", "range" => "405.000000 - 683.960022"]
+    ],
+    "NOW" => [
+        "symbol" => "NOW", "name" => "ServiceNow Inc.", "exchange" => "NYSE", "mic_code" => "XNYS", "currency" => "USD", "datetime" => "2026-10-23", "timestamp" => 1792762200, "last_quote_at" => 1792785540, "open" => "156.38000", "high" => "159.5", "low" => "153.72000", "close" => "158.96001", "volume" => "11083500", "previous_close" => "157", "change" => "1.96001", "percent_change" => "1.24841", "average_volume" => "13129430", "is_market_open" => false, "fifty_two_week" => ["low" => "81.24000", "high" => "192.96600", "low_change" => "77.72001", "high_change" => "-34.0059967", "low_change_percent" => "95.66717", "high_change_percent" => "-17.62279", "range" => "81.239998 - 192.966003"]
+    ],
+    "IWM" => [
+        "symbol" => "IWM", "name" => "iShares Russell 2000 ETF", "exchange" => "NYSE", "mic_code" => "ARCX", "currency" => "USD", "datetime" => "2026-10-23", "timestamp" => 1792762200, "last_quote_at" => 1792785540, "open" => "274.85001", "high" => "276.23999", "low" => "273.35001", "close" => "275.75", "volume" => "20768600", "previous_close" => "276.67001", "change" => "-0.92001343", "percent_change" => "-0.33253095", "average_volume" => "25730510", "is_market_open" => false, "fifty_two_week" => ["low" => "228.89999", "high" => "305.17999", "low_change" => "46.85001", "high_change" => "-29.42999", "low_change_percent" => "20.46746", "high_change_percent" => "-9.64349", "range" => "228.899994 - 305.179993"]
+    ],
+    "MU" => [
+        "symbol" => "MU", "name" => "Micron Technology Inc.", "exchange" => "NASDAQ", "mic_code" => "XNGS", "currency" => "USD", "datetime" => "2026-10-23", "timestamp" => 1792762200, "last_quote_at" => 1792785540, "open" => "862.28998", "high" => "891.89001", "low" => "858.34003", "close" => "877.54999", "volume" => "21166800", "previous_close" => "856.48999", "change" => "21.059998", "percent_change" => "2.45887", "average_volume" => "27108690", "is_market_open" => false, "fifty_two_week" => ["low" => "192.59000", "high" => "1255", "low_change" => "684.95999", "high_change" => "-377.45001", "low_change_percent" => "355.65710", "high_change_percent" => "-30.075698", "range" => "192.589996 - 1255.000000"]
+    ],
+    "NVDA" => [
+        "symbol" => "NVDA", "name" => "NVIDIA Corporation", "exchange" => "NASDAQ", "mic_code" => "XNGS", "currency" => "USD", "datetime" => "2026-10-23", "timestamp" => 1792762200, "last_quote_at" => 1792785540, "open" => "210.99001", "high" => "213.85001", "low" => "210.17999", "close" => "210.96001", "volume" => "79987200", "previous_close" => "212.21001", "change" => "-1.25", "percent_change" => "-0.58903914", "average_volume" => "99257200", "is_market_open" => false, "fifty_two_week" => ["low" => "164.27000", "high" => "243.37000", "low_change" => "46.69000", "high_change" => "-32.40999", "low_change_percent" => "28.42272", "high_change_percent" => "-13.31717", "range" => "164.270004 - 243.369995"]
+    ]
+];
+?>
