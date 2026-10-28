@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק הון יומי: 28 באוקטובר 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Base styles */
+        html, body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0e17; /* Dark charcoal/navy background */
+            color: #e0e0e0; /* Light gray for main text */
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            direction: rtl; /* For Hebrew text */
+            text-align: right;
+        }
+
+        /* Headings */
+        h1, h2, h3 {
+            color: #f0f0f0; /* Off-white for headings */
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            text-align: center;
+            padding: 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 24px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            border-right: 4px solid #4a90e2; /* Steel blue accent */
+            padding-right: 12px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            text-align: right;
+            color: #d0d0d0;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            color: #c0c0c0; /* Lighter gray for subheadings */
+            margin-top: 30px;
+            margin-bottom: 15px;
+            text-align: right;
+        }
+
+        p, ul, li {
+            font-weight: 400;
+        }
+
+        /* Slide container */
+        .slide-container {
+            max-width: 900px;
+            margin: 0 auto 40px auto;
+            padding: 24px;
+            background-color: #1a1f2e; /* Slightly lighter dark background for cards */
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05); /* Subtle border */
+        }
+
+        /* Section Divider */
+        .section-divider {
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin: 60px auto;
+            width: 80%;
+        }
+
+        /* Badge for categories */
+        .badge {
+            display: inline-block;
+            background-color: #4a90e2; /* Steel blue */
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-right: 8px; /* For RTL */
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        /* Market Pulse Section */
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .market-pulse-card {
+            background-color: #2a3040; /* Darker card background */
+            border-radius: 6px;
+            padding: 16px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .market-pulse-card strong {
+            display: block;
+            font-size: 1.1em;
+            margin-bottom: 4px;
+            color: #f0f0f0;
+        }
+
+        .market-pulse-card span {
+            font-size: 0.9em;
+            color: #ccc;
+        }
+
+        .change-positive {
+            color: #79f2c0; /* Muted green */
+            background-color: rgba(66, 200, 120, 0.1); /* Light transparent green background */
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .change-negative {
+            color: #ff7f7f; /* Muted red */
+            background-color: rgba(255, 100, 100, 0.1); /* Light transparent red background */
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        /* Source Button */
+        .btn-source {
+            display: inline-block;
+            background-color: #4a90e2; /* Steel blue */
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9em;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+
+        .btn-source:hover {
+            background-color: #3a7dc9;
+        }
+
+        /* Images */
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            display: block;
+            object-fit: cover; /* Ensures images fill their space without distortion */
+            width: 100%; /* For responsive resizing */
+        }
+
+        /* Highlight Card (for key facts) */
+        .highlight-card {
+            background-color: rgba(74, 144, 226, 0.1); /* Transparent steel blue */
+            border-right: 4px solid #4a90e2;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+            color: #e0e0e0;
+        }
+
+        /* Opinion Card (for quotes) */
+        .opinion-card {
+            background-color: rgba(240, 180, 50, 0.1); /* Transparent gold/amber */
+            border-right: 4px solid #f0b432; /* Gold/amber accent */
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+            position: relative;
+            color: #e0e0e0;
+        }
+
+        .opinion-card::before {
+            content: '❝'; /* Quote icon */
+            font-size: 2em;
+            color: #f0b432;
+            position: absolute;
+            top: 10px;
+            right: 10px; /* For RTL */
+            opacity: 0.3;
+        }
+
+        .opinion-card p {
+            padding-right: 30px; /* Space for the quote icon */
+            margin: 0;
+        }
+
+        .opinion-card .speaker {
+            display: block;
+            text-align: left; /* Speaker name aligned left for RTL */
+            font-style: italic;
+            color: #ccc;
+            margin-top: 10px;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            table-layout: fixed; /* Required for tables */
+            overflow-x: auto; /* Required for tables */
+        }
+
+        th, td {
+            padding: 12px 8px;
+            text-align: right; /* For RTL */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        th {
+            background-color: #2a3040; /* Darker header background */
+            font-weight: 600;
+            color: #f0f0f0;
+        }
+
+        /* Links */
+        a {
+            color: #4a90e2;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Media Queries */
+        @media(max-width:768px){
+            .market-pulse-grid{grid-template-columns:1fr 1fr;}
+            .slide-container{padding:16px;}
+            h1{font-size:1.4rem;}
+            h2{font-size:1.2rem;}
+        }
+    </style>
+</head>
+<body>
+    <h1>דוח שוק הון יומי: 28 באוקטובר 2026</h1>
+
+    <div class="slide-container">
+        <h2><span class="badge">תמונת מצב</span> דופק השוק - נתוני סגירה 27.10.2026</h2>
+        <p>סקירה מהירה של מדדי מפתח ומניות בולטות מרשימת המעקב שרשמו תנודות חריגות ביום המסחר האחרון (27 באוקטובר 2026).</p>
+        <div class="market-pulse-grid">
+            <div class="market-pulse-card">
+                <strong>SPY</strong>
+                <span class="change-positive">+0.56% (+4.29)</span>
+            </div>
+            <div class="market-pulse-card">
+                <strong>QQQ</strong>
+                <span class="change-positive">+1.27% (+9.05)</span>
+            </div>
+            <div class="market-pulse-card">
+                <strong>BTC/USD</strong>
+                <span class="change-negative">-0.29% (-240.02)</span>
+            </div>
+            <div class="market-pulse-card">
+                <strong>ETH/USD</strong>
+                <span class="change-negative">-0.49% (-11.67)</span>
+            </div>
+            <div class="market-pulse-card">
+                <strong>AMD</strong>
+                <span class="change-positive">+5.45% (+28.98)</span>
+            </div>
+            <div class="market-pulse-card">
+                <strong>CRWV</strong>
+                <span class="change-positive">+7.94% (+4.38)</span>
+            </div>
+            <div class="market-pulse-card">
+                <strong>IREN</strong>
+                <span class="change-positive">+7.90% (+2.01)</span>
+            </div>
+            <div class="market-pulse-card">
+                <strong>COHR</strong>
+                <span class="change-positive">+6.45% (+14.29)</span>
+            </div>
+            <div class="market-pulse-card">
+                <strong>OKLO</strong>
+                <span class="change-positive">+5.36% (+1.39)</span>
+            </div>
+            <div class="market-pulse-card">
+                <strong>TSLA</strong>
+                <span class="change-positive">+4.04% (+15.84)</span>
+            </div>
+            <div class="market-pulse-card">
+                <strong>NNE</strong>
+                <span class="change-positive">+4.05% (+0.48)</span>
+            </div>
+            <div class="market-pulse-card">
+                <strong>AVGO</strong>
+                <span class="change-positive">+4.00% (+13.16)</span>
+            </div>
+            <div class="market-pulse-card">
+                <strong>SPOT</strong>
+                <span class="change-negative">-2.95% (-16.91)</span>
+            </div>
+            <div class="market-pulse-card">
+                <strong>NOW</strong>
+                <span class="change-negative">-2.15% (-3.40)</span>
+            </div>
+            <div class="market-pulse-card">
+                <strong>MU</strong>
+                <span class="change-positive">+2.77% (+25.06)</span>
+            </div>
+            <div class="market-pulse-card">
+                <strong>HOOD</strong>
+                <span class="change-positive">+1.85% (+1.72)</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <h2><span class="badge">AI ושבבים</span> שוק השבבים מתחמם: SK Hynix מזנקת, ענקיות הטק מעמיקות שיתופי פעולה</h2>
+
+        <h3>מה קרה היום</h3>
+        <ul>
+            <li><strong>זינוק ב-SK Hynix:</strong> מניית יצרנית השבבים הדרום קוריאנית SK Hynix זינקה ב-<span class="change-positive">11%</span> לאחר שדיווחה על רווח רבעוני שיא, העולה בהרבה על התחזיות. החברה אף ציינה כי מגבלות האספקה צפויות להימשך עד שנת 2030, מה שמצביע על ביקוש חזק.
+                <a class="btn-source" href="https://www.marketwatch.com/story/sk-hynix-delivered-on-third-quarter-results-but-the-outlook-is-what-really-mattered-to-wall-street-and-the-ai-trade-2fde9a57?mod=mw_rss_topstories">MarketWatch</a>
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/28/sk-hynix-third-quarter-profit.html">CNBC</a>
+            </li>
+            <li><strong>אות חיובי מ-Vertiv:</strong> חברת Vertiv דיווחה על הכנסות גבוהות מהצפוי, מה שנתפס כאות מעודד להאצת פיתוחי ה-AI לקראת דוחות ענקיות הטכנולוגיה.
+                <a class="btn-source" href="https://www.marketwatch.com/story/vertiv-earnings-just-sent-an-upbeat-signal-about-ai-ahead-of-big-tech-results-5714a105?mod=mw_rss_topstories">MarketWatch</a>
+            </li>
+            <li><strong>גוגל מרחיבה את עסקי שבבי ה-AI:</strong> גוגל משנה את אסטרטגיית הענן שלה ומתחילה לשתף פעולה עם שותפים כדי למכור יותר משבבי ה-TPU (Tensor Processing Unit) המותאמים אישית שלה מעבר לשירותי הענן שלה.
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/28/google-alters-cloud-playbook-turning-to-partners-to-sell-more-ai-chips.html">CNBC</a>
+            </li>
+            <li><strong>השקעות ענק ב-AI מ-Nvidia, AMD ו-Meta:</strong> אנבידיה ו-AMD הודיעו על השקעה של <span class="highlight-card">4 מיליארד דולר במטא</span>, במסגרת העמקת שותפות ה-AI שלהן. מטא מצדה הודיעה כי היא מתכננת לגייס סך כולל של <span class="highlight-card">95 מיליארד דולר</span> לתמיכה בהשקעותיה בתשתית בינה מלאכותית.
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/27/nvidia-invest-meta.html">CNBC</a>
+            </li>
+            <li><strong>אמזון שוקלת מחדש את השימוש ב-AI:</strong> אמזון פרסמה מזכר פנימי המכונה "anti-tokenmaxxing" המייעץ למהנדסים להיות בררנים יותר בשימוש ב-AI, תוך התמקדות ביעילות ובערך אמיתי.
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/27/amazon-ai-coding-tokenmaxxing.html">CNBC</a>
+                <a class="btn-source" href="https://www.marketwatch.com/story/the-real-way-to-tell-if-amazons-ai-spending-is-paying-off-42a8a637?mod=mw_rss_topstories">MarketWatch</a>
+            </li>
+        </ul>
+
+        <h3>למה זה חריג</h3>
+        <p>הזינוק של SK Hynix ב-11% הוא אירוע חריג למניית שבבים גדולה ומראה על אמון חזק בתעשיית שבבי הזיכרון, במיוחד HBM (High Bandwidth Memory) הנדרשים ליישומי AI. תחזית מגבלות האספקה עד 2030 מחזקת את התפיסה של ביקוש בלתי פוסק לטכנולוגיות AI. ההשקעות הענקיות של Nvidia ו-AMD במטא מדגישות את עומק שיתופי הפעולה וההוצאות הדרושות לתשתיות AI, מה שמהווה אינדיקטור חשוב למגמות רוחביות. גישתו הזהירה יותר של אמזון לשימוש ב-AI מצביעה על התבגרות השוק והתמקדות ב-ROI קונקרטי, בניגוד להייפ הראשוני.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>הדוחות החזקים והתחזיות האופטימיות של חברות שבבים כמו SK Hynix מעידים על כך שהצמיחה בתחום ה-AI עדיין נמצאת בשלבים מוקדמים, עם דרישה אדירה לחיבורי קצה, אחסון ועיבוד. ההשקעה של Nvidia ו-AMD במטא היא מהלך אסטרטגי המבטיח לשתי החברות נתח משמעותי מהוצאות הענק של מטא על תשתית AI, ומחזק את מעמדן כשחקניות מפתח. המעבר של גוגל למכירת שבבי TPU לצדדים שלישיים משקף את האמונה כי שוק שבבי ה-AI הוא גדול מספיק כדי להצדיק חדירה אגרסיבית יותר, ומאפשר לה להרחיב את טביעת הרגל שלה מעבר לשירותי הענן שלה. הזהירות של אמזון בשימוש ב-AI מצביעה על מעבר משלב הניסויים וההתלהבות הראשונית לשלב של מיקסום רווחים וייעול עלויות, ככל שהטכנולוגיה משתלבת עמוק יותר בפעילות העסקית.</p>
+
+        <div class="opinion-card">
+            <p>
+                Jim Cramer warned that the latest rally in AI stocks doesn't mean the data center trade is out of the woods.
+            </p>
+            <span class="speaker">Jim Cramer, CNBC</span>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/27/jim-cramer-ai-trade-financing-risks.html">CNBC</a>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <h2><span class="badge">קריפטו</span> ביטקוין מעל 80K$, נהירת מוסדיים לטוקניזציה וחששות אבטחה</h2>
+
+        <h3>מה קרה היום</h3>
+        <ul>
+            <li><strong>ביטקוין חוזר מעל 80,000 דולר ונהנה מזרם ETF:</strong> מחיר הביטקוין חזר לרמה של מעל <span class="highlight-card">80,000 דולר</span>, כשברקע זרימות כספים משמעותיות של <span class="change-positive">176 מיליון דולר לקרנות סל (ETFs) של ביטקוין</span> ביום אחד, ו-<span class="change-positive">286 מיליון דולר</span> ביומיים האחרונים. אנליסט אסטרטג בבנק מורגן סטנלי ציין כי רוב התיקון בשוק הקריפטו הסתיים.
+                <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-price-eyes-82k-as-morgan-stanley-strategist-says-most-of-correction-is-over">Cointelegraph by William Suberg</a>
+                <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-etf-176-million-inflow-sentiment-rebounds?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph by Helen Partz</a>
+                <img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M5Z3BJXQ46ZDN2Q8H9RF7F7N/hi-will-crypto-be-the-only-digital-currency-left-standing-south-korea-1.jpg" alt="Bitcoin price eyes $82K">
+            </li>
+            <li><strong>התקדמות מוסדית בטוקניזציה:</strong> מספר מוסדות פיננסיים גדולים הודיעו על השקות ושיתופי פעולה בתחום הטוקניזציה:
+                <ul>
+                    <li>יחידת DTCC (ספקית תשתיות לשוק הפוסט-מסחר) השיקה שירותי טוקניזציה במטרה ליצור "נתיב מעשי" לאימוץ ניירות ערך מבוססי טוקן.
+                        <a class="btn-source" href="https://cointelegraph.com/news/dtcc-subsidiary-launches-tokenization-services?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph by Zoltan Vardai</a>
+                        <img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M618TPPRNWQ7KVCWZJB3GR5V/hi-project-explained-a-global-initiative-for-asset-tokenization-1.jpg" alt="DTCC unit launches tokenization services">
+                    </li>
+                    <li>Mirae Asset Securities הנפיקה ניירות ערך מבוססי טוקן (Tokenized notes) ברשת סולנה (Solana) במסגרת תוכנית 3 מיליארד דולר, ומרחיבה את ההפצה המבוססת על בלוקצ'יין למשקיעים מוסדיים.
+                        <a class="btn-source" href="https://cointelegraph.com/news/mirae-asset-securities-tokenized-notes-solana?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph by Yohan Yun</a>
+                    </li>
+                    <li>Janus Henderson ו-Centrifuge השיקו קרן מבוססת טוקן העוקבת אחר מדד הנאסד"ק-100 על רשת Stellar, המציעה חשיפה למשקיעים לא-אמריקאים.
+                        <a class="btn-source" href="https://cointelegraph.com/news/janus-henderson-centrifuge-launch-tokenized-nasdaq-100-fund-on-stellar?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph by Nate Kostar</a>
+                    </li>
+                    <li>VanEck השיקה קרן סל (ETF) מגוונת המשלבת חשיפה למניות, אג"ח וביטקוין, עם הקצאה של 2% לביטקוין דרך ETP ספוט.
+                        <a class="btn-source" href="https://cointelegraph.com/news/vaneck-launches-diversified-etf-combining-stocks-bonds-and-bitcoin-exposure?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph by Nate Kostar</a>
+                    </li>
+                </ul>
+            </li>
+            <li><strong>אתגרים בטוקניזציה וקריפטו:</strong>
+                <ul>
+                    <li><strong>השעיית ETP של Zcash ב-Euronext:</strong> בורסת Euronext השעתה את השקת ה-ETP (Exchange Traded Product) של Zcash מטעם CoinShares עקב "דרישות סליקה תפעוליות".
+                        <a class="btn-source" href="https://cointelegraph.com/news/euronext-suspends-coinshares-zcash-etp-debut?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph by Zoltan Vardai</a>
+                    </li>
+                    <li><strong>חששות Robinhood מאי-ודאות רגולטורית:</strong> מנכ"ל Robinhood, ולאד טנב, הזהיר כי חוסר ודאות רגולטורית בארה"ב בנוגע לטוקניזציה מרתיע "נכסים רציניים" מאימוץ נרחב.
+                        <a class="btn-source" href="https://cointelegraph.com/news/robinhoods-tenev-warns-us-tokenization-uncertainty-deters-serious-assets?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph by Felix Ng</a>
+                    </li>
+                    <li><strong>התנגדות ענקיות הטכנולוגיה למניות מבוססות טוקן:</strong> חברות כמו אינטל, IBM, אורקל ו-IonQ מתנגדות לשימוש במניותיהן במוצרי מניות מבוססות טוקן של OKX-ICE, כשמעל 40% מהחברות המקוריות ביקשו לצאת מהתוכנית.
+                        <a class="btn-source" href="https://cointelegraph.com/news/intel-ibm-oracle-ionq-object-okx-ice-tokenized-stocks?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph by Turner Wright</a>
+                    </li>
+                </ul>
+            </li>
+            <li><strong>בעיות אבטחה ופרטיות:</strong>
+                <ul>
+                    <li><strong>דליפת נתונים ב-Coinbase:</strong> בורסת Coinbase הכחישה פריצת מערכות, אך הודתה שספקית אנליטיקה שלה, Amplitude, חשפה נתוני יצירת קשר של לקוחות.
+                        <a class="btn-source" href="https://cointelegraph.com/news/coinbase-analytics-provider-customer-data?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph by Zoltan Vardai</a>
+                    </li>
+                    <li><strong>דליפת נתונים ב-Bithumb:</strong> בורסת הקריפטו הדרום קוריאנית Bithumb חשפה דליפת נתונים עקב פריצה למערכת פנימית.
+                        <a class="btn-source" href="https://cointelegraph.com/news/bithumb-discloses-data-leak-after-internal-system-breach-report?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph by Felix Ng</a>
+                    </li>
+                </ul>
+            </li>
+            <li><strong>Robinhood ו-Ripple מרחיבות שותפות:</strong> Robinhood הרחיבה את שיתוף הפעולה שלה עם Ripple להבאת ה-"RLUSD" (הדולר הדיגיטלי של Ripple) לשווקים קמעונאיים ומוסדיים. זאת למרות ש-<span class="highlight-card">מניית Robinhood נפלה היום (28.10)</span> עקב ירידה ברווחי הקריפטו שקיזזה רווחים מעסקים חדשים.
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/27/ripple-strikes-deal-with-robinhood-to-expand-its-rlusd-digital-dollar.html">CNBC</a>
+                <a class="btn-source" href="https://cointelegraph.com/news/ripple-robinhood-expand-partnership-rlusd-retail-institutional-markets?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph by Nate Kostar</a>
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/28/robinhood-hood-q3-2026-earnings.html">CNBC</a>
+                <img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M5ZBHWRX2BG8Y30Y9AEP1V37/hi-what-is-the-significance-of-bis-statement-that-fiat-and-stablecoins-can-co-exist.png" alt="Ripple, Robinhood expand partnership">
+            </li>
+        </ul>
+
+        <h3>למה זה חריג</h3>
+        <p>התאוששות הביטקוין מעל 80 אלף דולר, יחד עם זרימות חיוביות לקרנות סל וחוות דעת חיובית מאנליסט בכיר במורגן סטנלי, מעידים על תפנית אפשרית בסנטימנט השוק לאחר תקופה של חוסר ודאות. הנהירה של מוסדות פיננסיים מובילים לתחום הטוקניזציה (DTCC, Mirae, Janus Henderson, VanEck) מסמלת התבגרות של הטכנולוגיה ואימוץ רחב יותר מעבר לספקולציות במטבעות קריפטו, וסוללת את הדרך לשילוב נכסים דיגיטליים במערכת הפיננסית המסורתית. עם זאת, אירועי ההשעיה של ETP על ידי Euronext, התנגדות חברות גדולות לטוקניזציה של מניותיהן, והאזהרות של מנכ"ל Robinhood מדגישים כי קיימים עדיין אתגרים רגולטוריים ותפעוליים משמעותיים. דליפות נתונים חוזרות בבורסות קריפטו ממשיכות להעלות חששות אבטחה ובטיחות למשתמשים.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>זרימות לקרנות סל ביטקוין ודעות חיוביות של אנליסטים משקפות ביקוש מוסדי מתמשך ואמונה בפוטנציאל ארוך הטווח של הביטקוין. הטוקניזציה נתפסת כדרך לייעל תהליכים, להפחית עלויות ולהגביר את הנזילות בשווקים, מה שמושך שחקנים מוסדיים המחפשים חדשנות. עם זאת, התחכום של הטכנולוגיה דורש התאמות רגולטוריות ותשתיתיות, וכל עוד אלו אינן פתורות באופן מלא, יישום רחב היקף יהיה מוגבל. שיתוף הפעולה של Robinhood עם Ripple על RLUSD, למרות ירידה רווחית קצרה, מראה על חזון אסטרטגי לטווח ארוך בתחום הסטייבלקוינס, המהווים תשתית פיננסית קריטית בשוקי 24/7. לבסוף, אירועי האבטחה מדגישים את הצורך הקריטי בסטנדרטים מחמירים ורגולציה מקיפה כדי להבטיח את אמון הציבור והמוסדות.</p>
+
+        <div class="opinion-card">
+            <p>
+                Former Morgan Stanley and Weiss executive Jordi Visser says AI agents are boosting demand for crypto as he expands his holdings beyond Bitcoin, Ether and Solana.
+            </p>
+            <span class="speaker">Jordi Visser, Wall Street veteran</span>
+            <a class="btn-source" href="https://cointelegraph.com/magazine/crypto-could-outperform-ai-stocks-wall-street-veteran-jordi-visser?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph by Yohan Yun</a>
+            <img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M5W5ECKJ4SW0V5ZA2BKG1Q5H/trade-secrets-jordi-visser.png" alt="Jordi Visser">
+        </div>
+
+        <div class="opinion-card">
+            <p>
+                Speaking on Cointelegraph’s Chain Reaction podcast, Muneeb Ali warned that uncertainty over Bitcoin’s quantum security could deter institutional investors.
+            </p>
+            <span class="speaker">Muneeb Ali, Stacks founder</span>
+            <a class="btn-source" href="https://cointelegraph.com/news/quantum-fears-already-limiting-bitcoins-growth-stacks-founder-says?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph by Nate Kostar</a>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <h2><span class="badge">מאקרו</span> התחממות ציפיות לריבית וחששות אינפלציה חדשים</h2>
+
+        <h3>מה קרה היום</h3>
+        <ul>
+            <li><strong>סיכויים גבוהים להעלאת ריבית בדצמבר:</strong> למרות שסקר של CNBC מראה כי <span class="highlight-card">93%</span> מהנשאלים צופים הפסקה בהעלאות הריבית השבוע, הסיכוי להעלאת ריבית בדצמבר עומד על <span class="change-positive">78%</span>. השוק נערך ל"החזקה ניצית" מצד הפד.
+                <a class="btn-source" href="https://www.youtube.com/watch?v=6J5RhUK_6hs">Micha.Stocks</a>
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/27/federal-reserve-rate-hike-timing-expectations.html">CNBC</a>
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/28/investors-brace-for-a-hawkish-hold-and-tech-on-tap.html">CNBC</a>
+            </li>
+            <li><strong>חששות אינפלציה חדשים:</strong> אנליסטים מזהירים מפני ארבע סיבות חדשות לדאגה מאינפלציה, ביניהן סיום החזרי המכסים, מה שעשוי לגרום לחברות לגלגל עלויות גבוהות יותר לצרכנים.
+                <a class="btn-source" href="https://www.marketwatch.com/story/four-reasons-to-start-worrying-about-inflation-including-the-end-of-tariff-refunds-978a5cfd?mod=mw_rss_topstories">MarketWatch by Nora Redmond</a>
+            </li>
+            <li><strong>ירידה בריביות המשכנתא:</strong> ריביות המשכנתא ירדו זו השבוע השני ברציפות. עם זאת, יותר לווים פנו למשכנתאות בסיכון גבוה יותר בחיפוש אחר חיסכון.
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/28/mortgage-rates-fell-for-the-second-straight-week.html">CNBC</a>
+            </li>
+            <li><strong>תביעת ה-CFTC נגד יוטה:</strong> רשות המסחר בחוזים עתידיים בסחורות (CFTC) תובעת את מדינת יוטה כדי לחסום פעולה נגד שווקי חיזוי, לאחר שיוטה תבעה את Kalshi בדרישה להחזיר עד 60 מיליון דולר רווחים.
+                <a class="btn-source" href="https://cointelegraph.com/news/cftc-lawsuit-utah-action-prediction-markets?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph by Turner Wright</a>
+            </li>
+        </ul>
+
+        <h3>למה זה חריג</h3>
+        <p>הפער בין ציפייה להפסקת ריבית מיידית לבין סיכוי גבוה להעלאה בדצמבר מצביע על חוסר ודאות בשוק המאקרו ואת הרגישות לנתוני אינפלציה. הופעת גורמים חדשים שמעלים חשש לאינפלציה (כמו סיום החזרי מכסים) מצביע על אתגרים מתמשכים לפד ולכלכלה. ירידת ריביות המשכנתא, שאמורה להקל על שוק הדיור, מלווה בעלייה בנטילת הלוואות מסוכנות יותר, דבר המעיד על לחץ פיננסי או קושי ברמת ההכנסה להשיג דיור סביר. התביעה של ה-CFTC נגד יוטה היא חריגה משום שהיא מדגישה קונפליקט רגולטורי ברמה פדרלית מול מדינתית בנוגע לחדשנות פיננסית, עם השלכות רחבות על תחום הטכנולוגיה הפיננסית.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>הפד פועל לאזן בין שליטה באינפלציה לבין שמירה על יציבות כלכלית. "החזקה ניצית" משמעותה שהפד צפוי להישאר על הגדר תוך שמירה על עמדה המאותתת על נכונות להדק מדיניות אם האינפלציה לא תתמתן כמצופה. גורמי אינפלציה חדשים עלולים לערער את אמון השוק ביכולת הפד להגיע ליעד האינפלציה שלו, ולחזק את הצורך בהידוק עתידי. בשוק הדיור, ירידת ריביות מספקת הקלה מסוימת, אך נטיית הלווים לסיכון גבוה יותר מעידה על כך שעלות הדיור עדיין גבוהה מדי עבור חלק ניכר מהציבור. המאבק המשפטי סביב שווקי החיזוי מדגים את הקושי של הרגולטורים להסתגל במהירות לטכנולוגיות פיננסיות חדשות וליצור מסגרת חוקית ברורה, דבר שיכול לעכב חדשנות.</p>
+
+        <div class="opinion-card">
+            <p>
+                The relationship between gold and platinum used to be a reliable stock-market signal. Has artificial-intelligence spending caused it to short-circuit? Meanwhile, the Fed faces a big question of its own today.
+            </p>
+            <span class="speaker">Mark DeCambre, MarketWatch</span>
+            <a class="btn-source" href="https://www.marketwatch.com/story/the-ai-boom-is-starting-to-break-time-tested-stock-market-signals-b172d67e?mod=mw_rss_topstories">MarketWatch</a>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <h2><span class="badge">טכנולוגיה</span> דוחות Anthropic חושפים קופת מזומנים אדירה</h2>
+
+        <h3>מה קרה היום</h3>
+        <ul>
+            <li><strong>קופת מזומנים אדירה ל-Anthropic:</strong> דוחות ה-S1 של Anthropic (חברת AI) חשפו כי היא מחזיקה ב<span class="highlight-card">131.7 מיליארד דולר במזומן</span>, סכום העולה על כל חברה לא-בנקאית בארה"ב למעט Berkshire Hathaway ו-Alphabet. נתון זה נתפס כמרסק את "טיעון הדובים" העיקרי נגד החברה, אך גם מדגיש את הסיכונים הרבים הכרוכים בהשקעה ב-AI.
+                <a class="btn-source" href="https://www.youtube.com/shorts/lXvls9rWQCQ">The Compound</a>
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/27/anthropic-cash-investments-ipo.html">CNBC</a>
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/28/anthropic-five-surprising-risks-s1.html">CNBC</a>
+            </li>
+        </ul>
+
+        <h3>למה זה חריג</h3>
+        <p>היקף המזומנים של Anthropic הוא חסר תקדים עבור חברת AI לפני הנפקה, ומעניק לה יתרון תחרותי עצום. הוא מאפשר לחברה להשקיע במחקר ופיתוח בקנה מידה עצום, למשוך כישרונות מובילים ולשמור על גמישות אסטרטגית משמעותית, גם בסביבה תחרותית מאוד. מצד אחד, זה מפיג חששות לגבי יכולת החברה לממן את פעילותה העתידית התובענית. מצד שני, ההערכה כי ההנפקה היא "עסק מסוכן" מזכירה כי שוק ה-AI עדיין תנודתי ודורש הבנה עמוקה של טכנולוגיה, תחרותיות ומודלים עסקיים מתפתחים.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>מזומנים רבים מספקים לחברת AI כרית ביטחון קריטית נוכח ההשקעות העצומות הנדרשות בתחום (שבבים, מודלים, כוח אדם). זה גם ממקם את Anthropic בעמדה חזקה למיזוגים ורכישות פוטנציאליים או לשיתופי פעולה אסטרטגיים. ההון העצום עשוי למשוך משקיעים נוספים המעוניינים בחשיפה לשחקנית AI עם גב כלכלי איתן. במקביל, שוק ההון מודע לכך שאפילו חברות עם קופות מזומנים גדולות נתקלות בקשיים, ושענף ה-AI, למרות הפוטנציאל האדיר, עדיין נמצא בשלבי התפתחות מוקדמים וחשוף לסיכונים טכנולוגיים, רגולטוריים ותחרותיים משמעותיים. ההנפקה של Anthropic תהווה מבחן חשוב לאמון השוק בהערכות השווי הגבוהות של חברות ה-AI.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <h2><span class="badge">תעשייה</span> Stellantis מטפסת למרות גירעון במזומנים</h2>
+
+        <h3>מה קרה היום</h3>
+        <ul>
+            <li><strong>מניית Stellantis עולה:</strong> מניית יצרנית הרכב האירופית Stellantis עלתה היום, למרות שדיווחה על <span class="change-negative">גירעון של 4 מיליארד יורו (4.5 מיליארד דולר) במזומנים</span> ברבעון השלישי. העלייה יוחסה להתקדמות בתוכנית ההבראה וקיצוצי העלויות של החברה.
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/28/stellantis-45-billion-cash-drain-turnaround.html">CNBC</a>
+            </li>
+        </ul>
+
+        <h3>למה זה חריג</h3>
+        <p>עלייה במניית חברה למרות גירעון משמעותי במזומנים היא חריגה, ומצביעה על כך שמשקיעים מתמקדים בנרטיב ארוך הטווח של ההבראה והיעילות התפעולית, ולא בנתוני תזרים המזומנים השוטפים. זה משקף אמון חזק בהנהלה ובאסטרטגיה שלה להתמודדות עם האתגרים בשוק הרכב.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>השוק מעניק פרמיה לחברות שמציגות תוכניות אסטרטגיות ברורות לשיפור ביצועים, גם אם הדרך לשם כרוכה בקשיים פיננסיים זמניים. במקרה של Stellantis, המשקיעים ככל הנראה מאמינים שקיצוצי העלויות ומהלכי ההתייעלות יניבו פירות בטווח הבינוני-ארוך, ויחזירו את החברה לצמיחה רווחית. גירעון מזומנים יכול להיות תוצאה של השקעות משמעותיות בטכנולוגיות חדשות (כמו רכבים חשמליים) או שינויים במלאי, ויתכן שהשוק רואה בכך השקעות הכרחיות לעתיד החברה.</p>
+    </div>
+
+</body>
+</html>
