@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי אסטרטגי: 28 באוקטובר 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0a0e17;
+            --text-color: #e0e0e0;
+            --accent-color: #8fa8cc; /* Steel blue / muted blue */
+            --header-color: #f0f0f0;
+            --divider-color: #333;
+            --positive-color: rgba(66, 200, 140, 0.2); /* Muted green with transparency */
+            --positive-text: #42c88c;
+            --negative-color: rgba(255, 99, 132, 0.2); /* Muted red with transparency */
+            --negative-text: #ff6384;
+            --neutral-color: rgba(128, 128, 128, 0.1);
+            --card-bg: #1a1f29;
+            --border-color: #2a2f38;
+            --link-color: #8fa8cc;
+            --link-hover-color: #aaccff;
+            --badge-bg: #3a414e;
+            --badge-text: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            direction: rtl; /* For Hebrew */
+            text-align: right; /* For Hebrew */
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll on body */
+        }
+
+        h1, h2, h3 {
+            color: var(--header-color);
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            text-align: center;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--divider-color);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            border-right: 4px solid var(--accent-color);
+            padding-right: 15px;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--header-color);
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            font-weight: 400;
+            font-size: 0.95rem;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+        }
+
+        a:hover {
+            color: var(--link-hover-color);
+        }
+
+        .slide-container {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .category-badge {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            position: absolute;
+            top: 25px;
+            left: 25px; /* Adjust for RTL */
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .market-card {
+            background-color: var(--bg-color);
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .market-card strong {
+            font-size: 1.1rem;
+            color: var(--header-color);
+            margin-bottom: 5px;
+        }
+
+        .market-card .change {
+            font-size: 1.0rem;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        .change.positive {
+            background-color: var(--positive-color);
+            color: var(--positive-text);
+        }
+
+        .change.negative {
+            background-color: var(--negative-color);
+            color: var(--negative-text);
+        }
+
+        .change.neutral {
+            background-color: var(--neutral-color);
+            color: var(--text-color);
+        }
+        
+        .section-divider {
+            border-top: 1px solid var(--divider-color);
+            margin: 30px 0;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--badge-bg);
+            color: var(--badge-text);
+            padding: 8px 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: background-color 0.2s ease-in-out;
+            text-align: center;
+            float: left; /* Adjust for RTL */
+            margin-left: 10px; /* Space between buttons */
+        }
+
+        .btn-source:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .opinion-card {
+            background-color: rgba(143, 168, 204, 0.1); /* Lighter accent background */
+            border-right: 4px solid var(--accent-color);
+            padding: 15px 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            font-style: italic;
+            position: relative;
+        }
+
+        .opinion-card::before {
+            content: "\201C"; /* Left double quotation mark */
+            position: absolute;
+            right: 15px; /* Adjust for RTL */
+            top: 10px;
+            font-size: 3rem;
+            color: var(--accent-color);
+            opacity: 0.3;
+            line-height: 1;
+        }
+        
+        .opinion-card .author {
+            display: block;
+            margin-top: 10px;
+            font-weight: 600;
+            color: var(--accent-color);
+            text-align: left; /* Adjust for RTL */
+        }
+
+        .content-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+            margin: 20px auto;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 16px;
+            }
+            .slide-container {
+                padding: 16px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+                padding-right: 10px;
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            p {
+                font-size: 0.9rem;
+            }
+            .market-pulse-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .category-badge {
+                position: static;
+                margin-bottom: 10px;
+                margin-left: 0;
+            }
+            .btn-source {
+                float: none; /* No float on mobile */
+                width: calc(100% - 20px); /* Adjust for padding/margin */
+                box-sizing: border-box;
+                margin-top: 10px;
+                margin-left: 0;
+                margin-right: 0;
+            }
+            .market-card {
+                 font-size: 0.9em;
+            }
+            .market-card strong {
+                font-size: 1.0em;
+            }
+            .market-card .change {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1 style="text-align: center;">דוח שוק יומי אסטרטגי: 28 באוקטובר 2026</h1>
+
+    <div class="slide-container">
+        <span class="category-badge">תמונת מצב מהירה</span>
+        <h2>דופק השוק</h2>
+        <div class="market-pulse-grid" dir="ltr"> <!-- LTR for numbers/symbols -->
+            <!-- SPY -->
+            <div class="market-card">
+                <strong>SPY</strong>
+                <span class="change positive">+0.56%</span>
+            </div>
+            <!-- QQQ -->
+            <div class="market-card">
+                <strong>QQQ</strong>
+                <span class="change positive">+1.27%</span>
+            </div>
+            <!-- IREN -->
+            <div class="market-card">
+                <strong>IREN</strong>
+                <span class="change positive">+7.90%</span>
+            </div>
+            <!-- CRWV -->
+            <div class="market-card">
+                <strong>CRWV</strong>
+                <span class="change positive">+7.93%</span>
+            </div>
+            <!-- COHR -->
+            <div class="market-card">
+                <strong>COHR</strong>
+                <span class="change positive">+6.45%</span>
+            </div>
+            <!-- AMD -->
+            <div class="market-card">
+                <strong>AMD</strong>
+                <span class="change positive">+5.45%</span>
+            </div>
+            <!-- TSLA -->
+            <div class="market-card">
+                <strong>TSLA</strong>
+                <span class="change positive">+4.04%</span>
+            </div>
+            <!-- SPOT -->
+            <div class="market-card">
+                <strong>SPOT</strong>
+                <span class="change negative">-2.95%</span>
+            </div>
+            <!-- NOW -->
+            <div class="market-card">
+                <strong>NOW</strong>
+                <span class="change negative">-2.15%</span> 
+            </div>
+            <!-- BTC/USD -->
+            <div class="market-card">
+                <strong>BTC/USD</strong>
+                <span class="change negative">-0.30%</span> 
+            </div>
+            <!-- ETH/USD -->
+            <div class="market-card">
+                <strong>ETH/USD</strong>
+                <span class="change negative">-0.50%</span> 
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="category-badge">AI ושבבים</span>
+        <h2>התחזקות במגזר ה-AI והשבבים</h2>
+        <p>מגזר ה-AI והשבבים ממשיך להראות סימני חוזק בולטים. חברת השבבים הדרום קוריאנית SK Hynix דיווחה על רווחי שיא לרבעון השלישי, מה שהוביל לזינוק של 11% במניותיה ואישש את הביקוש הגבוה לתשתית AI. במקביל, Vertiv, ספקית ציוד למרכזי נתונים, הציגה דוחות חזקים המעידים על האצה בבניית תשתית ה-AI, בעוד גוגל מרחיבה את אסטרטגיית שבבי ה-AI המותאמים אישית שלה באמצעות שיתופי פעולה. בנוסף, חברות הענק Nvidia ו-AMD הודיעו על השקעה משותפת של 4 מיליארד דולר במטא, המצטרפת לתוכניותיה של מטא לגייס 95 מיליארד דולר עבור תשתיות AI, מה שמעיד על המשך מרוץ החימוש והביקוש העצום בתחום.</p>
+        <p>העוצמה המתמשכת של יצרניות שבבי הזיכרון, ספקיות כוח למרכזי נתונים, ומפתחות שבבי AI מרכזיות, מצביעה על ביקוש יסודי איתן לתשתית AI. תחזיות לצווארי בקבוק באספקה עד לשנת 2030 מחזקות את ההערכה שהביקוש יעלה על ההיצע, וימשיך לתמוך במחירי השבבים ובהכנסות החברות במגזר זה. מספר מניות מעקב ברשימתי, כגון AMD (+5.45%), COHR (+6.45%), AVGO (+3.99%), ו-CRWV (+7.93%), הציגו עליות משמעותיות, המשקפות את הסנטימנט החיובי הזה.</p>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/28/sk-hynix-third-quarter-profit.html">CNBC</a>
+        <a class="btn-source" href="https://www.marketwatch.com/story/vertiv-earnings-just-sent-an-upbeat-signal-about-ai-ahead-of-big-tech-results-5714a105?mod=mw_rss_topstories">MarketWatch</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/28/google-alters-cloud-playbook-turning-to-partners-to-sell-more-ai-chips.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/27/nvidia-invest-meta.html">CNBC</a>
+        <a class="btn-source" href="https://www.marketwatch.com/story/sk-hynix-delivered-on-third-quarter-results-but-the-outlook-is-what-really-mattered-to-wall-street-and-the-ai-trade-2fde9a57?mod=mw_rss_topstories">MarketWatch</a>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="category-badge">קריפטו ונכסים דיגיטליים</span>
+        <h2>ביטקוין מתאושש, טוקניזציה מתמודדת עם קשיים</h2>
+        <p>הביטקוין מראה סימני התאוששות, כאשר קרנות סל נקודתיות לביטקוין (ETFs) רשמו כניסות הון של 176 מיליון דולר ביום אחד, ובסה"כ 286 מיליון דולר על פני יומיים, מה שדחף את מחיר הביטקוין מעל 80,000 דולר. אסטרטג מורגן סטנלי אף ציין כי רוב תיקון המחירים הסתיים, והביטקוין מכוון ל-82,000 דולר. מנגד, תחום הטוקניזציה של נכסים מסורתיים נתקל בקשיים משמעותיים: למעלה מ-40% מהחברות שנבחרו להנפיק מניות בטוקניזציה על ידי OKX-ICE, כולל ענקיות כמו אינטל (Intel), יבמ (IBM) ואורקל (Oracle), בחרו שלא להשתתף במיזם. בנוסף, בורסת יורונקסט השעתה את השקת ה-ETP של CoinShares למטבע Zcash עקב חששות סליקה. אלה מאותתים על דרך מורכבת ואיטית יותר לאימוץ טוקניזציה בפיננסים המסורתיים.</p>
+        <p>בעוד שזרימת ההון המוסדית לקרנות סל של ביטקוין ממשיכה לתמוך בהתאוששות המטבע, חוסר הרצון של תאגידים גדולים לטוקן את מניותיהם ובעיות תפעוליות של מוצרי ETP חדשים מדגישים את המורכבות הרגולטורית והלוגיסטית. הפער בין הסנטימנט החיובי בקרב חובבי קריפטו לבין המכשולים המעשיים בשילוב נכסים מסורתיים עם טכנולוגיית בלוקצ'יין ממחיש את האתגרים העומדים בפני שוק זה בדרכו לאימוץ נרחב.</p>
+        <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-etf-176-million-inflow-sentiment-rebounds?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-price-eyes-82k-as-morgan-stanley-strategist-says-most-of-correction-is-over?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/intel-ibm-oracle-ionq-object-okx-ice-tokenized-stocks?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/euronext-suspends-coinshares-zcash-etp-debut?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        <img class="content-image" src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M60NEYRT27HS3BACTE6CCD20/futures-bitcoin-options-top-5.jpg" alt="Bitcoin ETF Inflows">
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="category-badge">פינטק</span>
+        <h2>רובינהוד: הזדמנויות ואתגרים בתחום הקריפטו</h2>
+        <p>מניית רובינהוד (<span dir="ltr">HOOD</span>) עלתה היום ב-1.85%, אך החברה מתמודדת עם תמונה מורכבת בתחום הקריפטו. ידיעות מצביעות על כך ש"האטה בשוק הקריפטו מכבידה על הרווחים", ומקזזת הישגים מעסקים חדשים. במקביל, רובינהוד הרחיבה את שיתוף הפעולה שלה עם ריפל (Ripple) כדי להשיק את הדולר הדיגיטלי <span dir="ltr">RLUSD</span> לשווקים קמעונאיים ומוסדיים, מה שמעיד על הרצון להתרחב בתחום. עם זאת, מנכ"ל רובינהוד, ולאד טנב (Vlad Tenev), הזהיר מפני אי-הוודאות הרגולטורית בארה"ב בנוגע לטוקניזציה, שלדבריו מרתיעה "נכסים רציניים" מלהיכנס לשוק.</p>
+        <p>רובינהוד מנווטת סביבת קריפטו תנודתית, כאשר ירידה ברווחיות מתחום הקריפטו משפיעה על התוצאות, אך החברה מחפשת באופן פעיל מנועי צמיחה חדשים באמצעות הרחבת היצע נכסיה הדיגיטליים. הניגוד בין עליית המניה, הכניסה לשווקים חדשים, והאזהרות הפומביות מצד המנכ"ל לגבי חוסר ודאות רגולטורית, מדגיש את האופי המסוכן אך הפוטנציאלי לרווח בתחום הקריפטו, בתוך נוף רגולטורי משתנה.</p>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/27/robinhood-hood-q3-2026-earnings.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/27/ripple-strikes-deal-with-robinhood-to-expand-its-rlusd-digital-dollar.html">CNBC</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/robinhoods-tenev-warns-us-tokenization-uncertainty-deters-serious-assets?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/ripple-robinhood-expand-partnership-rlusd-retail-institutional-markets?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        <img class="content-image" src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M5ZBHWRX2BG8Y30Y9AEP1V37/hi-what-is-the-significance-of-bis-statement-that-fiat-and-stablecoins-can-co-exist.png" alt="Ripple Robinhood Partnership">
+    </div>
+
+</body>
+</html>
