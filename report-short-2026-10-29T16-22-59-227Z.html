@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק הון יומי - תמצית</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117; /* כחול-פחם כהה */
+            color: #e0e0e0; /* לבן-שבור */
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            direction: rtl; /* יישור מימין לשמאל */
+            font-weight: 400;
+        }
+
+        .slide-container {
+            background-color: #1a1f2e; /* רקע כהה יותר לשקופית */
+            margin: 20px auto;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            max-width: 900px;
+        }
+
+        h1 {
+            color: #f7b32b; /* צהוב-זהב עדין */
+            font-weight: 700;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #f7b32b; /* צהוב-זהב עדין */
+            font-weight: 700;
+            font-size: 1.6rem;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #3a4050;
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            color: #d1d9e2; /* אפור בהיר לכותרות משנה */
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: #6a9bd8; /* כחול-פלדה לקישורים */
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+        }
+
+        a:hover {
+            color: #f7b32b;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: #f7b32b; /* צבע הבלטה לתווית */
+            color: #0d1117;
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+            overflow-x: auto; /* לטיפול בטבלאות רחבות */
+            padding-bottom: 10px; /* רווח לגלילה אופקית */
+        }
+
+        .pulse-card {
+            background-color: #2a3040; /* רקע כהה יותר לכרטיס נתונים */
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pulse-card .symbol {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #f7b32b;
+        }
+
+        .pulse-card .price {
+            font-size: 1rem;
+            color: #e0e0e0;
+            margin-bottom: 5px;
+        }
+
+        .pulse-card .change {
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .positive-change {
+            color: #64dd17; /* ירוק מאופק */
+            background-color: rgba(100, 221, 23, 0.1); /* רקע ירוק שקוף */
+            padding: 3px 8px;
+            border-radius: 3px;
+        }
+
+        .negative-change {
+            color: #ff5252; /* אדום מאופק */
+            background-color: rgba(255, 82, 82, 0.1); /* רקע אדום שקוף */
+            padding: 3px 8px;
+            border-radius: 3px;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: #3a4050;
+            color: #e0e0e0;
+            padding: 6px 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            transition: background-color 0.2s;
+            margin-left: 10px; /* רווח בין כפתורי מקור */
+            direction: ltr; /* יישור שמאל לכפתור */
+            text-align: left; /* יישור שמאל לטקסט בתוך הכפתור */
+        }
+
+        .btn-source:hover {
+            background-color: #4a5060;
+        }
+
+        .section-divider {
+            border-top: 1px solid #3a4050;
+            margin: 40px 0;
+        }
+
+        .opinion-card {
+            background-color: #2e3546; /* רקע כהה מעט שונה לדעה */
+            border-left: 5px solid #f7b32b; /* פס צהוב-זהב לציון דעה */
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 6px;
+            position: relative;
+        }
+
+        .opinion-card::before {
+            content: '❝'; /* אייקון ציטוט */
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 2.5rem;
+            color: rgba(247, 179, 43, 0.3); /* צהוב שקוף */
+            line-height: 1;
+        }
+        
+        .opinion-card .quote-text {
+            margin-right: 40px; /* רווח בשביל אייקון הציטוט */
+            font-style: italic;
+        }
+
+        .opinion-card .author {
+            margin-top: 10px;
+            font-weight: 600;
+            color: #f7b32b;
+            text-align: left;
+            margin-left: 15px;
+        }
+
+        .image-container {
+            margin-top: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            overflow: hidden; /* למנוע גלישת תמונה מחוץ ל-border-radius */
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            display: block; /* למנוע רווחים מיותרים מתחת לתמונה */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .slide-container {
+                padding: 16px;
+                margin: 10px auto;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.4rem;
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            .market-pulse-grid {
+                grid-template-columns: 1fr 1fr; /* 2 עמודות במובייל */
+                gap: 10px;
+            }
+            .pulse-card .symbol {
+                font-size: 1rem;
+            }
+            .pulse-card .price, .pulse-card .change {
+                font-size: 0.85rem;
+            }
+            .btn-source {
+                font-size: 0.75rem;
+                padding: 5px 10px;
+                margin-left: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <h1>דוח שוק הון יומי - תמצית</h1>
+
+        <div class="badge">תמונת מצב מהירה</div>
+        <h2>Market Pulse - נתוני מפתח</h2>
+        <div class="market-pulse-grid">
+            <div class="pulse-card">
+                <div class="symbol">SPY (S&P 500)</div>
+                <div class="price">769.33 USD</div>
+                <div class="change negative-change">-0.39%</div>
+            </div>
+            <div class="pulse-card">
+                <div class="symbol">QQQ (Nasdaq 100)</div>
+                <div class="price">715.17 USD</div>
+                <div class="change negative-change">-1.44%</div>
+            </div>
+            <div class="pulse-card">
+                <div class="symbol">GOOG (Alphabet)</div>
+                <div class="price">282.86 USD</div>
+                <div class="change negative-change">-12.13%</div>
+            </div>
+            <div class="pulse-card">
+                <div class="symbol">NOW (ServiceNow)</div>
+                <div class="price">112.04 USD</div>
+                <div class="change negative-change">-25.37%</div>
+            </div>
+            <div class="pulse-card">
+                <div class="symbol">IREN (IREN Ltd.)</div>
+                <div class="price">27.31 USD</div>
+                <div class="change negative-change">-5.31%</div>
+            </div>
+            <div class="pulse-card">
+                <div class="symbol">SPOT (Spotify)</div>
+                <div class="price">554.09 USD</div>
+                <div class="change positive-change">+2.91%</div>
+            </div>
+            <div class="pulse-card">
+                <div class="symbol">BTC/USD (Bitcoin)</div>
+                <div class="price">81,588.01 USD</div>
+                <div class="change positive-change">+0.30%</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">טכנולוגיה ו-AI</div>
+        <h2>דוחות ענקית הטכנולוגיה וחששות ה-AI</h2>
+        <h3>מה קרה היום</h3>
+        <p>Alphabet (GOOG) ו-ServiceNow (NOW) חוו ירידות חדות לאחר פרסום דוחותיהן הרבעוניים. גוגל צנחה מעל <span class="negative-change">-12%</span> בעקבות פספוס בתחזיות והחשש מהשפעת תחרות ה-AI על עסקי הליבה שלה, בעוד ServiceNow צללה ב-<span class="negative-change">-25%</span> על רקע חששות משיבוש על ידי AI ודוחות חלשים, שסימנו את יומה הגרוע ביותר אי פעם. לעומת זאת, מיקרוסופט (MSFT) עלתה ב-<span class="positive-change">+4%</span> בזכות צמיחת ענן חזקה, אך נתוני ההוצאות ההוניות (capex) שלה היו נמוכים מהצפוי, מה שהוביל לירידות אצל שותפותיה בתחום תשתיות ה-AI כמו CoreWeave (CRWV) ו-IREN.</p>
+        <p>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/29/alphabet-nasdaq-futures-record-post-earnings-loss.html">CNBC</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/29/alphabet-google-search-ai-earnings.html">CNBC</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/28/alphabet-googl-earnings-q3-2026.html">CNBC</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/29/servicenow-now-earnings-q3-2026.html">CNBC</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/29/microsoft-msft-q1-earnings-report-2027.html">CNBC</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/29/microsoft-google-ai-capex-estimates.html">CNBC</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/29/neocloud-stocks-drop-after-microsoft-revises-capex-down.html">CNBC</a>
+        </p>
+
+        <h3>למה זה חריג</h3>
+        <p>הירידות הדרמטיות בגוגל ו-ServiceNow משקפות את הרגישות הגבוהה של השוק לעלויות העצומות והתחרות הגוברת בתחום ה-AI. בעוד השוק מצפה להשקעות אגרסיביות ב-AI, כל סימן להאטה בהוצאות התשתית או השפעה תחרותית מיידית גורר תגובת מחיר חריפה, במיוחד עבור חברות שהיוו עמודי תווך של הצמיחה הטכנולוגית.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">מאקרו כלכלה</div>
+        <h2>נתונים מאקרו-כלכליים ובנקים מרכזיים</h2>
+        <h3>מה קרה היום</h3>
+        <p>נתוני התמ"ג בארה"ב לרבעון השלישי הציגו צמיחה של <span class="positive-change">3.4%</span>, גבוהה מהתחזיות, בעוד אינפלציית ה-PCE בספטמבר הואצה ב-<span class="negative-change">0.5%</span> לחודש וב-<span class="negative-change">3.7%</span> בשיעור שנתי. הן הפדרל ריזרב והן הבנק המרכזי האירופי שמרו על הריבית ללא שינוי, אך שפתם נותרה "ניצית", כשהשווקים מתמחרים סיכויים גבוהים להעלאות ריבית נוספות בהמשך השנה. במקביל, נרשמה ירידה ראשונה במחירי הבתים בארה"ב מזה שלוש שנים, בעוד דמי השכירות עלו.</p>
+        <p>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/29/pce-inflation-report-september-2026-.html">CNBC</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/28/fed-rate-decision-consumer-borrowing-costs.html">CNBC</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/29/european-central-bank-interest-rates.html">CNBC</a>
+            <a class="btn-source" href="https://www.marketwatch.com/story/consumer-spending-flattens-out-after-inflation-surge-e7761d25?mod=mw_rss_topstories">MarketWatch</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/29/home-prices-fall-and-rents-rise-both-for-the-first-time-in-3-years.html">CNBC</a>
+        </p>
+
+        <h3>למה זה חריג</h3>
+        <p>שילוב של צמיחה כלכלית חזקה ואינפלציה מתמשכת מסמן כי מאבק הבנקים המרכזיים בעליית המחירים רחוק מלהסתיים, ומפיג תקוות לשינוי גישה מרכך. סביבת "הפסקה ניצית" זו מצביעה על המשך לחץ על עלויות האשראי ועלולה להוביל לתנודתיות בשוק, שכן המשקיעים מתמודדים עם האפשרות של הידוק נוסף במדיניות המוניטרית.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="badge">קריפטו</div>
+        <h2>זינוק הביטקוין ורגולציית קריפטו עולמית</h2>
+        <h3>מה קרה היום</h3>
+        <p>מחיר הביטקוין (BTC/USD) זינק ל-<span class="positive-change">81,588 דולר</span>, על רקע נתוני תמ"ג חזקים בארה"ב, כאשר קרנות הסל (ETFs) של הביטקוין רשמו תוספת של <span class="positive-change">137 מיליון דולר</span> והפכו את מאזן התזרים החודשי של אוקטובר לחיובי. במקביל, הבנק המרכזי של אנגליה פתח בהתייעצות בנוגע לקבלת בטוחות מנוקזות למטרות סליקה, מה שמסמן צעד פוטנציאלי לשילוב נכסים דיגיטליים בפיננסים המסורתיים. רגולציות קריפטו ממשיכות להתפתח ברחבי העולם, עם אימוץ הצעת חוק לשיתוף אוטומטי של נתוני מס קריפטו בצרפת ומועד אחרון קרוב לרישיונות בברזיל, הדורש מענה מחברות כמו Coinbase.</p>
+        <div class="image-container">
+            <img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M640KSE3Z43BT819XP76F6D2/bank-of-england-stablecoin-2.jpg" alt="Bank of England stablecoin">
+        </div>
+        <p>
+            <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-reaction-to-pce-data">Cointelegraph by William Suberg</a>
+            <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-etf-137-million-october-back-green">Cointelegraph by Helen Partz</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/bank-of-england-opens-consultation-on-tokenized-collateral-for-clearing">Cointelegraph by Robert Lakin</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/french-senate-adopts-bill-automatic-crypto-tax-data">Cointelegraph by Zoltan Vardai</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/brazil-crypto-license-filing-deadline-hurdles-uncertainty">Cointelegraph by Helen Partz</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/coinbase-brazil-license-no-service-disruption-expected">Cointelegraph by Helen Partz</a>
+        </p>
+        
+        <h3>למה זה חריג</h3>
+        <p>תגובת הביטקוין החיובית לנתונים המאקרו-כלכליים, על אף הגישה הניצית של הבנקים המרכזיים, מצביעה על התגברות הקורלציה שלו לשווקים המסורתיים ועניין מוסדי גובר דרך קרנות הסל. יוזמת הבנק המרכזי של אנגליה בולטת במיוחד כצעד משמעותי לקראת לגיטימציה של נכסים מנוקזים במערכות פיננסיות מבוססות, בניגוד לסביבת הרגולציה המורכבת במקומות אחרים.</p>
+    </div>
+</body>
+</html>
