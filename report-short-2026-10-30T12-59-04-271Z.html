@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק הון יומי - 30.10.2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117; /* Deep dark background */
+            color: #e0e6ed; /* Light grey text */
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            direction: rtl; /* Right-to-left for Hebrew */
+            text-align: right;
+        }
+
+        .slide-container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background-color: #1a202c; /* Slightly lighter dark for containers */
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: #d1d5db; /* Accent color for main title */
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #a7c0f0; /* Steel blue accent for section titles */
+            font-weight: 600;
+            border-bottom: 2px solid #2d3748;
+            padding-bottom: 10px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: #d1d5db;
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #8faadc; /* Lighter blue for links */
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .category-badge {
+            display: inline-block;
+            background-color: #3b465a;
+            color: #e0e6ed;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            margin-left: 10px; /* For RTL, adjust left margin */
+        }
+        
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .market-item {
+            background-color: #2d3748;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .market-item strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: #d1d5db;
+        }
+
+        .market-item .value {
+            font-size: 1rem;
+            color: #e0e6ed;
+        }
+
+        .market-item .change {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-top: 5px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .positive .change {
+            background-color: rgba(16, 185, 129, 0.2); /* Muted green */
+            color: #10b981;
+        }
+
+        .negative .change {
+            background-color: rgba(239, 68, 68, 0.2); /* Muted red */
+            color: #ef4444;
+        }
+
+        .zero-change .change {
+            background-color: rgba(156, 163, 175, 0.2); /* Muted grey */
+            color: #9ca3af;
+        }
+
+        .section-divider {
+            border-top: 1px solid #2d3748;
+            margin: 40px 0;
+            padding-top: 20px;
+        }
+
+        .highlight-card {
+            background-color: #2d3748;
+            border-left: 4px solid #f59e0b; /* Amber highlight */
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            font-style: italic;
+        }
+
+        .opinion-card {
+            background-color: #2d3748;
+            border-left: 4px solid #6366f1; /* Indigo highlight */
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .opinion-card::before {
+            content: "\201C"; /* Left double quotation mark */
+            position: absolute;
+            right: 10px; /* Position on the right for RTL */
+            top: 5px;
+            font-size: 3rem;
+            color: rgba(100, 116, 139, 0.3);
+            line-height: 1;
+        }
+
+        .opinion-card .author {
+            display: block;
+            margin-top: 10px;
+            font-style: normal;
+            font-weight: 600;
+            color: #a7c0f0;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: #4a5568;
+            color: #e0e6ed;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            margin-left: 10px; /* Adjust for RTL */
+            transition: background-color 0.2s;
+        }
+
+        .btn-source:hover {
+            background-color: #5b677a;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 6px;
+        }
+
+        table {
+            width: 100%;
+            table-layout: fixed;
+            word-wrap: break-word;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #2d3748;
+            border-radius: 6px;
+            overflow: hidden; /* Ensures rounded corners are visible */
+            overflow-x: auto; /* For tables that might be wide */
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #4a5568;
+            text-align: right;
+            vertical-align: top;
+        }
+
+        th {
+            background-color: #4a5568;
+            color: #e0e6ed;
+            font-weight: 600;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .market-pulse-grid {
+                grid-template-columns: 1fr 1fr; /* Two columns for smaller screens */
+            }
+            .slide-container {
+                padding: 16px;
+                margin: 10px auto;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            .category-badge {
+                font-size: 0.75rem;
+                padding: 4px 8px;
+            }
+            .market-item strong {
+                font-size: 1rem;
+            }
+            .market-item .value, .market-item .change {
+                font-size: 0.9rem;
+            }
+            .btn-source {
+                font-size: 0.75rem;
+                padding: 6px 10px;
+            }
+        }
+        @media (max-width: 480px) {
+            .market-pulse-grid {
+                grid-template-columns: 1fr; /* Single column for very small screens */
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+            h2 {
+                font-size: 1.3rem;
+            }
+            .slide-container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <h1>דוח שוק הון יומי תמציתי <br> 30 באוקטובר 2026</h1>
+
+        <div class="category-badge">סקירה מהירה</div>
+        <h2>תמונת מצב מהירה: Market Pulse</h2>
+        <div class="market-pulse-grid">
+            <div class="market-item negative">
+                <strong>SPY</strong>
+                <span class="value">769.36</span>
+                <span class="change">-0.38%</span>
+            </div>
+            <div class="market-item negative">
+                <strong>QQQ</strong>
+                <span class="value">715.34</span>
+                <span class="change">-1.42%</span>
+            </div>
+            <div class="market-item negative">
+                <strong>BTC/USD</strong>
+                <span class="value">77,403.72</span>
+                <span class="change">-0.75%</span>
+            </div>
+            <div class="market-item negative">
+                <strong>ETH/USD</strong>
+                <span class="value">2,232.23</span>
+                <span class="change">-0.93%</span>
+            </div>
+            <div class="market-item negative">
+                <strong>AMZN</strong>
+                <span class="value">243.79</span>
+                <span class="change">-4.25%</span>
+            </div>
+            <div class="market-item negative">
+                <strong>GOOG</strong>
+                <span class="value">282.32</span>
+                <span class="change">-12.29%</span>
+            </div>
+            <div class="market-item negative">
+                <strong>NOW</strong>
+                <span class="value">109.67</span>
+                <span class="change">-26.95%</span>
+            </div>
+            <div class="market-item negative">
+                <strong>IREN</strong>
+                <span class="value">26.25</span>
+                <span class="change">-8.98%</span>
+            </div>
+            <div class="market-item positive">
+                <strong>SPOT</strong>
+                <span class="value">557.24</span>
+                <span class="change">+3.50%</span>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="category-badge">קריפטו</div>
+        <h2>האקת ענק בבינאנס וזעזוע בשוק הקריפטו</h2>
+        <p>בורסת הקריפטו הגדולה בעולם, בינאנס, סבלה מהאקת ענק בסך 6.3 מיליארד דולר, הנחשב לגדול בתולדות הקריפטו, כאשר חוקרי קריפטו מקשרים את האירוע לקבוצת TraderTraitor הצפון קוריאנית. הפריצה הובילה לירידות בשוקי הקריפטו, כאשר מחיר הביטקוין ירד ל-$77,403.72 ו-BNB צנח ב-8%, למרות התחייבות בינאנס לכסות את כל ההפסדים.</p>
+        <p><strong>למה זה משנה:</strong> אירוע אבטחה חמור כזה עלול לערער את אמון המשקיעים בבורסות ריכוזיות ולהאיץ מעבר לפלטפורמות מסחר מבוזרות (DEXs), מה שישפיע על מבנה השוק לטווח הארוך.</p>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M6602N70GW2FG23Y7A1E55CV/hi-binance-hack.jpg" alt="Binance Hack" />
+        <a class="btn-source" href="https://cointelegraph.com/news/binance-hit-by-63b-hack-the-largest-in-cryptocurrency-history">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-price-metrics-hint-at-rebound-as-16b-liquidations-follow-binance-hack">Cointelegraph</a>
+        <a class="btn-source" href="https://www.marketwatch.com/story/heres-when-binance-plans-to-reopen-after-whats-believed-to-be-the-largest-ever-6-3-billion-hack-d3cb8154?mod=mw_rss_topstories">MarketWatch</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/north-korea-linked-to-63b-binance-hack-by-crypto-investigators">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/markets/rune-token-surges-binance-hack">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/binance-5-billion-replacement-crypto-in-custody?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+
+
+        <div class="section-divider"></div>
+
+        <div class="category-badge">טכנולוגיה</div>
+        <h2>נפילת ענקיות הטכנולוגיה על רקע דוחות מאכזבים וחששות AI</h2>
+        <p>השוק חווה ירידות חדות בסקטור הטכנולוגיה לאחר שחברות ענק דיווחו על דוחות רווחים מאכזבים, כאשר אלפבית (GOOG) צנחה ב-12.29% ואמזון (AMZN) ירדה ב-4.25% ביום המסחר האחרון. גם אינטל ספגה צניחה של 25% בטרום המסחר לאחר שסיפקה תחזית חלשה והאשימה את האטה בשוק המחשבים האישיים, והיא בדרך ליום הגרוע ביותר שלה מזה שנתיים. ServiceNow (NOW) חוותה את יום המסחר הגרוע ביותר בתולדותיה עם צניחה של 26.95% על רקע חששות כי עלויות ההשקעה ב-AI עשויות לפגוע בשורת הרווח.</p>
+        <p><strong>למה זה משנה:</strong> הדוחות מצביעים על כך שההשקעות העצומות ב-AI, למרות הפוטנציאל ארוך הטווח, מכבידות בטווח הקצר על תזרים המזומנים החופשי של החברות ועל רווחיות העסקים המסורתיים, מה שמטיל ספק ביכולתן להצדיק את הוצאות העתק ללא פגיעה בביצועים הקיימים.</p>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M663XBRMVF35RHDZ0MC72744/hacker-binance-bitcoin-treasury.jpg" alt="Tech Stocks Sell Off" />
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/30/amazon-intel-earnings-big-tech-ai-spending-concerns.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/30/tech-trade-nasdaq-futures-crypto-hack.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/29/servicenow-now-earnings-q3-2026.html">CNBC</a>
+        <a class="btn-source" href="https://www.marketwatch.com/story/why-intels-stock-is-sinking-toward-its-worst-drop-in-two-years-492d71a7?mod=mw_rss_topstories">MarketWatch</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/29/alphabet-google-search-ai-earnings.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/29/alphabet-google-microsoft-msft-shares-today-earnings.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/30/tech-giants-alphabet-meta-microsoft-amazon-ai-buildouts.html">CNBC</a>
+
+        <div class="section-divider"></div>
+
+        <div class="category-badge">מאקרו</div>
+        <h2>נתוני תמ"ג וריבית: תמונה מעורבת באירופה וארה"ב</h2>
+        <p>כלכלת ארה"ב הציגה צמיחה חזקה מהצפוי של 3.4% בתמ"ג ברבעון השלישי, במקביל לעלייה באינפלציה של ספטמבר. מנגד, גוש היורו רשם האטה בצמיחה ל-0.4% בלבד ברבעון השלישי, והבנק המרכזי האירופי הותיר את הריבית על 2.5%, בהחלטה שנתפסה כ"הפסקה ניצית" המרמזת על אפשרות לעליית ריבית בדצמבר.</p>
+        <p><strong>למה זה משנה:</strong> הפערים בביצועים הכלכליים והמדיניות המוניטרית בין ארה"ב לגוש היורו עשויים להשפיע על תנודות המטבעות ועל יעדי ההשקעה הבינלאומיים, תוך הדגשת החשש מחולשה מתמשכת באירופה לעומת חוסן מסוים בארה"ב.</p>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M642ZF00Z895Q6B695HS29XA/article-covers-188965-bitcoin-traders-predict-btc-price-gains-ahead-of-96k-liquidity-clash-960x640.webp" alt="US GDP" />
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/29/pce-inflation-report-september-2026-.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/30/euro-zone-gdp-france.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/10/29/european-central-bank-interest-rates.html">CNBC</a>
+        <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-price-jumps-to-815k-as-us-gdp-data-beats-expectations">Cointelegraph</a>
+
+    </div>
+</body>
+</html>
