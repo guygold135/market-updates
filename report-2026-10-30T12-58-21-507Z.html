@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי אסטרטגי - 30.10.2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0a0e17;
+            --text-color: #e0e6ed;
+            --accent-color: #b3c2e4; /* Steel blue / light blue-grey */
+            --header-color: #e0e6ed;
+            --positive-color: rgba(67, 160, 71, 0.2); /* Muted green with opacity */
+            --positive-text: #43a047;
+            --negative-color: rgba(229, 57, 53, 0.2); /* Muted red with opacity */
+            --negative-text: #e53935;
+            --neutral-color: rgba(128, 128, 128, 0.1); /* Muted grey with opacity */
+            --border-color: #2a303c;
+            --card-bg: #1a1f2c;
+            --highlight-bg: #2a3447;
+            --opinion-bg: #222a3b;
+            --badge-bg: #3a475f;
+            --badge-text: #ffffff;
+            --btn-bg: #3a475f;
+            --btn-text: #ffffff;
+            --btn-hover-bg: #4f5f7c;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            direction: rtl; /* Right-to-left for Hebrew */
+            text-align: right;
+        }
+
+        h1, h2, h3 {
+            color: var(--header-color);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 20px;
+            color: var(--accent-color);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 30px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin-top: 25px;
+            color: var(--accent-color);
+        }
+
+        .slide-container {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-color);
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .market-card {
+            background-color: var(--highlight-bg);
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid var(--border-color);
+        }
+
+        .market-card strong {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--header-color);
+        }
+
+        .market-card .price {
+            font-size: 1rem;
+            color: var(--text-color);
+            margin-bottom: 5px;
+        }
+
+        .market-card .change {
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 8px;
+            min-width: 80px; /* Ensure consistent width for visual alignment */
+        }
+
+        .change-positive {
+            background-color: var(--positive-color);
+            color: var(--positive-text);
+        }
+
+        .change-negative {
+            background-color: var(--negative-color);
+            color: var(--negative-text);
+        }
+
+        .change-neutral {
+            background-color: var(--neutral-color);
+            color: var(--text-color);
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--badge-bg);
+            color: var(--badge-text);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            margin-left: 10px;
+            text-align: center;
+        }
+
+        .section-divider {
+            border-top: 1px dashed var(--border-color);
+            margin: 40px 0;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        ul {
+            list-style-type: square;
+            margin-right: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--btn-bg);
+            color: var(--btn-text);
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-source:hover {
+            background-color: var(--btn-hover-bg);
+            text-decoration: none;
+        }
+
+        .highlight-card {
+            background-color: var(--highlight-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .highlight-card p {
+            margin: 0;
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-bg);
+            border-right: 5px solid var(--positive-text); /* Different accent color for opinions */
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            font-style: italic;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .opinion-card::before {
+            content: "🗣️"; /* Speech bubble/quote icon */
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            color: var(--positive-text);
+        }
+
+        .opinion-card p {
+            margin: 0;
+            padding-left: 40px; /* Space for icon */
+        }
+        
+        .opinion-card .speaker {
+            display: block;
+            font-weight: 600;
+            margin-top: 10px;
+            color: var(--accent-color);
+            padding-left: 40px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            table-layout: fixed;
+            overflow-x: auto;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: right;
+            white-space: normal; /* Allow wrapping in cells, adjust if needed for fixed layout */
+        }
+
+        th {
+            background-color: var(--highlight-bg);
+            font-weight: 600;
+            color: var(--header-color);
+        }
+        
+        td {
+            background-color: var(--card-bg);
+        }
+
+        /* Specific formatting for number badges within text */
+        .data-badge {
+            display: inline-block;
+            padding: 2px 7px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin: 0 3px;
+            white-space: nowrap;
+        }
+
+        .data-positive {
+            background-color: var(--positive-color);
+            color: var(--positive-text);
+        }
+
+        .data-negative {
+            background-color: var(--negative-color);
+            color: var(--negative-text);
+        }
+
+        .data-neutral {
+            background-color: var(--neutral-color);
+            color: var(--text-color);
+        }
+
+        /* Media Queries */
+        @media(max-width:768px){
+            .market-pulse-grid{grid-template-columns:1fr 1fr;}
+            .slide-container{padding:16px;}
+            h1{font-size:1.4rem;}
+            h2{font-size:1.2rem;}
+            body { padding: 10px; }
+            .market-card { padding: 10px; }
+            .market-card strong { font-size: 1rem; }
+            .market-card .price, .market-card .change { font-size: 0.9rem; }
+            .badge { font-size: 0.75rem; padding: 3px 8px; }
+            th, td { padding: 8px; font-size: 0.9rem; }
+            .opinion-card::before {
+                top: 10px;
+                right: 10px;
+                font-size: 1.2rem;
+            }
+            .opinion-card p, .opinion-card .speaker {
+                padding-left: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>דוח שוק יומי אסטרטגי – 30.10.2026</h1>
+
+    <!-- Slide 1: Market Pulse -->
+    <div class="slide-container">
+        <span class="badge">תמונת מצב מהירה</span>
+        <h2>דופק השוק היומי</h2>
+        <div class="market-pulse-grid">
+            <!-- SPY (S&P 500 ETF) -->
+            <div class="market-card">
+                <strong>SPY (S&P 500)</strong>
+                <span class="price">769.36</span>
+                <span class="change change-negative">-2.95 (<span class="data-negative">-0.38%</span>)</span>
+            </div>
+            <!-- QQQ (Nasdaq 100 ETF) -->
+            <div class="market-card">
+                <strong>QQQ (Nasdaq 100)</strong>
+                <span class="price">715.34</span>
+                <span class="change change-negative">-10.27 (<span class="data-negative">-1.42%</span>)</span>
+            </div>
+            <!-- IWM (Russell 2000 ETF) -->
+            <div class="market-card">
+                <strong>IWM (Russell 2000)</strong>
+                <span class="price">284.01</span>
+                <span class="change change-positive">+2.72 (<span class="data-positive">+0.97%</span>)</span>
+            </div>
+            <!-- GOOG (Alphabet) - Outlier -->
+            <div class="market-card">
+                <strong>GOOG (Alphabet)</strong>
+                <span class="price">282.32</span>
+                <span class="change change-negative">-39.57 (<span class="data-negative">-12.29%</span>)</span>
+            </div>
+            <!-- AMZN (Amazon) - Outlier -->
+            <div class="market-card">
+                <strong>AMZN (Amazon)</strong>
+                <span class="price">243.79</span>
+                <span class="change change-negative">-10.81 (<span class="data-negative">-4.25%</span>)</span>
+            </div>
+            <!-- NOW (ServiceNow) - Outlier -->
+            <div class="market-card">
+                <strong>NOW (ServiceNow)</strong>
+                <span class="price">109.67</span>
+                <span class="change change-negative">-40.46 (<span class="data-negative">-26.95%</span>)</span>
+            </div>
+            <!-- IREN (IREN Ltd.) - Outlier -->
+            <div class="market-card">
+                <strong>IREN (IREN Ltd.)</strong>
+                <span class="price">26.25</span>
+                <span class="change change-negative">-2.59 (<span class="data-negative">-8.98%</span>)</span>
+            </div>
+            <!-- MU (Micron Technology) - Outlier -->
+            <div class="market-card">
+                <strong>MU (Micron Technology)</strong>
+                <span class="price">934.27</span>
+                <span class="change change-negative">-48.96 (<span class="data-negative">-4.98%</span>)</span>
+            </div>
+            <!-- CRWV (CoreWeave) - Outlier -->
+            <div class="market-card">
+                <strong>CRWV (CoreWeave)</strong>
+                <span class="price">60.74</span>
+                <span class="change change-negative">-3.19 (<span class="data-negative">-4.99%</span>)</span>
+            </div>
+            <!-- SPOT (Spotify) - Outlier -->
+            <div class="market-card">
+                <strong>SPOT (Spotify)</strong>
+                <span class="price">557.24</span>
+                <span class="change change-positive">+18.84 (<span class="data-positive">+3.50%</span>)</span>
+            </div>
+            <!-- BTC/USD (Bitcoin) -->
+            <div class="market-card">
+                <strong>BTC/USD (ביטקוין)</strong>
+                <span class="price">77403.72</span>
+                <span class="change change-negative">-588.17 (<span class="data-negative">-0.75%</span>)</span>
+            </div>
+            <!-- ETH/USD (Ethereum) -->
+            <div class="market-card">
+                <strong>ETH/USD (את'ריום)</strong>
+                <span class="price">2232.23</span>
+                <span class="change change-negative">-20.90 (<span class="data-negative">-0.93%</span>)</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Slide 2: Tech Sector Turmoil and AI Spending Concerns -->
+    <div class="slide-container">
+        <span class="badge">טכנולוגיה & AI</span>
+        <h2>טלטלה בסקטור הטכנולוגיה וחששות מהוצאות AI</h2>
+
+        <h3>מה קרה היום</h3>
+        <p>היום התאפיין ביום מסחר קשה במיוחד עבור ענקיות הטכנולוגיה, כאשר מניות כמו <span class="data-negative">Alphabet (GOOG)</span>, <span class="data-negative">Amazon (AMZN)</span>, <span class="data-negative">Intel (INTC)</span> ו-<span class="data-negative">ServiceNow (NOW)</span> ספגו ירידות דרמטיות לאחר פרסום דוחות רווח מאכזבים וחששות גוברים לגבי הוצאות עתק על פיתוחי בינה מלאכותית (AI) וההשפעה על העסקים המסורתיים.</p>
+        <ul>
+            <li>
+                <strong>Alphabet (GOOG)</strong>: המניה צנחה ב-<span class="data-negative">12.29%</span> למחיר <span class="data-neutral">282.32 דולר</span>, המהווה את יומה הגרוע ביותר אי פעם, ואף איבדה <span class="data-negative">500 מיליארד דולר</span> משוויה. הירידה נבעה מהחמצת ציפיות הרווח והכנסות חלשות מהפעילות המרכזית שלה - חיפוש, מה שמשקף את הסימן הראשון הממשי לכך ש-AI מתחילה לכרסם בהכנסות החיפוש.
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/29/alphabet-earnings-miss-reflects-first-real-sign-that-ai-is-taking-a-bite-out-of-search.html">CNBC</a>,
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/29/alphabet-google-microsoft-msft-shares-today-earnings.html">CNBC</a>
+            </li>
+            <li>
+                <strong>Amazon (AMZN)</strong>: המניה ירדה ב-<span class="data-negative">4.25%</span> למחיר <span class="data-neutral">243.79 דולר</span>. החברה דיווחה על תזרים מזומנים חופשי שלילי שהתנפח ל-<span class="data-negative">42.4 מיליארד דולר</span>, כאשר הרווחים וההכנסות שלה פיגרו אחרי ציפיות וול סטריט.
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/29/amazon-amzn-q3-earnings-report-2026.html">CNBC</a>,
+                <a class="btn-source" href="https://www.marketwatch.com/story/heres-the-math-on-amazon-ceos-claim-to-be-on-path-to-two-trillion-dollar-revenue-businesses-34d648e8?mod=mw_rss_topstories">MarketWatch</a>
+            </li>
+            <li>
+                <strong>Intel (INTC)</strong>: המניה צנחה ב-<span class="data-negative">21%</span>, בדרך ליומה הגרוע ביותר מזה שנתיים, ואיבדה <span class="data-negative">128 מיליארד דולר</span> משוויה. החברה האשימה את ההאטה בעסקי המחשבים האישיים (PC) בתחזית החלשה שלה, למרות מעמדה כשחקנית AI חדשה.
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/29/intel-intc-q3-earnings-report-2026-.html">CNBC</a>,
+                <a class="btn-source" href="https://www.marketwatch.com/story/why-intels-stock-is-sinking-toward-its-worst-day-in-two-years-and-a-128-billion-wipeout-492d71a7?mod=mw_rss_topstories">MarketWatch</a>
+            </li>
+            <li>
+                <strong>ServiceNow (NOW)</strong>: המניה צללה ב-<span class="data-negative">26.95%</span>, הירידה היומית הגרועה ביותר שלה אי פעם, בעקבות דוחות רבעוניים מאכזבים שהציתו מחדש חששות מהפרעות שעלולות להיגרם על ידי AI.
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/29/servicenow-now-earnings-q3-2026.html">CNBC</a>
+            </li>
+            <li>
+                <strong>Micron Technology (MU)</strong>: ירדה ב-<span class="data-negative">4.98%</span>.
+                <a class="btn-source" href="https://www.marketwatch.com/story/amazons-and-intels-stocks-are-set-to-plunge-but-wall-streets-october-winners-may-surprise-you-4d74e4d4?mod=mw_rss_topstories">MarketWatch</a>
+            </li>
+            <li>
+                <strong>CoreWeave (CRWV)</strong>: ירדה ב-<span class="data-negative">4.99%</span>.
+            </li>
+            <li>
+                <strong>הוצאות AI</strong>: מיקרוסופט מתכננת לגייס <span class="data-neutral">25 מיליארד דולר</span> בחוב לטובת פיתוחי AI. Foxconn שואפת להחזיק ב-<span class="data-neutral">50%</span> משוק שרתי ה-AI העולמי בשנים הקרובות. יחד עם זאת, גוגל ומיקרוסופט דחו את העלאת תחזיות ההוצאות ההוניות שלהן, מה שמעיד על חשש מעלויות בניית תשתיות ה-AI.
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/29/microsoft-25-billion-debt-offering.html">CNBC</a>,
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/30/hon-hai-technology-group-foxconn-ai-server-young-liu-.html">CNBC</a>,
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/29/microsoft-google-ai-capex-estimates.html">CNBC</a>
+            </li>
+            <li>
+                <strong>נורמליזציה של AI</strong>: מנכ"ל מטא מארק צוקרברג ואילון מאסק של טסלה ו-SpaceX אימצו את המונח המועדף על הנשיא טראמפ, "סופר אינטליגנציה" (super intelligence), בשיחות הרווח לרבעון השלישי.
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/30/trump-tech-allies-swap-ai-for-super-intelligence-in-earnings-calls.html">CNBC</a>
+            </li>
+            <li>
+                <strong>Nvidia</strong>: החברה הכחישה דיווח של ה-New York Times לפיו סוכנויות מודיעין אמריקאיות עקבו אחר אדם קרוב למנכ"ל ג'נסן הואנג בחשד שהוא מרגל סיני, וטענה כי ההאשמות נחקרו והופרכו.
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/29/nvidia-jensen-huang-chinese-intelligence-asset.html">CNBC</a>
+            </li>
+        </ul>
+
+        <h3>למה זה חריג</h3>
+        <p>הירידות החדות של ענקיות הטכנולוגיה, במיוחד Alphabet ו-ServiceNow, הן חריגות ביותר. Alphabet רשמה יום המסחר הגרוע ביותר שלה אי פעם, ו-ServiceNow חוותה את הנפילה הגדולה ביותר בתולדותיה. האירועים מצביעים על כך שמשקיעים מתחילים להטיל ספק בכדאיות ההשקעות העצומות ב-AI ובהשפעתן על מודלי ההכנסה הקיימים של חברות הטכנולוגיה, במקום לראות ב-AI מנוע צמיחה בלבד. העובדה שגוגל ומיקרוסופט נמנעות מהעלאת תחזיות ההוצאות ההוניות מדגישה את חוסר הוודאות לגבי התשואה על השקעות אלו.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>סקטור הטכנולוגיה מתמודד עם דילמה: ההשקעות הנדרשות בתחום ה-AI הן אדירות, אך התשואה עליהן עדיין אינה ברורה לחלוטין. במקרה של גוגל, נראה כי ה-AI מתחילה להתחרות עם מודל החיפוש המסורתי, ומשפיעה על הכנסות הליבה. אמזון סובלת מתזרים מזומנים חופשי שלילי גדל, למרות צמיחתה של AWS, מה שמעיד על לחץ פיננסי הנובע מהשקעות. אינטל ו-ServiceNow נפגעות מחששות קונקרטיים לגבי ביקוש למחשבים אישיים והשפעת AI על המוצרים שלהן. כל אלו מראים כי השוק מתחיל להיות סלקטיבי יותר בהערכת חברות טכנולוגיה ומבחין בין חברות שיכולות להפוך את ההשקעות ב-AI לרווחיות לבין אלו שחוות "הפרעה" (disruption) משמעותית.</p>
+        <div class="opinion-card">
+            <p>"Wall Street is punishing the wrong tech stocks."</p>
+            <span class="speaker">Jim Cramer, CNBC</span>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/29/jim-cramer-earnings-guilt-by-association.html">CNBC</a>
+        </div>
+        <div class="opinion-card">
+            <p>מנכ"ל מיכה.סטוקס מציין כי: "הסקטורים עולים, הטכנולוגיה מדממת".</p>
+            <span class="speaker">מנכ"ל Micha.Stocks</span>
+            <a class="btn-source" href="https://www.youtube.com/watch?v=cjsaj833HBM">Micha.Stocks (YouTube)</a>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Slide 3: Binance Hack and Crypto Market Impact -->
+    <div class="slide-container">
+        <span class="badge">קריפטו</span>
+        <h2>פריצת הענק לבינאנס וטלטלה בשוק הקריפטו</h2>
+
+        <h3>מה קרה היום</h3>
+        <p>בורסת הקריפטו הגדולה בעולם, Binance, נפגעה ממתקפת סייבר בהיקף של <span class="data-negative">6.3 מיליארד דולר</span>, המתקפה הגדולה ביותר בהיסטוריה של המטבעות הדיגיטליים. הפריצה הובילה לטלטלה בשווקי הקריפטו ולנפילה של נכסים מובילים.</p>
+        <ul>
+            <li>
+                <strong>היקף הפריצה והתגובה</strong>: בינאנס הודיעה כי הוקצו <span class="data-neutral">6.34 מיליארד דולר</span> במטבעות תואמים לכיסוי ההפסדים ותכלול את הנכסים בדוח הוכחת העתודות הבא שלה. כש-<span class="data-neutral">3 מיליארד דולר</span> מהכספים הגנובים הוקפאו על ידי הבורסה ושותפיה. בורסת בינאנס מצפה לחזור לפעילות מלאה תוך מספר ימים.
+                <a class="btn-source" href="https://cointelegraph.com/news/binance-5-billion-replacement-crypto-in-custody?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>,
+                <a class="btn-source" href="https://cointelegraph.com/news/live-updates-binance-63b-hack-linked-to-north-koreas-tradertraitor?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>,
+                <a class="btn-source" href="https://cointelegraph.com/news/binance-linked-wallet-faces-possible-exploit-blockchain-researcher-warns?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>,
+                <a class="btn-source" href="https://www.marketwatch.com/story/heres-when-binance-plans-to-reopen-after-whats-believed-to-be-the-largest-ever-6-3-billion-hack-d3cb8154?mod=mw_rss_topstories">MarketWatch</a>
+            </li>
+            <li>
+                <strong>מקור הפריצה</strong>: בינאנס מצביעה על מחשב נייד של מהנדס שנפרץ כנקודת גישה אפשרית לתשתית הפנימית. חוקרי קריפטו מקשרים את המתקפה לקבוצת ההאקרים הצפון קוריאנית "TraderTraitor".
+                <a class="btn-source" href="https://cointelegraph.com/news/binance-hack-may-involve-private-key-misuse-not-theft-blockaid-ceo?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>,
+                <a class="btn-source" href="https://cointelegraph.com/news/north-korea-linked-to-63b-binance-hack-by-crypto-investigators?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+            </li>
+            <li>
+                <strong>השפעה על המטבעות</strong>: הביטקוין (BTC) נסחר סביב <span class="data-neutral">77,403.72 דולר</span>, והאת'ריום (ETH) סביב <span class="data-neutral">2232.23 דולר</span>, שניהם עם ירידות קלות לאחר החדשות על הפריצה, אך יציבים מעל רמות תמיכה מרכזיות. מניית <span class="data-negative">BNB</span> של בינאנס ירדה ב-<span class="data-negative">8%</span>.
+                <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-price-metrics-hint-at-rebound-as-16b-liquidations-follow-binance-hack?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>,
+                <a class="btn-source" href="https://cointelegraph.com/markets/binance-hack-rattles-crypto-markets-bnb-bitcoin-slide?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+            </li>
+            <li>
+                <strong>רווחים מפתיעים בצל הפריצה</strong>: טוקן ה-<span class="data-positive">RUNE</span> של THORChain זינק ב-<span class="data-positive">13%</span> לאחר הפריצה של בינאנס. זאת על רקע העבר שבו האקרים צפון קוריאנים השתמשו בפרוטוקול THORChain להעברת כספים שנגנבו בעבר.
+                <a class="btn-source" href="https://cointelegraph.com/markets/rune-token-surges-binance-hack?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+            </li>
+            <li>
+                <strong>היערכות להמשך</strong>: טרזור (Trezor) מזהירה רוכשי ארנקי CryptoBilis להעביר כספים מחשש להשתלה זדונית בחומרה.
+                <a class="btn-source" href="https://cointelegraph.com/news/trezor-cryptobilis-wallet-implant-funds-warning?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+            </li>
+        </ul>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M6602N70GW2FG23Y7A1E55CV/hi-binance-hack.jpg" alt="Binance Hack" />
+
+        <h3>למה זה חריג</h3>
+        <p>פריצת סייבר בהיקף של <span class="data-negative">6.3 מיליארד דולר</span> היא אירוע חסר תקדים בתעשיית הקריפטו, ומהווה את הפריצה הגדולה ביותר שתועדה אי פעם. חומרת האירוע, והמעורבות לכאורה של קבוצת האקרים מדינתית כמו "TraderTraitor", מדגישה את הסיכונים הגלומים בבורסות ריכוזיות ואת חשיבות אבטחת הסייבר. העובדה שבינאנס התחייבה לכסות את כל ההפסדים היא חשובה לאמון השוק, אך הפריצה עלולה להאיץ את המעבר לפתרונות מבוזרים יותר.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>הפריצה לבינאנס חושפת פעם נוספת את פגיעותן של בורסות קריפטו ריכוזיות למתקפות סייבר. ההתחייבות של בינאנס לכסות את ההפסדים היא צעד קריטי לשמירה על יציבות השוק ואמון המשקיעים, אך היא לא מונעת את התגובות המיידיות של ירידות מחירים ואת השיח לגבי הצורך בביזור. אנליסטים כמו ג'פרי קנדריק מ-Standard Chartered צופים כי אירועים כאלה עשויים להאיץ את המעבר לבורסות מבוזרות (DEXs). הזינוק של RUNE, טוקן של פרוטוקול ביזור, בצל הפריצה לבינאנס, יכול להעיד על העדפה גוברת לפלטפורמות מבוזרות כחלופה בטוחה יותר לאחסון והעברת נכסים.</p>
+        <div class="opinion-card">
+            <p>"Binance hack could accelerate shift to DEXs."</p>
+            <span class="speaker">Geoffrey Kendrick, Standard Chartered</span>
+            <a class="btn-source" href="https://cointelegraph.com/news/binance-hack-could-accelerate-shift-to-dexs-standard-chartered?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        </div>
+        <p>בתוך כך, שוק הקריפטו ממשיך להתפתח עם חדשנויות ורגולציה גוברת:</p>
+        <ul>
+            <li><strong>המנכ"ל מייקל סיילור</strong> טוען שחברת Strategy יכולה ליצור עד <span class="data-neutral">30 מיליארד דולר</span> באשראי דיגיטלי ללא גיוס הון נוסף או עליות מחיר ביטקוין, ומתכננת רכישות BTC נוספות.
+                <a class="btn-source" href="https://cointelegraph.com/news/strategy-30-billion-digital-credit-capacity-bitcoin-buys?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+            </li>
+            <li><strong>Nasdaq-listed Canton Strategic Holdings</strong> מתכננת להשיק מסחר במניות מבוזרות (tokenized stock trading) החל מה-2 בנובמבר, עם זכויות בעלי מניות זהות למניות מסורתיות ומסחר 24/7.
+                <a class="btn-source" href="https://cointelegraph.com/news/canton-strategic-holdings-tokenized-stock-trading-november-2026?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+            </li>
+            <li><strong>בנק אנגליה</strong> פתח בהתייעצות בנושא בטחונות מבוזרים (tokenized collateral) לניקוי סליקה, מה שיכול להגביר את האימוץ המוסדי של נכסי קריפטו.
+                <a class="btn-source" href="https://cointelegraph.com/news/bank-of-england-opens-consultation-on-tokenized-collateral-for-clearing?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+            </li>
+            <li><strong>צרפת</strong> אימצה הצעת חוק שתאפשר שיתוף אוטומטי של נתוני מיסוי קריפטו בין רשויות מס בינלאומיות.
+                <a class="btn-source" href="https://cointelegraph.com/news/french-senate-adopts-bill-automatic-crypto-tax-data?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Slide 4: Macroeconomic Overview -->
+    <div class="slide-container">
+        <span class="badge">מאקרו</span>
+        <h2>תמונת מצב כלכלית גלובלית: צמיחה, אינפלציה וריביות</h2>
+
+        <h3>מה קרה היום</h3>
+        <p>היום פורסמו מספר נתונים כלכליים חשובים שציירו תמונה מעורבת של הכלכלה הגלובלית, עם נקודות אור בארה"ב לצד האטה בגוש היורו.</p>
+        <ul>
+            <li>
+                <strong>ארה"ב - תוצר ואינפלציה</strong>: התוצר המקומי הגולמי (GDP) של ארה"ב עלה ב-<span class="data-positive">3.4%</span> ברבעון השלישי, נתון טוב מהצפוי. עם זאת, מדד מחירי הוצאות הצריכה הפרטית (PCE), מדד האינפלציה המועדף על הפדרל ריזרב, האיץ בספטמבר ל-<span class="data-neutral">0.5%</span> חודשי, המהווה קצב שנתי של <span class="data-neutral">3.7%</span>.
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/29/pce-inflation-report-september-2026-.html">CNBC</a>,
+                <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-price-jumps-to-81-5k-as-us-gdp-data-beats-expectations?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+            </li>
+            <li>
+                <strong>גוש היורו - צמיחה</strong>: הכלכלה בגוש היורו הואטה לשיעור צמיחה של <span class="data-neutral">0.4%</span> ברבעון השלישי, כאשר צרפת חווה התכווצות. למרות זאת, האזור הראה חוסן מפתיע אך עדיין מתמודד עם אתגרים כמו פרודוקטיביות נמוכה ולחצים דמוגרפיים.
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/30/euro-zone-gdp-france.html">CNBC</a>
+            </li>
+            <li>
+                <strong>הבנק המרכזי האירופי (ECB)</strong>: ה-ECB הותיר את הריבית המרכזית ללא שינוי ברמה של <span class="data-neutral">2.5%</span>. השווקים פירשו את ההחלטה כ"הפסקה ניצית", כאשר ההסתברות להעלאת ריבית בדצמבר עומדת על <span class="data-neutral">67%</span>. בנוסף, נשיאת ה-ECB, כריסטין לגארד, הודיעה כי תפרוש מתפקידה ב-7 בפברואר בשנה הבאה.
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/29/european-central-bank-interest-rates.html">CNBC</a>,
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/29/lagarde-ecb-stand-down.html">CNBC</a>
+            </li>
+            <li>
+                <strong>שוק הנדל"ן האמריקאי</strong>: מחיר המכירה החציוני של בתים בארה"ב ירד לראשונה מזה שלוש שנים, בעוד דמי השכירות עלו.
+                <a class="btn-source" href="https://www.cnbc.com/2026/10/29/home-prices-fall-and-rents-rise-both-for-the-first-time-in-3-years.html">CNBC</a>
+            </li>
+        </ul>
+
+        <h3>למה זה חריג</h3>
+        <p>הנתונים הכלכליים מציגים תמונה מורכבת: צמיחה חזקה מהצפוי בארה"ב מצד אחד, אך אינפלציה עיקשת שהולכת וגוברת מצד שני. בגוש היורו, ההאטה הכלכלית משמעותית יותר, במיוחד עם התכווצות בצרפת. "הפסקה הניצית" של ה-ECB והודעת הפרישה של לגארד מוסיפות חוסר ודאות לגבי המדיניות המוניטרית העתידית באירופה. בשוק הנדל"ן, היפוך המגמה במחירי בתים ובדמי שכירות לראשונה מזה שלוש שנים הוא אירוע משמעותי, המעיד על שינוי בתנאי השוק וייתכן שעל השפעת הריביות הגבוהות.</p>
+
+        <h3>הלוגיקה</h3>
+        <p>נתוני התוצר החזקים בארה"ב מצביעים על כלכלה עמידה, אך נתוני האינפלציה המאיצים יגבירו את הלחץ על הפדרל ריזרב לשקול המשך העלאות ריבית. יו"ר הפד החדש, קווין וורש, כבר הצהיר כי הוא נוטה לריביות גבוהות יותר. בגוש היורו, ה-ECB נמצא בלחץ לשמור על יציבות מחירים אך גם לתמוך בכלכלה חלשה יותר. הפרישה של לגארד מעלה שאלות לגבי מנהיגות עתידית. ירידת מחירי הבתים לצד עליית שכר הדירה בארה"ב מציגה מצב מורכב עבור הצרכנים, כאשר הוצאות הדיור ממשיכות להכביד למרות ירידה מסוימת בערך הנכסים. כל הגורמים הללו מצביעים על סביבה מאקרו-כלכלית הפכפכה, הדורשת מנהיגות זהירה וערנות מצד המשקיעים.</p>
+        <div class="opinion-card">
+            <p>"The new chairman [Kevin Warsh] made clear he leans toward higher interest rates, but left himself options depending on how the data comes in."</p>
+            <span class="speaker">CNBC Analysis</span>
+            <a class="btn-source" href="https://www.cnbc.com/2026/10/29/kevin-warsh-fed-october-rate-decision-december-hike.html">CNBC</a>
+        </div>
+        <div class="opinion-card">
+            <p>"If AI causes workers to lose their jobs then households face credit stress."</p>
+            <span class="speaker">Jamie Chisholm, MarketWatch</span>
+            <a class="btn-source" href="https://www.marketwatch.com/story/ai-could-hit-consumers-ability-to-manage-their-debt-heres-the-trade-43d1787e?mod=mw_rss_topstories">MarketWatch</a>
+        </div>
+    </div>
+</body>
+</html>
