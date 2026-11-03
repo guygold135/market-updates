@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי אסטרטגי</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --text-color: #e0e6ed;
+            --accent-color: #b3cddf; /* Steel blue */
+            --header-color: #f0f6fc;
+            --divider-color: #28303f;
+            --positive-color: rgba(67, 160, 71, 0.2); /* Muted green with opacity */
+            --positive-text: #66bb6a;
+            --negative-color: rgba(229, 57, 53, 0.2); /* Muted red with opacity */
+            --negative-text: #ef5350;
+            --neutral-color: rgba(128, 128, 128, 0.1);
+            --card-bg: #1a202c;
+            --opinion-bg: #2d3748;
+            --border-radius: 6px;
+            --spacing-unit: 8px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            direction: rtl; /* Set base direction to RTL */
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .slide-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: calc(var(--spacing-unit) * 4);
+            border-bottom: 1px solid var(--divider-color);
+        }
+
+        .slide-container:last-of-type {
+            border-bottom: none;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: var(--header-color);
+            font-weight: 700;
+            margin-bottom: calc(var(--spacing-unit) * 4);
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--header-color);
+            font-weight: 700;
+            margin-top: calc(var(--spacing-unit) * 4);
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: var(--spacing-unit);
+            position: relative;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-top: calc(var(--spacing-unit) * 3);
+            margin-bottom: calc(var(--spacing-unit) * 1.5);
+        }
+
+        p {
+            margin-bottom: var(--spacing-unit);
+            font-weight: 400;
+        }
+
+        .category-badge {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            padding: calc(var(--spacing-unit) / 2) var(--spacing-unit);
+            border-radius: var(--border-radius);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-unit);
+            text-transform: uppercase;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: calc(var(--spacing-unit) * 2);
+            margin-top: calc(var(--spacing-unit) * 3);
+        }
+
+        .market-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: calc(var(--spacing-unit) * 2);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .market-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .market-card-symbol {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--header-color);
+            margin-bottom: var(--spacing-unit);
+        }
+
+        .market-card-name {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            margin-bottom: var(--spacing-unit);
+            flex-grow: 1;
+        }
+
+        .market-card-change {
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: calc(var(--spacing-unit) / 2) var(--spacing-unit);
+            border-radius: var(--border-radius);
+            margin-top: var(--spacing-unit);
+        }
+
+        .change-positive {
+            background-color: var(--positive-color);
+            color: var(--positive-text);
+        }
+
+        .change-negative {
+            background-color: var(--negative-color);
+            color: var(--negative-text);
+        }
+
+        .change-neutral {
+            background-color: var(--neutral-color);
+            color: var(--text-color);
+        }
+
+        .highlight-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: calc(var(--spacing-unit) * 2);
+            margin-bottom: calc(var(--spacing-unit) * 3);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-bg);
+            border-radius: var(--border-radius);
+            padding: calc(var(--spacing-unit) * 2);
+            margin: calc(var(--spacing-unit) * 2) 0;
+            font-style: italic;
+            border-right: 4px solid var(--accent-color);
+            position: relative;
+            padding-right: calc(var(--spacing-unit) * 5); /* Space for icon */
+        }
+        .opinion-card::before {
+            content: "🗣️"; /* Speech bubble/quote icon */
+            position: absolute;
+            right: var(--spacing-unit);
+            top: var(--spacing-unit) * 2;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .opinion-author {
+            display: block;
+            margin-top: var(--spacing-unit);
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        .section-divider {
+            border-top: 1px solid var(--divider-color);
+            margin: calc(var(--spacing-unit) * 5) 0;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            padding: calc(var(--spacing-unit) / 2) var(--spacing-unit);
+            border-radius: var(--border-radius);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: var(--spacing-unit);
+            margin-left: var(--spacing-unit); /* RTL - spacing to the left */
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .btn-source:hover {
+            background-color: #8da3b6; /* Slightly darker accent */
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: var(--border-radius);
+            margin: calc(var(--spacing-unit) * 2) auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: calc(var(--spacing-unit) * 2) 0;
+            table-layout: fixed;
+            word-wrap: break-word;
+            overflow-x: auto; /* For table responsiveness */
+        }
+
+        th, td {
+            border: 1px solid var(--divider-color);
+            padding: var(--spacing-unit);
+            text-align: right; /* RTL */
+        }
+
+        th {
+            background-color: var(--card-bg);
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .slide-container {
+                padding: calc(var(--spacing-unit) * 2);
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            .market-pulse-grid {
+                grid-template-columns: 1fr 1fr; /* Two columns on mobile */
+                gap: var(--spacing-unit);
+            }
+            .market-card-symbol {
+                font-size: 1rem;
+            }
+            .market-card-name {
+                font-size: 0.8rem;
+            }
+            .market-card-change {
+                font-size: 0.9rem;
+            }
+            .opinion-card {
+                padding-right: calc(var(--spacing-unit) * 4);
+            }
+            .opinion-card::before {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <h1>דוח שוק יומי אסטרטגי</h1>
+    </div>
+
+    <div class="slide-container">
+        <span class="category-badge">מבזק שוק</span>
+        <h2>תמונת מצב מהירה: פעימות השוק</h2>
+        <p>סקירה מהירה של ביצועי המדדים והמניות הבולטות ביותר שחוו תנודה חריגה במהלך היום.</p>
+        <div class="market-pulse-grid">
+            <div class="market-card">
+                <div class="market-card-symbol">SPY</div>
+                <div class="market-card-name">S&P 500 ETF</div>
+                <div class="market-card-change change-negative">
+                    -0.479%
+                    <br>
+                    <small>(-3.62)</small>
+                </div>
+            </div>
+            <div class="market-card">
+                <div class="market-card-symbol">QQQ</div>
+                <div class="market-card-name">Nasdaq 100 ETF</div>
+                <div class="market-card-change change-negative">
+                    -1.361%
+                    <br>
+                    <small>(-9.40)</small>
+                </div>
+            </div>
+            <div class="market-card">
+                <div class="market-card-symbol">PLTR</div>
+                <div class="market-card-name">Palantir Technologies</div>
+                <div class="market-card-change change-negative">
+                    -3.134%
+                    <br>
+                    <small>(-5.77)</small>
+                </div>
+            </div>
+            <div class="market-card">
+                <div class="market-card-symbol">AAPL</div>
+                <div class="market-card-name">Apple Inc.</div>
+                <div class="market-card-change change-negative">
+                    -1.831%
+                    <br>
+                    <small>(-6.31)</small>
+                </div>
+            </div>
+            <div class="market-card">
+                <div class="market-card-symbol">AMD</div>
+                <div class="market-card-name">Advanced Micro Devices</div>
+                <div class="market-card-change change-negative">
+                    -7.520%
+                    <br>
+                    <small>(-37.96)</small>
+                </div>
+            </div>
+             <div class="market-card">
+                <div class="market-card-symbol">CRWV</div>
+                <div class="market-card-name">CoreWeave Inc.</div>
+                <div class="market-card-change change-negative">
+                    -8.602%
+                    <br>
+                    <small>(-4.72)</small>
+                </div>
+            </div>
+             <div class="market-card">
+                <div class="market-card-symbol">MU</div>
+                <div class="market-card-name">Micron Technology Inc.</div>
+                <div class="market-card-change change-negative">
+                    -5.781%
+                    <br>
+                    <small>(-51.15)</small>
+                </div>
+            </div>
+            <div class="market-card">
+                <div class="market-card-symbol">OKLO</div>
+                <div class="market-card-name">Oklo Inc.</div>
+                <div class="market-card-change change-negative">
+                    -6.851%
+                    <br>
+                    <small>(-1.73)</small>
+                </div>
+            </div>
+            <div class="market-card">
+                <div class="market-card-symbol">IREN</div>
+                <div class="market-card-name">IREN Ltd.</div>
+                <div class="market-card-change change-negative">
+                    -8.058%
+                    <br>
+                    <small>(-1.93)</small>
+                </div>
+            </div>
+            <div class="market-card">
+                <div class="market-card-symbol">NNE</div>
+                <div class="market-card-name">Nano Nuclear Energy Inc.</div>
+                <div class="market-card-change change-negative">
+                    -5.923%
+                    <br>
+                    <small>(-0.69)</small>
+                </div>
+            </div>
+            <div class="market-card">
+                <div class="market-card-symbol">AMZN</div>
+                <div class="market-card-name">Amazon.com Inc.</div>
+                <div class="market-card-change change-positive">
+                    +2.197%
+                    <br>
+                    <small>(+5.28)</small>
+                </div>
+            </div>
+            <div class="market-card">
+                <div class="market-card-symbol">TSLA</div>
+                <div class="market-card-name">Tesla, Inc.</div>
+                <div class="market-card-change change-positive">
+                    +1.003%
+                    <br>
+                    <small>(+4.01)</small>
+                </div>
+            </div>
+            <div class="market-card">
+                <div class="market-card-symbol">BTC/USD</div>
+                <div class="market-card-name">ביטקוין</div>
+                <div class="market-card-change change-positive">
+                    +0.884%
+                    <br>
+                    <small>(+679.33)</small>
+                </div>
+            </div>
+            <div class="market-card">
+                <div class="market-card-symbol">ETH/USD</div>
+                <div class="market-card-name">את'ריום</div>
+                <div class="market-card-change change-positive">
+                    +1.250%
+                    <br>
+                    <small>(+28.16)</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="category-badge">טכנולוגיה & AI</span>
+        <h2>מניות טכנולוגיה תחת לחץ: Palantir ו-Apple מאכזבות, ה-Nasdaq בתיקון</h2>
+        <p>מניות טכנולוגיה מרכזיות, ובראשן Palantir ו-Apple, רשמו ירידות משמעותיות לאחר דוחות רווחים ותחזיות מאכזבות, מה שתרם לנפילה רחבה יותר במדד ה-Nasdaq 100.</p>
+        <div class="highlight-card">
+            <h3>מה קרה היום</h3>
+            <p>מניית Palantir <span class="market-card-change change-negative">-3.13%</span> ירדה ב-<span class="market-card-change change-negative">$5.77</span> ל-<span class="market-card-change change-neutral">$178.34</span> בעקבות דיווח על האטה בצמיחת ההזמנות ברבעון השלישי. גם מניית Apple <span class="market-card-change change-negative">-1.83%</span> ירדה ב-<span class="market-card-change change-negative">$6.31</span> ל-<span class="market-card-change change-neutral">$338.32</span> לאחר תחזית רווח גולמי חלשה והאטה בצמיחת הכנסות השירותים. מדד ה-Nasdaq 100 (QQQ) צלל ב-<span class="market-card-change change-negative">-1.36%</span>, ונכנס לתיקון בפעם השלישית השנה עקב חששות גוברים סביב AI.</p>
+            <a class="btn-source" href="https://www.marketwatch.com/story/palantir-stock-is-down-8-analysts-say-bookings-growth-is-to-blame-0492921b?mod=mw_rss_topstories">MarketWatch</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/11/03/apple-palantir-stock-earnings.html">CNBC</a>
+            <a class="btn-source" href="https://www.marketwatch.com/story/nasdaq-100-tumbles-into-its-third-correction-this-year-as-ai-worries-mount-abee4c0d?mod=mw_rss_topstories">MarketWatch</a>
+        </div>
+        <div class="highlight-card">
+            <h3>למה זה חריג</h3>
+            <p>הירידות ב-Palantir ו-Apple הן חריגות בשל מעמדן כחברות טכנולוגיה מובילות וציפיות גבוהות, במיוחד בתחום ה-AI. הירידה של Palantir נרשמת למרות צמיחה חזקה בהכנסות המסחריות בארה"ב, והירידה של Apple מצביעה על לחץ מצד עלויות זיכרון ותחזיות שמרניות. תיקון שלישי ב-Nasdaq 100 תוך שנה משקף חששות עמוקים יותר לגבי מגזר הטכנולוגיה וה-AI, כולל הערכות שווי גבוהות.</p>
+        </div>
+        <div class="opinion-card">
+            <p>"The thrashing that Wall Street’s artificial-intelligence darlings have taken over the past few months has led to an unusual situation in the U.S. stock market."</p>
+            <span class="opinion-author">Joseph Adinolfi, MarketWatch</span>
+            <a class="btn-source" href="https://www.marketwatch.com/story/wall-streets-most-hated-stocks-are-faring-far-better-than-its-favorites-4c1d6c68?mod=mw_rss_topstories">MarketWatch</a>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="category-badge">קריפטו & רגולציה</span>
+        <h2>טלטלה בשוק הקריפטו: מתקפות סייבר, ירידה באמון והתפתחויות רגולטוריות</h2>
+        <p>שוק הקריפטו ספג מספר מכות משמעותיות, כולל השלכות מתקפת הסייבר הגדולה על Binance, יציאת הון מקרנות סל של ביטקוין, וירידה משמעותית במטבע NEAR, לצד התפתחויות רגולטוריות שונות.</p>
+        <div class="highlight-card">
+            <h3>מה קרה היום</h3>
+            <p>מטבע NEAR צנח ב-<span class="market-card-change change-negative">7%</span> לאחר שאושרה הצעה לקצץ בהנפקה השנתית של הטוקן. קרן ה-Bitcoin ETF של BlackRock (IBIT) חוותה את יציאת ההון הגדולה ביותר שלה מאז יוני, עם הפסד של <span class="market-card-change change-negative">$405.3 מיליון</span> ביום שני. בינתיים, בורסת Binance התמודדה עם גל משיכות משמעותי בעקבות פריצה של <span class="market-card-change change-negative">$6.3 מיליארד</span>, כאשר ההאקרים החלו להמיר טוקני סולנה גנובים לביטקוין, ובמקביל, Kraken הגבילה חשבונות על רקע חשד לגניבת קריפטו בהיקף <span class="market-card-change change-negative">$133 מיליון</span>.</p>
+            <a class="btn-source" href="https://cointelegraph.com/markets/near-sinks-7-proposal-cut-annual-token-issuance-passes?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+            <a class="btn-source" href="https://cointelegraph.com/markets/blackrocks-ibit-biggest-bitcoin-etf-outflow-june?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/binance-hackers-solana-new-phase-laundering-chainalysis?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+            <a class="btn-source" href="https://cointelegraph.com/news/kraken-restricts-accounts-amid-suspected-133m-eu-crypto-theft?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+            <img src="https://s3-images.ctmedia.io/media/article-covers/2026/11/01M6GM8J70K9VDYM0YWR60M7DC/hi-can-near-reach-its-all-time-hight-and-what-is-behind-the-recent-price-jump.jpg" alt="NEAR token sinks 7%">
+        </div>
+        <div class="highlight-card">
+            <h3>למה זה חריג</h3>
+            <p>הצניחה של NEAR מדגישה את הרגישות של שוקי הקריפטו לשינויים במודל ההנפקה, גם אם הם מכוונים לטווח ארוך. יציאת ההון מ-IBIT, קרן סל של בלאקרוק, מסמלת ירידה באמון המוסדי בביטקוין בטווח הקצר. אירועי הפריצה וההגבלות בבורסות כמו Binance ו-Kraken, לצד חקירות הלבנת הון, מערערים את יציבות השוק ומטילים צל על האבטחה והרגולציה בתעשייה, מה שמחזק את הצורך ברגולציה קפדנית יותר.</p>
+        </div>
+        <div class="opinion-card">
+            <p>“Bitcoin fell below the realized price of the one-to-three-month-old buyer cohort in a move that risked flipping it to new resistance.”</p>
+            <span class="opinion-author">William Suberg, Cointelegraph</span>
+            <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-price-support-loss-recent-buyers-underwater?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="category-badge">מאקרו כלכלה</span>
+        <h2>אוסטרליה מעלה ריבית לשפל של 18 שנה: חששות מאינפלציה בצל פריחת ה-AI</h2>
+        <p>הבנק המרכזי של אוסטרליה העלה את הריבית לשיא של 18 שנים, בניסיון לבלום אינפלציה המונעת על ידי עלויות אנרגיה וביקושים מוגברים כתוצאה מפריחת ה-AI, מה שמשפיע על התחזית המאקרו-כלכלית הגלובלית.</p>
+        <div class="highlight-card">
+            <h3>מה קרה היום</h3>
+            <p>הבנק המרכזי של אוסטרליה (RBA) העלה את הריבית הבנצ'מרק ל-<span class="market-card-change change-neutral">4.85%</span>, עלייה לחמשית השנה, מה שמציב את הריבית ברמה הגבוהה ביותר מזה 18 שנים. ההחלטה התקבלה בתגובה לעלייה בעלויות הטכנולוגיה, במיוחד מהשקעות בתחום הבינה המלאכותית, וכן למחירי אנרגיה גבוהים המזינים את האינפלציה.</p>
+            <a class="btn-source" href="https://www.cnbc.com/2026/11/03/australia-hikes-rates-18-year-high-finflation.html">CNBC</a>
+            <a class="btn-source" href="https://cointelegraph.com/markets/australia-lifts-rates-as-ai-boom-energy-costs-fuel-inflation?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+            <img src="https://s3-images.ctmedia.io/media/article-covers/2026/11/01M6FS9RCYXTTNWDX94AF8DVDE/hi-australian-senators-pushing-for-country-to-become-the-next-crypto-hub.jpg" alt="Reserve Bank of Australia">
+        </div>
+        <div class="highlight-card">
+            <h3>למה זה חריג</h3>
+            <p>עליית ריבית משמעותית זו באוסטרליה, המגיעה לשיא של כמעט שני עשורים, מדגישה את האתגר הגלובלי באינפלציה. הקשר הישיר המוזכר בין עליית ריבית לעלויות מוגברות של טכנולוגיית AI, בנוסף לאנרגיה, חריג ומצביע על כך שההשפעה הכלכלית של פריחת ה-AI מתחילה להתבטא גם ברמת המאקרו, מעבר לשיבושים ספציפיים בתעשיות. זו אינדיקציה לכך שהבנקים המרכזיים מתמודדים עם גורמי אינפלציה חדשים ומורכבים.</p>
+        </div>
+    </div>
+</body>
+</html>
