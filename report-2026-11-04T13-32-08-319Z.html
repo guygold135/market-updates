@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי אסטרטגי: 4 בנובמבר 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0e17;
+            --text-light: #e0e0e0;
+            --accent-gold: #FFD700;
+            --accent-steel-blue: #4682B4;
+            --positive-change: rgba(0, 128, 0, 0.2); /* Muted green */
+            --negative-change: rgba(255, 0, 0, 0.2); /* Muted red */
+            --card-bg: #1a1e27;
+            --divider-color: #333;
+            --highlight-bg: #2a2e37;
+            --opinion-bg: #1c2331;
+            --badge-bg: #333d4f;
+            --font-inter: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-inter);
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            direction: rtl; /* Ensure right-to-left for Hebrew */
+        }
+
+        h1, h2, h3 {
+            color: var(--accent-gold);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--accent-steel-blue);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--divider-color);
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-top: 25px;
+        }
+
+        p {
+            margin-bottom: 10px;
+            font-weight: 400;
+            font-size: 0.95rem;
+        }
+
+        .slide-container {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--badge-bg);
+            color: var(--text-light);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .market-pulse-item {
+            background-color: var(--highlight-bg);
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            border: 1px solid var(--divider-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .market-pulse-item strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--accent-gold);
+        }
+
+        .market-pulse-item span {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .change-positive {
+            color: #00FF00; /* Bright green for text */
+            background-color: var(--positive-change);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .change-negative {
+            color: #FF0000; /* Bright red for text */
+            background-color: var(--negative-change);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .section-divider {
+            border-top: 1px solid var(--divider-color);
+            margin: 30px 0;
+        }
+
+        .highlight-card {
+            background-color: var(--highlight-bg);
+            border-right: 4px solid var(--accent-steel-blue);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-bg);
+            border-right: 4px solid var(--accent-gold);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            font-style: italic;
+            position: relative;
+            direction: ltr; /* Ensure quotes are LTR if in English */
+        }
+
+        .opinion-card::before {
+            content: "“";
+            position: absolute;
+            right: 10px;
+            top: 5px;
+            font-size: 3rem;
+            color: rgba(255, 215, 0, 0.3); /* Muted gold for quote icon */
+            font-family: serif;
+        }
+
+        .opinion-card p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        .opinion-card .speaker {
+            display: block;
+            text-align: right;
+            margin-top: 10px;
+            font-style: normal;
+            font-weight: 600;
+            color: var(--accent-gold);
+            font-size: 0.85rem;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--accent-steel-blue);
+            color: var(--bg-dark);
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-source:hover {
+            background-color: #5a93c7;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-right: 20px;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+            font-weight: 400;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            table-layout: fixed;
+            overflow-x: auto;
+        }
+
+        th, td {
+            border: 1px solid var(--divider-color);
+            padding: 10px;
+            text-align: right;
+            font-weight: 400;
+        }
+
+        th {
+            background-color: var(--highlight-bg);
+            font-weight: 600;
+        }
+
+        @media(max-width:768px){
+            .market-pulse-grid{grid-template-columns:1fr 1fr;}
+            .slide-container{padding:16px;}
+            h1{font-size:1.4rem;}
+            h2{font-size:1.2rem;}
+            body { padding: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <h1>דוח שוק יומי אסטרטגי: 4 בנובמבר 2026</h1>
+
+    <div class="slide-container">
+        <span class="badge">תמונת מצב מהירה</span>
+        <h2>דופק השוק - סקירה יומית</h2>
+        <div class="market-pulse-grid">
+            <div class="market-pulse-item">
+                <strong>S&P 500 (SPY)</strong>
+                <span>מחיר: 754.35</span>
+                <span class="change-positive">+0.30%</span>
+            </div>
+            <div class="market-pulse-item">
+                <strong>Nasdaq 100 (QQQ)</strong>
+                <span>מחיר: 685.28</span>
+                <span class="change-positive">+0.62%</span>
+            </div>
+            <div class="market-pulse-item">
+                <strong>ביטקוין (BTC/USD)</strong>
+                <span>מחיר: 78,488.01</span>
+                <span class="change-positive">+1.34%</span>
+            </div>
+            <div class="market-pulse-item">
+                <strong>את'ריום (ETH/USD)</strong>
+                <span>מחיר: 2,320.60</span>
+                <span class="change-positive">+2.01%</span>
+            </div>
+            <div class="market-pulse-item">
+                <strong>IREN Ltd. (IREN)</strong>
+                <span>מחיר: 24.46</span>
+                <span class="change-positive">+11.08%</span>
+            </div>
+            <div class="market-pulse-item">
+                <strong>CoreWeave Inc. (CRWV)</strong>
+                <span>מחיר: 53.74</span>
+                <span class="change-positive">+7.16%</span>
+            </div>
+            <div class="market-pulse-item">
+                <strong>Nano Nuclear Energy Inc. (NNE)</strong>
+                <span>מחיר: 11.43</span>
+                <span class="change-positive">+4.29%</span>
+            </div>
+            <div class="market-pulse-item">
+                <strong>Coherent Corp. (COHR)</strong>
+                <span>מחיר: 207.49</span>
+                <span class="change-positive">+3.77%</span>
+            </div>
+            <div class="market-pulse-item">
+                <strong>AMD (AMD)</strong>
+                <span>מחיר: 483.90</span>
+                <span class="change-positive">+3.65%</span>
+            </div>
+            <div class="market-pulse-item">
+                <strong>Space Exploration Technologies (SPCX)</strong>
+                <span>מחיר: 141.31</span>
+                <span class="change-positive">+3.62%</span>
+            </div>
+            <div class="market-pulse-item">
+                <strong>Broadcom Inc. (AVGO)</strong>
+                <span>מחיר: 332.13</span>
+                <span class="change-positive">+3.07%</span>
+            </div>
+            <div class="market-pulse-item">
+                <strong>ServiceNow Inc. (NOW)</strong>
+                <span>מחיר: 109.16</span>
+                <span class="change-positive">+2.97%</span>
+            </div>
+            <div class="market-pulse-item">
+                <strong>Micron Technology Inc. (MU)</strong>
+                <span>מחיר: 855.10</span>
+                <span class="change-positive">+2.58%</span>
+            </div>
+            <div class="market-pulse-item">
+                <strong>NVIDIA Corporation (NVDA)</strong>
+                <span>מחיר: 206.69</span>
+                <span class="change-positive">+2.29%</span>
+            </div>
+            <div class="market-pulse-item">
+                <strong>Robinhood Markets Inc. (HOOD)</strong>
+                <span>מחיר: 85.68</span>
+                <span class="change-positive">+2.19%</span>
+            </div>
+            <div class="market-pulse-item">
+                <strong>Amazon.com Inc. (AMZN)</strong>
+                <span>מחיר: 250.69</span>
+                <span class="change-positive">+2.06%</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">מאקרו ופוליטיקה</span>
+        <h2>"גל כחול" בבחירות האמצע והשפעתו על השוק</h2>
+        <h3>מה קרה היום</h3>
+        <p>הדמוקרטים זכו לשליטה מלאה בקונגרס האמריקאי, הן בבית הנבחרים והן בסנאט, בבחירות האמצע של 2026. תוצאה זו, שזכתה לכינוי "גל כחול", שלחה את החוזים העתידיים ל"ירוק" וגרמה לעליות בשוקי המניות.</p>
+        <div class="highlight-card">
+            <p><strong>הדמוקרטים צפויים כעת לשלוט בוועדות הבית החל מינואר 2027, מה שיעניק להם כוח לחקור את ממשל הנשיא דונלד טראמפ.</strong></p>
+            <a class="btn-source" href="https://cointelegraph.com/news/democrats-win-us-house-congress-control">Cointelegraph</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/11/04/a-blue-wave-sends-futures-into-the-green.html">CNBC</a>
+        </div>
+        <p>בנוסף, נתוני תעסוקה מעורבים פורסמו: חברות פרטיות הוסיפו 86,000 משרות באוקטובר, מעט גבוה מהצפוי, בעוד שהביקוש למשכנתאות ממשיך לרדת למרות ירידה בריביות.</p>
+        <a class="btn-source" href="https://www.cnbc.com/2026/11/04/private-companies-added-86000-jobs-in-october-slightly-higher-than-expected-adp-says.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/11/04/mortgage-rates-dropped-homebuyers-still-leaving.html">CNBC</a>
+
+        <h3>למה זה חריג</h3>
+        <p>שליטה מלאה של מפלגה אחת בקונגרס יכולה להפחית אי-ודאות רגולטורית ולהוביל למדיניות ברורה יותר, מה שנתפס לעיתים קרובות באופן חיובי על ידי השווקים. ה"גל הכחול" נתפס כגורם מייצב, בניגוד לתחזיות קודמות של שוקי חיזוי שציפו לתוצאות צמודות יותר.</p>
+        <p>התוצאות אף גרמו לביטקוין להתאושש משפל של 7 שבועות, מתחת ל-76,000 דולר, ולטפס מעל 78,000 דולר.</p>
+        <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-bounces-from-7-week-low-under-76k-as-democrats-eye-congress-sweep">Cointelegraph</a>
+
+        <h3>הלוגיקה</h3>
+        <p>לרוב, שווקים נוטים להעדיף בהירות ויציבות פוליטית. שליטה אחידה של מפלגה אחת יכולה לפשט את תהליכי החקיקה והרגולציה, גם אם המדיניות עצמה אינה תמיד אהודה על כלל המגזרים. במקרה זה, השוק מגיב בחיוב, בין השאר משום שהוא מתמחר את האפשרות של "שיתוק פוליטי" אם התוצאות היו צמודות יותר.</p>
+        <p>קיימת ציפייה בשוק שהגל הכחול עשוי להאיץ את תוכניות החברות להרחבת יכולות מחשוב ולנצל את הסטטוס קוו במדיניות, במקום להסתכן בממשל חדש וכללים שונים ב-2029.</p>
+        <div class="opinion-card" style="direction: ltr;">
+            <p>"Corporate decision makers may decide to accelerate their plans to expand compute capacity and take advantage of the status quo rather than risk a new administration and different rules in 2029."</p>
+            <span class="speaker">Goldman strategist, מצוטט ב-MarketWatch</span>
+        </div>
+        <a class="btn-source" href="https://www.marketwatch.com/story/the-ai-trade-has-been-sold-to-death-but-goldman-strategist-highlights-silver-lining-from-democratic-sweep-3d1d6f07">MarketWatch</a>
+
+        <img src="https://s3-images.ctmedia.io/media/article-covers/2026/11/01M6JR1VFA7N21HJDXHTR1Z75G/republicans-vs-democrats-1.jpg" alt="Democrats win US House">
+        <a class="btn-source" href="https://cointelegraph.com/news/democrats-win-us-house-congress-control">Cointelegraph</a>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">AI וטכנולוגיה</span>
+        <h2>חדשות סקטור הטכנולוגיה: שבבים, אבטחת סייבר וסיכוני AI</h2>
+        <h3>מה קרה היום</h3>
+        <ul>
+            <li><strong>AMD מזנקת:</strong> מניית AMD זינקה ב-3.65% (מחיר 483.90 דולר) לאחר פרסום דוחות רבעוניים טובים מהצפוי, מונעים על ידי מכירות משגשגות של שבבי AI, כאשר הכנסות מרכזי נתונים כמעט הוכפלו.
+                <a class="btn-source" href="https://www.cnbc.com/2026/11/03/amd-amd-q3-earnings-report-2026-.html">CNBC</a>
+                <a class="btn-source" href="https://www.youtube.com/watch?v=6lRm2phhFfw">Micha.Stocks</a>
+            </li>
+            <li><strong>CrowdStrike משיקה "מתג השמדה" ל-AI:</strong> חברת אבטחת הסייבר CrowdStrike השיקה "מתג השמדה" (Kill Switch) חדש, שלטענתה יכול לעצור סוכני AI סוררים, לחסום הפעלות מחדש ולנתק גישה לרשת הארגונית.
+                <a class="btn-source" href="https://www.cnbc.com/2026/11/03/crowdstrikes-new-kill-switch-can-stop-rogue-ai-agents-in-their-tracks-ceo-says.html">CNBC</a>
+            </li>
+            <li><strong>אפל מזהירה מסיכוני AI:</strong> ענקית הטכנולוגיה אפל מזהירה מפני סיכונים הקשורים לסוכני AI שעלולים להתנהג "בדרכים בלתי צפויות או לא מכוונות", בין היתר על ידי חריגה מהרשאות או ביצוע פעולות שקשה לבטל. זאת, לאחר שדו"ח הרווחים שלה הראה ירידה במחיר המניה (-1.90%, מחיר 331.90 דולר) עקב "משבר זיכרון גלובלי".
+                <a class="btn-source" href="https://www.cnbc.com/2026/11/03/apple-warns-of-ai-agents-behave-in-unintended-or-unpredictable-ways.html">CNBC</a>
+                <a class="btn-source" href="https://www.cnbc.com/2026/11/03/apple-earnings-john-ternus-faces-first-test-amid-high-memory-costs.html">CNBC</a>
+            </li>
+            <li><strong>מטא מגייסת הון ל-AI:</strong> מטא שואפת לגייס בין 20 ל-25 מיליארד דולר במכירת אג"ח, כאשר החברה מגבירה את ההוצאות על תשתיות ומודלי ושירותי AI.
+                <a class="btn-source" href="https://www.cnbc.com/2026/11/03/meta-bond-sale-ai-funding.html">CNBC</a>
+            </li>
+            <li><strong>Datadog ו-Palantir יורדות:</strong> מניית Datadog רשמה ירידות חדות בעקבות דוחות רווחים שלא עמדו בציפיות. גם Palantir ירדה לאחר שדוחותיה לא הרשימו את המשקיעים והצביעו על האטה בערך החוזים הכולל.
+                <a class="btn-source" href="https://www.marketwatch.com/story/datadogs-stock-extends-steep-declines-in-the-wake-of-earnings-af412874">MarketWatch</a>
+                <a class="btn-source" href="https://www.cnbc.com/2026/11/03/apple-palantir-stock-earnings.html">CNBC</a>
+            </li>
+            <li><strong>Shopify נופלת:</strong> מניית Shopify נפלה ביותר מ-8% (לא נמצא בנתונים מדויקים) לאחר שהכנסות הרבעון השלישי שלה ונפח הסחורה הגולמי פספסו את ההערכות.
+                <a class="btn-source" href="https://www.cnbc.com/2026/11/03/shopify-q3-2026-earnings-gmv.html">CNBC</a>
+            </li>
+        </ul>
+
+        <h3>למה זה חריג</h3>
+        <p>הזינוק של AMD מדגיש את הביקוש הבלתי פוסק לשבבי AI ואת הפוטנציאל העצום בשוק זה. המתג החדש של CrowdStrike הוא התפתחות משמעותית בתחום אבטחת ה-AI, המעיד על ההכרה בסיכונים הפוטנציאליים של סוכני AI. אזהרות אפל, גם אם הן סטנדרטיות בדוחות, מצביעות על המודעות ההולכת וגוברת לאתגרים האבטחתיים והאתיים בשימוש ב-AI.</p>
+        <div class="opinion-card" style="direction: ltr;">
+            <p>"Enabling agents to work safely is a massive market opportunity for CrowdStrike."</p>
+            <span class="speaker">George Kurtz, מנכ"ל CrowdStrike, מצוטט ב-CNBC</span>
+        </div>
+        <a class="btn-source" href="https://www.cnbc.com/2026/11/03/crowdstrikes-new-kill-switch-can-stop-rogue-ai-agents-in-their-tracks-ceo-says.html">CNBC</a>
+        <div class="opinion-card" style="direction: ltr;">
+            <p>"Jim Cramer sees the tool as a significant growth driver for CrowdStrike and a breakthrough for the broader industry."</p>
+            <span class="speaker">ג'ים קריימר, CNBC</span>
+        </div>
+        <a class="btn-source" href="https://www.cnbc.com/investingclub/2026/11/03/jim-cramer-likes-crowdstrikes-new-ai-kill-switch-and-the-cyber-stock.html">CNBC</a>
+        <p>מנגד, הירידות של Datadog, Palantir ו-Shopify מדגישות שגם בסקטור הטכנולוגיה הרחב, החברות נדרשות לעמוד בציפיות גבוהות, והאטה בצמיחה או ברווחיות יכולה להוביל לתגובה שלילית חריפה בשוק.</p>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/2026/11/01M6H1WEHAQHGGSH08YS33AB97/hi-crimeware-as-a-service-a-new-threat-to-crypto-users.png" alt="AI Kill Switch">
+        <a class="btn-source" href="https://cointelegraph.com/news/binance-fake-job-interviews-compromised-ai-tool-hack">Cointelegraph</a>
+
+        <h3>הלוגיקה</h3>
+        <p>השקעות ענק ב-AI מצד חברות כמו מטא, יחד עם הביצועים החזקים של AMD, מאשרות את מגמת הצמיחה המרכזית בביקוש ליכולות AI. עם זאת, דרישות אבטחת הסייבר סביב AI, כפי שמדגישות CrowdStrike ואפל, יצרו שוק חדש וצומח. ירידות במניות אחרות בסקטור הטכנולוגיה, גם כאלו שנחשבו חזקות, מראות שהשוק מבצע סלקציה קפדנית יותר ומעניש חברות שלא עומדות ביעדים, למרות הלהט הכללי סביב AI.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">קריפטו ובלוקצ'יין</span>
+        <h2>התפתחויות מרכזיות בשוק הקריפטו: פריצה לבינאנס, רגולציה ו-ETFs</h2>
+        <h3>מה קרה היום</h3>
+        <ul>
+            <li><strong>פריצת אבטחה לבינאנס:</strong> בורסת הקריפטו בינאנס חשפה כי פריצת אבטחה בה נגנבו 6.3 מיליארד דולר יוחסה לראיונות עבודה מזויפים וכלי AI פרוץ, שנוצלו כדי לפרוץ למחשבי עובדים ולגנוב אישורי כניסה. בינאנס דיווחה כי היא השלימה 98% מהנכסים שנפגעו.
+                <a class="btn-source" href="https://www.cnbc.com/2026/11/03/binance-co-ceo-teng-says-hackers-used-fake-job-interviews-to-steal-6point3-billion-in-crypto.html">CNBC</a>
+                <a class="btn-source" href="https://cointelegraph.com/news/binance-fake-job-interviews-compromised-ai-tool-hack">Cointelegraph</a>
+            </li>
+            <li><strong>העברת סולאנה גנובה:</strong> האקרים של בינאנס העבירו 81% מהטוקנים הגנובים מסוג סולאנה (SOL) והמשיכו להלבין כספים דרך THORChain, לאחר שהפרוטוקול חידש את רוב עסקאות ההמרה.
+                <a class="btn-source" href="https://cointelegraph.com/news/binance-hackers-move-81-stolen-solana-route-thorchain">Cointelegraph</a>
+            </li>
+            <li><strong>התאוששות RUNE:</strong> טוקן RUNE, המטבע של THORChain, זינק ב-15% (מחיר לא צוין) לאחר ש-THORChain חידשה את רוב עסקאות ההמרה שלה בעקבות באג בהחזרים.
+                <a class="btn-source" href="https://cointelegraph.com/markets/rune-rallies-15-as-thorchain-restarts-most-swaps-after-outage?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound">Cointelegraph</a>
+            </li>
+            <li><strong>הזרמת כספים מ-ETFs לביטקוין:</strong> קרנות סל לביטקוין (ETFs) איבדו 1.16 מיליארד דולר ביציאות, כאשר חברת Bitwise מייחסת את המכירות לסנטימנט שוק חלש, אך מציינת שמוסדות ברובם שמרו על החשיפה שלהם.
+                <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-etf-shed-1-16-billion-bitwise-short-term-risk-off">Cointelegraph</a>
+            </li>
+            <li><strong>קנטון CC כ"סחורה דיגיטלית":</strong> טוקן CC של קנטון עלה ב-4% לאחר שצוות ה-SEC ראה בו "סחורה דיגיטלית" במכתב אי-תביעה (no-action letter), אם כי זו אינה החלטה מחייבת.
+                <a class="btn-source" href="https://cointelegraph.com/markets/cantons-cc-rises-sec-no-action-letter-digital-commodity">Cointelegraph</a>
+            </li>
+            <li><strong>יעד את'ריום לעמידות קוונטית:</strong> מפתח באת'ריום מציב יעד לשנת 2028 למעבר של את'ריום לעמידות קוונטית (Post-Quantum) ועמידות ל-AI, שנה מוקדם מהצפוי.
+                <a class="btn-source" href="https://cointelegraph.com/news/ethereum-post-quantum-transition-2028-target">Cointelegraph</a>
+            </li>
+            <li><strong>SpaceX חוסמת רישום מניות מסוג טוקן:</strong> SpaceX חוסמת רישום מניות מסוג טוקן בפלטפורמת OKXICE, ומצטרפת למספר חברות אחרות המתנגדות למסחר במניות המוטקנות שלהן.
+                <a class="btn-source" href="https://cointelegraph.com/news/spacex-tokenization-okxice">Cointelegraph</a>
+            </li>
+            <li><strong>ה-CFTC מאשרת חוזי עתיד תמידיים על מניות:</strong> רשות המסחר בחוזים עתידיים על סחורות (CFTC) אישרה מסחר בחוזים עתידיים תמידיים (Perpetual Futures) מבוססי מניות בבורסות בארה"ב, ובכך מרחיבה מוצר קריפטו פופולרי לשווקים המסורתיים.
+                <a class="btn-source" href="https://cointelegraph.com/news/cftc-equity-perpetual-futures-trading-us-exchanges">Cointelegraph</a>
+            </li>
+            <li><strong>האקרים גנבו 133 מיליון דולר מבנק צרפתי:</strong> חוקר הבלוקצ'יין ZachXBT זיהה בנק צרפתי, Credit Mutuel Arkéa, כקורבן לכאורה של גניבת קריפטו בסך 133 מיליון דולר. הבנק לא אישר את מעורבותו.
+                <a class="btn-source" href="https://cointelegraph.com/news/zachxbt-french-bank-credit-mutuel-arkea-133m-crypto-theft">Cointelegraph</a>
+            </li>
+        </ul>
+
+        <h3>למה זה חריג</h3>
+        <p>הפריצה העצומה לבינאנס, המיוחסת לכלי AI פרוץ, מדגישה את הסיכונים הגוברים והמורכבות של אבטחת סייבר בתעשיית הקריפטו, וכיצד טכנולוגיות מתקדמות יכולות לשמש הן לטובה והן לרעה. תנועת הכספים הגנובים דרך THORChain מראה את האתגרים במעקב אחר נכסים גנובים. יציאות מקרנות ETF לביטקוין מצביעות על סנטימנט שוק שלילי בטווח הקצר, למרות שמוסדות שומרים על חשיפה.</p>
+        <div class="opinion-card" style="direction: ltr;">
+            <p>"Zach Pandl highlighted institutional custody safeguards as crypto markets recovered some losses following the record $6.3 billion Binance hack."</p>
+            <span class="speaker">Zach Pandl, Grayscale, מצוטט ב-Cointelegraph</span>
+        </div>
+        <a class="btn-source" href="https://cointelegraph.com/markets/crypto-market-recovery-grayscale-binance-hack-temporary-setback">Cointelegraph</a>
+        <p>מכתב ה-"no-action" של ה-SEC לגבי טוקן CC של קנטון חשוב, מכיוון שהוא מציע כיוון רגולטורי אפשרי עבור נכסים דיגיטליים מסוימים כ"סחורות", מה שיכול להשפיע על עתיד הרגולציה בתחום. אישור חוזי עתיד תמידיים על מניות על ידי ה-CFTC הוא אירוע משמעותי, המגשר בין שווקי הקריפטו המסורתיים. ההתנגדות של SpaceX למינוף מניותיה במוצרי קריפטו מצביעה על מתיחות גוברת בין חברות טכנולוגיה מסורתיות לפלטפורמות קריפטו.</p>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/2026/11/01M6K35HFSNDXKSZPYH2YBQQTR/hi-interest-in-crypto-derivatives-rising-on-the-back-of-a-bullish-crypto-rally.jpg" alt="Canton's CC rises">
+        <a class="btn-source" href="https://cointelegraph.com/markets/cantons-cc-rises-sec-no-action-letter-digital-commodity">Cointelegraph</a>
+
+        <h3>הלוגיקה</h3>
+        <p>אירועי היום משקפים את המורכבות והדינמיות של שוק הקריפטו, הנע בין חדשנות טכנולוגית (את'ריום ועמידות קוונטית) לבין אתגרי אבטחה ורגולציה. ה"גל הכחול" בבחירות האמצע עשוי להביא ל"איפוס מדיניות" בתחום הקריפטו בארה"ב. היכולת של האקרים לנצל כלי AI לפריצות מסמנת התפתחות מסוכנת בנוף האיומים הדיגיטליים, ומצריכה השקעות משמעותיות באבטחה. אישורי רגולציה כמו של ה-CFTC מאיצים את ההכרה בנגזרות קריפטו ומוצריהן בשווקים המסורתיים, אך גם יוצרים מתח מול גופים מסורתיים שאינם מעוניינים בטוקניזציה של נכסיהם.</p>
+    </div>
+</body>
+</html>
