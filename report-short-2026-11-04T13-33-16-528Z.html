@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי אסטרטגי</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --text-color: #e0e6ed;
+            --accent-color: #B0C4DE; /* LightSteelBlue */
+            --highlight-color: #2a3447; /* Slightly lighter bg for highlight cards */
+            --opinion-bg-color: #1a202c; /* Different shade for opinions */
+            --positive-color: #2ECC71; /* Muted Green */
+            --negative-color: #E74C3C; /* Muted Red */
+            --badge-color: #FFD700; /* Gold */
+            --divider-color: #34495e;
+            --link-color: #61dafb; /* Cyan for links */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            direction: rtl; /* Right-to-left for Hebrew */
+            text-align: right; /* Align text to the right */
+        }
+
+        .slide-container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 24px;
+            background-color: var(--bg-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--divider-color);
+            padding-bottom: 15px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-right: 10px;
+            border-right: 4px solid var(--link-color); /* Emphasize titles */
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            color: var(--text-color);
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--badge-color);
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--badge-color);
+            color: var(--bg-color);
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            float: right; /* For RTL, put badge on right */
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+            overflow-x: auto; /* For mobile tables/grids */
+        }
+
+        .market-card {
+            background-color: var(--highlight-color);
+            padding: 15px;
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .market-card strong {
+            font-size: 1.1em;
+            color: var(--accent-color);
+        }
+
+        .market-card .change {
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        .market-card .positive {
+            color: var(--positive-color);
+        }
+
+        .market-card .negative {
+            color: var(--negative-color);
+        }
+
+        .section-divider {
+            border-top: 1px solid var(--divider-color);
+            margin: 40px 0;
+            width: 100%;
+        }
+
+        .highlight-card {
+            background-color: var(--highlight-color);
+            border-right: 4px solid var(--link-color);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-bg-color);
+            border-right: 4px solid var(--badge-color);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            font-style: italic;
+            position: relative;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            text-align: right;
+        }
+
+        .opinion-card::before {
+            content: "\201C"; /* Left double quotation mark for RTL */
+            font-size: 3em;
+            color: var(--badge-color);
+            position: absolute;
+            top: 0;
+            right: 10px;
+            line-height: 1;
+        }
+
+        .opinion-card p {
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+
+        .opinion-card .author {
+            font-size: 0.9em;
+            color: var(--accent-color);
+            text-align: left; /* Align author to left within opinion card */
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: var(--link-color);
+            color: var(--bg-color);
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
+            float: left; /* For RTL, source button on left */
+            margin-left: 10px; /* Spacing between buttons */
+        }
+
+        .btn-source:hover {
+            background-color: var(--badge-color);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 4px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.4rem;
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            .slide-container {
+                padding: 16px;
+                margin: 10px auto;
+            }
+            .market-pulse-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .opinion-card::before {
+                font-size: 2.5em;
+                right: 5px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .market-pulse-grid {
+                grid-template-columns: 1fr; /* Single column on very small screens */
+            }
+            .btn-source {
+                float: none; /* No float for single column */
+                width: calc(100% - 20px); /* Adjust for padding */
+                text-align: center;
+                margin-left: 0;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <h1>דוח שוק יומי אסטרטגי</h1>
+    </div>
+
+    <div class="slide-container">
+        <span class="badge">סקירת שוק מהירה</span>
+        <h2>תמונת מצב מהירה: Market Pulse</h2>
+        <div class="market-pulse-grid">
+            <div class="market-card">
+                <strong>SPY</strong>
+                <span class="change positive">+0.29%</span>
+                <small>754.35 USD</small>
+            </div>
+            <div class="market-card">
+                <strong>QQQ</strong>
+                <span class="change positive">+0.61%</span>
+                <small>685.28 USD</small>
+            </div>
+            <div class="market-card">
+                <strong>BTC/USD</strong>
+                <span class="change positive">+1.34%</span>
+                <small>78,488.01 USD</small>
+            </div>
+            <div class="market-card">
+                <strong>ETH/USD</strong>
+                <span class="change positive">+2.01%</span>
+                <small>2,320.60 USD</small>
+            </div>
+            <div class="market-card">
+                <strong>IREN</strong>
+                <span class="change positive">+11.08%</span>
+                <small>24.46 USD</small>
+            </div>
+            <div class="market-card">
+                <strong>RUNE</strong>
+                <span class="change positive">+15%</span>
+                <small>מתוך חדשות</small>
+            </div>
+            <div class="market-card">
+                <strong>CRWV</strong>
+                <span class="change positive">+7.16%</span>
+                <small>53.74 USD</small>
+            </div>
+            <div class="market-card">
+                <strong>Shopify</strong>
+                <span class="change negative">-8%</span>
+                <small>מתוך חדשות</small>
+            </div>
+            <div class="market-card">
+                <strong>AMD</strong>
+                <span class="change positive">+3.65%</span>
+                <small>483.90 USD</small>
+            </div>
+            <div class="market-card">
+                <strong>NNE</strong>
+                <span class="change positive">+4.29%</span>
+                <small>11.43 USD</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">מאקרו | פוליטיקה</span>
+        <h2>השפעת בחירות האמצע בארה"ב: "גל כחול" והתאוששות השווקים</h2>
+        <h3>מה קרה היום</h3>
+        <p>המפלגה הדמוקרטית ניצחה בבחירות האמצע של 2026 בארה"ב, והבטיחה שליטה גם בבית הנבחרים וגם בסנאט. ניצחון זה, המכונה "גל כחול", עורר תגובה חיובית בשוק המניות, כאשר החוזים העתידיים נצבעו בירוק.</p>
+        <div class="highlight-card">
+            <p><strong>הידעת?</strong> הביטקוין זינק מתחתית של 7 שבועות, (<span class="negative">$75,618</span>), לאחר הידיעות על ניצחון הדמוקרטים, מה שמעיד על רגישותו לשינויים פוליטיים.</p>
+            <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-bounces-from-7-week-low-under-76k-as-democrats-eye-congress-sweep">Cointelegraph</a>
+            <a class="btn-source" href="https://www.marketwatch.com/story/midterm-elections-deliver-a-blue-wave-the-stock-market-sees-green-5900a779">MarketWatch</a>
+            <a class="btn-source" href="https://www.cnbc.com/2026/11/04/a-blue-wave-sends-futures-into-the-green.html">CNBC</a>
+        </div>
+        <h3>למה זה חריג</h3>
+        <p>ניצחון גורף של מפלגה אחת בבחירות האמצע נחשב חריג, ויוצר וודאות רגולטורית רבה יותר. השווקים נוטים להעדיף יציבות, ו"גל כחול" עשוי להפחית את הסיכון של "שיתוק פוליטי" (gridlock) שהיה עלול להשפיע לרעה על עסקים והשקעות, במיוחד בענפים כמו ה-AI.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">קריפטו | אבטחת סייבר</span>
+        <h2>פריצות ענק בעולם הקריפטו: בינאנס, סולנה ובנקים</h2>
+        <h3>מה קרה היום</h3>
+        <p>בורסת הקריפטו בינאנס חשפה כי פריצת סייבר בהיקף של <span class="negative">$6.3 מיליארד</span> דולר, שבה הועברו כ-81% מכספי סולנה הגנובים דרך THORChain, בוצעה באמצעות ראיונות עבודה פיקטיביים וכלי AI שסוכלו. במקביל, דווח על חשד למעורבות בנק צרפתי בגניבת קריפטו בהיקף של <span class="negative">$133 מיליון</span> דולר.</p>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/2026/11/01M6H1WEHAQHGGSH08YS33AB97/hi-crimeware-as-a-service-a-new-threat-to-crypto-users.png" alt="Binance Hack">
+        <h3>למה זה חריג</h3>
+        <p>היקף הפריצה לבינאנס חסר תקדים, והשיטות המתוחכמות ששימשו את ההאקרים (ראיונות עבודה מזויפים ושימוש ב-AI) מצביעות על איום מתפתח ומורכב. אירועים אלו מדגישים את החשיבות הגוברת של פתרונות משמורת (custody) מוסדיים ואבטחת סייבר חזקה בתחום הקריפטו.</p>
+        <a class="btn-source" href="https://cointelegraph.com/news/binance-fake-job-interviews-compromised-ai-tool-hack">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/binance-hackers-move-81-stolen-solana-route-thorchain">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/zachxbt-french-bank-credit-mutuel-arkea-133m-crypto-theft">Cointelegraph</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/11/03/binance-co-ceo-teng-says-hackers-used-fake-job-interviews-to-steal-6point3-billion-in-crypto.html">CNBC</a>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">טכנולוגיה | AI</span>
+        <h2>ביצועים חזקים ב-AI מול חששות אבטחה: AMD, אפל ו-CrowdStrike</h2>
+        <h3>מה קרה היום</h3>
+        <p>מניית AMD זינקה ב-<span class="positive">+3.65%</span> (על אף דיווחים בחדשות על קפיצה של 8%) לאחר שדיווחה על רווחים טובים מהצפוי ברבעון השלישי, המונעים מצמיחה מהירה בהכנסות מרכזי נתונים. במקביל, אפל הזהירה מפני סיכונים מ"סוכני AI" שעלולים לפעול באופן בלתי צפוי, וחברת CrowdStrike הציגה "מתג כיבוי" חדש לנטרול סוכני AI סוררים.</p>
+        <div class="opinion-card">
+            <p>“Enabling agents to work safely is a massive market opportunity for CrowdStrike.”</p>
+            <p class="author">- George Kurtz, CEO of CrowdStrike</p>
+            <a class="btn-source" href="https://www.cnbc.com/2026/11/03/crowdstrikes-new-kill-switch-can-stop-rogue-ai-agents-in-their-tracks-ceo-says.html">CNBC</a>
+        </div>
+        <h3>למה זה חריג</h3>
+        <p>AMD מדגימה את הביקוש הלוהט לטכנולוגיות AI ומחשוב ענן, בניגוד לאפל שמדגישה את האתגרים הביטחוניים והאתיים הנלווים לפיתוח AI. ההשקה של CrowdStrike מראה שחברות אבטחת סייבר מזהות את הצורך הקריטי במנגנוני הגנה מתקדמים בעולם ה-AI המשתנה במהירות.</p>
+        <a class="btn-source" href="https://www.cnbc.com/2026/11/03/amd-amd-q3-earnings-report-2026-.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/11/03/apple-warns-of-ai-agents-behave-in-unintended-or-unpredictable-ways.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/11/03/crowdstrikes-new-kill-switch-can-stop-rogue-ai-agents-in-their-tracks-ceo-says.html">CNBC</a>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">דוחות רבעוניים</span>
+        <h2>אכזבות בדוחות הרבעון: דאטהדוג, שופיפיי ופאלאנטיר</h2>
+        <h3>מה קרה היום</h3>
+        <p>מספר חברות טכנולוגיה חוו ירידות שערים חדות לאחר פרסום דוחות רבעוניים מאכזבים. דאטהדוג (<a href="https://www.marketwatch.com/story/datadogs-stock-extends-steep-declines-in-the-wake-of-earnings-af412874">MarketWatch</a>) ופאלאנטיר (<a href="https://www.cnbc.com/2026/11/03/apple-palantir-stock-earnings.html">CNBC</a>) רשמו ירידות בעקבות תחזיות הכנסות חלשות והאטה בצמיחת ערך החוזים הכולל, בהתאמה. שופיפיי (<a href="https://www.cnbc.com/2026/11/03/shopify-q3-2026-earnings-gmv.html">CNBC</a>) נפלה בלמעלה מ-<span class="negative">8%</span> לאחר שפספסה את הערכות השוק להכנסות ולנפח סחורה כולל.</p>
+        <h3>למה זה חריג</h3>
+        <p>הדוחות הללו מצביעים על אתגרים בחברות טכנולוגיה, גם כאלה שהיו פעם פייבוריטיות, ומעידים על סביבת מאקרו קשה יותר. התגובה החריפה בשוק מראה שהמשקיעים מענישים בחומרה חברות שלא עומדות בציפיות צמיחה גבוהות, במיוחד בתחומים שבהם התחרות גוברת.</p>
+    </div>
+
+</body>
+</html>
