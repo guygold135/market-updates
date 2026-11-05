@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק הון יומי - 5 בנובמבר 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background-dark: #0a0e17;
+            --text-light: #e0e0e0;
+            --accent-color: #00bcd4; /* Steel blue / Cyan */
+            --divider-color: #333;
+            --positive-color: rgba(0, 150, 0, 0.4); /* Muted green with transparency */
+            --negative-color: rgba(200, 0, 0, 0.4); /* Muted red with transparency */
+            --positive-text: #66bb6a; /* Lighter green for text */
+            --negative-text: #ef5350; /* Lighter red for text */
+            --card-background: #1c212e;
+            --opinion-background: #2a2f3c;
+            --border-radius: 8px;
+            --spacing-unit: 16px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .slide-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-unit) calc(2 * var(--spacing-unit)); /* 16px vertical, 32px horizontal */
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: calc(2 * var(--spacing-unit));
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-top: calc(3 * var(--spacing-unit));
+            margin-bottom: var(--spacing-unit);
+            border-bottom: 1px solid var(--divider-color);
+            padding-bottom: 8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-top: var(--spacing-unit);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: var(--spacing-unit);
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: var(--spacing-unit);
+            margin-bottom: calc(2 * var(--spacing-unit));
+        }
+
+        .market-item {
+            background-color: var(--card-background);
+            padding: var(--spacing-unit);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .market-item strong {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+        }
+
+        .market-item .change-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 8px;
+        }
+
+        .change-positive {
+            color: var(--positive-text);
+            background-color: var(--positive-color);
+        }
+
+        .change-negative {
+            color: var(--negative-text);
+            background-color: var(--negative-color);
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--background-dark);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-unit);
+            text-transform: uppercase;
+        }
+        
+        .badge.category {
+            background-color: #3b4252; /* Darker grey */
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 0;
+            margin-left: 8px;
+            padding: 6px 10px;
+        }
+
+        .section-divider {
+            border-bottom: 1px dashed var(--divider-color);
+            margin: calc(3 * var(--spacing-unit)) 0;
+        }
+
+        .highlight-card {
+            background-color: var(--card-background);
+            padding: var(--spacing-unit);
+            border-left: 4px solid var(--accent-color);
+            border-radius: var(--border-radius);
+            margin-top: var(--spacing-unit);
+            margin-bottom: var(--spacing-unit);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .opinion-card {
+            background-color: var(--opinion-background);
+            padding: var(--spacing-unit);
+            border-left: 4px solid var(--positive-text); /* Different accent for opinions */
+            border-radius: var(--border-radius);
+            margin-top: var(--spacing-unit);
+            margin-bottom: var(--spacing-unit);
+            font-style: italic;
+            position: relative;
+        }
+
+        .opinion-card::before {
+            content: '❝'; /* Quote icon */
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.1);
+            line-height: 1;
+        }
+
+        .opinion-author {
+            display: block;
+            text-align: left;
+            margin-top: 10px;
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: #4a4f60; /* Slightly lighter dark grey */
+            color: var(--text-light);
+            padding: 6px 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-top: var(--spacing-unit);
+            margin-left: 8px; /* For RTL */
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-source:hover {
+            background-color: var(--accent-color);
+            color: var(--background-dark);
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: var(--border-radius);
+            margin: var(--spacing-unit) auto;
+        }
+
+        table {
+            width: 100%;
+            table-layout: fixed;
+            word-wrap: break-word;
+            border-collapse: collapse;
+            margin-top: var(--spacing-unit);
+            margin-bottom: var(--spacing-unit);
+            background-color: var(--card-background);
+            border-radius: var(--border-radius);
+            overflow-x: auto; /* For responsive tables */
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: right;
+            border-bottom: 1px solid var(--divider-color);
+        }
+
+        th {
+            background-color: #2a2f3c;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .slide-container {
+                padding: var(--spacing-unit); /* Smaller padding on mobile */
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            h3 {
+                font-size: 1.1rem;
+            }
+
+            .market-pulse-grid {
+                grid-template-columns: 1fr 1fr; /* Two columns on mobile */
+            }
+
+            .badge.category {
+                margin-left: 0;
+                margin-bottom: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <h1>דוח שוק הון יומי: 5 בנובמבר 2026</h1>
+        <p>דוח תמציתי זה מציג את 3-5 הנושאים החשובים והחריגים ביותר מהיום, עם דגש על אירועים בעלי השפעה מיידית על השוק ולקראת הימים הקרובים. הקריאה מוערכת ב-4-7 דקות.</p>
+
+        <h2><span class="badge category">סקירת שוק מהירה</span> תמונת מצב מהירה</h2>
+        <div class="market-pulse-grid">
+            <!-- S&P 500 -->
+            <div class="market-item">
+                <strong>S&P 500 (SPY)</strong>
+                <div>
+                    <span class="change-value change-negative" dir="ltr">
+                        -4.08%
+                    </span>
+                    <br>
+                    <span class="change-value change-negative" dir="ltr">
+                        -31.30
+                    </span>
+                </div>
+            </div>
+            <!-- Nasdaq 100 -->
+            <div class="market-item">
+                <strong>Nasdaq 100 (QQQ)</strong>
+                <div>
+                    <span class="change-value change-negative" dir="ltr">
+                        -5.88%
+                    </span>
+                    <br>
+                    <span class="change-value change-negative" dir="ltr">
+                        -40.70
+                    </span>
+                </div>
+            </div>
+            <!-- Bitcoin -->
+            <div class="market-item">
+                <strong>ביטקוין (BTC/USD)</strong>
+                <div>
+                    <span class="change-value change-negative" dir="ltr">
+                        -5.57%
+                    </span>
+                    <br>
+                    <span class="change-value change-negative" dir="ltr">
+                        -4484.61
+                    </span>
+                </div>
+            </div>
+            <!-- Ethereum -->
+            <div class="market-item">
+                <strong>את'ריום (ETH/USD)</strong>
+                <div>
+                    <span class="change-value change-negative" dir="ltr">
+                        -7.26%
+                    </span>
+                    <br>
+                    <span class="change-value change-negative" dir="ltr">
+                        -175.98
+                    </span>
+                </div>
+            </div>
+            <!-- Nvidia -->
+            <div class="market-item">
+                <strong>NVIDIA (NVDA)</strong>
+                <div>
+                    <span class="change-value change-negative" dir="ltr">
+                        -8.73%
+                    </span>
+                    <br>
+                    <span class="change-value change-negative" dir="ltr">
+                        -17.48
+                    </span>
+                </div>
+            </div>
+            <!-- AMD -->
+            <div class="market-item">
+                <strong>AMD</strong>
+                <div>
+                    <span class="change-value change-negative" dir="ltr">
+                        -15.52%
+                    </span>
+                    <br>
+                    <span class="change-value change-negative" dir="ltr">
+                        -75.87
+                    </span>
+                </div>
+            </div>
+            <!-- Micron Technology -->
+            <div class="market-item">
+                <strong>Micron (MU)</strong>
+                <div>
+                    <span class="change-value change-negative" dir="ltr">
+                        -15.65%
+                    </span>
+                    <br>
+                    <span class="change-value change-negative" dir="ltr">
+                        -124.49
+                    </span>
+                </div>
+            </div>
+            <!-- Coherent Corp. -->
+            <div class="market-item">
+                <strong>Coherent (COHR)</strong>
+                <div>
+                    <span class="change-value change-negative" dir="ltr">
+                        -14.18%
+                    </span>
+                    <br>
+                    <span class="change-value change-negative" dir="ltr">
+                        -27.66
+                    </span>
+                </div>
+            </div>
+            <!-- Tesla -->
+            <div class="market-item">
+                <strong>Tesla (TSLA)</strong>
+                <div>
+                    <span class="change-value change-negative" dir="ltr">
+                        -11.53%
+                    </span>
+                    <br>
+                    <span class="change-value change-negative" dir="ltr">
+                        -44.41
+                    </span>
+                </div>
+            </div>
+            <!-- Palantir -->
+            <div class="market-item">
+                <strong>Palantir (PLTR)</strong>
+                <div>
+                    <span class="change-value change-negative" dir="ltr">
+                        -9.85%
+                    </span>
+                    <br>
+                    <span class="change-value change-negative" dir="ltr">
+                        -16.91
+                    </span>
+                </div>
+            </div>
+            <!-- Robinhood -->
+            <div class="market-item">
+                <strong>Robinhood (HOOD)</strong>
+                <div>
+                    <span class="change-value change-negative" dir="ltr">
+                        -11.97%
+                    </span>
+                    <br>
+                    <span class="change-value change-negative" dir="ltr">
+                        -10.46
+                    </span>
+                </div>
+            </div>
+            <!-- CoreWeave (CRWV) -->
+            <div class="market-item">
+                <strong>CoreWeave (CRWV)</strong>
+                <div>
+                    <span class="change-value change-negative" dir="ltr">
+                        -12.17%
+                    </span>
+                    <br>
+                    <span class="change-value change-negative" dir="ltr">
+                        -5.90
+                    </span>
+                </div>
+            </div>
+            <!-- Oklo (OKLO) -->
+            <div class="market-item">
+                <strong>Oklo (OKLO)</strong>
+                <div>
+                    <span class="change-value change-negative" dir="ltr">
+                        -12.97%
+                    </span>
+                    <br>
+                    <span class="change-value change-negative" dir="ltr">
+                        -2.87
+                    </span>
+                </div>
+            </div>
+            <!-- IREN Ltd. -->
+            <div class="market-item">
+                <strong>IREN Ltd.</strong>
+                <div>
+                    <span class="change-value change-negative" dir="ltr">
+                        -17.04%
+                    </span>
+                    <br>
+                    <span class="change-value change-negative" dir="ltr">
+                        -3.70
+                    </span>
+                </div>
+            </div>
+            <!-- NextDC (Not in watchlist, but huge outlier) -->
+            <div class="market-item">
+                <strong>NextDC</strong>
+                <div>
+                    <span class="change-value change-positive" dir="ltr">
+                        +51%
+                    </span>
+                    <br>
+                    <span class="change-value change-positive">
+                        עלה משמעותית
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <h2><span class="badge category">קריפטו ורגולציה</span> שוק הקריפטו בצלילה חדה: חששות רגולטוריים ומתקפות סייבר</h2>
+        <p>שוק הקריפטו חווה היום ירידות משמעותיות, כאשר הביטקוין נסחר סביב <span class="badge change-negative" dir="ltr">$76,019.4</span> עם ירידה של <span class="badge change-negative" dir="ltr">-5.57%</span> והאת'ריום ירד ב-<span class="badge change-negative" dir="ltr">-7.26%</span> ל-<span class="badge change-negative" dir="ltr">$2,248.63</span>. ירידות אלו הגיעו במקביל למחיקת רווחי הבחירות במניות האמריקאיות.</p>
+        <p>הירידות משקפות חששות גוברים סביב רגולציה ומתקפות סייבר; רשויות בארה"ב יצרו קשר עם בנקים לאחר פריצת האבטחה של בייננס בהיקף של <span class="badge" dir="ltr">$6.3</span> מיליארד, ותאילנד הודיעה שתחסום את בורסת Bitget בדצמבר עקב מסחר ללא רישיון. נשיא פרגוואי אף התפטר בעקבות קריסת בנק דיגיטלי, מה שמדגיש את הסיכונים הרגולטוריים והתפעוליים בתחום.</p>
+        <p>ניצחון הדמוקרטים בבחירות האמצע בארה"ב צפוי להביא לכללים מחמירים יותר בתעשיית הקריפטו, וסוגיות מיסוי במדינות כמו צרפת ודרום קוריאה ממשיכות לייצר חוסר ודאות רגולטורית.</p>
+        <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-price-crashes-7-week-low-stocks-election-gains">Cointelegraph (Bitcoin crash)</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/fed-occ-check-us-banks-binance-hack-security-risks">Cointelegraph (Binance hack)</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/paraguay-president-resigns-after-collapse-ueno-digital-bank">Cointelegraph (Paraguay Bank)</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/thailand-block-bitget-december-unlicensed-crypto-trading">Cointelegraph (Thailand Bitget)</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/11/05/crypto-midterms-democrats-clarity-act.html">CNBC (Democrats & Crypto)</a>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/2026/11/01M6P7EQ58JKF3EYDQMECJPRQF/hi-crypto-market-trading-trader-red-960x640.webp" alt="Bitcoin crash and crypto market decline">
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <h2><span class="badge category">טכנולוגיה ו-AI</span> סערה במניות הטכנולוגיה וה-AI על רקע חששות מדאטה סנטרים</h2>
+        <p>מניות הטכנולוגיה וה-AI ספגו היום מכה קשה, כאשר מדד הנסד"ק 100 (QQQ) צנח ב-<span class="badge change-negative" dir="ltr">-5.88%</span>. יצרניות שבבים כמו AMD ו-Micron Technology הובילו את הירידות עם צניחות של <span class="badge change-negative" dir="ltr">-15.52%</span> ו-<span class="badge change-negative" dir="ltr">-15.65%</span> בהתאמה, לצד NVIDIA שירדה ב-<span class="badge change-negative" dir="ltr">-8.73%</span>.</p>
+        <p>הירידות החדות מגיעות בעקבות תוצאות בחירות האמצע בארה"ב, שהדגישו חששות גוברים בקרב הציבור לגבי השלכות בניית דאטה סנטרים של AI על משאבים מקומיים. הצבעות נגד בניית מרכזי נתונים ברחבי המדינה עוררו דאגה לגבי האטה אפשרית בהתרחבות תשתיות ה-AI, מה שפוגע בסנטימנט המשקיעים כלפי מניות שבבים וחברות תשתית AI.</p>
+        <a class="btn-source" href="https://www.marketwatch.com/story/micron-sandisk-and-other-ai-stocks-are-falling-hard-investors-dont-like-uncertainty-94d2a3b9?mod=mw_rss_topstories">MarketWatch (AI stocks falling)</a>
+        <a class="btn-source" href="https://www.marketwatch.com/story/bloom-energys-stock-is-one-of-the-s-p-500s-biggest-losers-amid-fears-of-data-center-delays-a44c96bb?mod=mw_rss_topstories">MarketWatch (Bloom Energy)</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/11/05/qualcomm-earnings-chip-stocks-election.html">CNBC (Qualcomm sell-off)</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/11/05/voters-rebuff-data-centers-in-every-ballot-measure-except-one-during-the-2026-midterms.html">CNBC (Voters rebuff data centers)</a>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/2026/11/01M6MPCPYRKAQX7P4642EX1VWB/ai-hacker.jpg" alt="AI data center concerns">
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <h2><span class="badge category">מאקרו</span> עליית ריבית דרמטית בבריטניה ודאגות חוב בארה"ב</h2>
+        <p>הבנק המרכזי של אנגליה העלה את הריבית לראשונה מאז מלחמת איראן, תוך אזהרה כי האינפלציה בבריטניה צפויה להתקרב ל-<span class="badge" dir="ltr">5%</span>. מהלך זה משקף לחצים אינפלציוניים חזקים וסנטימנט קשוח מצד הבנקים המרכזיים להילחם בעליית המחירים.</p>
+        <p>במקביל, ניצחון הדמוקרטים בבחירות האמצע בארה"ב מחזיר לסדר היום את שאלת תקרת החוב ושאלות כלכליות קשות סביב הביטוח הלאומי. אנליסטים מעריכים כי הדמוקרטים ינסו להוציא ויתורים מטראמפ בסוגיות חוב, מה שעלול להוביל לתנודתיות בשוקי ההון בהמשך השבוע.</p>
+        <a class="btn-source" href="https://www.cnbc.com/2026/11/05/interest-rates-inflation-uk.html">CNBC (Bank of England)</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/11/04/democrats-trump-debt-ceiling-fight.html">CNBC (Debt Ceiling)</a>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/2026/11/01M6NHVT2Y3ZSYPXGPS15XJ5BN/hi-japan-ipo-stocks-explained2-960x644-960x644.webp" alt="Global economy trend">
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <h2><span class="badge category">תשתיות</span> NextDC מזנקת ב-51% ברקע עניין אסטרטגי בדאטה סנטרים</h2>
+        <p>מניית NextDC זינקה בכ-<span class="badge change-positive" dir="ltr">+51%</span> היום לאחר שקבוצת Goodman ו-Digital Realty הודיעו על כוונתן לרכוש עד <span class="badge" dir="ltr">9.9%</span> ממניות החברה. העלייה החדה משקפת עניין אסטרטגי עמוק בתשתיות דאטה סנטרים, בניגוד למגמת הירידה הכללית שנצפתה היום במניות טכנולוגיה ו-AI.</p>
+        <p>מהלך זה מדגיש כי למרות החששות הרחבים יותר לגבי בניית דאטה סנטרים שהתעוררו בבחירות האמצע, ישנם שחקנים גדולים בשוק שעדיין רואים ערך רב ברכישת נתחים בחברות תשתית קיימות ומובילות, ומאמינים בפוטנציאל הצמיחה ארוך הטווח בתחום זה.</p>
+        <a class="btn-source" href="https://www.cnbc.com/2026/11/05/nextdc-goodman-group-digital-realty-data-centers-.html">CNBC (NextDC shares soar)</a>
+    </div>
+
+</body>
+</html>
