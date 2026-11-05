@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי - 05 בנובמבר 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117; /* Deep dark background */
+            color: #e2e8f0; /* Light grey text */
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            direction: rtl; /* Right-to-left for Hebrew */
+            text-align: right;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .slide-container {
+            max-width: 960px;
+            margin: 40px auto;
+            padding: 32px;
+            background-color: #1a202c; /* Slightly lighter card background */
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            border: 1px solid #2d3748;
+        }
+
+        h1, h2, h3 {
+            color: #c0a16b; /* Soft gold accent */
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            color: #f7d08a; /* Brighter gold for main title */
+            margin-bottom: 40px;
+            border-bottom: 1px solid rgba(247, 208, 138, 0.3);
+            padding-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            border-bottom: 1px solid rgba(192, 161, 107, 0.3);
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            color: #b0c4de; /* Steel blue for subheadings */
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #c0a16b;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #f7d08a;
+            text-decoration: underline;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .market-card {
+            background-color: #2d3748;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #4a5568;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .market-card strong {
+            font-size: 1.2rem;
+            color: #e2e8f0;
+        }
+
+        .market-card .value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 10px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .market-card .percent {
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        .positive .percent {
+            color: #90ee90; /* Light green */
+            background-color: rgba(144, 238, 144, 0.15);
+        }
+
+        .negative .percent {
+            color: #f08080; /* Light coral red */
+            background-color: rgba(240, 128, 128, 0.15);
+        }
+
+        .zero-change .percent {
+            color: #a0aec0; /* Greyish blue */
+            background-color: rgba(160, 174, 192, 0.15);
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: #c0a16b; /* Gold accent */
+            color: #0d1117; /* Dark text on gold */
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .section-divider {
+            border-top: 1px solid #4a5568;
+            margin: 60px auto;
+            width: 80%;
+        }
+
+        .highlight-card {
+            background-color: #28303d; /* Darker grey for highlights */
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-right: 4px solid #b0c4de; /* Steel blue accent for RTL */
+            text-align: right;
+        }
+
+        .opinion-card {
+            background-color: #363f4e; /* Even darker grey for opinions */
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-right: 4px solid #f7d08a; /* Brighter gold accent for RTL */
+            position: relative;
+            font-style: italic;
+            text-align: right;
+        }
+
+        .opinion-card::before {
+            content: "\201C"; /* Left double quote */
+            font-family: serif;
+            font-size: 3em;
+            color: rgba(192, 161, 107, 0.5);
+            position: absolute;
+            right: 15px; /* Adjust for RTL */
+            top: 10px;
+            line-height: 1;
+        }
+        .opinion-card p {
+            margin-top: 15px;
+            padding-right: 30px; /* Make space for the quote icon for RTL */
+            text-align: right;
+        }
+
+        .opinion-card .author {
+            display: block;
+            text-align: left; /* Author name is left aligned */
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #a0aec0;
+            padding-right: 30px;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: #4a5568; /* Dark grey for source button */
+            color: #e2e8f0;
+            padding: 8px 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+            margin-left: 10px; /* Keep margin-left for spacing between buttons */
+            font-size: 0.9em;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-source:hover {
+            background-color: #5a6578;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            display: block;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        table {
+            width: 100%;
+            table-layout: fixed;
+            overflow-x: auto;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #2d3748;
+            border-radius: 8px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: right;
+            border-bottom: 1px solid #4a5568;
+            color: #e2e8f0;
+        }
+
+        th {
+            background-color: #1a202c;
+            color: #c0a16b;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .market-card-details {
+            font-size: 0.9rem;
+            color: #a0aec0;
+            margin-top: 5px;
+        }
+
+        @media(max-width:768px){
+            .market-pulse-grid{grid-template-columns:1fr 1fr;}
+            .slide-container{padding:16px;}
+            h1{font-size:1.4rem;}
+            h2{font-size:1.2rem;}
+            .opinion-card::before {
+                font-size: 2em;
+                right: 10px;
+                top: 5px;
+            }
+            .opinion-card p {
+                padding-right: 20px;
+            }
+            .market-card strong {
+                font-size: 1rem;
+            }
+            .market-card .value {
+                font-size: 1.2rem;
+            }
+            .market-card .percent {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slide-container">
+        <h1>דוח שוק יומי - 05 בנובמבר 2026</h1>
+        <span class="badge">תמונת מצב מהירה</span>
+        <h2>תמונת מצב מהירה (Market Pulse)</h2>
+        <p>תמונת מצב של מדדים ונכסים בולטים שרשמו תנועות חדות או חריגות במהלך יום המסחר האחרון:</p>
+        <div class="market-pulse-grid">
+            <div class="market-card negative">
+                <strong>SPY (S&P 500)</strong>
+                <span class="value">735.51</span>
+                <span class="percent">-4.08%</span>
+            </div>
+            <div class="market-card negative">
+                <strong>QQQ (Nasdaq 100)</strong>
+                <span class="value">651.25</span>
+                <span class="percent">-5.88%</span>
+            </div>
+            <div class="market-card negative">
+                <strong>IWM (Russell 2000)</strong>
+                <span class="value">271.08</span>
+                <span class="percent">-4.56%</span>
+            </div>
+            <div class="market-card negative">
+                <strong>BTC/USD (ביטקוין)</strong>
+                <span class="value">76,019.40</span>
+                <span class="percent">-5.57%</span>
+            </div>
+            <div class="market-card negative">
+                <strong>ETH/USD (את'ריום)</strong>
+                <span class="value">2,248.63</span>
+                <span class="percent">-7.26%</span>
+            </div>
+            <div class="market-card negative">
+                <strong>AVGO (Broadcom)</strong>
+                <span class="value">297.11</span>
+                <span class="percent">-8.72%</span>
+                <span class="market-card-details">קרוב לשפל 52 שבועות (289.96)</span>
+            </div>
+            <div class="market-card negative">
+                <strong>COHR (Coherent Corp.)</strong>
+                <span class="value">167.43</span>
+                <span class="percent">-14.18%</span>
+            </div>
+            <div class="market-card negative">
+                <strong>HOOD (Robinhood)</strong>
+                <span class="value">76.95</span>
+                <span class="percent">-11.97%</span>
+            </div>
+            <div class="market-card negative">
+                <strong>NNE (Nano Nuclear Energy)</strong>
+                <span class="value">9.63</span>
+                <span class="percent">-12.05%</span>
+                <span class="market-card-details">שפל 52 שבועות חדש (9.295)</span>
+            </div>
+            <div class="market-card negative">
+                <strong>SPCX (SpaceX)</strong>
+                <span class="value">124.21</span>
+                <span class="percent">-8.62%</span>
+            </div>
+            <div class="market-card negative">
+                <strong>TSLA (Tesla)</strong>
+                <span class="value">340.78</span>
+                <span class="percent">-11.53%</span>
+            </div>
+            <div class="market-card negative">
+                <strong>PLTR (Palantir)</strong>
+                <span class="value">154.79</span>
+                <span class="percent">-9.85%</span>
+            </div>
+            <div class="market-card negative">
+                <strong>AMD (Advanced Micro Devices)</strong>
+                <span class="value">412.91</span>
+                <span class="percent">-15.52%</span>
+            </div>
+            <div class="market-card negative">
+                <strong>CRWV (CoreWeave)</strong>
+                <span class="value">42.525</span>
+                <span class="percent">-12.17%</span>
+                <span class="market-card-details">שפל 52 שבועות חדש (40.58)</span>
+            </div>
+            <div class="market-card negative">
+                <strong>OKLO (Oklo Inc.)</strong>
+                <span class="value">19.25</span>
+                <span class="percent">-12.97%</span>
+                <span class="market-card-details">שפל 52 שבועות חדש (18.555)</span>
+            </div>
+            <div class="market-card negative">
+                <strong>IREN (IREN Ltd.)</strong>
+                <span class="value">18.01</span>
+                <span class="percent">-17.04%</span>
+                <span class="market-card-details">שפל 52 שבועות חדש (17.155)</span>
+            </div>
+            <div class="market-card negative">
+                <strong>MU (Micron Technology)</strong>
+                <span class="value">670.74</span>
+                <span class="percent">-15.65%</span>
+            </div>
+            <div class="market-card negative">
+                <strong>NVDA (NVIDIA)</strong>
+                <span class="value">182.65</span>
+                <span class="percent">-8.73%</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">מאקרו וארה"ב</span>
+        <h2>השוק מגיב לתוצאות בחירות האמצע: נסיגה חדה במניות הטק והקריפטו</h2>
+        
+        <h3>מה קרה היום</h3>
+        <div class="highlight-card">
+            <p>לאחר ה"ראלי" הראשוני שבא בעקבות ניצחון הדמוקרטים בבחירות האמצע, שוקי המניות בארה"ב, ובמיוחד מגזר הטכנולוגיה, חוו היום נסיגה חדה. מדד ה-S&P 500 ירד ב-4.08%, הנאסד"ק ירד ב-5.88% ומדד ה-Russell 2000 איבד 4.56%.</p>
+            <p>גם שוק הקריפטו הושפע, כאשר הביטקוין צנח ב-5.57% לשפל של שבעה שבועות, ומחק את רווחי הבחירות המוקדמים.</p>
+        </div>
+        
+        <h3>למה זה חריג</h3>
+        <div class="highlight-card">
+            <p>האירוע חריג לאור העובדה שיום המסחר הקודם הסתיים ב"ראלי מפלצתי" בעקבות תוצאות הבחירות, שהתחלף היום בסשן מכירות חזק במיוחד. הנסיגה מדגישה את חוסר הוודאות של המשקיעים לגבי ההשלכות ארוכות הטווח של שליטה דמוקרטית מלאה בקונגרס, במיוחד על מגזרי הטכנולוגיה והקריפטו.</p>
+        </div>
+        
+        <h3>הלוגיקה</h3>
+        <div class="highlight-card">
+            <p>ההפסד הדמוקרטי בבחירות האמצע צפוי להוביל לבדיקה רגולטורית קשוחה יותר כלפי חברות טכנולוגיה גדולות ותעשיית הקריפטו. בנוסף, קיימים חששות מהאטה בהקמת מרכזי נתונים עבור AI, שהייתה מנוע צמיחה מרכזי, בעקבות התנגדות בוחרים בנושאים סביבתיים וצריכת משאבים. חוסר ודאות זה מוביל למכירת מניות בולטות בתחומים אלו.</p>
+            <p>על פי MarketWatch, "Wall Street is digesting the prospect of a slower AI buildout in the wake of the midterm election results."</p>
+        </div>
+        
+        <a class="btn-source" href="https://cointelegraph.com/markets/bitcoin-price-crashes-7-week-low-stocks-election-gains">Cointelegraph</a>
+        <a class="btn-source" href="https://www.marketwatch.com/story/is-this-the-big-one-for-the-stock-market-wall-street-sounds-off-as-tech-plunges-185df529?mod=mw_rss_topstories">MarketWatch</a>
+        <a class="btn-source" href="https://www.marketwatch.com/story/micron-sandisk-and-other-ai-stocks-are-falling-hard-investors-dont-like-uncertainty-94d2a3b9?mod=mw_rss_topstories">MarketWatch</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/11/05/markets-cool-midterm-musk-stocks-under-pressure.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/11/05/crypto-midterms-democrats-clarity-act.html">CNBC</a>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">מניות בולטות</span>
+        <h2>מניות טק ו-AI מובילות את הנסיגה ושוברות שיאים</h2>
+        
+        <h3>מה קרה היום</h3>
+        <div class="highlight-card">
+            <p>מניות רבות במגזר הטכנולוגיה והבינה המלאכותית חוו נפילות דו-ספרתיות משמעותיות היום, חלקן אף הגיעו לשפל חדש של 52 שבועות:</p>
+            <ul>
+                <li><strong>AMD</strong>: צנחה ב-15.52%.</li>
+                <li><strong>Micron Technology (MU)</strong>: ירדה ב-15.65%.</li>
+                <li><strong>Coherent Corp. (COHR)</strong>: צנחה ב-14.18%.</li>
+                <li><strong>Robinhood (HOOD)</strong>: איבדה 11.97%.</li>
+                <li><strong>Tesla (TSLA)</strong>: ירדה ב-11.53%.</li>
+                <li><strong>Palantir (PLTR)</strong>: צנחה ב-9.85%.</li>
+                <li><strong>NVIDIA (NVDA)</strong>: ירדה ב-8.73%.</li>
+                <li><strong>Broadcom (AVGO)</strong>: צנחה ב-8.72% ונמצאת קרוב לשפל 52 שבועות.</li>
+                <li><strong>SpaceX (SPCX)</strong>: ירדה ב-8.62%.</li>
+                <li><strong>ServiceNow (NOW)</strong>: ירדה ב-5.40%.</li>
+            </ul>
+        </div>
+
+        <h3>שפל 52 שבועות חדש</h3>
+        <div class="highlight-card">
+            <p>מספר חברות מתחום ה-AI והאנרגיה רשמו היום שיאי שפל חדשים ל-52 השבועות האחרונים:</p>
+            <ul>
+                <li><strong>Nano Nuclear Energy (NNE)</strong>: ירדה ב-12.05% והגיעה לשפל של 9.295 דולר.</li>
+                <li><strong>CoreWeave (CRWV)</strong>: צנחה ב-12.17% והגיעה לשפל של 40.58 דולר.</li>
+                <li><strong>Oklo Inc. (OKLO)</strong>: ירדה ב-12.97% והגיעה לשפל של 18.555 דולר.</li>
+                <li><strong>IREN Ltd. (IREN)</strong>: צנחה ב-17.04% והגיעה לשפל של 17.155 דולר.</li>
+            </ul>
+        </div>
+        
+        <h3>הלוגיקה</h3>
+        <div class="highlight-card">
+            <p>הירידות החדות במניות אלו משקפות את חוסר שביעות הרצון של השוק מהתוצאות הפוליטיות ואת החשש מהשלכותיהן על מגזר הטכנולוגיה, במיוחד בכל הקשור להאטת פיתוח מרכזי נתונים והגברת הרגולציה. חברות כמו Micron ו-Bloom Energy ספגו מכות חזקות על רקע חששות אלו.</p>
+        </div>
+        
+        <a class="btn-source" href="https://www.marketwatch.com/story/micron-sandisk-and-other-ai-stocks-are-falling-hard-investors-dont-like-uncertainty-94d2a3b9?mod=mw_rss_topstories">MarketWatch (Hannah Pedone)</a>
+        <a class="btn-source" href="https://www.marketwatch.com/story/bloom-energys-stock-is-one-of-the-s-p-500s-biggest-losers-amid-fears-of-data-center-delays-a44c96bb?mod=mw_rss_topstories">MarketWatch (Claudia Assis)</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/11/05/qualcomm-earnings-chip-stocks-election.html">CNBC</a>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">קריפטו ורגולציה</span>
+        <h2>סוגיות אבטחה ורגולציה גוברות במרחב הקריפטו</h2>
+        
+        <h3>פריצות אבטחה ופעולות התאוששות</h3>
+        <div class="highlight-card">
+            <img src="https://s3-images.ctmedia.io/media/article-covers/2026/11/01M6PFFXJ4XKPEQ9E1ESY0C401/two-men-with-badges.png" alt="Fed, OCC check US banks after Binance hack">
+            <p>רגולטורים בארה"ב, ביניהם הפדרל ריזרב וה-OCC, יצרו קשר עם בנקים בעקבות מתקפת אבטחה של 6.3 מיליארד דולר על בורסת Binance בשבוע שעבר. מומחים מביעים חשש לגבי אבטחת עסקאות וסיכונים במטבעות קריפטוגרפיים.</p>
+            <img src="https://s3-images.ctmedia.io/media/article-covers/2026/11/01M6N3H7D7JKVJG1M4FYAN87WP/polygon-hard-fork.png" alt="Polygon hard fork">
+            <p>במקביל, Binance ו-Polymarket מבקשות מזלוג קשיח (Hard Fork) לרשת Polygon כדי לשחזר 6.8 מיליון דולר שנגנבו בפריצה קודמת. מפיקי הבלוקים של Polygon כבר הקפיאו את הטוקנים הגנובים.</p>
+            <img src="https://s3-images.ctmedia.io/media/article-covers/2026/11/01M6N6NXVHKBRJXY07Q6DE59G9/bank-french-credit-mutuel-arkea.png" alt="Crédit Mutuel Arkéa bank">
+            <p>בנק Crédit Mutuel Arkéa הצרפתי חידש את פעילותו לאחר מתקפת סייבר שהובילה לגניבת קריפטו בשווי 133 מיליון דולר. הבנק הצהיר כי כספי הלקוחות לא נפגעו.</p>
+            <p>מייסד בורסת BitMart הזהיר כי צוות האבטחה שלהם "בתת-איוש חמור" לאחר פריצה נוספת, ו-Mercado Bitcoin הודיעה על פתיחה הדרגתית מחדש ביום שני, והתחייבה לכסות הפסדים.</p>
+        </div>
+        
+        <h3>רגולציה בינלאומית</h3>
+        <div class="highlight-card">
+            <img src="https://s3-images.ctmedia.io/media/article-covers/2026/11/01M6NF1X9VN5762HVNQXA9D4A7/sk-crypto-tax.png" alt="South Korea crypto tax">
+            <p>דרום קוריאה מבקשת לדחות בפעם הרביעית את מס הקריפטו בשיעור 22% עד לשנת 2029. בצרפת, דחיית התקציב הובילה להסרת תיקונים שהיו אמורים להטיל מיסוי על Stablecoins ולחייב דיווח על ארנקים בשליטה עצמית, אך אלו עשויים לחזור לדיון בסנאט. תאילנד הודיעה שתחסום את בורסת Bitget בדצמבר עקב מסחר בלתי מורשה.</p>
+        </div>
+
+        <h3>איום סייבר מבוסס AI</h3>
+        <div class="highlight-card">
+            <img src="https://s3-images.ctmedia.io/media/article-covers/2026/11/01M6MPCPYRKAQX7P4642EX1VWB/ai-hacker.jpg" alt="AI hacker">
+            <p>סוכנות אבטחת הסייבר של הודו מזהירה מפני האקרים המונעים על ידי בינה מלאכותית, המכוונים לבורסות קריפטו ולחברות פיננסיות אחרות ב"מהירות מכונה".</p>
+        </div>
+        
+        <a class="btn-source" href="https://cointelegraph.com/news/fed-occ-check-us-banks-binance-hack-security-risks">Cointelegraph (Jona Jaupi)</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/polygon-hard-fork-binance-polymarket-6-8m-hack-recovery">Cointelegraph (Ezra Reguerra)</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/credit-mutuel-arkea-resumes-operations-133m-crypto-theft">Cointelegraph (Ezra Reguerra)</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/bitmart-hack-security-staffing-crypto-exchange-restructuring">Cointelegraph (Nate Kostar)</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/mercado-bitcoin-phased-reopening-to-begin-monday-pledges-to-cover-losses">Cointelegraph (Felix Ng)</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/india-warns-ai-powered-hackers-targeting-crypto-exchanges-at-machine-speed">Cointelegraph (Felix Ng)</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/thailand-block-bitget-december-unlicensed-crypto-trading">Cointelegraph (Helen Partz)</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/south-korea-crypto-tax-fourth-delay-2029">Cointelegraph (Ezra Reguerra)</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/france-rejects-budget-revenue-sidelines-crypto-amendments">Cointelegraph (Zoltan Vardai)</a>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">AI וטכנולוגיה</span>
+        <h2>השפעת בחירות האמצע על מגזר ה-AI ומרכזי הנתונים</h2>
+        
+        <h3>האטה פוטנציאלית ודחיית פרויקטים</h3>
+        <div class="highlight-card">
+            <p>תוצאות בחירות האמצע בארה"ב הציגו התנגדות ציבורית רחבה להקמת מרכזי נתונים עבור AI. הבוחרים דחו הצעות בנושא כמעט בכל אמצעי הצבעה, מתוך חשש לצריכת משאבים כבדה (חשמל ומים). התנגדות זו מעלה חששות מהאטה בפיתוח תשתיות AI ומעלה את ערכם של מתקני AI קיימים.</p>
+            <p>חברות כמו Moonshot AI הסינית נאלצות לחפש פתרונות באירופה כדי לגשת לשבבי Nvidia Blackwell מתקדמים, בשל מגבלות יצוא אמריקאיות לסין.</p>
+        </div>
+
+        <h3>דעות אנליסטים</h3>
+        <div class="opinion-card">
+            <p>"The AI trade is not going away as Nasdaq enters correction."</p>
+            <span class="author">— ג'ים קריימר, CNBC</span>
+        </div>
+        
+        <h3>הלוגיקה</h3>
+        <div class="highlight-card">
+            <p>התפתחות מרכזי הנתונים, הליבה של צמיחת ה-AI, נמצאת כעת בסימן שאלה בעקבות ההתנגדות הציבורית והמגבלות הרגולטוריות הפוטנציאליות. למרות זאת, גורמים כמו ג'ים קריימר מביעים אמונה כי מגמת ה-AI לא תיעלם, גם אם שוק המניות עובר תיקון.</p>
+            <p>OpenAI, בתגובה לחששות הציבוריים, התחייבה לנקוט במדיניות שקופה יותר בנוגע למרכזי נתונים, כולל שיתוף תוכניות בנייה והגנה על צרכני חשמל.</p>
+            <img src="https://s3-images.ctmedia.io/media/article-covers/2026/11/01M6K289G5D1S84SBS2M2C0HF1/magazine-ai-agents-on-base.png" alt="Decentralized phone networks power AI revolution">
+            <p>בתוך כך, הדיון לגבי פתרונות חלופיים לתשתית AI גובר, כאשר רשתות טלפון מבוזרות מוצגות כחלופה אפשרית לתשתיות מחשוב מרכזיות.</p>
+        </div>
+        
+        <a class="btn-source" href="https://www.cnbc.com/2026/11/05/voters-rejected-ai-data-centers-over-resource-concerns.-heres-why-measuring-water-usage-is-hard.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/investingclub/2026/11/05/cramer-says-the-ai-trade-is-not-going-away-as-nasdaq-enters-correction.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/11/05/openai-to-pay-for-data-center-power-after-election-shows-ai-concern.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/11/05/chinese-ai-lab-moonshot-turned-to-europe-for-nvidia-blackwell-access-amid-u.s.-china-curbs-sources-tell-cnbc.html">CNBC</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/blockchain-is-perfect-solution-for-ai-agent-trust-vechain-ceo-says">Cointelegraph (Zoltan Vardai)</a>
+        <a class="btn-source" href="https://cointelegraph.com/magazine/can-decentralized-phone-networks-power-the-ai-revolution">Cointelegraph (Christina Comben)</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/11/05/data-center-ballot-measures-2026-midterm.html">CNBC</a>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <span class="badge">חדשות נוספות</span>
+        <h2>עדכונים נוספים משוק ההון</h2>
+        
+        <h3>Blue Origin ועיכוב בשיגורים</h3>
+        <div class="highlight-card">
+            <p>חברת Blue Origin דוחה את שיגור טיל ה-New Glenn שלה לינואר 2027. הדחייה מגיעה על רקע מאמצים לבנות מחדש את משטח השיגור שנפגע מפיצוץ שאירע במאי. ידיעה זו רלוונטית לירידה של 8.62% במניית SPCX (SpaceX) כחלק מהסנטימנט השלילי במגזר החלל.</p>
+        </div>
+        
+        <h3>זהירות מצד בנקים למסחר</h3>
+        <div class="highlight-card">
+            <p>סקר של הפדרל ריזרב לחודש אוקטובר מראה כי בנקים מגבירים את זהירותם במתן הלוואות, עם הידוק סטנדרטים לעסקים קטנים ונדל"ן מסחרי. לווים בסיכון נמוך יותר אף הם עומדים בפני תנאי אשראי קשוחים יותר.</p>
+        </div>
+        
+        <h3>העלאת ריבית בבריטניה</h3>
+        <div class="highlight-card">
+            <p>בנק אנגליה העלה את הריבית לראשונה מאז מלחמת איראן, והזהיר כי האינפלציה בבריטניה צפויה להתקרב ל-5%. קובעי המדיניות הצביעו בעד העלאת הריבית ל-4.25%.</p>
+        </div>
+        
+        <a class="btn-source" href="https://www.cnbc.com/2026/11/05/blue-origin-launch-new-glenn.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/11/05/fed-bank-lending-standards-small-business.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/11/05/interest-rates-inflation-uk.html">CNBC</a>
+    </div>
+
+</body>
+</html>
