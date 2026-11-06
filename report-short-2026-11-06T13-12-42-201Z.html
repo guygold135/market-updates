@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח שוק יומי: עדכון אסטרטגי</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0e17;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            direction: rtl; /* For RTL support */
+            text-align: right; /* For RTL support */
+        }
+
+        .slide-container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 24px;
+            background-color: #1a1e26;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            overflow: hidden; /* Ensure content within stays */
+        }
+
+        h1 {
+            color: #f7a31b;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+            font-size: 2.2rem;
+        }
+
+        h2 {
+            color: #f7a31b;
+            font-weight: 700;
+            font-size: 1.8rem;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(247, 163, 27, 0.3);
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            color: #a0a0a0;
+            font-weight: 600;
+            font-size: 1.3rem;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #5d7c9a;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: #7ab1d3;
+            text-decoration: underline;
+        }
+
+        .category-badge {
+            display: inline-block;
+            background-color: #3a3f4b;
+            color: #a0a0a0;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .market-pulse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+
+        .market-card {
+            background-color: #2a2f3b;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            border: 1px solid #3a3f4b;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .market-card strong {
+            color: #e0e0e0;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .market-card span {
+            display: block;
+            font-size: 0.9em;
+            color: #a0a0a0;
+        }
+
+        .change-positive {
+            color: #4CAF50; /* Muted green */
+            font-weight: 600;
+        }
+
+        .change-negative {
+            color: #F44336; /* Muted red */
+            font-weight: 600;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-right: 5px; /* Adjust for RTL */
+            margin-left: 0;
+            line-height: 1;
+        }
+
+        .badge-positive {
+            background-color: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+        }
+
+        .badge-negative {
+            background-color: rgba(244, 67, 54, 0.2);
+            color: #F44336;
+        }
+        
+        .badge-neutral {
+            background-color: rgba(160, 160, 160, 0.1);
+            color: #a0a0a0;
+        }
+
+        .btn-source {
+            display: inline-block;
+            background-color: #3a3f4b;
+            color: #a0a0a0;
+            padding: 8px 15px;
+            border-radius: 4px;
+            margin-top: 10px;
+            margin-left: 10px; /* Adjust for RTL */
+            font-size: 0.9em;
+            text-decoration: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn-source:hover {
+            background-color: #5d7c9a;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .section-divider {
+            height: 1px;
+            background-color: #3a3f4b;
+            margin: 40px auto;
+            width: 80%;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 15px auto;
+            border-radius: 4px;
+        }
+
+        .opinion-card {
+            background-color: #2a2f3b;
+            border-right: 4px solid #5d7c9a; /* Adjusted for RTL */
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            font-style: italic;
+            position: relative;
+            padding-right: 30px; /* Space for quote icon */
+            text-align: right;
+        }
+
+        .opinion-card::before {
+            content: '\201C'; /* Unicode for left double quotation mark */
+            font-size: 2.5em;
+            color: rgba(93, 124, 154, 0.7);
+            position: absolute;
+            right: 10px; /* Adjusted for RTL */
+            top: 5px;
+            line-height: 1;
+        }
+
+        .opinion-card p {
+            margin: 0;
+            padding-top: 10px; /* Ensure text is below quote icon */
+        }
+
+        .opinion-card .speaker {
+            display: block;
+            margin-top: 10px;
+            font-weight: 600;
+            color: #a0a0a0;
+            font-size: 0.9em;
+            text-align: left; /* Name is left-aligned in a right-to-left block */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .market-pulse-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .slide-container {
+                padding: 16px;
+                margin: 10px auto;
+            }
+            h1 {
+                font-size: 1.8rem;
+                margin-bottom: 20px;
+            }
+            h2 {
+                font-size: 1.5rem;
+                margin-top: 20px;
+                margin-bottom: 10px;
+            }
+            h3 {
+                font-size: 1.1rem;
+                margin-top: 15px;
+                margin-bottom: 8px;
+            }
+            .category-badge {
+                font-size: 0.75em;
+                padding: 4px 10px;
+                margin-bottom: 10px;
+            }
+            .btn-source {
+                font-size: 0.8em;
+                padding: 6px 12px;
+                margin-left: 5px;
+            }
+            .opinion-card {
+                padding-right: 25px;
+            }
+            .opinion-card::before {
+                font-size: 2em;
+                right: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slide-container">
+        <h1>דוח שוק יומי אסטרטגי</h1>
+        <div class="category-badge">תמונת מצב מהירה</div>
+        <h2>Market Pulse - תנועות חריגות בשוק</h2>
+        <p>סקירה תמציתית של התנועות הבולטות ביותר במדדים ובמניות מרכזיות מהיום האחרון.</p>
+
+        <div class="market-pulse-grid">
+            <div class="market-card">
+                <strong>SPY (S&P 500)</strong>
+                <span class="change-negative">
+                    <span class="badge badge-negative">-4.41%</span> 733.00
+                </span>
+                <span>(סגירה)</span>
+            </div>
+            <div class="market-card">
+                <strong>QQQ (Nasdaq 100)</strong>
+                <span class="change-negative">
+                    <span class="badge badge-negative">-6.49%</span> 647.05
+                </span>
+                <span>(סגירה)</span>
+            </div>
+            <div class="market-card">
+                <strong>IWM (Russell 2000)</strong>
+                <span class="change-negative">
+                    <span class="badge badge-negative">-4.59%</span> 270.98
+                </span>
+                <span>(סגירה)</span>
+            </div>
+            <div class="market-card">
+                <strong>MU (Micron Technology)</strong>
+                <span class="change-negative">
+                    <span class="badge badge-negative">-17.46%</span> 656.39
+                </span>
+                <span>(סגירה)</span>
+            </div>
+            <div class="market-card">
+                <strong>AMD (Advanced Micro Devices)</strong>
+                <span class="change-negative">
+                    <span class="badge badge-negative">-17.26%</span> 404.40
+                </span>
+                <span>(סגירה)</span>
+            </div>
+            <div class="market-card">
+                <strong>IREN (Neocloud IREN)</strong>
+                <span class="change-negative">
+                    <span class="badge badge-negative">-16.95%</span> 18.03
+                </span>
+                <span>(סגירה, קרוב ל-52 שבועות שפל)</span>
+            </div>
+            <div class="market-card">
+                <strong>OKLO (Oklo Inc.)</strong>
+                <span class="change-negative">
+                    <span class="badge badge-negative">-13.20%</span> 19.20
+                </span>
+                <span>(סגירה, קרוב ל-52 שבועות שפל)</span>
+            </div>
+            <div class="market-card">
+                <strong>COHR (Coherent Corp.)</strong>
+                <span class="change-negative">
+                    <span class="badge badge-negative">-12.98%</span> 169.76
+                </span>
+                <span>(סגירה)</span>
+            </div>
+            <div class="market-card">
+                <strong>NNE (Nano Nuclear Energy)</strong>
+                <span class="change-negative">
+                    <span class="badge badge-negative">-12.01%</span> 9.64
+                </span>
+                <span>(סגירה, קרוב ל-52 שבועות שפל)</span>
+            </div>
+            <div class="market-card">
+                <strong>TSLA (Tesla, Inc.)</strong>
+                <span class="change-negative">
+                    <span class="badge badge-negative">-10.77%</span> 343.69
+                </span>
+                <span>(סגירה)</span>
+            </div>
+            <div class="market-card">
+                <strong>AVGO (Broadcom Inc.)</strong>
+                <span class="change-negative">
+                    <span class="badge badge-negative">-10.43%</span> 291.53
+                </span>
+                <span>(סגירה, קרוב ל-52 שבועות שפל)</span>
+            </div>
+            <div class="market-card">
+                <strong>HOOD (Robinhood Markets)</strong>
+                <span class="change-negative">
+                    <span class="badge badge-negative">-10.32%</span> 78.39
+                </span>
+                <span>(סגירה)</span>
+            </div>
+            <div class="market-card">
+                <strong>CRWV (CoreWeave Inc.)</strong>
+                <span class="change-negative">
+                    <span class="badge badge-negative">-9.83%</span> 43.66
+                </span>
+                <span>(סגירה, קרוב ל-52 שבועות שפל)</span>
+            </div>
+            <div class="market-card">
+                <strong>PLTR (Palantir Tech)</strong>
+                <span class="change-negative">
+                    <span class="badge badge-negative">-9.73%</span> 154.99
+                </span>
+                <span>(סגירה)
+                </span>
+            </div>
+            <div class="market-card">
+                <strong>NVDA (NVIDIA Corporation)</strong>
+                <span class="change-negative">
+                    <span class="badge badge-negative">-9.26%</span> 181.60
+                </span>
+                <span>(סגירה)</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="category-badge">מאקרו | טכנולוגיה</div>
+        <h2>מפולת מניות ה-AI והטכנולוגיה מטלטלת את השוק</h2>
+        <p>וול סטריט חוותה יום מכירות מהגרועים ביותר מאז 2025, כאשר הנאסד"ק נכנס לטריטוריית תיקון על רקע חששות הולכים וגוברים לגבי מניות הבינה המלאכותית (AI) ועלויות מרכזי הנתונים.</p>
+        <p>מניות AI מרכזיות, כולל אנבידיה (NVDA) ו-AMD, צנחו ביותר מ-9%, בעוד שהמגניפיסנט 7 איבדו טריליון דולר בשווי שוק. הירידות החדות משקפות חוסר וודאות גובר סביב הרגולציה הפוטנציאלית בתחום ה-AI, שיעורי ריבית גבוהים, והוצאות הון משמעותיות הנדרשות להקמת מרכזי נתונים, מה שמאתגר את הערכות השווי הגבוהות שהיו נהוגות.</p>
+        <p>בנוסף, יצרנית כרטיסי הזיכרון מיקרון טכנולוגיות (MU) צנחה ב-17.46%, ואילו טסלה (TSLA), מניה נוספת של אילון מאסק, ירדה ב-10.77%, כאשר חברותיו של מאסק הפסידו יחד מעל 420 מיליארד דולר בשווי שוק לאחר הבחירות. הלחץ התפשט גם למניות שבבים אסייתיות כמו SK Hynix, סמסונג ו-TSMC. אנליסטים מציינים כי מניות שבבים נמצאות בשפל של כמעט שבע שנים, מה שמהווה הזדמנות למשקיעים קונטרריאנים, אך מזהירים כי המכירה ב-AI כנראה לא הסתיימה.</p>
+        <a class="btn-source" href="https://www.cnbc.com/2026/11/06/ai-data-center-midterms-selloff.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/11/05/qualcomm-earnings-chip-stocks-election.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/11/05/stock-market-selloff-ai-fears.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/11/06/tech-stocks-sk-hynix-samsung-softbank.html">CNBC</a>
+        <a class="btn-source" href="https://www.marketwatch.com/story/chip-stocks-are-the-cheapest-theyve-been-in-nearly-seven-years-how-low-is-too-low-7edd732d?mod=mw_rss_topstories">MarketWatch</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/11/06/tesla-spacex-stocks-fall-after-2026-midterms.html">CNBC</a>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="category-badge">קריפטו | אבטחה | רגולציה</div>
+        <h2>פרצות אבטחה ופיקוח רגולטורי גוברים בשוק הקריפטו</h2>
+        <p>שוק הקריפטו מתמודד עם משבר אמון בעקבות הערכות כי האקרים של בייננס (Binance) קיבלו גישה למערכות למשך שמונה שבועות לפני פריצה בהיקף של 6.3 מיליארד דולר. בעקבות זאת, רגולטורים בארה"ב, כולל הפד וה-OCC, פנו לבנקים לבדוק סיכונים אבטחתיים קשורים. גם בורסות אחרות, כמו GOPAX בדרום קוריאה, השעו מסחר ומשיכות כדי להעביר נכסים לאחסון קר מחשש לאיומי פריצה.</p>
+        <img src="https://s3-images.ctmedia.io/media/article-covers/2026/11/01M6R6HFGR0ZQXJ31EX11P2NV5/hi-how-zachxbt-traced-a-31m-bitcoin-donation-to-a-flagged-wallet.jpg" alt="Binance Hack Security Concerns">
+        <p>האירועים הללו מתרחשים לצד החמרה ברגולציה: יוון אישרה מס של 10% על רווחי קריפטו החל משנת 2027, ואירוע קידום מכירות של סולנה (Solana) בשנחאי הופסק עקב הפרת מגבלות קריפטו בסין. מפלגת הרוב הדמוקרטית בבית הנבחרים צפויה להביא לפיקוח הדוק יותר על התעשייה. הפסיקה הפוליטית האחרונה רואה את בעלי ברית הקריפטו בוושינגטון בעמדת מגננה, מה שמעצים את חוסר הוודאות הרגולטורית.</p>
+        <a class="btn-source" href="https://cointelegraph.com/news/binance-hackers-8-weeks-access-63b-exploit-security-alliance">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/fed-occ-check-us-banks-binance-hack-security-risks">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/gopax-halts-crypto-trading-withdrawals-cold-storage">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/greece-approves-10-tax-crypto-gains-2027">Cointelegraph</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/solana-shanghai-event-halted-unauthorized-promotion">Cointelegraph</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/11/05/crypto-midterms-democrats-clarity-act.html">CNBC</a>
+        <a class="btn-source" href="https://cointelegraph.com/news/crypto-ally-french-hill-wins-reelection-arkansas">Cointelegraph</a>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="slide-container">
+        <div class="category-badge">טכנולוגיה | חברות</div>
+        <h2>דחיית הכנסות וחששות סביב מרכזי נתונים מורידים את IREN</h2>
+        <p>מניית Neocloud IREN צנחה ב-16.95% לאחר שהחברה דיווחה על עיכוב בהכנסות שנתיות של 4 מיליארד דולר משנת 2026 לתחילת 2027, זאת לבקשת לקוחותיה. אירוע זה מדגיש את הלחצים התפעוליים והפיננסיים הגוברים על חברות תשתית AI ומרכזי נתונים.</p>
+        <p>העיכוב בהכנסות של IREN מצטרף לסנטימנט שלילי רחב יותר סביב מרכזי נתונים: בבחירות האמצע האחרונות, הצביעו תושבים במדינות מפתח נגד הקמת מרכזי נתונים חדשים עקב חששות מצריכת משאבים, במיוחד מים וחשמל. התנגדות ציבורית זו עלולה להוביל לעלויות הון גבוהות יותר ולרגולציה מחמירה, מה שיוצר אופק זהיר יותר לתעשייה כולה.</p>
+        <a class="btn-source" href="https://www.cnbc.com/2026/11/05/iren-earnings-report-q1-2027-.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/11/04/data-center-ballot-measures-2026-midterm.html">CNBC</a>
+        <a class="btn-source" href="https://www.cnbc.com/2026/11/05/meta-spacex-ai-data-centers-use-millions-of-gallons-of-water-a-day.html">CNBC</a>
+    </div>
+
+</body>
+</html>
